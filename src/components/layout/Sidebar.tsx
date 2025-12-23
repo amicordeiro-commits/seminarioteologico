@@ -1,28 +1,27 @@
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 import {
   Home,
   BookOpen,
   Calendar,
   MessageSquare,
   Settings,
-  GraduationCap,
   BarChart3,
   Users,
-  Bell,
   Search,
   Menu,
   X,
+  BookMarked,
+  Church,
 } from "lucide-react";
 import { useState } from "react";
 
 const navItems = [
-  { icon: Home, label: "Dashboard", path: "/" },
+  { icon: Home, label: "Início", path: "/" },
   { icon: BookOpen, label: "Meus Cursos", path: "/courses" },
   { icon: Calendar, label: "Calendário", path: "/calendar" },
   { icon: MessageSquare, label: "Mensagens", path: "/messages" },
-  { icon: BarChart3, label: "Progresso", path: "/progress" },
+  { icon: BarChart3, label: "Meu Progresso", path: "/progress" },
   { icon: Users, label: "Comunidade", path: "/community" },
 ];
 
@@ -60,14 +59,31 @@ export function Sidebar() {
         {/* Logo */}
         <div className="p-6 border-b border-sidebar-border">
           <Link to="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-sidebar-primary flex items-center justify-center">
-              <GraduationCap className="w-6 h-6 text-sidebar-primary-foreground" />
+            <div className="w-10 h-10 rounded-xl bg-sidebar-primary flex items-center justify-center shadow-glow">
+              <Church className="w-6 h-6 text-sidebar-primary-foreground" />
             </div>
             {!isCollapsed && (
-              <span className="font-bold text-xl text-sidebar-foreground">EduLearn</span>
+              <div>
+                <span className="font-serif font-bold text-xl text-sidebar-foreground">Seminário</span>
+                <p className="text-xs text-sidebar-foreground/60 font-sans">Teológico</p>
+              </div>
             )}
           </Link>
         </div>
+
+        {/* Daily Verse */}
+        {!isCollapsed && (
+          <div className="p-4 mx-4 mt-4 rounded-lg bg-sidebar-accent/50 border border-sidebar-border">
+            <div className="flex items-center gap-2 mb-2">
+              <BookMarked className="w-4 h-4 text-sidebar-primary" />
+              <span className="text-xs font-medium text-sidebar-primary">Versículo do Dia</span>
+            </div>
+            <p className="text-xs text-sidebar-foreground/80 italic leading-relaxed">
+              "Lâmpada para os meus pés é a tua palavra, e luz para o meu caminho."
+            </p>
+            <p className="text-xs text-sidebar-foreground/60 mt-1 font-medium">Salmos 119:105</p>
+          </div>
+        )}
 
         {/* Search */}
         {!isCollapsed && (
@@ -77,7 +93,7 @@ export function Sidebar() {
               <input
                 type="text"
                 placeholder="Buscar cursos..."
-                className="w-full pl-10 pr-4 py-2.5 rounded-lg bg-sidebar-accent text-sidebar-foreground placeholder:text-sidebar-foreground/50 border border-sidebar-border focus:outline-none focus:ring-2 focus:ring-sidebar-primary text-sm"
+                className="w-full pl-10 pr-4 py-2.5 rounded-lg bg-sidebar-accent text-sidebar-foreground placeholder:text-sidebar-foreground/50 border border-sidebar-border focus:outline-none focus:ring-2 focus:ring-sidebar-primary text-sm font-sans"
               />
             </div>
           </div>
@@ -93,9 +109,9 @@ export function Sidebar() {
                 to={item.path}
                 onClick={() => setIsMobileOpen(false)}
                 className={cn(
-                  "flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 group",
+                  "flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 group font-sans",
                   isActive
-                    ? "bg-sidebar-primary text-sidebar-primary-foreground"
+                    ? "bg-sidebar-primary text-sidebar-primary-foreground shadow-glow"
                     : "text-sidebar-foreground hover:bg-sidebar-accent"
                 )}
               >
@@ -115,7 +131,7 @@ export function Sidebar() {
         <div className="p-4 border-t border-sidebar-border">
           <Link
             to="/settings"
-            className="flex items-center gap-3 px-4 py-3 rounded-lg text-sidebar-foreground hover:bg-sidebar-accent transition-colors"
+            className="flex items-center gap-3 px-4 py-3 rounded-lg text-sidebar-foreground hover:bg-sidebar-accent transition-colors font-sans"
           >
             <Settings className="w-5 h-5 text-sidebar-foreground/70" />
             {!isCollapsed && <span className="font-medium">Configurações</span>}

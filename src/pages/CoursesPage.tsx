@@ -3,11 +3,11 @@ import { CourseCard } from "@/components/courses/CourseCard";
 import { mockCourses } from "@/data/mockData";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, Filter, BookOpen, Trophy, Clock } from "lucide-react";
+import { Search, Filter, BookOpen, Trophy, Clock, Cross } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
-const categories = ["Todos", "Desenvolvimento", "Data Science", "Design", "Marketing", "IA", "Gestão"];
+const categories = ["Todos", "Teologia", "Estudos Bíblicos", "Línguas Bíblicas", "História", "Ministério", "Apologética"];
 
 const CoursesPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("Todos");
@@ -30,8 +30,12 @@ const CoursesPage = () => {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-bold text-foreground">Meus Cursos</h1>
-            <p className="text-muted-foreground">Gerencie seus cursos e continue aprendendo</p>
+            <div className="flex items-center gap-2 mb-1">
+              <Cross className="w-5 h-5 text-primary" />
+              <span className="text-sm text-primary font-medium font-sans">Biblioteca Teológica</span>
+            </div>
+            <h1 className="text-2xl font-serif font-bold text-foreground">Meus Cursos</h1>
+            <p className="text-muted-foreground font-sans">Gerencie seus cursos e continue sua formação</p>
           </div>
           <div className="flex items-center gap-3">
             <div className="relative">
@@ -56,8 +60,8 @@ const CoursesPage = () => {
               <Clock className="w-6 h-6 text-primary" />
             </div>
             <div>
-              <p className="text-2xl font-bold text-foreground">{inProgressCourses.length}</p>
-              <p className="text-sm text-muted-foreground">Em andamento</p>
+              <p className="text-2xl font-serif font-bold text-foreground">{inProgressCourses.length}</p>
+              <p className="text-sm text-muted-foreground font-sans">Em andamento</p>
             </div>
           </div>
           <div className="flex items-center gap-4 p-4 rounded-xl bg-success/5 border border-success/20">
@@ -65,8 +69,8 @@ const CoursesPage = () => {
               <Trophy className="w-6 h-6 text-success" />
             </div>
             <div>
-              <p className="text-2xl font-bold text-foreground">{completedCourses.length}</p>
-              <p className="text-sm text-muted-foreground">Concluídos</p>
+              <p className="text-2xl font-serif font-bold text-foreground">{completedCourses.length}</p>
+              <p className="text-sm text-muted-foreground font-sans">Concluídos</p>
             </div>
           </div>
           <div className="flex items-center gap-4 p-4 rounded-xl bg-secondary border border-border">
@@ -74,8 +78,8 @@ const CoursesPage = () => {
               <BookOpen className="w-6 h-6 text-muted-foreground" />
             </div>
             <div>
-              <p className="text-2xl font-bold text-foreground">{notStartedCourses.length}</p>
-              <p className="text-sm text-muted-foreground">Não iniciados</p>
+              <p className="text-2xl font-serif font-bold text-foreground">{notStartedCourses.length}</p>
+              <p className="text-sm text-muted-foreground font-sans">Não iniciados</p>
             </div>
           </div>
         </div>
@@ -89,7 +93,7 @@ const CoursesPage = () => {
               size="sm"
               onClick={() => setSelectedCategory(category)}
               className={cn(
-                "transition-all duration-200",
+                "transition-all duration-200 font-sans",
                 selectedCategory === category && "shadow-md"
               )}
             >
@@ -114,8 +118,8 @@ const CoursesPage = () => {
         ) : (
           <div className="text-center py-12">
             <BookOpen className="w-16 h-16 text-muted-foreground/50 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-foreground mb-2">Nenhum curso encontrado</h3>
-            <p className="text-muted-foreground">Tente ajustar seus filtros de busca</p>
+            <h3 className="text-lg font-serif font-medium text-foreground mb-2">Nenhum curso encontrado</h3>
+            <p className="text-muted-foreground font-sans">Tente ajustar seus filtros de busca</p>
           </div>
         )}
       </div>

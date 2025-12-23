@@ -1,5 +1,4 @@
-import { BookOpen, Clock, Users, Star, MoreVertical, Play } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { BookOpen, Clock, Users, Star, Play } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Link } from "react-router-dom";
@@ -43,16 +42,16 @@ export function CourseCard({ course, variant = "default" }: CourseCardProps) {
           <div className="absolute inset-0 bg-foreground/20 group-hover:bg-foreground/10 transition-colors" />
         </div>
         <div className="flex-1 min-w-0">
-          <Badge variant="secondary" className="mb-2 text-xs">
+          <Badge variant="secondary" className="mb-2 text-xs font-sans">
             {course.category}
           </Badge>
-          <h3 className="font-semibold text-foreground truncate group-hover:text-primary transition-colors">
+          <h3 className="font-serif font-semibold text-foreground truncate group-hover:text-primary transition-colors">
             {course.title}
           </h3>
-          <p className="text-sm text-muted-foreground mt-1">{course.instructor}</p>
+          <p className="text-sm text-muted-foreground mt-1 font-sans">{course.instructor}</p>
           <div className="mt-2">
             <Progress value={progressPercentage} className="h-1.5" />
-            <p className="text-xs text-muted-foreground mt-1">
+            <p className="text-xs text-muted-foreground mt-1 font-sans">
               {course.completedLessons}/{course.totalLessons} aulas
             </p>
           </div>
@@ -81,10 +80,10 @@ export function CourseCard({ course, variant = "default" }: CourseCardProps) {
           </div>
         </div>
         <div className="absolute bottom-0 left-0 right-0 p-6">
-          <Badge className="bg-accent text-accent-foreground mb-3">{course.category}</Badge>
-          <h3 className="text-xl font-bold text-primary-foreground mb-2">{course.title}</h3>
-          <p className="text-primary-foreground/80 text-sm line-clamp-2">{course.description}</p>
-          <div className="flex items-center gap-4 mt-4 text-primary-foreground/70 text-sm">
+          <Badge className="bg-accent text-accent-foreground mb-3 font-sans">{course.category}</Badge>
+          <h3 className="text-xl font-serif font-bold text-primary-foreground mb-2">{course.title}</h3>
+          <p className="text-primary-foreground/80 text-sm line-clamp-2 font-sans">{course.description}</p>
+          <div className="flex items-center gap-4 mt-4 text-primary-foreground/70 text-sm font-sans">
             <span className="flex items-center gap-1">
               <Clock className="w-4 h-4" />
               {course.duration}
@@ -115,7 +114,7 @@ export function CourseCard({ course, variant = "default" }: CourseCardProps) {
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-        <Badge className="absolute top-3 left-3 bg-card/90 text-card-foreground">
+        <Badge className="absolute top-3 left-3 bg-card/90 text-card-foreground font-sans">
           {course.category}
         </Badge>
         {course.progress > 0 && (
@@ -128,11 +127,11 @@ export function CourseCard({ course, variant = "default" }: CourseCardProps) {
         )}
       </div>
       <div className="p-5">
-        <h3 className="font-semibold text-foreground text-lg mb-2 group-hover:text-primary transition-colors line-clamp-2">
+        <h3 className="font-serif font-semibold text-foreground text-lg mb-2 group-hover:text-primary transition-colors line-clamp-2">
           {course.title}
         </h3>
-        <p className="text-muted-foreground text-sm mb-4">{course.instructor}</p>
-        <div className="flex items-center justify-between text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm mb-4 font-sans">{course.instructor}</p>
+        <div className="flex items-center justify-between text-sm text-muted-foreground font-sans">
           <div className="flex items-center gap-3">
             <span className="flex items-center gap-1">
               <Clock className="w-4 h-4" />
@@ -150,7 +149,7 @@ export function CourseCard({ course, variant = "default" }: CourseCardProps) {
         </div>
         {course.progress > 0 && (
           <div className="mt-4 pt-4 border-t border-border">
-            <div className="flex justify-between text-sm mb-2">
+            <div className="flex justify-between text-sm mb-2 font-sans">
               <span className="text-muted-foreground">Progresso</span>
               <span className="font-medium text-primary">{Math.round(progressPercentage)}%</span>
             </div>
