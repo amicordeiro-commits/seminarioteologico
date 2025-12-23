@@ -20,8 +20,8 @@ export function Header({ isSidebarCollapsed }: HeaderProps) {
       <div className="flex items-center justify-between h-16 px-6">
         {/* Page Title - Dynamic based on route */}
         <div className="lg:ml-0 ml-12">
-          <h1 className="text-xl font-semibold text-foreground">Dashboard</h1>
-          <p className="text-sm text-muted-foreground">Bem-vindo de volta!</p>
+          <h1 className="text-xl font-serif font-semibold text-foreground">Portal do Aluno</h1>
+          <p className="text-sm text-muted-foreground font-sans">Seminário Teológico</p>
         </div>
 
         {/* Right Side */}
@@ -39,12 +39,12 @@ export function Header({ isSidebarCollapsed }: HeaderProps) {
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="flex items-center gap-3 pl-2 pr-4">
                 <Avatar className="w-8 h-8">
-                  <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" />
-                  <AvatarFallback>JD</AvatarFallback>
+                  <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=Samuel" />
+                  <AvatarFallback>SM</AvatarFallback>
                 </Avatar>
                 <div className="hidden md:block text-left">
-                  <p className="text-sm font-medium">João Silva</p>
-                  <p className="text-xs text-muted-foreground">Estudante</p>
+                  <p className="text-sm font-medium font-sans">Samuel Martins</p>
+                  <p className="text-xs text-muted-foreground">Bacharel em Teologia</p>
                 </div>
               </Button>
             </DropdownMenuTrigger>
@@ -56,6 +56,7 @@ export function Header({ isSidebarCollapsed }: HeaderProps) {
                 Perfil
               </DropdownMenuItem>
               <DropdownMenuItem>Configurações</DropdownMenuItem>
+              <DropdownMenuItem>Certificados</DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem className="text-destructive">Sair</DropdownMenuItem>
             </DropdownMenuContent>
