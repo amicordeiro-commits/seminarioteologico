@@ -1,24 +1,36 @@
+import { useState } from "react";
 import { AdminLayout } from "@/components/layout/AdminLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { GraduationCap, Loader2, Calendar, RefreshCw, AlertTriangle } from "lucide-react";
+import {
+  GraduationCap,
+  Loader2,
+  Calendar,
+  RefreshCw,
+  AlertTriangle,
+  ExternalLink,
+  Download,
+} from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import { useDownloadCertificate } from "@/hooks/useDownloadCertificate";
+import {
+  AdminCertificatePreview,
+  type AdminCertificateWithDetails,
+} from "@/components/certificates/AdminCertificatePreview";
 
-interface CertificateWithDetails {
-  id: string;
-  certificate_number: string;
-  issued_at: string;
-  user_id: string;
+interface CertificateWithDetails extends AdminCertificateWithDetails {
   course_id: string;
-  courses: { title: string } | null;
 }
 
 export default function AdminCertificatesPage() {
+  const [previewCertificate, setPreviewCertificate] = useState<CertificateWithDetails | null>(null);
+  const { downloadCertificate, isDownloading } = useDownloadCertificate();
+
   const {
     data,
     isLoading,
@@ -34,7 +46,7 @@ export default function AdminCertificatesPage() {
         .select(
           `
           *,
-          courses (title)
+          courses (title, instructor, duration_hours)
         `
         )
         .order("issued_at", { ascending: false });
@@ -68,7 +80,13 @@ export default function AdminCertificatesPage() {
             </p>
           </div>
 
-          <Button variant="outline" size="sm" onClick={() => refetch()} disabled={isFetching}>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => refetch()}
+            disabled={isFetching}
+            className="gap-2"
+          >
             {isFetching ? (
               <Loader2 className="w-4 h-4 animate-spin" />
             ) : (
@@ -106,7 +124,7 @@ export default function AdminCertificatesPage() {
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {certificates.map((cert) => (
-              <Card key={cert.id}>
+              <Card key={cert.id} className="overflow-hidden">
                 <CardHeader className="pb-2">
                   <div className="flex items-start justify-between">
                     <CardTitle className="text-base">
@@ -128,14 +146,48 @@ export default function AdminCertificatesPage() {
                     </span>
                   </div>
                   <div className="pt-2 border-t border-border">
-                    <p className="text-xs text-muted-foreground font-mono">
+                    <p className="text-xs text-muted-foreground font-mono break-all">
                       {cert.certificate_number}
                     </p>
+                  </div>
+
+                  <div className="pt-2 border-t border-border flex gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="flex-1 gap-2"
+                      onClick={() => setPreviewCertificate(cert)}
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      Visualizar
+                    </Button>
+                    <Button
+                      size="sm"
+                      className="flex-1 gap-2"
+                      onClick={() => downloadCertificate({ certificateId: cert.id })}
+                      disabled={isDownloading}
+                    >
+                      {isDownloading ? (
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                      ) : (
+                        <Download className="w-4 h-4" />
+                      )}
+                      {isDownloading ? "Gerando..." : "Baixar PDF"}
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
             ))}
           </div>
+        )}
+
+        {/* Preview Dialog */}
+        {previewCertificate && (
+          <AdminCertificatePreview
+            certificate={previewCertificate}
+            open={!!previewCertificate}
+            onOpenChange={(open) => !open && setPreviewCertificate(null)}
+          />
         )}
       </div>
     </AdminLayout>
