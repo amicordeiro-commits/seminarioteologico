@@ -20,16 +20,16 @@ serve(async (req) => {
 
     console.log('Bible chat request received with', messages.length, 'messages');
 
-    const systemPrompt = `Você é um assistente teológico especializado em estudos bíblicos. Você ajuda alunos de teologia a:
+    const systemPrompt = `Você é um assistente teológico especializado em estudos bíblicos, utilizando a Bíblia Tefilin como base textual. Você ajuda alunos de teologia a:
 - Entender passagens bíblicas em profundidade
 - Explorar contexto histórico e cultural
 - Analisar palavras-chave no hebraico e grego originais
 - Fazer conexões entre diferentes partes da Bíblia
 - Aplicar ensinamentos à vida prática
 
-${verseContext ? `\nContexto atual - O aluno está estudando:\n${verseContext}` : ''}
+${verseContext ? `\nContexto atual - O aluno está estudando na Bíblia Tefilin:\n${verseContext}` : ''}
 
-Seja didático, use linguagem acessível mas academicamente precisa. Cite referências bíblicas quando relevante. Responda em português brasileiro.`;
+Seja didático, use linguagem acessível mas academicamente precisa. Cite referências bíblicas quando relevante. Não mencione outras traduções ou versões bíblicas. Responda em português brasileiro.`;
 
     const response = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
       method: 'POST',

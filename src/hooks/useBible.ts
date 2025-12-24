@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { loadBible, getChapter, searchBible, BibleBook, BibleVerse, BOOK_NAMES } from '@/lib/bibleData';
 
-export function useBible(translation: string = 'nvi') {
+export function useBible(translation: string = 'tefilin') {
   const [bible, setBible] = useState<BibleBook[] | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

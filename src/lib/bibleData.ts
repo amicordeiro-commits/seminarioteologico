@@ -68,9 +68,7 @@ export const BOOK_NAMES: Record<string, string> = {
 };
 
 export const TRANSLATION_NAMES: Record<string, string> = {
-  aa: 'Almeida Atualizada',
-  acf: 'Almeida Corrigida Fiel',
-  nvi: 'Nova Versão Internacional',
+  tefilin: 'Bíblia Tefilin',
 };
 
 export interface BibleBook {
