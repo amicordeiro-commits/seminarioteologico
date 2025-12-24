@@ -17,6 +17,7 @@ import {
   Loader2,
 } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useLibraryMaterials, useLibraryCategories, LibraryMaterial } from "@/hooks/useLibrary";
 import { SermonReader } from "@/components/library/SermonReader";
 
@@ -45,6 +46,8 @@ const getTypeIcon = (type: string | null) => {
     case "document":
     case "docx":
       return FileText;
+    case "bible":
+      return BookOpen;
     default:
       return ScrollText;
   }
@@ -61,12 +64,15 @@ const getTypeBadgeColor = (type: string | null) => {
     case "audio":
     case "mp3":
       return "bg-secondary/80 text-secondary-foreground";
+    case "bible":
+      return "bg-amber-500/10 text-amber-700 dark:text-amber-400";
     default:
       return "bg-muted text-muted-foreground";
   }
 };
 
 export default function LibraryPage() {
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedMaterial, setSelectedMaterial] = useState<LibraryMaterial | null>(null);
@@ -243,7 +249,17 @@ export default function LibraryPage() {
                           <span>{resource.download_count}</span>
                         </div>
                         <div className="flex gap-2">
-                          {resource.content && (
+                          {resource.file_type === 'bible' && resource.content?.startsWith('LINK:') && (
+                            <Button 
+                              size="sm" 
+                              className="h-8 px-3 gap-1"
+                              onClick={() => navigate(resource.content!.replace('LINK:', ''))}
+                            >
+                              <BookOpen className="w-3 h-3" />
+                              Acessar
+                            </Button>
+                          )}
+                          {resource.content && !resource.content.startsWith('LINK:') && (
                             <Button 
                               size="sm" 
                               variant="outline"
