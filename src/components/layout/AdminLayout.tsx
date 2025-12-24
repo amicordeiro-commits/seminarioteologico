@@ -17,6 +17,7 @@ import {
   MessageSquare,
   Library,
   ClipboardList,
+  PlayCircle,
 } from "lucide-react";
 
 interface AdminLayoutProps {
@@ -27,6 +28,7 @@ const menuItems = [
   { icon: LayoutDashboard, label: "Dashboard", path: "/admin" },
   { icon: Users, label: "Usuários", path: "/admin/users" },
   { icon: BookOpen, label: "Cursos", path: "/admin/courses" },
+  { icon: PlayCircle, label: "Aulas", path: "/admin/lessons" },
   { icon: ClipboardList, label: "Quizzes", path: "/admin/quizzes" },
   { icon: Library, label: "Biblioteca", path: "/admin/library" },
   { icon: Calendar, label: "Eventos", path: "/admin/events" },

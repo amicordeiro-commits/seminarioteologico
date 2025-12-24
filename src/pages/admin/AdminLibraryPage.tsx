@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { AdminLayout } from "@/components/layout/AdminLayout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import { Library, Plus, Pencil, Trash2, Loader2, FileText, Video, Headphones } from "lucide-react";
+import { Library, Plus, Pencil, Trash2, Loader2, FileText, Video, Headphones, Upload } from "lucide-react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
@@ -51,6 +51,37 @@ export default function AdminLibraryPage() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editingMaterial, setEditingMaterial] = useState<Partial<Material> | null>(null);
   const [search, setSearch] = useState("");
+  const [uploading, setUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    try {
+      const fileExt = file.name.split(".").pop();
+      const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
+      const filePath = `materials/${fileName}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from("library")
+        .upload(filePath, file);
+
+      if (uploadError) throw uploadError;
+
+      const { data: { publicUrl } } = supabase.storage
+        .from("library")
+        .getPublicUrl(filePath);
+
+      setEditingMaterial({ ...editingMaterial, file_url: publicUrl });
+      toast({ title: "Arquivo enviado com sucesso!" });
+    } catch (error) {
+      toast({ title: "Erro ao enviar arquivo", variant: "destructive" });
+    } finally {
+      setUploading(false);
+    }
+  };
 
   // Fetch materials
   const { data: materials = [], isLoading } = useQuery({
@@ -304,14 +335,32 @@ export default function AdminLibraryPage() {
                 </div>
               </div>
               <div className="space-y-2">
-                <Label>URL do Arquivo</Label>
-                <Input
-                  value={editingMaterial?.file_url || ""}
-                  onChange={(e) =>
-                    setEditingMaterial({ ...editingMaterial, file_url: e.target.value })
-                  }
-                  placeholder="https://..."
-                />
+                <Label>Arquivo</Label>
+                <div className="flex gap-2">
+                  <Input
+                    value={editingMaterial?.file_url || ""}
+                    onChange={(e) =>
+                      setEditingMaterial({ ...editingMaterial, file_url: e.target.value })
+                    }
+                    placeholder="https://... ou faça upload"
+                    className="flex-1"
+                  />
+                  <input
+                    type="file"
+                    ref={fileInputRef}
+                    onChange={handleFileUpload}
+                    className="hidden"
+                    accept=".pdf,.doc,.docx,.mp3,.mp4,.wav"
+                  />
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => fileInputRef.current?.click()}
+                    disabled={uploading}
+                  >
+                    {uploading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
+                  </Button>
+                </div>
               </div>
               <div className="flex items-center gap-2">
                 <Switch
