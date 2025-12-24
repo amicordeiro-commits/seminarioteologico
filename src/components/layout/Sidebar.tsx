@@ -15,6 +15,7 @@ import {
   Church,
   Library,
   User,
+  Award,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -26,6 +27,7 @@ const navItems = [
   { icon: Calendar, label: "Calendário", path: "/calendar" },
   { icon: MessageSquare, label: "Mensagens", path: "/messages" },
   { icon: BarChart3, label: "Meu Progresso", path: "/progress" },
+  { icon: Award, label: "Certificados", path: "/certificates" },
   { icon: Users, label: "Comunidade", path: "/community" },
   { icon: User, label: "Meu Perfil", path: "/profile" },
 ];
