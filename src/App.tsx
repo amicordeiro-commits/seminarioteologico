@@ -30,6 +30,9 @@ import AdminEventsPage from "./pages/admin/AdminEventsPage";
 import AdminDevotionalsPage from "./pages/admin/AdminDevotionalsPage";
 import AdminCertificatesPage from "./pages/admin/AdminCertificatesPage";
 import AdminSettingsPage from "./pages/admin/AdminSettingsPage";
+import AdminMessagesPage from "./pages/admin/AdminMessagesPage";
+import AdminQuizzesPage from "./pages/admin/AdminQuizzesPage";
+import AdminLessonsPage from "./pages/admin/AdminLessonsPage";
 
 const queryClient = new QueryClient();
 
@@ -98,9 +101,12 @@ const AppRoutes = () => {
       <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
       <Route path="/admin/users" element={<AdminRoute><AdminUsersPage /></AdminRoute>} />
       <Route path="/admin/courses" element={<AdminRoute><AdminCoursesPage /></AdminRoute>} />
+      <Route path="/admin/lessons" element={<AdminRoute><AdminLessonsPage /></AdminRoute>} />
+      <Route path="/admin/quizzes" element={<AdminRoute><AdminQuizzesPage /></AdminRoute>} />
       <Route path="/admin/library" element={<AdminRoute><AdminLibraryPage /></AdminRoute>} />
       <Route path="/admin/events" element={<AdminRoute><AdminEventsPage /></AdminRoute>} />
       <Route path="/admin/devotionals" element={<AdminRoute><AdminDevotionalsPage /></AdminRoute>} />
+      <Route path="/admin/messages" element={<AdminRoute><AdminMessagesPage /></AdminRoute>} />
       <Route path="/admin/certificates" element={<AdminRoute><AdminCertificatesPage /></AdminRoute>} />
       <Route path="/admin/settings" element={<AdminRoute><AdminSettingsPage /></AdminRoute>} />
       
