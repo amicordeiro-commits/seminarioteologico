@@ -13,16 +13,20 @@ import {
   X,
   BookMarked,
   Church,
+  Library,
+  User,
 } from "lucide-react";
 import { useState } from "react";
 
 const navItems = [
   { icon: Home, label: "Início", path: "/" },
   { icon: BookOpen, label: "Meus Cursos", path: "/courses" },
+  { icon: Library, label: "Biblioteca", path: "/library" },
   { icon: Calendar, label: "Calendário", path: "/calendar" },
   { icon: MessageSquare, label: "Mensagens", path: "/messages" },
   { icon: BarChart3, label: "Meu Progresso", path: "/progress" },
   { icon: Users, label: "Comunidade", path: "/community" },
+  { icon: User, label: "Meu Perfil", path: "/profile" },
 ];
 
 export function Sidebar() {
