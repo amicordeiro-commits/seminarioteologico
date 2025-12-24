@@ -14,7 +14,293 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      courses: {
+        Row: {
+          category: string
+          created_at: string | null
+          description: string | null
+          duration_hours: number | null
+          id: string
+          instructor: string | null
+          is_published: boolean | null
+          level: string | null
+          thumbnail_url: string | null
+          title: string
+          total_lessons: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          category: string
+          created_at?: string | null
+          description?: string | null
+          duration_hours?: number | null
+          id?: string
+          instructor?: string | null
+          is_published?: boolean | null
+          level?: string | null
+          thumbnail_url?: string | null
+          title: string
+          total_lessons?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          category?: string
+          created_at?: string | null
+          description?: string | null
+          duration_hours?: number | null
+          id?: string
+          instructor?: string | null
+          is_published?: boolean | null
+          level?: string | null
+          thumbnail_url?: string | null
+          title?: string
+          total_lessons?: number | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      devotional_notes: {
+        Row: {
+          created_at: string | null
+          devotional_id: string
+          id: string
+          notes: string | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          devotional_id: string
+          id?: string
+          notes?: string | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          devotional_id?: string
+          id?: string
+          notes?: string | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "devotional_notes_devotional_id_fkey"
+            columns: ["devotional_id"]
+            isOneToOne: false
+            referencedRelation: "devotionals"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "devotional_notes_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      devotionals: {
+        Row: {
+          created_at: string | null
+          id: string
+          prayer: string | null
+          publish_date: string
+          reflection: string
+          title: string
+          verse_reference: string
+          verse_text: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          prayer?: string | null
+          publish_date: string
+          reflection: string
+          title: string
+          verse_reference: string
+          verse_text: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          prayer?: string | null
+          publish_date?: string
+          reflection?: string
+          title?: string
+          verse_reference?: string
+          verse_text?: string
+        }
+        Relationships: []
+      }
+      enrollments: {
+        Row: {
+          completed_at: string | null
+          course_id: string
+          enrolled_at: string | null
+          id: string
+          progress_percent: number | null
+          user_id: string
+        }
+        Insert: {
+          completed_at?: string | null
+          course_id: string
+          enrolled_at?: string | null
+          id?: string
+          progress_percent?: number | null
+          user_id: string
+        }
+        Update: {
+          completed_at?: string | null
+          course_id?: string
+          enrolled_at?: string | null
+          id?: string
+          progress_percent?: number | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "enrollments_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "courses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "enrollments_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lesson_progress: {
+        Row: {
+          completed: boolean | null
+          completed_at: string | null
+          id: string
+          lesson_id: string
+          user_id: string
+          watched_seconds: number | null
+        }
+        Insert: {
+          completed?: boolean | null
+          completed_at?: string | null
+          id?: string
+          lesson_id: string
+          user_id: string
+          watched_seconds?: number | null
+        }
+        Update: {
+          completed?: boolean | null
+          completed_at?: string | null
+          id?: string
+          lesson_id?: string
+          user_id?: string
+          watched_seconds?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lesson_progress_lesson_id_fkey"
+            columns: ["lesson_id"]
+            isOneToOne: false
+            referencedRelation: "lessons"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lesson_progress_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lessons: {
+        Row: {
+          content: string | null
+          course_id: string
+          created_at: string | null
+          description: string | null
+          duration_minutes: number | null
+          id: string
+          is_free: boolean | null
+          order_index: number
+          title: string
+          video_url: string | null
+        }
+        Insert: {
+          content?: string | null
+          course_id: string
+          created_at?: string | null
+          description?: string | null
+          duration_minutes?: number | null
+          id?: string
+          is_free?: boolean | null
+          order_index: number
+          title: string
+          video_url?: string | null
+        }
+        Update: {
+          content?: string | null
+          course_id?: string
+          created_at?: string | null
+          description?: string | null
+          duration_minutes?: number | null
+          id?: string
+          is_free?: boolean | null
+          order_index?: number
+          title?: string
+          video_url?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lessons_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "courses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          bio: string | null
+          course_type: string | null
+          created_at: string | null
+          enrollment_date: string | null
+          full_name: string | null
+          id: string
+          phone: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          bio?: string | null
+          course_type?: string | null
+          created_at?: string | null
+          enrollment_date?: string | null
+          full_name?: string | null
+          id: string
+          phone?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          bio?: string | null
+          course_type?: string | null
+          created_at?: string | null
+          enrollment_date?: string | null
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
