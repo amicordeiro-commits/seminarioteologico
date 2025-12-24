@@ -22,6 +22,96 @@ export interface DevotionalNote {
   updated_at: string;
 }
 
+// Main hook for devotionals page
+export function useDevotionals() {
+  const { user } = useAuth();
+  const queryClient = useQueryClient();
+  const today = new Date().toISOString().split("T")[0];
+
+  const { data: todayDevotional, isLoading: isLoadingToday } = useQuery({
+    queryKey: ["todayDevotional", today],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("devotionals")
+        .select("*")
+        .lte("publish_date", today)
+        .order("publish_date", { ascending: false })
+        .limit(1)
+        .maybeSingle();
+
+      if (error) throw error;
+      return data as Devotional | null;
+    },
+  });
+
+  const { data: recentDevotionals = [], isLoading: isLoadingRecent } = useQuery({
+    queryKey: ["recentDevotionals"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("devotionals")
+        .select("*")
+        .lte("publish_date", today)
+        .order("publish_date", { ascending: false })
+        .limit(10);
+
+      if (error) throw error;
+      return data as Devotional[];
+    },
+  });
+
+  const { data: userNotes } = useQuery({
+    queryKey: ["devotionalNotes", user?.id, todayDevotional?.id],
+    queryFn: async () => {
+      if (!user?.id || !todayDevotional?.id) return null;
+
+      const { data, error } = await supabase
+        .from("devotional_notes")
+        .select("*")
+        .eq("user_id", user.id)
+        .eq("devotional_id", todayDevotional.id)
+        .maybeSingle();
+
+      if (error) throw error;
+      return data as DevotionalNote | null;
+    },
+    enabled: !!user?.id && !!todayDevotional?.id,
+  });
+
+  const saveNotesMutation = useMutation({
+    mutationFn: async ({ devotionalId, notes }: { devotionalId: string; notes: string }) => {
+      if (!user?.id) throw new Error("User not authenticated");
+
+      const { data, error } = await supabase
+        .from("devotional_notes")
+        .upsert({
+          user_id: user.id,
+          devotional_id: devotionalId,
+          notes,
+        })
+        .select()
+        .single();
+
+      if (error) throw error;
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["devotionalNotes"] });
+    },
+  });
+
+  const saveNotes = async (devotionalId: string, notes: string) => {
+    return saveNotesMutation.mutateAsync({ devotionalId, notes });
+  };
+
+  return {
+    todayDevotional,
+    recentDevotionals,
+    userNotes,
+    isLoading: isLoadingToday || isLoadingRecent,
+    saveNotes,
+  };
+}
+
 // Fetch today's devotional
 export const useTodayDevotional = () => {
   return useQuery({
