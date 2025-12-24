@@ -1,4 +1,4 @@
-import { Bell, User, LogOut, Settings, Award } from "lucide-react";
+import { Bell, User, LogOut, Settings, Award, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useAuth } from "@/hooks/useAuth";
+import { useUserRole } from "@/hooks/useUserRole";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -20,6 +21,7 @@ interface HeaderProps {
 
 export function Header({ isSidebarCollapsed }: HeaderProps) {
   const { user, signOut } = useAuth();
+  const { isAdmin } = useUserRole();
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -82,10 +84,19 @@ export function Header({ isSidebarCollapsed }: HeaderProps) {
                 <Settings className="mr-2 h-4 w-4" />
                 Configurações
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => navigate('/progress')}>
+              <DropdownMenuItem onClick={() => navigate('/certificates')}>
                 <Award className="mr-2 h-4 w-4" />
                 Certificados
               </DropdownMenuItem>
+              {isAdmin && (
+                <>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={() => navigate('/admin')} className="text-primary">
+                    <Shield className="mr-2 h-4 w-4" />
+                    Painel Admin
+                  </DropdownMenuItem>
+                </>
+              )}
               <DropdownMenuSeparator />
               <DropdownMenuItem className="text-destructive" onClick={handleSignOut}>
                 <LogOut className="mr-2 h-4 w-4" />
