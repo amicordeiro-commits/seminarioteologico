@@ -13,7 +13,6 @@ import {
   Award,
   Edit,
   Camera,
-  Church,
   GraduationCap,
   Clock,
   Target,
@@ -21,9 +20,10 @@ import {
   Save,
   Loader2,
 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useProfile } from "@/hooks/useProfile";
 import { useAuth } from "@/hooks/useAuth";
+import { useAvatarUpload } from "@/hooks/useAvatarUpload";
 import { toast } from "sonner";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
@@ -74,12 +74,36 @@ const achievements = [
 export default function ProfilePage() {
   const { user } = useAuth();
   const { profile, isLoading, updateProfile, isUpdating, stats } = useProfile();
+  const { uploadAvatar, uploading } = useAvatarUpload();
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
     full_name: "",
     phone: "",
     bio: "",
   });
+
+  const handleAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      toast.error("Por favor, selecione uma imagem");
+      return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error("A imagem deve ter no máximo 5MB");
+      return;
+    }
+
+    try {
+      await uploadAvatar(file);
+      toast.success("Foto atualizada com sucesso!");
+    } catch (error) {
+      toast.error("Erro ao atualizar foto");
+    }
+  };
 
   useEffect(() => {
     if (profile) {
@@ -143,8 +167,19 @@ export default function ProfilePage() {
                     </div>
                   )}
                 </div>
-                <button className="absolute bottom-2 right-2 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
-                  <Camera className="w-4 h-4" />
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  onChange={handleAvatarChange}
+                  className="hidden"
+                />
+                <button 
+                  onClick={() => fileInputRef.current?.click()}
+                  disabled={uploading}
+                  className="absolute bottom-2 right-2 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-lg hover:scale-110 transition-transform disabled:opacity-50"
+                >
+                  {uploading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Camera className="w-4 h-4" />}
                 </button>
               </div>
 
