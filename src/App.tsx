@@ -9,6 +9,10 @@ import CoursePage from "./pages/CoursePage";
 import CalendarPage from "./pages/CalendarPage";
 import MessagesPage from "./pages/MessagesPage";
 import ProgressPage from "./pages/ProgressPage";
+import LibraryPage from "./pages/LibraryPage";
+import ProfilePage from "./pages/ProfilePage";
+import CommunityPage from "./pages/CommunityPage";
+import SettingsPage from "./pages/SettingsPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +30,10 @@ const App = () => (
           <Route path="/calendar" element={<CalendarPage />} />
           <Route path="/messages" element={<MessagesPage />} />
           <Route path="/progress" element={<ProgressPage />} />
+          <Route path="/library" element={<LibraryPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/community" element={<CommunityPage />} />
+          <Route path="/settings" element={<SettingsPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
