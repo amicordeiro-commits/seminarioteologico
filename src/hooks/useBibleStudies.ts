@@ -45,9 +45,9 @@ export function useBookIntroduction(bookAbbrev: string) {
         .eq("book_abbrev", bookAbbrev.toLowerCase())
         .eq("study_type", "introduction")
         .is("chapter", null)
-        .single();
+        .maybeSingle();
 
-      if (error && error.code !== "PGRST116") throw error;
+      if (error) throw error;
       return data as BibleStudy | null;
     },
     enabled: !!bookAbbrev,
