@@ -1,19 +1,40 @@
 import { AppLayout } from "@/components/layout/AppLayout";
 import { CourseCard } from "@/components/courses/CourseCard";
-import { mockCourses } from "@/data/mockData";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, Filter, BookOpen, Trophy, Clock, Cross } from "lucide-react";
+import { Search, Filter, BookOpen, Trophy, Clock, Cross, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { useCourses, useEnrollments } from "@/hooks/useCourses";
 
-const categories = ["Todos", "Teologia", "Estudos Bíblicos", "Línguas Bíblicas", "História", "Ministério", "Apologética"];
+const categories = ["Todos", "Teologia", "Estudos Bíblicos", "Idiomas Bíblicos", "História", "Ministério"];
 
 const CoursesPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const filteredCourses = mockCourses.filter((course) => {
+  const { data: courses, isLoading: loadingCourses } = useCourses();
+  const { data: enrollments, isLoading: loadingEnrollments } = useEnrollments();
+
+  // Map courses with enrollment data
+  const coursesWithProgress = courses?.map(course => {
+    const enrollment = enrollments?.find(e => e.course_id === course.id);
+    return {
+      id: course.id,
+      title: course.title,
+      instructor: course.instructor || 'Instrutor',
+      thumbnail: course.thumbnail_url || 'https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=800',
+      progress: enrollment?.progress_percent || 0,
+      totalLessons: course.total_lessons,
+      completedLessons: Math.round((course.total_lessons * (enrollment?.progress_percent || 0)) / 100),
+      duration: `${course.duration_hours}h`,
+      category: course.category,
+      rating: 4.8,
+      level: course.level,
+    };
+  }) || [];
+
+  const filteredCourses = coursesWithProgress.filter((course) => {
     const matchesCategory = selectedCategory === "Todos" || course.category === selectedCategory;
     const matchesSearch = course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          course.instructor.toLowerCase().includes(searchQuery.toLowerCase());
@@ -23,6 +44,8 @@ const CoursesPage = () => {
   const inProgressCourses = filteredCourses.filter(c => c.progress > 0 && c.progress < 100);
   const completedCourses = filteredCourses.filter(c => c.progress === 100);
   const notStartedCourses = filteredCourses.filter(c => c.progress === 0);
+
+  const isLoading = loadingCourses || loadingEnrollments;
 
   return (
     <AppLayout>
@@ -102,8 +125,12 @@ const CoursesPage = () => {
           ))}
         </div>
 
-        {/* Courses Grid */}
-        {filteredCourses.length > 0 ? (
+        {/* Loading State */}
+        {isLoading ? (
+          <div className="flex items-center justify-center py-12">
+            <Loader2 className="w-8 h-8 animate-spin text-primary" />
+          </div>
+        ) : filteredCourses.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredCourses.map((course, index) => (
               <div

@@ -3,18 +3,44 @@ import { CourseCard } from "@/components/courses/CourseCard";
 import { StatsCard } from "@/components/dashboard/StatsCard";
 import { ActivityTimeline } from "@/components/dashboard/ActivityTimeline";
 import { CalendarWidget } from "@/components/dashboard/CalendarWidget";
-import { mockCourses, mockActivities } from "@/data/mockData";
-import { BookOpen, Clock, Trophy, TrendingUp, ArrowRight, Cross, BookMarked } from "lucide-react";
+import { mockActivities } from "@/data/mockData";
+import { BookOpen, Clock, Trophy, TrendingUp, ArrowRight, Cross, BookMarked, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import heroBanner from "@/assets/hero-theology.jpg";
 import { useAuth } from "@/hooks/useAuth";
+import { useCourses, useEnrollments } from "@/hooks/useCourses";
 
 const Index = () => {
   const { user } = useAuth();
   const userName = user?.user_metadata?.full_name?.split(' ')[0] || 'Aluno';
-  const coursesInProgress = mockCourses.filter((c) => c.progress > 0 && c.progress < 100);
-  const completedCourses = mockCourses.filter((c) => c.progress === 100);
+  
+  const { data: courses, isLoading: loadingCourses } = useCourses();
+  const { data: enrollments, isLoading: loadingEnrollments } = useEnrollments();
+
+  // Map courses with enrollment data
+  const coursesWithProgress = courses?.map(course => {
+    const enrollment = enrollments?.find(e => e.course_id === course.id);
+    return {
+      id: course.id,
+      title: course.title,
+      description: course.description || '',
+      instructor: course.instructor || 'Instrutor',
+      thumbnail: course.thumbnail_url || 'https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=800',
+      progress: enrollment?.progress_percent || 0,
+      totalLessons: course.total_lessons,
+      completedLessons: Math.round((course.total_lessons * (enrollment?.progress_percent || 0)) / 100),
+      duration: `${course.duration_hours}h`,
+      category: course.category,
+      rating: 4.8,
+      level: course.level,
+    };
+  }) || [];
+
+  const coursesInProgress = coursesWithProgress.filter((c) => c.progress > 0 && c.progress < 100);
+  const completedCourses = coursesWithProgress.filter((c) => c.progress === 100);
+  
+  const isLoading = loadingCourses || loadingEnrollments;
 
   return (
     <AppLayout>
@@ -35,19 +61,19 @@ const Index = () => {
                 Graça e paz, {userName}!
               </h1>
               <p className="text-primary-foreground/80 text-lg mb-6 animate-fade-in font-sans" style={{ animationDelay: "100ms" }}>
-                Continue sua jornada de formação teológica. Você tem <span className="text-accent font-semibold">3 atividades</span> pendentes esta semana.
+                Continue sua jornada de formação teológica. Você tem <span className="text-accent font-semibold">{coursesWithProgress.length} cursos</span> disponíveis.
               </p>
               <div className="flex flex-wrap gap-4 animate-fade-in" style={{ animationDelay: "200ms" }}>
                 <Button variant="accent" size="lg" asChild>
-                  <Link to={`/course/${coursesInProgress[0]?.id}`}>
-                    Continuar Estudando
+                  <Link to="/courses">
+                    Explorar Cursos
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Link>
                 </Button>
                 <Button variant="hero-outline" size="lg" asChild className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground">
-                  <Link to="/courses">
+                  <Link to="/devotional">
                     <BookMarked className="w-5 h-5 mr-2" />
-                    Biblioteca de Cursos
+                    Devocional do Dia
                   </Link>
                 </Button>
               </div>
@@ -93,7 +119,7 @@ const Index = () => {
           {/* Courses in Progress */}
           <section className="lg:col-span-2 space-y-6">
             <div className="flex items-center justify-between">
-              <h2 className="text-xl font-serif font-semibold text-foreground">Continue sua Formação</h2>
+              <h2 className="text-xl font-serif font-semibold text-foreground">Cursos Disponíveis</h2>
               <Button variant="ghost" asChild>
                 <Link to="/courses" className="text-primary font-sans">
                   Ver todos
@@ -101,17 +127,23 @@ const Index = () => {
                 </Link>
               </Button>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {coursesInProgress.slice(0, 4).map((course, index) => (
-                <div
-                  key={course.id}
-                  className="animate-slide-up"
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  <CourseCard course={course} />
-                </div>
-              ))}
-            </div>
+            {isLoading ? (
+              <div className="flex items-center justify-center py-12">
+                <Loader2 className="w-8 h-8 animate-spin text-primary" />
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {coursesWithProgress.slice(0, 4).map((course, index) => (
+                  <div
+                    key={course.id}
+                    className="animate-slide-up"
+                    style={{ animationDelay: `${index * 100}ms` }}
+                  >
+                    <CourseCard course={course} />
+                  </div>
+                ))}
+              </div>
+            )}
           </section>
 
           {/* Sidebar */}
@@ -134,10 +166,12 @@ const Index = () => {
         </div>
 
         {/* Featured Course */}
-        <section className="space-y-6">
-          <h2 className="text-xl font-serif font-semibold text-foreground">Curso em Destaque</h2>
-          <CourseCard course={mockCourses[4]} variant="featured" />
-        </section>
+        {coursesWithProgress.length > 4 && (
+          <section className="space-y-6">
+            <h2 className="text-xl font-serif font-semibold text-foreground">Curso em Destaque</h2>
+            <CourseCard course={coursesWithProgress[4]} variant="featured" />
+          </section>
+        )}
       </div>
     </AppLayout>
   );

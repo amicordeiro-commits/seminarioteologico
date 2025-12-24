@@ -6,17 +6,18 @@ import { Link } from "react-router-dom";
 export interface Course {
   id: string;
   title: string;
-  description: string;
+  description?: string;
   instructor: string;
   thumbnail: string;
   progress: number;
   totalLessons: number;
   completedLessons: number;
   duration: string;
-  students: number;
+  students?: number;
   rating: number;
   category: string;
   lastAccessed?: string;
+  level?: string;
 }
 
 interface CourseCardProps {
@@ -82,7 +83,7 @@ export function CourseCard({ course, variant = "default" }: CourseCardProps) {
         <div className="absolute bottom-0 left-0 right-0 p-6">
           <Badge className="bg-accent text-accent-foreground mb-3 font-sans">{course.category}</Badge>
           <h3 className="text-xl font-serif font-bold text-primary-foreground mb-2">{course.title}</h3>
-          <p className="text-primary-foreground/80 text-sm line-clamp-2 font-sans">{course.description}</p>
+          {course.description && <p className="text-primary-foreground/80 text-sm line-clamp-2 font-sans">{course.description}</p>}
           <div className="flex items-center gap-4 mt-4 text-primary-foreground/70 text-sm font-sans">
             <span className="flex items-center gap-1">
               <Clock className="w-4 h-4" />
