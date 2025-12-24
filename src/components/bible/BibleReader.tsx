@@ -6,14 +6,15 @@ import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Card } from '@/components/ui/card';
 import { ChevronLeft, ChevronRight, Search, Book, Loader2 } from 'lucide-react';
-import { TRANSLATION_NAMES, BibleVerse, getBookName } from '@/lib/bibleData';
+import { BibleVerse, getBookName } from '@/lib/bibleData';
 
 interface BibleReaderProps {
   onVerseSelect?: (verse: BibleVerse) => void;
   onContextChange?: (context: string) => void;
+  onBookChapterChange?: (book: string, chapter: number) => void;
 }
 
-export function BibleReader({ onVerseSelect, onContextChange }: BibleReaderProps) {
+export function BibleReader({ onVerseSelect, onContextChange, onBookChapterChange }: BibleReaderProps) {
   const [translation, setTranslation] = useState('tefilin');
   const [selectedBook, setSelectedBook] = useState('gn');
   const [selectedChapter, setSelectedChapter] = useState(1);
@@ -35,7 +36,8 @@ export function BibleReader({ onVerseSelect, onContextChange }: BibleReaderProps
       const versesText = verses.map(v => `${v.verse}. ${v.text}`).join('\n');
       onContextChange(`${bookName} ${selectedChapter}:\n${versesText}`);
     }
-  }, [selectedBook, selectedChapter, verses, onContextChange]);
+    onBookChapterChange?.(selectedBook, selectedChapter);
+  }, [selectedBook, selectedChapter, verses, onContextChange, onBookChapterChange]);
 
   const handleSearch = () => {
     if (!searchQuery.trim()) return;
@@ -109,16 +111,6 @@ export function BibleReader({ onVerseSelect, onContextChange }: BibleReaderProps
     <div className="space-y-4">
       {/* Controls */}
       <div className="flex flex-wrap gap-2">
-        <Select value={translation} onValueChange={setTranslation}>
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Tradução" />
-          </SelectTrigger>
-          <SelectContent>
-            {Object.entries(TRANSLATION_NAMES).map(([key, name]) => (
-              <SelectItem key={key} value={key}>{name}</SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
 
         <Select value={selectedBook} onValueChange={(v) => { setSelectedBook(v); setSelectedChapter(1); setSelectedVerses(new Set()); }}>
           <SelectTrigger className="w-[180px]">
