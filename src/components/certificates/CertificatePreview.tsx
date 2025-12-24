@@ -3,10 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CertificateTemplate, CertificateStyle } from "./CertificateTemplate";
-import { Download, Eye, Sparkles } from "lucide-react";
+import { Download, Eye, Sparkles, Loader2 } from "lucide-react";
 import { Certificate } from "@/hooks/useCertificates";
 import { useAuth } from "@/hooks/useAuth";
 import { useProfile } from "@/hooks/useProfile";
+import { useDownloadCertificate } from "@/hooks/useDownloadCertificate";
 
 interface CertificatePreviewProps {
   certificate: Certificate;
@@ -18,6 +19,7 @@ export function CertificatePreview({ certificate, open, onOpenChange }: Certific
   const [selectedStyle, setSelectedStyle] = useState<CertificateStyle>("premium");
   const { user } = useAuth();
   const { profile } = useProfile();
+  const { downloadCertificate, isDownloading } = useDownloadCertificate();
 
   const studentName = profile?.full_name || user?.email?.split("@")[0] || "Estudante";
 
@@ -26,6 +28,10 @@ export function CertificatePreview({ certificate, open, onOpenChange }: Certific
     { value: "modern", label: "Moderno", description: "Design contemporâneo e minimalista" },
     { value: "premium", label: "Premium", description: "Elegante com detalhes dourados" },
   ];
+
+  const handleDownload = () => {
+    downloadCertificate({ certificateId: certificate.id, style: selectedStyle });
+  };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -69,9 +75,17 @@ export function CertificatePreview({ certificate, open, onOpenChange }: Certific
             <Eye className="w-4 h-4" />
             Fechar
           </Button>
-          <Button className="flex-1 gap-2">
-            <Download className="w-4 h-4" />
-            Baixar Certificado
+          <Button 
+            className="flex-1 gap-2" 
+            onClick={handleDownload}
+            disabled={isDownloading}
+          >
+            {isDownloading ? (
+              <Loader2 className="w-4 h-4 animate-spin" />
+            ) : (
+              <Download className="w-4 h-4" />
+            )}
+            {isDownloading ? "Gerando..." : "Baixar Certificado"}
           </Button>
         </div>
       </DialogContent>

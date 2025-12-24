@@ -16,9 +16,12 @@ import { useCertificates, Certificate } from "@/hooks/useCertificates";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { CertificatePreview } from "@/components/certificates/CertificatePreview";
+import { useDownloadCertificate } from "@/hooks/useDownloadCertificate";
+
 export default function CertificatesPage() {
   const { data: certificates = [], isLoading } = useCertificates();
   const [previewCertificate, setPreviewCertificate] = useState<Certificate | null>(null);
+  const { downloadCertificate, isDownloading } = useDownloadCertificate();
 
   return (
     <AppLayout>
@@ -144,9 +147,18 @@ export default function CertificatesPage() {
                         <ExternalLink className="w-4 h-4" />
                         Visualizar
                       </Button>
-                      <Button size="sm" className="flex-1 gap-2">
-                        <Download className="w-4 h-4" />
-                        Baixar PDF
+                      <Button 
+                        size="sm" 
+                        className="flex-1 gap-2"
+                        onClick={() => downloadCertificate({ certificateId: certificate.id })}
+                        disabled={isDownloading}
+                      >
+                        {isDownloading ? (
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                        ) : (
+                          <Download className="w-4 h-4" />
+                        )}
+                        {isDownloading ? "Gerando..." : "Baixar PDF"}
                       </Button>
                     </div>
                   </div>
