@@ -14,7 +14,7 @@ interface BibleReaderProps {
 }
 
 export function BibleReader({ onVerseSelect, onContextChange }: BibleReaderProps) {
-  const [translation, setTranslation] = useState('nvi');
+  const [translation, setTranslation] = useState('tefilin');
   const [selectedBook, setSelectedBook] = useState('gn');
   const [selectedChapter, setSelectedChapter] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
