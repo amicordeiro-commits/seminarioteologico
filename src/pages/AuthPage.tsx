@@ -361,8 +361,7 @@ const AuthPage = () => {
                   </TabsTrigger>
                   <TabsTrigger 
                     value="register" 
-                    disabled={selectedPortal === 'admin'}
-                    className="data-[state=active]:bg-background disabled:opacity-50"
+                    className="data-[state=active]:bg-background"
                   >
                     Cadastrar
                   </TabsTrigger>
