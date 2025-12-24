@@ -17,7 +17,8 @@ import {
   Loader2,
 } from "lucide-react";
 import { useState } from "react";
-import { useLibraryMaterials, useLibraryCategories } from "@/hooks/useLibrary";
+import { useLibraryMaterials, useLibraryCategories, LibraryMaterial } from "@/hooks/useLibrary";
+import { SermonReader } from "@/components/library/SermonReader";
 
 const defaultCategories = [
   "Todos",
@@ -68,6 +69,7 @@ const getTypeBadgeColor = (type: string | null) => {
 export default function LibraryPage() {
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedMaterial, setSelectedMaterial] = useState<LibraryMaterial | null>(null);
   
   const { data: materials = [], isLoading } = useLibraryMaterials(selectedCategory);
   const { data: dbCategories } = useLibraryCategories();
@@ -235,26 +237,32 @@ export default function LibraryPage() {
                       </span>
                     </div>
 
-                    <div className="flex items-center justify-between pt-2 border-t border-border">
-                      <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                        <Download className="w-3 h-3" />
-                        <span>{resource.download_count}</span>
-                      </div>
-                      <div className="flex gap-2">
-                        <Button size="sm" variant="ghost" className="h-8 px-2">
-                          <Eye className="w-4 h-4" />
-                        </Button>
-                        <Button 
-                          size="sm" 
-                          className="h-8 px-3 gap-1"
-                          onClick={() => resource.file_url && window.open(resource.file_url, '_blank')}
-                          disabled={!resource.file_url}
-                        >
+                      <div className="flex items-center justify-between pt-2 border-t border-border">
+                        <div className="flex items-center gap-1 text-xs text-muted-foreground">
                           <Download className="w-3 h-3" />
-                          Baixar
-                        </Button>
+                          <span>{resource.download_count}</span>
+                        </div>
+                        <div className="flex gap-2">
+                          <Button 
+                            size="sm" 
+                            variant="ghost" 
+                            className="h-8 px-2"
+                            onClick={() => setSelectedMaterial(resource)}
+                            disabled={!resource.content && !resource.file_url}
+                          >
+                            <Eye className="w-4 h-4" />
+                          </Button>
+                          <Button 
+                            size="sm" 
+                            className="h-8 px-3 gap-1"
+                            onClick={() => resource.file_url && window.open(resource.file_url, '_blank')}
+                            disabled={!resource.file_url}
+                          >
+                            <Download className="w-3 h-3" />
+                            Baixar
+                          </Button>
+                        </div>
                       </div>
-                    </div>
                   </div>
                 </div>
               );
@@ -273,6 +281,17 @@ export default function LibraryPage() {
               Tente ajustar sua busca ou filtros
             </p>
           </div>
+        )}
+
+        {/* Sermon Reader Modal */}
+        {selectedMaterial && (
+          <SermonReader
+            open={!!selectedMaterial}
+            onOpenChange={(open) => !open && setSelectedMaterial(null)}
+            title={selectedMaterial.title}
+            content={selectedMaterial.content}
+            category={selectedMaterial.category}
+          />
         )}
       </div>
     </AppLayout>
