@@ -383,6 +383,7 @@ export type Database = {
       library_materials: {
         Row: {
           category: string | null
+          content: string | null
           course_id: string | null
           created_at: string | null
           description: string | null
@@ -395,6 +396,7 @@ export type Database = {
         }
         Insert: {
           category?: string | null
+          content?: string | null
           course_id?: string | null
           created_at?: string | null
           description?: string | null
@@ -407,6 +409,7 @@ export type Database = {
         }
         Update: {
           category?: string | null
+          content?: string | null
           course_id?: string | null
           created_at?: string | null
           description?: string | null
