@@ -23,8 +23,7 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Link } from "react-router-dom";
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
-import { AreaChart, Area, XAxis, YAxis, ResponsiveContainer, PieChart as RechartsPie, Pie, Cell } from "recharts";
+import { AreaChart, Area, XAxis, YAxis, ResponsiveContainer, PieChart as RechartsPie, Pie, Cell, Tooltip } from "recharts";
 
 // Mock data for charts
 const enrollmentData = [
@@ -202,7 +201,13 @@ export default function AdminDashboard() {
                       tickLine={false}
                       tick={{ fontSize: 12, fill: 'hsl(20, 15%, 45%)' }}
                     />
-                    <ChartTooltip content={<ChartTooltipContent />} />
+                    <Tooltip 
+                      contentStyle={{ 
+                        backgroundColor: 'hsl(var(--background))', 
+                        border: '1px solid hsl(var(--border))',
+                        borderRadius: '8px'
+                      }}
+                    />
                     <Area
                       type="monotone"
                       dataKey="enrollments"
