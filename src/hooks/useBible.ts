@@ -25,7 +25,7 @@ export function useBible(translation: string = 'tefilin') {
     if (!bible) return [];
     return bible.map(book => ({
       abbrev: book.abbrev,
-      name: BOOK_NAMES[book.abbrev.toLowerCase()] || book.abbrev,
+      name: book.name || BOOK_NAMES[book.abbrev.toLowerCase()] || book.abbrev,
       chaptersCount: book.chapters.length,
     }));
   };

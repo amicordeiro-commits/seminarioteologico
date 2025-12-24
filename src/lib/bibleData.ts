@@ -69,11 +69,22 @@ export const BOOK_NAMES: Record<string, string> = {
 
 export const TRANSLATION_NAMES: Record<string, string> = {
   tefilin: 'Bíblia Tefilin',
+  arc: 'Almeida Revista e Corrigida',
 };
 
 export interface BibleBook {
   abbrev: string;
+  name?: string;
   chapters: string[][];
+}
+
+// Normalize Bible data from different formats
+function normalizeBibleData(data: any[]): BibleBook[] {
+  return data.map(book => ({
+    abbrev: book.abbrev || book.id,
+    name: book.name,
+    chapters: book.chapters,
+  }));
 }
 
 export interface BibleVerse {
@@ -97,8 +108,9 @@ export async function loadBible(translation: string): Promise<BibleBook[]> {
   }
   
   const data = await response.json();
-  cachedBibles[translation] = data;
-  return data;
+  const normalizedData = normalizeBibleData(data);
+  cachedBibles[translation] = normalizedData;
+  return normalizedData;
 }
 
 export function getBookName(abbrev: string): string {

@@ -9,7 +9,7 @@ import { Card } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { ChevronLeft, ChevronRight, Search, Book, Loader2, BookOpen, ChevronDown, MessageSquare } from 'lucide-react';
-import { BibleVerse, getBookName } from '@/lib/bibleData';
+import { BibleVerse, getBookName, TRANSLATION_NAMES } from '@/lib/bibleData';
 import { OLD_TESTAMENT_BOOKS, NEW_TESTAMENT_BOOKS, getTestament, getTestamentName, Testament } from '@/lib/bibleTestaments';
 
 interface EnhancedBibleReaderProps {
@@ -19,7 +19,7 @@ interface EnhancedBibleReaderProps {
 }
 
 export function EnhancedBibleReader({ onVerseSelect, onContextChange, onBookChapterChange }: EnhancedBibleReaderProps) {
-  const [translation] = useState('tefilin');
+  const [translation, setTranslation] = useState('tefilin');
   const [selectedTestament, setSelectedTestament] = useState<Testament>('old');
   const [selectedBook, setSelectedBook] = useState('gn');
   const [selectedChapter, setSelectedChapter] = useState(1);
@@ -197,6 +197,17 @@ export function EnhancedBibleReader({ onVerseSelect, onContextChange, onBookChap
 
       {/* Controls */}
       <div className="flex flex-wrap gap-2">
+        <Select value={translation} onValueChange={setTranslation}>
+          <SelectTrigger className="w-[200px]">
+            <SelectValue placeholder="Tradução" />
+          </SelectTrigger>
+          <SelectContent>
+            {Object.entries(TRANSLATION_NAMES).map(([key, name]) => (
+              <SelectItem key={key} value={key}>{name}</SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
         <Select 
           value={selectedBook} 
           onValueChange={(v) => { 
