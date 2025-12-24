@@ -12,6 +12,7 @@ export interface LibraryMaterial {
   is_published: boolean;
   download_count: number;
   created_at: string;
+  content: string | null;
 }
 
 export function useLibraryMaterials(category?: string) {
