@@ -15,6 +15,7 @@ import ProfilePage from "./pages/ProfilePage";
 import CommunityPage from "./pages/CommunityPage";
 import SettingsPage from "./pages/SettingsPage";
 import DevotionalPage from "./pages/DevotionalPage";
+import BiblePage from "./pages/BiblePage";
 import AuthPage from "./pages/AuthPage";
 import NotFound from "./pages/NotFound";
 
@@ -54,6 +55,7 @@ const AppRoutes = () => {
       <Route path="/community" element={<ProtectedRoute><CommunityPage /></ProtectedRoute>} />
       <Route path="/settings" element={<ProtectedRoute><SettingsPage /></ProtectedRoute>} />
       <Route path="/devotional" element={<ProtectedRoute><DevotionalPage /></ProtectedRoute>} />
+      <Route path="/bible" element={<ProtectedRoute><BiblePage /></ProtectedRoute>} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
