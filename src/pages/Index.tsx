@@ -8,8 +8,11 @@ import { BookOpen, Clock, Trophy, TrendingUp, ArrowRight, Cross, BookMarked } fr
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import heroBanner from "@/assets/hero-theology.jpg";
+import { useAuth } from "@/hooks/useAuth";
 
 const Index = () => {
+  const { user } = useAuth();
+  const userName = user?.user_metadata?.full_name?.split(' ')[0] || 'Aluno';
   const coursesInProgress = mockCourses.filter((c) => c.progress > 0 && c.progress < 100);
   const completedCourses = mockCourses.filter((c) => c.progress === 100);
 
@@ -29,7 +32,7 @@ const Index = () => {
                 <span className="text-accent text-sm font-medium font-sans">Seminário Teológico</span>
               </div>
               <h1 className="text-3xl md:text-4xl font-serif font-bold text-primary-foreground mb-4 animate-fade-in">
-                Graça e paz, Samuel!
+                Graça e paz, {userName}!
               </h1>
               <p className="text-primary-foreground/80 text-lg mb-6 animate-fade-in font-sans" style={{ animationDelay: "100ms" }}>
                 Continue sua jornada de formação teológica. Você tem <span className="text-accent font-semibold">3 atividades</span> pendentes esta semana.
