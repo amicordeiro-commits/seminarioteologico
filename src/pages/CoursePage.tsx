@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import {
   Play,
   Clock,
@@ -18,18 +19,26 @@ import {
   BookMarked,
   Loader2,
   UserPlus,
+  FileText,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useCourse, useEnrollment, useEnrollInCourse, useLessonProgress, useMarkLessonComplete } from "@/hooks/useCourses";
+import { useQuizzes, useQuizAttempts } from "@/hooks/useQuizzes";
 import { useToast } from "@/hooks/use-toast";
+import { useState } from "react";
+import { QuizCard } from "@/components/quiz/QuizCard";
+import { QuizPlayer } from "@/components/quiz/QuizPlayer";
 
 const CoursePage = () => {
   const { id } = useParams();
   const { toast } = useToast();
+  const [activeQuizId, setActiveQuizId] = useState<string | null>(null);
   
   const { data: course, isLoading: loadingCourse } = useCourse(id || '');
   const { data: enrollment, isLoading: loadingEnrollment } = useEnrollment(id || '');
   const { data: lessonProgress } = useLessonProgress(id || '');
+  const { data: quizzes = [] } = useQuizzes(id || '');
+  const { data: quizAttempts = [] } = useQuizAttempts();
   const enrollMutation = useEnrollInCourse();
   const markCompleteMutation = useMarkLessonComplete();
 
@@ -249,6 +258,26 @@ const CoursePage = () => {
                 </Accordion>
               </div>
             )}
+
+            {/* Quizzes Section */}
+            {quizzes.length > 0 && enrollment && (
+              <div className="space-y-4">
+                <h2 className="text-xl font-serif font-semibold text-foreground flex items-center gap-2">
+                  <FileText className="w-5 h-5 text-primary" />
+                  Avaliações
+                </h2>
+                <div className="space-y-3">
+                  {quizzes.map((quiz) => (
+                    <QuizCard
+                      key={quiz.id}
+                      quiz={quiz}
+                      attempts={quizAttempts.filter((a) => a.quiz_id === quiz.id)}
+                      onStart={setActiveQuizId}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Sidebar */}
@@ -364,6 +393,22 @@ const CoursePage = () => {
           </aside>
         </div>
       </div>
+
+      {/* Quiz Dialog */}
+      <Dialog open={!!activeQuizId} onOpenChange={() => setActiveQuizId(null)}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="sr-only">Quiz</DialogTitle>
+          </DialogHeader>
+          {activeQuizId && (
+            <QuizPlayer
+              quizId={activeQuizId}
+              onComplete={() => {}}
+              onClose={() => setActiveQuizId(null)}
+            />
+          )}
+        </DialogContent>
+      </Dialog>
     </AppLayout>
   );
 };
