@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
-import { CertificateStyle } from "@/components/certificates/CertificateTemplate";
+import type { CertificateStyle } from "@/components/certificates/CertificateTemplate";
 
 interface DownloadCertificateParams {
   certificateId: string;
@@ -13,70 +11,36 @@ interface DownloadCertificateParams {
 export function useDownloadCertificate() {
   const [isDownloading, setIsDownloading] = useState(false);
 
-  const downloadCertificate = async ({ certificateId, style = "premium" }: DownloadCertificateParams) => {
+  const downloadCertificate = async ({
+    certificateId,
+    style = "premium",
+  }: DownloadCertificateParams) => {
     setIsDownloading(true);
-    
+
     try {
       const { data, error } = await supabase.functions.invoke("generate-certificate-pdf", {
         body: { certificateId, style },
       });
 
-      if (error) {
-        throw new Error(error.message);
-      }
+      if (error) throw new Error(error.message);
+      if (!data?.html) throw new Error("Falha ao gerar o certificado.");
 
-      if (!data?.html) {
-        throw new Error("Failed to generate certificate HTML");
-      }
+      // Abre o HTML em uma nova aba e usa o diálogo nativo de impressão (Salvar como PDF)
+      const popup = window.open("", "_blank", "noopener,noreferrer");
+      if (!popup) throw new Error("Popup bloqueado. Permita popups para baixar o PDF.");
 
-      // Create a temporary container to render the HTML
-      const container = document.createElement("div");
-      container.innerHTML = data.html;
-      container.style.position = "absolute";
-      container.style.left = "-9999px";
-      container.style.top = "0";
-      document.body.appendChild(container);
+      popup.document.open();
+      popup.document.write(data.html);
+      popup.document.close();
 
-      // Wait for fonts and styles to load
-      await new Promise((resolve) => setTimeout(resolve, 500));
+      // Dá um pequeno tempo para fontes/estilos carregarem antes de imprimir
+      await new Promise((r) => setTimeout(r, 700));
+      popup.focus();
+      popup.print();
 
-      // Find the certificate element
-      const certificateElement = container.querySelector(".certificate") as HTMLElement;
-      
-      if (!certificateElement) {
-        throw new Error("Certificate element not found");
-      }
-
-      // Generate canvas from the certificate HTML
-      const canvas = await html2canvas(certificateElement, {
-        scale: 2,
-        useCORS: true,
-        allowTaint: true,
-        backgroundColor: null,
-        logging: false,
-      });
-
-      // Create PDF with landscape orientation
-      const pdf = new jsPDF({
-        orientation: "landscape",
-        unit: "px",
-        format: [842, 595],
-      });
-
-      // Add the canvas as an image
-      const imgData = canvas.toDataURL("image/png");
-      pdf.addImage(imgData, "PNG", 0, 0, 842, 595);
-
-      // Download the PDF
-      const fileName = `certificado-${data.courseName?.replace(/\s+/g, "-").toLowerCase() || "curso"}-${data.certificateNumber}.pdf`;
-      pdf.save(fileName);
-
-      // Clean up
-      document.body.removeChild(container);
-
-      toast.success("Certificado baixado com sucesso!");
-    } catch (error) {
-      console.error("Error downloading certificate:", error);
+      toast.message("Abrimos o certificado para você salvar como PDF.");
+    } catch (err) {
+      console.error("Error downloading certificate:", err);
       toast.error("Erro ao baixar o certificado. Tente novamente.");
     } finally {
       setIsDownloading(false);
@@ -85,3 +49,4 @@ export function useDownloadCertificate() {
 
   return { downloadCertificate, isDownloading };
 }
+
