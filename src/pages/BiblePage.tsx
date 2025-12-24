@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { AppLayout } from '@/components/layout/AppLayout';
-import { BibleReader } from '@/components/bible/BibleReader';
+import { EnhancedBibleReader } from '@/components/bible/EnhancedBibleReader';
 import { BibleChat } from '@/components/bible/BibleChat';
 import { BibleStudyPanel } from '@/components/bible/BibleStudyPanel';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -59,7 +59,7 @@ export default function BiblePage() {
                 </TabsTrigger>
               </TabsList>
               <TabsContent value="read" className="mt-0">
-                <BibleReader 
+                <EnhancedBibleReader 
                   onContextChange={handleContextChange} 
                   onBookChapterChange={handleBookChapterChange}
                 />
@@ -93,7 +93,7 @@ export default function BiblePage() {
             </TabsList>
             <TabsContent value="read" className="mt-4">
               <div className="bg-card rounded-lg border p-4">
-                <BibleReader 
+                <EnhancedBibleReader 
                   onContextChange={handleContextChange}
                   onBookChapterChange={handleBookChapterChange}
                 />
