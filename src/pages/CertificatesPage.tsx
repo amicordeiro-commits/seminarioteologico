@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { AppLayout } from "@/components/layout/AppLayout";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -11,12 +12,13 @@ import {
   Loader2,
   GraduationCap
 } from "lucide-react";
-import { useCertificates } from "@/hooks/useCertificates";
+import { useCertificates, Certificate } from "@/hooks/useCertificates";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
-
+import { CertificatePreview } from "@/components/certificates/CertificatePreview";
 export default function CertificatesPage() {
   const { data: certificates = [], isLoading } = useCertificates();
+  const [previewCertificate, setPreviewCertificate] = useState<Certificate | null>(null);
 
   return (
     <AppLayout>
@@ -133,7 +135,12 @@ export default function CertificatesPage() {
                       Número do certificado: <span className="font-mono">{certificate.certificate_number}</span>
                     </p>
                     <div className="flex gap-2">
-                      <Button variant="outline" size="sm" className="flex-1 gap-2">
+                      <Button 
+                        variant="outline" 
+                        size="sm" 
+                        className="flex-1 gap-2"
+                        onClick={() => setPreviewCertificate(certificate)}
+                      >
                         <ExternalLink className="w-4 h-4" />
                         Visualizar
                       </Button>
@@ -163,6 +170,15 @@ export default function CertificatesPage() {
               <a href="/courses">Explorar Cursos</a>
             </Button>
           </div>
+        )}
+
+        {/* Certificate Preview Dialog */}
+        {previewCertificate && (
+          <CertificatePreview
+            certificate={previewCertificate}
+            open={!!previewCertificate}
+            onOpenChange={(open) => !open && setPreviewCertificate(null)}
+          />
         )}
       </div>
     </AppLayout>
