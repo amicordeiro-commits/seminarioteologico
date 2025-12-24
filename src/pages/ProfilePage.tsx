@@ -2,14 +2,12 @@ import { AppLayout } from "@/components/layout/AppLayout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   User,
   Mail,
   Phone,
-  MapPin,
   Calendar,
   BookOpen,
   Award,
@@ -21,8 +19,14 @@ import {
   Target,
   Heart,
   Save,
+  Loader2,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useProfile } from "@/hooks/useProfile";
+import { useAuth } from "@/hooks/useAuth";
+import { toast } from "sonner";
+import { format } from "date-fns";
+import { ptBR } from "date-fns/locale";
 
 const achievements = [
   {
@@ -46,8 +50,8 @@ const achievements = [
     title: "Buscador da Verdade",
     description: "Completou 5 cursos",
     icon: "✝️",
-    unlocked: true,
-    date: "10 Fev 2024",
+    unlocked: false,
+    date: null,
   },
   {
     id: 4,
@@ -67,49 +71,49 @@ const achievements = [
   },
 ];
 
-const certificates = [
-  {
-    id: 1,
-    title: "Introdução à Teologia Sistemática",
-    issueDate: "15 Mar 2024",
-    instructor: "Dr. Paulo Mendes",
-    hours: 40,
-  },
-  {
-    id: 2,
-    title: "História da Igreja Primitiva",
-    issueDate: "28 Fev 2024",
-    instructor: "Pr. Roberto Silva",
-    hours: 32,
-  },
-  {
-    id: 3,
-    title: "Hermenêutica Bíblica",
-    issueDate: "10 Jan 2024",
-    instructor: "Dr. Maria Santos",
-    hours: 24,
-  },
-];
-
 export default function ProfilePage() {
+  const { user } = useAuth();
+  const { profile, isLoading, updateProfile, isUpdating, stats } = useProfile();
   const [isEditing, setIsEditing] = useState(false);
-  const [profile, setProfile] = useState({
-    name: "Samuel Oliveira",
-    email: "samuel.oliveira@email.com",
-    phone: "(11) 98765-4321",
-    location: "São Paulo, SP",
-    church: "Igreja Presbiteriana Central",
-    ministry: "Professor de Escola Dominical",
-    bio: "Estudante de teologia apaixonado pela Palavra de Deus. Buscando aprofundar conhecimento para melhor servir à igreja local.",
-    joinDate: "Janeiro 2024",
+  const [formData, setFormData] = useState({
+    full_name: "",
+    phone: "",
+    bio: "",
   });
 
-  const stats = {
-    coursesCompleted: 5,
-    coursesInProgress: 3,
-    totalHours: 124,
-    certificates: 3,
+  useEffect(() => {
+    if (profile) {
+      setFormData({
+        full_name: profile.full_name || "",
+        phone: profile.phone || "",
+        bio: profile.bio || "",
+      });
+    }
+  }, [profile]);
+
+  const handleSave = async () => {
+    try {
+      await updateProfile(formData);
+      setIsEditing(false);
+      toast.success("Perfil atualizado com sucesso!");
+    } catch (error) {
+      toast.error("Erro ao atualizar perfil");
+    }
   };
+
+  if (isLoading) {
+    return (
+      <AppLayout>
+        <div className="flex items-center justify-center h-96">
+          <Loader2 className="w-8 h-8 animate-spin text-primary" />
+        </div>
+      </AppLayout>
+    );
+  }
+
+  const memberSince = profile?.created_at 
+    ? format(new Date(profile.created_at), "MMMM 'de' yyyy", { locale: ptBR })
+    : "Janeiro 2024";
 
   return (
     <AppLayout>
@@ -127,9 +131,17 @@ export default function ProfilePage() {
               {/* Avatar */}
               <div className="relative">
                 <div className="w-32 h-32 lg:w-40 lg:h-40 rounded-2xl bg-background border-4 border-background shadow-xl overflow-hidden">
-                  <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                    <User className="w-16 h-16 lg:w-20 lg:h-20 text-primary" />
-                  </div>
+                  {profile?.avatar_url ? (
+                    <img 
+                      src={profile.avatar_url} 
+                      alt="Avatar" 
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+                      <User className="w-16 h-16 lg:w-20 lg:h-20 text-primary" />
+                    </div>
+                  )}
                 </div>
                 <button className="absolute bottom-2 right-2 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
                   <Camera className="w-4 h-4" />
@@ -140,19 +152,25 @@ export default function ProfilePage() {
               <div className="flex-1 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                 <div>
                   <h1 className="text-2xl lg:text-3xl font-serif font-bold text-foreground">
-                    {profile.name}
+                    {profile?.full_name || "Estudante"}
                   </h1>
                   <p className="text-muted-foreground flex items-center gap-2 mt-1">
-                    <Church className="w-4 h-4" />
-                    {profile.church}
+                    <Mail className="w-4 h-4" />
+                    {user?.email}
                   </p>
                 </div>
                 <Button
-                  onClick={() => setIsEditing(!isEditing)}
+                  onClick={() => isEditing ? handleSave() : setIsEditing(true)}
                   variant={isEditing ? "default" : "outline"}
                   className="gap-2"
+                  disabled={isUpdating}
                 >
-                  {isEditing ? (
+                  {isUpdating ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      Salvando...
+                    </>
+                  ) : isEditing ? (
                     <>
                       <Save className="w-4 h-4" />
                       Salvar Alterações
@@ -230,7 +248,6 @@ export default function ProfilePage() {
           <TabsList className="bg-card border border-border">
             <TabsTrigger value="info">Informações</TabsTrigger>
             <TabsTrigger value="achievements">Conquistas</TabsTrigger>
-            <TabsTrigger value="certificates">Certificados</TabsTrigger>
           </TabsList>
 
           {/* Info Tab */}
@@ -248,14 +265,14 @@ export default function ProfilePage() {
                     <label className="text-sm text-muted-foreground">Nome Completo</label>
                     {isEditing ? (
                       <Input
-                        value={profile.name}
+                        value={formData.full_name}
                         onChange={(e) =>
-                          setProfile({ ...profile, name: e.target.value })
+                          setFormData({ ...formData, full_name: e.target.value })
                         }
                         className="mt-1"
                       />
                     ) : (
-                      <p className="text-foreground font-medium">{profile.name}</p>
+                      <p className="text-foreground font-medium">{profile?.full_name || "Não informado"}</p>
                     )}
                   </div>
 
@@ -264,17 +281,7 @@ export default function ProfilePage() {
                       <Mail className="w-4 h-4" />
                       Email
                     </label>
-                    {isEditing ? (
-                      <Input
-                        value={profile.email}
-                        onChange={(e) =>
-                          setProfile({ ...profile, email: e.target.value })
-                        }
-                        className="mt-1"
-                      />
-                    ) : (
-                      <p className="text-foreground">{profile.email}</p>
-                    )}
+                    <p className="text-foreground">{user?.email}</p>
                   </div>
 
                   <div>
@@ -284,72 +291,15 @@ export default function ProfilePage() {
                     </label>
                     {isEditing ? (
                       <Input
-                        value={profile.phone}
+                        value={formData.phone}
                         onChange={(e) =>
-                          setProfile({ ...profile, phone: e.target.value })
+                          setFormData({ ...formData, phone: e.target.value })
                         }
                         className="mt-1"
+                        placeholder="(00) 00000-0000"
                       />
                     ) : (
-                      <p className="text-foreground">{profile.phone}</p>
-                    )}
-                  </div>
-
-                  <div>
-                    <label className="text-sm text-muted-foreground flex items-center gap-2">
-                      <MapPin className="w-4 h-4" />
-                      Localização
-                    </label>
-                    {isEditing ? (
-                      <Input
-                        value={profile.location}
-                        onChange={(e) =>
-                          setProfile({ ...profile, location: e.target.value })
-                        }
-                        className="mt-1"
-                      />
-                    ) : (
-                      <p className="text-foreground">{profile.location}</p>
-                    )}
-                  </div>
-                </div>
-              </div>
-
-              {/* Ministry Info */}
-              <div className="bg-card rounded-xl border border-border p-6 space-y-4">
-                <h3 className="text-lg font-serif font-semibold text-foreground flex items-center gap-2">
-                  <Church className="w-5 h-5 text-primary" />
-                  Informações Ministeriais
-                </h3>
-
-                <div className="space-y-4">
-                  <div>
-                    <label className="text-sm text-muted-foreground">Igreja</label>
-                    {isEditing ? (
-                      <Input
-                        value={profile.church}
-                        onChange={(e) =>
-                          setProfile({ ...profile, church: e.target.value })
-                        }
-                        className="mt-1"
-                      />
-                    ) : (
-                      <p className="text-foreground">{profile.church}</p>
-                    )}
-                  </div>
-
-                  <div>
-                    <label className="text-sm text-muted-foreground">Ministério</label>
-                    {isEditing ? (
-                      <Input
-                        value={profile.ministry}
-                        onChange={(e) =>
-                          setProfile({ ...profile, ministry: e.target.value })
-                        }
-                        className="mt-1"
-                      />
-                    ) : (
-                      <p className="text-foreground">{profile.ministry}</p>
+                      <p className="text-foreground">{profile?.phone || "Não informado"}</p>
                     )}
                   </div>
 
@@ -358,25 +308,43 @@ export default function ProfilePage() {
                       <Calendar className="w-4 h-4" />
                       Membro desde
                     </label>
-                    <p className="text-foreground">{profile.joinDate}</p>
+                    <p className="text-foreground">{memberSince}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* About */}
+              <div className="bg-card rounded-xl border border-border p-6 space-y-4">
+                <h3 className="text-lg font-serif font-semibold text-foreground flex items-center gap-2">
+                  <Heart className="w-5 h-5 text-primary" />
+                  Sobre Mim
+                </h3>
+
+                <div className="space-y-4">
+                  <div>
+                    <label className="text-sm text-muted-foreground flex items-center gap-2">
+                      <GraduationCap className="w-4 h-4" />
+                      Tipo de Curso
+                    </label>
+                    <p className="text-foreground capitalize">{profile?.course_type || "Bacharel"}</p>
                   </div>
 
                   <div>
-                    <label className="text-sm text-muted-foreground flex items-center gap-2">
-                      <Heart className="w-4 h-4" />
-                      Sobre mim
-                    </label>
+                    <label className="text-sm text-muted-foreground">Biografia</label>
                     {isEditing ? (
                       <Textarea
-                        value={profile.bio}
+                        value={formData.bio}
                         onChange={(e) =>
-                          setProfile({ ...profile, bio: e.target.value })
+                          setFormData({ ...formData, bio: e.target.value })
                         }
                         className="mt-1"
                         rows={4}
+                        placeholder="Conte um pouco sobre você..."
                       />
                     ) : (
-                      <p className="text-foreground text-sm">{profile.bio}</p>
+                      <p className="text-foreground text-sm">
+                        {profile?.bio || "Nenhuma biografia informada."}
+                      </p>
                     )}
                   </div>
                 </div>
@@ -431,51 +399,6 @@ export default function ProfilePage() {
                           </p>
                         )}
                       </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </TabsContent>
-
-          {/* Certificates Tab */}
-          <TabsContent value="certificates">
-            <div className="bg-card rounded-xl border border-border p-6">
-              <h3 className="text-lg font-serif font-semibold text-foreground mb-6">
-                Meus Certificados
-              </h3>
-
-              <div className="space-y-4">
-                {certificates.map((cert) => (
-                  <div
-                    key={cert.id}
-                    className="p-4 rounded-xl border border-border bg-gradient-to-r from-primary/5 to-transparent hover:border-primary/30 transition-all group"
-                  >
-                    <div className="flex items-center gap-4">
-                      <div className="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center group-hover:scale-105 transition-transform">
-                        <Award className="w-8 h-8 text-primary" />
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="font-serif font-semibold text-foreground">
-                          {cert.title}
-                        </h4>
-                        <p className="text-sm text-muted-foreground">
-                          Instrutor: {cert.instructor}
-                        </p>
-                        <div className="flex items-center gap-4 mt-2 text-xs text-muted-foreground">
-                          <span className="flex items-center gap-1">
-                            <Calendar className="w-3 h-3" />
-                            {cert.issueDate}
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <Clock className="w-3 h-3" />
-                            {cert.hours} horas
-                          </span>
-                        </div>
-                      </div>
-                      <Button variant="outline" size="sm">
-                        Ver Certificado
-                      </Button>
                     </div>
                   </div>
                 ))}

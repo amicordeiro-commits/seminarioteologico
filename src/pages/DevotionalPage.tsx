@@ -16,48 +16,35 @@ import {
   Moon,
   Sunrise,
   Volume2,
+  Loader2,
 } from "lucide-react";
-import { useState } from "react";
-
-const devotionals = [
-  {
-    id: 1,
-    date: "24 de Dezembro, 2024",
-    title: "A Esperança do Advento",
-    verse: "Porque um menino nos nasceu, um filho nos foi dado, e o governo está sobre os seus ombros. E ele será chamado Maravilhoso Conselheiro, Deus Poderoso, Pai Eterno, Príncipe da Paz.",
-    reference: "Isaías 9:6",
-    reflection: `Neste período de Advento, somos convidados a refletir sobre a grandeza da promessa cumprida em Cristo Jesus. O profeta Isaías, escrevendo séculos antes do nascimento de Jesus, já anunciava a vinda daquele que traria esperança e redenção à humanidade.
-
-Os títulos dados ao Messias revelam aspectos fundamentais de Sua natureza e missão:
-
-**Maravilhoso Conselheiro** - Em meio às nossas incertezas, Ele nos guia com sabedoria perfeita.
-
-**Deus Poderoso** - Não há desafio grande demais para Aquele que criou o universo.
-
-**Pai Eterno** - Seu amor paternal é constante e eterno, nunca nos abandona.
-
-**Príncipe da Paz** - Em um mundo de conflitos, Ele é nossa paz verdadeira.
-
-Que neste dia possamos descansar na certeza de que o mesmo Deus que cumpriu Suas promessas no passado continua fiel para cumprir cada promessa em nossas vidas.`,
-    prayer: "Senhor, obrigado por cumprir Tuas promessas através de Jesus Cristo. Ajuda-me a descansar em Tua fidelidade e a viver cada dia na esperança que vem de Ti. Que eu possa refletir Teu amor e paz para aqueles ao meu redor. Em nome de Jesus, amém.",
-    author: "Dr. Paulo Mendes",
-    category: "Advento",
-    readTime: "5 min",
-  },
-];
-
-const previousDevotionals = [
-  { id: 2, date: "23 Dez", title: "Preparando o Caminho", reference: "Mateus 3:3" },
-  { id: 3, date: "22 Dez", title: "A Fé de Maria", reference: "Lucas 1:38" },
-  { id: 4, date: "21 Dez", title: "O Silêncio de Zacarias", reference: "Lucas 1:20" },
-  { id: 5, date: "20 Dez", title: "A Promessa Cumprida", reference: "Gálatas 4:4" },
-];
+import { useState, useEffect } from "react";
+import { useDevotionals } from "@/hooks/useDevotionals";
+import { useAuth } from "@/hooks/useAuth";
+import { format } from "date-fns";
+import { ptBR } from "date-fns/locale";
+import { toast } from "sonner";
 
 export default function DevotionalPage() {
+  const { user } = useAuth();
+  const { 
+    todayDevotional, 
+    recentDevotionals, 
+    userNotes, 
+    isLoading, 
+    saveNotes 
+  } = useDevotionals();
+  
   const [notes, setNotes] = useState("");
   const [isSaved, setIsSaved] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
-  const devotional = devotionals[0];
+  const [isSaving, setIsSaving] = useState(false);
+
+  useEffect(() => {
+    if (userNotes) {
+      setNotes(userNotes.notes || "");
+    }
+  }, [userNotes]);
 
   const getTimeOfDay = () => {
     const hour = new Date().getHours();
@@ -68,6 +55,52 @@ export default function DevotionalPage() {
 
   const { icon: TimeIcon, greeting } = getTimeOfDay();
 
+  const handleSaveNotes = async () => {
+    if (!todayDevotional) return;
+    
+    setIsSaving(true);
+    try {
+      await saveNotes(todayDevotional.id, notes);
+      toast.success("Anotações salvas com sucesso!");
+    } catch (error) {
+      toast.error("Erro ao salvar anotações");
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const userName = user?.user_metadata?.full_name?.split(" ")[0] || "Estudante";
+
+  if (isLoading) {
+    return (
+      <AppLayout>
+        <div className="flex items-center justify-center h-96">
+          <Loader2 className="w-8 h-8 animate-spin text-primary" />
+        </div>
+      </AppLayout>
+    );
+  }
+
+  if (!todayDevotional) {
+    return (
+      <AppLayout>
+        <div className="p-6 lg:p-8 space-y-8 animate-fade-in">
+          <div className="text-center py-16">
+            <BookOpen className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+            <h2 className="text-2xl font-serif font-bold text-foreground mb-2">
+              Nenhum devocional disponível
+            </h2>
+            <p className="text-muted-foreground">
+              Volte amanhã para um novo devocional.
+            </p>
+          </div>
+        </div>
+      </AppLayout>
+    );
+  }
+
+  const formattedDate = format(new Date(todayDevotional.publish_date), "d 'de' MMMM, yyyy", { locale: ptBR });
+
   return (
     <AppLayout>
       <div className="p-6 lg:p-8 space-y-8 animate-fade-in">
@@ -76,7 +109,7 @@ export default function DevotionalPage() {
           <div className="space-y-2">
             <div className="flex items-center gap-2 text-muted-foreground">
               <TimeIcon className="w-5 h-5 text-accent" />
-              <span>{greeting}, Samuel!</span>
+              <span>{greeting}, {userName}!</span>
             </div>
             <h1 className="text-3xl lg:text-4xl font-serif font-bold text-foreground">
               Devocional Diário
@@ -88,7 +121,7 @@ export default function DevotionalPage() {
             </Button>
             <div className="flex items-center gap-2 px-4 py-2 bg-card rounded-lg border border-border">
               <Calendar className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium">{devotional.date}</span>
+              <span className="text-sm font-medium">{formattedDate}</span>
             </div>
             <Button variant="outline" size="icon">
               <ChevronRight className="w-4 h-4" />
@@ -106,17 +139,16 @@ export default function DevotionalPage() {
                 <div className="flex items-start justify-between gap-4 mb-6">
                   <div>
                     <Badge className="mb-3 bg-primary/10 text-primary">
-                      {devotional.category}
+                      Devocional
                     </Badge>
                     <h2 className="text-2xl lg:text-3xl font-serif font-bold text-foreground">
-                      {devotional.title}
+                      {todayDevotional.title}
                     </h2>
                     <div className="flex items-center gap-4 mt-3 text-sm text-muted-foreground">
                       <span className="flex items-center gap-1">
                         <Clock className="w-4 h-4" />
-                        {devotional.readTime}
+                        5 min
                       </span>
-                      <span>Por {devotional.author}</span>
                     </div>
                   </div>
                   <Button variant="outline" size="icon" className="shrink-0">
@@ -128,10 +160,10 @@ export default function DevotionalPage() {
                 <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-xl p-6 border border-primary/10 mb-6">
                   <BookOpen className="w-8 h-8 text-primary mb-4" />
                   <blockquote className="text-lg lg:text-xl font-serif italic text-foreground leading-relaxed">
-                    "{devotional.verse}"
+                    "{todayDevotional.verse_text}"
                   </blockquote>
                   <p className="text-primary font-semibold mt-4">
-                    — {devotional.reference}
+                    — {todayDevotional.verse_reference}
                   </p>
                 </div>
 
@@ -141,19 +173,21 @@ export default function DevotionalPage() {
                     Reflexão
                   </h3>
                   <div className="text-muted-foreground leading-relaxed whitespace-pre-line">
-                    {devotional.reflection}
+                    {todayDevotional.reflection}
                   </div>
                 </div>
 
                 {/* Prayer */}
-                <div className="mt-8 p-6 bg-accent/5 rounded-xl border border-accent/20">
-                  <h3 className="text-lg font-serif font-semibold text-foreground mb-3 flex items-center gap-2">
-                    🙏 Oração
-                  </h3>
-                  <p className="text-muted-foreground italic leading-relaxed">
-                    {devotional.prayer}
-                  </p>
-                </div>
+                {todayDevotional.prayer && (
+                  <div className="mt-8 p-6 bg-accent/5 rounded-xl border border-accent/20">
+                    <h3 className="text-lg font-serif font-semibold text-foreground mb-3 flex items-center gap-2">
+                      🙏 Oração
+                    </h3>
+                    <p className="text-muted-foreground italic leading-relaxed">
+                      {todayDevotional.prayer}
+                    </p>
+                  </div>
+                )}
 
                 {/* Actions */}
                 <div className="flex items-center gap-3 mt-6 pt-6 border-t border-border">
@@ -196,7 +230,16 @@ export default function DevotionalPage() {
                 className="min-h-[120px] resize-none"
               />
               <div className="flex justify-end mt-3">
-                <Button size="sm">Salvar Anotações</Button>
+                <Button size="sm" onClick={handleSaveNotes} disabled={isSaving}>
+                  {isSaving ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      Salvando...
+                    </>
+                  ) : (
+                    "Salvar Anotações"
+                  )}
+                </Button>
               </div>
             </div>
           </div>
@@ -231,7 +274,7 @@ export default function DevotionalPage() {
                 Devocionais Anteriores
               </h3>
               <div className="space-y-3">
-                {previousDevotionals.map((dev) => (
+                {recentDevotionals.slice(0, 4).map((dev) => (
                   <button
                     key={dev.id}
                     className="w-full text-left p-3 rounded-lg hover:bg-accent transition-colors"
@@ -239,7 +282,7 @@ export default function DevotionalPage() {
                     <div className="flex items-start gap-3">
                       <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
                         <span className="text-xs font-medium text-primary">
-                          {dev.date.split(" ")[0]}
+                          {format(new Date(dev.publish_date), "dd", { locale: ptBR })}
                         </span>
                       </div>
                       <div>
@@ -247,7 +290,7 @@ export default function DevotionalPage() {
                           {dev.title}
                         </h4>
                         <p className="text-xs text-muted-foreground">
-                          {dev.reference}
+                          {dev.verse_reference}
                         </p>
                       </div>
                     </div>
