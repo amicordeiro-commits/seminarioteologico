@@ -243,24 +243,32 @@ export default function LibraryPage() {
                           <span>{resource.download_count}</span>
                         </div>
                         <div className="flex gap-2">
-                          <Button 
-                            size="sm" 
-                            variant="ghost" 
-                            className="h-8 px-2"
-                            onClick={() => setSelectedMaterial(resource)}
-                            disabled={!resource.content && !resource.file_url}
-                          >
-                            <Eye className="w-4 h-4" />
-                          </Button>
-                          <Button 
-                            size="sm" 
-                            className="h-8 px-3 gap-1"
-                            onClick={() => resource.file_url && window.open(resource.file_url, '_blank')}
-                            disabled={!resource.file_url}
-                          >
-                            <Download className="w-3 h-3" />
-                            Baixar
-                          </Button>
+                          {resource.content && (
+                            <Button 
+                              size="sm" 
+                              variant="outline"
+                              className="h-8 px-3 gap-1"
+                              onClick={() => setSelectedMaterial(resource)}
+                            >
+                              <BookOpen className="w-3 h-3" />
+                              Ler
+                            </Button>
+                          )}
+                          {resource.file_url && (
+                            <Button 
+                              size="sm" 
+                              className="h-8 px-3 gap-1"
+                              onClick={() => window.open(resource.file_url!, '_blank')}
+                            >
+                              <Download className="w-3 h-3" />
+                              Baixar
+                            </Button>
+                          )}
+                          {!resource.content && !resource.file_url && (
+                            <span className="text-xs text-muted-foreground italic">
+                              Em breve
+                            </span>
+                          )}
                         </div>
                       </div>
                   </div>
