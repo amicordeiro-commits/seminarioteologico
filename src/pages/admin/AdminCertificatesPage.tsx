@@ -82,10 +82,6 @@ export default function AdminCertificatesPage() {
                       {format(new Date(cert.issued_at), "dd 'de' MMMM 'de' yyyy", { locale: ptBR })}
                     </span>
                   </div>
-                    <span>
-                      {format(new Date(cert.issued_at), "dd 'de' MMMM 'de' yyyy", { locale: ptBR })}
-                    </span>
-                  </div>
                   <div className="pt-2 border-t border-border">
                     <p className="text-xs text-muted-foreground font-mono">
                       {cert.certificate_number}
