@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { useBible } from '@/hooks/useBible';
-import { useBibleStudies } from '@/hooks/useBibleStudies';
+import { useBibleStudies, BibleStudy } from '@/hooks/useBibleStudies';
+import { supabase } from '@/integrations/supabase/client';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -32,6 +34,23 @@ export function EnhancedBibleReader({ onVerseSelect, onContextChange, onBookChap
   const { loading, error, getBooks, getChapterVerses, search } = useBible(translation);
   const { data: studies, isLoading: studiesLoading } = useBibleStudies(selectedBook, selectedChapter);
 
+  // Fetch verse-specific studies for all verses in the current chapter
+  const { data: verseStudies } = useQuery({
+    queryKey: ["chapter-verse-studies", selectedBook, selectedChapter],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("bible_studies")
+        .select("*")
+        .eq("book_abbrev", selectedBook.toLowerCase())
+        .eq("chapter", selectedChapter)
+        .not("verse", "is", null);
+
+      if (error) throw error;
+      return data as BibleStudy[];
+    },
+    enabled: !!selectedBook && !!selectedChapter,
+  });
+
   const allBooks = getBooks();
   const oldTestamentBooks = allBooks.filter(b => OLD_TESTAMENT_BOOKS.includes(b.abbrev.toLowerCase()));
   const newTestamentBooks = allBooks.filter(b => NEW_TESTAMENT_BOOKS.includes(b.abbrev.toLowerCase()));
@@ -41,14 +60,10 @@ export function EnhancedBibleReader({ onVerseSelect, onContextChange, onBookChap
   const currentBook = allBooks.find(b => b.abbrev.toLowerCase() === selectedBook.toLowerCase());
   const totalChapters = currentBook?.chaptersCount || 1;
 
-  // Get comments for each verse from studies
-  const getVerseComments = (verseNumber: number) => {
-    if (!studies) return [];
-    return studies.filter(study => 
-      study.content.toLowerCase().includes(`versículo ${verseNumber}`) ||
-      study.content.toLowerCase().includes(`v.${verseNumber}`) ||
-      study.content.toLowerCase().includes(`v. ${verseNumber}`)
-    );
+  // Get comments for a specific verse
+  const getVerseComments = (verseNumber: number): BibleStudy[] => {
+    if (!verseStudies) return [];
+    return verseStudies.filter(study => study.verse === verseNumber);
   };
 
   useEffect(() => {
@@ -312,7 +327,6 @@ export function EnhancedBibleReader({ onVerseSelect, onContextChange, onBookChap
           {verses.map((verse, idx) => {
             const comments = getVerseComments(verse.verse);
             const hasComments = comments.length > 0;
-            const hasStudy = studies && studies.length > 0;
 
             return (
               <div key={idx} className="space-y-1">
@@ -330,8 +344,8 @@ export function EnhancedBibleReader({ onVerseSelect, onContextChange, onBookChap
                   {verse.text}
                 </p>
 
-                {/* Comment Section */}
-                {hasStudy && (
+                {/* Comment Section - Only show if this verse has studies */}
+                {hasComments && (
                   <Collapsible open={expandedComments.has(idx)}>
                     <CollapsibleTrigger asChild>
                       <Button 
@@ -341,24 +355,18 @@ export function EnhancedBibleReader({ onVerseSelect, onContextChange, onBookChap
                         onClick={() => toggleComment(idx)}
                       >
                         <MessageSquare className="h-3 w-3 mr-1" />
-                        {expandedComments.has(idx) ? 'Ocultar comentário' : 'Ver comentário'}
+                        {expandedComments.has(idx) ? 'Ocultar comentário' : `Ver comentário (${comments.length})`}
                         <ChevronDown className={`h-3 w-3 ml-1 transition-transform ${expandedComments.has(idx) ? 'rotate-180' : ''}`} />
                       </Button>
                     </CollapsibleTrigger>
                     <CollapsibleContent>
-                      <div className="ml-4 mt-2 p-3 bg-muted/50 rounded-lg border-l-2 border-primary/30">
-                        {hasComments ? (
-                          comments.map((comment, cIdx) => (
-                            <div key={cIdx} className="text-sm text-muted-foreground">
-                              <span className="font-medium text-foreground">{comment.title}</span>
-                              <p className="mt-1">{comment.content}</p>
-                            </div>
-                          ))
-                        ) : (
-                          <p className="text-sm text-muted-foreground italic">
-                            Consulte a aba "Estudos" para comentários sobre este capítulo.
-                          </p>
-                        )}
+                      <div className="ml-4 mt-2 space-y-2">
+                        {comments.map((comment, cIdx) => (
+                          <div key={cIdx} className="p-3 bg-muted/50 rounded-lg border-l-2 border-primary/30">
+                            <span className="font-medium text-foreground text-sm">{comment.title}</span>
+                            <p className="mt-1 text-sm text-muted-foreground whitespace-pre-wrap">{comment.content}</p>
+                          </div>
+                        ))}
                       </div>
                     </CollapsibleContent>
                   </Collapsible>

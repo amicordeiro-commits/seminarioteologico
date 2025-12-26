@@ -5,6 +5,7 @@ export interface BibleStudy {
   id: string;
   book_abbrev: string;
   chapter: number | null;
+  verse: number | null;
   study_type: string;
   title: string;
   content: string;
@@ -27,11 +28,30 @@ export function useBibleStudies(bookAbbrev: string, chapter?: number) {
         query = query.is("chapter", null);
       }
 
-      const { data, error } = await query.order("study_type");
+      const { data, error } = await query.order("verse").order("study_type");
       if (error) throw error;
       return data as BibleStudy[];
     },
     enabled: !!bookAbbrev,
+  });
+}
+
+// Hook to get verse-specific studies
+export function useVerseStudy(bookAbbrev: string, chapter: number, verse: number) {
+  return useQuery({
+    queryKey: ["verse-study", bookAbbrev, chapter, verse],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("bible_studies")
+        .select("*")
+        .eq("book_abbrev", bookAbbrev.toLowerCase())
+        .eq("chapter", chapter)
+        .eq("verse", verse);
+
+      if (error) throw error;
+      return data as BibleStudy[];
+    },
+    enabled: !!bookAbbrev && !!chapter && !!verse,
   });
 }
 
