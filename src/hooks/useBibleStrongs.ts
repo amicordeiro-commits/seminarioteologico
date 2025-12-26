@@ -1,6 +1,7 @@
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import type { StrongsLexicon, KJVBook } from '@/lib/strongsTypes';
 import { ESV_TO_KJV_ABBREV, cleanDefinition } from '@/lib/strongsTypes';
+import { supabase } from '@/integrations/supabase/client';
 
 // Type for Portuguese translations
 interface PortugueseTranslation {
@@ -14,6 +15,7 @@ type PortugueseTranslations = Record<string, PortugueseTranslation>;
 // Cache for loaded data
 let lexiconCache: StrongsLexicon | null = null;
 let portugueseCache: PortugueseTranslations | null = null;
+let dbTranslationsLoaded = false;
 const bookCache: Map<string, KJVBook> = new Map();
 
 export function useBibleStrongs() {
@@ -22,6 +24,46 @@ export function useBibleStrongs() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const loadingRef = useRef(false);
+
+  // Load database translations on mount
+  useEffect(() => {
+    if (!dbTranslationsLoaded) {
+      loadDbTranslations();
+    }
+  }, []);
+
+  // Load translations from database and merge with local file
+  const loadDbTranslations = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('strongs_translations')
+        .select('strongs_id, portuguese_word, portuguese_definition, portuguese_usage');
+
+      if (error) {
+        console.warn('Failed to load DB translations:', error);
+        return;
+      }
+
+      if (data && data.length > 0) {
+        const dbTranslations: PortugueseTranslations = {};
+        data.forEach(t => {
+          dbTranslations[t.strongs_id] = {
+            word: t.portuguese_word,
+            definition: t.portuguese_definition,
+            usage: t.portuguese_usage || ''
+          };
+        });
+
+        // Merge with existing cache (DB takes priority)
+        portugueseCache = { ...portugueseCache, ...dbTranslations };
+        setPortuguese(portugueseCache);
+        dbTranslationsLoaded = true;
+        console.log(`Loaded ${data.length} translations from database`);
+      }
+    } catch (err) {
+      console.warn('Error loading DB translations:', err);
+    }
+  };
 
   // Load the Strong's lexicon and Portuguese translations
   const loadLexicon = useCallback(async () => {
@@ -54,6 +96,9 @@ export function useBibleStrongs() {
         portugueseCache = portugueseData;
         setPortuguese(portugueseData);
       }
+
+      // Also load from database
+      await loadDbTranslations();
       
       setLoading(false);
       loadingRef.current = false;
