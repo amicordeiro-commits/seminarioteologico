@@ -1,12 +1,11 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useBibleStrongs } from '@/hooks/useBibleStrongs';
-import { parseStrongsText, cleanDefinition, type ParsedWord } from '@/lib/strongsTypes';
+import { parseStrongsText, type ParsedWord } from '@/lib/strongsTypes';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Loader2, BookOpen, Languages } from 'lucide-react';
 import { getBookName } from '@/lib/bibleTypes';
-import { supabase } from '@/integrations/supabase/client';
 
 interface InterlinearViewProps {
   bookAbbrev: string;
@@ -110,72 +109,21 @@ interface InterlinearWordProps {
     definition: string;
     partOfSpeech: string;
     usage: string;
+    portugueseWord?: string;
+    portugueseDefinition?: string;
+    portugueseUsage?: string;
   } | null;
   fontSize: number;
 }
 
-// Cache for translations
-const translationCache = new Map<string, { word: string; definition: string; usage: string }>();
-
 function InterlinearWord({ word, getDefinition, fontSize }: InterlinearWordProps) {
   const hasStrongs = word.strongsNumbers.length > 0;
-  const [translatedDefs, setTranslatedDefs] = useState<Map<string, { word: string; definition: string; usage: string }>>(new Map());
-  const [translating, setTranslating] = useState<Set<string>>(new Set());
   
-  // Get definitions for all Strong's numbers
+  // Get definitions for all Strong's numbers (includes Portuguese from offline file)
   const definitions = word.strongsNumbers.map(num => ({
     number: num,
     ...getDefinition(num)
   })).filter(d => d.word || d.definition);
-
-  // Translate definition - called ONLY when popover opens (user clicks)
-  const translateDefinition = async (num: string, englishWord: string, definition: string, usage: string) => {
-    // Check cache first
-    if (translationCache.has(num)) {
-      setTranslatedDefs(prev => new Map(prev).set(num, translationCache.get(num)!));
-      return;
-    }
-    
-    if (translating.has(num) || translatedDefs.has(num)) return;
-    
-    setTranslating(prev => new Set(prev).add(num));
-    
-    try {
-      const { data, error } = await supabase.functions.invoke('translate-strongs', {
-        body: { word: englishWord, definition, usage }
-      });
-      
-      if (!error && data && !data.error) {
-        const translated = {
-          word: data.word || englishWord,
-          definition: data.definition || definition,
-          usage: data.usage || usage
-        };
-        translationCache.set(num, translated);
-        setTranslatedDefs(prev => new Map(prev).set(num, translated));
-      }
-    } catch (err) {
-      console.error('Translation error:', err);
-    } finally {
-      setTranslating(prev => {
-        const newSet = new Set(prev);
-        newSet.delete(num);
-        return newSet;
-      });
-    }
-  };
-
-  // Only translate when user opens the popover (clicks on word)
-  const handleOpenChange = (open: boolean) => {
-    if (open) {
-      // Translate all definitions when popover opens
-      definitions.forEach(def => {
-        if (def.definition || def.usage) {
-          translateDefinition(def.number, word.text, def.definition || '', def.usage || '');
-        }
-      });
-    }
-  };
 
   if (!hasStrongs) {
     return (
@@ -188,12 +136,12 @@ function InterlinearWord({ word, getDefinition, fontSize }: InterlinearWordProps
     );
   }
 
-  // Get translated word for display (only available after clicking)
+  // Get Portuguese translation from offline data
   const firstDef = definitions[0];
-  const translated = firstDef ? translatedDefs.get(firstDef.number) : null;
+  const portugueseWord = firstDef?.portugueseWord;
 
   return (
-    <Popover onOpenChange={handleOpenChange}>
+    <Popover>
       <PopoverTrigger asChild>
         <button
           className={`
@@ -203,6 +151,13 @@ function InterlinearWord({ word, getDefinition, fontSize }: InterlinearWordProps
             ${word.isItalic ? 'italic' : ''}
           `}
         >
+          {/* Portuguese translation on top (from offline file) */}
+          {portugueseWord && (
+            <span className="text-green-600 dark:text-green-400 text-[10px] font-medium">
+              {portugueseWord}
+            </span>
+          )}
+          
           {/* Original English word */}
           <span 
             className="text-foreground font-medium"
@@ -246,10 +201,10 @@ function InterlinearWord({ word, getDefinition, fontSize }: InterlinearWordProps
         <ScrollArea className="max-h-[300px]">
           <div className="space-y-4">
             {definitions.map((def, idx) => {
-              const translated = translatedDefs.get(def.number);
-              const isTranslating = translating.has(def.number);
-              const displayDef = translated?.definition || def.definition;
-              const displayUsage = translated?.usage || def.usage;
+              // Use Portuguese translations from offline file
+              const displayDef = def.portugueseDefinition || def.definition;
+              const displayUsage = def.portugueseUsage || def.usage;
+              const hasPtTranslation = !!def.portugueseDefinition;
               
               return (
                 <div key={idx} className="space-y-2">
@@ -267,13 +222,26 @@ function InterlinearWord({ word, getDefinition, fontSize }: InterlinearWordProps
                   )}
                   
                   {/* Original Word & Transliteration */}
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 flex-wrap">
                     <span className="text-2xl font-semibold text-primary">{def.word}</span>
                     <span className="text-muted-foreground italic">{def.transliteration}</span>
                     <Badge variant="secondary" className="text-xs">
                       {def.number}
                     </Badge>
+                    {hasPtTranslation && (
+                      <Badge variant="outline" className="text-[10px] py-0 bg-green-500/10 text-green-700 dark:text-green-400">
+                        PT
+                      </Badge>
+                    )}
                   </div>
+                  
+                  {/* Portuguese Word Translation */}
+                  {def.portugueseWord && (
+                    <div className="text-sm bg-green-500/10 p-2 rounded">
+                      <span className="font-medium text-green-700 dark:text-green-400">Tradução:</span>
+                      <span className="ml-2 font-semibold">{def.portugueseWord}</span>
+                    </div>
+                  )}
                   
                   {/* Part of Speech */}
                   {def.partOfSpeech && (
@@ -285,15 +253,7 @@ function InterlinearWord({ word, getDefinition, fontSize }: InterlinearWordProps
                   {/* Definition */}
                   {displayDef && (
                     <div className="text-sm">
-                      <div className="flex items-center gap-2">
-                        <span className="font-medium text-primary">Definição:</span>
-                        {isTranslating && !translated && (
-                          <Loader2 className="h-3 w-3 animate-spin text-muted-foreground" />
-                        )}
-                        {translated && (
-                          <Badge variant="outline" className="text-[10px] py-0">PT</Badge>
-                        )}
-                      </div>
+                      <span className="font-medium text-primary">Definição:</span>
                       <p className="mt-1 text-foreground">{displayDef}</p>
                     </div>
                   )}
@@ -301,12 +261,7 @@ function InterlinearWord({ word, getDefinition, fontSize }: InterlinearWordProps
                   {/* Usage */}
                   {displayUsage && (
                     <div className="text-sm bg-muted/50 p-2 rounded">
-                      <div className="flex items-center gap-2">
-                        <span className="font-medium text-primary">Uso:</span>
-                        {isTranslating && !translated && (
-                          <Loader2 className="h-3 w-3 animate-spin text-muted-foreground" />
-                        )}
-                      </div>
+                      <span className="font-medium text-primary">Uso:</span>
                       <p className="mt-1 text-muted-foreground">{displayUsage}</p>
                     </div>
                   )}
