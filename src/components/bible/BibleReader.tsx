@@ -588,10 +588,29 @@ export function BibleReader() {
                         <CollapsibleContent>
                           <div className="ml-4 mt-2 space-y-2">
                             {verse.studies.map((study, idx) => {
-                              // Remove verse references like "1:1", "12:5-7", "(v. 3)", "(vv. 1-5)"
                               const cleanedStudy = study
-                                .replace(/\b\d+:\d+(-\d+)?\b/g, '')
-                                .replace(/\(v+\.\s*\d+(-\d+)?\)/gi, '')
+                                .split('\n')
+                                .map(l => l.trim())
+                                .filter(Boolean)
+                                // Remove linhas que são o próprio versículo dentro do comentário
+                                .filter(l => {
+                                  const verseLineRegex = /^(?:\(?\s*)?(?:[1-3]\s*)?[A-Za-zÀ-ÖØ-öø-ÿ]{2,}\.?\s+\d+:\d+(?:[–-]\d+)?\b/i;
+                                  const chapterVerseOnlyRegex = /^(?:\(?\s*)?\d+:\d+(?:[–-]\d+)?\b/i;
+                                  const vRegex = /^(?:\(?\s*)v{1,2}\.\s*\d+(?:[–-]\d+)?\b/i;
+                                  const numberedTextRegex = /^\d+\s+["“”'‘’A-Za-zÀ-ÖØ-öø-ÿ]/;
+
+                                  return !(
+                                    verseLineRegex.test(l) ||
+                                    chapterVerseOnlyRegex.test(l) ||
+                                    vRegex.test(l) ||
+                                    numberedTextRegex.test(l)
+                                  );
+                                })
+                                .join('\n')
+                                // Remove referências no meio do texto
+                                .replace(/\b(?:[1-3]\s*)?[A-Za-zÀ-ÖØ-öø-ÿ]{2,}\.?\s+\d+:\d+(?:[–-]\d+)?\b/gi, '')
+                                .replace(/\b\d+:\d+(?:[–-]\d+)?\b/g, '')
+                                .replace(/\bvv?\.\s*\d+(?:[–-]\d+)?\b/gi, '')
                                 .replace(/\s{2,}/g, ' ')
                                 .trim();
                               
