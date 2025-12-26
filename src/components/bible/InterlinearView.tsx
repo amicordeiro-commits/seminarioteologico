@@ -112,6 +112,8 @@ interface InterlinearWordProps {
     portugueseWord?: string;
     portugueseDefinition?: string;
     portugueseUsage?: string;
+    portugueseTransliteration?: string;
+    portuguesePartOfSpeech?: string;
   } | null;
   fontSize: number;
 }
