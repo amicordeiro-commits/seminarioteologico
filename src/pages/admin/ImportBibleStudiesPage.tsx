@@ -17,6 +17,8 @@ export default function ImportBibleStudiesPage() {
     errors?: string[];
   } | null>(null);
 
+  const [clearExisting, setClearExisting] = useState(true);
+
   const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) return;
@@ -31,16 +33,29 @@ export default function ImportBibleStudiesPage() {
     setResult(null);
 
     try {
+      toast.info("Lendo arquivo JSON...");
       const text = await file.text();
-      setProgress(30);
+      setProgress(20);
       
+      toast.info("Processando dados...");
       const bibleData = JSON.parse(text);
-      setProgress(50);
+      setProgress(30);
 
-      toast.info("Enviando dados para processamento...");
+      // Count total studies for progress estimation
+      let totalStudies = 0;
+      for (const book of bibleData.bible_content || []) {
+        for (const chapter of book.chapters || []) {
+          for (const verse of chapter.verses || []) {
+            totalStudies += (verse.studies || []).length;
+          }
+        }
+      }
+      
+      toast.info(`Enviando ${totalStudies} estudos para processamento...`);
+      setProgress(40);
 
       const { data, error } = await supabase.functions.invoke("import-bible-studies", {
-        body: { bibleData },
+        body: { bibleData, clearExisting },
       });
 
       setProgress(100);
@@ -85,6 +100,19 @@ export default function ImportBibleStudiesPage() {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
+            <div className="flex items-center gap-4">
+              <label className="flex items-center gap-2 text-sm">
+                <input
+                  type="checkbox"
+                  checked={clearExisting}
+                  onChange={(e) => setClearExisting(e.target.checked)}
+                  disabled={isImporting}
+                  className="rounded border-border"
+                />
+                Limpar estudos existentes antes de importar
+              </label>
+            </div>
+            
             <div className="flex items-center gap-4">
               <Button asChild disabled={isImporting}>
                 <label className="cursor-pointer">
