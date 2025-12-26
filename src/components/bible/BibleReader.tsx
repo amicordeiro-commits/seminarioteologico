@@ -450,8 +450,16 @@ export function BibleReader() {
             </Button>
           </div>
 
-          {/* Verses */}
+          {/* Verses - Interlinear or Regular Mode */}
           <ScrollArea className="h-[450px] border rounded-lg p-4">
+            {interlinearMode ? (
+              <InterlinearChapter
+                bookAbbrev={selectedBook}
+                chapter={selectedChapterNum}
+                verses={filteredVerses}
+                fontSize={fontSize}
+              />
+            ) : (
             <div className="space-y-3">
               {filteredVerses.map((verse) => {
                 const hasStudies = verse.studies && verse.studies.length > 0;
@@ -580,6 +588,7 @@ export function BibleReader() {
                 );
               })}
             </div>
+            )}
           </ScrollArea>
         </TabsContent>
 
