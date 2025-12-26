@@ -67,10 +67,8 @@ export const BOOK_NAMES: Record<string, string> = {
   ap: 'Apocalipse',
 };
 
-export const TRANSLATION_NAMES: Record<string, string> = {
-  tefilin: 'Bíblia Tefilin',
-  arc: 'Almeida Revista e Corrigida',
-};
+export const TRANSLATION_NAMES: Record<string, string> = {};
+
 
 export interface BibleBook {
   abbrev: string;

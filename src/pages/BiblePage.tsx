@@ -12,7 +12,7 @@ export default function BiblePage() {
   const [currentChapter, setCurrentChapter] = useState<number>(1);
 
   useEffect(() => {
-    document.title = 'Bíblia Tefilin | Seminário Teológico';
+    document.title = 'Bíblia (indisponível) | Seminário Teológico';
   }, []);
 
   const handleContextChange = (context: string) => {
@@ -37,9 +37,9 @@ export default function BiblePage() {
             <BookOpen className="h-6 w-6 text-primary" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold">Bíblia Tefilin</h1>
+            <h1 className="text-2xl font-bold">Bíblia (indisponível)</h1>
             <p className="text-muted-foreground">
-              Leia, estude e tire suas dúvidas com a assistência de IA
+              As traduções da Bíblia foram removidas do sistema.
             </p>
           </div>
         </div>
