@@ -115,11 +115,11 @@ interface InterlinearWordProps {
 }
 
 // Cache for translations
-const translationCache = new Map<string, { definition: string; usage: string }>();
+const translationCache = new Map<string, { word: string; definition: string; usage: string }>();
 
 function InterlinearWord({ word, getDefinition, fontSize }: InterlinearWordProps) {
   const hasStrongs = word.strongsNumbers.length > 0;
-  const [translatedDefs, setTranslatedDefs] = useState<Map<string, { definition: string; usage: string }>>(new Map());
+  const [translatedDefs, setTranslatedDefs] = useState<Map<string, { word: string; definition: string; usage: string }>>(new Map());
   const [translating, setTranslating] = useState<Set<string>>(new Set());
   
   // Get definitions for all Strong's numbers
@@ -128,8 +128,8 @@ function InterlinearWord({ word, getDefinition, fontSize }: InterlinearWordProps
     ...getDefinition(num)
   })).filter(d => d.word || d.definition);
 
-  // Translate definition when popover opens
-  const translateDefinition = async (num: string, definition: string, usage: string) => {
+  // Translate definition - called on mount for words with Strong's
+  const translateDefinition = async (num: string, englishWord: string, definition: string, usage: string) => {
     // Check cache first
     if (translationCache.has(num)) {
       setTranslatedDefs(prev => new Map(prev).set(num, translationCache.get(num)!));
@@ -142,11 +142,12 @@ function InterlinearWord({ word, getDefinition, fontSize }: InterlinearWordProps
     
     try {
       const { data, error } = await supabase.functions.invoke('translate-strongs', {
-        body: { definition, usage }
+        body: { word: englishWord, definition, usage }
       });
       
       if (!error && data) {
         const translated = {
+          word: data.word || englishWord,
           definition: data.definition || definition,
           usage: data.usage || usage
         };
@@ -164,12 +165,22 @@ function InterlinearWord({ word, getDefinition, fontSize }: InterlinearWordProps
     }
   };
 
+  // Translate on mount for interlinear display
+  useEffect(() => {
+    if (hasStrongs && definitions.length > 0) {
+      const def = definitions[0];
+      if (def && (def.definition || word.text)) {
+        translateDefinition(def.number, word.text, def.definition || '', def.usage || '');
+      }
+    }
+  }, [hasStrongs, definitions.length]);
+
   const handleOpenChange = (open: boolean) => {
     if (open) {
       // Translate all definitions when popover opens
       definitions.forEach(def => {
         if (def.definition || def.usage) {
-          translateDefinition(def.number, def.definition || '', def.usage || '');
+          translateDefinition(def.number, word.text, def.definition || '', def.usage || '');
         }
       });
     }
@@ -186,6 +197,11 @@ function InterlinearWord({ word, getDefinition, fontSize }: InterlinearWordProps
     );
   }
 
+  // Get translated word for display
+  const firstDef = definitions[0];
+  const translated = firstDef ? translatedDefs.get(firstDef.number) : null;
+  const isTranslatingWord = firstDef ? translating.has(firstDef.number) : false;
+
   return (
     <Popover onOpenChange={handleOpenChange}>
       <PopoverTrigger asChild>
@@ -197,7 +213,16 @@ function InterlinearWord({ word, getDefinition, fontSize }: InterlinearWordProps
             ${word.isItalic ? 'italic' : ''}
           `}
         >
-          {/* Original word */}
+          {/* Portuguese translation on top */}
+          {translated?.word ? (
+            <span className="text-green-600 dark:text-green-400 text-[10px] font-medium">
+              {translated.word}
+            </span>
+          ) : isTranslatingWord ? (
+            <Loader2 className="h-3 w-3 animate-spin text-muted-foreground" />
+          ) : null}
+          
+          {/* Original English word */}
           <span 
             className="text-foreground font-medium"
             style={{ fontSize: `${fontSize - 2}px` }}
@@ -205,7 +230,7 @@ function InterlinearWord({ word, getDefinition, fontSize }: InterlinearWordProps
             {word.text}
           </span>
           
-          {/* Original language word (from first definition) */}
+          {/* Original language word (Hebrew/Greek) */}
           {definitions[0]?.word && (
             <span className="text-primary text-xs font-semibold">
               {definitions[0].word}

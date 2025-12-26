@@ -11,9 +11,9 @@ serve(async (req) => {
   }
 
   try {
-    const { definition, usage } = await req.json();
+    const { definition, usage, word } = await req.json();
     
-    if (!definition && !usage) {
+    if (!definition && !usage && !word) {
       return new Response(JSON.stringify({ error: 'No text to translate' }), {
         status: 400,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
@@ -25,7 +25,7 @@ serve(async (req) => {
       throw new Error('LOVABLE_API_KEY is not configured');
     }
 
-    const textToTranslate = `Definition: ${definition || 'N/A'}\n\nUsage: ${usage || 'N/A'}`;
+    const textToTranslate = `Word: ${word || 'N/A'}\nDefinition: ${definition || 'N/A'}\nUsage: ${usage || 'N/A'}`;
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
@@ -40,9 +40,10 @@ serve(async (req) => {
             role: "system", 
             content: `Você é um tradutor especializado em termos bíblicos e teológicos. 
 Traduza o texto do inglês para português brasileiro de forma precisa e clara.
+Para "word", forneça a tradução direta em português da palavra inglesa.
 Mantenha termos técnicos teológicos quando apropriado.
 Responda APENAS com a tradução no formato JSON:
-{"definition": "tradução da definição", "usage": "tradução do uso"}`
+{"word": "tradução da palavra", "definition": "tradução da definição", "usage": "tradução do uso"}`
           },
           { role: "user", content: textToTranslate }
         ],
@@ -79,6 +80,7 @@ Responda APENAS com a tradução no formato JSON:
     } catch {
       // Fallback if JSON parsing fails
       translated = {
+        word: word,
         definition: definition,
         usage: usage
       };
