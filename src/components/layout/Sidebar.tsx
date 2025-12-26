@@ -23,6 +23,7 @@ import { useState } from "react";
 const navItems = [
   { icon: Home, label: "Início", path: "/" },
   { icon: BookOpen, label: "Meus Cursos", path: "/courses" },
+  { icon: Library, label: "Bíblia de Estudo", path: "/bible" },
   { icon: FolderOpen, label: "Biblioteca", path: "/library" },
   { icon: BookMarked, label: "Devocional", path: "/devotional" },
   { icon: Calendar, label: "Calendário", path: "/calendar" },
