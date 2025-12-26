@@ -5,3 +5,6 @@ verify_jwt = false
 
 [functions.generate-certificate-pdf]
 verify_jwt = false
+
+[functions.translate-strongs]
+verify_jwt = false
