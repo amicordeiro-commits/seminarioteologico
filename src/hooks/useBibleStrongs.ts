@@ -2,20 +2,32 @@ import { useState, useCallback, useRef } from 'react';
 import type { StrongsLexicon, KJVBook } from '@/lib/strongsTypes';
 import { ESV_TO_KJV_ABBREV, cleanDefinition } from '@/lib/strongsTypes';
 
+// Type for Portuguese translations
+interface PortugueseTranslation {
+  word: string;
+  definition: string;
+  usage: string;
+}
+
+type PortugueseTranslations = Record<string, PortugueseTranslation>;
+
 // Cache for loaded data
 let lexiconCache: StrongsLexicon | null = null;
+let portugueseCache: PortugueseTranslations | null = null;
 const bookCache: Map<string, KJVBook> = new Map();
 
 export function useBibleStrongs() {
   const [lexicon, setLexicon] = useState<StrongsLexicon | null>(lexiconCache);
+  const [portuguese, setPortuguese] = useState<PortugueseTranslations | null>(portugueseCache);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const loadingRef = useRef(false);
 
-  // Load the Strong's lexicon
+  // Load the Strong's lexicon and Portuguese translations
   const loadLexicon = useCallback(async () => {
-    if (lexiconCache) {
+    if (lexiconCache && portugueseCache) {
       setLexicon(lexiconCache);
+      setPortuguese(portugueseCache);
       return lexiconCache;
     }
     
@@ -24,14 +36,28 @@ export function useBibleStrongs() {
     setLoading(true);
 
     try {
-      const response = await fetch('/bible/strongs-lexicon.json');
-      if (!response.ok) throw new Error('Failed to load lexicon');
-      const data = await response.json();
-      lexiconCache = data;
-      setLexicon(data);
+      // Load both files in parallel
+      const [lexiconResponse, portugueseResponse] = await Promise.all([
+        fetch('/bible/strongs-lexicon.json'),
+        fetch('/bible/strongs-portuguese.json')
+      ]);
+      
+      if (!lexiconResponse.ok) throw new Error('Failed to load lexicon');
+      
+      const lexiconData = await lexiconResponse.json();
+      lexiconCache = lexiconData;
+      setLexicon(lexiconData);
+      
+      // Portuguese translations are optional
+      if (portugueseResponse.ok) {
+        const portugueseData = await portugueseResponse.json();
+        portugueseCache = portugueseData;
+        setPortuguese(portugueseData);
+      }
+      
       setLoading(false);
       loadingRef.current = false;
-      return data;
+      return lexiconData;
     } catch (err) {
       setError('Falha ao carregar léxico Strong');
       setLoading(false);
@@ -125,20 +151,24 @@ export function useBibleStrongs() {
     return result;
   }, [loadBook]);
 
-  // Get Strong's definition
+  // Get Strong's definition with Portuguese translation
   const getStrongsDefinition = useCallback((strongsNumber: string): {
     word: string;
     transliteration: string;
     definition: string;
     partOfSpeech: string;
     usage: string;
+    portugueseWord?: string;
+    portugueseDefinition?: string;
+    portugueseUsage?: string;
   } | null => {
     if (!lexicon) return null;
 
     const entry = lexicon[strongsNumber];
     if (!entry) return null;
 
-    
+    // Get Portuguese translation if available
+    const pt = portuguese?.[strongsNumber];
 
     return {
       word: entry.Gk_word || entry.Hb_word || '',
@@ -146,11 +176,15 @@ export function useBibleStrongs() {
       definition: cleanDefinition(entry.strongs_def || ''),
       partOfSpeech: entry.part_of_speech || '',
       usage: cleanDefinition(entry.outline_usage || ''),
+      portugueseWord: pt?.word,
+      portugueseDefinition: pt?.definition,
+      portugueseUsage: pt?.usage,
     };
-  }, [lexicon]);
+  }, [lexicon, portuguese]);
 
   return {
     lexicon,
+    portuguese,
     loading,
     error,
     loadLexicon,
