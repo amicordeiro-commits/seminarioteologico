@@ -23,6 +23,7 @@ export type Database = {
           id: string
           study_type: string
           title: string
+          verse: number | null
         }
         Insert: {
           book_abbrev: string
@@ -32,6 +33,7 @@ export type Database = {
           id?: string
           study_type?: string
           title: string
+          verse?: number | null
         }
         Update: {
           book_abbrev?: string
@@ -41,6 +43,7 @@ export type Database = {
           id?: string
           study_type?: string
           title?: string
+          verse?: number | null
         }
         Relationships: []
       }
