@@ -587,11 +587,22 @@ export function BibleReader() {
                         </CollapsibleTrigger>
                         <CollapsibleContent>
                           <div className="ml-4 mt-2 space-y-2">
-                            {verse.studies.map((study, idx) => (
-                              <div key={idx} className="p-3 bg-muted/50 rounded-lg border-l-2 border-primary/30">
-                                <p className="text-sm text-muted-foreground whitespace-pre-wrap">{study}</p>
-                              </div>
-                            ))}
+                            {verse.studies.map((study, idx) => {
+                              // Remove verse references like "1:1", "12:5-7", "(v. 3)", "(vv. 1-5)"
+                              const cleanedStudy = study
+                                .replace(/\b\d+:\d+(-\d+)?\b/g, '')
+                                .replace(/\(v+\.\s*\d+(-\d+)?\)/gi, '')
+                                .replace(/\s{2,}/g, ' ')
+                                .trim();
+                              
+                              if (!cleanedStudy) return null;
+                              
+                              return (
+                                <div key={idx} className="p-3 bg-muted/50 rounded-lg border-l-2 border-primary/30">
+                                  <p className="text-sm text-muted-foreground whitespace-pre-wrap">{cleanedStudy}</p>
+                                </div>
+                              );
+                            })}
                           </div>
                         </CollapsibleContent>
                       </Collapsible>
