@@ -33,6 +33,7 @@ import AdminSettingsPage from "./pages/admin/AdminSettingsPage";
 import AdminMessagesPage from "./pages/admin/AdminMessagesPage";
 import AdminQuizzesPage from "./pages/admin/AdminQuizzesPage";
 import AdminLessonsPage from "./pages/admin/AdminLessonsPage";
+import ImportBibleStudiesPage from "./pages/admin/ImportBibleStudiesPage";
 
 const queryClient = new QueryClient();
 
@@ -109,6 +110,7 @@ const AppRoutes = () => {
       <Route path="/admin/messages" element={<AdminRoute><AdminMessagesPage /></AdminRoute>} />
       <Route path="/admin/certificates" element={<AdminRoute><AdminCertificatesPage /></AdminRoute>} />
       <Route path="/admin/settings" element={<AdminRoute><AdminSettingsPage /></AdminRoute>} />
+      <Route path="/admin/import-studies" element={<AdminRoute><ImportBibleStudiesPage /></AdminRoute>} />
       
       <Route path="*" element={<NotFound />} />
     </Routes>
