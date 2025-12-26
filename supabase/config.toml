@@ -11,3 +11,6 @@ verify_jwt = false
 
 [functions.translate-strongs-batch]
 verify_jwt = true
+
+[functions.import-strongs-dictionary]
+verify_jwt = true
