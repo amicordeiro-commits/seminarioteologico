@@ -1,5 +1,6 @@
 import { useState, useCallback, useRef } from 'react';
-import type { StrongsLexicon, KJVBook, ESV_TO_KJV_ABBREV } from '@/lib/strongsTypes';
+import type { StrongsLexicon, KJVBook } from '@/lib/strongsTypes';
+import { ESV_TO_KJV_ABBREV, cleanDefinition } from '@/lib/strongsTypes';
 
 // Cache for loaded data
 let lexiconCache: StrongsLexicon | null = null;
@@ -67,7 +68,6 @@ export function useBibleStrongs() {
     chapter: number, 
     verse: number
   ): Promise<string | null> => {
-    const { ESV_TO_KJV_ABBREV } = await import('@/lib/strongsTypes');
     const kjvAbbrev = ESV_TO_KJV_ABBREV[esvAbbrev.toLowerCase()];
     
     if (!kjvAbbrev) {
@@ -96,7 +96,6 @@ export function useBibleStrongs() {
     esvAbbrev: string,
     chapter: number
   ): Promise<Map<number, string>> => {
-    const { ESV_TO_KJV_ABBREV } = await import('@/lib/strongsTypes');
     const kjvAbbrev = ESV_TO_KJV_ABBREV[esvAbbrev.toLowerCase()];
     const result = new Map<number, string>();
 
@@ -139,7 +138,7 @@ export function useBibleStrongs() {
     const entry = lexicon[strongsNumber];
     if (!entry) return null;
 
-    const { cleanDefinition } = require('@/lib/strongsTypes');
+    
 
     return {
       word: entry.Gk_word || entry.Hb_word || '',
