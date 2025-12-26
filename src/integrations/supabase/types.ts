@@ -14,6 +14,75 @@ export type Database = {
   }
   public: {
     Tables: {
+      bible_bookmarks: {
+        Row: {
+          book_abbrev: string
+          chapter: number
+          created_at: string
+          id: string
+          user_id: string
+          verse: number
+          verse_id: string
+          verse_text: string | null
+        }
+        Insert: {
+          book_abbrev: string
+          chapter: number
+          created_at?: string
+          id?: string
+          user_id: string
+          verse: number
+          verse_id: string
+          verse_text?: string | null
+        }
+        Update: {
+          book_abbrev?: string
+          chapter?: number
+          created_at?: string
+          id?: string
+          user_id?: string
+          verse?: number
+          verse_id?: string
+          verse_text?: string | null
+        }
+        Relationships: []
+      }
+      bible_notes: {
+        Row: {
+          book_abbrev: string
+          chapter: number
+          created_at: string
+          id: string
+          note: string
+          updated_at: string
+          user_id: string
+          verse: number
+          verse_id: string
+        }
+        Insert: {
+          book_abbrev: string
+          chapter: number
+          created_at?: string
+          id?: string
+          note: string
+          updated_at?: string
+          user_id: string
+          verse: number
+          verse_id: string
+        }
+        Update: {
+          book_abbrev?: string
+          chapter?: number
+          created_at?: string
+          id?: string
+          note?: string
+          updated_at?: string
+          user_id?: string
+          verse?: number
+          verse_id?: string
+        }
+        Relationships: []
+      }
       bible_studies: {
         Row: {
           book_abbrev: string
