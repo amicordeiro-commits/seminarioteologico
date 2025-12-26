@@ -196,6 +196,17 @@ export function useBibleStrongs() {
     return result;
   }, [loadBook]);
 
+  // Normalize Strong's number to match both formats (H1 and H0001)
+  const normalizeStrongsId = useCallback((id: string): string[] => {
+    const prefix = id.charAt(0); // H or G
+    const num = id.slice(1).replace(/^0+/, ''); // Remove leading zeros
+    const paddedNum = num.padStart(4, '0'); // Add leading zeros
+    return [
+      `${prefix}${num}`,      // H1, G1
+      `${prefix}${paddedNum}` // H0001, G0001
+    ];
+  }, []);
+
   // Get Strong's definition with Portuguese translation
   const getStrongsDefinition = useCallback((strongsNumber: string): {
     word: string;
@@ -212,8 +223,9 @@ export function useBibleStrongs() {
     const entry = lexicon[strongsNumber];
     if (!entry) return null;
 
-    // Get Portuguese translation if available
-    const pt = portuguese?.[strongsNumber];
+    // Get Portuguese translation - try both formats
+    const [shortId, paddedId] = normalizeStrongsId(strongsNumber);
+    const pt = portuguese?.[shortId] || portuguese?.[paddedId];
 
     return {
       word: entry.Gk_word || entry.Hb_word || '',
@@ -225,7 +237,7 @@ export function useBibleStrongs() {
       portugueseDefinition: pt?.definition,
       portugueseUsage: pt?.usage,
     };
-  }, [lexicon, portuguese]);
+  }, [lexicon, portuguese, normalizeStrongsId]);
 
   return {
     lexicon,
