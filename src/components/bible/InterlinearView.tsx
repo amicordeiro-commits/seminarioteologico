@@ -128,7 +128,7 @@ function InterlinearWord({ word, getDefinition, fontSize }: InterlinearWordProps
     ...getDefinition(num)
   })).filter(d => d.word || d.definition);
 
-  // Translate definition - called on mount for words with Strong's
+  // Translate definition - called ONLY when popover opens (user clicks)
   const translateDefinition = async (num: string, englishWord: string, definition: string, usage: string) => {
     // Check cache first
     if (translationCache.has(num)) {
@@ -145,7 +145,7 @@ function InterlinearWord({ word, getDefinition, fontSize }: InterlinearWordProps
         body: { word: englishWord, definition, usage }
       });
       
-      if (!error && data) {
+      if (!error && data && !data.error) {
         const translated = {
           word: data.word || englishWord,
           definition: data.definition || definition,
@@ -165,16 +165,7 @@ function InterlinearWord({ word, getDefinition, fontSize }: InterlinearWordProps
     }
   };
 
-  // Translate on mount for interlinear display
-  useEffect(() => {
-    if (hasStrongs && definitions.length > 0) {
-      const def = definitions[0];
-      if (def && (def.definition || word.text)) {
-        translateDefinition(def.number, word.text, def.definition || '', def.usage || '');
-      }
-    }
-  }, [hasStrongs, definitions.length]);
-
+  // Only translate when user opens the popover (clicks on word)
   const handleOpenChange = (open: boolean) => {
     if (open) {
       // Translate all definitions when popover opens
@@ -197,10 +188,9 @@ function InterlinearWord({ word, getDefinition, fontSize }: InterlinearWordProps
     );
   }
 
-  // Get translated word for display
+  // Get translated word for display (only available after clicking)
   const firstDef = definitions[0];
   const translated = firstDef ? translatedDefs.get(firstDef.number) : null;
-  const isTranslatingWord = firstDef ? translating.has(firstDef.number) : false;
 
   return (
     <Popover onOpenChange={handleOpenChange}>
@@ -213,15 +203,6 @@ function InterlinearWord({ word, getDefinition, fontSize }: InterlinearWordProps
             ${word.isItalic ? 'italic' : ''}
           `}
         >
-          {/* Portuguese translation on top */}
-          {translated?.word ? (
-            <span className="text-green-600 dark:text-green-400 text-[10px] font-medium">
-              {translated.word}
-            </span>
-          ) : isTranslatingWord ? (
-            <Loader2 className="h-3 w-3 animate-spin text-muted-foreground" />
-          ) : null}
-          
           {/* Original English word */}
           <span 
             className="text-foreground font-medium"
