@@ -16,10 +16,11 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Slider } from '@/components/ui/slider';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
+import { InterlinearChapter } from '@/components/bible/InterlinearView';
 import { 
   ChevronLeft, ChevronRight, Search, Book, Loader2, BookOpen, ChevronDown, 
   MessageSquare, Heart, Bookmark, PenLine, Copy, List, Settings2, 
-  Type, Tag, X, Check
+  Type, Tag, X, Check, Languages
 } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -38,6 +39,7 @@ export function BibleReader() {
   const [goToRef, setGoToRef] = useState('');
   const [fontSize, setFontSize] = useState(16);
   const [studyMode, setStudyMode] = useState(false);
+  const [interlinearMode, setInterlinearMode] = useState(false);
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const [showToc, setShowToc] = useState(false);
   const [editingNote, setEditingNote] = useState<string | null>(null);
@@ -330,6 +332,13 @@ export function BibleReader() {
                       <Label>Modo Estudo</Label>
                     </div>
                     <Switch checked={studyMode} onCheckedChange={setStudyMode} />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <Languages className="h-4 w-4" />
+                      <Label>Modo Interlinear (Strong's)</Label>
+                    </div>
+                    <Switch checked={interlinearMode} onCheckedChange={setInterlinearMode} />
                   </div>
                 </div>
               </PopoverContent>
