@@ -16,7 +16,7 @@ import ProfilePage from "./pages/ProfilePage";
 import CommunityPage from "./pages/CommunityPage";
 import SettingsPage from "./pages/SettingsPage";
 import DevotionalPage from "./pages/DevotionalPage";
-import BiblePage from "./pages/BiblePage";
+
 import CertificatesPage from "./pages/CertificatesPage";
 import AuthPage from "./pages/AuthPage";
 import NotFound from "./pages/NotFound";
@@ -33,7 +33,7 @@ import AdminSettingsPage from "./pages/admin/AdminSettingsPage";
 import AdminMessagesPage from "./pages/admin/AdminMessagesPage";
 import AdminQuizzesPage from "./pages/admin/AdminQuizzesPage";
 import AdminLessonsPage from "./pages/admin/AdminLessonsPage";
-import ImportBibleStudiesPage from "./pages/admin/ImportBibleStudiesPage";
+
 
 const queryClient = new QueryClient();
 
@@ -95,7 +95,7 @@ const AppRoutes = () => {
       <Route path="/community" element={<ProtectedRoute><CommunityPage /></ProtectedRoute>} />
       <Route path="/settings" element={<ProtectedRoute><SettingsPage /></ProtectedRoute>} />
       <Route path="/devotional" element={<ProtectedRoute><DevotionalPage /></ProtectedRoute>} />
-      <Route path="/bible" element={<ProtectedRoute><BiblePage /></ProtectedRoute>} />
+      
       <Route path="/certificates" element={<ProtectedRoute><CertificatesPage /></ProtectedRoute>} />
       
       {/* Admin Routes */}
@@ -110,7 +110,7 @@ const AppRoutes = () => {
       <Route path="/admin/messages" element={<AdminRoute><AdminMessagesPage /></AdminRoute>} />
       <Route path="/admin/certificates" element={<AdminRoute><AdminCertificatesPage /></AdminRoute>} />
       <Route path="/admin/settings" element={<AdminRoute><AdminSettingsPage /></AdminRoute>} />
-      <Route path="/admin/import-studies" element={<AdminRoute><ImportBibleStudiesPage /></AdminRoute>} />
+      
       
       <Route path="*" element={<NotFound />} />
     </Routes>
