@@ -70,6 +70,21 @@ export function useBibleStrongs() {
       // Convert to our internal format
       const translations: PortugueseTranslations = {};
       
+      // Helper function to clean duplicated transliterations (e.g., "minminminmin" -> "min")
+      const cleanTransliteration = (translit: string): string => {
+        if (!translit || translit.length < 4) return translit;
+        
+        // Try to find a repeating pattern
+        for (let len = 1; len <= Math.floor(translit.length / 2); len++) {
+          const pattern = translit.substring(0, len);
+          const repeated = pattern.repeat(Math.ceil(translit.length / len)).substring(0, translit.length);
+          if (repeated === translit) {
+            return pattern;
+          }
+        }
+        return translit;
+      };
+      
       for (const entry of data.verbetes) {
         // Normalize strong_id: "01" -> "H1" or "G1" based on language
         const prefix = entry.idioma === 'Grego' ? 'G' : 'H';
@@ -86,11 +101,14 @@ export function useBibleStrongs() {
         // Get first word or short phrase (up to 20 chars) as the Portuguese word
         const shortWord = firstDef.split(/[,;]/)[0]?.trim().substring(0, 25) || entry.termo;
         
+        // Clean duplicated transliteration
+        const cleanedTranslit = cleanTransliteration(entry.transliteracao);
+        
         const translation: PortugueseTranslation = {
           word: shortWord, // Portuguese meaning (e.g., "pai" for H1)
           definition: entry.definicoes.slice(0, 3).join('; '),
           usage: entry.definicoes.length > 3 ? entry.definicoes.slice(3).join('; ') : '',
-          transliteration: entry.transliteracao,
+          transliteration: cleanedTranslit,
           partOfSpeech: entry.classe_gramatical,
           originalWord: entry.termo.replace(/'/g, ''), // Original Hebrew/Greek
         };
