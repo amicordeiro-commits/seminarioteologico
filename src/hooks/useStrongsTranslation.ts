@@ -183,6 +183,44 @@ export function useStrongsTranslation() {
     });
   };
 
+  const importDictionary = async (dictionaryText: string) => {
+    setIsTranslating(true);
+    setProgress(0);
+
+    try {
+      const { data, error } = await supabase.functions.invoke('import-strongs-dictionary', {
+        body: { dictionaryText }
+      });
+
+      if (error) {
+        throw error;
+      }
+
+      if (data?.success) {
+        toast({
+          title: 'Importação concluída!',
+          description: `${data.imported} traduções importadas com sucesso.`,
+        });
+        await loadData();
+      } else {
+        throw new Error(data?.error || 'Erro desconhecido');
+      }
+
+      return data;
+    } catch (error) {
+      console.error('Import error:', error);
+      toast({
+        title: 'Erro na importação',
+        description: error instanceof Error ? error.message : 'Falha na importação',
+        variant: 'destructive'
+      });
+      throw error;
+    } finally {
+      setIsTranslating(false);
+      setProgress(100);
+    }
+  };
+
   return {
     lexicon,
     translations,
@@ -192,6 +230,7 @@ export function useStrongsTranslation() {
     progress,
     translateBatch,
     exportToJson,
+    importDictionary,
     refreshData: loadData
   };
 }

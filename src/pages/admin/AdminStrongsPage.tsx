@@ -5,9 +5,11 @@ import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import { useStrongsTranslation } from '@/hooks/useStrongsTranslation';
-import { Languages, Download, Play, RefreshCw, Search, CheckCircle, Clock, Loader2 } from 'lucide-react';
+import { Languages, Download, Play, RefreshCw, Search, CheckCircle, Clock, Loader2, Upload, FileText } from 'lucide-react';
 import { useState } from 'react';
+import { useToast } from '@/hooks/use-toast';
 
 export default function AdminStrongsPage() {
   const {
@@ -18,11 +20,36 @@ export default function AdminStrongsPage() {
     progress,
     translateBatch,
     exportToJson,
+    importDictionary,
     refreshData
   } = useStrongsTranslation();
 
   const [batchSize, setBatchSize] = useState(100);
   const [searchTerm, setSearchTerm] = useState('');
+  const [dictionaryText, setDictionaryText] = useState('');
+  const [isImporting, setIsImporting] = useState(false);
+  const { toast } = useToast();
+
+  const handleImport = async () => {
+    if (!dictionaryText.trim()) {
+      toast({
+        title: 'Erro',
+        description: 'Cole o texto do dicionário antes de importar',
+        variant: 'destructive'
+      });
+      return;
+    }
+
+    setIsImporting(true);
+    try {
+      await importDictionary(dictionaryText);
+      setDictionaryText('');
+    } catch (error) {
+      console.error('Import error:', error);
+    } finally {
+      setIsImporting(false);
+    }
+  };
 
   const filteredTranslations = translations.filter(t => 
     t.strongs_id.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -115,6 +142,49 @@ export default function AdminStrongsPage() {
             </CardContent>
           </Card>
         </div>
+
+        {/* Import Dictionary Section */}
+        <Card className="border-primary/50">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <FileText className="h-5 w-5" />
+              Importar Dicionário
+            </CardTitle>
+            <CardDescription>
+              Cole o texto do dicionário Strong's em português para importar em massa
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <Textarea
+              placeholder="Cole aqui o texto completo do dicionário Strong's (formato: número Strong + definição em português)..."
+              value={dictionaryText}
+              onChange={(e) => setDictionaryText(e.target.value)}
+              className="min-h-[150px] font-mono text-sm"
+              disabled={isImporting}
+            />
+            <div className="flex items-center justify-between">
+              <p className="text-sm text-muted-foreground">
+                {dictionaryText.length > 0 ? `${dictionaryText.length.toLocaleString()} caracteres` : 'Nenhum texto colado'}
+              </p>
+              <Button 
+                onClick={handleImport} 
+                disabled={isImporting || !dictionaryText.trim()}
+              >
+                {isImporting ? (
+                  <>
+                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                    Importando...
+                  </>
+                ) : (
+                  <>
+                    <Upload className="h-4 w-4 mr-2" />
+                    Importar Dicionário
+                  </>
+                )}
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Overall Progress */}
         <Card>
