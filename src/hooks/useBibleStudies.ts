@@ -83,6 +83,36 @@ type StudiesIndex = Map<string, string[]>;
 let studiesCache: StudiesIndex | null = null;
 let loadingStudies = false;
 
+// Function to clean study text - remove Bible references and keep only commentary
+function cleanStudyText(text: string): string {
+  if (!text) return '';
+  
+  // Remove patterns like "Ex. 13:04; 23:15; 34:18" or "(cf. Gn 8:13;. Ex 12:2)"
+  // Remove verse references with book abbreviations
+  let cleaned = text
+    // Remove parenthetical references like "(cf. Gn 8:13;. Ex 12:2, 18; 40:2)"
+    .replace(/\(cf\.[^)]+\)/gi, '')
+    // Remove patterns like "Ex. 13:04; 23:15" 
+    .replace(/\b[1-3]?\s?[A-Z][a-záéíóúãõç]+\.?\s*\d+[:\.\d,;\s-]+/gi, '')
+    // Remove standalone chapter:verse patterns like "23:15; 34:18"
+    .replace(/\b\d+:\d+[,;\s\d:-]*/g, '')
+    // Remove book abbreviations with dots like "Lv.", "Gn.", "Ex."
+    .replace(/\b[A-Z][a-z]{1,3}\.\s*\d+/gi, '')
+    // Remove parenthetical verse references
+    .replace(/\([^)]*\d+:\d+[^)]*\)/g, '')
+    // Clean up extra spaces and punctuation
+    .replace(/\s+/g, ' ')
+    .replace(/[;,]\s*[;,]/g, ';')
+    .replace(/^\s*[;,:\s]+/, '')
+    .replace(/[;,:\s]+$/, '')
+    .trim();
+  
+  // If after cleaning we have very little content, return empty
+  if (cleaned.length < 20) return '';
+  
+  return cleaned;
+}
+
 export function useBibleStudies() {
   const [studies, setStudies] = useState<StudiesIndex | null>(studiesCache);
   const [loading, setLoading] = useState(!studiesCache);
@@ -112,7 +142,6 @@ export function useBibleStudies() {
           const abbrev = BOOK_NAME_TO_ABBREV[bookName];
           
           if (!abbrev) {
-            console.warn(`Unknown book: ${bookName}`);
             continue;
           }
           
@@ -125,13 +154,17 @@ export function useBibleStudies() {
           const firstVerse = verses[0];
           if (isNaN(firstVerse)) continue;
           
+          // Clean the study text to remove Bible references
+          const cleanedText = cleanStudyText(entry.t);
+          if (!cleanedText) continue;
+          
           // Create key: book_chapter_verse
           const key = `${abbrev}_${entry.c}_${firstVerse}`;
           
           if (!index.has(key)) {
             index.set(key, []);
           }
-          index.get(key)!.push(entry.t);
+          index.get(key)!.push(cleanedText);
         }
         
         studiesCache = index;
