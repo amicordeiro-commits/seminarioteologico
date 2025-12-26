@@ -30,6 +30,7 @@ interface PortugueseTranslation {
   usage: string;
   transliteration?: string;
   partOfSpeech?: string;
+  originalWord?: string;
 }
 
 type PortugueseTranslations = Record<string, PortugueseTranslation>;
@@ -80,12 +81,18 @@ export function useBibleStrongs() {
           `${prefix}${String(num).padStart(4, '0')}` // H0001, G0001
         ];
         
+        // Extract first simple Portuguese word from definitions
+        const firstDef = entry.definicoes[0] || '';
+        // Get first word or short phrase (up to 20 chars) as the Portuguese word
+        const shortWord = firstDef.split(/[,;]/)[0]?.trim().substring(0, 25) || entry.termo;
+        
         const translation: PortugueseTranslation = {
-          word: entry.termo.replace(/'/g, ''),
+          word: shortWord, // Portuguese meaning (e.g., "pai" for H1)
           definition: entry.definicoes.slice(0, 3).join('; '),
           usage: entry.definicoes.length > 3 ? entry.definicoes.slice(3).join('; ') : '',
           transliteration: entry.transliteracao,
           partOfSpeech: entry.classe_gramatical,
+          originalWord: entry.termo.replace(/'/g, ''), // Original Hebrew/Greek
         };
         
         ids.forEach(id => {
@@ -256,12 +263,12 @@ export function useBibleStrongs() {
       const entry = lexicon?.[strongsNumber];
       
       return {
-        word: pt.word || entry?.Gk_word || entry?.Hb_word || '',
+        word: pt.originalWord || entry?.Gk_word || entry?.Hb_word || '',
         transliteration: pt.transliteration || entry?.transliteration || '',
         definition: pt.definition || cleanDefinition(entry?.strongs_def || ''),
         partOfSpeech: pt.partOfSpeech || entry?.part_of_speech || '',
         usage: pt.usage || cleanDefinition(entry?.outline_usage || ''),
-        portugueseWord: pt.word,
+        portugueseWord: pt.word, // Portuguese meaning (e.g., "pai")
         portugueseDefinition: pt.definition,
         portugueseUsage: pt.usage,
         portugueseTransliteration: pt.transliteration,
