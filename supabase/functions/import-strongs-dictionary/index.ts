@@ -16,7 +16,7 @@ interface StrongsEntry {
   part_of_speech?: string;
 }
 
-// Parse the dictionary text content
+// Improved parser for the PDF dictionary format
 function parseDictionaryText(text: string): StrongsEntry[] {
   const entries: StrongsEntry[] = [];
   const lines = text.split('\n');
@@ -27,116 +27,217 @@ function parseDictionaryText(text: string): StrongsEntry[] {
   let currentDefinition: string[] = [];
   let currentPartOfSpeech: string | null = null;
   let isHebrew = true;
+  let currentMeaning: string | null = null;
   
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i].trim();
-    
-    // Skip empty lines and page markers
-    if (!line || line.startsWith('### Images') || line.startsWith('## Page') || line.startsWith('- `parsed-documents')) {
-      continue;
-    }
-    
-    // Check for section marker
-    if (line.includes('Strongs em Grego') || line.includes('Léxico Grego')) {
-      isHebrew = false;
-      continue;
-    }
-    
-    // Match Strong's number patterns like "# 01", "# 02", "0137", "01     'ab", etc.
-    const numberMatch = line.match(/^#?\s*(\d{1,4})\s*(?:'|$)/);
-    const tableNumberMatch = line.match(/\|\s*(\d{2,4})\s*\|?\s*'/);
-    const standaloneNumber = line.match(/^(\d{2,4})\s+'/);
-    
-    let foundNumber: string | null = null;
-    
-    if (numberMatch) {
-      foundNumber = numberMatch[1];
-    } else if (tableNumberMatch) {
-      foundNumber = tableNumberMatch[1];
-    } else if (standaloneNumber) {
-      foundNumber = standaloneNumber[1];
-    }
-    
-    if (foundNumber) {
-      // Save previous entry if exists
-      if (currentNumber && currentDefinition.length > 0) {
-        const prefix = isHebrew ? 'H' : 'G';
-        const paddedNum = currentNumber.padStart(4, '0');
-        
+  const saveEntry = () => {
+    if (currentNumber && (currentDefinition.length > 0 || currentMeaning)) {
+      const prefix = isHebrew ? 'H' : 'G';
+      const paddedNum = currentNumber.padStart(4, '0');
+      
+      // Build definition from meaning and definition lines
+      let fullDefinition = '';
+      if (currentMeaning) {
+        fullDefinition = currentMeaning;
+      }
+      if (currentDefinition.length > 0) {
+        const defs = currentDefinition.join('; ');
+        fullDefinition = fullDefinition ? `${fullDefinition} - ${defs}` : defs;
+      }
+      
+      if (fullDefinition) {
         entries.push({
           strongs_id: `${prefix}${paddedNum}`,
-          portuguese_word: currentOriginalWord || '',
-          portuguese_definition: currentDefinition.slice(0, 3).join('; ').substring(0, 500),
+          portuguese_word: currentTranslit || currentOriginalWord || '',
+          portuguese_definition: fullDefinition.substring(0, 1000),
           portuguese_usage: currentDefinition.slice(3).join('; ').substring(0, 500) || undefined,
           original_word: currentOriginalWord || undefined,
           transliteration: currentTranslit || undefined,
           part_of_speech: currentPartOfSpeech || undefined,
         });
       }
-      
-      // Reset for new entry
-      currentNumber = foundNumber;
+    }
+  };
+  
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+    
+    // Skip empty lines, image markers, and page markers
+    if (!line || 
+        line.startsWith('### Images') || 
+        line.startsWith('## Page') || 
+        line.startsWith('- `parsed-documents') ||
+        line.startsWith('| ---') ||
+        line === '---') {
+      continue;
+    }
+    
+    // Check for Greek section marker
+    if (line.includes('Strongs em Grego') || line.includes('Léxico Grego') || line.includes('Dicionário Grego')) {
+      saveEntry();
+      isHebrew = false;
+      currentNumber = null;
       currentOriginalWord = null;
       currentTranslit = null;
       currentDefinition = [];
       currentPartOfSpeech = null;
-      
-      // Try to extract transliteration from the same line
-      const translitMatch = line.match(/'([^']+)'/);
-      if (translitMatch) {
-        currentTranslit = translitMatch[1];
+      currentMeaning = null;
+      continue;
+    }
+    
+    // Pattern 1: "# XX" or "# XXX" or "# XXXX" format (most common in PDF)
+    const hashNumberMatch = line.match(/^#\s*(\d{1,5})\s*$/);
+    
+    // Pattern 2: "XXX 'word" format like "022    'Abiy'el"
+    const numWithWord = line.match(/^(\d{2,5})\s+'([^']+)'/);
+    
+    // Pattern 3: Table format "| XXX | word |"
+    const tableMatch = line.match(/\|\s*(\d{2,5})\s*\|.*'([^']+)'/);
+    
+    // Pattern 4: Just number at start "057  'abel"
+    const simpleNumMatch = line.match(/^(\d{2,5})\s+'([^']+)'/);
+    
+    // Pattern 5: Number in header format "| 046 | 'abiyr |"
+    const headerTableMatch = line.match(/\|\s*(\d{2,5})\s*\|\s*'([^'|]+)/);
+    
+    let foundNumber: string | null = null;
+    let foundTranslit: string | null = null;
+    
+    if (hashNumberMatch) {
+      foundNumber = hashNumberMatch[1];
+    } else if (numWithWord) {
+      foundNumber = numWithWord[1];
+      foundTranslit = numWithWord[2];
+    } else if (tableMatch) {
+      foundNumber = tableMatch[1];
+      foundTranslit = tableMatch[2];
+    } else if (simpleNumMatch) {
+      foundNumber = simpleNumMatch[1];
+      foundTranslit = simpleNumMatch[2];
+    } else if (headerTableMatch) {
+      foundNumber = headerTableMatch[1];
+      foundTranslit = headerTableMatch[2].trim();
+    }
+    
+    // Also check for standalone numbers like "01", "02" after # symbol
+    if (!foundNumber) {
+      const standaloneMatch = line.match(/^#?\s*0*(\d{1,5})\s*$/);
+      if (standaloneMatch && parseInt(standaloneMatch[1]) > 0) {
+        foundNumber = standaloneMatch[1];
       }
+    }
+    
+    if (foundNumber) {
+      // Save previous entry
+      saveEntry();
+      
+      // Reset for new entry
+      currentNumber = foundNumber;
+      currentOriginalWord = null;
+      currentTranslit = foundTranslit || null;
+      currentDefinition = [];
+      currentPartOfSpeech = null;
+      currentMeaning = null;
       continue;
     }
     
-    // Match Hebrew/Greek original word (starts with Hebrew/Greek characters)
-    if (currentNumber && !currentOriginalWord && /^[\u0590-\u05FF\u0370-\u03FF]/.test(line)) {
-      currentOriginalWord = line.split(/\s+/)[0];
-      continue;
-    }
-    
-    // Match transliteration line (only ASCII with quotes)
-    if (currentNumber && !currentTranslit && line.startsWith("'") && line.endsWith("'")) {
-      currentTranslit = line.replace(/'/g, '');
-      continue;
-    }
-    
-    // Match part of speech indicators
-    const posMatch = line.match(/;\s*(n\s*[mf]|v|adj|adv|prep|conj|interj|n\s*pr\s*[mfl]?|exclamação)/i);
-    if (posMatch) {
-      currentPartOfSpeech = posMatch[1];
-    }
-    
-    // Match definition lines (numbered or starting with meaningful content)
+    // If we're collecting data for an entry
     if (currentNumber) {
-      // Definition patterns
-      const defMatch = line.match(/^(?:\d+[\.\)]\s*)?(.+)/);
-      if (defMatch) {
-        const content = defMatch[1].trim();
-        // Skip noise
-        if (content.length > 2 && 
-            !content.startsWith('|') && 
-            !content.startsWith('#') &&
-            !content.match(/^DITAT/) &&
-            !content.match(/^procedente de/i) &&
-            !content.match(/^correspondente a/i) &&
-            !content.match(/^uma raiz/i) &&
-            !content.match(/^de origem/i) &&
-            !content.match(/^grego \d+/i) &&
-            !content.match(/^particípio/i) &&
-            !content.match(/^intensivo/i) &&
-            content.length < 300) {
-          // Clean up the definition
-          const cleanDef = content
-            .replace(/^[a-z]\)\s*/i, '')
-            .replace(/^1[a-z]\)\s*/i, '')
-            .replace(/^\d+\)\s*/, '')
-            .replace(/\(fig\.\)/g, '')
-            .replace(/\(espec\.\)/g, '')
-            .trim();
-          
-          if (cleanDef.length > 2) {
-            currentDefinition.push(cleanDef);
+      // Match Hebrew/Greek original word
+      if (!currentOriginalWord && /^[\u0590-\u05FF\u0370-\u03FF]/.test(line)) {
+        currentOriginalWord = line.split(/\s+/)[0];
+        continue;
+      }
+      
+      // Match transliteration with single quotes
+      if (!currentTranslit) {
+        const translitMatch = line.match(/'([a-zA-Z][a-zA-Z\s\-àáâãäåèéêëìíîïòóôõöùúûü]+)'/i);
+        if (translitMatch) {
+          currentTranslit = translitMatch[1].trim();
+        }
+      }
+      
+      // Match meaning in quotes like: Abiel = "El (Deus) é (meu) pai"
+      const meaningMatch = line.match(/=\s*"([^"]+)"/);
+      if (meaningMatch) {
+        currentMeaning = meaningMatch[1];
+        continue;
+      }
+      
+      // Match part of speech
+      const posMatch = line.match(/;\s*(n\s*[mf]|v|adj|adv|prep|conj|interj|n\s*pr\s*[mfl]?)/i);
+      if (posMatch) {
+        currentPartOfSpeech = posMatch[1];
+      }
+      
+      // Match definitions (numbered like "1." or "1)" or just content after parentheses)
+      // Also match lines starting with letters like "1a)" or "1a1)"
+      const defPatterns = [
+        /^(\d+[\.\)])\s*(.+)/,           // 1. definition or 1) definition
+        /^(\d+[a-z][\.\)])\s*(.+)/,      // 1a. or 1a)
+        /^(\d+[a-z]\d+[\.\)])\s*(.+)/,   // 1a1) or 1a1.
+        /^([a-z][\.\)])\s*(.+)/i,        // a. or a)
+      ];
+      
+      let foundDef = false;
+      for (const pattern of defPatterns) {
+        const defMatch = line.match(pattern);
+        if (defMatch) {
+          const content = defMatch[2].trim();
+          if (content.length > 2 && !content.startsWith('|')) {
+            currentDefinition.push(content);
+            foundDef = true;
+            break;
+          }
+        }
+      }
+      
+      // If not a numbered definition, check for meaningful content
+      if (!foundDef && line.length > 3) {
+        const skipPatterns = [
+          /^#/,
+          /^\|/,
+          /^DITAT/i,
+          /^procedente de/i,
+          /^correspondente a/i,
+          /^uma raiz/i,
+          /^de origem/i,
+          /^grego \d+/i,
+          /^particípio/i,
+          /^intensivo/i,
+          /^forma contrat/i,
+          /^aparentemente/i,
+          /^derivação/i,
+          /^Qal/,
+          /^Piel/,
+          /^Hifil/,
+          /^Hofal/,
+          /^Hitpael/,
+          /^Peal/,
+          /^Afel/,
+          /^Ver /,
+          /^Essa forma/,
+          /^Expressão/,
+          /^Ação/,
+          /^Alguns verbos/,
+          /^Esta obra/,
+          /^O vocábulo/,
+        ];
+        
+        const shouldSkip = skipPatterns.some(p => p.test(line));
+        
+        if (!shouldSkip && !line.includes('---') && line.length < 200) {
+          // Check if it looks like a definition (contains Portuguese words)
+          if (/[a-záàâãéèêíìîóòôõúùû]{3,}/i.test(line)) {
+            // Clean the definition
+            const cleanDef = line
+              .replace(/\(fig\.\)/g, '')
+              .replace(/\(espec\.\)/g, '')
+              .replace(/\(metáfora\)/g, '')
+              .trim();
+            
+            if (cleanDef.length > 3 && currentDefinition.length < 10) {
+              currentDefinition.push(cleanDef);
+            }
           }
         }
       }
@@ -144,22 +245,19 @@ function parseDictionaryText(text: string): StrongsEntry[] {
   }
   
   // Don't forget the last entry
-  if (currentNumber && currentDefinition.length > 0) {
-    const prefix = isHebrew ? 'H' : 'G';
-    const paddedNum = currentNumber.padStart(4, '0');
-    
-    entries.push({
-      strongs_id: `${prefix}${paddedNum}`,
-      portuguese_word: currentOriginalWord || '',
-      portuguese_definition: currentDefinition.slice(0, 3).join('; ').substring(0, 500),
-      portuguese_usage: currentDefinition.slice(3).join('; ').substring(0, 500) || undefined,
-      original_word: currentOriginalWord || undefined,
-      transliteration: currentTranslit || undefined,
-      part_of_speech: currentPartOfSpeech || undefined,
-    });
+  saveEntry();
+  
+  // Remove duplicates by strongs_id (keep first occurrence)
+  const seen = new Set<string>();
+  const uniqueEntries: StrongsEntry[] = [];
+  for (const entry of entries) {
+    if (!seen.has(entry.strongs_id)) {
+      seen.add(entry.strongs_id);
+      uniqueEntries.push(entry);
+    }
   }
   
-  return entries;
+  return uniqueEntries;
 }
 
 serve(async (req) => {
@@ -182,6 +280,7 @@ serve(async (req) => {
     const entries = parseDictionaryText(dictionaryText);
     
     console.log('Parsed entries count:', entries.length);
+    console.log('Sample entries:', JSON.stringify(entries.slice(0, 3)));
     
     if (entries.length === 0) {
       return new Response(
