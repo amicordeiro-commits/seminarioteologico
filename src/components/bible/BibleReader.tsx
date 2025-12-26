@@ -24,36 +24,7 @@ import {
 } from 'lucide-react';
 import { toast } from 'sonner';
 
-// Função para detectar se uma linha é texto de versículo bíblico
-const isVerseText = (line: string): boolean => {
-  // Linha que começa com número de versículo (1-3 dígitos) seguido de texto
-  if (/^\d{1,3}[,.]?\d*\s*[A-ZÀ-ÖØ-öø-ÿE]/.test(line)) return true;
-  // Linha que começa com "E " seguido de verbo comum na Bíblia
-  if (/^E\s+(disse|fez|viu|chamou|criou|assim|foi|sejam|Deus|a\s+terra|o\s+)/i.test(line)) return true;
-  // Nome de livro seguido de capítulo
-  if (/^(?:GÊNESIS|ÊXODO|LEVÍTICO|NÚMEROS|DEUTERONÔMIO|JOSUÉ|JUÍZES|RUTE|SAMUEL|REIS|CRÔNICAS|ESDRAS|NEEMIAS|ESTER|JÓ|SALMOS?|PROVÉRBIOS|ECLESIASTES|CÂNTICOS?|ISAÍAS|JEREMIAS|LAMENTAÇÕES|EZEQUIEL|DANIEL|OSÉIAS|JOEL|AMÓS|OBADIAS|JONAS|MIQUÉIAS|NAUM|HABACUQUE|SOFONIAS|AGEU|ZACARIAS|MALAQUIAS|MATEUS|MARCOS|LUCAS|JOÃO|ATOS|ROMANOS|CORÍNTIOS|GÁLATAS|EFÉSIOS|FILIPENSES|COLOSSENSES|TESSALONICENSES|TIMÓTEO|TITO|FILEMOM|HEBREUS|TIAGO|PEDRO|JUDAS|APOCALIPSE|GN|EX|LV|NM|DT|JS|JZ|RT|SM|RS|CR|ED|NE|ET|SL|PV|EC|CT|IS|JR|LM|EZ|DN|OS|JL|AM|OB|JN|MQ|NA|HC|SF|AG|ZC|ML|MT|MC|LC|JO|AT|RM|CO|GL|EF|FP|CL|TS|TM|TT|FM|HB|TG|PE|JD|AP)\s+[IVX\d]/i.test(line)) return true;
-  // Referência livro capítulo:versículo
-  if (/^[A-Za-zÀ-ÖØ-öø-ÿ]{2,}\s+\d+:\d+/i.test(line)) return true;
-  // Começa com capítulo:versículo
-  if (/^\d+:\d+/.test(line)) return true;
-  // Texto bíblico característico (frases típicas da criação, etc)
-  if (/\b(disse Deus|viu Deus|fez Deus|chamou Deus|criou Deus|E assim foi|conforme a sua espécie|haja luz|no princípio|produza a terra|frutificai|multiplicai|alumiar a terra)\b/i.test(line)) return true;
-  return false;
-};
-
-// Função para limpar texto de estudo removendo versículos
-const cleanStudyText = (study: string): string => {
-  return study
-    .split('\n')
-    .map(l => l.trim())
-    .filter(Boolean)
-    .filter(l => !isVerseText(l))
-    .join('\n')
-    .replace(/\b\d+:\d+(?:[–-]\d+)?\b/g, '')
-    .replace(/\bvv?\.\s*\d+(?:[–-]\d+)?\b/gi, '')
-    .replace(/\s{2,}/g, ' ')
-    .trim();
-};
+// Não aplicar filtros agressivos - mostrar estudo original
 
 export function BibleReader() {
   const { loading, error, books, getChapter, searchBible, tableOfContents, info } = useBibleESV();
@@ -616,17 +587,11 @@ export function BibleReader() {
                         </CollapsibleTrigger>
                         <CollapsibleContent>
                           <div className="ml-4 mt-2 space-y-2">
-                            {verse.studies.map((study, idx) => {
-                              const cleanedStudy = cleanStudyText(study);
-                              
-                              if (!cleanedStudy) return null;
-                              
-                              return (
-                                <div key={idx} className="p-3 bg-muted/50 rounded-lg border-l-2 border-primary/30">
-                                  <p className="text-sm text-muted-foreground whitespace-pre-wrap">{cleanedStudy}</p>
-                                </div>
-                              );
-                            })}
+                            {verse.studies.map((study, idx) => (
+                              <div key={idx} className="p-3 bg-muted/50 rounded-lg border-l-2 border-primary/30">
+                                <p className="text-sm text-muted-foreground whitespace-pre-wrap">{study}</p>
+                              </div>
+                            ))}
                           </div>
                         </CollapsibleContent>
                       </Collapsible>
