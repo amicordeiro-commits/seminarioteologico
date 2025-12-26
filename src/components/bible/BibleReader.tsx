@@ -304,15 +304,27 @@ export function BibleReader() {
               </SelectContent>
             </Select>
 
+            {/* Interlinear Mode Toggle - Visible Button */}
+            <Button 
+              variant={interlinearMode ? "default" : "outline"}
+              size="sm"
+              onClick={() => setInterlinearMode(!interlinearMode)}
+              className="gap-2"
+            >
+              <Languages className="h-4 w-4" />
+              <span className="hidden sm:inline">Strong's</span>
+            </Button>
+
             {/* Settings Popover */}
             <Popover>
               <PopoverTrigger asChild>
-                <Button variant="outline" size="icon">
+                <Button variant="outline" size="icon" title="Configurações">
                   <Settings2 className="h-4 w-4" />
                 </Button>
               </PopoverTrigger>
               <PopoverContent className="w-72">
                 <div className="space-y-4">
+                  <h4 className="font-medium text-sm">Configurações de Leitura</h4>
                   <div className="space-y-2">
                     <div className="flex items-center gap-2">
                       <Type className="h-4 w-4" />
