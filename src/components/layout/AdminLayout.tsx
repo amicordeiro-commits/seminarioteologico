@@ -18,6 +18,7 @@ import {
   Library,
   ClipboardList,
   PlayCircle,
+  Languages,
 } from "lucide-react";
 
 interface AdminLayoutProps {
@@ -35,6 +36,7 @@ const menuItems = [
   { icon: FileText, label: "Devocionais", path: "/admin/devotionals" },
   { icon: MessageSquare, label: "Mensagens", path: "/admin/messages" },
   { icon: GraduationCap, label: "Certificados", path: "/admin/certificates" },
+  { icon: Languages, label: "Strong's PT", path: "/admin/strongs" },
   { icon: Settings, label: "Configurações", path: "/admin/settings" },
 ];
 

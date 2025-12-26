@@ -763,6 +763,42 @@ export type Database = {
           },
         ]
       }
+      strongs_translations: {
+        Row: {
+          created_at: string | null
+          original_word: string | null
+          part_of_speech: string | null
+          portuguese_definition: string
+          portuguese_usage: string | null
+          portuguese_word: string
+          strongs_id: string
+          transliteration: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          original_word?: string | null
+          part_of_speech?: string | null
+          portuguese_definition: string
+          portuguese_usage?: string | null
+          portuguese_word: string
+          strongs_id: string
+          transliteration?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          original_word?: string | null
+          part_of_speech?: string | null
+          portuguese_definition?: string
+          portuguese_usage?: string | null
+          portuguese_word?: string
+          strongs_id?: string
+          transliteration?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string | null
