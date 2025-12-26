@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { loadBible, getChapter, searchBible, BibleBook, BibleVerse, BOOK_NAMES } from '@/lib/bibleData';
 
-export function useBible(translation: string = 'tefilin') {
+export function useBible(translation: string = '') {
   const [bible, setBible] = useState<BibleBook[] | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -9,13 +9,20 @@ export function useBible(translation: string = 'tefilin') {
   useEffect(() => {
     setLoading(true);
     setError(null);
-    
+
+    if (!translation) {
+      setBible(null);
+      setLoading(false);
+      setError('Nenhuma Bíblia disponível.');
+      return;
+    }
+
     loadBible(translation)
-      .then(data => {
+      .then((data) => {
         setBible(data);
         setLoading(false);
       })
-      .catch(err => {
+      .catch((err) => {
         setError(err.message);
         setLoading(false);
       });

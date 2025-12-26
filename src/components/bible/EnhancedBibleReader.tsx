@@ -21,7 +21,8 @@ interface EnhancedBibleReaderProps {
 }
 
 export function EnhancedBibleReader({ onVerseSelect, onContextChange, onBookChapterChange }: EnhancedBibleReaderProps) {
-  const [translation, setTranslation] = useState('tefilin');
+  const availableTranslations = Object.entries(TRANSLATION_NAMES);
+  const [translation, setTranslation] = useState(() => availableTranslations[0]?.[0] ?? '');
   const [selectedTestament, setSelectedTestament] = useState<Testament>('old');
   const [selectedBook, setSelectedBook] = useState('gn');
   const [selectedChapter, setSelectedChapter] = useState(1);
@@ -33,6 +34,19 @@ export function EnhancedBibleReader({ onVerseSelect, onContextChange, onBookChap
 
   const { loading, error, getBooks, getChapterVerses, search } = useBible(translation);
   const { data: studies, isLoading: studiesLoading } = useBibleStudies(selectedBook, selectedChapter);
+
+  if (!availableTranslations.length) {
+    return (
+      <Card className="p-6">
+        <div className="space-y-2">
+          <h2 className="text-lg font-semibold">Bíblia indisponível</h2>
+          <p className="text-sm text-muted-foreground">
+            As traduções da Bíblia foram removidas do sistema.
+          </p>
+        </div>
+      </Card>
+    );
+  }
 
   // Fetch verse-specific studies for all verses in the current chapter
   const { data: verseStudies } = useQuery({
