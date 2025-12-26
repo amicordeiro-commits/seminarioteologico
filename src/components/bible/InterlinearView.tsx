@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Loader2, BookOpen, Languages } from 'lucide-react';
 import { getBookName } from '@/lib/bibleTypes';
+import { supabase } from '@/integrations/supabase/client';
 
 interface InterlinearViewProps {
   bookAbbrev: string;
@@ -113,14 +114,66 @@ interface InterlinearWordProps {
   fontSize: number;
 }
 
+// Cache for translations
+const translationCache = new Map<string, { definition: string; usage: string }>();
+
 function InterlinearWord({ word, getDefinition, fontSize }: InterlinearWordProps) {
   const hasStrongs = word.strongsNumbers.length > 0;
+  const [translatedDefs, setTranslatedDefs] = useState<Map<string, { definition: string; usage: string }>>(new Map());
+  const [translating, setTranslating] = useState<Set<string>>(new Set());
   
   // Get definitions for all Strong's numbers
   const definitions = word.strongsNumbers.map(num => ({
     number: num,
     ...getDefinition(num)
   })).filter(d => d.word || d.definition);
+
+  // Translate definition when popover opens
+  const translateDefinition = async (num: string, definition: string, usage: string) => {
+    // Check cache first
+    if (translationCache.has(num)) {
+      setTranslatedDefs(prev => new Map(prev).set(num, translationCache.get(num)!));
+      return;
+    }
+    
+    if (translating.has(num) || translatedDefs.has(num)) return;
+    
+    setTranslating(prev => new Set(prev).add(num));
+    
+    try {
+      const { data, error } = await supabase.functions.invoke('translate-strongs', {
+        body: { definition, usage }
+      });
+      
+      if (!error && data) {
+        const translated = {
+          definition: data.definition || definition,
+          usage: data.usage || usage
+        };
+        translationCache.set(num, translated);
+        setTranslatedDefs(prev => new Map(prev).set(num, translated));
+      }
+    } catch (err) {
+      console.error('Translation error:', err);
+    } finally {
+      setTranslating(prev => {
+        const newSet = new Set(prev);
+        newSet.delete(num);
+        return newSet;
+      });
+    }
+  };
+
+  const handleOpenChange = (open: boolean) => {
+    if (open) {
+      // Translate all definitions when popover opens
+      definitions.forEach(def => {
+        if (def.definition || def.usage) {
+          translateDefinition(def.number, def.definition || '', def.usage || '');
+        }
+      });
+    }
+  };
 
   if (!hasStrongs) {
     return (
@@ -134,7 +187,7 @@ function InterlinearWord({ word, getDefinition, fontSize }: InterlinearWordProps
   }
 
   return (
-    <Popover>
+    <Popover onOpenChange={handleOpenChange}>
       <PopoverTrigger asChild>
         <button
           className={`
@@ -186,54 +239,74 @@ function InterlinearWord({ word, getDefinition, fontSize }: InterlinearWordProps
       <PopoverContent className="w-80" align="center">
         <ScrollArea className="max-h-[300px]">
           <div className="space-y-4">
-            {definitions.map((def, idx) => (
-              <div key={idx} className="space-y-2">
-                {definitions.length > 1 && (
-                  <div className="border-b pb-1">
-                    <Badge 
-                      variant="outline" 
-                      className={def.number.startsWith('H') 
-                        ? 'bg-amber-500/10 text-amber-700 dark:text-amber-400' 
-                        : 'bg-blue-500/10 text-blue-700 dark:text-blue-400'}
-                    >
+            {definitions.map((def, idx) => {
+              const translated = translatedDefs.get(def.number);
+              const isTranslating = translating.has(def.number);
+              const displayDef = translated?.definition || def.definition;
+              const displayUsage = translated?.usage || def.usage;
+              
+              return (
+                <div key={idx} className="space-y-2">
+                  {definitions.length > 1 && (
+                    <div className="border-b pb-1">
+                      <Badge 
+                        variant="outline" 
+                        className={def.number.startsWith('H') 
+                          ? 'bg-amber-500/10 text-amber-700 dark:text-amber-400' 
+                          : 'bg-blue-500/10 text-blue-700 dark:text-blue-400'}
+                      >
+                        {def.number}
+                      </Badge>
+                    </div>
+                  )}
+                  
+                  {/* Original Word & Transliteration */}
+                  <div className="flex items-center gap-2">
+                    <span className="text-2xl font-semibold text-primary">{def.word}</span>
+                    <span className="text-muted-foreground italic">{def.transliteration}</span>
+                    <Badge variant="secondary" className="text-xs">
                       {def.number}
                     </Badge>
                   </div>
-                )}
-                
-                {/* Original Word & Transliteration */}
-                <div className="flex items-center gap-2">
-                  <span className="text-2xl font-semibold text-primary">{def.word}</span>
-                  <span className="text-muted-foreground italic">{def.transliteration}</span>
-                  <Badge variant="secondary" className="text-xs">
-                    {def.number}
-                  </Badge>
+                  
+                  {/* Part of Speech */}
+                  {def.partOfSpeech && (
+                    <div className="text-xs text-muted-foreground">
+                      <span className="font-medium">Classe:</span> {def.partOfSpeech}
+                    </div>
+                  )}
+                  
+                  {/* Definition */}
+                  {displayDef && (
+                    <div className="text-sm">
+                      <div className="flex items-center gap-2">
+                        <span className="font-medium text-primary">Definição:</span>
+                        {isTranslating && !translated && (
+                          <Loader2 className="h-3 w-3 animate-spin text-muted-foreground" />
+                        )}
+                        {translated && (
+                          <Badge variant="outline" className="text-[10px] py-0">PT</Badge>
+                        )}
+                      </div>
+                      <p className="mt-1 text-foreground">{displayDef}</p>
+                    </div>
+                  )}
+                  
+                  {/* Usage */}
+                  {displayUsage && (
+                    <div className="text-sm bg-muted/50 p-2 rounded">
+                      <div className="flex items-center gap-2">
+                        <span className="font-medium text-primary">Uso:</span>
+                        {isTranslating && !translated && (
+                          <Loader2 className="h-3 w-3 animate-spin text-muted-foreground" />
+                        )}
+                      </div>
+                      <p className="mt-1 text-muted-foreground">{displayUsage}</p>
+                    </div>
+                  )}
                 </div>
-                
-                {/* Part of Speech */}
-                {def.partOfSpeech && (
-                  <div className="text-xs text-muted-foreground">
-                    <span className="font-medium">Classe:</span> {def.partOfSpeech}
-                  </div>
-                )}
-                
-                {/* Definition */}
-                {def.definition && (
-                  <div className="text-sm">
-                    <span className="font-medium text-primary">Definição:</span>
-                    <p className="mt-1 text-foreground">{def.definition}</p>
-                  </div>
-                )}
-                
-                {/* Usage */}
-                {def.usage && (
-                  <div className="text-sm bg-muted/50 p-2 rounded">
-                    <span className="font-medium text-primary">Uso:</span>
-                    <p className="mt-1 text-muted-foreground">{def.usage}</p>
-                  </div>
-                )}
-              </div>
-            ))}
+              );
+            })}
           </div>
         </ScrollArea>
       </PopoverContent>
