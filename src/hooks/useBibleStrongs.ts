@@ -3,11 +3,33 @@ import type { StrongsLexicon, KJVBook } from '@/lib/strongsTypes';
 import { ESV_TO_KJV_ABBREV, cleanDefinition } from '@/lib/strongsTypes';
 import { supabase } from '@/integrations/supabase/client';
 
-// Type for Portuguese translations
+// Type for Portuguese translations from full dictionary
+interface PortugueseEntry {
+  strong_id: string;
+  idioma: string;
+  termo: string;
+  transliteracao: string;
+  classe_gramatical: string;
+  ditat_ref: string;
+  definicoes: string[];
+}
+
+interface FullDictionary {
+  metadata: {
+    nome: string;
+    versao: string;
+    total_verbetes: number;
+  };
+  verbetes: PortugueseEntry[];
+}
+
+// Processed Portuguese translations
 interface PortugueseTranslation {
   word: string;
   definition: string;
   usage: string;
+  transliteration?: string;
+  partOfSpeech?: string;
 }
 
 type PortugueseTranslations = Record<string, PortugueseTranslation>;
@@ -15,7 +37,7 @@ type PortugueseTranslations = Record<string, PortugueseTranslation>;
 // Cache for loaded data
 let lexiconCache: StrongsLexicon | null = null;
 let portugueseCache: PortugueseTranslations | null = null;
-let dbTranslationsLoaded = false;
+let fullDictionaryLoaded = false;
 const bookCache: Map<string, KJVBook> = new Map();
 
 export function useBibleStrongs() {
@@ -25,51 +47,65 @@ export function useBibleStrongs() {
   const [error, setError] = useState<string | null>(null);
   const loadingRef = useRef(false);
 
-  // Load database translations on mount
+  // Load full Portuguese dictionary on mount
   useEffect(() => {
-    if (!dbTranslationsLoaded) {
-      loadDbTranslations();
+    if (!fullDictionaryLoaded && !portugueseCache) {
+      loadFullDictionary();
     }
   }, []);
 
-  // Load translations from database and merge with local file
-  const loadDbTranslations = async () => {
+  // Load the full Portuguese Strong's dictionary
+  const loadFullDictionary = async () => {
     try {
-      const { data, error } = await supabase
-        .from('strongs_translations')
-        .select('strongs_id, portuguese_word, portuguese_definition, portuguese_usage');
-
-      if (error) {
-        console.warn('Failed to load DB translations:', error);
+      const response = await fetch('/bible/strongs-portuguese-full.json');
+      if (!response.ok) {
+        console.warn('Failed to load full Portuguese dictionary');
         return;
       }
-
-      if (data && data.length > 0) {
-        const dbTranslations: PortugueseTranslations = {};
-        data.forEach(t => {
-          dbTranslations[t.strongs_id] = {
-            word: t.portuguese_word,
-            definition: t.portuguese_definition,
-            usage: t.portuguese_usage || ''
-          };
+      
+      const data: FullDictionary = await response.json();
+      console.log(`Loaded Portuguese dictionary: ${data.metadata.total_verbetes} entries`);
+      
+      // Convert to our internal format
+      const translations: PortugueseTranslations = {};
+      
+      for (const entry of data.verbetes) {
+        // Normalize strong_id: "01" -> "H1" or "G1" based on language
+        const prefix = entry.idioma === 'Grego' ? 'G' : 'H';
+        const num = parseInt(entry.strong_id, 10);
+        
+        // Store with multiple formats for lookup
+        const ids = [
+          `${prefix}${num}`,           // H1, G1
+          `${prefix}${String(num).padStart(4, '0')}` // H0001, G0001
+        ];
+        
+        const translation: PortugueseTranslation = {
+          word: entry.termo.replace(/'/g, ''),
+          definition: entry.definicoes.slice(0, 3).join('; '),
+          usage: entry.definicoes.length > 3 ? entry.definicoes.slice(3).join('; ') : '',
+          transliteration: entry.transliteracao,
+          partOfSpeech: entry.classe_gramatical,
+        };
+        
+        ids.forEach(id => {
+          translations[id] = translation;
         });
-
-        // Merge with existing cache (DB takes priority)
-        portugueseCache = { ...portugueseCache, ...dbTranslations };
-        setPortuguese(portugueseCache);
-        dbTranslationsLoaded = true;
-        console.log(`Loaded ${data.length} translations from database`);
       }
+      
+      portugueseCache = translations;
+      setPortuguese(translations);
+      fullDictionaryLoaded = true;
+      console.log(`Processed ${Object.keys(translations).length} Portuguese translations`);
     } catch (err) {
-      console.warn('Error loading DB translations:', err);
+      console.warn('Error loading full dictionary:', err);
     }
   };
 
-  // Load the Strong's lexicon and Portuguese translations
+  // Load the Strong's lexicon
   const loadLexicon = useCallback(async () => {
-    if (lexiconCache && portugueseCache) {
+    if (lexiconCache) {
       setLexicon(lexiconCache);
-      setPortuguese(portugueseCache);
       return lexiconCache;
     }
     
@@ -78,27 +114,17 @@ export function useBibleStrongs() {
     setLoading(true);
 
     try {
-      // Load both files in parallel
-      const [lexiconResponse, portugueseResponse] = await Promise.all([
-        fetch('/bible/strongs-lexicon.json'),
-        fetch('/bible/strongs-portuguese.json')
-      ]);
+      const response = await fetch('/bible/strongs-lexicon.json');
+      if (!response.ok) throw new Error('Failed to load lexicon');
       
-      if (!lexiconResponse.ok) throw new Error('Failed to load lexicon');
-      
-      const lexiconData = await lexiconResponse.json();
+      const lexiconData = await response.json();
       lexiconCache = lexiconData;
       setLexicon(lexiconData);
       
-      // Portuguese translations are optional
-      if (portugueseResponse.ok) {
-        const portugueseData = await portugueseResponse.json();
-        portugueseCache = portugueseData;
-        setPortuguese(portugueseData);
+      // Also load full dictionary if not loaded
+      if (!fullDictionaryLoaded) {
+        await loadFullDictionary();
       }
-
-      // Also load from database
-      await loadDbTranslations();
       
       setLoading(false);
       loadingRef.current = false;
@@ -217,15 +243,36 @@ export function useBibleStrongs() {
     portugueseWord?: string;
     portugueseDefinition?: string;
     portugueseUsage?: string;
+    portugueseTransliteration?: string;
+    portuguesePartOfSpeech?: string;
   } | null => {
-    if (!lexicon) return null;
-
-    const entry = lexicon[strongsNumber];
-    if (!entry) return null;
-
-    // Get Portuguese translation - try both formats
+    // Get Portuguese translation first - try both formats
     const [shortId, paddedId] = normalizeStrongsId(strongsNumber);
     const pt = portuguese?.[shortId] || portuguese?.[paddedId];
+
+    // If we have Portuguese data, use it as primary
+    if (pt) {
+      // Try to get English data from lexicon for fallback
+      const entry = lexicon?.[strongsNumber];
+      
+      return {
+        word: pt.word || entry?.Gk_word || entry?.Hb_word || '',
+        transliteration: pt.transliteration || entry?.transliteration || '',
+        definition: pt.definition || cleanDefinition(entry?.strongs_def || ''),
+        partOfSpeech: pt.partOfSpeech || entry?.part_of_speech || '',
+        usage: pt.usage || cleanDefinition(entry?.outline_usage || ''),
+        portugueseWord: pt.word,
+        portugueseDefinition: pt.definition,
+        portugueseUsage: pt.usage,
+        portugueseTransliteration: pt.transliteration,
+        portuguesePartOfSpeech: pt.partOfSpeech,
+      };
+    }
+
+    // Fallback to English lexicon only
+    if (!lexicon) return null;
+    const entry = lexicon[strongsNumber];
+    if (!entry) return null;
 
     return {
       word: entry.Gk_word || entry.Hb_word || '',
@@ -233,9 +280,6 @@ export function useBibleStrongs() {
       definition: cleanDefinition(entry.strongs_def || ''),
       partOfSpeech: entry.part_of_speech || '',
       usage: cleanDefinition(entry.outline_usage || ''),
-      portugueseWord: pt?.word,
-      portugueseDefinition: pt?.definition,
-      portugueseUsage: pt?.usage,
     };
   }, [lexicon, portuguese, normalizeStrongsId]);
 

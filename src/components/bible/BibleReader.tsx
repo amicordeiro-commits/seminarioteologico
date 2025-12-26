@@ -24,39 +24,7 @@ import {
 } from 'lucide-react';
 import { toast } from 'sonner';
 
-// Função para limpar texto de estudo - remove versículos mas mantém comentários
-const cleanStudyText = (study: string): string => {
-  // Dividir por parágrafos (dupla quebra de linha ou ponto final seguido de número)
-  const paragraphs = study.split(/(?:\n\s*\n)|(?<=\.)\s*(?=\d{1,3}\s+[A-ZÀ-Ú])/);
-  
-  const cleanedParagraphs = paragraphs.filter(p => {
-    const trimmed = p.trim();
-    if (!trimmed) return false;
-    
-    // Remove se começa com padrão de livro bíblico + capítulo (ex: "GÊNESIS I E")
-    if (/^(?:GÊNESIS|ÊXODO|LEVÍTICO|NÚMEROS|DEUTERONÔMIO|JOSUÉ|JUÍZES|MATEUS|MARCOS|LUCAS|JOÃO|ATOS|ROMANOS|APOCALIPSE)\s+[IVX\d]/i.test(trimmed)) return false;
-    
-    // Remove se é principalmente texto de versículo (começa com número + verbo bíblico)
-    if (/^\d{1,3}\s*[,.]?\s*(E\s+)?(disse|viu|fez|chamou|criou|Deus|foi|sejam)/i.test(trimmed)) return false;
-    
-    // Remove se a linha começa com padrão típico de versículo numerado
-    if (/^\d{1,3}\s+[A-ZÀ-Ú][a-zà-ú]/.test(trimmed) && trimmed.length > 30) return false;
-    
-    // Mantém se parece comentário teológico (contém palavras analíticas)
-    const hasCommentaryWords = /\b(significa|representa|simboliza|refere-se|importante|questão|visão|visões|período|literalmente|milhões|anos|sistemática|privilégio|imagem|semelhante|envolvido|ativamente|realidade|básicas|criação)\b/i.test(trimmed);
-    
-    // Se tem palavras de comentário, manter
-    if (hasCommentaryWords) return true;
-    
-    // Remove se tem muitas frases típicas de versículo bíblico
-    const versePatterns = (trimmed.match(/\b(E disse Deus|E viu Deus|E fez Deus|E assim foi|conforme a sua espécie|E foi a tarde|E chamou Deus|frutificai|multiplicai|alumiar a terra)\b/gi) || []).length;
-    if (versePatterns >= 2) return false;
-    
-    return true;
-  });
-  
-  return cleanedParagraphs.join('\n\n').trim();
-};
+// Mostrar estudo original completo sem filtros
 
 export function BibleReader() {
   const { loading, error, books, getChapter, searchBible, tableOfContents, info } = useBibleESV();
@@ -619,15 +587,11 @@ export function BibleReader() {
                         </CollapsibleTrigger>
                         <CollapsibleContent>
                           <div className="ml-4 mt-2 space-y-2">
-                            {verse.studies.map((study, idx) => {
-                              const cleaned = cleanStudyText(study);
-                              if (!cleaned) return null;
-                              return (
-                                <div key={idx} className="p-3 bg-muted/50 rounded-lg border-l-2 border-primary/30">
-                                  <p className="text-sm text-muted-foreground whitespace-pre-wrap">{cleaned}</p>
-                                </div>
-                              );
-                            })}
+                            {verse.studies.map((study, idx) => (
+                              <div key={idx} className="p-3 bg-muted/50 rounded-lg border-l-2 border-primary/30">
+                                <p className="text-sm text-muted-foreground whitespace-pre-wrap">{study}</p>
+                              </div>
+                            ))}
                           </div>
                         </CollapsibleContent>
                       </Collapsible>
