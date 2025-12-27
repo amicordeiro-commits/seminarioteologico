@@ -3,7 +3,7 @@ import { useBibleTranslations, AVAILABLE_TRANSLATIONS } from '@/hooks/useBibleTr
 import { useBibleBookmarks } from '@/hooks/useBibleBookmarks';
 import { useBibleNotes } from '@/hooks/useBibleNotes';
 import { useBibleStudies } from '@/hooks/useBibleStudies';
-import { useBibleComments } from '@/hooks/useBibleComments';
+
 import { getBookName, getTestament, OLD_TESTAMENT_BOOKS, NEW_TESTAMENT_BOOKS } from '@/lib/bibleTypes';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
@@ -44,7 +44,7 @@ export function BibleReader() {
   const { bookmarks, isBookmarked, toggleBookmark } = useBibleBookmarks();
   const { notes, saveNote, getNoteForVerse } = useBibleNotes();
   const { getStudyForVerse, hasStudyForVerse } = useBibleStudies();
-  const { getComment, loaded: commentsLoaded } = useBibleComments();
+  
   
   const [selectedTestament, setSelectedTestament] = useState<'old' | 'new'>('old');
   const [selectedBook, setSelectedBook] = useState('gn');
@@ -634,20 +634,6 @@ export function BibleReader() {
                       </div>
                     )}
 
-                    {/* Study Comment from BIBLIA_ESTUDO_FINAL */}
-                    {(() => {
-                      const comment = getComment(selectedBook, selectedChapterNum, verse.verse_number);
-                      if (!comment) return null;
-                      return (
-                        <div className="ml-4 mt-2 p-3 bg-blue-500/10 rounded-lg border-l-2 border-blue-500/50">
-                          <div className="flex items-center gap-2 mb-1">
-                            <MessageSquare className="h-3 w-3 text-blue-600 dark:text-blue-400" />
-                            <span className="text-xs font-medium text-blue-600 dark:text-blue-400">Comentário de Estudo</span>
-                          </div>
-                          <p className="text-sm text-foreground whitespace-pre-wrap">{comment}</p>
-                        </div>
-                      );
-                    })()}
 
                     {/* Studies from external file - always visible */}
                     {hasExternalStudies && (
