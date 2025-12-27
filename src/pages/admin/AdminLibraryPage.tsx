@@ -20,10 +20,10 @@ import {
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import { Library, Plus, Pencil, Trash2, Loader2, FileText, Video, Headphones, Upload } from "lucide-react";
+import { Library, Plus, Pencil, Trash2, Loader2, FileText, Video, Headphones, Upload, Sparkles } from "lucide-react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { useToast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 
 interface Material {
   id: string;
@@ -46,13 +46,50 @@ const defaultMaterial: Partial<Material> = {
 };
 
 export default function AdminLibraryPage() {
-  const { toast } = useToast();
   const queryClient = useQueryClient();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editingMaterial, setEditingMaterial] = useState<Partial<Material> | null>(null);
   const [search, setSearch] = useState("");
   const [uploading, setUploading] = useState(false);
+  const [generatingPdf, setGeneratingPdf] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Função para gerar PDF personalizado com marca P.O.D
+  const generateBrandedPdf = async (material: Material) => {
+    setGeneratingPdf(material.id);
+    try {
+      const { data, error } = await supabase.functions.invoke("generate-branded-pdf", {
+        body: {
+          title: material.title,
+          category: material.category || "Material Didático",
+          content: material.description || "",
+          authorName: "",
+        },
+      });
+
+      if (error) throw new Error(error.message);
+      if (!data?.html) throw new Error("Falha ao gerar o PDF.");
+
+      // Abre o HTML em uma nova aba para imprimir/salvar como PDF
+      const popup = window.open("", "_blank", "noopener,noreferrer");
+      if (!popup) throw new Error("Popup bloqueado. Permita popups para baixar o PDF.");
+
+      popup.document.open();
+      popup.document.write(data.html);
+      popup.document.close();
+
+      await new Promise((r) => setTimeout(r, 700));
+      popup.focus();
+      popup.print();
+
+      toast.success("PDF gerado com a marca P.O.D Seminário Teológico!");
+    } catch (err) {
+      console.error("Error generating branded PDF:", err);
+      toast.error("Erro ao gerar PDF personalizado. Tente novamente.");
+    } finally {
+      setGeneratingPdf(null);
+    }
+  };
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -75,9 +112,9 @@ export default function AdminLibraryPage() {
         .getPublicUrl(filePath);
 
       setEditingMaterial({ ...editingMaterial, file_url: publicUrl });
-      toast({ title: "Arquivo enviado com sucesso!" });
+      toast.success("Arquivo enviado com sucesso!");
     } catch (error) {
-      toast({ title: "Erro ao enviar arquivo", variant: "destructive" });
+      toast.error("Erro ao enviar arquivo");
     } finally {
       setUploading(false);
     }
@@ -127,12 +164,12 @@ export default function AdminLibraryPage() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["admin-materials"] });
-      toast({ title: "Material salvo com sucesso!" });
+      toast.success("Material salvo com sucesso!");
       setIsDialogOpen(false);
       setEditingMaterial(null);
     },
     onError: () => {
-      toast({ title: "Erro ao salvar material", variant: "destructive" });
+      toast.error("Erro ao salvar material");
     },
   });
 
@@ -144,10 +181,10 @@ export default function AdminLibraryPage() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["admin-materials"] });
-      toast({ title: "Material excluído com sucesso!" });
+      toast.success("Material excluído com sucesso!");
     },
     onError: () => {
-      toast({ title: "Erro ao excluir material", variant: "destructive" });
+      toast.error("Erro ao excluir material");
     },
   });
 
@@ -164,7 +201,7 @@ export default function AdminLibraryPage() {
 
   const handleSave = () => {
     if (!editingMaterial?.title) {
-      toast({ title: "Preencha o título", variant: "destructive" });
+      toast.error("Preencha o título");
       return;
     }
     saveMutation.mutate(editingMaterial);
@@ -237,7 +274,7 @@ export default function AdminLibraryPage() {
                     <span>•</span>
                     <span>{material.download_count || 0} downloads</span>
                   </div>
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 flex-wrap">
                     <Button
                       variant="outline"
                       size="sm"
@@ -249,6 +286,19 @@ export default function AdminLibraryPage() {
                     >
                       <Pencil className="w-4 h-4 mr-1" />
                       Editar
+                    </Button>
+                    <Button
+                      variant="secondary"
+                      size="sm"
+                      onClick={() => generateBrandedPdf(material)}
+                      disabled={generatingPdf === material.id}
+                      title="Gerar PDF com marca P.O.D"
+                    >
+                      {generatingPdf === material.id ? (
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                      ) : (
+                        <Sparkles className="w-4 h-4" />
+                      )}
                     </Button>
                     <Button
                       variant="destructive"
