@@ -28,7 +28,7 @@ import { toast } from 'sonner';
 // Mostrar estudo original completo sem filtros
 
 export function BibleReader() {
-  const { loading, error, books, getChapter, searchBible, tableOfContents, info } = useBibleESV();
+  const { loading, error, books, getChapter, searchBible, tableOfContents, info, loadBook } = useBibleESV();
   const { bookmarks, isBookmarked, toggleBookmark } = useBibleBookmarks();
   const { notes, saveNote, getNoteForVerse } = useBibleNotes();
   const { getStudyForVerse, hasStudyForVerse } = useBibleStudies();
@@ -49,6 +49,13 @@ export function BibleReader() {
   const [editingNote, setEditingNote] = useState<string | null>(null);
   const [noteText, setNoteText] = useState('');
   const [activeTab, setActiveTab] = useState('read');
+  const [bookLoading, setBookLoading] = useState(false);
+
+  // Load book when selected book changes
+  useEffect(() => {
+    setBookLoading(true);
+    loadBook(selectedBook).finally(() => setBookLoading(false));
+  }, [selectedBook, loadBook]);
 
   const testamentBooks = books.filter(b => 
     selectedTestament === 'old' 
@@ -215,11 +222,11 @@ export function BibleReader() {
     setNoteText('');
   };
 
-  if (loading) {
+  if (loading || bookLoading) {
     return (
       <div className="flex items-center justify-center h-64">
         <Loader2 className="h-8 w-8 animate-spin text-primary" />
-        <span className="ml-2">Carregando Bíblia de Estudo ESV...</span>
+        <span className="ml-2">Carregando Bíblia de Estudo...</span>
       </div>
     );
   }
