@@ -16,7 +16,7 @@ interface CertificatePreviewProps {
 }
 
 export function CertificatePreview({ certificate, open, onOpenChange }: CertificatePreviewProps) {
-  const [selectedStyle, setSelectedStyle] = useState<CertificateStyle>("premium");
+  const [selectedStyle, setSelectedStyle] = useState<CertificateStyle>("golden");
   const { user } = useAuth();
   const { profile } = useProfile();
   const { downloadCertificate, isDownloading } = useDownloadCertificate();
@@ -24,9 +24,11 @@ export function CertificatePreview({ certificate, open, onOpenChange }: Certific
   const studentName = profile?.full_name || user?.email?.split("@")[0] || "Estudante";
 
   const styles: { value: CertificateStyle; label: string; description: string }[] = [
-    { value: "classic", label: "Clássico", description: "Estilo tradicional e formal" },
-    { value: "modern", label: "Moderno", description: "Design contemporâneo e minimalista" },
-    { value: "premium", label: "Premium", description: "Elegante com detalhes dourados" },
+    { value: "elegant", label: "Elegante", description: "Sofisticado com tons de azul marinho e dourado" },
+    { value: "royal", label: "Real", description: "Luxuoso com roxo profundo e detalhes dourados" },
+    { value: "minimal", label: "Minimalista", description: "Limpo e moderno com muito espaço em branco" },
+    { value: "executive", label: "Executivo", description: "Profissional com tons de verde escuro" },
+    { value: "golden", label: "Dourado", description: "Clássico elegante com fundo creme e dourado" },
   ];
 
   const handleDownload = () => {
@@ -44,7 +46,7 @@ export function CertificatePreview({ certificate, open, onOpenChange }: Certific
         </DialogHeader>
 
         <Tabs value={selectedStyle} onValueChange={(v) => setSelectedStyle(v as CertificateStyle)}>
-          <TabsList className="grid grid-cols-3 mb-6">
+          <TabsList className="grid grid-cols-5 mb-6">
             {styles.map((style) => (
               <TabsTrigger key={style.value} value={style.value} className="flex flex-col gap-0.5">
                 <span>{style.label}</span>
