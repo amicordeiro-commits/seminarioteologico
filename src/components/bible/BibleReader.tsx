@@ -2,8 +2,6 @@ import { useState, useEffect, useMemo } from 'react';
 import { useBibleTranslations, AVAILABLE_TRANSLATIONS } from '@/hooks/useBibleTranslations';
 import { useBibleBookmarks } from '@/hooks/useBibleBookmarks';
 import { useBibleNotes } from '@/hooks/useBibleNotes';
-import { useBibleStudies } from '@/hooks/useBibleStudies';
-
 import { getBookName, getTestament, OLD_TESTAMENT_BOOKS, NEW_TESTAMENT_BOOKS } from '@/lib/bibleTypes';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
@@ -11,7 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
@@ -43,7 +41,6 @@ export function BibleReader() {
   } = useBibleTranslations();
   const { bookmarks, isBookmarked, toggleBookmark } = useBibleBookmarks();
   const { notes, saveNote, getNoteForVerse } = useBibleNotes();
-  const { getStudyForVerse, hasStudyForVerse } = useBibleStudies();
   
   
   const [selectedTestament, setSelectedTestament] = useState<'old' | 'new'>('old');
@@ -534,11 +531,6 @@ export function BibleReader() {
             ) : (
             <div className="space-y-3">
               {filteredVerses.map((verse) => {
-                // Get studies from new hook
-                const externalStudies = getStudyForVerse(selectedBook, selectedChapterNum, verse.verse_number);
-                const hasExternalStudies = externalStudies.length > 0;
-                const hasInternalStudies = verse.studies && verse.studies.length > 0;
-                const hasStudies = hasExternalStudies || hasInternalStudies;
                 const verseNote = getNoteForVerse(verse.id);
                 const isVerseBookmarked = isBookmarked(verse.id);
 
@@ -634,48 +626,6 @@ export function BibleReader() {
                       </div>
                     )}
 
-
-                    {/* Studies from external file - always visible */}
-                    {hasExternalStudies && (
-                      <div className="ml-4 mt-2 space-y-2">
-                        {externalStudies.map((study, idx) => (
-                          <div key={idx} className="p-3 bg-amber-500/10 rounded-lg border-l-2 border-amber-500/50">
-                            <div className="flex items-center gap-2 mb-1">
-                              <BookOpen className="h-3 w-3 text-amber-600 dark:text-amber-400" />
-                              <span className="text-xs font-medium text-amber-600 dark:text-amber-400">Estudo ESV</span>
-                            </div>
-                            <p className="text-sm text-foreground whitespace-pre-wrap">{study}</p>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-
-                    {/* Studies from original ESV JSON (collapsible) */}
-                    {hasInternalStudies && (
-                      <Collapsible open={expandedStudies.has(verse.verse_number)}>
-                        <CollapsibleTrigger asChild>
-                          <Button 
-                            variant="ghost" 
-                            size="sm" 
-                            className="h-7 text-xs text-muted-foreground hover:text-foreground ml-4"
-                            onClick={() => toggleStudy(verse.verse_number)}
-                          >
-                            <MessageSquare className="h-3 w-3 mr-1" />
-                            {expandedStudies.has(verse.verse_number) ? 'Ocultar notas' : 'Ver notas adicionais'}
-                            <ChevronDown className={`h-3 w-3 ml-1 transition-transform ${expandedStudies.has(verse.verse_number) ? 'rotate-180' : ''}`} />
-                          </Button>
-                        </CollapsibleTrigger>
-                        <CollapsibleContent>
-                          <div className="ml-4 mt-2 space-y-2">
-                            {verse.studies.map((study, idx) => (
-                              <div key={idx} className="p-3 bg-muted/50 rounded-lg border-l-2 border-primary/30">
-                                <p className="text-sm text-muted-foreground whitespace-pre-wrap">{study}</p>
-                              </div>
-                            ))}
-                          </div>
-                        </CollapsibleContent>
-                      </Collapsible>
-                    )}
                   </div>
                 );
               })}
