@@ -1,80 +1,88 @@
 import { useState, useEffect, useCallback } from 'react';
 
-interface StudyEntry {
-  b: string; // Book name in Portuguese
-  c: number; // Chapter
-  v: string; // Verse (as string)
-  t: string; // Study text
+interface StudyItem {
+  versiculo: string;
+  estudo: string;
+}
+
+interface ChapterData {
+  capitulo: number;
+  estudos: StudyItem[];
+}
+
+interface BookData {
+  livro: string;
+  capitulos: ChapterData[];
 }
 
 // Mapping from Portuguese book names to abbreviations
 const BOOK_NAME_TO_ABBREV: Record<string, string> = {
-  'GÊNESIS': 'gen', 'GENESIS': 'gen',
-  'ÊXODO': 'exo', 'EXODO': 'exo',
-  'LEVÍTICO': 'lev', 'LEVITICO': 'lev',
-  'NÚMEROS': 'num', 'NUMEROS': 'num',
-  'DEUTERONÔMIO': 'deu', 'DEUTERONOMIO': 'deu',
-  'JOSUÉ': 'jos', 'JOSUE': 'jos',
-  'JUÍZES': 'jdg', 'JUIZES': 'jdg',
-  'RUTE': 'rth',
-  'I SAMUEL': '1sa', '1 SAMUEL': '1sa',
-  'II SAMUEL': '2sa', '2 SAMUEL': '2sa',
-  'I REIS': '1ki', '1 REIS': '1ki',
-  'II REIS': '2ki', '2 REIS': '2ki',
-  'I CRÔNICAS': '1ch', '1 CRÔNICAS': '1ch', 'I CRONICAS': '1ch', '1 CRONICAS': '1ch',
-  'II CRÔNICAS': '2ch', '2 CRÔNICAS': '2ch', 'II CRONICAS': '2ch', '2 CRONICAS': '2ch',
-  'ESDRAS': 'ezr',
-  'NEEMIAS': 'neh',
-  'ESTER': 'est',
-  'JÓ': 'job', 'JO': 'job',
-  'SALMOS': 'psa',
-  'PROVÉRBIOS': 'pro', 'PROVERBIOS': 'pro',
-  'ECLESIASTES': 'ecc',
-  'CANTARES': 'sng', 'CÂNTICOS': 'sng', 'CANTICOS': 'sng',
-  'ISAÍAS': 'isa', 'ISAIAS': 'isa',
-  'JEREMIAS': 'jer',
-  'LAMENTAÇÕES': 'lam', 'LAMENTACOES': 'lam',
-  'EZEQUIEL': 'eze',
-  'DANIEL': 'dan',
-  'OSÉIAS': 'hos', 'OSEIAS': 'hos',
-  'JOEL': 'joe',
-  'AMÓS': 'amo', 'AMOS': 'amo',
-  'OBADIAS': 'oba',
-  'JONAS': 'jon',
-  'MIQUÉIAS': 'mic', 'MIQUEIAS': 'mic',
-  'NAUM': 'nah',
-  'HABACUQUE': 'hab',
-  'SOFONIAS': 'zep',
-  'AGEU': 'hag',
-  'ZACARIAS': 'zec',
-  'MALAQUIAS': 'mal',
-  'MATEUS': 'mat',
-  'MARCOS': 'mar',
-  'LUCAS': 'luk',
-  'JOÃO': 'jhn', 'JOAO': 'jhn',
-  'ATOS': 'act',
-  'ROMANOS': 'rom',
-  'I CORÍNTIOS': '1co', '1 CORÍNTIOS': '1co', 'I CORINTIOS': '1co', '1 CORINTIOS': '1co',
-  'II CORÍNTIOS': '2co', '2 CORÍNTIOS': '2co', 'II CORINTIOS': '2co', '2 CORINTIOS': '2co',
-  'GÁLATAS': 'gal', 'GALATAS': 'gal',
-  'EFÉSIOS': 'eph', 'EFESIOS': 'eph',
-  'FILIPENSES': 'phl',
-  'COLOSSENSES': 'col',
-  'I TESSALONICENSES': '1th', '1 TESSALONICENSES': '1th',
-  'II TESSALONICENSES': '2th', '2 TESSALONICENSES': '2th',
-  'I TIMÓTEO': '1ti', '1 TIMÓTEO': '1ti', 'I TIMOTEO': '1ti', '1 TIMOTEO': '1ti',
-  'II TIMÓTEO': '2ti', '2 TIMÓTEO': '2ti', 'II TIMOTEO': '2ti', '2 TIMOTEO': '2ti',
-  'TITO': 'tit',
-  'FILEMOM': 'phm',
-  'HEBREUS': 'heb',
-  'TIAGO': 'jas',
-  'I PEDRO': '1pe', '1 PEDRO': '1pe',
-  'II PEDRO': '2pe', '2 PEDRO': '2pe',
-  'I JOÃO': '1jo', '1 JOÃO': '1jo', 'I JOAO': '1jo', '1 JOAO': '1jo',
-  'II JOÃO': '2jo', '2 JOÃO': '2jo', 'II JOAO': '2jo', '2 JOAO': '2jo',
-  'III JOÃO': '3jo', '3 JOÃO': '3jo', 'III JOAO': '3jo', '3 JOAO': '3jo',
-  'JUDAS': 'jde',
-  'APOCALIPSE': 'rev',
+  'Gênesis': 'gen', 'Genesis': 'gen',
+  'Êxodo': 'exo', 'Exodo': 'exo',
+  'Levítico': 'lev', 'Levitico': 'lev',
+  'Números': 'num', 'Numeros': 'num',
+  'Deuteronômio': 'deu', 'Deuteronomio': 'deu',
+  'Josué': 'jos', 'Josue': 'jos',
+  'Juízes': 'jdg', 'Juizes': 'jdg',
+  'Rute': 'rth',
+  '1 Samuel': '1sa', 'I Samuel': '1sa',
+  '2 Samuel': '2sa', 'II Samuel': '2sa',
+  '1 Reis': '1ki', 'I Reis': '1ki',
+  '2 Reis': '2ki', 'II Reis': '2ki',
+  '1 Crônicas': '1ch', '1 Cronicas': '1ch', 'I Crônicas': '1ch', 'I Cronicas': '1ch',
+  '2 Crônicas': '2ch', '2 Cronicas': '2ch', 'II Crônicas': '2ch', 'II Cronicas': '2ch',
+  'Esdras': 'ezr',
+  'Neemias': 'neh',
+  'Ester': 'est',
+  'Jó': 'job', 'Jo': 'job',
+  'Salmos': 'psa',
+  'Provérbios': 'pro', 'Proverbios': 'pro',
+  'Eclesiastes': 'ecc',
+  'Cantares': 'sng', 'Cânticos': 'sng', 'Canticos': 'sng',
+  'Isaías': 'isa', 'Isaias': 'isa',
+  'Jeremias': 'jer',
+  'Lamentações': 'lam', 'Lamentacoes': 'lam',
+  'Ezequiel': 'eze',
+  'Daniel': 'dan',
+  'Oséias': 'hos', 'Oseias': 'hos',
+  'Joel': 'joe',
+  'Amós': 'amo', 'Amos': 'amo',
+  'Obadias': 'oba',
+  'Jonas': 'jon',
+  'Miquéias': 'mic', 'Miqueias': 'mic',
+  'Naum': 'nah',
+  'Habacuque': 'hab',
+  'Sofonias': 'zep',
+  'Ageu': 'hag',
+  'Zacarias': 'zec',
+  'Malaquias': 'mal',
+  'Mateus': 'mat',
+  'Marcos': 'mar',
+  'Lucas': 'luk',
+  'João': 'jhn', 'Joao': 'jhn',
+  'Atos': 'act',
+  'Romanos': 'rom',
+  '1 Coríntios': '1co', '1 Corintios': '1co', 'I Coríntios': '1co', 'I Corintios': '1co',
+  '2 Coríntios': '2co', '2 Corintios': '2co', 'II Coríntios': '2co', 'II Corintios': '2co',
+  'Gálatas': 'gal', 'Galatas': 'gal',
+  'Efésios': 'eph', 'Efesios': 'eph',
+  'Filipenses': 'phl',
+  'Colossenses': 'col',
+  '1 Tessalonicenses': '1th', 'I Tessalonicenses': '1th',
+  '2 Tessalonicenses': '2th', 'II Tessalonicenses': '2th',
+  '1 Timóteo': '1ti', '1 Timoteo': '1ti', 'I Timóteo': '1ti', 'I Timoteo': '1ti',
+  '2 Timóteo': '2ti', '2 Timoteo': '2ti', 'II Timóteo': '2ti', 'II Timoteo': '2ti',
+  'Tito': 'tit',
+  'Filemom': 'phm',
+  'Hebreus': 'heb',
+  'Tiago': 'jas',
+  '1 Pedro': '1pe', 'I Pedro': '1pe',
+  '2 Pedro': '2pe', 'II Pedro': '2pe',
+  '1 João': '1jo', '1 Joao': '1jo', 'I João': '1jo', 'I Joao': '1jo',
+  '2 João': '2jo', '2 Joao': '2jo', 'II João': '2jo', 'II Joao': '2jo',
+  '3 João': '3jo', '3 Joao': '3jo', 'III João': '3jo', 'III Joao': '3jo',
+  'Judas': 'jde',
+  'Apocalipse': 'rev',
 };
 
 // Indexed studies by book_chapter_verse
@@ -83,34 +91,29 @@ type StudiesIndex = Map<string, string[]>;
 let studiesCache: StudiesIndex | null = null;
 let loadingStudies = false;
 
-// Function to clean study text - remove Bible references and keep only commentary
-function cleanStudyText(text: string): string {
-  if (!text) return '';
+// Parse verse string to get all verses it applies to
+function parseVerseRange(verseStr: string): number[] {
+  const verses: number[] = [];
   
-  // Remove patterns like "Ex. 13:04; 23:15; 34:18" or "(cf. Gn 8:13;. Ex 12:2)"
-  // Remove verse references with book abbreviations
-  let cleaned = text
-    // Remove parenthetical references like "(cf. Gn 8:13;. Ex 12:2, 18; 40:2)"
-    .replace(/\(cf\.[^)]+\)/gi, '')
-    // Remove patterns like "Ex. 13:04; 23:15" 
-    .replace(/\b[1-3]?\s?[A-Z][a-záéíóúãõç]+\.?\s*\d+[:\.\d,;\s-]+/gi, '')
-    // Remove standalone chapter:verse patterns like "23:15; 34:18"
-    .replace(/\b\d+:\d+[,;\s\d:-]*/g, '')
-    // Remove book abbreviations with dots like "Lv.", "Gn.", "Ex."
-    .replace(/\b[A-Z][a-z]{1,3}\.\s*\d+/gi, '')
-    // Remove parenthetical verse references
-    .replace(/\([^)]*\d+:\d+[^)]*\)/g, '')
-    // Clean up extra spaces and punctuation
-    .replace(/\s+/g, ' ')
-    .replace(/[;,]\s*[;,]/g, ';')
-    .replace(/^\s*[;,:\s]+/, '')
-    .replace(/[;,:\s]+$/, '')
-    .trim();
+  // Handle ranges like "1-9" or "14-16"
+  if (verseStr.includes('-')) {
+    const parts = verseStr.split('-');
+    const start = parseInt(parts[0].replace(/^0+/, ''));
+    const end = parseInt(parts[1].replace(/^0+/, ''));
+    if (!isNaN(start) && !isNaN(end)) {
+      for (let i = start; i <= end; i++) {
+        verses.push(i);
+      }
+    }
+  } else {
+    // Single verse like "01" or "1"
+    const num = parseInt(verseStr.replace(/^0+/, ''));
+    if (!isNaN(num)) {
+      verses.push(num);
+    }
+  }
   
-  // If after cleaning we have very little content, return empty
-  if (cleaned.length < 20) return '';
-  
-  return cleaned;
+  return verses;
 }
 
 export function useBibleStudies() {
@@ -129,42 +132,36 @@ export function useBibleStudies() {
     loadingStudies = true;
     setLoading(true);
 
-    fetch('/bible/estudos-esv.json')
+    fetch('/bible/esv-study.json')
       .then(res => {
         if (!res.ok) throw new Error('Falha ao carregar estudos');
         return res.json();
       })
-      .then((data: StudyEntry[]) => {
+      .then((data: BookData[]) => {
         const index: StudiesIndex = new Map();
         
-        for (const entry of data) {
-          const bookName = entry.b.toUpperCase().trim();
-          const abbrev = BOOK_NAME_TO_ABBREV[bookName];
+        for (const book of data) {
+          const abbrev = BOOK_NAME_TO_ABBREV[book.livro];
           
           if (!abbrev) {
             continue;
           }
           
-          // Handle verse ranges like "14" or "14-16"
-          const verseStr = String(entry.v);
-          const verses = verseStr.includes('-') 
-            ? verseStr.split('-').map(v => parseInt(v.trim()))
-            : [parseInt(verseStr)];
-          
-          const firstVerse = verses[0];
-          if (isNaN(firstVerse)) continue;
-          
-          // Clean the study text to remove Bible references
-          const cleanedText = cleanStudyText(entry.t);
-          if (!cleanedText) continue;
-          
-          // Create key: book_chapter_verse
-          const key = `${abbrev}_${entry.c}_${firstVerse}`;
-          
-          if (!index.has(key)) {
-            index.set(key, []);
+          for (const chapter of book.capitulos) {
+            for (const study of chapter.estudos) {
+              const verses = parseVerseRange(study.versiculo);
+              
+              // Add study to each verse in the range
+              for (const verse of verses) {
+                const key = `${abbrev}_${chapter.capitulo}_${verse}`;
+                
+                if (!index.has(key)) {
+                  index.set(key, []);
+                }
+                index.get(key)!.push(study.estudo);
+              }
+            }
           }
-          index.get(key)!.push(cleanedText);
         }
         
         studiesCache = index;
