@@ -70,9 +70,30 @@ export default function AdminLibraryPage() {
       if (error) throw new Error(error.message);
       if (!data?.html) throw new Error("Falha ao gerar o PDF.");
 
-      // Abre o HTML em uma nova aba para imprimir/salvar como PDF
-      const popup = window.open("", "_blank", "noopener,noreferrer");
-      if (!popup) throw new Error("Popup bloqueado. Permita popups para baixar o PDF.");
+      // Tenta abrir o HTML em uma nova aba para imprimir/salvar como PDF
+      const popup = window.open("", "_blank");
+      
+      if (!popup || popup.closed || typeof popup.closed === 'undefined') {
+        // Popup bloqueado - usar método alternativo com download de HTML
+        toast.warning(
+          "Popup bloqueado! Clique no link abaixo para abrir o PDF.",
+          { duration: 10000 }
+        );
+        
+        // Cria um blob e faz download do HTML
+        const blob = new Blob([data.html], { type: 'text/html' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `${material.title.replace(/[^a-zA-Z0-9]/g, '_')}_POD.html`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+        
+        toast.info("Arquivo HTML baixado! Abra-o no navegador e use Ctrl+P para salvar como PDF.");
+        return;
+      }
 
       popup.document.open();
       popup.document.write(data.html);
@@ -85,7 +106,8 @@ export default function AdminLibraryPage() {
       toast.success("PDF gerado com a marca P.O.D Seminário Teológico!");
     } catch (err) {
       console.error("Error generating branded PDF:", err);
-      toast.error("Erro ao gerar PDF personalizado. Tente novamente.");
+      const errorMessage = err instanceof Error ? err.message : "Erro desconhecido";
+      toast.error(`Erro ao gerar PDF: ${errorMessage}`);
     } finally {
       setGeneratingPdf(null);
     }
