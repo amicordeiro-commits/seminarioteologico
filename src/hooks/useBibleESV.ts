@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
-import { BOOK_NAMES, OLD_TESTAMENT_BOOKS, NEW_TESTAMENT_BOOKS, getBookName } from '@/lib/bibleTypes';
+import { OLD_TESTAMENT_BOOKS, NEW_TESTAMENT_BOOKS, getBookName } from '@/lib/bibleTypes';
 
 // ACF book abbreviation mapping (lowercase -> index in acf.json)
 const ACF_BOOK_INDEX: Record<string, number> = {
@@ -44,32 +44,47 @@ interface ACFBook {
   chapters: string[][];
 }
 
-// Cache for loaded data
-let acfData: ACFBook[] | null = null;
-const bookCache: Record<string, BibleBook> = {};
+// Helper function to get approximate chapter count for each book
+function getChapterCount(abbrev: string): number {
+  const counts: Record<string, number> = {
+    'gn': 50, 'ex': 40, 'lv': 27, 'nm': 36, 'dt': 34,
+    'js': 24, 'jz': 21, 'rt': 4, '1sm': 31, '2sm': 24,
+    '1rs': 22, '2rs': 25, '1cr': 29, '2cr': 36, 'ed': 10,
+    'ne': 13, 'et': 10, 'jó': 42, 'sl': 150, 'pv': 31,
+    'ec': 12, 'ct': 8, 'is': 66, 'jr': 52, 'lm': 5,
+    'ez': 48, 'dn': 12, 'os': 14, 'jl': 3, 'am': 9,
+    'ob': 1, 'jn': 4, 'mq': 7, 'na': 3, 'hc': 3,
+    'sf': 3, 'ag': 2, 'zc': 14, 'ml': 4,
+    'mt': 28, 'mc': 16, 'lc': 24, 'jo': 21, 'at': 28,
+    'rm': 16, '1co': 16, '2co': 13, 'gl': 6, 'ef': 6,
+    'fp': 4, 'cl': 4, '1ts': 5, '2ts': 3, '1tm': 6,
+    '2tm': 4, 'tt': 3, 'fm': 1, 'hb': 13, 'tg': 5,
+    '1pe': 5, '2pe': 3, '1jo': 5, '2jo': 1, '3jo': 1,
+    'jd': 1, 'ap': 22
+  };
+  return counts[abbrev.toLowerCase()] || 1;
+}
 
 export function useBibleESV() {
+  const [acfData, setAcfData] = useState<ACFBook[] | null>(null);
   const [currentBook, setCurrentBook] = useState<BibleBook | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [bookCache, setBookCache] = useState<Record<string, BibleBook>>({});
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [dataLoaded, setDataLoaded] = useState(false);
 
   // Load ACF data on mount
   useEffect(() => {
-    if (!acfData) {
-      fetch('/bible/acf.json')
-        .then(res => res.json())
-        .then((data: ACFBook[]) => {
-          acfData = data;
-          setDataLoaded(true);
-        })
-        .catch(err => {
-          console.error('Failed to load ACF Bible:', err);
-          setError('Falha ao carregar a Bíblia');
-        });
-    } else {
-      setDataLoaded(true);
-    }
+    fetch('/bible/acf.json')
+      .then(res => res.json())
+      .then((data: ACFBook[]) => {
+        setAcfData(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error('Failed to load ACF Bible:', err);
+        setError('Falha ao carregar a Bíblia');
+        setLoading(false);
+      });
   }, []);
 
   const books = useMemo(() => {
@@ -91,16 +106,8 @@ export function useBibleESV() {
       return bookCache[lowerAbbrev];
     }
 
-    // Wait for data to load
     if (!acfData) {
-      setLoading(true);
-      // Wait a bit for data to load
-      await new Promise(resolve => setTimeout(resolve, 500));
-      if (!acfData) {
-        setError('Bíblia ainda carregando...');
-        setLoading(false);
-        return null;
-      }
+      return null;
     }
 
     const bookIndex = ACF_BOOK_INDEX[lowerAbbrev];
@@ -109,59 +116,50 @@ export function useBibleESV() {
       return null;
     }
 
-    setLoading(true);
-    setError(null);
-
-    try {
-      const acfBook = acfData[bookIndex];
-      
-      if (!acfBook) {
-        throw new Error('Dados do livro não encontrados');
-      }
-
-      // Parse the ACF format into our format
-      const chapters: BibleChapter[] = acfBook.chapters.map((chapterVerses, chapterIndex) => {
-        const verses: BibleVerse[] = chapterVerses.map((text, verseIndex) => ({
-          verse_number: verseIndex + 1,
-          text: text,
-          studies: [],
-          id: `${lowerAbbrev}|${chapterIndex + 1}|${verseIndex + 1}`,
-          tags: [],
-        }));
-
-        return {
-          chapter_number: chapterIndex + 1,
-          verses,
-        };
-      });
-
-      const book: BibleBook = {
-        title: getBookName(lowerAbbrev),
-        abbrev: lowerAbbrev,
-        chapters,
-      };
-      
-      // Cache it
-      bookCache[lowerAbbrev] = book;
-      setCurrentBook(book);
-      setLoading(false);
-      
-      return book;
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Erro ao carregar');
-      setLoading(false);
+    const acfBook = acfData[bookIndex];
+    
+    if (!acfBook) {
+      setError('Dados do livro não encontrados');
       return null;
     }
-  }, []);
+
+    // Parse the ACF format into our format
+    const chapters: BibleChapter[] = acfBook.chapters.map((chapterVerses, chapterIndex) => {
+      const verses: BibleVerse[] = chapterVerses.map((text, verseIndex) => ({
+        verse_number: verseIndex + 1,
+        text: text,
+        studies: [],
+        id: `${lowerAbbrev}|${chapterIndex + 1}|${verseIndex + 1}`,
+        tags: [],
+      }));
+
+      return {
+        chapter_number: chapterIndex + 1,
+        verses,
+      };
+    });
+
+    const book: BibleBook = {
+      title: getBookName(lowerAbbrev),
+      abbrev: lowerAbbrev,
+      chapters,
+    };
+    
+    // Cache it
+    setBookCache(prev => ({ ...prev, [lowerAbbrev]: book }));
+    setCurrentBook(book);
+    
+    return book;
+  }, [acfData, bookCache]);
 
   const getBook = useCallback((abbrev: string): BibleBook | undefined => {
     return bookCache[abbrev.toLowerCase()];
-  }, []);
+  }, [bookCache]);
 
   const getChapter = useCallback((abbrev: string, chapter: number): BibleChapter | undefined => {
     const book = bookCache[abbrev.toLowerCase()];
     return book?.chapters.find(c => c.chapter_number === chapter);
-  }, []);
+  }, [bookCache]);
 
   const getVerse = useCallback((abbrev: string, chapter: number, verse: number): BibleVerse | undefined => {
     const chapterData = getChapter(abbrev, chapter);
@@ -169,11 +167,10 @@ export function useBibleESV() {
   }, [getChapter]);
 
   const searchBible = useCallback((query: string, limit = 50): BibleVerse[] => {
-    if (!query.trim() || !acfData) return [];
+    if (!query.trim()) return [];
     const results: BibleVerse[] = [];
     const lowerQuery = query.toLowerCase();
 
-    // Search through all books
     for (const book of Object.values(bookCache)) {
       for (const chapter of book.chapters) {
         for (const verse of chapter.verses) {
@@ -185,7 +182,7 @@ export function useBibleESV() {
       }
     }
     return results;
-  }, []);
+  }, [bookCache]);
 
   return {
     bible: currentBook,
@@ -200,27 +197,6 @@ export function useBibleESV() {
     currentBook,
     info: null,
     tableOfContents: [],
-    dataLoaded,
+    dataLoaded: !!acfData,
   };
-}
-
-// Helper function to get approximate chapter count for each book
-function getChapterCount(abbrev: string): number {
-  const counts: Record<string, number> = {
-    'gn': 50, 'ex': 40, 'lv': 27, 'nm': 36, 'dt': 34,
-    'js': 24, 'jz': 21, 'rt': 4, '1sm': 31, '2sm': 24,
-    '1rs': 22, '2rs': 25, '1cr': 29, '2cr': 36, 'ed': 10,
-    'ne': 13, 'et': 10, 'jó': 42, 'sl': 150, 'pv': 31,
-    'ec': 12, 'ct': 8, 'is': 66, 'jr': 52, 'lm': 5,
-    'ez': 48, 'dn': 12, 'os': 14, 'jl': 3, 'am': 9,
-    'ob': 1, 'jn': 4, 'mq': 7, 'na': 3, 'hc': 3,
-    'sf': 3, 'ag': 2, 'zc': 14, 'ml': 4,
-    'mt': 28, 'mc': 16, 'lc': 24, 'jo': 21, 'at': 28,
-    'rm': 16, '1co': 16, '2co': 13, 'gl': 6, 'ef': 6,
-    'fp': 4, 'cl': 4, '1ts': 5, '2ts': 3, '1tm': 6,
-    '2tm': 4, 'tt': 3, 'fm': 1, 'hb': 13, 'tg': 5,
-    '1pe': 5, '2pe': 3, '1jo': 5, '2jo': 1, '3jo': 1,
-    'jd': 1, 'ap': 22
-  };
-  return counts[abbrev.toLowerCase()] || 1;
 }
