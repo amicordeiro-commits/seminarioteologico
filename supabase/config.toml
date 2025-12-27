@@ -14,3 +14,6 @@ verify_jwt = true
 
 [functions.import-strongs-dictionary]
 verify_jwt = true
+
+[functions.generate-branded-pdf]
+verify_jwt = false
