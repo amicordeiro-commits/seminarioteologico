@@ -18,31 +18,18 @@ import {
   Bell,
   BarChart3,
   PieChart,
-  Zap
+  Zap,
+  Loader2
 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Link } from "react-router-dom";
 import { AreaChart, Area, XAxis, YAxis, ResponsiveContainer, PieChart as RechartsPie, Pie, Cell, Tooltip } from "recharts";
-
-// Mock data for charts
-const enrollmentData = [
-  { month: "Jan", enrollments: 45 },
-  { month: "Fev", enrollments: 52 },
-  { month: "Mar", enrollments: 61 },
-  { month: "Abr", enrollments: 58 },
-  { month: "Mai", enrollments: 73 },
-  { month: "Jun", enrollments: 89 },
-];
-
-const courseDistribution = [
-  { name: "Teologia", value: 35, color: "hsl(345, 45%, 28%)" },
-  { name: "História", value: 25, color: "hsl(42, 80%, 50%)" },
-  { name: "Bíblia", value: 30, color: "hsl(85, 40%, 40%)" },
-  { name: "Outros", value: 10, color: "hsl(20, 20%, 50%)" },
-];
+import { format, subMonths, startOfMonth, endOfMonth } from "date-fns";
+import { ptBR } from "date-fns/locale";
 
 export default function AdminDashboard() {
+  // Fetch basic stats
   const { data: stats, isLoading } = useQuery({
     queryKey: ["admin-stats"],
     queryFn: async () => {
@@ -66,6 +53,122 @@ export default function AdminDashboard() {
     },
   });
 
+  // Fetch enrollment data by month
+  const { data: enrollmentData } = useQuery({
+    queryKey: ["admin-enrollment-chart"],
+    queryFn: async () => {
+      const months = [];
+      for (let i = 5; i >= 0; i--) {
+        const date = subMonths(new Date(), i);
+        const start = startOfMonth(date);
+        const end = endOfMonth(date);
+        
+        const { count } = await supabase
+          .from("enrollments")
+          .select("id", { count: "exact", head: true })
+          .gte("enrolled_at", start.toISOString())
+          .lte("enrolled_at", end.toISOString());
+        
+        months.push({
+          month: format(date, "MMM", { locale: ptBR }),
+          enrollments: count || 0,
+        });
+      }
+      return months;
+    },
+  });
+
+  // Fetch course distribution by category
+  const { data: courseDistribution } = useQuery({
+    queryKey: ["admin-course-distribution"],
+    queryFn: async () => {
+      const { data: courses } = await supabase
+        .from("courses")
+        .select("category");
+      
+      if (!courses) return [];
+      
+      const categoryCount: Record<string, number> = {};
+      courses.forEach(course => {
+        const cat = course.category || "Outros";
+        categoryCount[cat] = (categoryCount[cat] || 0) + 1;
+      });
+      
+      const colors = [
+        "hsl(345, 45%, 28%)",
+        "hsl(42, 80%, 50%)",
+        "hsl(85, 40%, 40%)",
+        "hsl(200, 60%, 45%)",
+        "hsl(20, 20%, 50%)",
+      ];
+      
+      return Object.entries(categoryCount).map(([name, value], index) => ({
+        name,
+        value,
+        color: colors[index % colors.length],
+      }));
+    },
+  });
+
+  // Fetch recent activities
+  const { data: recentActivities } = useQuery({
+    queryKey: ["admin-recent-activities"],
+    queryFn: async () => {
+      const activities = [];
+      
+      // Recent enrollments
+      const { data: recentEnrollments } = await supabase
+        .from("enrollments")
+        .select("enrolled_at, courses(title)")
+        .order("enrolled_at", { ascending: false })
+        .limit(2);
+      
+      recentEnrollments?.forEach(e => {
+        activities.push({
+          title: `Nova matrícula no curso ${e.courses?.title || ""}`,
+          time: e.enrolled_at,
+          icon: GraduationCap,
+          color: "bg-emerald-500",
+        });
+      });
+      
+      // Recent certificates
+      const { data: recentCerts } = await supabase
+        .from("certificates")
+        .select("issued_at, user_id")
+        .order("issued_at", { ascending: false })
+        .limit(2);
+      
+      recentCerts?.forEach(c => {
+        activities.push({
+          title: `Certificado emitido`,
+          time: c.issued_at,
+          icon: Award,
+          color: "bg-amber-500",
+        });
+      });
+      
+      // Sort by time
+      return activities.sort((a, b) => 
+        new Date(b.time).getTime() - new Date(a.time).getTime()
+      ).slice(0, 4);
+    },
+  });
+
+  const formatTimeAgo = (dateStr: string) => {
+    const date = new Date(dateStr);
+    const now = new Date();
+    const diffMs = now.getTime() - date.getTime();
+    const diffMins = Math.floor(diffMs / 60000);
+    const diffHours = Math.floor(diffMs / 3600000);
+    const diffDays = Math.floor(diffMs / 86400000);
+    
+    if (diffMins < 60) return `Há ${diffMins} minutos`;
+    if (diffHours < 24) return `Há ${diffHours} horas`;
+    if (diffDays === 1) return "Ontem";
+    return `Há ${diffDays} dias`;
+  };
+
   const statCards = [
     { 
       title: "Total de Usuários", 
@@ -81,7 +184,7 @@ export default function AdminDashboard() {
       title: "Cursos Ativos", 
       value: stats?.courses || 0, 
       icon: BookOpen, 
-      trend: "+3",
+      trend: `+${stats?.courses || 0}`,
       trendUp: true,
       color: "from-emerald-500 to-emerald-600",
       bgColor: "bg-emerald-500/10",
@@ -101,13 +204,24 @@ export default function AdminDashboard() {
       title: "Certificados", 
       value: stats?.certificates || 0, 
       icon: GraduationCap, 
-      trend: "+15",
+      trend: `+${stats?.certificates || 0}`,
       trendUp: true,
       color: "from-amber-500 to-amber-600",
       bgColor: "bg-amber-500/10",
       link: "/admin/certificates"
     },
   ];
+
+  const chartData = enrollmentData || [
+    { month: "Jan", enrollments: 0 },
+    { month: "Fev", enrollments: 0 },
+    { month: "Mar", enrollments: 0 },
+    { month: "Abr", enrollments: 0 },
+    { month: "Mai", enrollments: 0 },
+    { month: "Jun", enrollments: 0 },
+  ];
+
+  const distributionData = courseDistribution || [];
 
   return (
     <AdminLayout>
@@ -136,19 +250,21 @@ export default function AdminDashboard() {
 
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {statCards.map((stat, index) => (
+          {statCards.map((stat) => (
             <Link key={stat.title} to={stat.link}>
               <Card className="hover:shadow-lg transition-all duration-300 group cursor-pointer border-transparent hover:border-primary/20">
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between">
                     <div className="space-y-2">
                       <p className="text-sm font-medium text-muted-foreground">{stat.title}</p>
-                      <p className="text-3xl font-bold text-foreground">{stat.value}</p>
+                      <p className="text-3xl font-bold text-foreground">
+                        {isLoading ? <Loader2 className="w-6 h-6 animate-spin" /> : stat.value}
+                      </p>
                       <div className="flex items-center gap-1">
                         <span className={`text-xs font-medium ${stat.trendUp ? 'text-emerald-500' : 'text-red-500'}`}>
                           {stat.trend}
                         </span>
-                        <span className="text-xs text-muted-foreground">vs mês anterior</span>
+                        <span className="text-xs text-muted-foreground">total</span>
                       </div>
                     </div>
                     <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${stat.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform`}>
@@ -183,7 +299,7 @@ export default function AdminDashboard() {
             <CardContent>
               <div className="h-[250px]">
                 <ResponsiveContainer width="100%" height="100%">
-                  <AreaChart data={enrollmentData}>
+                  <AreaChart data={chartData}>
                     <defs>
                       <linearGradient id="enrollmentGradient" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="5%" stopColor="hsl(345, 45%, 28%)" stopOpacity={0.3}/>
@@ -232,26 +348,30 @@ export default function AdminDashboard() {
             </CardHeader>
             <CardContent>
               <div className="h-[200px] flex items-center justify-center">
-                <ResponsiveContainer width="100%" height="100%">
-                  <RechartsPie>
-                    <Pie
-                      data={courseDistribution}
-                      cx="50%"
-                      cy="50%"
-                      innerRadius={50}
-                      outerRadius={80}
-                      paddingAngle={2}
-                      dataKey="value"
-                    >
-                      {courseDistribution.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={entry.color} />
-                      ))}
-                    </Pie>
-                  </RechartsPie>
-                </ResponsiveContainer>
+                {distributionData.length === 0 ? (
+                  <p className="text-muted-foreground text-sm">Nenhum curso cadastrado</p>
+                ) : (
+                  <ResponsiveContainer width="100%" height="100%">
+                    <RechartsPie>
+                      <Pie
+                        data={distributionData}
+                        cx="50%"
+                        cy="50%"
+                        innerRadius={50}
+                        outerRadius={80}
+                        paddingAngle={2}
+                        dataKey="value"
+                      >
+                        {distributionData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.color} />
+                        ))}
+                      </Pie>
+                    </RechartsPie>
+                  </ResponsiveContainer>
+                )}
               </div>
               <div className="flex flex-wrap gap-3 mt-4 justify-center">
-                {courseDistribution.map((item) => (
+                {distributionData.map((item) => (
                   <div key={item.name} className="flex items-center gap-2 text-sm">
                     <div 
                       className="w-3 h-3 rounded-full" 
@@ -308,45 +428,26 @@ export default function AdminDashboard() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {[
-                  { 
-                    title: "Nova matrícula no curso de Teologia Sistemática",
-                    time: "Há 5 minutos",
-                    icon: GraduationCap,
-                    color: "bg-emerald-500"
-                  },
-                  { 
-                    title: "Certificado emitido para João Silva",
-                    time: "Há 2 horas",
-                    icon: Award,
-                    color: "bg-amber-500"
-                  },
-                  { 
-                    title: "Novo material adicionado à biblioteca",
-                    time: "Há 4 horas",
-                    icon: FileText,
-                    color: "bg-blue-500"
-                  },
-                  { 
-                    title: "Evento 'Semana de Oração' criado",
-                    time: "Ontem",
-                    icon: Calendar,
-                    color: "bg-violet-500"
-                  },
-                ].map((activity, index) => (
-                  <div key={index} className="flex items-start gap-4 p-3 rounded-lg hover:bg-muted/50 transition-colors">
-                    <div className={`w-10 h-10 rounded-full ${activity.color} flex items-center justify-center flex-shrink-0`}>
-                      <activity.icon className="w-5 h-5 text-white" />
+                {recentActivities && recentActivities.length > 0 ? (
+                  recentActivities.map((activity, index) => (
+                    <div key={index} className="flex items-start gap-4 p-3 rounded-lg hover:bg-muted/50 transition-colors">
+                      <div className={`w-10 h-10 rounded-full ${activity.color} flex items-center justify-center flex-shrink-0`}>
+                        <activity.icon className="w-5 h-5 text-white" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium text-foreground truncate">{activity.title}</p>
+                        <p className="text-xs text-muted-foreground flex items-center gap-1 mt-1">
+                          <Clock className="w-3 h-3" />
+                          {formatTimeAgo(activity.time)}
+                        </p>
+                      </div>
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-foreground truncate">{activity.title}</p>
-                      <p className="text-xs text-muted-foreground flex items-center gap-1 mt-1">
-                        <Clock className="w-3 h-3" />
-                        {activity.time}
-                      </p>
-                    </div>
+                  ))
+                ) : (
+                  <div className="text-center py-8">
+                    <p className="text-muted-foreground text-sm">Nenhuma atividade recente</p>
                   </div>
-                ))}
+                )}
               </div>
             </CardContent>
           </Card>
@@ -355,22 +456,22 @@ export default function AdminDashboard() {
         {/* Progress Section */}
         <Card>
           <CardHeader>
-            <CardTitle>Metas do Mês</CardTitle>
-            <CardDescription>Acompanhe o progresso das metas estabelecidas</CardDescription>
+            <CardTitle>Estatísticas Gerais</CardTitle>
+            <CardDescription>Resumo dos dados do sistema</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid md:grid-cols-3 gap-6">
               {[
-                { label: "Novas Matrículas", current: 73, target: 100, color: "bg-primary" },
-                { label: "Cursos Publicados", current: 8, target: 10, color: "bg-emerald-500" },
-                { label: "Certificados Emitidos", current: 45, target: 50, color: "bg-amber-500" },
+                { label: "Matrículas", current: stats?.enrollments || 0, target: 100, color: "bg-primary" },
+                { label: "Cursos Publicados", current: stats?.courses || 0, target: 20, color: "bg-emerald-500" },
+                { label: "Certificados Emitidos", current: stats?.certificates || 0, target: 50, color: "bg-amber-500" },
               ].map((goal) => (
                 <div key={goal.label} className="space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-medium">{goal.label}</span>
                     <span className="text-sm text-muted-foreground">{goal.current}/{goal.target}</span>
                   </div>
-                  <Progress value={(goal.current / goal.target) * 100} className="h-2" />
+                  <Progress value={Math.min((goal.current / goal.target) * 100, 100)} className="h-2" />
                 </div>
               ))}
             </div>

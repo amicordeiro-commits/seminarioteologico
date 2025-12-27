@@ -1,8 +1,18 @@
 import { AppLayout } from "@/components/layout/AppLayout";
 import { Progress } from "@/components/ui/progress";
-import { mockCourses } from "@/data/mockData";
-import { Trophy, Target, Clock, TrendingUp, BookOpen, Award, Flame, Cross, BookMarked } from "lucide-react";
+import { Trophy, Target, Clock, TrendingUp, BookOpen, Award, Flame, Cross, BookMarked, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useCourses, useEnrollments } from "@/hooks/useCourses";
+import { useAuth } from "@/hooks/useAuth";
+
+const achievements = [
+  { id: "1", title: "Primeiro Passo", description: "Complete sua primeira aula", icon: BookOpen, unlocked: true },
+  { id: "2", title: "Devocional Fiel", description: "7 dias seguidos de estudo", icon: Flame, unlocked: true },
+  { id: "3", title: "Buscador da Palavra", description: "Inscreva-se em 5 cursos", icon: BookMarked, unlocked: true },
+  { id: "4", title: "Obreiro Aprovado", description: "Complete 3 cursos", icon: Trophy, unlocked: false },
+  { id: "5", title: "Berean", description: "10 horas de estudo semanal", icon: Clock, unlocked: false },
+  { id: "6", title: "Excelência Acadêmica", description: "100% em um exame", icon: Award, unlocked: true },
+];
 
 const weeklyData = [
   { day: "Seg", hours: 2.5 },
@@ -14,21 +24,93 @@ const weeklyData = [
   { day: "Dom", hours: 0.5 },
 ];
 
-const achievements = [
-  { id: "1", title: "Primeiro Passo", description: "Complete sua primeira aula", icon: BookOpen, unlocked: true },
-  { id: "2", title: "Devocional Fiel", description: "7 dias seguidos de estudo", icon: Flame, unlocked: true },
-  { id: "3", title: "Buscador da Palavra", description: "Inscreva-se em 5 cursos", icon: BookMarked, unlocked: true },
-  { id: "4", title: "Obreiro Aprovado", description: "Complete 3 cursos", icon: Trophy, unlocked: false },
-  { id: "5", title: "Berean", description: "10 horas de estudo semanal", icon: Clock, unlocked: false },
-  { id: "6", title: "Excelência Acadêmica", description: "100% em um exame", icon: Award, unlocked: true },
-];
-
 const ProgressPage = () => {
+  const { user } = useAuth();
+  const { data: courses, isLoading: loadingCourses } = useCourses();
+  const { data: enrollments, isLoading: loadingEnrollments } = useEnrollments();
+
+  const isLoading = loadingCourses || loadingEnrollments;
+
+  // Map courses with enrollment data
+  const coursesWithProgress = courses?.map(course => {
+    const enrollment = enrollments?.find(e => e.course_id === course.id);
+    return {
+      id: course.id,
+      title: course.title,
+      instructor: course.instructor || 'Instrutor',
+      thumbnail: course.thumbnail_url || 'https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=800',
+      progress: enrollment?.progress_percent || 0,
+      totalLessons: course.total_lessons || 0,
+      completedLessons: Math.round(((course.total_lessons || 0) * (enrollment?.progress_percent || 0)) / 100),
+    };
+  }) || [];
+
+  const coursesInProgress = coursesWithProgress.filter((c) => c.progress > 0 && c.progress < 100);
+  const completedCourses = coursesWithProgress.filter((c) => c.progress === 100);
+
   const maxHours = Math.max(...weeklyData.map((d) => d.hours));
   const totalHoursWeek = weeklyData.reduce((acc, d) => acc + d.hours, 0);
 
-  const coursesInProgress = mockCourses.filter((c) => c.progress > 0 && c.progress < 100);
-  const completedCourses = mockCourses.filter((c) => c.progress === 100);
+  // Calculate total study hours based on enrollments
+  const totalStudyHours = coursesWithProgress.reduce((acc, course) => {
+    return acc + Math.round((course.completedLessons * 45) / 60); // 45 min per lesson average
+  }, 0);
+
+  // Dynamic achievements based on real data
+  const dynamicAchievements = [
+    { 
+      id: "1", 
+      title: "Primeiro Passo", 
+      description: "Complete sua primeira aula", 
+      icon: BookOpen, 
+      unlocked: coursesWithProgress.some(c => c.completedLessons > 0) 
+    },
+    { 
+      id: "2", 
+      title: "Devocional Fiel", 
+      description: "7 dias seguidos de estudo", 
+      icon: Flame, 
+      unlocked: true 
+    },
+    { 
+      id: "3", 
+      title: "Buscador da Palavra", 
+      description: "Inscreva-se em 5 cursos", 
+      icon: BookMarked, 
+      unlocked: (enrollments?.length || 0) >= 5 
+    },
+    { 
+      id: "4", 
+      title: "Obreiro Aprovado", 
+      description: "Complete 3 cursos", 
+      icon: Trophy, 
+      unlocked: completedCourses.length >= 3 
+    },
+    { 
+      id: "5", 
+      title: "Berean", 
+      description: "10 horas de estudo semanal", 
+      icon: Clock, 
+      unlocked: totalHoursWeek >= 10 
+    },
+    { 
+      id: "6", 
+      title: "Excelência Acadêmica", 
+      description: "100% em um exame", 
+      icon: Award, 
+      unlocked: completedCourses.length > 0 
+    },
+  ];
+
+  if (isLoading) {
+    return (
+      <AppLayout>
+        <div className="flex items-center justify-center h-[60vh]">
+          <Loader2 className="w-8 h-8 animate-spin text-primary" />
+        </div>
+      </AppLayout>
+    );
+  }
 
   return (
     <AppLayout>
@@ -58,7 +140,7 @@ const ProgressPage = () => {
 
           <div className="p-6 rounded-xl bg-card border border-border">
             <Clock className="w-8 h-8 text-muted-foreground mb-4" />
-            <p className="text-3xl font-serif font-bold text-foreground">42h</p>
+            <p className="text-3xl font-serif font-bold text-foreground">{totalStudyHours}h</p>
             <p className="text-sm text-muted-foreground font-sans">Total estudado</p>
           </div>
 
@@ -69,9 +151,9 @@ const ProgressPage = () => {
           </div>
 
           <div className="p-6 rounded-xl bg-card border border-border">
-            <Flame className="w-8 h-8 text-accent mb-4" />
-            <p className="text-3xl font-serif font-bold text-foreground">7 dias</p>
-            <p className="text-sm text-muted-foreground font-sans">Sequência devocional</p>
+            <BookOpen className="w-8 h-8 text-accent mb-4" />
+            <p className="text-3xl font-serif font-bold text-foreground">{coursesInProgress.length}</p>
+            <p className="text-sm text-muted-foreground font-sans">Cursos em andamento</p>
           </div>
         </div>
 
@@ -104,7 +186,7 @@ const ProgressPage = () => {
           <div className="p-6 rounded-xl bg-card border border-border">
             <h2 className="font-serif font-semibold text-foreground mb-4">Conquistas Espirituais</h2>
             <div className="space-y-3">
-              {achievements.slice(0, 5).map((achievement) => {
+              {dynamicAchievements.slice(0, 5).map((achievement) => {
                 const Icon = achievement.icon;
                 return (
                   <div
@@ -150,40 +232,50 @@ const ProgressPage = () => {
         {/* Course Progress */}
         <div className="space-y-4">
           <h2 className="text-xl font-serif font-semibold text-foreground">Progresso por Disciplina</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {coursesInProgress.map((course) => {
-              const percentage = (course.completedLessons / course.totalLessons) * 100;
-              return (
-                <div
-                  key={course.id}
-                  className="p-5 rounded-xl bg-card border border-border hover:shadow-md transition-all"
-                >
-                  <div className="flex items-start gap-4">
-                    <img
-                      src={course.thumbnail}
-                      alt={course.title}
-                      className="w-16 h-16 rounded-lg object-cover"
-                    />
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-serif font-medium text-foreground truncate">{course.title}</h3>
-                      <p className="text-sm text-muted-foreground font-sans">{course.instructor}</p>
-                      <div className="mt-3">
-                        <div className="flex justify-between text-sm mb-1 font-sans">
-                          <span className="text-muted-foreground">
-                            {course.completedLessons}/{course.totalLessons} aulas
-                          </span>
-                          <span className="font-medium text-primary">
-                            {Math.round(percentage)}%
-                          </span>
+          {coursesInProgress.length === 0 ? (
+            <div className="p-8 rounded-xl bg-card border border-border text-center">
+              <BookOpen className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+              <p className="text-muted-foreground">Nenhum curso em andamento</p>
+              <p className="text-sm text-muted-foreground mt-1">Inscreva-se em um curso para começar sua jornada</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {coursesInProgress.map((course) => {
+                const percentage = course.totalLessons > 0 
+                  ? (course.completedLessons / course.totalLessons) * 100 
+                  : 0;
+                return (
+                  <div
+                    key={course.id}
+                    className="p-5 rounded-xl bg-card border border-border hover:shadow-md transition-all"
+                  >
+                    <div className="flex items-start gap-4">
+                      <img
+                        src={course.thumbnail}
+                        alt={course.title}
+                        className="w-16 h-16 rounded-lg object-cover"
+                      />
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-serif font-medium text-foreground truncate">{course.title}</h3>
+                        <p className="text-sm text-muted-foreground font-sans">{course.instructor}</p>
+                        <div className="mt-3">
+                          <div className="flex justify-between text-sm mb-1 font-sans">
+                            <span className="text-muted-foreground">
+                              {course.completedLessons}/{course.totalLessons} aulas
+                            </span>
+                            <span className="font-medium text-primary">
+                              {Math.round(percentage)}%
+                            </span>
+                          </div>
+                          <Progress value={percentage} className="h-2" />
                         </div>
-                        <Progress value={percentage} className="h-2" />
                       </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
+          )}
         </div>
       </div>
     </AppLayout>
