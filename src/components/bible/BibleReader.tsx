@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { useBibleESV } from '@/hooks/useBibleESV';
+import { useBibleTranslations, AVAILABLE_TRANSLATIONS } from '@/hooks/useBibleTranslations';
 import { useBibleBookmarks } from '@/hooks/useBibleBookmarks';
 import { useBibleNotes } from '@/hooks/useBibleNotes';
 import { useBibleStudies } from '@/hooks/useBibleStudies';
@@ -22,14 +22,25 @@ import { InterlinearChapter } from '@/components/bible/InterlinearView';
 import { 
   ChevronLeft, ChevronRight, Search, Book, Loader2, BookOpen, ChevronDown, 
   MessageSquare, Heart, Bookmark, PenLine, Copy, List, Settings2, 
-  Type, Tag, X, Check, Languages
+  Type, Tag, X, Check, Languages, BookText
 } from 'lucide-react';
 import { toast } from 'sonner';
 
 // Mostrar estudo original completo sem filtros
 
 export function BibleReader() {
-  const { loading, error, books, getChapter, searchBible, tableOfContents, info, loadBook } = useBibleESV();
+  const { 
+    loading, 
+    error, 
+    books, 
+    getChapter, 
+    searchBible, 
+    loadBook, 
+    currentTranslation, 
+    loadTranslation, 
+    availableTranslations,
+    dataLoaded 
+  } = useBibleTranslations();
   const { bookmarks, isBookmarked, toggleBookmark } = useBibleBookmarks();
   const { notes, saveNote, getNoteForVerse } = useBibleNotes();
   const { getStudyForVerse, hasStudyForVerse } = useBibleStudies();
@@ -52,12 +63,30 @@ export function BibleReader() {
   const [noteText, setNoteText] = useState('');
   const [activeTab, setActiveTab] = useState('read');
   const [bookLoading, setBookLoading] = useState(false);
+  const [translationLoading, setTranslationLoading] = useState(true);
 
-  // Load book when selected book changes
+  // Load default translation on mount
   useEffect(() => {
+    setTranslationLoading(true);
+    loadTranslation('ACF').finally(() => setTranslationLoading(false));
+  }, [loadTranslation]);
+
+  // Load book when selected book or translation changes
+  useEffect(() => {
+    if (!dataLoaded) return;
     setBookLoading(true);
     loadBook(selectedBook).finally(() => setBookLoading(false));
-  }, [selectedBook, loadBook]);
+  }, [selectedBook, loadBook, dataLoaded, currentTranslation]);
+
+  const handleTranslationChange = async (translationId: string) => {
+    setTranslationLoading(true);
+    await loadTranslation(translationId);
+    setTranslationLoading(false);
+    setBookLoading(true);
+    await loadBook(selectedBook);
+    setBookLoading(false);
+    toast.success(`Tradução alterada para ${AVAILABLE_TRANSLATIONS.find(t => t.id === translationId)?.shortName}`);
+  };
 
   const testamentBooks = books.filter(b => 
     selectedTestament === 'old' 
@@ -224,7 +253,7 @@ export function BibleReader() {
     setNoteText('');
   };
 
-  if (loading || bookLoading) {
+  if (loading || bookLoading || translationLoading) {
     return (
       <div className="flex items-center justify-center h-64">
         <Loader2 className="h-8 w-8 animate-spin text-primary" />
@@ -255,8 +284,8 @@ export function BibleReader() {
             Favoritos ({bookmarks.length})
           </TabsTrigger>
           <TabsTrigger value="toc" className="flex items-center gap-2">
-            <List className="h-4 w-4" />
-            Índice
+            <BookText className="h-4 w-4" />
+            Traduções
           </TabsTrigger>
         </TabsList>
 
@@ -276,8 +305,28 @@ export function BibleReader() {
             </TabsList>
           </Tabs>
 
-          {/* Controls Row 1: Book, Chapter, Settings */}
+          {/* Controls Row 1: Translation, Book, Chapter, Settings */}
           <div className="flex flex-wrap gap-2 items-center">
+            {/* Translation Selector */}
+            <Select 
+              value={currentTranslation} 
+              onValueChange={handleTranslationChange}
+            >
+              <SelectTrigger className="w-[100px]">
+                <BookText className="h-4 w-4 mr-1" />
+                <SelectValue placeholder="Tradução" />
+              </SelectTrigger>
+              <SelectContent className="max-h-[300px]">
+                {availableTranslations.map(translation => (
+                  <SelectItem key={translation.id} value={translation.id}>
+                    <div className="flex flex-col">
+                      <span className="font-medium">{translation.shortName}</span>
+                    </div>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
             <Select 
               value={selectedBook} 
               onValueChange={(v) => { 
@@ -689,27 +738,36 @@ export function BibleReader() {
           </ScrollArea>
         </TabsContent>
 
-        {/* Table of Contents Tab */}
+        {/* Table of Contents Tab - Translations */}
         <TabsContent value="toc" className="mt-4">
           <ScrollArea className="h-[500px]">
-            {tableOfContents && tableOfContents.length > 0 ? (
-              <div className="space-y-1">
-                {tableOfContents.map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="p-3 border-b hover:bg-muted/50 cursor-pointer flex items-center justify-between"
-                  >
-                    <span className="font-medium">{item.item}</span>
-                    <span className="text-sm text-muted-foreground">Pág. {item.page}</span>
+            <div className="space-y-3">
+              <h3 className="font-semibold text-lg mb-4">Traduções Disponíveis</h3>
+              {availableTranslations.map((translation) => (
+                <div
+                  key={translation.id}
+                  className={`p-4 border rounded-lg cursor-pointer transition-colors ${
+                    currentTranslation === translation.id 
+                      ? 'bg-primary/10 border-primary' 
+                      : 'hover:bg-muted/50'
+                  }`}
+                  onClick={() => handleTranslationChange(translation.id)}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <BookText className="h-5 w-5 text-primary" />
+                      <span className="font-semibold">{translation.shortName}</span>
+                      <span className="text-muted-foreground">-</span>
+                      <span>{translation.name}</span>
+                    </div>
+                    {currentTranslation === translation.id && (
+                      <Badge variant="default">Atual</Badge>
+                    )}
                   </div>
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-8 text-muted-foreground">
-                <List className="h-12 w-12 mx-auto mb-2 opacity-50" />
-                <p>Índice não disponível.</p>
-              </div>
-            )}
+                  <p className="text-sm text-muted-foreground mt-1">{translation.description}</p>
+                </div>
+              ))}
+            </div>
           </ScrollArea>
         </TabsContent>
       </Tabs>
