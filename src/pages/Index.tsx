@@ -3,13 +3,15 @@ import { CourseCard } from "@/components/courses/CourseCard";
 import { StatsCard } from "@/components/dashboard/StatsCard";
 import { ActivityTimeline } from "@/components/dashboard/ActivityTimeline";
 import { CalendarWidget } from "@/components/dashboard/CalendarWidget";
-import { mockActivities } from "@/data/mockData";
+import { useUpcomingEvents } from "@/hooks/useCalendarEvents";
 import { BookOpen, Clock, Trophy, TrendingUp, ArrowRight, Cross, BookMarked, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import heroBanner from "@/assets/hero-theology.jpg";
 import { useAuth } from "@/hooks/useAuth";
 import { useCourses, useEnrollments } from "@/hooks/useCourses";
+import { format } from "date-fns";
+import { ptBR } from "date-fns/locale";
 
 const Index = () => {
   const { user } = useAuth();
@@ -17,6 +19,7 @@ const Index = () => {
   
   const { data: courses, isLoading: loadingCourses } = useCourses();
   const { data: enrollments, isLoading: loadingEnrollments } = useEnrollments();
+  const { data: upcomingEvents, isLoading: loadingEvents } = useUpcomingEvents(4);
 
   // Map courses with enrollment data
   const coursesWithProgress = courses?.map(course => {
@@ -39,6 +42,28 @@ const Index = () => {
 
   const coursesInProgress = coursesWithProgress.filter((c) => c.progress > 0 && c.progress < 100);
   const completedCourses = coursesWithProgress.filter((c) => c.progress === 100);
+
+  // Map events to activities format
+  const activities = upcomingEvents?.map(event => {
+    let eventType: "assignment" | "quiz" | "lesson" | "deadline" = "lesson";
+    if (event.event_type === "deadline") eventType = "deadline";
+    if (event.event_type === "quiz") eventType = "quiz";
+    if (event.event_type === "assignment") eventType = "assignment";
+    return {
+      id: event.id,
+      title: event.title,
+      course: event.description || "Evento",
+      type: eventType,
+      dueDate: format(new Date(event.start_time), "d 'de' MMMM", { locale: ptBR }),
+    };
+  }) || [];
+
+  // Map events for calendar widget
+  const calendarEvents = upcomingEvents?.map(event => ({
+    date: new Date(event.start_time),
+    title: event.title,
+    type: (event.event_type === "class" ? "class" : event.event_type === "deadline" ? "deadline" : "exam") as "class" | "deadline" | "exam",
+  })) || [];
   
   const isLoading = loadingCourses || loadingEnrollments;
 
@@ -91,11 +116,10 @@ const Index = () => {
             variant="primary"
           />
           <StatsCard
-            title="Horas de Estudo"
-            value="42h"
-            subtitle="Este mês"
+            title="Cursos Disponíveis"
+            value={coursesWithProgress.length}
+            subtitle="Total de cursos"
             icon={Clock}
-            trend={{ value: 12, isPositive: true }}
             variant="default"
           />
           <StatsCard
@@ -106,9 +130,9 @@ const Index = () => {
             variant="success"
           />
           <StatsCard
-            title="Devocionais"
-            value="7 dias"
-            subtitle="Sequência de leitura"
+            title="Próximos Eventos"
+            value={upcomingEvents?.length || 0}
+            subtitle="Atividades agendadas"
             icon={TrendingUp}
             variant="accent"
           />
@@ -149,18 +173,22 @@ const Index = () => {
           {/* Sidebar */}
           <aside className="space-y-6">
             {/* Calendar */}
-            <CalendarWidget
-              events={[
-                { date: new Date(2024, 11, 25), title: "Culto de Natal", type: "class" },
-                { date: new Date(2024, 11, 28), title: "Entrega de Ensaio", type: "deadline" },
-                { date: new Date(2024, 11, 31), title: "Vigília de Ano Novo", type: "class" },
-              ]}
-            />
+            <CalendarWidget events={calendarEvents} />
 
             {/* Activities */}
             <div className="space-y-4">
               <h3 className="font-serif font-semibold text-foreground">Próximas Atividades</h3>
-              <ActivityTimeline activities={mockActivities.slice(0, 4)} />
+              {loadingEvents ? (
+                <div className="flex items-center justify-center py-8">
+                  <Loader2 className="w-6 h-6 animate-spin text-primary" />
+                </div>
+              ) : activities.length === 0 ? (
+                <div className="p-6 rounded-xl bg-card border border-border text-center">
+                  <p className="text-muted-foreground text-sm">Nenhuma atividade agendada</p>
+                </div>
+              ) : (
+                <ActivityTimeline activities={activities} />
+              )}
             </div>
           </aside>
         </div>
