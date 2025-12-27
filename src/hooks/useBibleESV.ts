@@ -98,8 +98,9 @@ export function useBibleESV() {
           const verseNumber = parseInt(verseNum);
           const verseData = chapterData[verseKey];
           
-          // Clean up the English text (remove Strong's numbers for display)
-          let text = verseData.en || '';
+          // Use Spanish text (closest to Portuguese available) or fallback to English
+          let text = verseData.sp || verseData.en || '';
+          // Clean up Strong's numbers if present
           text = text.replace(/\[H\d+\]/g, '').replace(/\[G\d+\]/g, '');
           text = text.replace(/<\/?em>/g, '');
           text = text.replace(/\s+/g, ' ').trim();
