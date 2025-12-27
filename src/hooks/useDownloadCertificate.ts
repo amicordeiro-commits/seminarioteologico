@@ -13,7 +13,7 @@ export function useDownloadCertificate() {
 
   const downloadCertificate = async ({
     certificateId,
-    style = "premium",
+    style = "golden",
   }: DownloadCertificateParams) => {
     setIsDownloading(true);
 
