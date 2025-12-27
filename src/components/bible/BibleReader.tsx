@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { useBibleTranslations, AVAILABLE_TRANSLATIONS } from '@/hooks/useBibleTranslations';
 import { useBibleBookmarks } from '@/hooks/useBibleBookmarks';
 import { useBibleNotes } from '@/hooks/useBibleNotes';
+import { useBibleSermons } from '@/hooks/useBibleSermons';
 import { getBookName, getTestament, OLD_TESTAMENT_BOOKS, NEW_TESTAMENT_BOOKS } from '@/lib/bibleTypes';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
@@ -41,7 +42,9 @@ export function BibleReader() {
   } = useBibleTranslations();
   const { bookmarks, isBookmarked, toggleBookmark } = useBibleBookmarks();
   const { notes, saveNote, getNoteForVerse } = useBibleNotes();
-  
+  const { sermons, loading: sermonsLoading, searchSermons } = useBibleSermons();
+  const [sermonSearch, setSermonSearch] = useState('');
+  const [selectedSermon, setSelectedSermon] = useState<number | null>(null);
   
   const [selectedTestament, setSelectedTestament] = useState<'old' | 'new'>('old');
   const [selectedBook, setSelectedBook] = useState('gn');
@@ -271,10 +274,14 @@ export function BibleReader() {
     <div className="space-y-4">
       {/* Main Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="grid w-full grid-cols-3">
+        <TabsList className="grid w-full grid-cols-4">
           <TabsTrigger value="read" className="flex items-center gap-2">
             <Book className="h-4 w-4" />
             Leitura
+          </TabsTrigger>
+          <TabsTrigger value="estudos" className="flex items-center gap-2">
+            <MessageSquare className="h-4 w-4" />
+            Estudos
           </TabsTrigger>
           <TabsTrigger value="bookmarks" className="flex items-center gap-2">
             <Bookmark className="h-4 w-4" />
@@ -672,6 +679,84 @@ export function BibleReader() {
               </div>
             )}
           </ScrollArea>
+        </TabsContent>
+
+        {/* Estudos Tab - Sermons */}
+        <TabsContent value="estudos" className="mt-4">
+          <div className="space-y-4">
+            <div className="flex gap-2">
+              <Input
+                value={sermonSearch}
+                onChange={e => setSermonSearch(e.target.value)}
+                placeholder="Buscar estudos e sermões..."
+                className="flex-1"
+              />
+              <Button variant="secondary" onClick={() => setSermonSearch('')}>
+                <X className="h-4 w-4" />
+              </Button>
+            </div>
+            
+            {selectedSermon !== null ? (
+              <div className="space-y-4">
+                <Button variant="ghost" onClick={() => setSelectedSermon(null)}>
+                  <ChevronLeft className="h-4 w-4 mr-1" /> Voltar para lista
+                </Button>
+                <ScrollArea className="h-[450px] border rounded-lg p-4">
+                  {sermons[selectedSermon] && (
+                    <div className="space-y-4">
+                      <div className="border-b pb-4">
+                        <Badge variant="secondary" className="mb-2">
+                          {sermons[selectedSermon].ReferenciaBiblica}
+                        </Badge>
+                        <h2 className="text-xl font-bold">{sermons[selectedSermon].Titulo}</h2>
+                      </div>
+                      <div className="prose prose-sm max-w-none dark:prose-invert whitespace-pre-wrap text-foreground">
+                        {sermons[selectedSermon].Texto}
+                      </div>
+                    </div>
+                  )}
+                </ScrollArea>
+              </div>
+            ) : (
+              <ScrollArea className="h-[450px]">
+                {sermonsLoading ? (
+                  <div className="flex items-center justify-center py-8">
+                    <Loader2 className="h-6 w-6 animate-spin" />
+                    <span className="ml-2">Carregando estudos...</span>
+                  </div>
+                ) : (
+                  <div className="space-y-2">
+                    {(sermonSearch ? searchSermons(sermonSearch) : sermons).map((sermon, idx) => (
+                      <div
+                        key={idx}
+                        className="p-4 border rounded-lg hover:bg-muted/50 cursor-pointer transition-colors"
+                        onClick={() => setSelectedSermon(sermons.indexOf(sermon))}
+                      >
+                        <div className="flex items-start justify-between gap-2">
+                          <div className="flex-1">
+                            <Badge variant="outline" className="mb-1 text-xs">
+                              {sermon.ReferenciaBiblica}
+                            </Badge>
+                            <h3 className="font-semibold line-clamp-1">{sermon.Titulo}</h3>
+                            <p className="text-sm text-muted-foreground line-clamp-2 mt-1">
+                              {sermon.Texto.substring(0, 150)}...
+                            </p>
+                          </div>
+                          <ChevronRight className="h-5 w-5 text-muted-foreground flex-shrink-0" />
+                        </div>
+                      </div>
+                    ))}
+                    {(sermonSearch ? searchSermons(sermonSearch) : sermons).length === 0 && (
+                      <div className="text-center py-8 text-muted-foreground">
+                        <MessageSquare className="h-12 w-12 mx-auto mb-2 opacity-50" />
+                        <p>Nenhum estudo encontrado.</p>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </ScrollArea>
+            )}
+          </div>
         </TabsContent>
 
         {/* Table of Contents Tab - Translations */}
