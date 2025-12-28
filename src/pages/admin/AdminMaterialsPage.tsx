@@ -150,7 +150,7 @@ export default function AdminMaterialsPage() {
     
     try {
       // Carregar o conteúdo do arquivo
-      const response = await fetch(`/materials/txt/${material.filename}`);
+      const response = await fetch(`/materials/bacharel/${material.filename}`);
       if (!response.ok) throw new Error('Arquivo não encontrado');
       
       const rawContent = await response.text();
