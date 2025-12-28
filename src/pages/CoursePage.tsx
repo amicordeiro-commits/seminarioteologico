@@ -34,6 +34,41 @@ import { QuizPlayer } from "@/components/quiz/QuizPlayer";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 
+// Mapeamento de títulos de lições para arquivos .txt
+const LESSON_FILES: Record<string, { folder: string; filename: string }> = {
+  // Bacharel
+  "Administração Eclesiástica": { folder: "bacharel", filename: "administracao_eclesiastica.txt" },
+  "Teologia do Antigo Testamento": { folder: "bacharel", filename: "antigo_testamento.txt" },
+  "Arqueologia Bíblica": { folder: "bacharel", filename: "arqueologia_biblica.txt" },
+  "Bibliologia": { folder: "bacharel", filename: "bibliologia.txt" },
+  "O Culto Bíblico": { folder: "bacharel", filename: "culto_biblico.txt" },
+  "Doutrinas Bíblicas": { folder: "bacharel", filename: "doutrinas_biblicas.txt" },
+  "Educação Cristã": { folder: "bacharel", filename: "educacao_crista.txt" },
+  "Estatutos da Igreja": { folder: "bacharel", filename: "estatutos_igreja.txt" },
+  "Ética Cristã": { folder: "bacharel", filename: "etica.txt" },
+  "Evangelismo Pessoal": { folder: "bacharel", filename: "evangelismo_pessoal.txt" },
+  "Teologia Pastoral": { folder: "bacharel", filename: "teologia_pastoral.txt" },
+  // Doutorado
+  "Apologética do Antigo Testamento": { folder: "doutorado", filename: "apologetica_at.txt" },
+  "Apologética do Novo Testamento": { folder: "doutorado", filename: "apologetica_nt.txt" },
+  "Capelania Evangélica": { folder: "doutorado", filename: "capelania_evangelica.txt" },
+  "Direito e Religião": { folder: "doutorado", filename: "direito_religiao.txt" },
+  "Ética Cristã Avançada": { folder: "doutorado", filename: "etica_crista.txt" },
+  "Exegese Bíblica": { folder: "doutorado", filename: "exegese_biblica.txt" },
+  "Fenomenologia da Religião": { folder: "doutorado", filename: "fenomenologia_religiao.txt" },
+  "Filosofia Cristã": { folder: "doutorado", filename: "filosofia_crista.txt" },
+  "Filosofia da Educação": { folder: "doutorado", filename: "filosofia_educacao.txt" },
+  "Hermenêutica Bíblica": { folder: "doutorado", filename: "hermeneutica_biblica.txt" },
+  "História da Igreja": { folder: "doutorado", filename: "historia_igreja.txt" },
+  "Homilética Narrativa": { folder: "doutorado", filename: "homiletica_narrativa.txt" },
+  "Liturgia": { folder: "doutorado", filename: "liturgia.txt" },
+  "Psicologia Geral": { folder: "doutorado", filename: "psicologia_geral.txt" },
+  "Psicologia Pastoral": { folder: "doutorado", filename: "psicologia_pastoral.txt" },
+  "Sociologia e Antropologia da Religião": { folder: "doutorado", filename: "sociologia_antropologia_religiao.txt" },
+  "Temas Atuais da Teologia": { folder: "doutorado", filename: "temas_atuais_teologia.txt" },
+  "Teologia Espiritual": { folder: "doutorado", filename: "teologia_espiritual.txt" },
+};
+
 const CoursePage = () => {
   const { id } = useParams();
   const { toast } = useToast();
@@ -178,6 +213,43 @@ const CoursePage = () => {
     }
   };
 
+  // Abre material da lição diretamente do arquivo .txt
+  const handleOpenLesson = async (lesson: any) => {
+    const lessonFile = LESSON_FILES[lesson.title];
+    if (!lessonFile) {
+      toast({
+        title: "Material não encontrado",
+        description: "O material desta aula não está disponível.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const url = `/materials/${lessonFile.folder}/${lessonFile.filename}`;
+    
+    setViewerTitle(lesson.title);
+    setViewerKind("text");
+    setViewerOpen(true);
+    setViewerLoading(true);
+
+    try {
+      const res = await fetch(url, { cache: "no-store" });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const text = await res.text();
+      setViewerText(text);
+    } catch (e) {
+      resetViewer();
+      setViewerOpen(false);
+      toast({
+        title: "Não foi possível abrir o material",
+        description: "Erro ao carregar o arquivo da aula.",
+        variant: "destructive",
+      });
+    } finally {
+      setViewerLoading(false);
+    }
+  };
+
   if (loadingCourse || loadingEnrollment) {
     return (
       <AppLayout>
@@ -300,58 +372,71 @@ const CoursePage = () => {
                       <div className="space-y-2 pt-2 border-t border-border">
                         {course.lessons.map((lesson) => {
                           const isCompleted = lessonProgress?.some(p => p.lesson_id === lesson.id && p.completed);
+                          const hasFile = !!LESSON_FILES[lesson.title];
                           return (
-                            <button
-                              key={lesson.id}
-                              onClick={() => enrollment && !isCompleted && handleMarkComplete(lesson.id)}
-                              disabled={!enrollment || isCompleted || markCompleteMutation.isPending}
-                              className={cn(
-                                "w-full flex items-center gap-3 p-3 rounded-lg transition-all duration-200 text-left group font-sans",
-                                isCompleted
-                                  ? "bg-success/10"
-                                  : enrollment
-                                  ? "hover:bg-secondary cursor-pointer"
-                                  : "opacity-50 cursor-not-allowed"
-                              )}
-                            >
-                              <div
+                            <div key={lesson.id} className="flex items-center gap-2">
+                              <button
+                                onClick={() => enrollment && hasFile && handleOpenLesson(lesson)}
+                                disabled={!enrollment || !hasFile}
                                 className={cn(
-                                  "w-8 h-8 rounded-full flex items-center justify-center transition-colors",
+                                  "flex-1 flex items-center gap-3 p-3 rounded-lg transition-all duration-200 text-left group font-sans",
                                   isCompleted
-                                    ? "bg-success text-success-foreground"
-                                    : "bg-muted text-muted-foreground group-hover:bg-primary/20 group-hover:text-primary"
+                                    ? "bg-success/10"
+                                    : enrollment && hasFile
+                                    ? "hover:bg-secondary cursor-pointer"
+                                    : "opacity-50 cursor-not-allowed"
                                 )}
                               >
-                                {isCompleted ? (
-                                  <CheckCircle2 className="w-4 h-4" />
-                                ) : (
-                                  <PlayCircle className="w-4 h-4" />
-                                )}
-                              </div>
-                              <div className="flex-1">
-                                <p
+                                <div
                                   className={cn(
-                                    "text-sm font-medium",
+                                    "w-8 h-8 rounded-full flex items-center justify-center transition-colors",
                                     isCompleted
-                                      ? "text-muted-foreground line-through"
-                                      : "text-foreground"
+                                      ? "bg-success text-success-foreground"
+                                      : "bg-muted text-muted-foreground group-hover:bg-primary/20 group-hover:text-primary"
                                   )}
                                 >
-                                  {lesson.title}
-                                </p>
-                                {lesson.description && (
-                                  <p className="text-xs text-muted-foreground">{lesson.description}</p>
+                                  {isCompleted ? (
+                                    <CheckCircle2 className="w-4 h-4" />
+                                  ) : (
+                                    <BookOpen className="w-4 h-4" />
+                                  )}
+                                </div>
+                                <div className="flex-1">
+                                  <p
+                                    className={cn(
+                                      "text-sm font-medium",
+                                      isCompleted
+                                        ? "text-muted-foreground line-through"
+                                        : "text-foreground"
+                                    )}
+                                  >
+                                    {lesson.title}
+                                  </p>
+                                  {lesson.description && (
+                                    <p className="text-xs text-muted-foreground">{lesson.description}</p>
+                                  )}
+                                </div>
+                                <span className="text-xs text-muted-foreground">
+                                  {lesson.duration_minutes}min
+                                </span>
+                                {lesson.is_free && (
+                                  <Badge variant="secondary" className="text-xs">
+                                    Grátis
+                                  </Badge>
                                 )}
-                              </div>
-                              <span className="text-xs text-muted-foreground">
-                                {lesson.duration_minutes}min
-                              </span>
-                              {lesson.is_free && (
-                                <Badge variant="secondary" className="text-xs">
-                                  Grátis
-                                </Badge>
+                              </button>
+                              {enrollment && !isCompleted && (
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  onClick={() => handleMarkComplete(lesson.id)}
+                                  disabled={markCompleteMutation.isPending}
+                                  className="text-xs text-muted-foreground hover:text-success"
+                                >
+                                  <CheckCircle2 className="w-4 h-4" />
+                                </Button>
                               )}
-                            </button>
+                            </div>
                           );
                         })}
                       </div>
