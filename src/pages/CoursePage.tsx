@@ -5,6 +5,7 @@ import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Play,
   Clock,
@@ -20,6 +21,8 @@ import {
   Loader2,
   UserPlus,
   FileText,
+  ExternalLink,
+  File,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useCourse, useEnrollment, useEnrollInCourse, useLessonProgress, useMarkLessonComplete } from "@/hooks/useCourses";
@@ -28,11 +31,14 @@ import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { QuizCard } from "@/components/quiz/QuizCard";
 import { QuizPlayer } from "@/components/quiz/QuizPlayer";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 
 const CoursePage = () => {
   const { id } = useParams();
   const { toast } = useToast();
   const [activeQuizId, setActiveQuizId] = useState<string | null>(null);
+  const [showMaterials, setShowMaterials] = useState(false);
   
   const { data: course, isLoading: loadingCourse } = useCourse(id || '');
   const { data: enrollment, isLoading: loadingEnrollment } = useEnrollment(id || '');
@@ -41,6 +47,23 @@ const CoursePage = () => {
   const { data: quizAttempts = [] } = useQuizAttempts();
   const enrollMutation = useEnrollInCourse();
   const markCompleteMutation = useMarkLessonComplete();
+
+  // Fetch course materials
+  const { data: courseMaterials = [], isLoading: loadingMaterials } = useQuery({
+    queryKey: ["course-materials", id],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("library_materials")
+        .select("*")
+        .eq("is_published", true)
+        .or(`course_id.eq.${id},course_id.is.null`)
+        .order("created_at", { ascending: false });
+      
+      if (error) throw error;
+      return data;
+    },
+    enabled: !!id && !!enrollment,
+  });
 
   const handleEnroll = async () => {
     if (!id) return;
@@ -351,16 +374,23 @@ const CoursePage = () => {
                 </div>
               )}
 
-              <div className="flex gap-2">
-                <Button variant="outline" size="sm" className="flex-1">
-                  <Download className="w-4 h-4 mr-1" />
-                  Materiais
-                </Button>
-                <Button variant="outline" size="sm" className="flex-1">
-                  <Share2 className="w-4 h-4 mr-1" />
-                  Compartilhar
-                </Button>
-              </div>
+              {enrollment && (
+                <div className="flex gap-2">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="flex-1"
+                    onClick={() => setShowMaterials(true)}
+                  >
+                    <Download className="w-4 h-4 mr-1" />
+                    Materiais
+                  </Button>
+                  <Button variant="outline" size="sm" className="flex-1">
+                    <Share2 className="w-4 h-4 mr-1" />
+                    Compartilhar
+                  </Button>
+                </div>
+              )}
 
               {/* Instructor */}
               <div className="mt-6 pt-6 border-t border-border">
@@ -407,6 +437,74 @@ const CoursePage = () => {
               onClose={() => setActiveQuizId(null)}
             />
           )}
+        </DialogContent>
+      </Dialog>
+
+      {/* Materials Dialog */}
+      <Dialog open={showMaterials} onOpenChange={setShowMaterials}>
+        <DialogContent className="max-w-2xl max-h-[80vh]">
+          <DialogHeader>
+            <DialogTitle className="font-serif flex items-center gap-2">
+              <FileText className="w-5 h-5 text-primary" />
+              Materiais do Curso
+            </DialogTitle>
+          </DialogHeader>
+          <ScrollArea className="h-[60vh] pr-4">
+            {loadingMaterials ? (
+              <div className="flex items-center justify-center py-8">
+                <Loader2 className="w-6 h-6 animate-spin text-primary" />
+              </div>
+            ) : courseMaterials.length === 0 ? (
+              <div className="text-center py-8 text-muted-foreground">
+                <FileText className="w-12 h-12 mx-auto mb-4 opacity-50" />
+                <p>Nenhum material disponível para este curso.</p>
+                <p className="text-sm mt-2">Acesse a Biblioteca para ver todos os materiais.</p>
+                <Button variant="outline" asChild className="mt-4">
+                  <Link to="/library">Ver Biblioteca</Link>
+                </Button>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {courseMaterials.map((material) => (
+                  <div
+                    key={material.id}
+                    className="p-4 rounded-xl bg-card border border-border hover:border-primary/30 transition-colors"
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                        <File className="w-5 h-5 text-primary" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h4 className="font-medium text-foreground truncate">{material.title}</h4>
+                        {material.description && (
+                          <p className="text-sm text-muted-foreground line-clamp-2 mt-1">
+                            {material.description}
+                          </p>
+                        )}
+                        <div className="flex items-center gap-2 mt-2">
+                          <Badge variant="secondary" className="text-xs">
+                            {material.category || 'Geral'}
+                          </Badge>
+                          {material.file_type && (
+                            <Badge variant="outline" className="text-xs uppercase">
+                              {material.file_type}
+                            </Badge>
+                          )}
+                        </div>
+                      </div>
+                      {material.file_url && (
+                        <Button variant="ghost" size="icon" asChild>
+                          <a href={material.file_url} target="_blank" rel="noopener noreferrer">
+                            <ExternalLink className="w-4 h-4" />
+                          </a>
+                        </Button>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </ScrollArea>
         </DialogContent>
       </Dialog>
     </AppLayout>
