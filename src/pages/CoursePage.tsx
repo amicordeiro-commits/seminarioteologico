@@ -524,7 +524,7 @@ const CoursePage = () => {
                                   </Badge>
                                 )}
                               </button>
-                              {/* Botão para download de PDF */}
+                              {/* Botão para visualizar PDF */}
                               {enrollment && hasFile && (
                                 <Button
                                   variant="secondary"
@@ -535,14 +535,14 @@ const CoursePage = () => {
                                   }}
                                   disabled={generatingPdf === lesson.id}
                                   className="text-xs gap-1"
-                                  title="Baixar PDF"
+                                  title="Visualizar PDF"
                                 >
                                   {generatingPdf === lesson.id ? (
                                     <Loader2 className="w-4 h-4 animate-spin" />
                                   ) : (
                                     <FileDown className="w-4 h-4" />
                                   )}
-                                  PDF
+                                  Visualizar
                                 </Button>
                               )}
                               {enrollment && !isCompleted && (
