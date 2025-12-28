@@ -1,29 +1,28 @@
 import { useState, useEffect, useCallback } from 'react';
 
-interface StudyVerse {
-  number: number;
-  text: string;
-  comments: string[];
+interface EstudoItem {
+  referencia: string;
+  capitulo: number;
+  versiculo: number;
+  comentario: string;
 }
 
-interface StudyChapter {
-  number: number;
-  verses: StudyVerse[];
+interface LivroData {
+  introducao?: string;
+  estudos: EstudoItem[];
 }
 
-interface StudyBook {
-  name: string;
-  chapters: StudyChapter[];
+interface TestamentoData {
+  [livro: string]: LivroData;
 }
 
 interface StudyBibleData {
-  metadata: {
-    title: string;
-    version: string;
-    publisher: string;
-    structure: string;
+  titulo: string;
+  versao: string;
+  testamentos: {
+    'Antigo Testamento': TestamentoData;
+    'Novo Testamento'?: TestamentoData;
   };
-  books: StudyBook[];
 }
 
 // Map Portuguese book names to abbreviations
@@ -106,28 +105,33 @@ let isLoading = false;
 function buildIndex(data: StudyBibleData): CommentsIndex {
   const index: CommentsIndex = new Map();
   
-  for (const book of data.books) {
-    const abbrev = BOOK_NAME_TO_ABBREV[book.name.toLowerCase()];
-    if (!abbrev) {
-      console.warn(`Unknown book name: ${book.name}`);
-      continue;
-    }
+  // Process both testaments
+  const testamentos = data.testamentos;
+  
+  for (const testamento of Object.values(testamentos)) {
+    if (!testamento) continue;
     
-    for (const chapter of book.chapters) {
-      for (const verse of chapter.verses) {
-        if (verse.comments && verse.comments.length > 0) {
-          // Filter out empty or very short comments
-          const validComments = verse.comments.filter(c => c && c.trim().length > 10);
-          if (validComments.length > 0) {
-            const key = `${abbrev}_${chapter.number}_${verse.number}`;
-            index.set(key, validComments);
-          }
-        }
+    for (const [bookName, bookData] of Object.entries(testamento)) {
+      const abbrev = BOOK_NAME_TO_ABBREV[bookName.toLowerCase()];
+      if (!abbrev) {
+        console.warn(`Unknown book name: ${bookName}`);
+        continue;
+      }
+      
+      if (!bookData.estudos) continue;
+      
+      for (const estudo of bookData.estudos) {
+        if (!estudo.comentario || estudo.comentario.trim().length < 20) continue;
+        
+        const key = `${abbrev}_${estudo.capitulo}_${estudo.versiculo}`;
+        const existing = index.get(key) || [];
+        existing.push(estudo.comentario.trim());
+        index.set(key, existing);
       }
     }
   }
   
-  console.log(`Built study comments index with ${index.size} entries`);
+  console.log(`Built study comments index with ${index.size} entries from refined data`);
   return index;
 }
 
@@ -146,7 +150,7 @@ export function useStudyBibleComments() {
     if (isLoading) return;
     isLoading = true;
 
-    fetch('/bible/biblia-estudo-comentarios.json')
+    fetch('/bible/estudos-refinados.json')
       .then(res => {
         if (!res.ok) throw new Error('Failed to load study Bible');
         return res.json();
@@ -200,6 +204,6 @@ export function useStudyBibleComments() {
     getCommentsForVerse,
     hasCommentsForVerse,
     getChapterCommentsCount,
-    metadata: studyBibleData?.metadata,
+    metadata: studyBibleData ? { title: studyBibleData.titulo, version: studyBibleData.versao } : undefined,
   };
 }
