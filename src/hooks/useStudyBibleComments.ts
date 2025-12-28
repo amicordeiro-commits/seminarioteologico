@@ -95,6 +95,77 @@ const BOOK_NAME_TO_ABBREV: Record<string, string> = {
   'apocalipse': 'ap',
 };
 
+// Keywords that indicate a comment is from Exodus, not Genesis
+const EXODUS_KEYWORDS = [
+  'faraó', 'israelitas', 'escravos', 'escravidão', 'egípcios', 'hebreus', 
+  'parteiras', 'moisés', 'arão', 'pragas', 'êxodo', 'pitom', 'ramessés',
+  'egito a convite', 'filhos de israel', 'gósen'
+];
+
+// Keywords that are valid for Genesis creation narrative (chapters 1-2)
+const GENESIS_CREATION_KEYWORDS = [
+  'criação', 'criou', 'deus criou', 'céus e a terra', 'luz', 'trevas',
+  'expansão', 'águas', 'terra seca', 'vegetação', 'sol', 'lua', 'estrelas',
+  'peixes', 'aves', 'animais', 'homem', 'mulher', 'imagem', 'semelhança',
+  'adão', 'eva', 'jardim', 'éden', 'universo', 'mundo'
+];
+
+// Check if a comment belongs to the book based on content analysis
+function isValidCommentForBook(bookName: string, chapter: number, comment: string): boolean {
+  const lowerComment = comment.toLowerCase();
+  const lowerBook = bookName.toLowerCase();
+  
+  // For Genesis chapters 1-11 (primordial history), filter out Exodus content
+  if (lowerBook.includes('gên') || lowerBook.includes('gen')) {
+    // Check if comment contains Exodus-specific keywords
+    const hasExodusContent = EXODUS_KEYWORDS.some(keyword => 
+      lowerComment.includes(keyword.toLowerCase())
+    );
+    
+    // For creation narrative (chapters 1-2), be stricter
+    if (chapter <= 2) {
+      // If it has Exodus keywords but no creation keywords, reject
+      if (hasExodusContent) {
+        const hasCreationContent = GENESIS_CREATION_KEYWORDS.some(keyword =>
+          lowerComment.includes(keyword.toLowerCase())
+        );
+        if (!hasCreationContent) {
+          return false;
+        }
+      }
+    }
+    
+    // For chapters 1-11, reject pure Exodus content
+    if (chapter <= 11 && hasExodusContent) {
+      // Check if it's a cross-reference or genuinely about patriarchs
+      const mentionsPatriarchs = lowerComment.includes('abraão') || 
+        lowerComment.includes('isaque') || lowerComment.includes('jacó') ||
+        lowerComment.includes('noé') || lowerComment.includes('caim') ||
+        lowerComment.includes('abel') || lowerComment.includes('adão');
+      
+      if (!mentionsPatriarchs && !lowerComment.includes('gn ') && !lowerComment.includes('gên')) {
+        return false;
+      }
+    }
+  }
+  
+  // Filter out comments that are just reference lists (no actual content)
+  if (comment.match(/^[A-Za-z0-9\s:;,.\-']+$/) && comment.length < 200) {
+    const hasActualWords = comment.split(/\s+/).filter(w => w.length > 5).length > 3;
+    if (!hasActualWords) {
+      return false;
+    }
+  }
+  
+  // Filter out corrupted/garbled text
+  const weirdCharCount = (comment.match(/[­\/\^\|<>]/g) || []).length;
+  if (weirdCharCount > 5) {
+    return false;
+  }
+  
+  return true;
+}
+
 // Index type for fast lookups
 type CommentsIndex = Map<string, string[]>;
 
@@ -104,6 +175,7 @@ let isLoading = false;
 
 function buildIndex(data: StudyBibleData): CommentsIndex {
   const index: CommentsIndex = new Map();
+  let filteredCount = 0;
   
   // Process both testaments
   const testamentos = data.testamentos;
@@ -123,6 +195,12 @@ function buildIndex(data: StudyBibleData): CommentsIndex {
       for (const estudo of bookData.estudos) {
         if (!estudo.comentario || estudo.comentario.trim().length < 20) continue;
         
+        // Validate that comment belongs to this book
+        if (!isValidCommentForBook(bookName, estudo.capitulo, estudo.comentario)) {
+          filteredCount++;
+          continue;
+        }
+        
         const key = `${abbrev}_${estudo.capitulo}_${estudo.versiculo}`;
         const existing = index.get(key) || [];
         existing.push(estudo.comentario.trim());
@@ -131,7 +209,7 @@ function buildIndex(data: StudyBibleData): CommentsIndex {
     }
   }
   
-  console.log(`Built study comments index with ${index.size} entries from refined data`);
+  console.log(`Built study comments index with ${index.size} entries (filtered ${filteredCount} misplaced comments)`);
   return index;
 }
 
