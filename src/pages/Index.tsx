@@ -4,12 +4,14 @@ import { StatsCard } from "@/components/dashboard/StatsCard";
 import { ActivityTimeline } from "@/components/dashboard/ActivityTimeline";
 import { CalendarWidget } from "@/components/dashboard/CalendarWidget";
 import { useUpcomingEvents } from "@/hooks/useCalendarEvents";
-import { BookOpen, Clock, Trophy, TrendingUp, ArrowRight, Cross, BookMarked, Loader2 } from "lucide-react";
+import { BookOpen, Clock, Trophy, TrendingUp, ArrowRight, Cross, BookMarked, Loader2, GraduationCap, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import heroBanner from "@/assets/hero-theology.jpg";
 import { useAuth } from "@/hooks/useAuth";
 import { useCourses, useEnrollments } from "@/hooks/useCourses";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
@@ -20,6 +22,24 @@ const Index = () => {
   const { data: courses, isLoading: loadingCourses } = useCourses();
   const { data: enrollments, isLoading: loadingEnrollments } = useEnrollments();
   const { data: upcomingEvents, isLoading: loadingEvents } = useUpcomingEvents(4);
+
+  // Fetch real system stats
+  const { data: systemStats } = useQuery({
+    queryKey: ["system-stats"],
+    queryFn: async () => {
+      const [lessonsResult, quizzesResult, certificatesResult] = await Promise.all([
+        supabase.from("lessons").select("id", { count: "exact", head: true }),
+        supabase.from("quizzes").select("id", { count: "exact", head: true }).eq("is_published", true),
+        supabase.from("certificates").select("id", { count: "exact", head: true }),
+      ]);
+
+      return {
+        totalLessons: lessonsResult.count || 0,
+        totalQuizzes: quizzesResult.count || 0,
+        totalCertificates: certificatesResult.count || 0,
+      };
+    },
+  });
 
   // Map courses with enrollment data
   const coursesWithProgress = courses?.map(course => {
@@ -42,6 +62,7 @@ const Index = () => {
 
   const coursesInProgress = coursesWithProgress.filter((c) => c.progress > 0 && c.progress < 100);
   const completedCourses = coursesWithProgress.filter((c) => c.progress === 100);
+  const myEnrollmentsCount = enrollments?.length || 0;
 
   // Map events to activities format
   const activities = upcomingEvents?.map(event => {
@@ -109,31 +130,31 @@ const Index = () => {
         {/* Stats Grid */}
         <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <StatsCard
-            title="Cursos Ativos"
-            value={coursesInProgress.length}
-            subtitle="Em andamento"
+            title="Cursos Disponíveis"
+            value={coursesWithProgress.length}
+            subtitle="Total no sistema"
             icon={BookOpen}
             variant="primary"
           />
           <StatsCard
-            title="Cursos Disponíveis"
-            value={coursesWithProgress.length}
-            subtitle="Total de cursos"
-            icon={Clock}
+            title="Total de Aulas"
+            value={systemStats?.totalLessons || 0}
+            subtitle="Conteúdos disponíveis"
+            icon={FileText}
             variant="default"
           />
           <StatsCard
-            title="Cursos Concluídos"
-            value={completedCourses.length}
-            subtitle="Certificados obtidos"
-            icon={Trophy}
+            title="Minhas Matrículas"
+            value={myEnrollmentsCount}
+            subtitle={`${completedCourses.length} concluído(s)`}
+            icon={GraduationCap}
             variant="success"
           />
           <StatsCard
-            title="Próximos Eventos"
-            value={upcomingEvents?.length || 0}
-            subtitle="Atividades agendadas"
-            icon={TrendingUp}
+            title="Avaliações"
+            value={systemStats?.totalQuizzes || 0}
+            subtitle="Quizzes disponíveis"
+            icon={Trophy}
             variant="accent"
           />
         </section>
