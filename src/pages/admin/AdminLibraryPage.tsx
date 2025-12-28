@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import { Library, Plus, Pencil, Trash2, Loader2, FileText, Video, Headphones, Upload, Sparkles, FolderUp } from "lucide-react";
+import { Library, Plus, Pencil, Trash2, Loader2, FileText, Video, Headphones, Upload, Sparkles, FolderUp, FileDown } from "lucide-react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -54,6 +54,8 @@ export default function AdminLibraryPage() {
   const [batchUploading, setBatchUploading] = useState(false);
   const [batchProgress, setBatchProgress] = useState({ current: 0, total: 0 });
   const [generatingPdf, setGeneratingPdf] = useState<string | null>(null);
+  const [generatingAllPdfs, setGeneratingAllPdfs] = useState(false);
+  const [pdfProgress, setPdfProgress] = useState({ current: 0, total: 0 });
   const fileInputRef = useRef<HTMLInputElement>(null);
   const batchFileInputRef = useRef<HTMLInputElement>(null);
 
@@ -114,6 +116,338 @@ export default function AdminLibraryPage() {
     } finally {
       setGeneratingPdf(null);
     }
+  };
+
+  // Função para gerar todos os PDFs em lote
+  const generateAllPdfs = async () => {
+    const materialsToGenerate = materials.filter(m => m.category === "Bacharel");
+    
+    if (materialsToGenerate.length === 0) {
+      toast.error("Nenhum material do Bacharel encontrado");
+      return;
+    }
+
+    setGeneratingAllPdfs(true);
+    setPdfProgress({ current: 0, total: materialsToGenerate.length });
+    
+    const results = { success: 0, failed: 0 };
+    const generatedFiles: { title: string; html: string }[] = [];
+
+    for (let i = 0; i < materialsToGenerate.length; i++) {
+      const material = materialsToGenerate[i];
+      setPdfProgress({ current: i + 1, total: materialsToGenerate.length });
+
+      try {
+        const { data, error } = await supabase.functions.invoke("generate-branded-pdf", {
+          body: {
+            title: material.title,
+            category: material.category || "Bacharel em Teologia",
+            content: material.description || "",
+          },
+        });
+
+        if (error) throw error;
+        if (data?.html) {
+          generatedFiles.push({ title: material.title, html: data.html });
+          results.success++;
+        }
+      } catch (err) {
+        console.error(`Erro ao gerar PDF para ${material.title}:`, err);
+        results.failed++;
+      }
+
+      // Pequena pausa para não sobrecarregar
+      await new Promise(r => setTimeout(r, 300));
+    }
+
+    // Gerar um arquivo ZIP simulado baixando todos os HTMLs
+    if (generatedFiles.length > 0) {
+      // Criar um índice HTML com links para todos os materiais
+      const indexHtml = generateIndexHtml(generatedFiles);
+      
+      const blob = new Blob([indexHtml], { type: "text/html" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "POD_Seminario_Materiais_Bacharel.html";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }
+
+    setGeneratingAllPdfs(false);
+    setPdfProgress({ current: 0, total: 0 });
+
+    if (results.failed === 0) {
+      toast.success(`${results.success} PDFs gerados com sucesso! Abra o arquivo baixado e use Ctrl+P para salvar cada um.`);
+    } else {
+      toast.warning(`${results.success} gerados, ${results.failed} falharam.`);
+    }
+  };
+
+  // Gerar HTML índice com todos os materiais
+  const generateIndexHtml = (files: { title: string; html: string }[]) => {
+    const materialsListHtml = files.map((f, index) => `
+      <div class="material-card" onclick="showMaterial(${index})">
+        <span class="material-number">${index + 1}</span>
+        <span class="material-title">${f.title}</span>
+        <button class="print-btn" onclick="event.stopPropagation(); printMaterial(${index})">Imprimir PDF</button>
+      </div>
+    `).join("");
+
+    const materialsDataJs = `const materialsData = ${JSON.stringify(files.map(f => f.html))};`;
+
+    return `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>P.O.D Seminário Teológico - Materiais do Bacharel</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Source+Sans+3:wght@400;500;600&display=swap');
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background: linear-gradient(135deg, #f5f3f0 0%, #e8e4de 100%);
+      min-height: 100vh;
+    }
+    
+    .header {
+      background: linear-gradient(135deg, #4a1f2b 0%, #6b2c3d 100%);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    
+    .header h1 {
+      font-family: 'Crimson Pro', serif;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    
+    .header p {
+      color: #c9a227;
+      font-size: 1.1rem;
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    
+    .instructions {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      border-left: 4px solid #c9a227;
+    }
+    
+    .instructions h2 {
+      color: #6b2c3d;
+      margin-bottom: 15px;
+      font-family: 'Crimson Pro', serif;
+    }
+    
+    .instructions ol {
+      margin-left: 20px;
+      color: #4a4a4a;
+    }
+    
+    .instructions li {
+      margin-bottom: 8px;
+    }
+    
+    .materials-grid {
+      display: grid;
+      gap: 15px;
+    }
+    
+    .material-card {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .material-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+    
+    .material-number {
+      background: #6b2c3d;
+      color: white;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    
+    .material-title {
+      flex: 1;
+      font-weight: 500;
+      color: #1a1a1a;
+    }
+    
+    .print-btn {
+      background: #c9a227;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+    
+    .print-btn:hover {
+      background: #b08d1f;
+    }
+    
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.8);
+      z-index: 1000;
+    }
+    
+    .modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .modal-content {
+      background: white;
+      width: 95%;
+      height: 95%;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .modal-header {
+      background: #6b2c3d;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .modal-header h3 {
+      font-family: 'Crimson Pro', serif;
+    }
+    
+    .modal-close {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    
+    .modal-iframe {
+      flex: 1;
+      border: none;
+    }
+    
+    .footer {
+      text-align: center;
+      padding: 30px;
+      color: #6b2c3d;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>✝ P.O.D Seminário Teológico</h1>
+    <p>Materiais do Curso de Bacharel em Teologia</p>
+  </div>
+  
+  <div class="container">
+    <div class="instructions">
+      <h2>📖 Como salvar os materiais em PDF</h2>
+      <ol>
+        <li>Clique em <strong>"Imprimir PDF"</strong> ao lado do material desejado</li>
+        <li>Na janela de impressão, selecione <strong>"Salvar como PDF"</strong> como destino</li>
+        <li>Clique em <strong>"Salvar"</strong> para baixar o PDF formatado</li>
+      </ol>
+    </div>
+    
+    <div class="materials-grid">
+      ${materialsListHtml}
+    </div>
+  </div>
+  
+  <div class="footer">
+    <p>P.O.D Seminário Teológico • Formando Líderes para o Reino de Deus</p>
+  </div>
+  
+  <div class="modal" id="materialModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modalTitle">Material</h3>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <iframe class="modal-iframe" id="materialFrame"></iframe>
+    </div>
+  </div>
+  
+  <script>
+    ${materialsDataJs}
+    
+    function showMaterial(index) {
+      const modal = document.getElementById('materialModal');
+      const frame = document.getElementById('materialFrame');
+      const title = document.getElementById('modalTitle');
+      
+      title.textContent = 'Visualizando Material';
+      frame.srcdoc = materialsData[index];
+      modal.classList.add('active');
+    }
+    
+    function closeModal() {
+      document.getElementById('materialModal').classList.remove('active');
+    }
+    
+    function printMaterial(index) {
+      const printWindow = window.open('', '_blank');
+      printWindow.document.write(materialsData[index]);
+      printWindow.document.close();
+      setTimeout(() => {
+        printWindow.focus();
+        printWindow.print();
+      }, 500);
+    }
+    
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+</body>
+</html>`;
   };
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -354,6 +688,24 @@ export default function AdminLibraryPage() {
                 <>
                   <FolderUp className="w-4 h-4" />
                   Upload em Lote
+                </>
+              )}
+            </Button>
+            <Button
+              variant="secondary"
+              onClick={generateAllPdfs}
+              disabled={generatingAllPdfs}
+              className="gap-2"
+            >
+              {generatingAllPdfs ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  {pdfProgress.current}/{pdfProgress.total}
+                </>
+              ) : (
+                <>
+                  <FileDown className="w-4 h-4" />
+                  Gerar Todos PDFs
                 </>
               )}
             </Button>
