@@ -23,6 +23,7 @@ import {
   FileText,
   ExternalLink,
   File,
+  FileDown,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useCourse, useEnrollment, useEnrollInCourse, useLessonProgress, useMarkLessonComplete } from "@/hooks/useCourses";
@@ -74,6 +75,7 @@ const CoursePage = () => {
   const { toast } = useToast();
   const [activeQuizId, setActiveQuizId] = useState<string | null>(null);
   const [showMaterials, setShowMaterials] = useState(false);
+  const [generatingPdf, setGeneratingPdf] = useState<string | null>(null);
 
   // In-app material viewer (avoids browser extensions blocking direct PDF navigation)
   const [viewerOpen, setViewerOpen] = useState(false);
@@ -247,6 +249,103 @@ const CoursePage = () => {
       });
     } finally {
       setViewerLoading(false);
+    }
+  };
+
+  // Função para converter texto em HTML formatado
+  const formatContentToHtml = (text: string): string => {
+    if (!text) return "";
+    
+    return text
+      .replace(/\n{3,}/g, "\n\n")
+      .replace(/^([A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇ][A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇ\s\d\-:,]+)$/gm, (match) => {
+        if (match.length > 60) return match;
+        return `<h2>${match.trim()}</h2>`;
+      })
+      .split("\n\n")
+      .map(paragraph => {
+        paragraph = paragraph.trim();
+        if (!paragraph) return "";
+        if (paragraph.startsWith("<h")) return paragraph;
+        paragraph = paragraph.replace(/\(([A-Za-z]+\s*\d+[:.]\d+(?:-\d+)?)\)/g, '<em>($1)</em>');
+        return `<p>${paragraph}</p>`;
+      })
+      .join("\n");
+  };
+
+  // Função para baixar PDF formatado da aula
+  const handleDownloadLessonPdf = async (lesson: any) => {
+    const lessonFile = LESSON_FILES[lesson.title];
+    if (!lessonFile) {
+      toast({
+        title: "Material não disponível",
+        description: "Esta aula não possui material para download.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setGeneratingPdf(lesson.id);
+    
+    try {
+      const url = `/materials/${lessonFile.folder}/${lessonFile.filename}`;
+      const res = await fetch(url, { cache: "no-store" });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const rawText = await res.text();
+      const content = formatContentToHtml(rawText.substring(0, 50000));
+
+      const { data, error } = await supabase.functions.invoke("generate-branded-pdf", {
+        body: {
+          title: lesson.title,
+          category: course?.category || "Material Didático",
+          content: content,
+        },
+      });
+
+      if (error) throw new Error(error.message);
+      if (!data?.html) throw new Error("Falha ao gerar o PDF.");
+
+      const popup = window.open("", "_blank");
+      
+      if (!popup || popup.closed || typeof popup.closed === "undefined") {
+        const blob = new Blob([data.html], { type: "text/html" });
+        const blobUrl = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = blobUrl;
+        link.download = `${lesson.title.replace(/[^a-zA-Z0-9]/g, "_")}_POD.html`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(blobUrl);
+        
+        toast({
+          title: "Arquivo baixado!",
+          description: "Abra no navegador e use Ctrl+P para salvar como PDF.",
+        });
+        return;
+      }
+
+      popup.document.open();
+      popup.document.write(data.html);
+      popup.document.close();
+
+      await new Promise((r) => setTimeout(r, 700));
+      popup.focus();
+      popup.print();
+
+      toast({
+        title: "PDF gerado!",
+        description: "Use a janela de impressão para salvar o PDF.",
+      });
+    } catch (err) {
+      console.error("Erro ao gerar PDF:", err);
+      toast({
+        title: "Erro ao gerar PDF",
+        description: "Não foi possível gerar o PDF desta aula.",
+        variant: "destructive",
+      });
+    } finally {
+      setGeneratingPdf(null);
     }
   };
 
@@ -425,6 +524,27 @@ const CoursePage = () => {
                                   </Badge>
                                 )}
                               </button>
+                              {/* Botão para download de PDF */}
+                              {enrollment && hasFile && (
+                                <Button
+                                  variant="secondary"
+                                  size="sm"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleDownloadLessonPdf(lesson);
+                                  }}
+                                  disabled={generatingPdf === lesson.id}
+                                  className="text-xs gap-1"
+                                  title="Baixar PDF"
+                                >
+                                  {generatingPdf === lesson.id ? (
+                                    <Loader2 className="w-4 h-4 animate-spin" />
+                                  ) : (
+                                    <FileDown className="w-4 h-4" />
+                                  )}
+                                  PDF
+                                </Button>
+                              )}
                               {enrollment && !isCompleted && (
                                 <Button
                                   variant="ghost"
