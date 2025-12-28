@@ -15,11 +15,14 @@ import {
   Heart,
   Eye,
   Loader2,
+  FileDown,
 } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLibraryMaterials, useLibraryCategories, LibraryMaterial } from "@/hooks/useLibrary";
 import { SermonReader } from "@/components/library/SermonReader";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 const defaultCategories = [
   "Todos",
@@ -76,9 +79,61 @@ export default function LibraryPage() {
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedMaterial, setSelectedMaterial] = useState<LibraryMaterial | null>(null);
+  const [generatingPdf, setGeneratingPdf] = useState<string | null>(null);
   
   const { data: materials = [], isLoading } = useLibraryMaterials(selectedCategory);
   const { data: dbCategories } = useLibraryCategories();
+
+  // Função para gerar e baixar PDF formatado
+  const handleDownloadPdf = async (material: LibraryMaterial) => {
+    setGeneratingPdf(material.id);
+    try {
+      const { data, error } = await supabase.functions.invoke("generate-branded-pdf", {
+        body: {
+          title: material.title,
+          category: material.category || "Material Didático",
+          content: material.description || "",
+        },
+      });
+
+      if (error) throw new Error(error.message);
+      if (!data?.html) throw new Error("Falha ao gerar o PDF.");
+
+      // Abrir em nova aba para impressão
+      const popup = window.open("", "_blank");
+      
+      if (!popup || popup.closed || typeof popup.closed === "undefined") {
+        // Popup bloqueado - baixar HTML
+        const blob = new Blob([data.html], { type: "text/html" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `${material.title.replace(/[^a-zA-Z0-9]/g, "_")}_POD.html`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+        
+        toast.info("Arquivo baixado! Abra no navegador e use Ctrl+P para salvar como PDF.");
+        return;
+      }
+
+      popup.document.open();
+      popup.document.write(data.html);
+      popup.document.close();
+
+      await new Promise((r) => setTimeout(r, 700));
+      popup.focus();
+      popup.print();
+
+      toast.success("PDF gerado com sucesso!");
+    } catch (err) {
+      console.error("Erro ao gerar PDF:", err);
+      toast.error("Erro ao gerar PDF");
+    } finally {
+      setGeneratingPdf(null);
+    }
+  };
 
   const categories = dbCategories?.length ? dbCategories : defaultCategories;
 
@@ -280,11 +335,21 @@ export default function LibraryPage() {
                               Baixar
                             </Button>
                           )}
-                          {!resource.content && !resource.file_url && (
-                            <span className="text-xs text-muted-foreground italic">
-                              Em breve
-                            </span>
-                          )}
+                          {/* Botão para baixar PDF formatado */}
+                          <Button 
+                            size="sm" 
+                            variant="secondary"
+                            className="h-8 px-3 gap-1"
+                            onClick={() => handleDownloadPdf(resource)}
+                            disabled={generatingPdf === resource.id}
+                          >
+                            {generatingPdf === resource.id ? (
+                              <Loader2 className="w-3 h-3 animate-spin" />
+                            ) : (
+                              <FileDown className="w-3 h-3" />
+                            )}
+                            PDF
+                          </Button>
                         </div>
                       </div>
                   </div>
