@@ -17,3 +17,6 @@ verify_jwt = true
 
 [functions.generate-branded-pdf]
 verify_jwt = false
+
+[functions.complete-bible-comment]
+verify_jwt = false

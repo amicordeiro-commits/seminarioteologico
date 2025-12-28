@@ -19,6 +19,7 @@ import { Slider } from '@/components/ui/slider';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { InterlinearChapter } from '@/components/bible/InterlinearView';
+import { StudyComment } from '@/components/bible/StudyComment';
 import { 
   ChevronLeft, ChevronRight, Search, Book, Loader2, BookOpen, ChevronDown, 
   MessageSquare, Heart, Bookmark, PenLine, Copy, List, Settings2, 
@@ -656,15 +657,15 @@ export function BibleReader() {
                       return (
                         <div className="ml-8 mt-2 space-y-2">
                           {comments.map((comment, idx) => (
-                            <div 
-                              key={idx} 
-                              className="p-3 bg-accent/30 rounded-lg border-l-4 border-accent text-sm leading-relaxed"
-                            >
-                              <div className="flex items-start gap-2">
-                                <BookOpen className="h-4 w-4 text-accent-foreground mt-0.5 flex-shrink-0" />
-                                <p className="text-muted-foreground whitespace-pre-wrap">{comment}</p>
-                              </div>
-                            </div>
+                            <StudyComment
+                              key={idx}
+                              comment={comment}
+                              bookAbbrev={selectedBook}
+                              chapter={selectedChapterNum}
+                              verse={verse.verse_number}
+                              verseText={verse.text}
+                              autoComplete={true}
+                            />
                           ))}
                         </div>
                       );
