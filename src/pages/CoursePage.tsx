@@ -282,6 +282,78 @@ const CoursePage = () => {
               </div>
             )}
 
+            {/* Materials Section - visible for enrolled users */}
+            {enrollment && (
+              <div className="space-y-4">
+                <h2 className="text-xl font-serif font-semibold text-foreground flex items-center gap-2">
+                  <Download className="w-5 h-5 text-primary" />
+                  Materiais de Estudo
+                </h2>
+                {loadingMaterials ? (
+                  <div className="flex items-center justify-center py-8">
+                    <Loader2 className="w-6 h-6 animate-spin text-primary" />
+                  </div>
+                ) : courseMaterials.length === 0 ? (
+                  <div className="p-6 rounded-xl bg-card border border-border text-center">
+                    <FileText className="w-12 h-12 mx-auto mb-4 text-muted-foreground opacity-50" />
+                    <p className="text-muted-foreground">Nenhum material disponível para este curso.</p>
+                    <Button variant="outline" asChild className="mt-4">
+                      <Link to="/library">Acessar Biblioteca Completa</Link>
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="grid gap-3">
+                    {courseMaterials.slice(0, 6).map((material) => (
+                      <div
+                        key={material.id}
+                        className="p-4 rounded-xl bg-card border border-border hover:border-primary/30 transition-colors"
+                      >
+                        <div className="flex items-start gap-3">
+                          <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                            <File className="w-5 h-5 text-primary" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h4 className="font-medium text-foreground truncate">{material.title}</h4>
+                            {material.description && (
+                              <p className="text-sm text-muted-foreground line-clamp-2 mt-1">
+                                {material.description}
+                              </p>
+                            )}
+                            <div className="flex items-center gap-2 mt-2">
+                              <Badge variant="secondary" className="text-xs">
+                                {material.category || 'Geral'}
+                              </Badge>
+                              {material.file_type && (
+                                <Badge variant="outline" className="text-xs uppercase">
+                                  {material.file_type}
+                                </Badge>
+                              )}
+                            </div>
+                          </div>
+                          {material.file_url && (
+                            <Button variant="ghost" size="icon" asChild>
+                              <a href={material.file_url} target="_blank" rel="noopener noreferrer">
+                                <ExternalLink className="w-4 h-4" />
+                              </a>
+                            </Button>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                    {courseMaterials.length > 6 && (
+                      <Button 
+                        variant="outline" 
+                        className="w-full"
+                        onClick={() => setShowMaterials(true)}
+                      >
+                        Ver todos os {courseMaterials.length} materiais
+                      </Button>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
+
             {/* Quizzes Section */}
             {quizzes.length > 0 && enrollment && (
               <div className="space-y-4">
