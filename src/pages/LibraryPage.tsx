@@ -84,15 +84,88 @@ export default function LibraryPage() {
   const { data: materials = [], isLoading } = useLibraryMaterials(selectedCategory);
   const { data: dbCategories } = useLibraryCategories();
 
+  // Mapeamento de materiais para arquivos de texto
+  const materialFileMap: Record<string, string> = {
+    "Administração Eclesiástica": "/materials/bacharel/administracao_eclesiastica.txt",
+    "Antigo Testamento": "/materials/bacharel/antigo_testamento.txt",
+    "Arqueologia Bíblica": "/materials/bacharel/arqueologia_biblica.txt",
+    "Bibliologia": "/materials/bacharel/bibliologia.txt",
+    "Culto Bíblico": "/materials/bacharel/culto_biblico.txt",
+    "Doutrinas Bíblicas": "/materials/bacharel/doutrinas_biblicas.txt",
+    "Educação Cristã": "/materials/bacharel/educacao_crista.txt",
+    "Estatutos da Igreja": "/materials/bacharel/estatutos_igreja.txt",
+    "Ética Cristã": "/materials/bacharel/etica.txt",
+    "Evangelismo Pessoal": "/materials/bacharel/evangelismo_pessoal.txt",
+    "Teologia Pastoral": "/materials/bacharel/teologia_pastoral.txt",
+  };
+
+  // Função para buscar conteúdo do arquivo de texto
+  const fetchMaterialContent = async (title: string): Promise<string> => {
+    const filePath = materialFileMap[title];
+    if (!filePath) {
+      return "";
+    }
+    
+    try {
+      const response = await fetch(filePath);
+      if (!response.ok) return "";
+      const text = await response.text();
+      // Limitar a 50000 caracteres para evitar problemas de memória
+      return text.substring(0, 50000);
+    } catch {
+      return "";
+    }
+  };
+
+  // Função para converter texto em HTML formatado
+  const formatContentToHtml = (text: string): string => {
+    if (!text) return "";
+    
+    // Limpar e formatar o texto
+    let html = text
+      // Remover linhas vazias excessivas
+      .replace(/\n{3,}/g, "\n\n")
+      // Converter títulos (linhas em maiúsculas)
+      .replace(/^([A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇ][A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇ\s\d\-:,]+)$/gm, (match) => {
+        if (match.length > 60) return match;
+        return `<h2>${match.trim()}</h2>`;
+      })
+      // Converter parágrafos
+      .split("\n\n")
+      .map(paragraph => {
+        paragraph = paragraph.trim();
+        if (!paragraph) return "";
+        if (paragraph.startsWith("<h")) return paragraph;
+        // Versículos bíblicos entre parênteses
+        paragraph = paragraph.replace(/\(([A-Za-z]+\s*\d+[:.]\d+(?:-\d+)?)\)/g, '<em>($1)</em>');
+        return `<p>${paragraph}</p>`;
+      })
+      .join("\n");
+    
+    return html;
+  };
+
   // Função para gerar e baixar PDF formatado
   const handleDownloadPdf = async (material: LibraryMaterial) => {
     setGeneratingPdf(material.id);
     try {
+      toast.info("Carregando conteúdo do material...");
+      
+      // Buscar conteúdo completo do arquivo de texto
+      let content = await fetchMaterialContent(material.title);
+      
+      if (content) {
+        content = formatContentToHtml(content);
+      } else {
+        // Fallback para descrição se não tiver arquivo
+        content = material.description || "";
+      }
+
       const { data, error } = await supabase.functions.invoke("generate-branded-pdf", {
         body: {
           title: material.title,
           category: material.category || "Material Didático",
-          content: material.description || "",
+          content: content,
         },
       });
 
