@@ -1,0 +1,3118 @@
+SUMÁRIO
+
+1 - INTRODUÇÃO                                   2
+
+1.1.  PRESSUPOSTOS TEOLÓGICOS                              3
+
+1.2.  NARRATIVA                                        4
+
+2 - O LIVRO DE GÊNESIS EM NARRATIVAS                   5
+
+3 - A HOMILÉTICA NARRATIVA                          6
+
+3.1.  PREGANDO AS NARRATIVAS                               6
+
+3.2.  PORQUE HOMILÉTICA NARRATIVA?                        7
+
+3.3.  PROCESSO HOMILÉTICO                                 8
+
+3.4.  DEFININDO O OBJETIVO                                10
+
+3.5.  PROCESSO AVALIATÓRIO                                11
+
+3.6.  APLICABILIDADE                                     12
+
+4 - HOMILÉTICA NARRATIVA EXEMPLIFICADA                14
+
+4.1.  ÊXODO 3.1-15                                 14
+
+4.2.  PRINCÍPIOS TEOLÓGICOS DA NARRATIVA                       15
+
+4.3.  RECONTAGEM DA NARRATIVA                             16
+
+4.4.  OBJETIVO DE CONTAR A NARRATIVA                         19
+
+4.5.  OUTRA RECONTAGEM DA NARRATIVA                         19
+
+4.6.  EXEMPLOS DE HOMILÉTICA NARRATIVA                       21
+
+4.7.  A CRIAÇÃO DO HOMEM (GÊNESIS 2.4B-3.24)                  21
+
+4.8.  DESCONFIANÇA NA PROVISÃO DE DEUS (GÊNESIS 2.4B-3.24)          21
+
+4.9.  O PERDÃO DIFÍCIL (GÊNESIS 4.1-24)                      23
+
+4.10. A ESPERA DE ABRAÃO (GÊNESIS 12.1-2, 15.1-6, 16.1-5)            24
+
+4.11. O GRANDE SACRIFÍCIO (GÊNESIS 22.1-19)                   25
+
+4.12. COMPROMISSO DA ALIANÇA (ÊXODO 19.3-8)                  26
+
+4.13. “TINHAM CARROS DE FERRO” (JOSUÉ 17.16-18, 23.1-16 E JUÍZES 1.19)    27
+
+4.14. A ESPADA DE GIDEÃO (JUÍZES 6.1-7.25)                    29
+
+4.15. CONFIANDO NA ACEITAÇÃO DE DEUS (RUTE)                  31
+
+4.16. FÉ VERDADEIRA NA TERRA DE BAAL (1ª REIS 16.29-18.46)           32
+
+4.17. “ABRA OS SEUS OLHOS!” (2ª REIS 6.8-23)                   33
+
+4.18. O ADVERSÁRIO DO JUSTO (JÓ)                         35
+
+4.19. CRIATURAS DO ALTÍSSIMO (SALMO 8.1-9)                    36
+
+4.20. OUÇA O GAÚCHO! (ISAÍAS 6.8-10 E 46.8-13)                  37
+
+4.21. A MISSÃO DOS LAVRADORES (ÊXODO 19.3-8/MATEUS 21.33-46)       39
+
+4.22. “QUE QUERES QUE EU TE FAÇA?” (MARCOS 10.35-52)             40
+
+4.23. A PÁSCOA DA TRAIÇÃO (MARCOS 14-16)                    41
+
+4.24. COMPARTILHANDO ESPERANÇA (1ª PEDRO)                   43
+
+
+Homilética da Teologia Narrativa - 2
+
+1 -  INTRODUÇÃO
+
+Procura-se ajudar o aluno a ter uma compreensão mais completa sobre os meios mais
+apropriados para a interpretação teológica da Bíblia, com o propósito de compartilhar as
+apreciações teológicas com outros.  Para isso, procura-se primeiramente expor o aluno a
+certas orientações hermenêuticas através do resumo de pesquisas referentes às narrativas
+do livro de Gênesis, incluindo certas dúvidas, polêmicas e questionamentos, que têm sido
+levantadas por pesquisadores, através dos séculos até os dias atuais.  Nem sempre essas
+linhas de pensamento serão de benefício pessoal para o aluno compreender o texto à mão.
+Às vezes, temas serão levantados apenas para lembrar ao aluno que se precisa manter uma
+mente aberta e um olhar cuidadoso para as várias possibilidades de interpretação textual, e
+assim aproximar-se da interpretação mais adequada de uma passagem. Quando há muitas
+dúvidas sobre um determinado assunto, isto implica que o aluno deve ter ainda mais
+cautela para chegar a uma decisão interpretativa final.
+
+Após a etapa inicial do estudo do texto em padrões históricos, procura-se lidar com o
+texto em unidades narrativas como textos íntegros.  Olhando para a narrativa individual
+como um todo, pretende-se indagar pela sua função teológica como unidade e no quadro
+maior do livro de Gênesis.
+
+Intercalado com comentários sobre as narrativas individuais, encontra-se comentários
+mais gerais sobre informações que ajudarão a fornecer melhor base interpretativa para o
+Antigo Testamento como um todo.  Estes comentários e orientações hermenêuticas se
+encontram intercaladas para mais rapidamente enxergar o seu relacionamento com as
+narrativas a serem estudadas, como também para criar melhores pontes entre esta teoria
+hermenêutica e a prática de interpretar o texto bíblico.
+
+No seu estudo do texto, o aluno deve estar pronto para questionar e avaliar o que lhe
+tem sido transmitido referente aos textos estudados, averiguando a verdadeira mensagem
+bíblica. O que deve vir a ser questionado não é o texto bíblico, mas as conclusões recebidas
+referentes ao texto. O texto bíblico deve servir como a base essencial para o estudo teológico,
+e não as interpretações tradicionais do mesmo, incluindo as propostas incluídas neste
+documento. Isto não quer dizer que toda interpretação recebida deve ser ignorada, mas ao
+aluno cabe pelo menos questionar se as suas tradições interpretativas fazem jus ao texto.
+Caso contrário, as tradições interpretativas serviriam de autoridade—o que não se deve
+deixar acontecer. A autoridade é a Palavra de Deus, supremamente expressa na Bíblia3.
+
+Não se espera que o aluno adote toda posição sugerida neste estudo teológico das
+narrativas.  O próprio autor também encontra-se em processo de estudar e aprender mais
+sobre as narrativas, sempre avaliando os seus próprios posicionamentos sobre os assuntos
+tratados. À medida em que o autor continua a estudar, melhor compreende as narrativas e
+as suas lições teológicas. O que se espera do aluno é que seja introduzido a um diálogo
+crítico com o texto bíblico.  O presente trabalho tem como proposta incentivar e facilitar
+esse diálogo.
+
+A essência da educação teológica cristã (ou seja, discipulado), segundo a compreensão
+do autor, não visa tanto efetivar a transmissão de um conteúdo em si, mas a transformação
+da vida do aluno a uma dependência completa em Deus.  Logo, a proposta e oração do
+autor é de que o aluno se encontre face a face com Deus no percurso deste estudo, para que
+Ele transforme os devidos aspectos de sua vida, criando para si uma nova criatura, um
+discípulo mais fiel e útil nas mãos do Criador.
+
+Lembra-se ao aluno que ninguém chega ao texto bíblico com uma mente vazia, pois
+todos já ouviram algo referente ao texto bíblico e têm certas interpretações preconcebidas
+referente àquilo que encontrarão no texto bíblico.  Como já se tem certos conceitos
+formados referente ao texto, é proveitoso saber definir quais são estas pressuposições do
+aluno. Identificaando e definindo-os, pode-se com mais facilidade diferenciar entre aquilo
+que provém do texto bíblico e o que provém de outra fonte.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 3
+
+1.1.  Pressupostos Teológicos
+
+É essencial em todo esforço interpretativo bíblico estabelecer o ponto de partida do
+intérprete.  Todo intérprete começa o seu estudo com certas premissas básicas e logo
+trabalha em cima das mesmas.  É norma infeliz, porém, ignorar o ponto de partida,
+em parte por questão da dificuldade em descrever o mesmo.  Como estes pressupostos
+informarão o processo deste estudo e certamente ajudarão a moldar os seus resultados
+finais, será de grande valia fazer o esforço para delimitar quais são. Uma mudanças nos
+pressupostos pode modificar em muito o destino final do estudo. É possível que a maior
+dificuldade do intérprete seja reconhecer que há pressupostos que passam despercebidos
+aos seus olhos.   A  seguir  estão  alguns  dos  pressupostos   com  os  quais  se
+trabalhará:
+
+1. O autor pressupõe que o enfoque bíblico é por natureza teológico e que a Bíblia
+deve ser lida dentro deste enfoque.
+
+2. O texto bíblico é a fonte de autoridade para a fé e a prática (princípio essencial dos
+batistas).
+
+3. Um texto deve ser lido dentro do seu próprio contexto, procurando sua mensagem
+contextual.
+
+4. Somente depois de tratar o que um dado texto diz por si mesmo, deve-se
+comparar sua mensagem com a de outro texto.
+
+5. O pano de fundo veterotestamentário  deve ser  visto como fundamental à
+compreensão do Novo Testamento, secundário em importância quanto alterações
+colocadas por Jesus.
+
+6. Um texto de difícil compreensão não deve receber o peso teológico dado a um texto
+claro.
+
+7. Em alguns casos, a interpretação exata do texto bíblico não ficará clara, mesmo
+com muito estudo detalhado.
+
+8. O uso de comentários, dicionários e outros livros é de ajuda no estudo de uma
+passagem, porém deve sempre tomar lugar secundário no estudo do texto bíblico
+por si mesmo.
+
+9. O tipo literário de uma passagem implica na sua interpretação apropriada.
+
+10. Quando se encontra um texto que aparentemente não apóia um conceito teológico,
+o texto está sendo mal-interpretado, ou o conceito teológico deve ser reformulado
+até que esteja conforme com a mensagem bíblica.
+
+11. A teologia é um estudo sempre em andamento, pois o homem é finito e não pode
+chegar a um ponto de compreender plenamente o infinito.
+
+12. O texto bíblico apresenta a Deus muito mais através do que Deus faz, do que por
+meio de descrições abstratas e proposicionais.
+
+13. Não se deve separar teologia do conceito de revelação, pois é somente pela auto-
+revelação de Deus que se pode conhecer a Deus.
+
+14. Não se deve forçar um conceito neotestamentário sobre um texto qualquer que não
+apresenta o mesmo ensino.
+
+15. Não se deve forçar um texto bíblico dentro de um molde teológico.
+
+16. É importante lembrar que as traduções atuais da Bíblia estão, em geral, baseados
+em tradições das traduções primitivas de homens bem intencionados, mas que
+estavam apenas começando a estudar a Bíblia e, portanto, deve-se sempre que
+possível recorrer às línguas originais.
+
+17. A fé é o aceitar um compromisso de confiar em Deus, mesmo quando não
+se  conhece plenamente todo aspecto das exigências do compromisso, nem de
+antemão as respostas aos questionamentos teológicos.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 4
+
+18. As perguntas essenciais a serem feitas ao texto bíblico são “Quem é Deus?”,
+“Quem sou eu?” e “O que Deus quer comigo?”.
+
+1.2.  Narrativa
+
+Neste documento será usado o termo “narrativa”, porém não pretende ser um uso
+técnico.  O emprego do termo é feito no sentido de diferenciar a narrativa do conceito de
+história científica, ou seja, historiografia.   Em lugar de história, encontra-se aqui
+“tradições preservadas nas liturgias … [cujo propósito] foi o de confessar e assim incentivar
+a fé em Deus”. Em lugar de intencionar a escrita da história de Israel, o Antigo Testamento
+“dá testemunho da obra de Deus em estabelecer a nação. … [Logo], cada evento apresentado
+pelos escritores bíblicos é usado com um propósito teológico”.
+
+Por história, entende-se em geral um ramo de estudos científicos que procura, a partir
+de comprovação documentária ou arqueológica do período, determinar com precisão a
+veracidade e os detalhes de eventos ocorridos no passado, apontando para causas, efeitos e
+resultados a longo prazo dos eventos estudados. A preocupação deste estudo, porém, é de
+lidar com as narrativas bíblicas dentro das intenções dos próprios autores que procuram
+narrar a ação de Deus. Para eles, as questões de relatar história são apenas de interesse
+secundário.  Em conseqüência, neste estudo trabalhar-se-á com aquilo que as narrativas
+ensinam  a respeito de Deus (Teologia: palavras/estudos sobre Deus), e não a respeito de
+eventos passados.
+
+Deus se revelou através dos eventos de sua interação com o povo ao longo da história.
+É expressamente esta interação que as narrativas procuram ressaltar.  Grande parte da
+Bíblia, em especial Gênesis e a primeira parte de Êxodo, utiliza a narrativa de forma quase
+ininterrupta para comunicar a sua mensagem. Para os escritores bíblicos, o essencial era
+articular os eventos revelacionais entre YHWH (hwhy) e o seu povo, não definir conceitos
+teológicos categóricos  ou proposicionais.  Teria sido quase impossível que Deus se
+revelasse em termos do seu caráter moral  através  de  proclamações  proposicionais
+oferecidas num único momento histórico.  O homem não teria compreendido, nem
+aceito tal  proclamação  proposicional.   Deus  procurou revelar-se pouco a pouco,
+mostrando o seu caráter através dos seus feitos singulares na história. É essa revelação do
+caráter ético e moral de Deus que vem a ser o interesse teológico central das narrativas.
+
+Assim, usando o termo “Narrativa” aqui, trata-se de algo diferente de história nos
+moldes do historiador moderno.  Isto não quer dizer que as narrativas não têm a ver com
+história, pois certamente “narra um evento real que ocorreu uma vez por todas no mundo
+da história.  Deve, então, ser tomado de forma séria ... deve ser ‘crido’”.  As narrativas,
+porém, são mais precisamente narrativas teológicas, pois o seu enfoque é sempre Deus e o
+que Ele está revelando de si ao homem. Mesmo que o autor de uma passagem narre um
+evento histórico, o seu interesse é na situação do ouvinte original, não da época relatada.
+
+Por outro lado, utiliza-se o termo narrativa para fazer distinção das chamadas
+“historinhas” ou “contos de fadas”.  As narrativa bíblicas não são histórias neste sentido,
+mesmo que parábolas e outros gêneros literários parecidos são incluídos no texto bíblico.
+Existem trechos que podem ter sido escritos no estilo “conto de fadas”—especialmente a
+introdução e a conclusão do livro de Jó—mas isso não reduziria as passagens a ser um
+conto de fadas.  Tais trechos teriam sido escritos no estilo mais apropriado para levar
+adiante um propósito teológico de peso real, num sentido semelhante ao caso do pregador
+que conta uma piada para ilustrar um ponto do sermão.
+
+Respeito ao contexto e estilo literário é essencial na apreciação da mensagem da
+Bíblia.  “Na pregação e no ensino responsável da Palavra de Deus, não se pode lançar uma
+Operação Tapa Buracos, pois faltará fundamento sólido.  Não é lícito tampouco saquear
+nem a Bíblia nem livros sobre ela para extrair itens fracamente relacionados para um
+proveito rápido”.  Até se deveria ler as passagens dentro do contexto do livro completo no
+qual se encontra, pois cada passagem serve para apoiar um ou mais temas do próprio livro
+no sentido de montar um posicionamento ou tratamento como um todo.  Por causa disso,
+ressalta-se a importância de ler todo o livro bíblico em questão, e logo tratar passagens
+individuais em unidades narrativas, pois elas já compreendem em si vínculos contextuais
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 5
+
+claros e ajudam o intérprete a concentrar sua investigação do texto dentro de limites mais
+facilmente reconhecidos.
+
+Não se propõe aqui enfatizar versículos e frases, mas tratar as narrativas como
+unidades.  Haverá necessidade de se destacar certas frases que geram dúvidas
+interpretativas para clarificar o sentido do texto.  No entanto, é no processo de ler a
+narrativa como um todo que se chega a uma melhor compreensão de sua mensagem
+teológica. As palavras, as frases e os versículos que compõem as narrativas são pequenas
+partes do todo e podem muito bem desviar a atenção do aluno do assunto da narrativa
+completa.  Procura-se aqui evitar estes desvios, mesmo que dando certa atenção às
+dificuldades mais polêmicas ou incertas.
+
+A interpretação e mensagem de uma narrativa em sua íntegra é geralmente mais fácil
+de acertar do que a interpretação de versículos e frases isoladas, mesmo respeitando os
+seus contextos apropriados.  Ao estudar uma narrativa individual como uma unidade,
+pode-se portanto chegar a definições mais concretas e seguras do que com porções menores
+de texto.  Não se pode ignorar que a narrativa como um todo ainda exige estudo do
+intérprete, mas em certos aspectos a sua interpretação é mais fácil e pode ser mais
+consistente.
+
+2 -  O LIVRO DE GÊNESIS EM
+NARRATIVAS
+
+“Gênesis não é um livro independente que pode ser interpretado isoladamente. Pelo
+contrário, … [faz parte de] uma imensa narrativa conjunta”. Para os judeus, o nome usado
+para referir-se ao Pentateuco é Torá.  Muitas vezes refere-se a esta palavra no sentido
+de lei.  Torá, porém, “contém especialmente a noção de direção ou instrução”.  Este fato
+deve servir de alerta para o aluno bíblico de que as narrativas compõem instruções de como
+viver,  e não se constituem de material jurídico.    Esta instrução toma a forma de
+narrativas que revelam como Deus interage com a humanidade, dando orientação de quem
+é YHWH (hwhy) e como viver um relacionamento com o mesmo.
+
+As narrativas do Pentateuco devem ser vistas como tendo um desenvolvimento central.
+Alguns intérpretes como von Rad desenvolvem este conceito pela linha do enredo geral. Tal
+intérprete explica o enredo, mas não faz justiça à importância teológica das narrativas.
+Optaríamos por uma definição mais teológica nos termos de “Deus criou um contexto
+mundial no qual o ser humano pudesse vir a um relacionamento de confiança em Deus
+como Criador.  A desconfiança humana quebrou esse relacionamento, com resultados
+desastrosos por toda a volta.   Deus continuou a chamar o ser humano a um
+relacionamento de confiança e fidelidade comprovada, mesmo que o ser humano fosse infiel.
+No    seu tratar com um povo de sua escolha, Deus se revelou como o Criador fiel, digno da
+confiança da humanidade. Cada geração deve refletir na fidelidade que Deus há mostrado
+e confiar suas vidas a Deus em fidelidade igual”.
+
+Neste estudo, pretende-se dar enfoque aos princípios teológicos apresentados
+através das narrativas do livro de Gênesis.  Para isto se fará uma relação das
+várias lições teológicas encontradas em cada narrativa. É importante salientar que cada
+narrativa tem propósitos que vão além da simples narração de relatos históricos.  As
+narrativas falam do que Deus estava fazendo ou prestes a fazer entre o seu povo, mesmo
+que  em contraste com o pecado humano.  Elas ensinam a respeito de Deus, e portanto
+deve-se procurar os princípios teológicos nelas contidos.
+
+As anotações seguintes refletem o pensamento atual do autor referente às narrativas
+em estudo. Tal pensamento está sendo modificado ao passo que se continua lendo e
+estudando as narrativas em questão. Recomenda-se ao aluno que se lembre sempre que o
+livro texto para seu estudo é principalmente o próprio texto bíblico. Esta apostila deve ser
+vista apenas como um guia para o estudo do próprio aluno.  O interesse do autor é de
+ajudar o aluno para apreciar a riqueza teológica das narrativas, para que ele mesmo possa
+encontrar-se face a face com YHWH, o ator principal das narrativas.  Espera-se que este
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 6
+
+trabalho possa ser útil para chamar o aluno a confrontar-se com as narrativas bíblicas e
+assim confrontar-se com o Deus das mesmas narrativas.
+
+Um grande problema a ser enfrentado no estudo das narrativas é o simples fato de
+que elas já são conhecidas.  Na sociedade e no contexto brasileiro que mantêm a Bíblia
+num lugar privilegiado de respeito, pelo menos alguma coisa das narrativas a serem
+estudadas é conhecida desde tenra idade.  “Precisamente  porque Gênesis teve tanta
+influência, o seu significado é mais fixo:  a leitura está firmada; todos já conhecem o que
+contém e estão menos inclinados a desenvolverem uma nova perspectiva…. Geralmente há
+menos prontidão para ler estes textos como novos”. O esforço e propósito de estudá-los,
+então, será para “descobrir novamente aquilo que é distintivo a respeito das narrativas da
+Bíblia”.
+
+O esforço será difícil, pois o texto chega para o Português já com muita bagagem de
+tradição histórica, mesmo certas noções desta bagagem inseridas na própria tradução do
+texto. Isto torna necessário lidar com certas terminologias específicas em vários textos para
+que se possa ouvi-los como se pela primeira vez.  “Os primeiros onze capítulos de Gênesis
+constam entre os mais importantes na Escritura.  Estão entre os mais conhecidos (num
+sentido estereotípico), e são os mais freqüentemente malcompreendidos”. Esta perspectiva
+de que já se conhece o texto implica numa incompreensão, por impossibilitar o
+distanciamento da narrativa, para que se leia o texto como se pela primeira vez.  É
+complicado ainda mais pelo fato do aluno muitas vezes não entender o tipo literário (o tipo
+de fala) sugerido pela narrativa.  Como já fora mencionado, as narrativas não são história
+no sentido comum hoje, nem relatam verdades conforme padrões científicos atuais. Têm
+por objetivo revelar a Deus.
+
+3 -  A HOMILÉTICA NARRATIVA
+
+3.1.  Pregando as Narrativas
+
+Não há como separar o estudo da homilética  narrativa do estudo teológico e
+exegético das narrativas a serem pregadas.  Para pregar a mensagem de um texto, é
+indispensável o estudo do texto sobre o qual se pregará.  Por esta razão nesta obra dá-se
+ênfase prioritária à mensagem teológica da narrativa a ser tratada, observando os princípios
+teológicos expressos pela narrativa. Somente depois deste estudo é possível tratar um texto
+devidamente sob a forma de pregação. Tem sido observado que a maioria dos pastores no
+Brasil não têm hábito de fazer exposição bíblica nas suas mensagens, porém é através desta
+exposição que o ouvinte chega a ser realmente alimentado pela Palavra de Deus.
+
+Homilética refere-se à pregação da Palavra de Deus.  É interessante lembrar,
+porém, que o termo em si tem um significado mais específico. O termo vem ao português
+dos termos gregos homo (omo—“igual”) e lego (legw – “dizer”).  Esse conjunto de termos,
+então, designa a arte e ciência de dizer a mesma coisa que o texto566.  O pregador deve
+interpretar o texto, porém, o enfoque devido é o de transmitir ao ouvinte aqueles princípios
+inerentes ao próprio texto bíblico. Em nenhuma hipótese deve-se preparar um sermão e
+depois procurar um texto sobre o qual pendurar o sermão elaborado.  O sermão deve
+depender forçosamente do texto escolhido de tal forma a não ser possível fazer uma
+separação entre texto e sermão.
+
+Este texto utilizará o termo masculino pregador, porém entende-se que a tarefa de
+pregar não se limita ao sexo masculino.  Pregar é transmitir a verdade bíblica, seja a
+mensagem de Deus. Esta tarefa é dada para todo crente, sem respeitar o sexo. Pregar é ser
+porta voz de Deus, para o qual não há distinção entre homem e mulher.  Pregar também
+não se limita à tarefa pastoral, já que a Bíblia ensina que todos devem agir para
+compartilhar as boas novas de salvação em testemunho. Mesmo que se aproveite do
+termo masculino, portanto, deve-se entender que a aplicação é genérica, incluindo a
+todo crente.
+
+Tem sido observado que a homilética  fiel e verdadeira “compreende … o uso
+correto  do conteúdo  bíblico,  princípios  hemernêuticos,  perspectivas  teológicas,
+orientação psicológica, regras retóricas, e princípios oratóricos”. Neste trabalho será dada
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 7
+
+ênfase sobre os aspectos teológicos e bíblicos da pregação, oferecendo ao mesmo tempo
+algumas regras básicas da retórica e oratória.  Já que o conceito de homilética  tem por
+base o “falar o mesmo” que o texto, oferece-se uma forma para ajudar o discípulo a
+interpretar o texto bíblico à mão para este fim específico: dizer ao ouvinte o que o próprio
+texto  diz numa linguagem em que possa ser compreendida.
+
+Muitos falam a respeito de várias interpretações de um texto bíblico.  Para ser
+sincero, existem muitas formas de interpretar um dado texto bíblico, porém apenas uma
+dessas interpretações será válida!  Um texto tem o significado que foi intencionado pelo
+autor. Este é o seu significado, e o processo de interpretar o texto bíblico tem como
+primeiro  objetivo  entender  este  mesmo significado.  Outras “interpretações”  são
+simplesmente erros interpretativos, mesmo que bem intencionados. Por outro lado existe
+inúmeras aplicações apropriadas para um texto corretamente interpretado. O sentido do
+texto é único, mas aplica-se ao indivíduo dento do seu contexto diário específico,
+possivelmente de muitas maneiras.
+
+Dito isto, deve-se ter cuidado na forma de tratar o texto bíblico, lembrando a
+tendência humana para falhas interpretativas, e fincar a mensagem a ser pregada nas
+questões claras do texto bíblico. Não é recomendável pregar sobre uma passagem de difícil
+interpretação, pois há muitos textos cujas mensagens são claras, e as mensagens claras
+são geralmente as mais importantes a serem transmitidas.  É impossível sobre-enfatizar a
+importância do estudo detalhado do texto bíblico para a homilética, pois nenhuma tarefa
+tem tão grande potencial de culpabilidade quanto a  de  pregar  a  palavra  de  Deus.
+Assim o pregador deve tomar a sério o preparo de sua mensagem e o estudo do texto
+bíblico a ser tratado.  Este estudo deve compreender o ensino teológico do texto, pois “a
+pregação e a teologia são tão vitais uma à outra quanto o inalar é o exalar”.
+
+Conseqüentemente, com o estudo feito das narrativas bíblicas até este ponto, é
+necessário ressaltar o que se tem aprendido referente a Deus até Gênesis capítulo onze.
+Estas narrativas são importantes no que revelam a respeito de Deus, sendo essa revelação
+elemento essencial de sua inspiração.  Para ressaltar esta aprendizagem, é bom trazer
+certas questões, perguntas, dúvidas e críticas do cotidiano ao texto, para que as narrativas
+iluminem a verdade referente aos temas do dia. O propósito do estudo das narrativas é que
+o aluno possa utilizá-los em recontagem, “para ensinar, para repreender, para corrigir, e
+para instruir em justiça”.
+
+Por homilética, entende-se o processo de transmitir a verdade bíblica de forma
+verbal—em especial, compartir a experiência do pregador com Deus.  Em geral, pensa-se
+em um sermão do púlpito no templo de alguma igreja, porém o sentido do termo homilética
+é bem mais amplo. O enfoque que se tomará aqui é de uma homilética informal, que pode
+também ser aplicada dentro de um contexto formal.  Na realidade, é a mesma coisa
+transmitir a mensagem bíblica do púlpito de uma igreja, a um colega de trabalho ou a um
+companheiro no ônibus.  O que diverge é o tempo da exposição, a formalidade da ocasião e
+as limitações para obter-se um diálogo.
+
+3.2.  Porque Homilética Narrativa?
+
+Qual é a razão para enfatizar a homilética narrativa?  Obviamente ela é apenas um
+estilo de homilética, porém oferece vários pontos fortes a serem considerados.  O contar de
+histórias é uma das formas mais fáceis de comunicar, se não a mais fácil.  É também
+dentro deste padrão que a maior parte da Bíblia desenvolve os seus temas.  O ensino
+aplicado através de histórias (narrativas) é lembrado com mais facilidade pelo ouvinte, pois
+a narrativa fornece uma armação própria do ensino.  A narrativa compele a memória,
+incentivando o ouvinte a reviver a narrativa na sua própria reflexão.
+
+“O poder da narrativa reside em sua habilidade para imitar a vida, para evocar
+um mundo parecido como o nosso, para reproduzir eventos e situações semi-reais, para
+recriar pessoas que possamos compreender e a quem podemos nos relacionar”574.  A
+narrativa evoca o ressurgimento do evento descrito, tal que o ouvinte possa participar de
+forma vicária do evento original através das palavras do narrador.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 8
+
+Por outro lado, o sermão  em estilo da narrativa enfatiza o próprio texto
+bíblico  e conseqüentemente chama o ouvinte a ler e estudar o texto por si mesmo.  A
+narrativa também oferece autoridade para o sermão, pois quando as lições são extraídas da
+narrativa, é a própria narrativa que ensina, não o pregador.  Comunica-se assim o que a
+Palavra de Deus ensina, não o que o pregador pensa e transmite.
+
+Por outro ângulo, a narrativa é geralmente mais gostosa de se ouvir, pois o ouvir e
+contar histórias é uma das diversões mais naturais do ser humano. As crianças gostam de
+ouvir histórias e os adultos também.  A narrativa é por natureza ilustrativa e convoca o
+ouvinte para prestar atenção e criar imagens para dar corpo ao narrado. Quando o ouvinte
+participa de tal modo da pregação, ele retém melhor o ensino e tem condições para
+repassar a outros  os princípios teológicos apresentados.
+
+A pregação narrativa tem como centro o texto bíblico.  Quando se trata apenas deste
+texto, o pregador evita “caçar lebre” e mantém-se direcionado a tratar o texto dentro do
+objetivo definido a partir do estudo textual e a situação dos ouvintes. A pregação começa
+com o texto, trata o texto e conclui chamando o ouvinte a viver o ensino do texto bíblico.
+Com essa limitação do pregador tratar apenas o texto bíblico, vem ao sermão a autoridade
+do próprio texto bíblico sendo tratado. A autoridade do texto passa-se ao sermão, pois o
+sermão depende de um vínculo claro com o texto bíblico e tem a mesma mensagem a
+transmitir.  Assim, não será ouvido aquilo que tal pregador pensa, mas aquilo que a
+Palavra  de Deus tem a dizer.
+
+“Quando o Livro é bem lido e feito viver para o povo, pode fazer por eles aquilo que
+sermões freqüentemente falham em fazer:  pode ser a mera voz de Deus para as suas
+almas”.  Essa é a intenção deste estudo—ajudar o cristão a comunicar a narrativa bíblica
+de  tal forma que o ouvinte ouça a voz de Deus e venha a encontrar-se com o Senhor dos
+Senhores.  Que o ouvinte possa ouvir a palavra de Deus perante a exposição de sua
+palavra.
+
+Observação. Outros estilos homiléticos podem bem apresentar uma mensagem bíblica
+clara e ter todo apoio e fundamento bíblico. O que se procura salientar, porém, é que o
+estilo de homilética narrativa demonstra mais facilmente a autoridade textual e bíblica da
+mensagem.  Mantendo-se centrado no texto bíblico e no desencadear da narrativa em
+questão,  o ouvinte não tem opção, senão enxergar o vínculo da mensagem com o texto
+tratado.
+
+3.3.  Processo Homilético
+
+O primeiro passo da homilética é o estudo detalhado do texto bíblico.  No caso da
+homilética narrativa, concerne o estudo da narrativa bíblica em questão.  Sem este estudo,
+não há o que proclamar.  Se o texto bíblico é o que será pregado, é necessário estudar com
+cuidado o texto. Negligenciando esta etapa, o pregador poderá apenas propor os seus
+próprios pensamentos, os quais podem ou não refletir a mensagem do texto.  Deve-se
+estudar a narrativa como um todo, ao mesmo tempo minuciando os detalhes.  Dentro
+do possível, recomenda-se também que o pregador estude como a narrativa trabalha em
+concerto com as outras narrativas ao seu redor. Sendo que as narrativas bíblicas
+encontram-se dentro de contextos maiores dos livros bíblicos, é salutar observar o efeito
+coletivo das narrativas individuais tratados por um autor bíblico.
+
+O estudo da narrativa deve conduzir o aluno a conseguir visualizar a narrativa.  O
+aluno deve poder visualizar a narrativa, passo a passo em ordem, sem perder os pontos
+salientes nos quais se penduram o significado e a mensagem do texto576.  Quando o
+aluno consegue internalizar a narrativa para que seja a sua própria, então pode prosseguir
+a outros passos da preparação da homilética.
+
+Feito o estudo cuidadoso da narrativa,  o segundo passo é definir o objetivo da
+mensagem, ou seja, o propósito de pregar o texto a ser tratado.  Pode soar um tanto
+estranho a colocação de um objetivo a tratar, porém como tem sido mostrado, as narrativas
+podem ser aplicadas ao ensino de múltiplos atributos de Deus.  A definição do objetivo deve
+coincidir com uma necessidade entre os ouvintes da mensagem.   Não é suficiente
+simplesmente recontar uma narrativa bíblica.   A recontagem deve ter um propósito
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 9
+
+definido, como também o narrador bíblico teve um propósito em recontá-lo aos seus
+ouvintes. As narrativas encontram-se dentro de um contexto no qual cada uma tem a sua
+função para desenvolver os seus propósitos. Como o sermão também deve ter um objetivo,
+a recontagem da narrativa já deve começar a responder às dúvidas, colocações, ou
+necessidades a serem tratadas.
+
+Certo artista plástico foi perguntado como ele fazia a figura de um elefante a partir de
+um bloco de pedra.  A resposta dele foi certamente simplista, mas direto ao ponto.
+“Simplesmente tiro tudo aquilo que não parece um elefante”. Ele mantinha sempre em sua
+mente    o objetivo final. Mantendo aquele alvo sempre na sua frente,  somente deixava
+permanecer no bloco de pedra aquilo que o levasse a atingir o seu alvo. Assim também, um
+objetivo bem especificado para um sermão fornece uma regra para avaliar cada detalhe do
+estudo textual a ser ou não incluído no sermão. Somente aquilo que ajuda a levar adiante
+o objetivo para o sermão deve ser incluído na recontagem da narrativa, nas reflexões
+sobre as implicações de vida dos personagens, e na aplicação da mensagem às vidas
+dos ouvintes.  Estudando o texto, portanto, logo se chega a definir um propósito ou
+objetivo em pregar o texto à mão.  Este objetivo deve retratar algo das necessidades dos
+ouvintes da mensagem.
+
+Escolhido o enfoque (objetivo) a ser tratado, começa o terceiro passo na homilética
+narrativa— recontar a narrativa, dando destaque aos princípios teológicos a serem
+enfatizados. Se a pergunta essencial a ser respondida tem a ver com o poder de Deus, a
+recontagem deve enfatizar as ações divinas que ilustram este aspecto de sua natureza.  Se
+a reclamação é de que Deus é distante, a ênfase deve recair  sobre como o homem se
+distancia de Deus e como Deus o persegue para restaurar a comunhão perdida.  Se a
+dúvida é sobre a bondade, misericórdia e graça de Deus, é nestes pontos que a contagem
+deve ter a sua ênfase.  Em geral, são vários princípios teológicos apresentados numa dada
+narrativa que correspondem em conjunto para responder adequadamente a uma crítica ou a
+uma pergunta específica.
+
+O  quarto  passo  da  homilética  narrativa  é  o  de  resumir  e  explicar  os
+princípios  teológicos apontados na recontagem.  Aponta-se como a narrativa revela os
+aspectos da identidade de Deus, que foram assinalados como importantes a serem
+ressaltados.  Neste ponto, é válido apontar ao ouvinte outras narrativas que apóiam o
+ensino apresentado, se for necessário afirmar  a centralidade bíblica do assunto. Deve-
+se cuidar de deixar, porém, que a narrativa primeiramente fale por si mesma, mantendo a
+sua posição central no sermão.
+
+Em conclusão, as implicações destes princípios teológicos devem ser apontadas.
+Estas implicações podem ser apontados em forma de perguntas, as quais o ouvinte
+responde com a sua própria análise. Não é sempre necessário que o narrador faça a
+aplicação pelo ouvinte, mas que aponte para a aplicação apropriada. Se o ouvinte faz a sua
+própria aplicação, em geral terá mais efeito em sua vida, pois partiu de sua própria reflexão
+sobre as implicações da narrativa. Como outro autor tem colocado, “Uma boa história não
+requer uma interpretação, qualquer que seja a circunstância, o seu sentido já clarificado na
+sua contagem”. Sendo bem contada a narrativa, a aplicação da mesma é um processo
+natural para o ouvinte.
+
+Se Deus é Criador e Senhor, qual é a resposta adequada do ser humano?  Se Deus é
+criador, dono, e originador da vida, o homem tem base para criticar suas ações? Se Deus é
+presente, companheiro, gracioso e acolhedor, quem é culpado quando o homem sente-se
+longe de Deus? Se Deus é estabelecedor de limites e alianças, misericordioso, amoroso
+e bondoso, pode o homem entendê-lo como arbitrário e vingativo?  Se Deus é maior
+que o universo, além do controle humano, e soberano, o homem tem a possibilidade ou o
+direito de mandar em Deus?  Se Deus é eterno e infinito, o homem tem condições de
+elaborar alguma forma ou algum sistema para defini-lo adequadamente?
+
+Nesse processo homilético, procura-se apresentar a narrativa ao ouvinte de tal
+forma que a própria narrativa responda às suas preocupações.  O estudo textual
+informa ao pregador a respeito das limitações do texto, bem como os princípios teológicos
+apresentados na narrativa em questão.   Isto, porém, é o fundamento sobre o qual
+trabalhará para desenvolver sua homilética. Nesta, o pregador vai contar a narrativa,
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 10
+
+ressaltando as implicações dos eventos para a vida dos personagens, apontando para a
+importância teológica do texto, e traçando as ligações entre o texto narrado e o contexto
+presente.
+
+Por outro ângulo, pode-se alistar os passos no preparo do sermão da seguinte
+maneira:
+
+1. Ler a narrativa.
+
+2. Estudar a narrativa (investigar dúvidas, perguntas, vocabulário e alistar os
+pricípios teológicos).
+
+3. Ler a narrativa.
+
+4. Meditar sobre a narrativa.
+
+5. Ler a narrativa.
+
+6. Recontar a narrativa em tuas próprias palavras (passar ao gauchesco, deixando de
+lado vocabulário “bíblico”, e verificando que realmente conheces a linha de eventos
+da narrativa).
+
+7. Definir o objetivo específico para o sermão, elaborado em forma de pergunta
+para reflexão.
+
+8. Recontar a narrativa dentro do objetivo especificado (tratando o objetivo desde a
+primeira frase da recontagem).
+
+9. Refletir sobre as implicações do evento para os personagens da narrativa.
+
+10. Aplicação (perguntas para puxar o ouvinte a refletir sobre as implicações para a
+sua própria vida, traçando vínculo com os personagens).
+
+11. Avaliação/Reformulação (o sermão alcançou o objetivo?).
+
+12. Pregar o sermão (elaborado nos passos 8, 9, 10).
+
+Estes passos não devem ser vistos como estáticos, pois muitas vezes será necessário
+voltar a estudar alguns aspectos do texto bíblico quando dúvidas surgirem dentro de
+outra parte do processo.  Recomenda-se que o pregador escreva o texto da recontagem,
+reflexão, e aplicação para que possa mais facilmente avaliar e criticar o seu trabalho. Um
+elemento essencial que foi deixado fora desta lista é a oração. Não foi ignorada por não ser
+importante, mas porque ela deve permear todo o processo, e não se encaixa nem antes e
+nem  após os passos do processo— permeia a todos. O que deve também ficar claro nesta
+lista é que a ocupação do pregador é de transmitir a mensagem do texto bíblico, por isso a
+ênfase na leitura do texto a ser tratado.
+
+A leitura repetida do texto bíblico é essencial, não para que a recontagem siga o pé da
+letra do texto, mas para manter a recontagem fiel ao sentido e conteúdo teológico do texto.
+Estando bem comfortável com a narrativa, o narrador pode então empregar as suas proprias
+palavras para usar a narrativa na transmissão do objetivo especificado.
+
+3.4.  Definindo o Objetivo
+
+Talvez o mais difícil da homilética narrativa é a definição de declaração do objetivo.
+Uma narrativa recontada sem um direcionamento específico não terá bom sucesso.  Uma
+narrativa também pode ser direcionado, mas so o objetivo não for declarado de forma
+suficiente não atingirá tão facilmente o alvo.
+
+Um objetivo deve ser definido em termos dos princípios teológicos percebidos no
+estudo do texto bíblico.  Se o texto apresenta o amor de Deus, o objetivo pode ser
+comunicar que Deus ama o ouvinte. Se o texto apresenta fé em termos de confiança em
+Deus, o objetivo pode ser estimular o ouvinte a confiar em Deus.  Pode também ser
+clarificar a definição de fé para evitar confusão com o simples aceitar conceitos e propostas
+teológicas.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 11
+
+O objetivo deve revelar aquilo que o pregador deseja realizar ao recontar a narrativa.
+“Eu quero que o ouvinte …” é comumente uma “fórmula”  apropriada para o próprio
+pregador definir, ou expressar para si mesmo o seu objetivo.  Quando o objetivo for
+clarificado e definido, deve-se averiguar que realmente provém da narrativa em questão.
+Caso não, deve-se procurar outra narrativa ou definir outro objetivo que apoie o objetivo.
+Pode ser que o objetivo escolhido por alguém seja inválido. Deve-se, portanto, ter cuidado
+para estudar bem o texto bíblico ao definir o objetivo.
+
+Já definido o objetivo de forma clara, deve-se procurar uma forma de expressá-lo como
+a frase introdutória à recontagem da narrativa.  A fórmula acima é para o uso pessoal do
+pregador na clarificação do objetivo. Agora é necessário transmitir o objetivo de outra forma
+para  o ouvinte. O ideal é usar uma pergunta de reflexão que inclui tanto o ouvinte como
+também o pregador como alvos do objetivo e pergunta de reflexão introdutória.
+
+Uma boa frase introdutória resumirá a direção que a narrativa tomará, tal para
+preparar o ouvinte para ouvir a narrativa já pensando na aplicação. Abre-se uma reflexão
+sobre uma proposta, pedindo que o ouvinte reflita sobre como a narrativa apoia ou responde
+o pergunta sendo feita. Veja o exemplo a seguir:
+
+Muitos passam momentos de angústia e até depressão.  “Será que um servo fiel de
+Deus pode sentir-se deprimido?”
+
+Em 1a Reis 18, encontramos uma narrativa do profeta Elias.  Para o povo judeu,
+Elias era o maior de todos os profetas.  Elias tinha enfrentado os 450 profetas de Baal no
+Monte Carmelo, mas logo depois ele fugiu de Israel, pois a rainha declarou que o mataria.
+Caminhou vários dias até chegar ao Monte Sinai, onde Deus havia estabelecido a aliança
+com   o povo de Israel. Pedia que Deus o deixasse morrer, pois não via nenhuma saida e
+sentia que era o único justo e reto perante Deus. Deus enviou mensageiros cuidar de suas
+necessidades físicas e animá-lo a seguir sue caminho. Quando chegou e teve o esperado
+encontro com Deus, Deus o encorajou e enviou-lhe devolta para Israel.  Disse-lhe que
+ainda havia 7.000 homens retos e justos em Israel. Deus animou e encorajou a Elias, sem
+criticá-lo por causa de sua depressão. Aceitou o desânimo e a depressão de Elias e o
+encorajou para seguir em frente dependendo não das emoções mas na provisão de Deus.”
+
+A frase introdutória leva o ouvinte a refletir sobre a temática, sem criar
+barreiras para a mensagem a ser transmitida. Direciona a reflexão para que o ouvinte
+atenda ao assunto durante a recontagem da narrtiva.  Agora falta uma conclusão nos
+moldes da introdução:
+
+“Será que Deus não trata os seus servos hoje da mesma maneira?  Será que Deus
+aceita que seus servos sofram desânimo e depressão sem criticá-los ou puní-los?
+Mesmo quando o desânimo vem por falta de confiar plenamente em Deus, será que
+
+Deus se interessa em resgatar e animar o servo para seguir a frente? Será que mesmo
+um servo fiel pode sentir depressão e ainda ser usado por Deus? Será que em nossos
+momentos de angústia e desânimo podemos cobrar forças ao confiar na fidelidade de Deus,
+mesmo em meio às nossas incertezas?”
+
+3.5.  Processo Avaliatório
+
+A preparação de um sermão nunca está completo—é necessário sempre avaliar e polir
+o sermão. Por isso o pregador deve procurar um equilíbrio entre a necessidade de
+sempre melhorar o sermão e a necessidade de pregá-lo. A responsabilidade do pregador é
+de estar preparado. Além dessa preparação entra a intervenção e a atuação do Espírito do
+Santo em utilizar o esforço humano e suprir as suas fraquezas. Deve haver confiança em
+Deus, como também o lembrar que Deus exige que o servo desempenhe a sua
+responsabilidade de preparação.
+
+Pelo lado humano, porém, existe a constante necessidade de avaliar e melhorar
+o sermão individual e a forma ou técnica geral do pregador.   Para suprir esta
+responsabilidade,  é sumamente  necessário  utilizar-se  de  um  processo  avaliatório.
+Sempre  que  possível,  essa avaliação deve incluir o retorno de outras pessoas, porém
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 12
+
+começa já com o próprio pregador. Essa avaliação deve ser feita mesmo antes da exposição
+do sermão, porém inclui também a avaliação após a exposição.
+
+É normativa a crítica de que o pregador precisa viver aquilo que prega, pois se não for
+assim não terá autoridade para pregar.  Esta questão é muitas vezes colocada como
+empecilho para o pregador em tocar algum tema.  Tal colocação tem certo mérito, porém
+deve-se lembrar outra questão importante vinculada ao tema levantado.  Nenhum pregador
+tem plena autoridade por viver o que prega, pois todo ser humano é pecador.  Mais
+importante nesse contexto é a questão do pregador pregar aquilo que vive.  Quando o
+pregador prega a partir de sua vivência, mesmo colocando a sua fraqueza e necessidade
+perante os ouvintes, gera-se a compreensão de que todos precisam ouvir a mensagem,
+especialmente sendo que o pregador se inclui na lista de ouvintes.
+
+O pregador deve lembrar que todo sermão que pregar será avaliado.  A decisão que
+lhe cabe é querer ou não saber dessa avaliação.  Se souber, poderá aproveitar o retorno
+para melhorar no futuro.  Recomenda-se que o pregador reúna-se com outros líderes da
+igreja que o ouvem pregar para receber deles uma avaliação. Se o pastor tiver tal prática
+com líderes de sua igreja, estará ao mesmo tempo capacitando leigos de sua congregação
+para cooperar na pregação da Palavra de Deus, seja do púlpito ou em eventos evanglísticos.
+Esta reunião avaliatória deve ressaltar pontos positivos, como também negativos.  Os
+positivos são gostosos de ouvir e às vezes ajudam o pregador  a estar consciente da
+aplicabilidade de uma ou outra técnica.  Os pontos negativos, porém, são de mais ajuda
+para melhorar o estilo, formato e apresentação para ocasiões futuras.
+
+Oferece-se a seguir uma lista de questões a serem considerados no preparo, na
+entrega e na avaliação do sermão.  Esta lista não é exaustiva, devendo ser vista como um
+ponto de partida para ajudar no processo avaliatório.
+
+3.6.  Aplicabilidade
+
+•  Coerente com o cotidiano dos ouvintes
+
+•  Resulta de forma natural da exposição bíblica
+
+•  Desafia sem pressionar
+
+•  Todo ouvinte se encontra precisando aplicar algo do sermão
+
+•  Há espaço para o ouvinte fazer sua própria aplicação
+
+Bíblia:
+
+•  Central para toda a pregação
+
+•  Utilização de uma só passagem bíblica
+
+•  Fornece a base da mensagem
+
+•  Desenvolve o tema tratado no sermão
+
+•  O ouvinte é convocado à própria leitura do texto
+
+•  É mantida aberta durante toda a pregação
+
+Clareza:
+
+•  Vocabulário claro
+
+•  Voz clara
+
+•  Objetivo claro
+
+•  Exposição clara
+
+•  Aplicação clara
+
+Contato
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 13
+
+•  Olhar nos olhos dos ouvintes
+
+•  Toque físico quando apropriado
+
+•  Sair da plataforma
+
+•  Sair de trás do púlpito
+
+•  Obter participação dos ouvintes
+
+•  Ouvinte encontra-se na situação do texto
+
+Direcionamento
+
+•  Toda a mensagem direcionado aos objetivos desde o início
+
+•  Direcionada a todos os ouvintes
+
+•  A mensagem inclui o próprio pregador como alvo
+
+Estudo Textual
+
+•  Mensagem demonstra a preparação do pregador
+
+•  Não se usa o sermão para mostrar a erudição
+
+•  Apóia a mensagem e fornece base bíblica e teológica da mensagem
+
+•  Suficiente  para  dar  confiança   ao pregador e ouvinte
+
+Gestos
+
+•  Naturais
+
+•  Não repetitivos
+
+•  Expressivos
+
+Hábitos de Nervosismo
+
+•  Passar a mão no rosto
+
+•  Balançar os pés
+
+•  Mexer no bolso (moedas, dinheiro)
+
+Ilustração/Música
+
+•  Ilustra e apóia o objetivo do texto e do sermão
+
+•  Não distrai o ouvinte da mensagem/texto
+
+•  Amplia o ensino do texto
+
+•  Oferece um “gancho” para lembrar o ensino
+
+•  Usada quando a narrativa não ilustra por si
+
+Mensagem
+
+•  Aplicável à situação vivida dos ouvintes
+
+•  Demonstra vínculo com o texto bíblico
+
+•  Demonstra ser a mensagem de Deus, não do pregador
+
+•  Identifica-se com os ouvintes
+
+•  Reflete a vivência do pregador
+
+Objetivo
+
+•  Expresso desde o início do sermão
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 14
+
+•  Desenvolvido através de todo o sermão
+
+•  Coerente com o texto bíblico tratado
+
+•  Desenvolvido no texto bíblico de forma natural
+
+•  Beneficia/Estimula os ouvintes
+
+•  Requer compromisso do crente
+
+•  Encoraja/estimula o   não-crente  a interessar-se no evangelho
+
+•  Desafia o ouvinte no seu relacionamento com Deus
+
+•  Limitado em número (ideal de um único objetivo)
+
+Voz
+
+•  Audível por todos
+
+•  Variação de volume
+
+•  Variação de tom
+
+•  Variação de expressão
+
+4 -  HOMILÉTICA NARRATIVA
+EXEMPLIFICADA
+
+Para explicar bem o que é homilética narrativa, é necessário fornecer exemplos da
+técnica, pois não é um estilo de pregação comumente usado no Brasil.  Apresenta-se,
+portanto,  um sermão como exemplo, apontando para cada passo de sua construção.
+Como já fora mencionado, cada sermão precisa de avaliação, e mesmo com avaliação
+rigorosa há sempre elementos que possam ser  melhorados.   O sermão que segue é
+fornecido como um modelo—não em sentido de ser exemplar e ideal em todo aspecto, mas
+simplesmente como um modelo.
+
+4.1.  Êxodo 3.1-15
+
+(O texto a seguir está baseado na versão da Bíblia da Imprensa Bíblica Brasileira, de
+acordo com os melhores textos em grego e hebraico, sofrendo algumas modificações
+interpretativas do autor deste polígrafo)
+
+Texto Bíblico.
+
+Ora, Moisés estava apascentando o rebanho de Jetro, seu sogro, sacerdote de Midiã; e
+levou o rebanho para trás do deserto, e chegou a Horebe, o monte de Deus. E apareceu-lhe o
+mensageiro do Senhor em uma chama de fogo do meio duma sarça. Moisés olhou, e eis que a
+sarça ardia no fogo, e a sarça não se consumia; pelo que disse:  Agora me virarei para lá e
+verei esta maravilha, e por que a sarça não se queima. E vendo o Senhor que ele se virara
+para ver, chamou-o do meio da sarça, e disse:  Moisés, Moisés! Respondeu ele: Eis-me aqui.
+Prosseguiu Deus: Não te chegues para cá; tira os sapatos dos pés; porque o lugar em que tu
+estás é terra santa. Disse mais:  Eu sou o Deus do teu pai, o Deus de Abraão, o Deus de
+Isáque, e o Deus de Jacó. E Moisés escondeu o rosto, porque temeu olhar para Deus. Então
+disse o Senhor: Com efeito tenho visto a aflição do meu povo, que está no Egito, e tenho
+ouvido o seu clamor por causa dos seus exatores, porque conheço os seus sofrimentos; E desci
+para arrancá-los da mão dos egípcios, e para o fazer subir daquela terra para uma terra boa e
+espaçosa, para uma terra que mana leite e mel; para o lugar do cananeu, do heteu, do
+amorreu, do perizeu, do heveu, e do jebuseu. E agora, eis que o clamor dos filhos de Israel é
+vindo a mim; e também tenho visto a opressão com que os egípcios os oprimem. Agora, pois,
+vem e eu te enviarei a Faraó, para que tires do Egito o meu povo, os filhos de Israel. Então
+Moisés disse a Deus: Quem sou eu, para que vá a Faraó e tire do Egito os filhos de Israel?
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 15
+
+Respondeu-lhe Deus:  Pois bem,  eu sou contigo; e isto te será por sinal de que eu te enviei:
+Quando houveres tirado do Egito o meu povo, servireis a Deus neste monte. Então disse
+Moisés a Deus: Suponha que eu for aos filhos de Israel, e lhes disser: O Deus de vossos pais
+me enviou a vós; e eles me perguntarem: Quem é ele? Que lhes direi? Respondeu Deus a
+Moisés:  EU SOU QUEM EU SOU (QUE ESTOU SENDO).  Disse mais: Assim dirás aos filhos
+de Israel: EU SOU me enviou a vós. E Deus disse mais a Moisés: Assim dirás aos filhos de
+Israel: O Senhor, o Deus de vossos pais, o Deus de Abraão, o Deus de Isáque, o Deus de
+Jacó, me enviou a vós; este é o meu nome eternamente, e este é o meu memorial de geração
+em geração.
+
+4.2.  Princípios Teológicos da Narrativa
+
+Com a escolha do texto bíblico a ser tratado, é imprescindível um estudo profundo do
+texto. Neste estudo pretende-se ampliar a compreensão do texto e das suas implicações. A
+narrativa de Êxodo 3.1-15 apresenta pelo menos os seguintes princípios teológicos:
+
+Deus Abençoa; Deus Acolhe; Deus Adverte; Deus é Além do nosso controle; Deus Ama;
+Deus Aprecia; Deus Atende; Deus Atua; Deus é Autoridade; Deus é Beneficente; Deus é
+Benevolente; Deus é Bom; Deus Acompanha; Deus Comunica; Deus Conhece; Deus
+Controla; Deus Convoca a Compromisso; Deus Cria; Deus Cumpre; Deus é Decisivo; Deus
+Delega; Deus Desafia; Deus é Detalhista; Deus é Determinado; Deus é Digno de Louvor;
+Deus Discerne entre Bem e Mal; Deus Dá uma Segunda Chance; Deus Domina; Deus é
+Dono; Deus é Econômico; Deus Ensina; Deus Envia; Deus Estabelece Alianças; Deus
+Estabelece Limites; Deus Estimula; Deus é Ético; Deus Executa (Sua Vontade); Deus é
+Exigente; Deus é Fiel; Deus é Gracioso; Deus é Harmonioso; Deus Idealiza; Deus Imagina;
+Deus  é Imutável em Propósitos; Deus é Incontestável; Deus é Indefinível; Deus Inova; Deus
+é Inteligente; Deus é Intencional/Proposital; Deus Interessa com a humanidade; Deus
+Julga; Deus é Justo; Deus Liberta; Deus é Maior que o universo; Deus é Misericordioso;
+Deus Observa; Deus é Ordeiro; Deus Ordena; Deus Organiza; Deus Ouve; Deus é Paciente;
+Deus Participa; Deus Persegue; Deus Persiste; Deus Planeja; Deus é Poderoso; Deus Cuida;
+Deus é Presente; Deus Preserva; Deus Prevê; Deus Protege; Deus Provê; Deus Realiza; Deus
+Faz o Impossível; Deus Reconcilia; Deus Redimer; Deus Repreende; Deus Respeita a
+Escolha humana; Deus Restaura; Deus é Sábio; Deus é Santo; Deus é Seletivo; Deus é
+Senhor; Deus é Sensível; Deus Sentencia; Deus é Soberano; Deus Sofre; Deus Sustenta;
+Deus Trabalha; Deus é Único; Deus Utiliza Recursos; Deus é Visionário; Deus Vive; Deus
+Não é Aleatório/Arbitrário; Deus Não é Omisso; O Homem Desconfia; O Homem é Injusto; O
+Homem é Inseguro; O Homem é Limitado; O Homem Teme; O Homem é Necessitado; O
+Homem Oprime; O Homem Reclama; O Homem é Servo.
+
+Os princípios teológicos listados acima têm base no texto bíblico, porém a
+percepção dos princípios depende do estudo cuidadoso do texto.  Na recontagem da
+narrativa,   deve-se apresentar apenas alguns desses princípios.   A maioria desses
+princípios não serão tratados na recontagem e reflexão para dar a devida ênfase aos
+princípios que apóiam o direcionamento da recontagem.  Às vezes princípios levantados são
+apenas mencionados de passagem, como o fato de Deus dar uma segunda chance a Moisés.
+Às vezes o princípio teológico é enfatizado de várias formas na recontagem, como o fato de
+Deus ser Senhor, convocador e exigente.  O narrador precisa recontar a narrativa para
+conscientemente destacar os princípios teológicos a serem tratados.  A contagem da
+narrativa deve ter um propósito, e este propósito deve aparecer através da própria contagem
+da narrativa, não apenas aparecer ao final. Na contagem a seguir, e ênfase será dada sobre
+tratar a questão de procurar emoções e experiências, em contraste com aceitar a convocação
+de Deus.
+
+Após a recontagem da narrativa em si, o pregador extrai as lições que já havia
+escolhido para salientar na recontagem.  O ouvinte é convocado para encontrar-se
+com os personagens da narrativa e logo a encontrar-se consigo mesmo dentro do próprio
+texto bíblico.  Em geral, o enfoque do ensino textual é a revelação de que tal como Deus
+atuou com os personagens do texto, Deus também trabalha com o ouvinte da narrativa.  O
+ouvinte participa da narrativa, porque o ouvinte encontra-se espelhado nas personagens do
+texto.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 16
+
+A recontagem a seguir parte de um processo de estudo do texto escolhido, no qual o
+autor vem lidando com certos aspectos do texto por anos, tendo pregado e ensinado do texto
+em múltiplas ocasiões em muitos contextos.  Esta recontagem, porém responde certos
+assuntos (dentro dos parâmetros do texto) que estão gerando polêmica na atualidade
+desta  exposição.   Em  outro contexto,  a recontagem  tomaria  outro  rumo  para
+responder outras questões mais pertinentes. Pede-se ao aluno que ouça a recontagem no
+sentido de perceber qual a orientação do sermão revelado na própria recontagem, mesmo
+antes da parte da reflexão que segue a recontagem da narrativa em si.
+
+Na parte final da recontagem e extração de lições, o enfoque é dado à aplicação
+pessoal.  O posicionamento deste autor é de que em geral vale muito mais oferecer ao
+ouvinte as bases para fazer a sua aplicação, mas convocando-o a traçar para si mesmo a
+linha específica da aplicação. No pensamento do autor, quando o ouvinte é induzido a tomar
+uma posição frente ao texto, seu compromisso é maior do que quando o pregador exige dele
+uma certa atitude ou ação.  Por este motivo, a conclusão é feita em perguntas que
+exigem respostas, mas respostas pessoais que exigem uma reflexão interior do ouvinte.
+
+4.3.  Recontagem da Narrativa
+
+A Sarça de Moisés (Êxodo 3.1-15)
+
+Será que Deus pode usar aquele que não se sente preparado?
+
+Longe do Egito, longe do povo, e longe de Deus, Moisés andava ocupado com
+seu trabalho.  Estava a seu encargo o rebanho de seu sogro, e andava procurando pastos
+nos quais apascentar o rebanho. Sua vida passada estava muito longe de sua realidade
+atual.  Havia se esquecido do povo sofrendo opressão lá no Egito.  Numa época passada
+havia tentado ser um libertador do seu povo, mas havia fracassado. Agora, anos depois
+daquele tempo no qual tentara remir o povo, encontrava-se seguro, fazendo o trabalho de
+um pastor de rebanhos, longe do alcance do Faraó que o queria matar. Em meio de sua
+comodidade, Deus vem ao seu encontro.
+
+Moisés não estava procurando Deus. Não estava à procura de um meio de libertar o
+povo da escravidão no Egito. Não estava buscando uma experiência dramática com Deus.
+Estava seguro em sua fuga, trabalhando em sua comodidade, esquecendo-se do povo
+no cativeiro. Longe do povo e longe de Deus, o Libertador vem à sua procura.
+
+Caminhando em seu trabalho, Moisés viu algo extraordinário que lhe chamou a
+atenção. Desviou-se de seu caminho para ver mais de perto. Ao acercar-se de um arbusto
+em chamas que não se queimava, ouviu a voz de Deus chamando-o pelo nome.  “Moisés!
+Moisés!”.  Imagino que Moisés levou um susto!  Quem o estaria chamando pelo nome aqui
+em pleno deserto? Percebendo que a situação era algo extraordinário, prestou atenção.
+
+Moisés respondeu à voz que provinha das chamas, “Eis-me aqui”.  Ouvindo outra vez
+a voz que agora lhe dizia para não se aproximar, mas para tirar as sandálias, logo
+indentificando-se como o Deus do seu pai, de Abraão, de Isáque e de Jacó, Moisés jogou-se
+ao chão em reverência e temor. Era o seu próprio Deus que vinha à sua procura!
+
+Deus explicou a Moisés a razão da visita. Deus havia visto a aflição do povo no Egito,
+havia ouvido o seu clamor e havia resolvido resgatar o povo do Egito e levá-lo para a terra
+que havia prometido a Abraão.  Para cumprir este propósito havia escolhido Moisés. E
+Deus disse a Moisés, “Vem, e eu te enviarei a Faraó, para que tires do Egito o meu povo, os
+filhos de Israel”.
+
+Moisés lhe respondeu como qualquer um de nós teríamos feito: “Como é? Eu? Tu
+queres que Eu faça o quê? Deus, tu não sabes o que estás pedindo. Tu precisas falar com
+outra pessoa. Eu não sirvo de libertador de povos escravos.  Será que tu não anotaste o
+endereço errado? Quem sou eu para que vá a Faraó e tire do Egito os filhos de Israel?”.
+
+Veio a resposta de Deus.  “Moisés, Moisés, não fui eu que errei o endereço, foste tu
+que não ouviste bem o recado. A questão não tem a ver com as tuas qualificações, mas que
+EU SOU contigo. Vou até te dar um sinal de que realmente EU SOU que te envio. Depois
+que tu tiveres tirado o povo do Egito, servirás a Deus neste monte”.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 17
+
+“Barbaridade! Brincadeira! Que tipo de Deus dá um sinal como esse? Que sinal é
+esse que somente se vê após a tarefa cumprida! Mas não é possível! Olha, Deus, se eu for
+aos filhos de Israel e disser-lhes que o Deus dos seus pais me enviou, eles vão rir da minha
+cara! Vão perguntar pelo teu nome. Vão quere saber mais a teu respeito. Dirão, ‘Que deus
+é esse? Quem é ele contra os deuses egípcios? O que pode ele fazer?’. Que resposta
+darei?”.
+
+“EU SOU o que EU SOU—que ESTOU SENDO. Dirás aos filhos de Israel: EU SOU me
+enviou a vós. YHWH, o Deus de vossos pais me enviou a vós. Este é o meu nome para
+sempre. Assim serei lembrado de geração em geração”.
+
+Deus continuou a falar com Moisés, Moisés sempre procurando uma forma de livrar-
+se do chamado. É que Moisés já havia tentado livrar o povo e havia fracassado. Moisés,
+filho do Faraó do Egito, havia enfrentado a opressão dos escravos hebreus, porém
+havia apenas conseguido que o Faraó o condenasse à morte. Por suas próprias forças,
+Moisés já havia tentado libertar o povo e apenas condenou-se a si mesmo. Agora Deus vem,
+chamando-o para cumprir a tarefa na qual havia fracassado.
+
+Será que Deus não entendia? Será que Deus não via que era impossível que Moisés
+fizesse tal coisa? Será que Deus não poderia encontrar outra pessoa, melhor capacitada
+para a tarefa à mão? A época em que Moisés queria libertar o povo já havia passado. Com
+o seu fracasso, havia morrido também a esperança de remir o povo.  Porque Deus não
+aceitava o óbvio e lhe deixava em paz?  Moisés não era a esperança do povo.  Sua própria
+gente se havia revoltado contra a sua tentativa de ajudá-lo. Não, Deus tinha que estar
+enganado. Estava pedindo demais.
+
+Deus deixou que Moisés reclamasse, porém não retirou dele o seu chamado.
+Respondeu às suas críticas, perguntas, e dúvidas.  Disse, “Moisés, EU SOU contigo.
+Não   te peço que vás sozinho contra o Egito como da última vez. Vem e Eu te levarei a
+Faraó, e ele deixará o povo ir. Não te estou enviando para fazeres isso por tua própria conta.
+Eu sei que isso não funciona, como também tu já o provaste. Agora que tu aprendeste esta
+lição, Eu estou pronto para te usar. Vem”.
+
+… (Feito a recontagem da narrativa, segue agora a parte da reflexão, extraindo as
+lições do texto e convidando o ouvinte a ver-se espelhado na narrativa, na situação do
+próprio Moisés.)…
+
+A primeira coisa que muitos vêem nesta narrativa é a “experiência dramática de
+Moisés com Deus”.  Por isso, muita gente anda procurando ter uma experiência de uma
+sarça ardente como a de Moisés.  Muitos chegam a pedir tal experiência a Deus.  Porém,
+existem pelo menos três  problemas  em  procurar  ter  tais  experiências.    O
+primeiro  problema  é  que  não compreendemos o significado de tal experiência.  O
+segundo problema é estarmos procurando uma experiência.  O terceiro problema é que não
+estamos dispostos a assumir o custo de uma experiência tal.
+
+Ter uma experiência com Deus é ser confrontado com um chamado especial de Deus.
+Não é apenas ter uma experiência marcante, que pode ser lembrado por muitos anos. É a
+experiência de ser confrontado com a vontade de Deus, vontade tal que implica num
+compromisso sério com Deus, que muitas vezes será difícil de suportar. Deus não se revela
+de  forma especial à toa.  Na Bíblia, não se encontra relato de pessoas que andaram
+procurando ter uma experiência dramática com  Deus,  mas  de  Deus  perseguindo
+aqueles que em geral andam desgarrados.   Estas experiências partem da iniciativa
+divina em chamar a atenção de alguém que Deus deseja utilizar. Estas experiências
+chamaram as pessoas a confiar de antemão em Deus.  Essa não era uma confiança
+qualquer à qual Deus estava convocando estes indivíduos.  Esta convocação especial
+necessariamente envolvia um sério compromisso de vida.
+
+No caso de Moisés, ele se encontrava foragido de Faraó, quando Deus o chamou para
+arriscar a sua própria vida para libertar o povo da escravidão.  O profeta Jonas estava
+fugindo de Deus e Deus o chamou para pregar arrependimento aos seus inimigos.  Saulo,
+no caminho de Damasco, encontrou-se com o Senhor a quem andava perseguindo, e que o
+chamou para que fosse ele mesmo perseguido, preso, chicoteado, e apedrejado.  Gideão
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 18
+
+estava se escondendo dos midianitas, quando Deus o chamou para levar trezentos homens
+para lutar contra um exército de milhares.
+
+A experiência da sarça, porém, é detalhe mínimo desta narrativa.  Enfocar toda a
+atenção na sarça é perder a importância da narrativa.  Como já foi mencionado, a sarça foi
+usada por Deus para chamar a atenção de Moisés.  Deus tinha uma tarefa especial para
+Moisés e viu ser necessário um sinal especial para chamar a sua atenção. A lição principal
+da narrativa concerne a convocação a esta tarefa.
+
+Deus queria que Moisés atuasse conforme o propósito de Deus em libertar o povo da
+escravidão e da opressão.  Moisés já havia tentado fazê-lo, mas tentou libertar o povo
+segundo as suas próprias artimanhas e planos.  Deus o estava chamando a confiar nos
+planos e meios de Deus.  Deus sabia que Moisés não podia libertar o povo, mas Deus
+estava disposto a libertá-lo através de Moisés. O chamado era um desafio para Moisés, pois
+pedia dele que pusesse a sua vida em risco, voltando para o Egito para enfrentar o Faraó.
+
+Este desafio e chamado de Deus para Moisés não foi algo completamente fora de seus
+próprios interesses.  Moisés queria ver o seu povo livre.  Numa época havia até tentado
+realizar aquilo para o que Deus agora o chama. Isso não altera a dificuldade e seriedade da
+proposta, porém.  Moisés havia tentado libertar o povo da opressão, e havia fracassado
+completamente. A diferença agora é que Moisés está sendo convocado para depender de
+Deus, não de si mesmo.
+
+Parecem quase as palavras de Jesus aos seus discípulos, “Sem mim nada podeis
+fazer”. Esta lição de impotência Moisés havia aprendido.  Estava prestes a aprender que
+com Deus nada é  impossível.  Era  impossível para  Moisés,  mas não para Deus.
+Moisés, porém, teria que depender de Deus e fazer conforme as estratégias divinas. Devia
+libertar o povo sendo portavoz de Deus, seguindo sempre as suas orientações.
+
+… (Feito a reflexão, extraindo as lições do texto, convoca-se o ouvinte a tomar uma
+decisão, aplicando os princípios estudados na recontagem e reflexão à sua própria vida. O
+ouvinte é confrontado com a realidade do texto, agora é necessário tomar uma decisão.)…
+
+Será que a situação é a mesma hoje? Será que Deus tem planos para o seu povo que
+vão além das possibilidades dos que são chamados a cumpri-los?  Será que Deus tem
+interesse em libertar os oprimidos hoje? Será que Deus atua hoje como atuou com Moisés?
+
+O nome que Deus indicou para si a Moisés reflete que Ele é o mesmo de sempre,
+imutável em seus princípios.  A questão para nós é “O que Deus nos está chamando para
+fazer?”.  Junto com essa pergunta vem outra, uma dúvida do próprio Moisés: “Será que
+Deus sabe o que está fazendo?”.  Moisés reclamou do chamado, até aceitar que Deus era
+Deus e que a sua posição devida era de servo obediente.  Ainda assim, Deus exigiu dele
+confiança para andar com Deus em meio ao desafio além do seu controle.  Moisés teve de
+confiar no sinal que ainda não podia ver. Teve que andar segundo a promessa de Deus, tal
+qual Abraão.
+
+Nós não queremos esse tipo de desafio.   Queremos algo feito,  definido,  que
+possamos analisar com cuidado, tranqüilidade e comodidade. Queremos exigir de Deus que
+ele  nos leve a realizar os nossos próprios propósitos, segundo os nossos próprios conselhos,
+sempre protegendo o nosso conforto pessoal.  Não estamos preparados para ouvir o
+chamado de Deus. Não estamos dispostos a seguir aonde não conhecemos o caminho de
+antemão.
+
+O que Deus te chama a fazer?  Estás ainda reclamando da dificuldade?  Estás
+reclamando que tu não tens possibilidade de cumprir o encargo?  Estás lutando contra
+Deus por já ter sofrido derrota?  Estás inseguro e desconfiado daquele que te chama?  Até
+quando lutaremos contra o chamado do Eterno?  Até quando reclamaremos que a tarefa é
+difícil demais ou que deveria ser dado a outro?  Até quando recusaremos sermos os servos
+do Senhor?  Até quando pediremos sarças ardentes, sem estarmos prontos para aceitar o
+compromisso da convocação divina?
+
+Deus nos convoca para atuarmos com Ele.  Seremos nós fiéis? Se formos fiéis, a
+sarça continua sendo necessária?
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 19
+
+4.4.  Objetivo de Contar a Narrativa
+
+Como já fora mencionado, toda recontagem de uma narrativa deve ter um
+objetivo central específico.  A recontagem acima teve como propósito traçar uma distinção
+entre a procura de experiências  e  a  convocação divina do  servo  humano.   A
+avaliação do  sermão  deve primeiramente analisar se esse objetivo ficou claro e pôde ser
+aplicado pelo ouvinte.
+
+Outros aspectos da avaliação são secundários ao alcance do objetivo.  Lembre-
+se que a recontagem da narrativa sem um objetivo específico não tem propósito algum.
+Deve-se saber a razão pela qual se relatará uma narrativa.  Sem definir um propósito, a
+recontagem não vale a pena.  (Obviamente contar o texto bíblico tem propósito, mas é
+muito mais valioso quando se sabe definir um objetivo na transmissão do texto. Deus pode
+usar a leitura de um texto bíblico, mas quando o servo de Deus transmite uma palavra
+divina objetivamente através da recontagem é mais fácil a aplicação para todos os ouvintes.)
+
+4.5.  Outra Recontagem da Narrativa
+
+Tem sido mencionado que uma narrativa pode ser contada de acordo com
+vários possíveis objetivos. Não é “errado” contar a mesma narrativa com enfoque diferente
+a ser dado, pois é o objetivo que norteia a recontagem e a individualiza. Como ilustração de
+que uma narrativa pode ser recontada a partir da escolha dentre vários objetivos possíveis,
+segue outra recontagem da mesma narrativa.  Esta recontagem conta com outro propósito
+da anterior, ressaltando outros princípios teológicos encontrados na passagem bíblica,
+direcionando-se  a  outro  objetivo. Lembra-se que o objetivo escolhido deve partir do
+estudo do texto e ser coerente com seu ensino teológico, porém, as narrativas geralmente
+transmitem mais do que um só princípio teológico, podendo ser aplicados a mais de um
+possível objetivo.
+
+Pode-se enxergar no seguinte exemplo que ênfase foi dada a outros versículos
+específicos da passagem, os quais são centrais para o objetivo especificado.  Toda a
+narrativa não será conrada, apenas aquelas partes integrais ao objetivo à mão.
+
+O Deus Que Ouve (Êxodo 3.1-15)
+
+Às vezes o ser humano se sente sozinho, clamando em vão a Deus.  Será que Deus
+ouve o clamor de um mero ser humano?
+
+Parecia que Deus não ouvia.   O povo, a descendência de Abraão, estava
+passando dificuldades no Egito e clamando a Deus para livrá-los dos opressores.  Sentiam
+que Deus estava longe e despreocupado com eles.  O povo estava em dificuldades. Parecia
+que Deus estava bem longe.  Uns teriam dito que Deus se esquecera deles.  Fazia tempo
+que sofriam mas Deus aparentemente não fazia nada.   Em desespero, gritaram a
+Deus, mesmo que muitos não esperavam uma resposta. Será que Deus não ouvia? Será
+que Deus não se importava com eles?
+
+No outro lado do deserto, Moisés andava apascentando o rebanho do seu sogro, longe
+do povo sofrendo opressão nas mãos dos egípcios. Numa época havia se preocupado
+com a opressão, mas agora andava foragido e despreocupado com o sofrimento de seu povo.
+Afinal, o povo havia rejeitado a sua tentativa de ajuda e ele teve que fugir para proteger a
+sua própria vida.
+
+Tinha ocupação, família, e sossego.  O povo estava bem longe da sua realidade.
+
+Deus, porém estava ouvindo o clamor do povo. Deus ouvia. Deus se interessava.
+
+Ocupado em seus afazeres, Moisés viu algo estranho e resolveu olhar mais de perto.
+Acercando-se do arbusto em chamas que não se queimava, ouviu a voz de Deus chamá-lo.
+Prontificou-se a ouvir a voz de Deus e obedeceu então a ordem de retirar os
+sapatos em reverência, escondendo também o seu rosto.
+
+Deus terminou de identificar-se e disse: “Moisés, Eu tenho visto a aflição do meu povo
+no Egito, e tenho ouvido o seu clamor por causa do sofrimento e da opressão vinda dos
+egípcios. Eu vou livrar meu povo e levá-lo àquela terra que prometi dar a Abraão e aos seus
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 20
+
+descendentes. Tenho ouvido o clamor dos filhos de Israel e agora vou te enviar a Faraó para
+livrares o meu povo do Egito”.
+
+Moisés respondeu, “Mas quem sou eu? Tu queres que eu tire o povo do Egito? Deus,
+eles podem estar gritando para socorro, mas eu não posso tirá-los de lá!”.
+
+Deus voltou a falar com Moisés e disse: “Eu serei contigo. Tu vais tirar o povo do
+Egito, e depois de tirar o povo do Egito, tu me servirás neste monte”.
+
+“Mas Deus, como vou dizer para o povo que Deus me enviou para livrá-los do Egito.
+Eles não me querem! Eles vão dizer ‘Que deus é esse que te enviou para livrar-nos? Qual
+deus é este que te envia?’ Eles estão servindo a muitos deuses. Como vou responder?”.
+
+“EU SOU quem EU SOU.  Assim dirás a eles:  ‘hwhy (YHWH) me enviou, o Deus de
+vossos pais, o Deus de Abraão, de Isáque, de Jacó me enviou’”.  Deus não havia esquecido
+do povo, nem de Abraão, nem de Isáque, nem de Jacó—Israel.
+
+A situação do povo estava bem difícil. Parecia que Deus estava bem longe—longe do
+seu sofrimento, longe do seu clamor, longe da opressão que viviam. Parecia que Deus não
+escutava o seu choro. Mas Deus estava atento. Deus estava interessado.  Deus estava
+preparando tudo para livrar o povo do Egito e levá-lo de volta para a terra prometida a
+Abraão.
+
+Olhando bem, não era Deus que estava longe e despreocupado, mas era Moisés!
+Moisés havia no passado tentado libertar o povo, só que não esperou em Deus e não
+procurou seguir os planos de Deus para livrar o povo.  Impaciente, tomou a sua própria
+iniciativa em resgatar o povo e fracassou.  Seu fracasso foi tanto que o próprio povo o
+entregou e ele teve que fugir do Egito sob condenação de morte.  Finalmente Deus chega a
+Moisés e diz, “Chega. Está na hora de livrar o povo. Volta, pois desta vez tu farás segundo
+o que Eu te disser, e desta vez livrarás o povo das mão dos egípcios”.
+
+O próprio povo se havia rebelado contra Moisés e agora Moisés encontra-se em crise
+frente ao chamado de Deus.  Pode ser que o povo estava até reclamando da opressão, mas
+não havia chegado até o ponto de submeter-se aos planos de Deus para sua libertação.
+Como Moisés, queriam ser libertos, mas à sua maneira. Quem sabe, a maioria queria ser
+liberto da escravidão, mas permanecer no Egito, conforme a primeira tentativa de
+Moisés para resgatar o povo. Haviam reclamado da opressão, mas agora clamaram a
+Deus, prontos para se submeterem aos planos de Deus.
+
+Não restava outra saída e o povo estava agora pronto para ouvir a Deus.  Não é
+apenas a imaginação que nos leva a esta conclusão, pois vemos no decorrer do livro de
+Êxodo que Deus insiste com o povo para largarem os seus outros deuses e servirem
+apenas a hwhy (YHWH).
+
+Olhando para trás, encontra-se Raquel, a esposa amada de Jacó e mãe de José, que
+adorava ídolos.  O povo vivia no Egito, dentro de um contexto de um povo que adorava
+muitos deuses. Antes de livrá-los do Egito, Deus revela nas pragas que há um só Deus,
+soberano acima de todos os deuses do Egito. É este Deus que vem para socorrer o povo em
+seu clamor.
+
+Não era Deus que estava longe, mas era o povo.  Não era Deus que não ouvia, mas o
+próprio povo.  Não era Deus que era impotente, mas o povo que procurava outras formas
+de resolver a sua situação desastrosa.  Deus era fiel.  Eles eram os infieis de ouvidos
+tapados.
+
+Parece que Deus estava esperando para que o povo estivesse pronto para ser liberto, e
+que Moisés estivesse pronto para ser usado por Deus. Alguns estavam prontos. Alguns
+estavam clamando. Alguns estavam esperando em Deus. No tempo certo, Deus veio ao
+resgate.
+
+O povo reclama e o povo clama. O povo aponta o dedo a Deus e diz “Faça alguma
+coisa! Livra-nos daqui!”.
+
+Deus responde: “Vem. Vou te enviar ao Faraó para que tires o meu povo do Egito”.
+Ao pedir que Deus atue, é preciso estar pronto para ser o veículo de sua ação.  Ao
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 21
+
+reclamar libertação divina, é preciso prontificar-se para aceitar o compromisso exigido por
+Deus.
+
+Será que mudou muita coisa entre o contexto vivido pelo povo hebreu no Egito e o
+povo de hoje, que somos nós? Somos muito prontos a reclamar da situação em que
+vivemos. Estamos prontos para aceitar o compromisso que Deus exige de nós?
+Estamos prontos para sermos agentes da libertação divina? Quais são os motivos da
+nossa gritaria hoje? Deus está longe sem ouvir, ou somos nós que nos recusamos a nos
+prontificarmos para a ação divina? Enquanto nós clamamos a Deus, o que será que Deus
+quer    de nós?  Estamos prontos para ouvir?  Será que ainda não aprendemos de nossa
+necessidade de nos dispormos a Deus como servos obedientes? Estamos reclamando apenas
+para lançar a idéia de que Deus é distante, ou estamos prontos para que Deus atue para
+libertar?
+
+Deus nos ouve. Deus conhece o nosso contexto e as nossas dificuldades. Como está
+a nossa audição? Estamos prontos para ouvi-lo?
+
+4.6.  Exemplos de Homilética Narrativa
+
+Apresenta-se a seguir alguns sermões em estilo de homilética narrativa para que o
+aluno tenha mais contato com o estilo apresentado.  Inclui-se aqui apenas os textos dos
+sermões, o estudo textual tendo já fornecida a base para os sermões.  Espera-se que com
+esses exemplos a exposição do estilo fique mais clara.  Como poderá ser percebido, mesmo
+no emprego deste estilo há muita possibilidade para elementos criativos e flexibilidade na
+extensão do sermão.
+
+4.7.  A Criação do Homem (Gênesis 2.4b-3.24)
+
+Muitas vezes a gente gosta de culpar o outro quando a falha é nossa.
+Alguns até desconfiam de Deus, pois vêem ao seu redor gente que não merece confiança.
+Imaginam que Deus seja um pouco como nós. Será que não poderia ser diferente?
+
+Deus criou tudo que era necessário para o homem, incluindo comida, ocupação,
+companheirismo, e até suas necessidades estéticas.  Tudo aquilo que Deus fez foi bom.
+Qual foi a primeira  coisa que o ser  humano fez por  sua própria  iniciativa—pecou
+na primeira oportunidade! O mal foi criação do homem, não de Deus! Será que não é
+assim hoje também? Nós apenas gostamos de jogar a culpa em Deus para não nos
+sentirmos responsáveis pelas nossas ações. Não é assim?
+
+Será que Deus não é digno da minha confiança? Ou será que não sou eu quem não
+deveria receber a confiança de outro? Eu sou o culpado, pois fui eu que neguei a provisão
+de Deus para mim. Fui eu que desconsiderei que YHWH (hwhy) sabe o que é melhor para a
+minha vida. Sou eu que ando tentando fazer o meu próprio caminho, não confiando na
+palavra do Criador.
+
+4.8.  Desconfiança na Provisão de Deus (Gênesis 2.4b-3.24)
+
+De início, Deus proveu tudo que era necessário para o ser humano.  Será que a
+criatura aprenderia a confiar na provisão de Deus?
+
+Criando a humanidade, Deus providenciou também o Jardim Paraíso, conhecido
+como Edem.  Esse jardim era regado por água que subia da terra.  Parece ter sido um
+jardim imenso, pois nele havia não somente o homem, mas também animais de toda
+espécie, quatro rios, pedras preciosas, ouro de alta qualidade, e plantas de toda espécie
+para comida. Além de tudo isso, Deus forneceu ao homem ocupação – cuidar do jardim – e
+também instrução para a sua vida, indicando que uma das árvores do jardim era mortífera.
+Deus providenciou ainda mais que o homem fosse completo, sendo macho e fêmea.  Por
+cima de tudo, o homem andava em plena comunhão com o seu Criador.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 22
+
+Até aqui, a narrativa descreve um paraíso ideal. Tudo funciona corretamente.  Há
+toda provisão divina para suprir todas as necessidades humanas, até mesmo as estéticas.
+YHWH há provisto tudo de forma ordenada e dado à humanidade domínio sobre toda a
+criação. Existe até mesmo uma intimidade e comunhão entre o ser humano e o Criador.
+
+Com tudo isto que Deus havia providenciado para suprir as suas necessidades, o
+homem não se contentou. Queria mais.  Queria não ter que depender de Deus, nem de
+obedecer às suas instruções.  Não contentou-se em ser o mordomo do Criador, nem de
+seguir as ordens e os conselhos d’Aquele que criou o universo.  Queria tomar para si o
+privilégio de fazer as suas próprias regras, de seguir os seus próprios conselhos, de
+tomar para si o lugar do Criador. Queria ser igual ao Senhor Deus e depender apenas do
+seu próprio conhecimento, fazendo o que bem lhe agradasse, sem prestar contas a ninguém.
+Deu tudo errado.
+
+A tentação de desobedecer, seja, de não confiar nas provisões, intenções e instruções
+de Deus, já deve ter nascido dentro do próprio homem, pois não levou muita coisa para
+levá-lo a atuar em desconfiança. Quem sabe já tinha começado a projetar as suas próprias
+fraquezas sobre Deus. De qualquer forma, à primeira oportunidade o homem estabeleceu
+o  seu próprio curso, desviando-se dos planos de Deus.
+
+O animal mais sabidinho de todo o jardim aproximou-se à mulher e começou a
+instigar que Deus deveria mesmo estar escondendo do homem algum privilégio especial,
+retendo-o para si mesmo.  Em lugar de confiar cegamente em Deus, não deveria o homem
+comer da árvore do conhecimento para poder fazer as suas próprias decisões e o seu próprio
+caminho?  O própio nome da árvore era “árvore do conhecimento desde o bem até o mal”.
+Deveria ser bom comer dessa árvore para ter pleno conhecimento!  Qual poderia ser o
+problema? Afinal, conhecimento é coisa boa, e quem tiver um conhecimento pleno
+poderá certamente fazer decisões sábias e corretas! Também não teria que depender de
+Deus, já que certamente conheceria tudo quanto conhecia o Senhor.
+
+Não levou muito até que a mulher tomou daquela árvore,  e deu ao marido que
+também comeu.  Que tragédia! Deveriam ter confiado na palavra do Senhor, em vez de dar
+lugar à voz de uma simples criatura, mesmo que sagaz entre as demais! Será que não
+compreendiam que a astúcia da serpente era muito mais limitada do que a de Deus?  Será
+que não confiavam que o Deus que havia preparado todo aquele Jardim Paraíso o havia feito
+com a intenção amorosa de suprir todas as suas necessidades? Como podiam prestar mais
+atenção em outra criatura do que n’Aquele que havia criado aquele maravilhoso jardim?
+Em lugar de confiar no Criador, deram mais atenção a um bicho que nem tinha patas!
+
+De mordomo do Jardim Paraíso, andando em plena comunhão com o Criador, o
+homem transformou-se em fugitivo, escondendo-se d’Aquele de quem desconfiou.  O
+paraíso no qual vivia  tornou-se  uma  ilusão,  pois  já  não  podia acreditar  na
+benevolência do Criador, de sua provisão, e do seu amor.  Em lugar de ter todo aquele
+conhecimento desejado, viu-se ainda mais dependente no Criador, pois havia atrapalhado a
+sua vida de forma inesperada.
+
+Nem assim Deus o desamparou. O Senhor veio atrás do homem infiel, chamando-o
+de volta para uma nova comunhão. Vestiu o homem de peles e providenciou a melhor saída
+possível de sua nova condição. Em misericórdia retirou dele a possibilidade de ser imortal,
+pois em meio ao pecado não o agüentaria. Alertou ao homem referente às conseqüências do
+seu erro, para que entendesse mais uma vez a sua necessidade de confiar no Criador.
+Mesmo em meio de sentenciá- lo, Deus age outra vez para prover por suas necessidades.
+
+Difícil é aprender a lição de confiar em Deus.  Parecia muito melhor ser auto-
+suficiente, não dependendo de ninguém.  Parecia ser melhor testar os limites estabelecidos
+por Deus, pois quem  sabe  Deus  não  estava  protegendo  o  ser  humano,  mas
+defendendo interesses egoístas. Parecia muita coisa, até que o homem resolveu dar lugar à
+sua desconfiança. Nunca havendo experimentado outra coisa senão a provisão de Deus,
+deve ter sido muito tentador colocar os limites à prova. Conhecer algo diferente parece ser
+algo gostoso. Pelo outro lado do assunto, as coisas são bem diferentes!
+
+Será que é realmente muito diferente hoje em dia?  Não é que desconfiamos dos
+limites que Deus estabelece da mesma forma descrita no jardim?  Será que o problema
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 23
+
+mesmo não é o de aceitar que Deus realmente sabe o que é melhor e é este melhor que
+escolheu para o homem? Não é mesmo que o que realmente nos falta é confiar no Criador?
+
+Lá no Éden não deu certo desconfiar de Deus. Por que será que a gente insiste hoje
+não crendo na provisão de Deus? Por que será que continuamos a projetar sobre Deus as
+nossas falhas, em lugar de crer? Será que não deveríamos confiar mesmo? A Bíblia atesta
+que Deus é fiel. Será que o nosso viver atesta para o mesmo?
+
+Confiar em Deus… parece ser uma coisa fácil.  Todo mundo diz crer e confiar em
+Deus. Será? Será que realmente confiamos?
+
+4.9.  O Perdão Difícil (Gênesis 4.1-24)
+
+Ouve-se muito falar sobre perdão, mas o aceitar ou aplicar é um tanto mais difícil.
+Será que realmente compreendemos e queremos oferecer e aceitar o perdão, mesmo
+quando for oferecido a outro?
+
+Na narrativa de Caim e Abel, vemos de início uma diferença e conflito entre dois
+irmãos. Abel oferece do seu melhor em oferta a Deus, enquanto Caim parece dar uma oferta
+qualquer para cumprir com a obrigação.  Como Abel inclina-se de coração a Deus, ele
+recebe o contato com Deus que procura. A atitude de Caim, no entanto, não é aceito, e ele
+procura desfazer-se da comparação com o irmão, para assim afastar qualquer crítica.
+
+A esse ponto, Deus alerta a Caim para encorajá-lo no caminho certo. Caim recusa a
+aceitar a sua responsabilidade pelas atitudes e ações e arma uma forma de assassinar o
+irmão, livrando-se de comparativas.   Em todo esse processo,  Deus está presente,
+comunicando–se com Caim, na procura pelo seu resgate.
+
+Parece que Deus aceitou a oferta de Abel, mas não tinha interesse em caminhar com
+ele para o proteger.  Porque é que Deus tem que falar com esse assassino, enquanto não
+alerta Abel para o fato que Caim quer matá-lo? Onde está a justiça de Deus para proteger o
+justo? Por que Deus deixa Abel correr risco de vida enquanto Caim arma as suas ciladas?
+
+Caim chama Abel para o campo e o mata.  É o último contato direto que temos de
+Abel— morto no campo e aparentemente enterrado para ali ser escondido.  E parece que
+Deus não interveio.
+
+Deus logo chama a Caim para responder pelas suas atitudes e ações.  Caim ainda
+procura esconder o seu feito, mas Deus está a par da situação.  “A voz do sangue do teu
+irmão clama a mim desde a terra”.  Queremos ouvir, então uma voz de sentença severa,
+Caim pendurado pelas unhas dos pés, chicoteado, torturado até devolver a vida de Abel.
+Mas Deus já recebeu a vida de Abel, sua voz clamando e chegando diretamente à sala do
+trono do universo. Deus não está mais preocupado com Abel, pois Caim nada mais pode
+fazer contra o irmão.
+
+O que nos preocupa, porém, é que Deus ainda preocupa-se com Caim.  Não
+procura formas engenhosas para torturar e matar.  Procura resgatá-lo e trazê-lo a confiar
+em Deus como Abel fazia. Deus procura libertar Caim de sua ansiedade de ser comparado
+com os demais, para que ele possa desfrutar da presença de Deus na sua vida.
+
+Deus comunica a sentença, explicando para Caim os resultados de seu modo de agir.
+Caim começa a pesar as conseqüências e não enxerga futuro, a não ser ruína. O lavrador
+agora se transforma em errante e vagabundo, com medo do resto da humanidade.
+
+Nesta condição, Caim clama a Deus e recebe misericórdia ainda. As conseqüências
+não são eliminadas de sua vida, mas Deus também não o abandona.  Caim recebe
+misericórdia, perdão e uma nova chance de viver sob a graça de Deus. Não sabe, porém,
+comunicar essa graça para não gerar num conceito de libertinagem.  Seu tataraneto
+Lameque não ouve da graça e misericórdia de Deus que conduz a responsabilidade de
+ação  e uma nova vida. Este pensa que pode exigir uma completa proteção divina para si,
+enquanto trata os demais como quer.
+
+Parece que Caim até recebeu graça e misericórdia—o perdão divino, mas não o soube
+compreender e comunicar adequadamente. Será que nós somos muito diferentes?  Será
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 24
+
+que não vagamos entre exigir que Deus ignore as nossas responsabilidades de ação
+enquanto exigimos um rigoroso tratamento daqueles que nos ofendem?  Será que
+entendemos o que é o perdão de Deus? Num contexto em que todos cumprem com os seus
+deveres, não teríamos que lidar com a questão de pecado e perdão. Não queremos lidar com
+isso no contexto no qual vivemos.  É mais gostoso lidar com o perdão nos termos de
+Lameque, enxergando apenas proteção divina para reivindicar justiça para toda iniciativa
+própria.  Por outro lado queremos eliminar o outro que contraria as normas de Deus,
+ferindo-nos de alguma maneira.
+
+Será que temos compreendido e aceito o perdão de Deus?  Quem sabe temos
+uma preferência por justiça cruel e vingança. Ainda bem que Deus continua oferecendo
+misericórdia, graça e perdão. Poderemos aceitar tal oferta?
+
+4.10. A Espera de Abraão (Gênesis 12.1-2, 15.1-6, 16.1-5)
+
+Às vezes anelamos algo que parece não ter solução.  Não vemos qualquer
+jeito de solucionar o problema e parece que a intervenção divina não está próxima. Será
+que Deus é fiel para suprir as nossas necessidades? Devemos esperar em Deus? Ou será
+que Deus quer que tomemos alguma iniciativa própria?
+
+Abraão queria um filho. Fazia tempo que se casara, mas sua esposa não engravidava.
+Ele sabia que Deus lhe daria um filho, pois Deus havia prometido que teria um herdeiro,
+mas estava cansado de esperar.  Bem, de certo modo já tinha um filho, pois Ló, seu
+sobrinho veio morar com ele, já que seu pai havia morrido. Mesmo assim, não era o mesmo
+que ter um filho próprio. Tinha um servo que amava a quem todos os seus pertences
+passariam, mas não era o mesmo. Parecia que sempre estavam lhe perguntando quando ele
+e  Sara teriam um filho. Já não sabia o que fazer.
+
+De acordo com o pensar dos povos da sua época, um filho significava tanto o herdeiro
+como a continuidade da própria vida dos pais.  Não entendiam ainda o conceito da
+continuidade da alma, senão pela extensão de sua vida através dos filhos. Como o filho
+espelhava os pais, os pais continuavam a viver através da descendência.
+
+Deus havia lhe prometido uma descendência enorme. Abraão confiava na palavra de
+Deus. Tinha certeza de que Deus cumpriria sua promessa.   Mesmo assim, suas
+preocupações com um herdeiro, suas necessidades emocionais, e a pressão que vinha de
+seus conceitos de vida eterna e dos povos ao seu redor o vinham desgastando.  Queria
+descansar na promessa divina, mas estava cansado:  Cansado de perguntas... Cansado
+de piadas... Cansado de esperar... Cansado de explicar para as pessoas a respeito das
+impossibilidades que enfrentava...  Cansado de viver sempre numa expectativa que não se
+concretizava.  Abraão queria um filho—um herdeiro,  a extensão de sua própria vida.
+Queria uma resolução imediata, mas a resposta tardava ano após ano.
+
+Cansado,  triste,  incerto  com  respeito  ao  futuro,  tomou  algumas  decisões
+impróprias. Procurou fazer seu próprio caminho. Chegou a pensar que Deus esperava que
+ele mesmo agisse para realizar o sonho.  Aceitou a forma de vida dos povos ao seu redor,
+deixando-se convencer que fazia a vontade de Deus. Não era verdade.
+
+Por um tempo, seu esforço aplacou-lhe a intensidade do seu desejo, mas não foi a
+resposta desejada.  Abraão reconheceu o seu erro, mas sentia ainda a pressão.  Agora,
+porém, a pressão era maior, pois havia feito uma tentativa que foi frustrada. Esse erro lhe
+aumentou a angústia por um filho que fosse o filho que Deus lhe havia prometido.
+
+Voltou a esperar.  Cansado, triste, inseguro, angustiado, desesperado, mas Deus
+voltou a confirmar a promessa. Quem poderia crer? Era impossível pensar que realmente
+teria um filho! Sara já tinha idade avançada e ele ainda mais. Deveria realmente confiar em
+Deus? Sabia que sim, mas suas emoções lutavam com o seu raciocínio.  Era tão
+difícil aceitar.  Mas era necessário. Deus era fiel e cumpriria sua promessa.
+
+E nós? Quais são as lutas que enfrentamos hoje? Quais as promessas de Deus que
+nos parecem impossíveis? Qual é a luta que as emoções trazem às nossas vidas? O que
+nos leva a questionar a fidelidade de Deus, dizendo “Será que Deus é fiel, mesmo”?
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 25
+
+Abraão passou por essa prova.  Em verdade, ele fracassou de inicio, mas depois
+voltou a Deus, confessando sua fraqueza, sua angústia, e, arrependendo-se, voltou a Deus
+para esperar a resposta divina. Qual será nossa resposta? Optaremos pela resposta que o
+mundo oferece, ou pela resposta de Deus? Esperaremos em Deus, ou buscaremos o atalho
+mundano?
+
+Abraão aprendeu que o atalho oferecido pelo mundo não produz a resposta adequada.
+E nós?  Aprenderemos pelo exemplo de Abraão, ou aprenderemos pela nossa própria
+experiência? “Entrega o teu caminho ao Senhor. Confia n’Ele, e o resto Ele fará”.
+
+4.11. O Grande Sacrifício (Gênesis 22.1-19)
+
+Observação. Na  introdução  da  seguinte  narrativa  estão  dois  parágrafos
+didáticos.  Este tipo de introdução não seria normativo, mas é uma opção no evento de
+uma temática que necessite certa explicação introdutória.
+
+No mundo antigo entre os povos vizinhos de Israel e seus antecedentes (e quem sabe
+ainda hoje no espiritismo afro-brasileiro), o sacrifício animal tinha como propósito essencial
+aproximar o ofertante do seu deus. Compreendia-se que o fator animativo do ser humano e
+animal residia no sangue do mesmo.  Assim vemos expressões bíblicas como em Gênesis
+9.4-5 e Levítico 17.11-14 que a vida do animal está no seu sangue. Ao morrer, a vida do
+animal era liberado no fluir do sangue (onde residia), voltando essa vida a Deus. Assim em
+Gênesis 4.10 é o sangue de Abel que clama a YHWH, culpando a Caim.
+
+No ato de sacrificar um animal, portanto, os povos entendiam que o sangue
+derramado do animal aproximava o ofertante ao seu deus, garantindo-lhe audiência
+perante a divindade. Fazendo o seu sacrifício, o ofertante poderia transmitir seu pedido
+diretamente ao seu deus, por intermédio do sangue do animal sacrificado. O ato sacrifical,
+portanto, era uma forma de buscar a presença de Deus, dando ao ofertante atenção divina.
+
+Também para Abraão o sacrifício era um meio de buscar audiência de YHWH
+e de confessar sua lealdade a Deus.  Certos povos ao seu redor utilizavam também
+o sacrifício humano, como forma intensiva de buscar a atenção e ajuda de seus deuses.
+Para  muitos,  o sacrifício não encontrava sempre uma resposta positiva, pelo qual
+ofereciam muitos sacrifícios e até se imolavam, implorando a atenção da divindade, como
+está registrado em 1a Reis 18.28. Era algo difícil para os povos receberem a atenção divina
+que procuravam.  Suas formas de culto eram tentativas para alcançar essa audiência e
+aprovação divina.
+
+Abraão havia esperado muito para ter um filho.  Já com idade avançada o filho
+prometido por YHWH nasceu e o cumprimento da promessa tanto esperada torna-se
+realidade.  Isaque era tudo que Abraão havia pedido—era a extensão de sua vida, era um
+filho que amava, era a visão e esperança de um povo que herdaria a promessa de YHWH
+para ser uma bênção a todos os povos da terra.
+
+Sendo Isaque, o filho da promessa já moço, Abraão se via com a necessidade de dar a
+YHWH o que tinha de melhor.  Ele sabia que todos os povos ao seu redor vinham
+mostrando a sua fidelidade aos seus deuses com sacrifícios que realmente importavam.
+Abrão sentiu que YHWH pedia que ele desse prova igual de sua fidelidade. Afinal, o que já
+havia ele entregue a Deus que realmente lhe importasse? Estava reservando para si o que
+lhe era mais importante. Precisava levar o seu filho, a realização da promessa de YHWH
+para entregar-Lhe em sacrifício.
+
+Preparou tudo para a viagem e levou Isaque, a lenha e servos para irem adorar a
+YHWH. Seguiram viagem caminho o monte.  Deixou os servos para trás e pediu a Isaque
+que levasse a lenha para o sacrifício que prestariam a YHWH.  Muitos enxergam uma fé
+inabalada da parte de Abraão que YHWH certamente lhe restauraria Isaque, mas o texto
+não diz nada além de que Abraão deu uma resposta aos seus servos para que ficassem à
+sua espera.  Indo mais adiante, Abraão e Isaque chegaram no local, e Abraão ouviu a
+preocupação do jovem: “Pai, onde está o animal para o sacrifício?”. Respondeu da única
+forma que lhe era possível: “Deus verá”.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 26
+
+Mesmo não compreendendo, Abraão precisava confiar em YHWH.  YHWH havia
+provido um filho, o cumprimento da promessa.  Abraão agora precisava entregar o mesmo
+de volta ao cuidado de YHWH.  Abraão precisava uma aproximação de YHWH.  Precisava
+da audiência divina e da aprovação divina. Sabia que lhe era necessário entregar o seu tudo
+e o seu melhor a YHWH.
+
+Subiram o monte para o local apropriado e construíram o altar.  Colocaram a lenha
+em ordem e Abraão tomou o filho e o amarrou para o sacrificar a YHWH.  Estava para
+oferecer o seu melhor—toda a sua esperança para o futuro, o que lhe era mais precioso, o
+filho que por tanto tempo havia esperado e anelado.  No último momento, YHWH envia o
+Seu mensageiro para que não machucasse o filho. YHWH não quer sacrifício humano.
+YHWH não exige que o homem faça nada mais do que vir com coração sincero a buscar
+audiência divina. Até mesmo o sacrifício necessário YHWH provê.   YHWH faz tudo
+para que o homem tenha plena oportunidade de ter livre acesso a Deus. O que ao
+homem é necessário é apenas sua sinceridade e fidelidade em servir a Deus.
+
+Abraão aprendeu que Deus não apenas deixava o homem ter audiência divina de vez
+em quando, mas preparava tudo para dar essa audiência livremente. Abraão aprendeu que
+YHWH é digno de confiança e provê pelas necessidade do homem.  Aprendeu que YHWH vê
+as intenções do ser humano e aprova a sinceridade.  Abraão aprendeu que servir fielmente
+a YHWH é muito melhor que inventar o seu próprio caminho.  Aprendeu que deveria
+depender completamente em Deus, colocando a sua vida inteiramente à Sua disposição.
+Por sua fidelidade, recebeu de volta a sua vida em dobro. Aprendeu que a grande exigência
+de Deus não é sacrifícios exagerados, mas confiança na provisão divina. YHWH está pronto
+a receber o homem ante sua presença.  Será que estamos prontos a procurá-lo em
+sinceridade?
+
+4.12. Compromisso da Aliança (Êxodo 19.3-8)
+
+Nem todos esperam que as promessas de Deus contenham compromissos de nossa
+parte. Será que compreendemos o que Deus espera de nós?
+
+O livro do Êxodo dá início com o povo de Israel escravizado no Egito. Toma tempo
+para ilustrar quão sofrida era a situação do povo, bem como sua completa falta de
+esperança para um futuro diferenciado. Nunca na história havia um povo escravizado ter
+sido libertado. Escravidão era algo perpétua para o povo, mesmo que um ou outro indivíduo
+escapasse.
+
+Com o nascimento de Moisés a narrativa começa a dar certa alusão esperançosa, mas
+tal esperança se perde rapidamente com o homicídio do Egípcio nas suas mãos.  A única
+esperança do povo necessariamente corre para o deserto em fuga.  O povo não tem
+qualquer esperança em vista, e nessa condição clama a YHWH (hwhy) a fim de
+alcançar socorro de algum modo.
+
+Desesperados, clamam por outra chance qualquer, pedindo clemência absoluta.
+
+YHWH ouve o povo e envia a eles Moisés, o libertador rebelde.  Moisés até tinha
+interesse em libertar o povo, mas não havia encontrado o jeitinho certo.  Quando Deus o
+chama, ele até reclama antes de aceitar o encargo na ausência de melhores desculpas.
+Então reclama o povo, mesmo querendo liberdade, ansioso que nem seria possível. Faraó
+endurece o coração e dificulta ainda mais a vida do povo escravo.  Até pedem que Moisés os
+“deixe em paz”. Sem qualquer esperança por parte do povo, Deus continua a trabalhar com
+sinais que atacam todo aspecto importante do panteão egípcio, até chegar na pessoa do
+Faraó.  Sem que o povo levante o braço em lutar contra o regime, YHWH o saca de sua
+escravidão, pelejando pelo povo.  Egito, nação vista como poder de insuperável, é esmagada
+perante a decisão e ação divina.
+
+Após esta tão grande libertação, na qual o povo tem sido convocado apenas a crer
+que YHWH atuaria em seu benefício, o povo se aproxima ao monte, onde é convidado para
+aceitar os termos de Deus para uma aliança.  Vale ressaltar que o povo não vem atuando
+como povo de YHWH, mas agora que foram libertos vem a convocação para serem um
+povo—o povo especial de YHWH.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 27
+
+A convocação à  aliança provém de YHWH, não do povo.  YHWH chama a
+Moisés, pedindo que convoque uma assembléia especial para ouvirem os termos da
+aliança sendo proposta.  O povo tem todo direito para rejeitar a proposta sendo estendida.
+É uma proposta estendida por YHWH, com direitos e privilégios para ambos lados, bem
+como responsabilidades. É também uma proposta de livre escolha.  O povo ganhava a
+proteção de YHWH, tornando-se seu povo especial, porém,  comprometendo-se a aceitar
+suas responsabilidades. A escolha em aceitar era do próprio povo.
+
+“Tens visto o que eu fiz aos egípcios, e como eu lhe saquei fora em asas de águias e
+lhes trouxe até mim. Agora, portanto, se obedeceis diligentemente a minha voz e guardares
+a minha aliança, sereis a minha possessão peculiar entre todas as nações; pois toda a terra
+me pertence, e vós se tornareis num reino sacerdotal e numa nação santa para mim.”
+
+YHWH os convoca a aceitarem o privilégio de serem o seu povo especial, com
+o compromisso de espelharem ao próprio YHWH que os havia liberto do Egito.
+Poderiam desfrutar de sua proteção, e teriam a obrigação de serem um luzeiro perante os
+povos. No meio da euforia após as vitórias realizadas sobre os egípcios, teria sido fácil
+demais para que o povo dissesse “Sim!”  YHWH, porém os levou a caminhar mais três
+meses no deserto antes de convocá-los a aceitarem a sua aliança.  O povo ainda via a
+necessidade de aceitarem, e deram resposta afirmativa. Passaram a ser o povo especial de
+YHWH!
+
+O  problema  do  enredo,  gira  em  torno  de  apenas  duas  palavrinhas—“se
+diligentemente”. Analisando bem, o povo até queria desfrutar das bênçãos da proteção
+divina,   mas aceitar suas condições era outra coisa. Em todo o trajeto desde o Egito, o povo
+teve apenas de confiar em YHWH para suprir suas necessidades. Mas confiar é chato, e o
+povo queria fazer seus próprios planos, guiar suas próprias vidas, e fazer seu próprio
+caminho.  O povo queria controlar o seu próprio destino, e o problema era que YHWH era
+grande demais! Não tinha jeito de controlar o Deus que os havia sacado do Egito, mas
+quem sabe um daqueles deuses do próprio Egito poderia ser manipulado?!
+
+O compromisso da aliança é sério.  Fomos chamados a sermos o povo especial de
+YHWH com a expressa preocupação de ser uma nação sacerdotal, mediando a presença e a
+identidade de YHWH perante todos os povos.  Fácil até é dizer que queremos ser povo
+especial. Mais difícil é aceitar o compromisso e as responsabilidades do encargo.
+
+Como o povo de Israel,  nós também fomos convocados a assumirmos um
+compromisso sério, cheio de responsabilidades. O essencial é de atuarmos como sacerdotes
+ao mundo, fazendo Deus conhecido ao mundo.  É um encargo missionário.  Para
+aceitarmos as bênçãos de sermos povo de Deus, é necessário aceitar também as
+responsabilidades.
+
+Será que estamos prontos para tal compromisso? As responsabilidades da aliança
+não são apenas divinas. Existe responsabilidade para o ser humano também.  Será que
+estamos prontos para encarar essa verdade? “Se diligentemente guardardes a minha
+palavra, então…” Qual será a nossa resposta?
+
+4.13.  “Tinham Carros de Ferro” (Josué 17.16-18, 23.1-16 e Juízes
+1.19)
+
+O que fazemos quando aparecem enormes dificuldades em nossa frente?  Dizer
+que confiamos em Deus é fácil, mas será que confiamos mesmo?
+
+Depois da morte de Moisés, YHWH utilizou a Josué para liderar o povo na entrada
+para conquistar a terra prometida. Por intermédio de Josué, o rio Jordão foi aberto para o
+povo passar à terra de Canaã.  Também foi sob a sua liderança que o povo teve a vitória
+sobre a cidade de Jericó, caindo as suas muralhas. Ao longo de sua vida, o povo enfrentou
+vários povos vivendo em Canaã, sendo muito vitoriosos, ao passo que obedeciam a YHWH.
+Ouve algumas desavenças no caminho, mas estas apenas quando o povo esquecia de
+confiar em Deus, e confiasse em si mesmos, escolhendo os seus próprios caminhos.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 28
+
+Na época da morte de Josué, ele se dá o trabalho de alertar o povo a confiar e cultuar
+somente a YHWH, Deus de Israel.   Suas palavras no capítulo 24 são quase que
+assustadoras, ao percebermos  sua falta de confiança na fidelidade do povo.   “Não
+podereis servir ao Senhor, porque é Deus santo, é Deus zeloso, que não perdoará a
+vossa transgressão  nem os vossos pecados.  Se abandonardes o Senhor e servirdes a
+deuses estranhos, então ele se tornará e os fará o mal, e vos consumirá, depois de vos ter
+feito o bem” (Josué 24.19-20).
+
+Dura palavra para ouvir!  Será que o povo não vinha confiando em YHWH?  Haviam
+recebido tantas bênçãos e provas da presença e atuação de YHWH em seu meio.  Havia
+dado vitória inconcebível a esta mesma geração. Como é, então que Josué os adverte com
+palavras tão fortes? Como é que pode dizer “deitai fora os deuses estranhos que há no meio
+de vós” (24.23)? É realmente possível que o povo vinha adorando outros deuses também?
+
+A narrativa conclui com a morte de Josué, e logo começa o livro de Juízes.  Logo no
+capítulo primeiro encontramos algo muito estranho.  De início relata como ainda havia
+povos a serem  conquistados na terra,  pois a promessa  havia sido de que fossem
+expulsados pouco a pouco.  Logo, vemos no versículo 19 que não foi possível que Judá não
+pôde expulsar os povos do vale de sua região “porquanto tinham carros de ferro”.  Que
+coisa mais estranha! O mesmo versículo diz que o Senhor estava com Judá e ajudou
+que tivesse vitória sobre a região montanhosa, só não podia contra os carros de ferro.
+
+O que será que aconteceu? Será que YHWH havia enfraquecido? Será que não podia
+mais dar vitória completa? O que seria o problema para YHWH derrotar um exército com
+carros de ferro? Será que ferro não enferruja? Será que não se afunda na lama? Será que
+o mesmo Deus que afundou o exército do Egito com seus carros de ferro não pode mais
+agir? Será que YHWH estava cansado demais para lutar e realizar a sua vontade?  Em
+Josué 17.18, o próprio Josué havia dito que os mesmos carros de ferro não eram razão de
+preocupação. Josué havia prometido que YHWH daria a vitória sobre os carros de
+ferro.    O que aconteceu?  Será que Deus enfraqueceu?  Será que não cumpre a sua
+palavra? Será que aquelas vitórias narradas eram meras lendas ou contos de fadas? Será
+que YHWH não mais agia como naqueles dias?
+
+YHWH não havia deixado Judá a sós, pois toda a passagem até o versículo 19 ilustra
+como Judá fora vitorioso em tantas batalhas. O sucesso já era tão esperado que já não era
+nem digno de menção. Logo lemos, porém, que Benjamin também não foi completamente
+vitorioso.  Nem Manasés, nem Efraim, nem Zebulom, nem Aser, nem Naftali foram
+completamente vitoriosos. No capítulo 2, tudo se explica.
+
+O mensageiro de YHWH vem perante o povo, lembrando as vitórias do passado,
+especialmente no Êxodo do Egito.  Lembra ao povo também o pacto, incluindo o
+porém esquecido:  YHWH expulsaria os povos, mas somente se o povo se mantivesse o
+pacto, sendo obediente a YHWH. Como o povo se rebelou, procurando outros deuses, então
+YHWH não lhe deu a vitória completa.
+
+O Senhor estava com Judá, mas não valia muita coisa. Judá não estava com o
+Senhor. Judá até conseguiu muita coisa, mas pouca em relação ao que YHWH tinha para
+dar. Que pena que o povo não podia confiar em YHWH.  Que pena que voltaram atrás e
+procuravam outros deuses, outras formas de agir e atuar.  Que pena que trocassem os
+planos e propósitos do Todopoderoso por perspectivas falhas e enfraquecidas. Pena que não
+chegassem a visualizar fé verdadeira.
+
+Será que é muito diferente conosco?  É fácil pensarmos nestas narrativas como
+sendo relatos de um mundo muito distante do nosso. É fácil esquecermos que este mesmo
+Deus que agia antigamente está agindo hoje em nosso meio.  Será que também
+procuraremos nossos próprios atalhos e desvios? Será que aceitaremos deixar os inimigos
+de   carros de ferro habitar o vale enquanto moramos apenas na selva montanhosa? Ou será
+possível entregarmos as nossas vidas aos planos de Deus? Se os inimigos à minha volta
+parecem grandes ou poderosos demais, será que eu posso confiar numa vitória completa,
+mesmo sobre eles?
+
+YHWH é o mesmo, mas nós temos escolha. “Escolhei hoje a quem haveis de servir; se
+aos deuses a quem serviram vossos pais, que estavam além do Rio, ou aos deuses dos
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 29
+
+amorreus, em cuja terra habitais. Porém eu e a minha casa serviremos ao Senhor” (Josué
+24.15).  O povo clamou com voz forte que serviriam apenas a YHWH.  Não durou muito.
+Qual será a nossa história? Dirá, “e o Senhor expulsou de diante deles todos os seus
+inimigos”, ou dirá “mas não pôde desapossar os habitantes do vale, porquanto tinham
+carros de ferro”? A escolha é nossa. O que será?
+
+4.14. A Espada de Gideão (Juízes 6.1-7.25)
+
+Muitas vezes sabemos o que devemos fazer, mas o evitamos por várias razões. Porque
+será que não fazemos logo o que já sabemos ser o correto?
+
+O povo de Israel havia esquecido de YHWH (hwhy) mais uma vez, andando atrás dos
+ídolos dos outros povos. Os midianitas estavam dominando o povo, destruindo a lavoura, e
+furtando o mantimento israelita. O povo estava ansioso em face da praga midianita, que
+havia tomado conta da terra por sete anos.  Nesse desespero, clamaram a YHWH por
+socorro.  O profeta de YHWH subiu de Gilgal (o profeta sempre vinha de Gilgal!), chamando
+o povo para lembrar das coisas que YHWH havia feito e voltar de seus cultos idólatras e
+servir novamente ao Senhor.  Nesse contexto, veio o mensageiro de YHWH a Gideão,
+sentando-se debaixo de uma árvore.
+
+Onde estava Gideão quando o profeta veio ao seu encontro? O que fazia ali no lagar
+(lugar de prensar uvas)? É fácil malhar trigo num lagar embaixo de uma árvore? Para que
+o esforço perdido? Gideão estava escondendo o seu trigo, com medo dos midianitas.
+
+“E aí, Valentão!  YHWH é contigo!”  Gideão não estava em condição nenhuma de
+valente. Estava malhando trigo no local onde se prensava as uvas, escondendo-o assim dos
+midianitas.
+
+A ironia do profeta encontrou terra fértil em Gideão. Esse virou e disse ao mensageiro
+do Senhor: “Ai, senhor! Se YHWH é conosco, porque estamos com tantos problemas? Se
+YHWH é conosco, não estaríamos nesta condição, e não estaria malhando trigo no lagar!
+Possivelmente YHWH nos fez subir do Egito, porém agora nos desamparou e entregou-nos
+nas  mãos de nossos inimigos”.
+
+“Vai nesta tua força e livra Israel da mão de Midiã, YHWH, EU SOU, te ordeno”.
+
+Gideão não estava muito confiante na palavra intermediada pelo profeta. “Queres que
+eu livre a Israel da mão de Midiã? Estás louco, pois eu não sou ninguém, e a minha família
+também não é importante nem poderosa. Como esperas que eu possa fazer algo?”.
+
+“Tu farás, pois EU SOU contigo. Tu vencerás a Midiã como se essa multidão fosse
+apenas um homem”.
+
+Gideão ainda não estava muito confiante, mas sabia ser necessário medir a palavra
+ouvida a saber se por acaso não era realmente uma convocação de YHWH para sua vida,
+mesmo que improvável.  Pediu que o profeta o esperasse enquanto preparava algo para
+comer.  Trazendo o alimento ao profeta, este lhe pediu que pusesse a comida numa certa
+pedra, derramando o caldo por cima, ensopando-a. O profeta estendeu o seu cajado sobre
+a oferta, a qual foi devorada em fogo, e logo o profeta o deixou para que Gideão se acertasse
+com YHWH.
+
+Gideão jogou-se por terra, reconhecendo que YHWH tinha planos para a sua vida e ele
+precisava adestrar os seus planos aos do Senhor.  Atemorizado com o confronto com
+YHWH, Gideão edificou um altar, reconhecendo que YHWH vinha a ele em paz.  Porém,
+naquele mesma noite, Gideão percebeu que ele tinha uma tarefa à mão, pois para ser fiel a
+YHWH, ele teria que primeiramente destruir o altar a Baal do seu pai, e colocar em seu
+lugar um altar a YHWH. Como era um tanto desconfiado, levou dez homens consigo e
+realizou este feito às escuras da noite, sacrificando o boi de seu pai no altar a YHWH.
+
+Logo de manhã, Gideão teve que enfrentar o povo.  Vieram a ele para o matar por
+haver destruído o altar de Baal.  Seu pai interveio, dizendo, “Já que Baal é tão forte e
+poderoso, deixe que se encarregue de Gideão”.  O povo resolveu que podia deixar isso nas
+mão  de Baal, assim fazendo prova de Baal e também de YHWH.  Mudaram o nome de
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 30
+
+Gideão a Jerubaal, “contenda Baal contra ele”, indicando que Gideão confrontaria a Baal, e
+Baal a Gideão. À primeira vista parece que o povo espera que Baal o vencerá, porém
+YHWH transforma a situação.  Não é Gideão que Baal  enfrentará, é YHWH!  Afinal,
+não foi que YHWH havia dito “EU SOU contigo”?
+
+Com tudo o que havia acontecido até aqui, Gideão ainda estava inseguro. YHWH
+havia falado com ele, mas ele não queria arriscar a sua vida sem ter plena certeza da
+vontade de YHWH.  Pediu duas vezes que YHWH confirmasse o chamado, e a confirmação
+veio.  Logo YHWH o chama a convocar um exército,  o qual soma 32.000  homens.
+Convocado, YHWH manda 20.000 embora, logo manda outro grupo embora até restarem
+apenas trezentos. Trezentos homens contra um exército de mais de 100.000!  Agora
+YHWH diz estar satisfeito com os números!  Gideão está ainda inseguro!  (Não
+imagino por quê!  Quem aqui topa sair com trezentos contra 100.000?)
+
+YHWH, porém compreende. Manda Gideão espiar o acampamento dos midianitas,
+onde ouve da boca de um inimigo pagão que a vitória já foi concedida por YHWH. Gideão
+retorna, agora mais confiante, pronto para levar a sua tropa para a batalha.
+
+(Quem está pronto para ir junto?  Não é somente 300 contra 100.000, é também
+sem espada, nem escudo.  É só pra levar uma tocha e uma trombeta.  Como se defende
+com uma tocha numa mão e a trombeta na outra? É preciso confiar em YHWH!)
+
+Olhando para trás, é fácil sermos críticos de Gideão. Afinal, muitas vezes pensamos
+na narrativa com apenas uma história, ou até mesmo um conto de fadas, que não tem nada
+a ver com a nossa realidade. Talvez até aproveitamos a narrativa para “colocar uma pele de
+lã” em sentido de que Deus comprove algo para nós. Uma aplicação que passa disso é difícil
+de ser encontrada.
+
+A colocação de uma pele, porém, não vem ao centro da narrativa.  O importante
+mesmo, é a confiança e o relacionamento de fé que Gideão desenvolveu com YHWH.
+
+Confiança? Fé? Esse tal valentão que anda se escondendo no lagar? Esse tal que
+pede repetidas vezes confirmação antes de prosseguir com o chamado de Deus? Que
+confiança é essa? Que tipo de fé é esse?
+
+É bom lembrarmos que Gideão estava apenas começando a relacionar-se e adorar a
+YHWH. Quando o profeta veio ter com ele, a primeira coisa que Gideão teve que fazer foi
+destruir o altar a Baal, o qual pertencia a seu pai. Gideão não estava envolvido com culto a
+YHWH, mas YHWH veio ao seu encontro.  Ele havia ouvido falar das coisas que Deus havia
+feito no passado, mas eram para ele histórias de tempos antigos, sem relevância para o seu
+contexto.  Quando YHWH vem a lidar com ele, porém, ele atua conscientemente para
+desfazer-se do seu culto a Baal e alinhar a sua vida com os propósitos de YHWH, Deus de
+Israel.  Ademais, o que havia sido convocado para fazer incluía arriscar a sua própria vida
+para demonstrar a sua nova confiança.
+
+Deus não chamou Gideão para lutar contra os inimigos de Israel, mas escolheu
+Gideão para ser o seu agente na batalha. YHWH iria guerrear, mas a Gideão correspondia
+prontificar-se para que Deus atuasse através dele. Teria que confiar que Deus lutaria se ele
+fosse apenas fiel, posicionando-se frente ao inimigo.  Para isso, teria que sair de sua
+tranqüilidade e comodidade, quebrar com o culto a Baal, e enfrentar a ira do povo e do povo
+inimigo. Teria que demonstrar a sua fé no Deus de Israel, mesmo se fosse covarde e
+inseguro.  Teria que depositar a sua confiança em Deus, deixando de lado a fúria de
+suas emoções.  Teria que obedecer, sem importar-se com os obstáculos à sua frente.
+Teria que declarar em suas ações que Deus seria fiel.
+
+YHWH já havia prometido a vitória. Estava convocando Gideão para que participasse
+do que estava por fazer.  O que pediu de Gideão era obediência e confiança.  YHWH
+reconhecia que Gideão era incapaz de vencer os midanitas.  Pedia, porém, que Gideão
+marchasse para mostrar que era YHWH que lutaria.
+
+YHWH estava pronto para livrar o povo da opressão que sofria. Estava pronto para
+dar-lhe a vitória.  Já havia prometido a vitória, mas esperava obediência e fidelidade do
+povo. A batalha estava ganha, mas faltava batalhar.  Faltava fazer frente ao inimigo
+e confiar na vitória prometida. Faltava confiar na fidelidade de Deus.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 31
+
+Muitas vezes nós também enfrentamos dificuldades que parecem não ter soluções—
+problemas financeiros, familiares, físicos ou emocionais.  É fácil cair no desespero pela
+nuvem de depressão que pode cair ao nosso redor.  Mais difícil é confiar na fidelidade de
+YHWH, nosso Deus.  É quase impossível lembrarmos aquelas palavras de Jesus “Buscai
+primeiro o Reino de Deus, e todas essas coisas [essenciais] serão acrescentadas”.
+Jesus falava das necessidades básicas de comida, roupa e abrigo.  Existe porém outra
+perspectiva pela qual devemos medir essas palavras. A perspectiva dos planos e propósitos
+de YHWH.
+
+Gideão estava sendo convocado a crer e obedecer. Deveria crer nos propósitos e alvos
+de YHWH—entregar a terra nas mãos do povo. Era uma promessa temporal que se referia
+ao espaço físico de Israel, porém Deus tem um propósito parecido referente a esta terra.
+Jesus veio para estabelecer o seu reino aqui em nosso meio. Intencionou que todos viessem
+a participar do reino. Tem o propósito de que todos sejam ganhos para um relacionamento
+de fé e esperança em Cristo. A vitória foi prometida. A vitória já está ganha. Falta agora a
+nossa obediência.
+
+Será que estamos prontos para sair e receber a vitória? Estamos prontos para fazer
+frente ao inimigo? Estamos prontos para confiar na vitória que Cristo já nos concedeu?
+Seremos encontrados fiéis?
+
+Somos poucos contra milhares de milhares, mas Cristo já nos deu a vitória!  Não
+temos espadas para erguer, nem força para lutar, mas temos a vitória já alcançada.  O
+inimigo treme diante do nome de YHWH, o Senhor, nosso Deus, Criador do Universo.
+Marcharemos como Gideão?  Proclamaremos com os 300 a uma voz a vitória de
+YHWH?  “Por YHWH e por Gideão!”
+
+Vamos para a batalha! Vamos aceitar a vitória que já nos foi concedida! Vamos sair
+para fazer frente ao inimigo e vencer pela palavra de Cristo! Proclamemos juntos que há um
+só Deus e um só Senhor! Ganhemos esta terra para Cristo, pois a vitória já está ganha!
+
+Cantai, pois, a vitória é ganha, o inimigo afundou-se no mar! / Cantai, pois, a vitória
+é ganha, as coisas velhas ficaram pra trás! / Vencidas as barreiras que nos impediam,
+entremos na terra de Canaã! / Aleluia, aleluia, aleluia! Aleluia, aleluia, aleluia!
+
+Será que nós cremos nessa vitória? Será que realmente estamos prontos para levar a
+mensagem de Cristo para este povo?  Afinal, quem é o nosso Deus?  Estamos olhando
+para o número do inimigo, ou temos confiança real na grandeza de YHWH? Marchemos
+adiante, pois ele já venceu!
+
+Cantai, pois, a vitória é ganha, o inimigo afundou-se no mar! / Cantai, pois, a vitória
+é ganha, as coisas velhas ficaram pra trás! / Vencidas as barreiras que nos impediam,
+entremos na terra de Canaã! / Aleluia, aleluia, aleluia! Aleluia, aleluia, aleluia!
+
+4.15. Confiando na Aceitação de Deus (Rute)
+
+Às vezes é necessário fazer decisões para confiar quando o futuro está incerto.
+Quando se reconhece não ter nenhuma forma de exigir nada de Deus, é comum sentir-se
+mais inseguro ainda. Nesses casos difíceis, será que podemos mesmo confiar em Deus?
+
+Deus tomou uma jovem estrangeira, e através dela trouxe uma lição para o povo de
+Israel— uma moça chamado Rute.  Ela havia se casado com um jovem de povo de Israel,
+enquanto ele e sua família estavam vivendo na terra de Moab, onde ela nascera.  Após um
+tempo, faleceu seu sogro, seu marido, seu cunhado. Sua sogra disse “vou voltar para a
+minha terra.  Fica tu aqui.” Ela disse, “Não!  Prefiro enfrentar as dificuldades de ser aceita
+na tua terra do que ficar aqui na minha. Aceitei teu Deus como meu quando me casei com
+o teu filho. Permaneço naquela confiança. Volto contigo.”
+
+Seguiram viajem de volta para Israel.  Chegando lá, sua sogra lhe indicou o que
+deveria de fazer para ver se a sua família aceitaria as responsabilidades que tinha para com
+Noemi, a sogra, e para com ela.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 32
+
+Deus foi fiel. Foi fiel não apenas em oferecer para ela um novo esposo, vinculada de
+volta para a herança da família com o qual casara.  Deu também para ela um filho que foi
+antecessor ao rei Davi. Deus foi fiel, mesmo para essa jovem que era nada perante o povo—
+estrangeira, sem vínculo com a promessa feita para Abraão, a não ser pela sua própria
+aceitação e pela fidelidade de Deus.
+
+Será que nós confiamos tal na aceitação de Deus sobre nós e sobre aqueles que estão
+à nossa volta?
+
+4.16. Fé Verdadeira na Terra de Baal (1ª Reis 16.29-18.46)
+
+Fé verdadeira nem sempre aparece onde a esperamos encontrar. Será que sabemos
+onde encontrá-la?
+
+Antes de tratar a narrativa de 1ª Reis 17.8-14, precisamos situar-nos na história de
+Israel. O povo já saiu do Egito, e entrou na terra prometida. O rei Davi e seu filho Salomão
+já viveram e reinaram, cumprindo com a vontade de YHWH (hwhy).  Após estes, porém, o
+reino se dividiu entre as dez tribos do norte, com o nome de Israel, e as duas tribos do sul,
+sendo chamados por nome Judá.  Os reis também haviam levado o povo a prostituir-se
+atrás de outros deuses, Baal em particular.
+
+Este Baal  era um dos deuses de fertilidade dos povos ao redor de Israel.
+Considerava-se que Baal fazia as sementes germinarem e as plantas darem os seus frutos.
+Consideravam que Baal era responsável pela fertilidade do gado e também das mulheres.
+Consideravam que Baal era quem mandava a chuva cair sobre a terra para assim regar os
+campos.  Foi a este Baal que Acabe se prostituiu a quem construiu um templo e altar. Foi
+a este Baal que Jezebel, sua esposa, protegeu e manteve 450 profetas.
+
+Quando Acaba, rei de Israel, se demonstrara infiel a ponto de erguer um altar e templo
+a Baal, YHWH interviu por meio de Elias.  Mandou Elias apresentar-se perante
+Acabe em protesto ao culto a Baal.  Sua palavra tocou no cerne do culto a este deus
+estranho. “Já que tens prestado culto a Baal, suposto deus da fertilidade e suposto deus
+da chuva, Eu, YHWH, farei com que não mais caia chuva sobre a terra até eu mandar. A
+terra tornar-se-á seca por causa do teu culto a esse tal deus da fertilidade. Então toda
+Israel saberá quem é Deus”.
+
+YHWH secou os céus e houve uma grande fome na terra.  No entanto, Deus enviou
+Elias para morar junto a um riacho, e ali enviou corvos para levar-lhe banquete de pão e
+carne de manhã e de noite. Era um banquete, pois o povo não comia carne todos os dias,
+apenas em ocasiões especiais.  Baal foi incapaz de regar a terra e contrariar a palavra de
+YHWH.  Elias, porém, ficou naquele lugar conforme a orientação de YHWH, mesmo
+esperando que lhe sobreviesse a morte.
+
+Após um tempo, a seca tornou-se tal que o riacho onde Elias estava acampado secou-
+se. YHWH enviou-lhe, então, a outro pais, a uma terra cujo povo prestava culto a Baal. Lá
+YHWH prometeu cuidar do seu profeta através de uma viúva.
+
+Elias saiu de Israel e chegou-se à terra de Jezebel, a rainha que mandara matá-lo. Ali
+encontrou a viúva do qual YHWH falara. Pediu para ela água, e logo que lhe fizera um pão
+para comida. Ela reclamou.
+
+Por que razão deveria dar de comer a este estrangeiro? Afinal, ela estava prestes a
+preparar a sua última refeição, para si e para o seu filho. Era o último que tinha. Após esta
+refeição, ela e o seu filho estavam para esperar a morte chegar, pois não tinham nenhum
+outro sustento.
+
+A palavra de Elias não foi fácil de ouvir. Toma este pouco que tens, e faça um bolo
+para o profeta estrangeiro, e com o restante para si e para o filho. O que ela tinha mal era o
+suficiente para si e o filho. Não havia o suficiente para repartir.  Além do mais, que mãe
+aceitaria tal proposta de dar comida do filho para um estranho, quando tudo indica que o
+filho permaneceria sem comer? Era a sua última refeição! Porém o profeta dissera que não
+faltaria, nem a farinha, nem o azeite.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 33
+
+Ela reconheceu que ele era o profeta de YHWH, Deus de Israel. Havia ouvido falar de
+Elias, aquele que declarou a Acabe, o rei de Israel, que YHWH secaria os céus até segunda
+ordem.  Reconhecia, também, que Baal fora incapaz de contrariar a YHWH.  Se YHWH
+pôde secar os céus, quem sabe era possível que provesse o seu sustento também.  A final
+de contas, que diferença havia em comer mais uma refeição que não satisfaria mas seria a
+última, ou logo renegar a refeição como já havendo comido pela última vez? De qualquer
+forma, morreria tanto ela como o seu filho. Quem sabe o profeta seria fiel?
+
+Teve que entregar a sua própria vida nas mãos de YHWH para realmente saber de sua
+fidelidade. Mais do que isto, teve que confiar a YHWH a vida do seu filho. Pela seu ato de
+confiança, recebeu de volta a sua vida, a do seu filho duas vezes!  É que algum tempo
+depois, seu filho chegou à porta da morte, e ela decidiu que era o julgamento de YHWH
+sobre os seus pecados. Irou-se com Elias, perguntando porque ele tinha que repousar com
+eles, só para que YHWH visse a sua pecaminosidade e executasse justiça, tirando-lhe o
+filho.  O profeta não respondeu à falha de sua reclamação, simplesmente pegou o menino,
+e orou a YHWH que lhe dera de volta em vida à mãe.  Feito a recuperação, ela começou
+realmente a crer.   Baal,  o chamado deus da vida e da fertilidade,  realmente era
+impotente. YHWH, porém, é digno do título de Deus!
+
+O que a viúva aprendeu ainda precisava ser aprendido por Acabe e a nação de Israel.
+É interessante que uma viúva pagã podia aprender a confiar em YHWH enquanto o povo
+escolhido escolhia crer em Baal, que nem era deus. Elias voltou segundo a palavra de
+YHWH e enfrentou a Acabe, os 450 profetas e Baal e toda a nação no monte Carmelo. Lá
+YHWH deu prova de ser Deus supremo e Baal impotente. Logo YHWH enviou torrentes de
+chuvas para regarem a terra, mostrando ser realmente o Deus da Vida, de chuva, de água,
+de tudo.
+
+Ao revelar-se, porém, YHWH desafiou o povo a confiar, como também desafiou
+aquela viúva. Pediu que entregassem aquilo no qual confiavam para o seu sustento, os 450
+profetas de Baal.  Exigiu que declarassem a sua confiança apenas em YHWH de forma
+irreversível em oposição aos seus falsos deuses. Pediu que se rendessem por completo a
+YHWH  e confiassem na sua misericórdia.
+
+Será que nós também não precisamos fazer tal entrega e realmente confiar em YHWH?
+Para alguns pode ser necessário fazer a primeira entrega de fé, estabelecendo um
+relacionamento de confiança em Deus.  Para outros de nós, será que não precisamos
+render aqueles rincões escondidos de nossas vidas a Deus?  Será que ele não é fiel e
+poderoso para suprir as nossas necessidades?  Os orixás dos terreiros são impotentes,
+tais como os santos pendurados nas paredes da cidade. O dinheiro é fugaz como
+também a chuva nos quais o plantio depende. Será que os nossos outros “deuses” não são
+também que nem o Baal do povo ao redor de Israel.  Pelo menos a viúva de Sarepta
+aprendeu a lição que apenas YHWH é Senhor. E nós?
+
+4.17. “Abra os Seus Olhos!” (2ª Reis 6.8-23)
+
+O homem tende a olhar para as coisas erradas—problemas, dificuldades, perigos,
+barreiras—em vez de olhar para as coisas devidas. Enfocando assim nas dificuldades, fica
+difícil ver a saída que já está preparada.  Será que o problema maior é termos uma
+perspectiva equivocada? Quem sabe se enxergamos pela perspectiva de Deus, a situação
+seja bem diferente do que pode parecer.
+
+A Síria estava em plena campanha de guerra contra Israel.  Vinha atacando
+utilizando de várias estratégias para derrotar Israel.  O rei estava enviando seus soldados
+contra cidades específicas para as sitiar.  Contudo, enfrentava problemas, pois Eliseu, o
+profeta de YHWH alertava o rei de Israel a respeito dos planos dos exércitos sírios e este
+alertava as cidades para estarem preparados para enfrentarem os ataques planejados.
+Como os seus ataques continuavam a dar errado, o rei sírio resolveu investigar a fuga de
+informação.
+
+Mandou que se lhe buscasse a fonte da fuga de informes.  Os seus servos lhe
+informaram que o profeta de YHWH, Eliseu era quem estava passando informações para
+Israel.  Ao saber disto, o rei resolveu tomar o profeta cativo para que tivesse liberdade de
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 34
+
+atuar segundo os seus planos de guerra.  Mandou que lhe reportasse a localização do
+profeta. Ao localizar a Eliseu, enviou um forte exército para trazê-lo de volta cativo.
+
+De madrugada, um servo do profeta levantou-se e saiu. Estava bem contente por ser
+servo do profeta, pois Eliseu operava tantas coisas extraordinárias e o moço orgulhava-se
+por servir a esse homem de Deus.  O moço saiu, mas o seu ânimo caiu por terra
+nessa  madrugada. Levantando seu olhar, viu o exército sírio sitiando a cidade onde
+estavam. Correu em temor para reportar a Eliseu.  “Ai, meu senhor!  Estamos fritos!  O
+exército sírio nos sitiou e nos levará cativo! O que faremos agora? Tem exército por todos
+os lados e não há saída! O que será de nós? O que faremos?”
+
+Não parecia haver saída. Inimigos os cercavam por todo lado. Eles estavam sitiados
+sem caminho de retirada.  O povo que vinha guerreando contra Israel havia atacado no
+ponto fraco. O próprio profeta que vinha alertando o rei de Israel contra os planos
+inimigos havia sido cercado. Deus aparentemente os havia abandonado. O drama de
+sucessos havia mudado, pois ao invés de atrapalhar os ataques sírios, estavam sendo
+atacados no ponto mais frágil. Tudo parecia ter caído por água abaixo.  Agora não havia
+como escapar. Já não havia mais saída. E agora? “O que será de nós? Já não vejo mais
+saída! O que faremos?! Ai, meu senhor! Estamos fritos!”.
+
+Eliseu não desperdiçou o seu tempo olhando para o inimigo. Não se preocupou em
+medir as forças adversárias.  Nem ao menos saiu para ver se não havia alguma rota para
+escapar. Olhou para o moço e disse, “Fica calmo.  Não se preocupe.  Não tenha medo do
+inimigo. YHWH está ao nosso lado, portanto não há razão para temer. O nosso lado é mais
+forte do que o deles”.  Logo pediu que Deus abrisse os olhos do moço para que pudesse
+enxergar de outra perspectiva.
+
+Quando o moço olhou, viu de uma perspectiva bem diferente. Enxergou o monte ao
+redor de Eliseu estar cheio de cavalos e carros de fogo, oferecendo proteção. A situação
+agora parecia bem diferente. Já não era assustador. Já não estava prestando atenção no
+inimigo. Agora estava prestando atenção em YHWH.
+
+Quantas vezes isso nos acontece!  Olhamos ao nosso redor  e enxergamos
+apenas dificuldades, tropeços, situações difíceis, conflitos.  Olhamos ao nossa redor e
+atrás de cada evento contrário vemos uma armação satânica. Lembramos do versículo que
+diz que o nosso inimigo anda ao nosso redor rugindo como um leão para no tragar.  Logo
+esperamos ver sua atuação por toda parte. Temos inimigos reais. Temos problemas a
+enfrentar cujas origens são de além do nosso controle. Vemos tão claramente por toda parte
+expressões de inimizade contra os propósito de Deus. Somos tentados a identificar agência
+maligna em toda parte.  Parece que ao nosso redor só existe inimigo. Não parece haver
+saída nenhuma, pois o inimigo é mais poderoso, mais numeroso, e nos há cercado por toda
+volta.
+
+Às vezes chegamos a tremer de medo por dar mais atenção ao inimigo do que para o
+nosso Salvador!  É muito mais fácil enxergar o inimigo, pois está cara a cara à nossa
+frente.  Se olharmos com mais cuidado, poderíamos enxergar o Salvador.  É falta de
+perspectiva, mas é também falta de fé.
+
+A diferença entre o moço de Eliseu e o profeta provinha da diferença de
+relacionamento com YHWH.   O moço seguia a fé do profeta e atava-se aos passos do
+homem de Deus.  O profeta, porém, andava em plena comunhão com YHWH.  Como
+conseqüência desse relacionamento, ele estava atento para aquilo que YHWH estava
+fazendo.  Tinha os olhos fitos no Criador, o protetor fiel de Israel.  O profeta havia se
+preocupado em conhecer a YHWH, logo não precisava preocupar-se com o inimigo.
+Confiava no Todo Poderoso, o que tinha para temer? O inimigo não merecia a sua atenção.
+
+Onde está a nossa atenção?  Estamos preocupados com aquilo que o inimigo
+está aprontando, ou estamos ocupados em conhecer e participar daquilo que o Todo
+Poderoso está fazendo? Temos os olhos voltados para encontrar toda armação inimiga que
+nos confronta, ou atendemos os planos do Criador? Medimos as barreiras ao nosso redor,
+ou confiamos que Cristo pode remover toda e qualquer barreira?  Será que estamos
+temerosos de um inimigo que já foi derrotado na cruz? Será que ainda não entendemos que
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 35
+
+servimos o Criador do Universo, o Todo Poderoso, o único Deus, que nos amou e deu a sua
+vida por nós?
+
+Será que estamos deixando de fazer a vontade de Deus por falta de atenção naquilo
+que ele está fazendo? Será que temos os olhos voltados para o lugar errado? Fixemos os
+olhos em Cristo, para assim cumprir com os seus propósitos!
+
+Ou YHWH é onipotente, ou não é. Ou é fiel, ou infiel. Ou nos ama, ou não. Ou a
+vitória já foi ganha por Cristo, ou já fomos derrotados.  Aonde colocaremos a nossa
+confiança?
+
+Abra os nossos olhos para que possamos crer e ver que a vitória realmente está em
+Tuas mãos!
+
+4.18. O Adversário do Justo (Jó)
+
+Muita gente procura fazer tratos com Deus para de alguma forma manter controle
+sobre as suas vidas. Será que é valido esperar recompensa por obedecer o Senhor do
+Universo?
+
+Era uma vez, um homem na terra de Uz—um homem chamado Jó.  Este homem
+era exemplo ideal de integridade e perfeição—sempre servia a Yahweh e com
+diligência se distanciava do mal.  Jó era um homem abençoado, com sete filhos e três
+filhas, enriquecido por Deus em ovelhas, camelos, bois, jumentas, e servos—era o maior de
+todos os homens do oriente. Sua família era exemplar em comunhão, e os seus filhos faziam
+sempre banquetes entre si, cada um por sua vez. Jó os cuidava e oferecia continuamente
+sacrifícios em prol deles, pelo caso de um deles ter cometido algum pecado sem perceber.
+
+Certo dia, quando os servos de Deus prestavam seu relatório regular,  entre eles
+chegou o adversário. A este Yahweh faz menção do nome de Jó, o seu servo por excelência,
+pois não há outro na terra como Jó—íntegro e reto em tudo o que faz. O adversário, porém,
+toma a acusar YHWH por estabelecer um sistema de recompensa material por atos corretos.
+Este indica que um sistema em que o homem recebe de acordo com as suas ações não
+resulta em mostrar aquele que realmente é íntegro.  Tal sistema apenas aponta para
+aquele que sabe aproveitar-se do sistema. Acusa, então a Jó por não ser sincero em sua
+retidão e acusa a Deus por estabelecer um sistema incoerente de retribuição direta.
+
+Este era o conceito teológico popular do dia, ainda nos dias do Novo Testamento. No
+decorrer do livro, porém, tal conceito é posto à prova. Os filhos de Jó morrem, seus animais
+são tomados, e seus servos mortos, mas Jó permanece fiel a Deus. O adversário volta a ter
+com Deus na próxima ocasião de relatório, ampliando sua avaliação.  Não é apenas a
+questão de recompensa de bens que fazem injusto o sistema de recompensa, mas é
+essencial a questão saúde. Retirando de Jó a sua saúde, porém, este permanece fiel.  Sua
+esposa o incita a negar a Deus, mas Jó permanece fiel, íntegro e reto.
+
+Até este ponto, a narrativa corre bem. Começa a ser contado como se fosse um conto
+de fadas, tratando de um homem sem pecado algum, tratado como exemplar até mesmo por
+Deus. Este logo foi posto à prova para ver se sua retidão fosse real. Jó é provado, e mostra
+ser tão íntegro como antes. É neste ponto que a narrativa toma outra direção.
+
+Os três amigos de Jó chegam para consolá-lo, porém difundem a teologia
+retribuicional vigente do dia.  Reclamam que Deus há retribuído a Jó conforme algum
+pecado cometido, mesmo sendo que Jó insiste em não ter feito nada de errado.  No
+responder a seus amigos, Jó aponta para o fato de que os injustos recebem prosperidade e
+nem sempre são punidos.  Os seus amigos continuam a acusar a Jó de vários erros, porém
+não encontram nada, tal que Deus se intromete no discurso para fazer uma série de
+perguntas que não podiam ser respondidas.  Desta forma, Deus mostra que todas as idéias
+dos amigos lançados para encontrar uma resposta ao sofrimento de Jó eram palavras de
+ignorância—Deus acusa aos amigos de falarem bobagem.
+
+Ao final da narrativa, após Deus pedir sacrifícios dos amigos e a intercessão sacerdotal
+de Jó por eles, Deus restaura a Jó uma posição ainda mais elevada da anterior.  Sua
+riqueza é dobrada, e seus filhos parecem ser ainda mais conceituados. Jó então vive feliz
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 36
+
+ainda por muitos e muitos anos, até mesmo ver os ta-ta-ra-netos. Final feliz, melhor do
+que se esperaria, mesmo no cinema de Hollywood. Essa reconstituição de Jó soa menos
+provável até que um conto de fadas!
+
+Porque tanto drama para simplesmente dizer que uma teologia de prosperidade é
+apenas um “papo furado”?  Porque insistir tanto para demonstrar que tudo aquilo que
+acontece no mundo não obedece um sistema tão fechado e limitado como aquele que
+como seres humanos gostaríamos de ver?
+
+Olhemos um pouco para o papel desempenhado pelo adversário no primeiro capítulo.
+Este começa com uma acusação a Jó, acusação que vai sendo dirigida também a Deus. A
+acusação principal da narrativa, porém, não é nem contra Jó, nem contra Deus.  O
+acusado é o que reclama um sistema bonitinho de retribuição direta de benção material
+sobre o justo e castigo sobre o ímpio. Em última análise, o acusador é Deus, e o adversário
+é aquele que mantém o conceito teológico dos amigos de Jó.
+
+Começando a narrativa num estilo faz de conta, o narrador tranqüiliza o ouvinte a
+aceitar a proposta de um homem completamente justo e reto.  Logo trata de mostrar a
+incredibilidade da idéia comum da teologia vigente de bênção material. Assim chegamos a
+ver que tal conceito baseia-se não na justiça de Deus, mas na própria avareza humana.
+Um sistema retribuicional reduz a fidelidade e a integridade a um egocentrismo
+cuidadosamente direcionado.
+
+Qual é, então, o propósito de ser justo, reto e íntegro?  Porque deveria o homem
+desviar-se do mal e servir a Deus em temor? Se não há uma recompensa clara para o justo,
+o   que adianta e para que serve o esforço?
+
+O desfecho do livro explica a razão—a grandeza e a majestade de Deus! A única razão
+para seguir os mandamentos e os conselhos de Deus é por causa de sua identidade e
+singularidade. Yahweh é digno de ser obedecido e seguido.  Yahweh é digno de ser louvado
+e  cultuado.  Ser íntegro é apenas a responsabilidade do servo humano, criado por
+Yahweh para ser fiel um mordomo fiel. Foi o suficiente para Jó.  Foi esta a razão de sua
+fidelidade e sua integridade de caráter. Mesmo quando não houve retribuição coerente com
+suas obras, Jó foi fiel e íntegro por razão da identidade de Deus.
+
+Será que é suficiente para nós?  Estamos prontos para obedecer e servir sem
+esperar qualquer recompensa como salário?  Ou será que estamos dispostos apenas
+para viver uma avareza e um egocentrismo mascarado?  Qual é a nossa motivação?  Por
+quem seremos acusados—pelos amigos de Jó, ou pelo Yahweh?
+
+4.19. Criaturas do Altíssimo (Salmo 8.1-9)
+
+Ouve-se muito do grande amor de Deus. Será que confiamos ser verdade?
+
+Cristo ama as criancinhas.  Em toda a sua fragilidade, curiosidade, individualidade e
+dependência, Deus os ama.  Quando nós olhamos para uma nova vida, quantas vezes
+pensamos de sua fragilidade e completa dependência em outros.  Pensamos no contraste
+entre tudo aquilo que é necessário fazer em benefício deles, coisas que eles não conseguem
+lograr. É necessário, porém, lembrar-nos que nós também somos frágeis e dependentes—
+ainda que não queiramos admitir.  Para melhor apreciar a nossa condição, porém,  é
+necessário pensarmos um pouco a respeito do recém-nascido e o seu Criador.  Refletindo
+sobre a identidade do nosso Criador, podemos melhor apreciar quem somos.
+
+No Salmo 8 encontramos a seguinte reflexão sobre a grandeza de Yahweh, Deus de
+Israel, Criador do mundo. Também nessa mesma reflexão o salmista trata a condição do
+homem frente ao Criador.
+
+Ó Yahweh, nosso Senhor! Quão admirável é o Teu Nome em toda a terra! Tu, que
+revelaste a Tua glória desde acima dos céus!
+
+Da boca das crianças e dos que mamam Tu sucitaste uma fortaleza contra Teus
+adversários, para calar o inimigo vingador.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 37
+
+Quando contemplo o firmamento,  obra dos Teus dedos, a lua e as estrelas que
+estabeleceste, que é o homem, para que Te lembres dele? E o filho do homem para que o
+visites?
+
+Contudo, pouco abaixo dos deuses o fizeste; de glória e de honra o coroaste. Deste-lhe
+domínio sobre as obras das Tuas mãos; Tudo puseste abaixo dos seus pés: Todas as ovelhas
+e bois, assim como os animais do campo, as aves do céu, e os peixes do mar, tudo o que
+passa pelas veredas dos mares.
+
+Ó Yahweh, nosso Senhor, quão admirável é o Teu nome em toda a terra!
+
+Não há comparação entre YHWH e nenhum outro. Aquele que criou o universo, não
+pode ser comparado com qualquer outro, pois é infinitamente além.  Olhando para a
+maravilha de uma nova vida, lembramos da diferença tamanha entre o que esta criança hoje
+é    o que ela há de ser alguns anos para a frente.  Essa diferença, porém, não chega a
+espelhar a diferença entre quem somos nós e quem é o Criador.
+
+Entretanto, o objetivo do salmista não é apenas de apontar para a tamanha diferença
+entre Yahweh e o homem—Sua pequena e frágil criatura.  O seu interesse é mostrar o
+quanto Yahweh ama à sua criatura, mesmo sendo ela pequena, frágil, e impotente. Esse
+amor vem expresso na posição que ao homem foi dada pelo seu Criador.  Foi colocado
+numa posição de domínio sobre as demais criaturas, feito apenas pouco a menos da posição
+dos seres espirituais, sejam chamados deuses ou anjos.
+
+O homem deveria ser insignificativo, porém o Criador o dotou do seu amor. YHWH
+não o ama por causa de qualquer mérito humano, nem por causa de alguma grandeza
+inerente ao ser humano. YHWH o ama por causa de sua benignidade e livre decisão de
+doar-se a outro. O ama como fruto de sua graça.
+
+Por que razão deveria o Criador mesmo lembrar do homem? Nenhuma, a não ser
+por causa do seu amor. É obvio que o homem pouco se lembra do seu Criador e até foge de
+um relacionamento de comunhão com Ele.  Mesmo sendo assim, YHWH não apenas
+lembrou-se dele, o elevou a um estado de senhorio sobre o universo.  Ainda mais, veio a
+este mundo, nascendo como ser humano para mostrar o Seu amor de uma forma
+incontestável.
+
+Que é o homem?  Nada, a não ser uma criatura amada por seu Criador, o qual
+procura oferecer-lhe tudo aquilo que precisa para viver uma vida de plena comunhão com o
+Criador. Aparte de YHWH, o homem é nada e nada merece ser.  Por causa da benevolência
+de YHWH, porém, o homem é especial. É especial por causa do amor que lhe fora dado.
+
+Se o Criador realmente há dotado o homem com um amor tão profundo e uma posição
+tão especial, qual deveria ser a resposta do homem? Será que realmente entendemos esse
+amor de YHWH? Será que estamos prontos para aceitar a responsabilidade ao qual tal
+amor nos chama? Por que lutamos tanto para provar que somos merecedores de algo, ao
+contrário do que o Salmo ensina? Não seria melhor aceitar a proposta de amor do Infinito?
+O  que nos impede de aceitar esse tão grande amor? Qual será a nossa resposta?
+
+4.20. Ouça o Gaúcho! (Isaías 6.8-10 e 46.8-13)
+
+Ao iniciar o ministério de Isaías, temos o registro de sua visão de convocação no
+capítulo seis do livro de Isaías:
+
+Então ouvi a voz de YHWH, dizendo, “A quem enviarei, e quem irá por nós?” E eu disse,
+“Aqui estou eu, envia-me” E disse, “Vá e diga a esse povo: ‘Estão ouvindo, mas não
+compreendem; estão olhando, mas não percebem.’ A mente desse povo está grossa, e seus
+ouvidos estão tapados, e seus olhos estão fechados, tal que não enxergam com os olhos, nem
+escutam com os ouvidos, e nem compreendem com a mente, e arrependem para serem
+sarados.” – Isaías 6.8-10
+
+O chamado de Deus sobre Isaías não ficou na visão descrita no capítulo seis.
+Deus continuou a falar ao povo através do profeta, este continuando a ser o portavoz de
+Deus ao transmitir também as palavras descritas no capítulo 46.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 38
+
+Lembrai disso e considerai, recordai à memória, vós transgressores, 9 lembrei da coisas
+passadas; pois Eu sou Deus, e não há outro; Eu sou Deus, e não há qualquer semelhante a
+mim, declarando o fim desde o princípio e de tempos antigos coisas nunca ainda feitas,
+dizendo, “O meu propósito prevalecerá, e eu cumprirei a minha intenção,” chamando uma ave
+de presa desde o oriente, o homem escolhido para o meu propósito de um país distante. Eu o
+tenho falado, e eu o cumprirei; Eu o tenho planejado, e eu o farei. Ouvi-me, vós duros de
+coração, os que estão longe da libertação: Eu farei chegar perto a minha libertação, não está
+longe, e a minha salvação não tardará; colocarei salvação em Sião, em Israel a minha glória. –
+Isaías 46.8-13
+
+Quando Isaías ouviu o chamado de YHWH (hwhy),  foi uma palavra conflitante.
+Aceitou a proposta de tornar-se o portavoz de YHWH perante um povo que não queria ouvir.
+De certo, esta era parte da problemática que desencadeou o chamado a Isaías. As palavras
+de YHWH, “A quem enviarei e quem irá por nós?”, chamavam a atenção para a situação do
+povo que vivia muito longe do compromisso da aliança de Deus. A aliança de Deus com o
+povo parecia ser uma piada, pois o povo andava vagando atrás de outros deuses, sem
+preocupar-se em servir a Deus em fidelidade. Isaías fazia parte desse povo idólatra, e por
+isso exclama da pecaminosidade do povo ao seu redor.
+
+Deus alerta Isaías da situação que enfrentará no seu ministério.  O povo não queria
+ouvir a palavra de Deus. Tinha informações sobre a aliança, mas não se prontificava para
+entender as suas implicações para o seu dia-a-dia.  Chamava-se povo de YHWH, mas
+atuava desconforme a apelação. Conhecia os fatos, mas não havia aceito a realidade da
+aliança com Deus. Faltava-lhe compreensão.
+
+Deus ainda queria resgatar o povo e efetivar a aliança, mas o povo não prestava
+ouvidos. O portavoz de Deus enfrentaria dificuldades para transmitir as boas novas de
+Deus, pois o povo não compreendia nem a sua necessidade, nem o cerne da mensagem.
+Pensava que havia outros meios de resolver a vida e realizar os seus objetivos. Andava atrás
+de outros deuses para fazer o seu próprio caminho, parecendo o Gaúcho com 60.000
+centros espíritas no estado.
+
+Foi necessário o exilo para acordar o povo à realidade de que apenas YHWH era Deus
+e digno de que o povo aceitasse o compromisso da aliança de Deus.  Os deuses da
+Babilônia se mostraram impotentes, apenas cumprindo a função de servos a YHWH.  Não
+podiam socorrer, nem chegar perto de fazer o que YHWH havia feito pelo seu povo, mas esse
+conceito somente foi clarificado com uma nova e dura experiência de exilo que serviu para
+clarificar a mensagem de Deus.
+
+Com a mudança para o exílo na Babilônia, o povo começou a compreender e aceitar
+de forma digna a aliança com Deus. Começou a ter um aprêcio da atuação de Deus na vida
+do povo, mesmo que sacados de sua terra. Começou a destapar os ouvidos e abrir os olhos
+para entender a salvação de YHWH, Deus de Israel.  A mensagem de Deus pelo
+profeta  foi transformada pela nova situação do povo.  A mensagem não mudou em
+conteúdo, mas na forma de sua transmissão. Pela modificação do contexto no qual vivia, o
+povo começou a escutar a voz de Deus e enxergar a presença e atuação de Deus no seu
+meio.
+
+No exilo o povo começou a escutar, pois a mensagem de Deus teve outra apresentação.
+A essência da mensagem permaneceu sempre igual, mesmo que o contexto e algo da
+apresentação foram modificadas.
+
+Lá no cativeiro, YHWH visitou a seu povo através de seus profetas. Esses portavozes
+comunicaram a sua mensagem de forma clara e apreciável.  A palavra pôde, portanto, ser
+aceito   e compreendido.  Isso por duas razões principais:  o contexto do povo mudou e
+também a forma de apresentação.
+
+Poderia a apresentação do evangelho de Jesus ser modificado para facilitar a
+sua compreensão e aceitação? No contexto vivido pelo povo gaúcho, qual é a necessidade
+que o leva a procurar soluções para a vida cotidiana?
+
+Mas não foi somente no cativeiro que YHWH visitou o povo.  Também criou carne e
+habitou no seu meio na sua própria terra. Viveu no seu contexto e apresentou o seu plano
+de boas novas no contexto vivido pelo povo em meio a outro exilo—exilo em sua própria
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 39
+
+terra, sobjugada pelos romanos.   Viveu no meio do povo,  compartilhando do seu
+sofrimento, e em meio ao seu contexto vivido anunciou o evangelho do reino.
+
+Será que nós, os portavozes atuais de Deus, poderíamos nos acercarmos mais ao povo
+que está à nossa volta para compreendê-lo e encontrar melhores vínculos para a sua
+compreensão do evangelho?  Será que não é necessário hoje também alterar algo da
+apresentação do evangelho de Deus? Será que não é necessário viver no meio do povo para
+levar    a esperança do evangelho de Deus em Cristo, para ser ouvido no contexto do povo?
+
+O povo de Israel andava longe de Deus, e foi necessário levar a palavra de Deus ao seu
+encontro. O que será necessário fazer para que esse povo gaúcho que anda em trevas abra
+os olhos para poder enxergar o evangelho em sua relevância?  O que precisaremos fazer
+para transformar o nosso contexto de Isaías 6 para o de Isaías 46?
+
+O evangelho contém esperança, mas apenas para aquele que escuta.  Estamos
+sendo ouvidos? Pregamos o evangelho nos templos de nossas igrejas, mas dez milhões de
+gaúchos nunca entram em nossos templos. Como escutarão?
+
+“A quem enviarei, e quem irá por nós?” E eu disse, aqui estou eu, envia-me. E tu?
+
+4.21. A Missão dos Lavradores (Êxodo 19.3-8/Mateus 21.33-46)
+
+Deus tem planos para o ser humano. Será que entendemos a nossa responsabilidade
+perante os seus planos e oferta de graça?
+
+Quando Jesus apareceu um Jerusalém na última semana de seu ministério na terra,
+veio clamando para que o povo de Israel voltasse à sua primeira obrigação—a de ser o povo
+especial de Deus em missão a chamar os povos para YHWH. Desde a promessa de YHWH a
+Abraão Deus vinha chamando o povo a reconciliar o mundo com YHWH, Criador do
+universo.  Ao dar os dez mandamento a Moisés, YHWH reafirmou esse propósito do povo
+tomar para si a missão de trazer os povos perante YHWH, o único Deus.
+
+“…Assim falarás à casa de Jacó, a anunciarás aos filhos de Israel: Vós tendes visto o
+que fiz aos egípcios, como vos levei sobre asas de águia e vos trouxe a mim.
+Agora,  pois,  se atentamente guardardes o meu pato, então sereis a minha possessão
+peculiar dentre todos os povos, porque minha é toda a terra; e vós sereis para mim reino
+sacerdotal e nação santa. São estas palavras que falarás aos filhos de Israel. …Moisés
+
+… expôs diante deles todas estas palavras, que YHWH lhe tinha ordenado. Ao que todo o
+povo respondeu a uma voz: Tudo o que YHWH tem falado, faremos….” (Êxodo 19.3-8).
+
+Aceitaram a proposta de serem como povo sacerdotes de YHWH, mediando a presença
+do único Deus perante todos os povos da terra.  Aceitaram o compromisso para trazer
+todos os povos ao pés de YHWH. Aceitaram o compromisso de serem um povo missionário
+que chamaria todo o mundo de volta ao Criador.  Os profetas tinham que estar sempre
+lembrando o povo deste compromisso, pois o povo não lembrava do seu compromisso.
+Envolvia-se com muitas coisas, incluindo o prazer de ser o povo escolhido por YHWH,
+esquecendo do propósito do seu privilégio.
+
+Jesus,  porém,  levou a mensagem dos profetas um passo adiante do que era
+costumeiro fazer. Especialmente naquela última semana de ensino Jesus lembrou ao povo
+que o chamado de Deus sobre eles era condicional. Eles seriam o povo escolhido somente
+enquanto atuassem como o povo missionário que haviam sido convocados a ser.  Dentre
+uma série de parábolas sobre a temática, Jesus referiu a parábola dos lavradores maus. Os
+fariseus entenderam que esta parábola fora  referida  sobre  eles,  porém  a  suas
+implicações vão além dos fariseus e os principais sacerdotes daquele dia. Era um
+chamado para o arrependimento de todo o povo de Deus daquele dia e também deste.
+
+A figueira estava infrutífera, e o povo também.  Alguns diziam que não era a estação
+apropriada para figos, porém Jesus esperava colher fruto da figueira de qualquer jeito.
+Para Jesus, estação própria não era desculpa.
+
+Apegavam-se às suas tradições interpretativas e negavam a atuação de YHWH no seu
+meio. Envolviam-se em suas atividades eclesiásticas e esqueciam de levar a mensagem de
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 40
+
+Deus ao mundo ao seu redor.  O dia-a-dia ocupava o seu tempo e não encontravam como
+encaixar a missão de YHWH em suas vidas.  De qualquer forma era mais seguro ficar na
+rotina do que ter que sair do conforto e depender de Deus.
+
+De certo, as tradições dos seus anciãos amenizavam o rigor da lei dada por Moisés.
+Em muitos casos essas tradições procuravam apenas dar um jeitinho bem judaico para
+contornar as leis como otorgadas. Enquanto invalidavam as instruções do próprio YHWH,
+ignoravam também as suas responsabilidades para com os demais do povo e para com os
+povos ao redor. E a figueira permanecia infrutífera.
+
+Mas nem era época de figos!  Porque Jesus amaldiçoou a figueira?  Não era culpa
+dela! Jesus não deveria ter esperado encontrar figos, pois era a estação errada!  Não faz
+nenhum sentido procurar figos na época errada!  O Senhor reclama, porém, que não há
+estação própria para o povo dar o seu fruto devido.  A hora da colheita é já!  Havia
+tempo que a figueira permanecia sem fruto.  Já havia passado o tempo de colher, e não
+havia nada, senão apenas folhas! Tal figueira não presta a não ser como lenha para o fogo.
+O povo não estava produzindo o fruto devido.
+
+E nós? Será que estamos nós também infrutíferos? Ou será que estamos rendendo o
+fruto devido. Será que reclamamos ser esta a estação errada para produzir fruto? Qual é a
+nossa desculpa?  Será que não estamos ocupados demais com coisas boas que não
+produzem o fruto devido? Estamos lembrados do nosso compromisso? Será que prestamos
+para algo mais do que lenha?
+
+4.22. “Que Queres Que Eu Te Faça?” (Marcos 10.35-52)
+
+De vez em quando, chegamos a Deus com o pedido errado. Nesses casos, será que
+não são as nossas atitudes que precisam de modificação?
+
+Até no final do ministério de Jesus, os seus discípulos tinham muito a aprender.
+Vinham ouvindo Jesus ensinar,  mas leva tempo para  realmente  compreender  coisas
+novas.  Jesus os ensinava de muitas maneiras.  Em certa ocasião tiveram mesmo que
+aprender a lição de Jesus com um mendigo cego.
+
+Jesus e seus discípulos estavam caminhando para fora de Jericó quando um
+mendigo começou a aprontar uma cena.  Havia uma multidão ao redor,  e este cego
+percebeu que Jesus estava passando por perto. Provavelmente havia ouvido falar de que
+Jesus havia curado um cego em outra cidade.  Teria sonhado de ter a bênção de um
+encontro com Jesus, sonho alucinante. Percebia que a sua única oportunidade de obter
+uma nova chance na vida encontrava-se em Jesus. Ninguém jamais havia curado um cego
+até Jesus entrar na cena. Era a sua única chance.
+
+Percebendo que Jesus vinha pelo caminho, começou a berrar.  “Jesus, Filho de
+Davi! Tenha misericórdia de mim!”.  O povo indignou-se com o alvoroço do mendigo e
+mandou que se calasse.  Afinal, a sua cegueira era comprovação para eles que sofria o
+castigo de Deus a causa de algum pecado, ou seu ou dos seus pais. A sua condição era,
+portanto, justa e merecida.  Ele berrava e a multidão o repreendia. Berrava ainda mais.
+Logo tudo mudou.
+
+Jesus ouviu os berros do cego e mandou que o chamasse. Este jogou para o lado a
+sua capa e apressou-se para ter com Jesus. A multidão, agora ajudando-o, o incentivava.
+Chegando para Jesus, Jesus lhe perguntou “Que queres que eu te faça?”.
+
+Que pergunta boba! Que outra coisa pediria um cego, senão a oportunidade de ver?
+Será que Jesus era cego também?  Será que não sabia distinguir um cego?  Se
+nem ao menos reconhecia a sua cegueira, como poderia curá-lo?
+
+Pego de surpresa, o cego respondeu, “Mestre?! Que eu veja!”. “Vai, a tua fé te salvou”.
+Às vezes, as perguntas de Jesus são cruciais para entender uma passagem. Às  vezes,
+deveríamos questionar mais as narrativas de Jesus, em vez de passar por cima de algum
+detalhe que parece estranho.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 41
+
+Porque será que Jesus teve de perguntar ao cego o que ele queria? Será que não sabia
+que o cego queria ver?  Para entender a passagem, é necessário olhar um pouco do
+contexto. Como normal nos evangelhos, a atenção do narrador não está voltado para este
+cego que recebeu vista, nem ao fato de que Jesus pôde curá-lo.  A atenção do narrador
+concentra-se na interação entre Jesus e os seus discípulos. É nesta interação que se
+compreende aquilo que Jesus estava tentando ensinar a respeito do Reino.
+
+Os discípulos vinham seguindo Jesus, ouvindo as suas palavras e vendo os seus feitos
+milagrosos, porém não quer dizer que compreendiam a mensagem do Mestre.  Na maioria
+dos casos, um aprendizado real leva tempo para integrar aquilo que se ouve, como também
+era o caso dos discípulos.
+
+Na passagem imediatamente anterior ao relato de Bartimeu, dois discípulos chegam a
+fazer um pedido para Jesus.  Nesse relato encontramos Jesus fazendo a mesma pergunta
+que fez a Bartimeu, porém a resposta dos discípulos é diferente.
+
+Estes dois irmãos chegaram a Jesus e disseram, “Mestre, diga sim!”. Quantas vezes
+já ouvimos crianças fazerem o mesmo tipo de pedido!  Do mesmo modo que um pai
+questiona a intenção da criança, Jesus questiona a intenção dos discípulos.  “Que queres
+que  eu te faça?” Estavam fazendo o pedido errado.  Queriam ser os mais importantes no
+Reino, mas não haviam ainda compreendido o que o Reino era.  Não entendiam o que
+deveriam pedir de Jesus. Foi necessário que aprendessem com um mendigo.
+
+Se olharmos mais para trás,  no capítulo oito de Marcos,  encontramos outra
+circunstância em que Jesus cura um cego. Também nesse caso acontece algo estranho no
+lidar de Jesus no ato de curá-lo.  Pelo menos desta vez Jesus percebeu que o homem era
+cego! O problema era que teve aparentemente que ensaiar a cura! Tentou e não conseguiu
+bem, então tentou de novo. Ou será que não fez exatamente o que queria fazer?
+
+Os discípulos estavam confiando na sua perspectiva da realidade, mas não percebiam
+o que Deus queria que vissem.  Para ajudá-los a compreender o que estava querendo
+transmitir, Jesus curou o cego em duas etapas. Queria que notassem que ver as coisas de
+perspectiva humana e divina eram bem diferentes. Sabiam que Jesus era o Cristo, mas
+não tinham a mínima de uma idéia do que isto significava. Tinham olhos, mas não viam.
+Tinham ouvidos, mas não ouviam. Eram cegos, porém não percebiam a sua própria
+cegueira.
+
+Jesus começou a ensiná-los a respeito da diferença entre as suas expectativas do
+Reino e a realidade do Reino. Ainda assim não enxergavam a realidade. Em lugar de pedir
+ajuda na compreensão, insistiram na sua perspectiva falha.  Um mendigo cego ensinou a
+pergunta certa. Proferiu o pedido que os próprios discípulos não sabiam fazer—“Mestre!
+Que eu veja!”.
+
+É bem fácil criticar os discípulos pela sua falta de visão, porém somos tentados a cair
+nas mesmas limitações e nos mesmos problemas. Como eles, queremos que Deus faça
+conforme nós enxergamos e queremos quando a perspectiva do Criador nos dirige noutra
+direção.  Pedimos erradamente, pois não enxergamos adequadamente.  Precisamos
+aprender a pedir como Bartimeu. Precisamos pedir de Deus uma nova perspectiva.
+Precisamos alinhar as nossas vidas conforme a orientação do Criador, não querer alinhar o
+Criador dentro dos nossos moldes!
+
+“Mestre, Que eu Veja!”.  Que eu veja a vida como Tu a vês.  Que eu veja esta cidade
+conforme a tua vontade. Que eu possa enxergar a Tua vontade e o Teu propósito. “Mestre,
+que eu veja como tu queres!”
+
+Dá-me Tua visão, Senhor, … (Hinário Para o Culto Cristão, 564).
+
+4.23. A Páscoa da Traição (Marcos 14-16)
+
+Gostamos muito de apontar o dedo a certas pessoas como Judas Iscariote para
+sentirmos melhor sobre nós mesmos.  Será que somos tão bons assim e ilesos de
+condenação?
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 42
+
+A celebração da páscoa dos judeus era uma festa de muita alegria, mas para Jesus
+seria o início de sua traição. Jesus estava para celebrar a páscoa com os seus discípulos,
+seguindo o costume entre os judeus para um rabino celebrar as festas religiosas com os
+seus discípulos. Sua celebração foi um tanto diferente, porém, pois em meio aos
+preparativos para esta festa celebrante, Jesus anunciou a sua traição.
+
+Jesus já havia anunciado a sua morte em várias ocasiões, porém naquela noite
+anunciou também a sua traição. Os discípulos ainda não estavam preparados para aceitar
+a sua morte como algo real e necessário, mas traição era um assunto novo e inconsiderável.
+Não era cabível para eles compreenderem a possibilidade de traição.  Haviam se reunidos
+para celebrar uma festa especial de libertação da escravidão e nova vida na promessa de
+YHWH, e Jesus anunciou algo inesperado.
+
+Em resposta, começaram um por um a perguntar quem deles seria capaz de traí-lo.
+Parece- nos um tanto estranho que teriam de perguntar, pois de nossa perspectiva é fácil
+apontar o dedo a Judas.  Olhando porém o resto da narrativa, dá-se a entender que a
+traição indicada ia além da ação de Judas. Por outro lado, muitos pensam que Judas não
+teve realmente a intenção de trair, senão de apressar Jesus em estabelecer o seu Reino em
+Israel.  Não podemos identificar com precisão as intenções de Judas, porém o mais
+importante da traição também não concerne a esse discípulo. Traição não concerne tanto a
+Judas, mas Jesus larga o tema um pouco, repetindo a necessidade dele chegar até a cruz.
+
+Jesus abriu o tema de traição com os seus discípulos no versículo 18 do capitulo 14.
+No relato de Marcos parece haver uma pausa no tema, mas logo Jesus o retoma no versículo
+27, agora ampliando o sentido da traição.  Primeiro era um dos discípulos que trairia.
+Agora diz que os doze o deixariam.  Olhando bem, este aviso de Jesus concerne apenas
+outra forma de traição. Todos o abandonariam na hora de sua prisão e morte. Todos os
+doze o trairiam. Mesmo assim, Jesus mantinha a sua vida direcionada à cruz.
+
+Pedro relutou contra essa afirmação de Jesus.  Tudo bem que um deles o trairia.
+Não era isso aceitável, mas todos não! Pedro especialmente nunca o deixaria! Jesus olha
+para Pedro, no entanto, e diz que Pedro não apenas o abandonaria, mas ainda o negaria
+também!  Jesus seria traído,  abandonado, e também negado!  Os discípulos não
+conseguiam aceitar tais palavras de Jesus. Confiavam demais na sua própria fidelidade e
+firmeza, igualmente em sua perspectiva dos eventos do futuro.
+
+Jesus não deu muita atenção ao clamor, mas os levou a orar. Não conseguiram nem
+acompanhá-lo na oração, poderiam resistir quando chegasse a hora do conflito?
+
+Logo Jesus foi traído.  Um dos discípulos até reagiu com uma espada, mas sendo
+Jesus preso eles logo fugiram.  Um deles seguiu um certo tempo até tentarem
+agarrá-lo e então abandonou Jesus às pressas. Pedro chegou a entrar no pátio da casa do
+sumo sacerdote, ali para negá-lo não uma, mas três vezes.
+
+Algumas mulheres até assistiram a crucificação àlguma distância. Os doze discípulos
+não foram fiéis, mas pelo menos essas mulheres não o abandonaram! Quando Jesus
+morreu, elas observaram o local do sepultamento e até foram domingo de madrugada para
+atender o corpo de Jesus com os preparativos para ungir o seu corpo. Logo, porém, elas
+também caíram na traição. Um jovem apareceu para contar-lhes a notícia da ressurreição e
+elas fugiram sem dizer nada a ninguém.
+
+Jesus foi traído. Jesus foi negado, abandonado e ignorado. A maior nova e prova de
+sua mensagem foi negligenciada por medo e temor.  Veio para dar notícia de nova vida no
+amor de Deus e todos os seus o rejeitaram, negaram, traíram e abandonaram. Traidores!
+Como poderiam eles fazerem tal coisa?! Traíram o Salvador que deu a sua própria vida por
+eles!
+
+Por acaso, não somos nós também traidores?  Não somos nós aqueles que deixam de
+compartilhar a notícia de que Cristo vive e ofereceu nova vida a todos? Não somo nós que o
+negamos ao não testemunhar em situações que se nos apresentam como sendo um pouco
+constrangedores? Será que somos nós diferentes nos mínimos detalhes?
+
+Há outro lado da história.  Jesus sabia que todos o trairiam, seja como Judas, seja
+como o abandono da parte dos discípulos, seja como o negar de Pedro, seja como o temor
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 43
+
+das mulheres que desobedeceram e fugiram de sua responsabilidade.  Ainda assim,
+direcionou-se para entregar a sua vida para dar a todos uma nova chance.  Jesus avisou
+aos discípulos de antemão que eles não seriam fiéis.   Avisou, pois queria que
+compreendessem que não dependia de sua fidelidade. Avisou para que compreendessem
+que já estavam perdoados de antemão!  Avisou para que logo voltassem e viessem a ser
+novamente discípulos fiéis, dependendo devidamente do seu Senhor.
+
+Quem sabe nós precisamos lembrar desta mesma lição. Jesus conhece as nossas
+falhas. Ele até poderia nos avisar delas de antemão. Também nos perdoa e está pronto
+para reconciliar-nos e utilizar-nos como se não houvessem acontecido.  Cristo sabe das
+nossas falhas, mas nos ama assim mesmo. Ele perdoa, ele restaura. O encargo para as
+mulheres incluía a restauração dos discípulos, mesmo de Pedro que o negou três vezes—
+especialmente a Pedro!
+
+A nossa traição não é coisa boa, mas Cristo nos restaura e nos dá outra chance. É
+uma chance para começarmos de novo. É uma chance para deixar que Deus faça de nós
+discípulos dignos do nome de Jesus Cristo! Estamos prontos para sermos restaurados?
+
+Ajude-nos a compreender o teu amor e o teu perdão, para que sejamos os discípulos
+que nos hás convocado a ser!
+
+4.24. Compartilhando Esperança (1ª Pedro)
+
+Observação. Neste exemplo de narrativa, o texto à mão não é uma narrativa.
+Procura-se aqui resgatar a narrativa por detrás do texto no evento de sua composição. O
+contexto histórico e social ajuda no desenvolvimento do evento do texto que forma a base
+para narrar o texto.
+
+Sendo que Pedro não era um homem estudado, ele não falava grego, mas aramaico e
+possivelmente hebraico.  Já esta epístola com o seu nome foi escrita em grego, sendo ela
+uma tradução da mensagem que Pedro tinha para compartilhar com os cristãos judeus
+dispersos pelo Império Romano, essencialmente os da região conhecida hoje como Ásia
+Menor.  Por ser uma tradução ao grego, o estilo e a gramática da carta são um
+tanto mais difíceis para serem decifradas, mesmo antes de passar o texto ao português.
+Como sempre, porém, uma perspectiva do contexto abrangente da carta ajuda a melhor
+compreendermos as implicações das passagens individuais da carta.  Seguindo padrão dos
+livros da Bíblia, esta carta tem um tema central, para o qual cada passagem contribui:
+“estai preparados para responder … a todos que perguntarem a razão da esperança em vós.”
+
+Pedro escrevia para cristãos que viviam uma época de perseguição.   Eram
+judeus forasteiros, porém não eram aceitos entre os próprios círculos dos judeus por causa
+de Jesus. Para os gentios, eles eram judeus , mas os judeus  os rejeitavam como uma seita
+fanática e perversiva.  Perseguidos pelos próprios judeus , vivendo como forasteiros noutra
+província romana, eles enfrentavam dificuldades especiais em vivenciar o Reinar de Deus no
+seu dia-a-dia. A vida estava difícil, então Pedro os lembra da esperança que os unia, pois “o
+Deus e Pai de nosso Senhor Jesus Cristo … nos regenerou para uma viva esperança—uma
+herança incorruptível, incontaminável, e imarcescível, reservada nos celestiais”.
+
+Esta esperança é o que fazia a diferença—esperança de resgate, esperança de
+salvação, esperança de que as coisas não são como aparentam ser.  Esta esperança é o que
+faz a diferença. A fé é um relacionamento de esperança e confiança naquele que é
+fiel.  É confiar que  o evangelho é realmente boa nova, real, válido, e precioso.  Os
+cristãos precisavam ser lembrados de sua esperança, pois era o seu destaque.
+
+A mensagem de Cristo era algo que os próprios profetas, os meros portavozes de Deus,
+não haviam compreendido! Eles haviam procurado conhecer o plano de Deus, porém estes
+próprios mensageiros (o termo traduzido por anjo é a palavra grega para mensageiro, seja
+humano ou não) não haviam compreendido a mensagem que proferiram.  Deus
+planejava fazer algo novo e diferente que não podia ser apreciado de antemão. Era uma
+nova esperança que não podia ser antecipado, mesmo pelos próprios portavozes de Deus.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 44
+
+A mensagem, porém,  era de salvação, visando a santificação do cristão—Deus
+habitando diretamente com o homem em plena comunhão. Pedro lembra aos cristãos não
+apenas de sua esperança, mas também do seu fruto devido—uma vida santificada ao
+Criador,  segundo a perspectiva daquele que já compreende o futuro, e conhece as
+limitações da perspectiva humana. O cristão deve ver e viver segundo a perspectiva divina
+de  que as coisas deste mundo são passageiras e a orientação do evangelho nos eleva para
+viver outro padrão de vida—a que perdura pelas eternidades.
+
+Vivendo a santificação, então, os cristãos deveriam de revelar a realidade do evangelho
+na submissão às autoridades, no serviço aos patrões, no relacionamento conjugal, e no
+procedimento entre os próprios cristãos. Vivendo esta santificação, estariam vivenciando a
+esperança inerente ao evangelho—viveriam como livres, mesmo se escravos; como cidadãos,
+mesmo se forasteiros; como resgatados, mesmo se perseguidos; como pacientes, mesmo
+se  aflitos;  como  amados, mesmo se injuriados; esperançosos, mesmo se afligidos.
+Vivenciariam em suas próprias vidas a esperança refletida por Jesus Cristo.
+
+Era assim que Pedro queria que os cristãos compartilhassem a sua esperança.
+Deveriam de viver de tal forma que as suas vidas refletissem a esperança que tinham. A
+vida podia ser difícil, mas a dificuldade era apenas um pretexto para testemunhar da
+realidade do evangelho.  Essa realidade deveria de dar um novo sentido a todo aspecto da
+vida  do cristão.  Deveria fazer o seu cotidiano tal que as pessoas lhe perguntassem o que
+lhe dava esperança quando a vida era tão difícil. A dificuldade devia ser vista como uma
+oportunidade de depender em Deus.
+
+A fé real não depende das circunstâncias da vida.  A fé real leva o cristão não a uma
+vida sem dificuldades, mas a refletir esperança em meio ao caos do cotidiano.  A fé real
+muda o comportamento do cristão para que aqueles ao seu redor procurem saber a
+causa dele ser diferente. A fé real compartilha a sua própria esperança com os demais,
+para que todos saibam a razão de sua existência.
+
+Pedro queria lembrar aos cristãos da dispersão da sua responsabilidade individual e
+coletiva para viverem abertamente a esperança do evangelho.  Queria lembrá-los para
+estarem sempre prontos para compartilhar a sua esperança de fé com os demais.  Se eles
+vivessem a realidade dessa fé na sua vida cotidiana, outros perguntariam. Se vivessem sua
+esperança, outros veriam as suas próprias necessidades de terem esperança igual.
+
+A situação do crente atual não é muito diferente.  Existem dificuldades em nossas
+vidas. Existem barreiras muitas razões para esquecermos da esperança que temos. Deus,
+porém, vem a lembrar-nos da esperança que temos em Cristo Jesus. Cristo já triunfou
+sobre o pecado, a morte, e toda e qualquer agência maligna.  Temos uma esperança
+verdadeira e real!
+
+Como viveremos, então para espelhar a nossa esperança?  Como mostraremos ao
+mundo que temos uma razão para existir que nos leva além das circunstâncias
+problemáticas passageiras deste mundo?  Como anunciaremos que temos esperança real
+em   meio às situações de caos? Como viveremos para que os demais nos venham a
+perguntar da razão da nossa esperança?  O que faremos para estarmos prontos para dar
+resposta?
+
+O evangelho é realmente uma boa nova de esperança. Cristo nos convoca a participar
+do ministério da reconciliação do mundo para com Deus.  Temos a incumbência de
+levarmos a sua mensagem de amor e graça ao mundo que tanto precisa ouvir.  Se cada
+membro desta igreja trouxesse uma pessoa a Cristo por ano, ensinado esses a fazerem
+igual, Uruguaiana seria ganho para Cristo em apenas onze anos! O problema é que somos
+infieis!
+
+Será que temos a esperança da qual Pedro fala? Será que cremos que Deus realmente
+tem as respostas para as nossas vidas? Será que realmente temos convicção do amor de
+Cristo? O que diria Pedro para nós? Como seria a sua carta se dirigida diretamente a esta
+igreja? Será que a mensagem mudaria muito? Estaríamos prontos para ouvir?
+
+Vamos compartilhar esperança. O mundo está precisando.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Homilética da Teologia Narrativa - 45
+
+BIBLIOGRAFIA BÁSICA
+
+BARBOSA, Inês Barbosa de (ORG). Narrativas – Outros Conhecimentos, Outras
+Formas de Expressão. Rio de Janeiro: DP et Alii Editora, 2010.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
