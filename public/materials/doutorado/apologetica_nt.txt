@@ -1,0 +1,2983 @@
+SUMÁRIO
+
+1 -  INTRODUÇÃO                                     3
+
+2 -  A IMPORTÂNCIA DO NOVO TESTAMENTO                     3
+
+3 -  OS EVANGELHOS E SUA COMPOSIÇÃO                       5
+
+3.1.  EVANGELHOS SINÓTICOS                                   5
+
+3.2.  MATEUS                                            6
+
+3.3.  MARCOS                                            6
+
+3.4.  LUCAS                                             6
+
+4 -  O EVANGELHO E SUA AUTORIA                           6
+
+4.1.  POR QUE APENAS QUATRO EVANGELHOS?                       8
+
+4.2.  UM OU QUATRO EVANGELHOS?                            9
+
+4.3.  OS “PROBLEMAS” DOS SINÓTICOS                              10
+
+4.4.  A CRÍTICA DA FORMA                                    10
+
+4.5.  A CRÍTICA DA REDAÇÃO                                   11
+
+4.6.  A CRÍTICA DAS FONTES                                   11
+
+5 -  OS EVANGELHOS E SUA DATAÇÃO                        13
+
+6 -  O CÂNON NEOTESTAMENTÁRIO                          15
+
+6.1.  COMO SE FORMOU O CÂNON?                            16
+
+6.2.  OS PRINCÍPIOS USADOS NO CRITÉRIO DE SELEÇÃO                     17
+
+6.3.  OS PRIMEIROS CÂNONES                                  18
+
+6.4.  POR QUE HOUVE DEMORA NA ACEITAÇÃO DE ALGUNS LIVROS?            19
+
+6.5.  O NOVO TESTAMENTO É CONFIÁVEL?                         21
+
+6.6.  AS VARIANTES                                        22
+
+7 -  O JESUS HISTÓRICO VERSUS O JESUS DA FÉ                  23
+
+7.1.  MANIPULANDO O JESUS HISTÓRICO                             24
+
+7.2.  O JESUS HISTÓRICO VERSUS O JESUS REAL                        24
+
+7.3.  A BUSCA PELO JESUS HISTÓRICO                              25
+
+7.4.  O JESUS DA HISTÓRIA É O MESMO JESUS DA FÉ?                   25
+
+8 -  JESUS E SUA HISTORICIDADE                          26
+
+8.1.  FONTES JUDAICAS - FLÁVIO JOSEFO                            26
+
+8.2.  TALMUDE                                           27
+
+8.3.  FONTES PAGÃS - PLÍNIO                                   27
+
+8.4.  TÁCITO                                            27
+
+8.5.  LUCIANO DE SAMOSATA                                   28
+
+8.6.  SUETÔNIO                                          28
+
+8.7.  TALO                                             28
+
+8.8.  MARA BAR-SERAPIÃO - 73 D.C. (?)                          28
+
+8.9.  JUSTINO, O MÁRTIR                                     29
+
+8.10. POR QUE HÁ POUCOS REGISTROS SOBRE JESUS NA HISTÓRIA SECULAR?       29
+
+8.11.  JESUS, UM MITO?                                  29
+
+9 -  JESUS: SEU NASCIMENTO FOI UMA LENDA?                   32
+
+9.1.  EGITO                                            32
+
+9.2.  MESOPOTÂMIA                                        32
+
+9.3.  ROMA ANTIGA                                        32
+
+9.4.  OS APÓSTOLOS OUSARIAM APELAR PARA UMA MITOLOGIA PAGÃ?           32
+
+9.5.  CONSIDERAÇõES RELEVANTES                               33
+
+10 -  JESUS E SEUS MILAGRES                            35
+
+10.1.  OS MILAGRES SÃO CONTRÁRIOS ÀS LEIS DA NATUREZA                  35
+
+
+Apologética do Novo Testamento - 2
+
+10.2.  OS MILAGRES FORAM PROJETADOS PELOS DISCÍPULOS                  36
+
+10.3.  AS CURAS ERAM APENAS PSICOSSOMÁTICAS                        36
+
+10.4.  OS MILAGRES ERAM FRAUDULENTOS                            36
+
+10.5.  MILAGRES NÃO EXISTEM                                  37
+
+11 -  JESUS – DOS DOZE AOS TRINTA ANOS                     37
+
+11.1.  INCONFORMADOS COM O JESUS BÍBLICO                          38
+
+11.2.  DOCUMENTOS VERSUS DIVAGAÇõES                            38
+
+11.3.  DOCUMENTOS FIDEDIGNOS VERSUS DOCUMENTOS DUVIDOSOS              39
+
+11.4.  JESUS, O JUDEU DE NAZARÉ DA GALILÉIA                         39
+
+11.5.  OS ENSINOS DE JESUS VERSUS HINDUÍSMO E BUDISMO                  40
+
+12 -  CONCLUSÃO                                   40
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 3
+
+1 -  INTRODUÇÃO
+
+Há dois mil anos, surgiu um homem na pequena Galiléia, região da Palestina, que,
+embora nunca tivesse freqüentado uma universidade de psicologia, reuniu em torno de um
+único sermão — o “Sermão da montanha” — o antídoto perfeito para as doenças da alma,
+palavras que nem mesmo todas as teorias de Freud e Jung, juntas, poderiam se equiparar.
+Jesus Cristo falou de muitas coisas, proferiu vários sermões e realizou inúmeras obras (Jo
+21.25).
+
+No entanto, nenhuma dessas coleções de “logias”, como eram chamadas as palavras
+de Jesus, foram escritas por Ele mesmo. Essa tarefa coube aos seus discípulos.
+
+Os evangelhos de Mateus e João foram escritos por testemunhas in loco dos principais
+eventos da vida, obra, morte e ressurreição de Jesus. Já os evangelhos de Marcos e Lucas
+foram escritos por terceiros, que não conviveram diretamente com Cristo. Lucas afirma que
+compôs seu evangelho depois de ter feito uma acurada pesquisa por meio de testemunhas
+oculares e o colocou em ordem sistemática (Lc 1.1-4). Uma exceção se faz a Paulo, que não
+fazia parte do corpo apostólico, mas que recebeu todo o seu “evangelho” por revelação do
+próprio Jesus (Gl 1.12). Também podemos juntar ao apóstolo Paulo os dois irmãos de Jesus
+que compuseram duas epístolas do Novo Testamento: Tiago e Judas.
+
+Depois de dois mil anos de esses fatos terem acontecido, é justo perguntar: “São
+dignos de crédito os livros do Novo Testamento? Podemos aceitá-los como narrativas
+historicamente confiáveis? Qual é a relação dos ensinamentos contidos no Novo Testamento
+com sua fidelidade histórica? Essa relação teria alguma importância para a fé cristã?”.
+
+Como estudantes de teologia, devemos acatar as palavras de Judas e Pedro e agir
+como verdadeiros apologistas da “fé que de uma vez por todas foi entregue aos santos” (Jd
+3), para que possamos estar sempre preparados para responder com mansidão e temor e,
+acima de tudo, de maneira racional, a todo aquele que pedir a razão da esperança que há
+em nós (1Pe 3.15).
+
+Nesta disciplina, trataremos de assuntos de grande relevância dentro do contexto da
+apologética clássica. Examinaremos as críticas que freqüentemente são levantadas contra o
+Novo Testamento, tais como: “Por que o Novo Testamento é considerado um mito por alguns
+críticos? Podemos encarar a maioria de suas passagens como fatos históricos ou
+simplesmente alegóricos? Os milagres de Cristo, chamados tecnicamente pelos críticos de
+novelas, registrados nos evangelhos realmente existiram ou foram invenções de cristãos
+posteriores?”.
+
+Abordaremos questões cruciais para o cristianismo ortodoxo, como, por exemplo, a
+historicidade do Novo Testamento, os evangelhos, Jesus e seus “problemas”, tais como: o
+Jesus histórico versus o Jesus da fé, seus milagres e ressurreição. Também veremos quais
+são os critérios usados pelos críticos para invalidar o Novo Testamento como documento
+autenticamente confiável e suas respectivas refutações.
+
+2 -  A IMPORTÂNCIA DO NOVO
+TESTAMENTO
+
+A pessoa de Cristo e sua obra são o foco central do Novo Testamento. Toda a sua
+mensagem gira em torno de quem é Jesus, o que Ele veio fazer (sua obra) e qual é a nossa
+posição diante desses dois fatores. Se a mensagem de Cristo é a pedra de toque referente à
+maior necessidade do ser humano (a salvação de sua alma), então Jesus e sua mensagem
+devem ser de grande relevância para o ser humano. Esta mensagem crucial está contida na
+forma escrita dentro de vinte e sete livros. Jesus e o Novo Testamento estão intrinsecamente
+ligados. Não se pode duvidar de um sem negar o outro, ou vice-versa.
+
+No Antigo Testamento, o termo “testamento” estava relacionado ao pacto que Deus
+fizera com o povo de Israel. Daí a palavra diatheke significar “aliança”, “concerto” ou
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 4
+
+“testamento”. O termo “novo testamento” aponta para a obra de Cristo mediante o seu
+sacrifício na cruz do Calvário. Assim, quando a coleção dos escritos sagrados cristãos é
+chamada de Novo Testamento é porque a obra expiatória realizada por Cristo é a mensagem
+central desses escritos. Isso é comumente chamado de sinédoque, ou seja, uma figura de
+linguagem consistindo no uso do todo pela parte, do plural pelo singular, do gênero pela
+espécie, etc. O Novo Testamento já havia sido predito no ministério do profeta Jeremias (Jr
+31.31-33).
+
+Todavia, esse novo concerto seria feito com o Israel e Judá literais, não com o Israel
+espiritual, exceto secundariamente, com os enxertados no Israel literal (Rm 11.16-27). O
+assunto inteiro do capitulo 31 de Jeremias fala da restauração do Israel literal (Jr
+30.4,7,10,18; 31.7,10,11,23,24,27,36).
+
+Os escritores do Novo Testamento, embora sabendo que aquela aliança seria aplicada
+ao Israel literal, perceberam que ela possuía um alcance maior e mais rico. O próprio Jesus,
+pouco antes de morrer, disse que nele seria selada a nova aliança (Mt 26.28), que nele se
+cumpria, de maneira cabal, todas as promessas e profecias da Bíblia. Jesus não veio
+somente trazer uma nova aliança, antes, essa nova aliança se cumpriu nele. Vejamos:
+
+• O próprio Cristo é a nossa aliança com Deus (Is 42.6; 49.8).
+
+• Ele próprio é o sacrifício dessa aliança (Hb 10.12,14).
+
+• Seu próprio sangue é o sangue que sela essa aliança (Hb 9.14).
+
+• O próprio Jesus é o sacerdote que preside essa aliança (Hb 8.1).
+
+• Ele próprio é o mediador dessa aliança (Hb 12.24).
+
+As promessas dessa aliança não são terrenas e temporais, como vemos em todas as
+outras alianças feitas com Adão, Noé, Abraão, Moisés e Davi, antes, são eternas e
+espirituais, por isso são melhores.
+
+A base da antiga aliança eram as dez palavras (Êx 34.27), mas o próprio Jesus, na
+nova aliança, é a própria Palavra de Deus e, conseqüentemente, a nossa lei (Jo 1.1; Hb 1.1).
+
+A seguir, conforme devemos observar, um contraste entre os dois Testamentos e a
+importância do Novo em relação ao Antigo:
+
+ANTIGO CONCERTO              NOVO CONCERTO
+
+
+Dado por Moisés (Jo 1.17)
+Jugo de servidão (Gl 5.1)
+Findou em Cristo (Rm 10.4)
+Produz morte (2Co 3.7)
+Produz condenação (2Co 3.9)
+Era sombra (Cl 2.14-17)
+Exige justiça (Lc 10.28)
+Nada aperfeiçoou (Hb 7.19)
+Veio em glória (2Co 3.7)
+Pobre para salvar (Hb 9.9)
+Relembra o pecado (Hb 10.3)
+Glória encoberta (2Co 3.13)
+Traz maldição (Gl 3.10)
+
+Sob a lei (Rm 6.14,15)
+Sem herança (Rm 4.13)
+
+Ratificado com o sangue de animais (Hb 9.16-
+
+Dado por Cristo (Hb 8.6; 9.15)
+Lei da liberdade (Tg 1.25)
+Estabelecido por Cristo (Hb 10.9)
+Produz vida (Rm 8.2)
+
+Produz liberdade (Gl 5.1)
+É realidade (Hb 10.1-18)
+
+Oferece justiça (Jo 1.17; 3.16)
+Produz perfeição (Hb 7.19)
+Maior glória (2Co 3.8-10)
+Salva perfeitamente (Hb 7.25)
+Apaga o pecado (Hb 8.12)
+Reflete glória (2Co 3.8)
+Liberta da maldição (Gl 3.13)
+Sob a graça (Gl 3.22-25)
+Eterna herança (Hb 9.15)
+
+Ratificado com o sangue de Jesus Cristo
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+22)
+
+Produz ira (Rm 4.15)
+
+Não pode remir (Hb 10.4)
+Abolição predita (Os 2.11)
+
+Apologética do Novo Testamento - 5
+
+(Mt 26.26-28)
+
+Livra da ira (Rm 5.9)
+Redime (Gl 3.13; Hb 9.25).
+
+Estabelecimento predito (Hb 8.7)
+
+3 -  OS EVANGELHOS E SUA
+COMPOSIÇÃO
+
+Antes da composição dos primeiros livros do Novo Testamento, a fé e os ensinamentos
+cristãos eram transmitidos oralmente, ou seja, a mensagem era pregada (Mc 16.15; At 2.14;
+6.4; Rm 10.14,15). Os apóstolos e discípulos de Jesus usavam principalmente o Antigo
+Testamento e seu testemunho vivo de vida para convencer seus patrícios. Após a morte de
+Jesus, passaram cerca de duas ou três décadas até ser composta a primeira literatura
+cristã. Esse hiato vagaroso se deu devido a algumas razões básicas:
+
+• Os cristãos se preocupavam mais com a parousia, por isso a pregação oral e rápida
+do evangelho se fazia necessária (Mt 24.14).
+
+• A maioria dos cristãos era composta de pessoas iletradas, sem qualificações
+necessárias para levar a cabo tal obra.
+
+• Os apóstolos, testemunhas oculares de Cristo, pois andaram com Ele, ainda
+estavam vivos.
+
+• O alto custo do material de escrita da época.
+
+Mas não demorou muito e a necessidade de escrever logo se fez sentir dentro da
+comunidade cristã.
+
+Logo após as cartas de Paulo, os evangelhos foram compostos visando reunir as
+“logias” (palavras) do Senhor. Lucas, por exemplo, fez uma acurada investigação dos fatos
+ao recorrer às testemunhas oculares (Lc 1.1-3). Em parte, essa produção foi influenciada
+pelas distâncias geográficas. A urgência de colocar os ensinamentos dos apóstolos e de
+Cristo na forma escrita se fez necessária à medida que as comunidades cristãs iam se
+multiplicando. Além disso, com a morte dos apóstolos, encerrava-se o canal de comunicação
+vivo e verdadeiro das doutrinas de Cristo. E, já que os judeus tinham seus livros sagrados
+(Lc 24.27), os cristãos também deveriam possuir os registros sagrados da sua nova religião,
+e em pé de igualdade com os escritos do Antigo Testamento.
+
+Assim, vieram primeiro as epístolas do apóstolo Paulo, depois, os evangelhos, as
+epístolas gerais e, por fim, o livro do Apocalipse.
+
+3.1.  Evangelhos Sinóticos
+
+Marcos inicia seu evangelho com a seguinte frase: “Princípio do evangelho de Jesus
+Cristo, Filho de Deus” (RC). O termo euaggelion significa “boas-novas”. A princípio, era a
+mensagem pregada pelos apóstolos sobre a pessoa, a vida e a obra redentora de Jesus
+Cristo. Com o passar do tempo, essas boas- novas foram assumindo a forma de quatro
+biografias escritas por autores diferentes, segundo a perspectiva de cada um e para
+determinado público.
+
+Essas quatro obras são as mais confiáveis e as mais antigas fontes sobre a vida de
+Cristo. Os evangelhos formam dois grupos: os sinópticos (os três primeiros) e o de João (o
+quarto).
+
+“Sinóptico” é um termo formado por duas palavras gregas syn, que significa “com”, e
+opsis, que traz a noção de “ótica, vista”. Assim, o significado da palavra sinóptico é “visão
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 6
+
+conjunta”. Esse termo parece ter sido aplicado primeiramente pelo crítico textual J. J.
+Griesbach, por volta de 1774.
+
+Os evangelhos denominados sinópticos compreendem Mateus, Marcos e Lucas, isso
+porque são uma sinopse da vida e da obra de Cristo. O crítico acima citado e outros
+estudiosos descobriram muitas semelhanças no conteúdo, na estrutura e no enfoque entre
+os três evangelhos. Mateus, Marcos e Lucas descrevem a vida de Cristo de maneira
+harmoniosa, e isso devido à abundância de material em comum que apresentam.
+
+Mateus e Marcos possuem 600 versículos em comum. Marcos e Lucas 350. E Mateus
+e Lucas 235, os quais faltam em Marcos. Há 31 versículos em Marcos sem coincidir com
+Mateus ou Lucas.
+
+Somente Mateus e Lucas contam o nascimento e a infância de Jesus, e também sua
+genealogia. Mateus e Marcos concentram seus evangelhos no ministério que Jesus exerceu
+na Galiléia. E Lucas, na Peréia. Os outros omitem o ministério da Judéia, exceto a última
+semana.
+
+Embora formem um todo harmônico quando postos em conjunto, cada um deles, no
+entanto, produziu seu evangelho de maneira própria, segundo sua ótica. O que falta em um
+aparece no outro. De modo que as aparentes discrepâncias são, na verdade, complementos
+das narrativas que formam a biografia de Jesus Cristo.
+
+Há quem interprete os animais de Apocalipse 4.7 (o leão, o boi e a águia) como uma
+referência ao perfil que os quatro evangelistas quiseram passar de Cristo aos seus
+destinatários. O leão representa realeza. O boi, Jesus como “servo”, o homem Jesus como o
+filho do Homem. E a águia, Jesus como aquele que veio do alto: o Filho de Deus.
+
+3.2.  Mateus
+
+É considerado o autor do primeiro evangelho. Segundo Papias, Mateus escreveu seu
+evangelho em hebraico. Contudo, a maioria dos estudiosos protestantes não atesta essa
+procedência, isso porque nenhuma cópia desse evangelho em hebraico foi ainda encontrada.
+Mateus focaliza Jesus do ponto de vista messiânico. Jesus é o esperado Messias, o rei
+aguardado pelo povo de Israel, por isso é apresentado pelo autor para uma comunidade
+judaica. São abundantes os textos-prova do Antigo Testamento invocados por Mateus como
+auxílio em sua persuasão literária. Uma frase comum no evangelho é: “Ora, tudo isso
+aconteceu para que se cumprisse o que fora dito” (1.22).
+
+3.3.  Marcos
+
+Dos quatro evangelhos, é o menor. Muitos estudiosos acreditam que Marcos foi o
+primeiro evangelho a ser escrito. Fora dedicado aos romanos, pois apresenta Jesus como “o
+Servo”, aquele que veio realizar as obras divinas (1.14). Possui um teor dinâmico, por isso
+palavras como “logo” (1.10,18,28) “imediatamente” (1.31), que exprimem ação, são usadas
+de modo abundante no referido evangelho.
+
+3.4.  Lucas
+
+Ao contrário de Mateus, Lucas escreveu seu evangelho aos gentios, por isso muitas
+palavras são explicadas aos leitores e o vocábulo “gentio” é usados em lugar de termos
+tipicamente hebraicos. O autor teve o cuidado de inserir o maior número de detalhes em sua
+obra. Escreveu aos gregos e sua preocupação maior é apresentar Cristo como o Filho do
+homem (19.10) perfeito, já que os gregos prezavam muito a estética.
+
+4 -  O EVANGELHO E SUA AUTORIA
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 7
+
+No período em que os evangelhos foram escritos, não existia a lei de copyright, que
+garante o direito exclusivo ao autor da obra de imprimir, reproduzir ou vender, enfim, de
+deter exclusivamente seus direitos autorais.
+
+Naquela época remota, sem o recurso da imprensa, quando os livros eram escritos
+com tintas em pergaminhos ou códices, mais de uma vez a obra de um autor foi atribuída a
+outro, devido às muitas semelhanças entre elas. E nem mesmo se fazia questão sobre esse
+assunto, que só ganhou relevância com o advento da imprensa. Por exemplo, Domenico
+Grasso fornece uma boa lustração a respeito, quando diz: “Durante séculos, acreditou-se
+que a obra sobre ‘hierarquia celeste’ fosse da autoria de Dionísio Aeropagita, convertido por
+São Paulo (At 17.34), enquanto se demonstrava pertencer a um filósofo neoplatônico do
+século 5o, comumente chamado ‘pseudodionísio’. Ainda hoje se discute a autenticidade de
+algumas obras da antiguidade clássica, conhecidas por Appendix Vergiliana e Epistolae ad
+Caesarem, atribuídas a Salústio. O problema da autenticidade de um documento é de
+enorme importância porque dela depende o seu valor”. E Domenico Grasso chega à seguinte
+conclusão em relação aos escritos sagrados neotestamentário: “O problema também é válido
+para os evangelhos. Quem são os seus autores?”.
+
+Existe alguma maneira de sabermos se esses evangelhos foram escritos pelos
+apóstolos? É bom frisar (e muitos desconhecem este fato) que nenhum dos evangelhos,
+como os conhecemos hoje, com os títulos de “Evangelho segundo São Mateus (kata
+Maththaion), São Lucas ou São João”, veio com a assinatura pessoal de seu autor. E, por
+conta dessa dificuldade, não podemos, apenas pelo recurso literário, saber quem os
+escreveu. No começo, os evangelhos eram anônimos. Mas isso não quer dizer que não
+sabemos, com certeza, quem foram seus autores verdadeiros. Por outro lado, repudiamos a
+idéia maldosa de que a Igreja tenha escolhido, aleatoriamente, tais nomes com o fim de dar
+autoridade a essas obras.
+
+Além disso, temos outra dificuldade: não possuímos os autógrafos (escritos originais)
+conforme saíram da pena dos apóstolos. Mas isso não é tão embaraçoso como muitos
+críticos pensam. Pode ser explicado satisfatoriamente por dois fatores básicos:
+
+O material no qual se escrevia, o papiro, era frágil, que logo se desgastava, portanto,
+os textos tinham de ser recopiados. Tais cópias eram feitas em rolo de papiro (planta) e,
+mais tarde, em códices (em formato de livro) com letras unciais (escritos em caracteres
+maiúsculos) ou em códices minúsculos. Os chamados lecionários (antologias de textos para
+uso litúrgico) vieram depois, também confeccionados em papiro e, posteriormente, em velino
+e pergaminho (pele de animais).
+
+As perseguições sofridas pelos cristãos, quando seus escritos sagrados estavam em
+constante perigo de ser destruídos. Assim, é provável que os cristãos primitivos tenham lido
+e relido os originais até que eles se gastassem, desfazendo-se por completo. Os evangelhos,
+contendo o título-nome dos autores, vieram das cópias dos códices antigos. Os dois códices
+mais importantes do Novo Testamento são: o códice vaticano e o códice sinaítico. Se
+levarmos em consideração que tais códices vieram de todas as províncias do Império, desde
+o século 4o até o 9o, somando um total de mais de 4 mil, é incrível como a Igreja primitiva,
+em todas as partes, aceitou com unanimidade os autores dos quatro evangelhos sem
+contestação. Isso só pode ter ocorrido devido ao fato de que os títulos muito cedo foram
+partes integrantes dessas obras.
+
+Grasso ainda afirma: “Ninguém conhece um autor diferente daquele conhecido pelos
+outros. Se em alguma região viessem a saber que o autor de determinado evangelho não era
+o mesmo a quem se atribuía sua autoria em outro lugar, era coisa fácil de ser conhecida”.
+
+Todavia, nunca houve divergência no seio da Igreja sobre a autoria dos quatro
+evangelhos. É improvável até que esses livros tenham circulado durante décadas para
+somente no século 2o serem estereotipados pela Igreja. Poderia ter havido discordâncias,
+caso ninguém soubesse quem eram os autores de tais obras.
+
+O papirólogo Carsten Peter Thiede corrobora com essa opinião: “É inconcebível que
+alguém tivesse ousado inventar candidatos tão improváveis e tão pouco conhecidos como
+Marcos e Mateus (ou até mesmo Lucas), se estes não tivessem sido realmente os nomes dos
+autores — ou se, de alguma forma, não tivessem uma ligação direta com aqueles escritos”.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 8
+
+Para que possamos ter uma idéia de como era certa a tradição de a autoria dos
+evangelhos ser atribuída aos quatro evangelistas, nos basta tão-somente considerarmos o
+fato de que até mesmo os heréticos aceitavam, sem contestação, que a autoria dos
+evangelhos procedia, respectivamente, de Mateus, Marcos, Lucas e João.
+
+Irineu, em seu livro apologético, nos assegura que “o valor dos evangelhos é tão
+grande que recebe o testemunho até dos próprios hereges...”. Prosseguindo, ele diz “que
+cada um pretendia apoiar suas teorias particulares em um dos evangelhos. Por exemplo, a
+seita dos ebionitas tinha preferência pelo evangelho de Mateus. O herege Marcião, pelo de
+Lucas. Já os valentinianos se apegavam ao de João”. Pelo depoimento de Irineu, percebe-se
+que até mesmo os mais primitivos heréticos aceitavam Mateus, Marcos, Lucas e João como
+respectivos autores dos quatro evangelhos que levam os seus nomes.
+
+Além disso, temos o testemunho de outros pais da Igreja primitiva. O escritor e
+historiador eclesiástico Eusébio de Cesaréia, em sua obra História eclesiástica, conserva
+fragmentos dos escritos de Papias, bispo de Hierápolis e escritor cristão do início do século
+2o (c. 130 a.D.), que conheceu os discípulos dos apóstolos. Papias nos dá a seguinte
+informação quanto aos autores dos dois primeiros evangelhos: Mateus e Marcos.
+
+Quanto a Marcos, diz o seguinte: “Marcos, sendo o intérprete de Pedro, tudo o que
+registrou escreveu com grande exatidão, mas não na ordem em que foi falado ou realizado
+por nosso Senhor, pois ele não ouviu nem seguiu nosso Senhor, mas, conforme disse, esteve
+em companhia de Pedro, que lhe deu tanta instrução quanto necessária [...] Assim Marcos
+não errou em nada ao escrever algumas coisas como ele as recordava...”.
+
+Quanto a Mateus, escreve: “Mateus compôs sua história em dialeto hebraico e cada
+um traduzia segunda a sua capacidade”.
+
+Em 170, Irineu de Lião, refutando os hereges de seu tempo, menciona Lucas como
+autor do terceiro evangelho: “Ora, se Lucas, que sempre pregou e evangelizou com Paulo,
+que teve confiada a missão de sempre nos transmitir o evangelho...”. Por isso, D. A. Carson
+chega à seguinte conclusão: “... O único evangelho circulou cedo sob quatro formas
+distintas: ‘Segundo Mateus’ [...], sendo que a preposição apresenta a pessoa que se
+acreditava ser o seu autor”.
+
+Esses dados fornecem provas confiáveis que nos permitem afirmar com segurança que
+seus autores são verdadeiramente aqueles a quem são atribuídos.
+
+4.1.  Por Que Apenas Quatro Evangelhos?
+
+Entre os estudiosos da numerologia bíblica (a numerologia bíblica é apenas simbólica),
+o número quatro representa universalidade. Quatro são os pontos cardeais. Quatro são as
+estações do ano em todo o mundo. E quatro foram os impérios mundiais. O evangelho de
+Cristo também é transcultural, não se restringe a nenhuma raça, cor ou cultura específica,
+mas se estende a toda a criatura debaixo do céu em todos os tempos. Seu alcance é
+universal.
+
+Diz Josh MacDowell que os “quatro evangelhos haviam-se tornado tão axiomáticos no
+mundo cristão que Irineu pôde se referir a eles como um fato comprovado e reconhecido tal
+como os quatro pontos cardeais”.
+
+Vejamos o que disse Irineu: “Por outro lado, os evangelhos não são, nem mais nem
+menos, do que esses quatro. Com efeito, são quatro as regiões do mundo em que vivemos,
+quatro são os ventos [...] Por isso é evidente que o Verbo, Artífice de todas as coisas, que
+está sentado acima dos querubins [...] nos deu um evangelho quadriforme sustentado por
+um único Espírito”.
+
+Já bem cedo, em 160 d.C, um cristão chamado Taciano separou os quatro evangelhos
+em seu Diatessaron (expressão que significa “pelos quatro”). Assim se expressa Eusébio de
+Cesaréia a respeito: “Taciano, tendo formado certo corpo e coleção de evangelhos, não sei
+como, deu-lhes este título, Diatessaron, que é o evangelho dos quatro, ou o evangelho
+formado pelos quatro...”.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 9
+
+Eusébio cita, ainda, outro escritor cristão do século 2o, Clemente de Alexandria (150-
+215), que fala dos “quatro evangelhos transmitido até nós”, e conhece uma tradição segundo
+a qual foram escritos primeiramente aqueles que contêm a genealogia do Senhor, isto é,
+Mateus e Lucas.
+
+Clemente também dá a tradição a respeito da ordem dos evangelhos, conforme
+transmitida pelos presbíteros mais velhos: “Ele diz que os que contêm as genealogias foram
+escritos primeiro...”.
+
+Orígenes, um dos apologistas da fé cristã da segunda metade do século 2o, conhecia o
+nome dos quatro evangelistas e a ordem em que escreveram, como conhecemos hoje, a
+saber: Mateus, Marcos, Lucas e João.
+
+Tertuliano (160–223), advogado e apologista, ao escrever, no início do século 3o,
+contra Marcião, atesta o valor dos quatro evangelhos frente à heresia de Marcião, que só
+admitia o evangelho de Lucas.
+
+O Canon muratoriano também nos fala do reconhecimento dos quatro evangelhos pela
+Igreja romana.
+
+No prólogo de seu evangelho, Lucas deixa claro que, em sua época, já existiam outros
+escritos sobre a vida de Jesus: “Visto que muitos têm empreendido fazer uma narração
+coordenada dos fatos que entre nós se realizaram” (1.1).
+
+Não obstante, cremos que Deus quis preservar somente quatro livros contendo a
+narrativa verdadeira, fiel e inspirada sobre a vida de Cristo.
+
+4.2.  Um ou Quatro Evangelhos?
+
+Já vimos o motivo pelo qual o Senhor Deus nos deu um evangelho quadriforme. Agora,
+estamos diante de outra incógnita: “o evangelho” ou “os evangelhos”? Como devemos
+denominar? Parece que o termo apresenta a mesma aparente dificuldade tal como
+aconteceu com a expressão “Escritura” ou “Escrituras”. No começo, era um termo geral,
+significando simplesmente escritos. Mais tarde, deu-se a designação mais precisa: “a
+Escritura” ou “as Escrituras”, para distinguir os escritos sagrados dos judeus. O apóstolo
+Pedro classifica alguns textos do apóstolo Paulo como “Escritura”. Paulo, ao escrever a
+Timóteo (1Tm 5.18), cita o evangelho de Lucas (Lc 10.7) e o livro de Deuteronômio (Dt 25.4),
+conferindo a mesma autoridade escriturística a ambos.
+
+Com respeito aos evangelhos, Carson elucida a questão ao dizer que “nenhum dos
+quatro relatos sobre o ministério de Jesus recebe no Novo Testamento o nome de evangelho
+[...] Talvez, perto do fim do século 1o, ou início do 2o, acrescentaram-se títulos aos relatos
+oficiais da Igreja sobre o ministério de Jesus. Foi certamente aí que se empregou ‘evangelho’
+pela primeira vez para designar uma obra literária. [...] Não o evangelho por Marcos, mas o
+[único] evangelho, segundo [a versão de] Marcos...”.
+
+Parece que o uso que Marcos faz dessa palavra, já no início de sua obra (1.1), serviu
+para consagrar o termo como obra literária.
+
+Justino, o mártir (133 d.C.), foi o primeiro a empregar o termo “evangelho” para
+designar os relatos canônicos do ministério de Jesus.
+
+F. F. Bruce, ao comentar sobre os evangelhos, dá o parecer de que “já em data bem
+remota vieram os quatro evangelhos a constituir uma unidade integrada. E essa coleção de
+quatro documentos era originalmente conhecida como ‘o evangelho’, no singular, e não ‘os
+evangelhos’, no plural. Havia apenas um evangelho apresentado em quatro narrativas [...]
+Por  volta de 115 a.D., Inácio, bispo de Antioquia, refere-se ao ‘evangelho’ como escrito
+revestido de autoridade, e, visto que conhecia mais de um dos quatro ‘evangelhos’, é
+provável que o título designe a coleção assim chamada, então”.
+
+Geralmente, dá-se o nome de “quatro evangelhos” aos primeiros livros do Novo
+Testamento. Antes do século 4o, todavia, a coleção era designada apenas pelo nome de “o
+evangelho”, distinguindo-se as diferentes formas por “segundo Mateus”, “segundo Marcos”, e
+assim por diante.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 10
+
+Mas as expressões “evangelho de Mateus”, “evangelho de Marcos” e “evangelho de
+Lucas” são apenas nomenclaturas externas provenientes do século 2o. Na verdade, como já
+vimos, há um só evangelho apresentado em quatro formas, como bem atesta Agostinho em
+seu Sermão sobre a ressurreição de Cristo, segundo São Marcos: “A ressurreição de nosso
+Senhor Jesus Cristo lê-se estes dias, como é costume, segundo cada um dos livros do santo
+evangelho”.
+
+4.3.  Os “Problemas” dos Sinóticos
+
+Aprendemos, nos tópicos anteriores, o que significam e quais são os evangelhos
+sinópticos. Abordaremos, agora, algumas dificuldades referentes a esses evangelhos.
+
+Os evangelhos sinópticos têm sido alvo de extensa pesquisa durante muito tempo. A
+crítica textual tem feito uma verdadeira devassa em seus textos com o fito de resolver aquilo
+que denominara de “O problema sinóptico”.Tais problemas, segundo os críticos, seriam
+supostas contradições apresentadas em alguns trechos. Mas como observa o comentarista
+Halley, em sua obra Manual bíblico: “O fato de haver pormenores diferentes e ligeiras
+variantes na descrição de um mesmo incidente faz que o testemunho dos vários escritores
+se torne tanto mais digno de fé, visto afastar a possibilidade de terem entrado em
+combinação prévia”.
+
+E, citando as palavras do historiador Paul Barnett, “as diferenças entre as narrativas
+não apenas indicam que Mateus e Lucas estavam isolados um do outro quando escreveram,
+mas também que as fontes de que dependeram eram bem separadas”.
+
+As dificuldades envolvendo os sinópticos foram apresentadas por Champlin,
+resumidas em forma de várias perguntas, como seguem:
+
+• Os evangelhos foram escritos “independentemente” uns dos outros, sem qualquer
+fonte comum oral e escrita, sendo narrativas somente feitas de memória?
+
+• Se houve fontes comuns escritas ou orais, de que natureza e quantas eram elas?
+
+• Qual dos evangelhos sinópticos é primário? E esse evangelho foi usado diretamente
+como fonte de informação pelos demais evangelistas?
+
+• Qual foi a fonte de material usado pelos evangelhos não primários, naquilo em que
+estão de acordo entre si, nas passagens que não figuram em Marcos?
+
+• Quando um evangelho não primário tem material peculiar a si mesmo, qual foi sua
+fonte informativa?
+
+• Quais foram as fontes informativas do evangelho primário?
+
+Para dirimir esses problemas, os críticos, ao longo dos anos, foram criando várias
+teorias. Algumas delas já foram abandonadas por completo. Já outras possuem agora
+apenas alguns raros defensores. E há aqueles, porém, que continuam gozando de grande
+popularidade entre os eruditos.
+
+A seguir, veremos que, indubitavelmente, não se pode tomar qualquer partido em
+posição dogmática em relação a nenhuma dessas teorias.
+
+No trabalho de desvendar o “mistério” da origem dos evangelhos, destacaram-se,
+principalmente, ao longo dos anos, três teorias que pretenderam apresentar soluções
+plausíveis para a questão em pauta. Vejamos:
+
+4.4.  A Crítica da Forma
+
+Os críticos dessa escola se preocupam não com a parte literária dos evangelhos, mas
+com o hiato deixado entre a transmissão oral até a composição literária dos mesmos. Seus
+proponentes tentam descobrir como as comunidades cristãs transmitiram os ensinamentos
+de  Jesus. A crítica, neste caso, solapa, de certa forma, a integridade histórica dos
+evangelhos, pois os críticos dizem que a comunidade cristã criou as fontes das quais os
+evangelhos derivaram. Propõem que, de acordo com a necessidade enfrentada, as
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 11
+
+comunidades locais iam inventando episódios ou ensinamentos acerca de Jesus para sanar
+tais dificuldades. Essas coleções, na opinião de seus defensores, foram as responsáveis pela
+composição dos evangelhos. Em suma, o evangelho, conforme temos hoje, não seria
+histórias verídicas de testemunhas oculares, mas refletiria apenas a crença da Igreja
+primitiva a respeito de Jesus. Essas unidades isoladas foram costuradas com frases
+cronológicas pelos evangelistas, tais como: “depois disso”, “poucos dias depois”,
+“imediatamente”, para dar um tom histórico à obra. O papel crucial dessa escola seria
+descobrir   as leis por trás dessa tradição. Seus principais expoentes são: Martin Dibelius,
+Rudolf Bultmann e Vicent Taylor, o menos radical deles.
+
+4.5.  A Crítica da Redação
+
+Em verdade, os críticos dessa escola não se preocupam com a origem dos evangelhos
+e, tampouco, importam-se com quem foram seus autores. O que menos importa é a parte
+histórica. Seu principal objetivo é o motivo teológico com que cada autor escreveu e por que
+escreveu, concentrando-se apenas no texto em si.
+
+A crítica da redação depende muito da crítica da forma. A maioria dos críticos da
+redação se baseia na teoria das duas fontes, tendo o evangelho de Marcos como base para
+os outros dois. Os principais difusores dessa teoria foram: Gunther Bornkamm, Hans
+Conzelmann e Willi Marxsen.
+
+4.6.  A Crítica das Fontes
+
+Uma dessas dificuldades nutridas pelos críticos é saber sobre as fontes dos
+evangelhos. Em virtude de muitos versos nos três primeiros evangelhos serem idênticos,
+eruditos, por muitos anos, têm debatido o seu relacionamento. A crítica das fontes visa
+identificar as fontes escritas usadas para compor os evangelhos. E as soluções que
+apresenta foram dadas em forma de algumas teorias.
+
+A seguir, suas principais teorias:
+
+• A teoria da dependência de um evangelho original, único
+
+o Propõe que houve um único evangelho em aramaico do qual os outros três se
+abeberaram.
+
+• A teoria da dependência comum de fontes orais
+
+o Propõe a existência de um evangelho baseado em fontes orais transmitido
+pela Igreja, no qual os outros três se basearam.
+
+• A teoria da dependência de vários fragmentos escritos
+
+o Baseando-se no depoimento de Papias, seu proponente asseverava que
+existiram vários fragmentos sobre a vida de Jesus, os quais foram evoluindo
+em sua forma até serem inseridos nos evangelhos sinópticos.
+
+• A teoria do não-documento
+
+o Alega que não houve uma fonte comum aos três evangelhos, mas que todos
+eles se desenvolveram de modo independente. Seus defensores alegam, ainda,
+que os evangelistas escreveram somente o que viram e ouviram de Jesus.
+
+• A teoria da interdependência
+
+o É a mais aceita atualmente pela maioria dos eruditos da crítica das fontes.
+Seus críticos defendem a tese de que entre os evangelhos havia uma
+interdependência, ou seja, um deles foi a fonte dos outros dois. Dentro dessa
+teoria     se desdobram mais algumas hipóteses das quais analisaremos apenas
+quatro:
+
+• Hipótese agostiniana
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 12
+
+o Agostinho, bispo de Hipona, propôs, baseado na tradição, que Mateus foi o
+primeiro evangelho a ser escrito e que Marcos, posteriormente, serviu-se dele
+para coletar dados e compor seu evangelho. Lucas, por sua vez, seria uma
+compilação tanto de Marcos como de Mateus.
+
+• Hipótese das duas fontes
+
+o Segundo muitos, parece ser a que fornece melhor explicação para as
+similaridades entre os evangelhos. O ponto de vista preponderante, na
+atualidade, é que o evangelho de Marcos foi escrito primeiro e Mateus e Lucas
+usaram Marcos como fonte para os seus evangelhos. Visto que Mateus e
+Lucas são mais extensos que Marcos, é claro que eles contêm materiais que
+não se encontram em Marcos. Mateus contém material que não se encontra
+em Lucas e Lucas contém material que não se encontra em Marcos. Mateus e
+Lucas contêm algum material idêntico que não se encontra em Marcos. Mais
+tarde, foi acrescentada uma certa fonte “Q” (da língua alemã Queller = fonte).
+Segundo essa mesma teoria, Mateus e Lucas teriam escolhido apenas o que
+lhes era conveniente dessas duas fontes.
+
+• Hipótese dos dois evangelhos
+
+o Alguns críticos, como Willian Farmer e C. S. Mann, sustentam a hipótese de
+Griesbach. E, apesar de sustentarem a crença de que o evangelho de Mateus
+foi o primeiro a ser escrito, colocam, diferentemente de Agostinho, Lucas em
+segundo lugar e fazem Marcos depender tanto de Mateus como de Lucas.
+
+• Hipótese dos quatro documentos
+
+o Foi proposta como solução alternativa aos resquícios de problemas deixados
+pela hipótese das duas fontes. Como resultado do trabalho de B. H. Streeter,
+a maioria dos eruditos contemporâneos aceita a teoria dos quatro
+documentos. Esses documentos seriam um proto-evangelho para cada um
+deles,  que são:
+
+▪  Marcos foi escrito primeiro e foi usado por Mateus e Lucas. Seu local
+de origem seria a Igreja em Roma.
+
+▪  O documento “Q” era uma fonte que supriu os ensinos ou as
+atividades de Jesus comuns a Mateus e Lucas, mas que não se
+encontram em Marcos. Seu local de origem seria Antioquia.
+
+▪  “L” era uma fonte usada por Lucas para seu material especial com
+origem na Igreja de Cesaréia.
+
+▪  “M” era uma fonte usada por Mateus para seu material especial e teve
+origem na Igreja de Jerusalém ou Antioquia.
+
+O erudito John P. Meier procura também estender essa questão ao evangelho de João,
+e nos informa que ainda há muita discussão se o evangelho de João dependeu de Mateus e
+Lucas ou foi produto de fontes independentes como a fonte “Q” e “Marcos”. Entre os críticos
+que sustentam a primeira hipótese, está o exegeta Frans Neirynck, que acredita que João se
+baseou nos três evangelhos sinópticos. Mas essa teoria foi contestada por P. Gardner-Smith,
+que sustentava uma fonte independente para João. Depois, essa mesma teoria foi mais bem
+desenvolvida por H. Dodd e aceita por gabaritados comentadores, como, por exemplo,
+Raymond Brown.
+
+Entretanto, é bom lembrar que nenhuma dessas hipóteses favorece uma explicação
+satisfatória à rica complexidade da origem dos evangelhos. F. F. Bruce diz acertadamente
+que   a crítica da fonte “conduz necessariamente a resultados muito menos precisos [...]
+porquanto tem de incluir porção bem mais avultada de elemento especulativo”.
+
+Até mesmo a mais popular delas não consegue responder a muitas questões da
+problemática envolvendo os evangelhos sinópticos. Por exemplo, uma das críticas
+levantadas contra a teoria das duas fontes é que não existe cópia alguma dessa suposta
+fonte “Q”. Alguns apelam para Lucas 1.1-3 como meio de provar essa teoria. Todavia, Lucas
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 13
+
+não diz que copiou ipsis litteris das fontes existentes, mas que fez acurada investigação e
+consultou as testemunhas oculares ainda existentes. Lucas esteve com muitas pessoas,
+inclusive com as testemunhas oculares que eram ministros da Palavra e poderiam ter
+perfeitamente fornecido informações fidedignas envolvendo a vida de Cristo. Há grande
+possibilidade de Lucas ter tido contato pessoal com os três evangelistas ou algum dos
+apóstolos. Além disso, existe o fato de Paulo, em 57 d.C., citar uma passagem de Mateus
+
+10.10 e Lucas 10.7 (“Digno é o obreiro de seu salário”) em 1 Timóteo 5.18. Tudo indica que
+um desses evangelhos já estava circulando naquela época.
+
+Ainda sobre Paulo, devemos atentar para o fato de que quando esse apóstolo instrui a
+Igreja em Corinto, lançou mão de vários ensinamentos proferidos pelo próprio Cristo, tais
+como: o divórcio, o sustento do obreiro, a santa ceia e a morte, o sepultamento e a
+ressurreição de Jesus. Paulo parece invocar uma antiga tradição apostólica (1Co 15.1-7)
+para fundamentar esta última doutrina. Pelo fato de ele citar esses ensinamentos como
+dignos de crédito e observância, pressupõe que já havia alguns ensinamentos circulando
+nas igrejas paulinas sobre Jesus Cristo. E o mais interessante é que a maioria desses
+ensinamentos encontra paralelo nos sinópticos.
+
+Na verdade, como já tivemos a oportunidade de citar, a voz dos pais da Igreja do
+século 2o era unânime em professar a crença que diz ter sido Mateus o primeiro evangelho a
+ser escrito e não Marcos. De fato, os quatro evangelhos, nos primeiros códices, aparecem na
+mesma seqüência de que se dispõe hoje em dia. Ocasionalmente, João foi posto na frente de
+Mateus, mas nunca Marcos.
+
+Segundo o testemunho de Papias, Marcos compôs seu evangelho usando as
+informações de Pedro, por isso não havia a necessidade de copiar de Mateus e muito menos
+de Lucas. Além disso, se Marcos copiou de Mateus e Lucas, por que então seu evangelho foi
+tão resumido no tocante aos ensinamentos de Cristo? É justo crer que ele iria omitir
+episódios importantes da vida de Jesus, como, por exemplo, o seu nascimento ou o sermão
+do Monte? Outro ponto que deve ser considerado é o seguinte: por que Mateus dependeria
+de Marcos, que, diga-se de passagem, não foi testemunha ocular, para compor seu
+evangelho? Será que as memórias de Mateus e sua íntima experiência com Cristo, além de
+sua relação com os demais apóstolos, não seriam suficientes para tal tarefa?
+
+São justamente estas algumas dificuldades que se impõem quando confrontamos tais
+teorias.
+
+5 -  OS EVANGELHOS E SUA DATAÇÃO
+
+A datação dos evangelhos é tão controversa quanto sua autoria e composição. Isso
+porque os evangelhos não foram datados por seus autores. Foram recebendo suas datas de
+acordo com os pressupostos de cada estudioso. Se certo grupo de eruditos tende a não
+considerar o Novo Testamento como documento fidedigno, está propenso a datar tais
+documentos muito mais tarde do que seus colegas conservadores. Os críticos dos séculos 18
+e    20 chegaram a aventar datas extremamente tardias para os evangelhos, como, por
+exemplo, meados do século 2º d.C.
+
+Geralmente, os especialistas, sejam conservadores ou liberais, costumam datar os
+livros do Novo Testamento de acordo com algumas situações internas e externas ao texto. As
+situações internas seriam passagens que se referem a certos fatos históricos, como, por
+exemplo, a destruição de Jerusalém. Um outro critério é levar em conta a comparação de
+evangelho para evangelho. Por exemplo, se Marcos foi o primeiro evangelho escrito e os
+estudiosos colocam sua data em 55 d.C., conseqüentemente Mateus, que possivelmente
+derivou seu evangelho de Marcos, poderia perfeitamente ter tido tempo suficiente para
+escrever seu evangelho bem antes de 70.
+
+Citaremos, agora, a opinião de alguns estudiosos conservadores quanto às datas dos
+evangelhos. O já citado erudito F. F. Bruce fornece uma datação bem recuada aos
+evangelhos. Diz ele: “De minha parte, estaria inclinado a atribuir aos três evangelhos data
+anterior: Marcos teria escrito pouco depois de 60, Lucas entre 60 e 70, Mateus não muito
+depois de 70”.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 14
+
+Outros, ainda, vão mais longe numa data bem mais recuada, como, por exemplo, o
+renomado arqueólogo Albright, que situou não só os evangelhos, mas todos os livros do
+Novo Testamento, entre 40 e 80 d.C. John A.T. Robinson, um dos maiores eruditos em grego
+do Novo Testamento, apesar de ter sido um crítico liberal, também foi forçado pelas
+evidências a datar todos os livros do Novo Testamento antes de 70 d.C. Quanto a isso,
+William Craig comenta: “Todos os estudiosos do Novo Testamento estão de acordo que os
+evangelhos foram redigidos e desenvolvidos na época da primeira geração, durante a vida
+das testemunhas oculares. De fato, um novo movimento significante da ciência bíblica
+defende eficazmente que alguns dos evangelhos foram escritos em 50 d.C.”.
+
+
+DATA APONTADAS PELOS CRÍTICOS CONSERVADORES
+
+Mateus            70-80 a.D.
+
+c. 70 a.D.
+
+c. 84 a.D.
+
+Marcos            50-60 a.D.
+
+58-65 a.D.
+
+c. 76 a.D.
+
+Lucas             Início de 60 a.D.
+
+c. 67 a.D.
+
+c.94 a.D.
+
+Harrison
+Harnack
+Renan
+Harnak
+
+T. W. Manson
+Renan
+Harrison
+Harnack
+Renan
+
+
+João
+
+80-100 a.D.
+
+Harrison
+
+
+DATAS APONTADAS PELOS CRÍTICOS LIBERAIS
+
+Mateus            50 -100 a.D.
+
+130 –134 a.D.
+
+Marcos            70 a.D.
+
+150 a.D.
+
+Lucas             70-90 a.D.
+
+150 a.D.
+
+João             170 a.D.
+
+90-100 a.D.
+
+Kümmel
+Baur
+Kümmel
+Baur
+Kümmel
+Baur
+Baur
+Kümmel
+
+Dos documentos antigos do Novo Testamento que existem ainda hoje, um dos mais
+remotos é o papiro Rylands 457, que contém alguns versículos do capítulo 18 do evangelho
+de João, datado do início do século 2o d.C. Esse papiro faz que o manuscrito saído das
+mãos do autor, conhecido como autógrafo, seja datado de pelo menos fins do século 1º.
+Outro papiro, conhecido como P75, também datado do século 2o, contém grande parte dos
+evangelhos de João e Lucas. O fragmento considerado mais antigo do Novo Testamento era
+um papiro encontrado nas grutas do Mar Morto (Qunrã), datado de 70 d.C., contendo
+algumas palavras de duas linhas do evangelho de Marcos. Entretanto, alguns estudiosos
+concluíram que um fragmento do evangelho de Mateus (Papiro de Magdalen, datado em 608
+d.C.) antecede os três papiros mencionados. Também estudiosos como Reicke sugere para
+Mateus a data de 50—64 d.C. Já B. Orchard e H. Hiley acham que este evangelho é de cerca
+de 43. d.C.
+
+A despeito de tudo o que foi tratado sobre a datação dos evangelhos, acreditamos que
+há uma razão fortíssima para crermos que foram escritos até a década de 70 do século 1o. E
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 15
+
+o que nos leva a aceitar essa possibilidade é o fato de que a destruição de Jerusalém e do
+templo é profetizada repetidamente pelos evangelistas, mas o Novo Testamento jamais diz
+que essa profecia se cumpriu. A cidade e o templo foram destruídos no ano 70, pelo general
+romano Tito. Logo, temos fortes razões para acreditar numa data bem recuada para os
+evangelhos.
+
+6 -  O CÂNON NEOTESTAMENTÁRIO
+
+A palavra cânon, para muitos, não é comum. Seu significado etimológico está ligado a
+uma planta — o junco, do hebraico qaneh (Ez 40.3). Transliterado para o grego, esse kanón
+ou “cana” (“Caule de várias plantas da família das gramíneas, tais como a taquara, o
+bambu, a cana-de-açúcar, etc.”, dic. Aurélio), servia como aferidor de medida. Com o correr
+do tempo, passou então a significar “padrão”. Seu significado original continuou sofrendo
+mutações. Na época do Novo Testamento, o apóstolo Paulo aplicou a palavra cânon como
+“regra moral”, em Gálatas 6.16, e “medida”, em 2Coríntios 10.13,14. Foi Orígenes, porém,
+quem primeiro a usou como “regra de fé”. Mais tarde, no século 4o, a palavra cânon aparece
+com o sentido de “lista” dos livros do Antigo e Novo Testamentos.
+
+Quando, então, falamos no cânon do Novo Testamento, estamos, na verdade, nos
+reportando à lista dos 27 livros aceitos como divinamente inspirados, que servem como
+regra de fé e prática dos cristãos. Canônico, por conseguinte, denota aquilo que está de
+acordo com o cânon relacionado aos 66 livros da Bíblia.
+
+Já tivemos a oportunidade de tratar antes sobre a estrutura dos evangelhos. As
+perguntas deste capítulo serão as seguintes: “Como essa lista dos 27 livros foi aceita pela
+Igreja? Como foi sua seleção? Quem coligiu esses livros como canônicos? Quais foram os
+fatores que levaram a isso?”.
+
+A história do cânon tenta entender de que modo tais coleções e, finalmente, a coleção
+do Novo Testamento, tomaram a forma que possuem hoje.
+
+A resposta mais adequada, talvez do ponto de vista estritamente histórico e não tão
+objetivo, é que o Espírito Santo direcionou a Igreja a separar o joio do trigo, ou seja, os livros
+divinamente inspirados de outras obras falsamente atribuídas aos apóstolos, e isso inclui
+também as literaturas de caráter ortodoxo que tratavam igualmente sobre a fé cristã, mas
+não possuíam autoridade divina.
+
+Jesus foi categórico quando afirmou: “Mas, quando vier o Espírito da verdade, ele vos
+guiará [os apóstolos] em toda a verdade” (Jo 16.13). Os livros do Novo Testamento
+possuíam, por assim dizer, o imprimatur divino. Contudo, nosso outro enfoque agora
+recairá na parte mais técnica. Iremos mostrar, mediante uma pesquisa histórica mais
+objetiva, o desenvolvimento do cânon neotestamentário. É oportuno, entretanto, começar
+mostrando, de forma resumida, a história da autoridade do conteúdo desses livros antes da
+formação do cânon sagrado, o que poderíamos chamar de um “protocânon”, ou cânon oral.
+Aliás, o único cânon escrito usado até então pela Igreja antes da composição dos escritos
+apostólicos era a Septuaginta, versão grega do Antigo Testamento usada pelos cristãos como
+texto-prova para mostrar que Jesus era o Messias prometido pelos profetas (Lc 24.44).
+
+Mesmo uma leitura superficial dos evangelhos mostrará que as palavras de Jesus
+possuíam uma autoridade espiritual equiparada à autoridade dos livros do Antigo
+Testamento.
+
+• Suas palavras deveriam ser praticadas (Mt 7.24).
+
+• Suas palavras eram eternas (Mt 24.35).
+
+• Suas palavras eram espírito e vida (Jo 6.63).
+
+• Suas palavras eram de vida eterna (Jo 6.68).
+
+• Suas palavras deveriam ser obedecidas (Jo 15.7-10).
+
+• Sua doutrina era de Deus (Jo 7.16,17).
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 16
+
+• Sua autoridade era superior à autoridade de Moisés (Jo 5.46).
+
+Logo, Jesus Cristo e, posteriormente, os apóstolos se tornaram o “cânon vivo” da Igreja
+enquanto pregavam oralmente a doutrina cristã. Lucas relata que a Igreja perseverava na
+“doutrina dos apóstolos” (At 2.42; 5.28). As pregações apostólicas, possivelmente, devem ter
+sido estereotipadas nas comunidades locais e, por conta disso, houve, também
+possivelmente, uma categorização oral dessas pregações. Vejamos como se expressa a
+introdução do Novo Comentário da Bíblia: “Além do evangelho escrito, recordado pelos
+quatro evangelistas, havia o evangelho falado ou oral, a boa-nova (euangelion) proclamada
+por Cristo e pelos discípulos”.
+
+Como vimos, Marcos, bem cedo, talvez por volta do final da década de 40, começa a
+escrever seu evangelho, o qual é tomado como base por Mateus e Lucas. Se a corrente de
+pensamento acima esposada pela maioria dos críticos modernos for a correta, então Marcos
+gozou bem cedo de uma autoridade histórica e apostólica. Lucas nos diz que fez uma
+investigação minuciosa. Duas palavras usadas no original precisam ser destacadas aqui:
+akribos (minucioso), que pode ser traduzida para “meticuloso”, “preciso”, “rigoroso”, e
+parakoloutheo (investigação), que vem de dois vocábulos gregos: para, que denota “ao lado
+de, perto” e akoloutheo, que exprime: 1) Seguir a alguém que precede, juntar-se a ele como
+seu assistente, acompanhá-lo; 2) Juntar-se a alguém como um discípulo, tornar-se ou ser
+seu discípulo (Strong). Tal foi o exame criterioso que Lucas fez antes de redigir seu
+evangelho.
+
+Assim, Lucas, ao se basear em parte no evangelho de Marcos que, segundo a tradição
+de Papias, em parte recebera de Pedro, confere implicitamente autoridade apostólica ao
+mesmo.
+
+Há de se destacar que, por esse tempo, a coleção das cartas de Paulo já formava o que
+muitos chamam de corpus paulinun. Pedro chega a citar as epístolas de Paulo,
+equiparando-as às “Escrituras” (2Pe 3.15,16).
+
+Se Pedro escreveu sua epístola entre 66 e 67, como bem atestam alguns estudiosos,
+então as cartas do apóstolo já eram consideradas de valor canônico na Igreja primitiva. Dois
+pontos podem ser destacados para mostrar esta verdade:
+
+O próprio Paulo acreditava na inspiração de seus escritos, como sugerem alguns
+textos (1Co 7.40; 14.37), por serem autorizados (1Co 2.16; 7.17; 14.37,38; 2Ts 3.14).
+
+Paulo ordenava que suas epistolas fossem lidas pelas igrejas (Cl 4.16; 1Ts 5.27).
+
+6.1.  Como se Formou o Cânon?
+
+Alguns fatores circunstanciais contribuíram para que o cânon dos 27 livros do Novo
+Testamento fosse coligido. Vejamos tais fatores: 1) Combate às heresias, 2) Perseguições e 3)
+Solidificação da religião cristã.
+
+As profecias sobre os falsos mestres, proferidas por Cristo (Mt 24.11), Pedro (2Pe 2.1) e
+Paulo (At 20.29,30), haviam começado a se cumprir na época de João (1Jo 2.19; 4.1-3; 2Jo
+1.7). Entre as sete igrejas do Apocalipse, aparecem alguns pequenos grupos heréticos da
+época, dirigidos por alguns falsos apóstolos (Ap 2.2) que apresentavam a doutrina de Balaão
+(Ap 2.14) e dos nicolaítas (Ap 2.15). E também Jezabel, “mulher que se diz profetisa” (Ap
+2.20).
+
+Na época, florescia também o gnosticismo, doutrina sincretista que misturava
+doutrinas cristãs com ensinamentos pagãos. Os grupos cristãos gnósticos afirmavam que o
+corpo de Jesus era apenas ilusório (docético), pois consideravam a matéria má e
+pecaminosa, daí as advertências de João em 1João 4.2.
+
+É possível que grupos espúrios da época de Paulo (judaizantes) e João (gnósticos)
+começaram a produzir seus próprios escritos, conferindo-lhes autoridade apostólica. Alguns
+escritos espúrios em nome dos apóstolos começaram a circular ainda quando eles estavam
+vivos. Lucas 1.1-3 parece sugerir que muitos desses escritos, antecedentes ao seu
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 17
+
+evangelho, não fossem fidedignos. Subentendemos isso pela advertência que Lucas faz a
+Teófilo no versículo 4: “Para que tenhais plena certeza das coisas em que foste ensinado”.
+
+Na segunda metade do século 2o, fervilhavam escritos atribuídos aos apóstolos, tais
+como: evangelhos, atos, epístolas e apocalipses. Mas todas essas obras foram produzidas
+por grupos heréticos que tentavam propagar e fundamentar suas heresias usando o nome
+dos verdadeiros apóstolos de Cristo. Pais da Igreja como Irineu e Tertuliano escreveram
+abundantemente combatendo tais grupos e suas respectivas heresias.
+
+Eusébio de Cesaréia, por volta do século 4o, mostra, em sua obra História eclesiástica,
+a proliferação dos heresiarcas que existiram desde o final do século 1o até sua época. Foi
+também nesse período que começaram a circular pela Igreja muitos escritos de cristãos,
+como, por exemplo, o livro catequético Didaquê (Pastor de hermas), entre outros.
+
+Todavia, a necessidade de se ter um cânon autorizado dos livros do Novo Testamento
+se fez sentir realmente quando Marcião (140 d.C.), um cristão com tendências gnósticas,
+elaborou uma lista particular de livros contendo apenas o evangelho de Lucas e dez
+epístolas de Paulo. Os evangelhos e as epístolas que se referiam a Jesus como Filho do Deus
+do Antigo Testamento foram rejeitados por Marcião, e também todo o Antigo Testamento. A
+Igreja reagiu reprovando esse cânon. Agora, restava saber qual era o verdadeiro cânon do
+Novo Testamento.
+
+Até então, a Igreja não havia se preocupado em formular uma lista definida dos livros
+autênticos ou não. Mas todos os livros que compõem hoje o nosso Novo Testamento foram
+aceitos pela Igreja, com exceção, e isso apenas em algumas regiões, dos sete livros finais.
+Todavia, isso ocorreu mais por causa do isolamento geográfico entre as igrejas do que por
+escolha própria. Na polêmica contra os heréticos, era necessário saber que livros, de fato,
+eram autênticos, quais deles estavam revestidos de autoridade divina e quais não.
+Conseqüentemente, restava saber que livros deveriam ser lidos como sendo verdadeiramente
+inspirados nas igrejas.
+
+6.2.  Os Princípios Usados no Critério de Seleção
+
+Depois da controvérsia com Marcião, os cristãos começaram a acelerar o processo de
+canonicidade que já estava em andamento. Em resumo, esse processo seguiu mais ou
+menos o seguinte padrão: os livros do Novo Testamento foram escritos pelas testemunhas
+oculares ou discípulos de tais testemunhas (Marcos e Lucas); sua leitura foi amplamente
+recomendada pelos apóstolos (Paulo, João e Pedro); foram colecionados (epístolas de Paulo)
+e aceitos pelas igrejas como sendo úteis para dirigir a vida espiritual e doutrinária da Igreja;
+ganharam aceitação por parte de toda a Igreja e não apenas das congregações locais; e, por
+último, foram, mais tarde, oficialmente aprovados mediante decisão formal da Igreja. Alguns
+critérios, no entanto, foram usados pelos cristãos para decidir se um livro era autêntico ou
+não, dos quais destacamos os seguintes:
+
+A. A Apostolicidade da Obra. O material em consideração pela comunidade
+eclesiástica deveria ter sido redigido por um dos doze que conviveram com Jesus. No
+entanto, esse critério era um tanto flexível, pois havia pessoas que não foram testemunhas
+oculares, mas escreveram obras sobre a vida de Cristo. Então, neste caso, o termo
+apostolicidade não precisava significar necessariamente autoria apostólica, poderia ser
+autoridade  e aprovação apostólica. Temos um bom exemplo nos escritos dos dois
+evangelistas, que, apesar de não terem sido do corpo original dos apóstolos, no entanto,
+escreveram com a autoridade de um apóstolo. Lembrando que Marcos foi companheiro de
+Pedro  e Lucas, de Paulo.
+
+B. A catolicidade da obra. Este fator envolve a circulação, o uso e a aceitação do livro.
+Já que não era fácil comprovar a autenticidade apostólica, esta característica auxiliou, e
+muito, a confecção do cânon. Os autores sagrados haviam deixado discípulos em suas
+igrejas, mas só os livros usados pela Igreja como um todo vieram a ser incluídos no cânon.
+Como os pastores e membros das várias congregações se comunicavam entre si por cartas,
+os livros mais usados se tornaram obviamente conhecidos. Vale a pena lembrar que muitos
+livros não foram aceitos por causa desse segundo princípio de aferição. Apesar disso,
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 18
+
+alguns, como já dissemos, ficaram restringidos, por algum tempo, a algumas regiões por
+falta de comunicação.
+
+C. A ortodoxia na obra. Este foi um dos princípios mais importantes aplicados pelos
+líderes das igrejas de então. O ensino da obra deveria concordar com a regra de fé — regula
+fidei. Isto é, coerência entre cada livro e a ortodoxia da Igreja. Visto que muitos grupos
+heréticos se escoravam em escritos espúrios, a Igreja teve de separar o joio do trigo. Quando
+a  obra apresentava erros teológicos que colidiam com a fé da Igreja como um todo e
+histórias fabulosas explicitamente reprováveis, era rejeitada.
+
+D. A inspiração da obra. O critério essencial é o mesmo que levou ao reconhecimento
+do Antigo Testamento. Um fator preponderante foi o testemunho do Espírito Santo dentro
+da Igreja. A inspiração não foi colocada de fora para dentro, mas de dentro para fora, e a
+Igreja, como um corpo, discerniu isso. Os livros que iriam ser inseridos na lista canônica
+deveriam dar provas cabais dessa inspiração. Os livros apostólicos se mostravam com
+autoridade, eram proféticos e, o mais importante, sua mensagem transformava vidas.
+
+6.3.  Os Primeiros Cânones
+
+Como já vimos, o primeiro a elaborar um cânon na história da Igreja foi Marcião. Mas
+como seu cânon era imparcial e tendenciosamente herético, foi imediatamente repudiado
+pela Igreja. O fato de Marcião rejeitar certos livros é praticamente uma prova de que tais
+livros eram revestidos de autoridade. Não tardou e os principais líderes das igrejas
+começaram a atacar a lista proposta pelo herege. Os livros rejeitados por Marcião foram
+ardorosamente defendidos por Irineu e Tertuliano, entre outros. Os mesmos estavam
+praticamente em uso na Síria, na Ásia Menor e em Roma. A Igreja sentiu a necessidade de
+elaborar uma lista oficial dos livros canônicos. Com isso, várias listas começaram a
+aparecer. Algumas delas, então, foram sendo criadas pela Igreja. As duas primeiras listas
+elaboradas depois de Marcião, quem sabe como uma resposta ao seu cânon particular,
+foram  o Diatessaron e o Muratoriano.
+
+A. Diatessaron. Em 170 d.C., um cristão chamado Taciano já agregava em uma só
+obra os quatro evangelhos.
+
+B. Fragmento muratoriano. Surgido em 170 d.C. (?), tal documento é um manuscrito
+do século 8o, cópia do original, descoberto pelo sacerdote italiano Ludovico Antonio
+Muratori, no século 13. Alguns o situam até mesmo antes do Diatessaron, por volta de 150
+
+d.C. Essa lista mostra os mesmos livros que temos hoje, com exceção de três epístolas:
+Tiago, 2Pedro e Hebreus.
+
+C. O cânon de Orígenes. Orígenes classificou os livros em duas categorias:
+homologoumena, conhecidos e aceitos por todos, e antilegomena, aqueles que ainda
+perduravam alguma dúvida em algumas regiões, a saber: Hebreus, Tiago, 2Pedro, 1 e 3João,
+Judas e alguns apócrifos.
+
+D. O cânon de Atanásio. Em 325 d.C., numa carta enviada à sua Igreja, por ocasião
+da páscoa, Atanásio, bispo de Alexandria e campeão da ortodoxia contra o arianismo,
+confeccionou uma lista contendo os 27 livros que deveriam ser lidos na Igreja. Essa lista
+continha os mesmos livros do nosso atual Novo Testamento.
+
+D. O cânon de Eusébio de Cesaréia. Em 325 d.C., Eusébio seguiu à risca a mesma
+lista organizada por Atanásio e classificou os livros em reconhecidos, discutidos e espúrios.
+
+E. Outros cristãos. Clemente de Alexandria, Irineu, Tertuliano e, posteriormente,
+Cirilo de Jerusalém (386 d.C.) figuram na história como defensores de um cânon do Novo
+Testamento que continham os quatro evangelhos, as epístolas de Paulo, Atos, 1Pedro, 1João
+e Apocalipse.
+
+F. Concílios da Igreja. O Concílio de Nicéia já havia tocado no assunto, mas foram os
+Concílios de Hipona (393 d.C.) e de Cartago (397 d.C.) que ratificaram a lista dos 27 livros
+de Atanásio, conservados até hoje em nossa Bíblia.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 19
+
+6.4.  Por Que Houve Demora na Aceitação de Alguns Livros?
+
+Escritores como Eusébio de Cesaréia classificaram a literatura cristã vigente como
+segue:
+
+• No grupo dos homologoumena, os livros aceitos por todos, estavam os quatro
+evangelhos, Atos, as epístolas paulinas, 1Pedro e 1João.
+
+•  O grupo dos pseudepígrafos compunha os livros rejeitados, ou seja, todos os
+apócrifos do Novo Testamento. Geralmente, tais livros eram escritos por seitas
+gnósticas, docéticas ou ascéticas. Eis uma lista de alguns desses livros espúrios:
+
+A. Atos Apócrifos
+
+DOCUMENTO                DATA PROVÁVEL
+
+de André                    Séc. 3o
+
+de João                     Séc. 2o
+
+de Tiago                    Séc. 2o
+
+de Paulo                    Séc. 2o
+
+de Pedro                    Séc. 1o- 2o
+
+de Tomás                    Séc. 3o
+
+de Tadeu                    Séc. 3o
+
+B. Evangelhos Apócrifos
+
+DOCUMENTO                DATA PROVÁVEL
+
+dos hebreus                  Séc. 1o (?)
+
+dos egípcios ou tradição de Matias      Séc. 2o
+
+dos ebionitas ou dos 12 apóstolos       Séc. 2o
+
+de Pedro                    Séc. 2o
+
+de “pseudoTomé”               Séc. 2o
+
+Proto-evangelho de Tiago           Séc. 2o
+
+Árabe da infância               Séc. 2o (?)
+
+Copta de Tomé, o dídimo           Séc. 2o
+
+de Filipe                    Séc. 3o
+
+de Maria Madalena               ?
+
+da Verdade                   ?
+
+de Nicodemos                 Séc. 2o – 5o
+
+de Matias                    ?
+
+de Barnabé                   ?
+
+de André                    ?
+
+de Judas Iscariotes              ?
+
+de Eva                     ?
+
+de Basílides                  ?
+
+de Cerinto                   ?
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 20
+
+de Bartolomeu                 ?
+
+C.Epístolas Apócrifas
+
+DOCUMENTO                DATA PROVÁVEL
+
+3Coríntios                   Séc. 2o
+
+dos apóstolos                 Séc. 2o
+
+aos laodicenses                Séc. 2o
+
+aos alexandrinos                Séc. 2o
+
+Entre Paulo e Sêneca             Séc. 3o
+
+D. Apocalipses Apócrifos
+
+DOCUMENTO                DATA PROVÁVEL
+
+de Pedro                    Séc. 2o
+
+de Paulo                    Séc. 3o
+
+de Estêvão                   ?
+
+de Tomé                    Séc. 4o
+
+de João                     ?
+
+da Virgem                   ?
+
+Sibila cristã                  Séc. 3o
+
+E. Outros Documentos Apócrifos
+
+DOCUMENTO                DATA PROVÁVEL
+
+Declaração de José de Arimatéia       Séc. 2o
+
+Descida de Cristo aos infernos         Séc. 5o
+
+A cura de Tibério                Séc. 6o
+
+A vingança do Salvador            ?
+
+Cartas entre Pilatos e Herodes         Séc. 5o
+
+Cartas entre Pilatos e Tibério         Séc. 5o
+
+Relatório de Pilatos              Séc. 7o
+
+Tradição de Pilatos               Séc. 7o
+
+A morte de Pilatos               ?
+
+Trânsito ou passagem de Maria        Séc. 3o – 6o
+
+Livro do descanso               Séc. 3o – 6o
+História de José, o carpinteiro
+
+O terceiro e último grupo era formado pelos antilegomena, nos quais perduravam
+algumas dúvidas, a saber: Hebreus, Tiago, 2Pedro, 1 e 3João, Judas e Apocalipse.
+
+Entre os questionamentos que retardaram sua aceitação em algumas regiões podemos
+destacar os seguintes:
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 21
+
+• Anonimato. Por não trazer o nome do autor, a epístola aos Hebreus, por algum
+tempo, não foi considerada de origem apostólica. Posteriormente, a crítica primitiva
+a incorporou às cartas de Paulo.
+
+•  Aparente discrepância doutrinária. Um caso típico foi a carta de Tiago, que não era
+considerada por muitos de origem apostólica, devido ao aparente conflito entre os
+seus ensinos e os ensino do apóstolo Paulo sobre a justificação pela fé. Contudo,
+alguns exegetas resolveram esse problema e a carta de Tiago foi incluída nos livros
+canônicos.
+
+•  Diferenças de estilo. A segunda epístola de Pedro provê um bom exemplo disso. Ao
+contrário da carta aos Hebreus, a segunda epístola de Pedro traz o nome do
+apóstolo. Todavia, a objeção maior estava relacionada ao seu estilo literário, quando
+comparada à primeira carta de Pedro. No entanto, Pedro poderia muito bem ter
+lançado mão de um amanuense (escrevente). Se esse foi o caso, fica, então,
+explicada a aparente diferença. As epístolas de João e o livro do Apocalipse entram
+também nessa categoria.
+
+• Diálogo com livros apócrifos. O problema quanto ao texto de Judas se deu pelo fato
+de ele ter citado os livros apócrifos da literatura judaica, como, por exemplo, o livro
+de Enoque (v. 14,15) e a assunção de Moisés (v. 9). Mas devemos lembrar que tais
+livros não são postos na mesma categoria das Escrituras Sagradas, antes, são
+apenas citações de obras não inspiradas, tal como fez o apóstolo Paulo em algumas
+de suas epístolas ao citar poetas pagãos (At 17.28).
+
+• Outros fatores. Além de tudo o que já foi falado, há as questões do tamanho, do
+caráter particular de cada livro, do seu destino e/ou a falta de aplicabilidade às
+necessidades da Igreja naquele período.
+
+Apesar de a maioria dos pais da Igreja se posicionar a favor de muitos desses livros,
+outros, porém, não agiam dessa forma, e isso por causa da questão geográfica, que gerava
+falta de comunicação entre as igrejas, ou por causa da má interpretação quanto aos ensinos
+dos livros. Mas quando o mal-entendido foi desfeito, tais livros foram definitivamente
+incluídos no cânon neotestamentário.
+
+6.5.  O Novo Testamento é Confiável?
+
+A conclusão que tiramos é que o cânon sagrado não foi imposto como decisão de um
+concílio qualquer e muito menos de uma pessoa. Não. O cânon, de per si, já prova sua
+autenticidade. O que os cristãos fizeram foi apenas reconhecer aquilo que já era regra de fé
+há muito tempo nas igrejas cristãs. Apesar de existirem outros escritos sobre Jesus e sua
+doutrina corrente na época, aprouve a Deus separar apenas esses 27 livros e marcá-los com
+sua autoridade e aprovação para o uso de sua Igreja.
+
+Já ficou sobejamente demonstrada a genuinidade dos evangelhos. Agora se nos
+apresentam outras questões:
+
+• O texto que possuímos hoje é realmente aquele que saiu da pena dos evangelistas e
+apóstolos ou foi alterado no decorrer dos séculos?
+
+• Houve interpolações, omissões ou corrupções no texto?
+
+Um documento pode ter sido genuíno, mas de nada adianta se as cópias que
+possuímos não refletem a mesma fidelidade no conteúdo como foi escrito.
+
+Geralmente, a acusação feita por alguns críticos é de que as nossas cópias são
+corrompidas. Entretanto, o Novo Testamento é, sem dúvida, o documento mais bem
+atestado da antiguidade. Existem mais cópias dele do que de qualquer outro documento
+antigo. São mais de cinco mil manuscritos em grego e versões antigas em siríaco e em
+outras línguas. “Entre a redação de Sófocles, Ésquilo, Aristófanes e Tucídides e o primeiro
+códice que possuímos desses escritos, há um intervalo de 1400 anos; 1600 para Eurípedes e
+Catulo [...] 1200 para Demóstenes; e 700 para Terêncio. As cópias mais antigas existentes
+hoje do Novo Testamento são dos séculos 2º e 3º d.C.”.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 22
+
+Todos esses achados tornam o Novo Testamento o texto antigo mais bem
+documentado e atestado, quando comparado com outros escritos da antiguidade clássica.
+
+
+AUTOR
+
+Lucrécio
+
+Plínio
+Platão
+Demóstenes
+Heródoto
+Suetonius
+Tucídides
+Eurípides
+Aristófanes
+César
+
+Tito Lívio
+
+Tácito
+Aristóteles
+Sófocles
+Homero
+(Ilíadas)
+
+Novo
+Testamento
+
+DATA EM
+QUE FOI
+ESCRITO
+
+c.55 ou 53
+a.C.
+
+61-113 d.C.
+
+427-347 a.C.
+
+c. 400 a.C.
+
+480-425 a.C
+
+75-160 d.C.
+
+460-400 a.C.
+
+480-406 a.C.
+
+450-385 a.C.
+
+100-44 a.C.
+
+Entre 59 a.C.
+
+e 17 d.C.
+
+c. 100 d.C.
+
+384-322 a.C.
+
+496-406 a.C.
+
+900 a.C.
+
+Século 1o d.C.
+(entre 50-100
+d.C.)
+
+DATA
+CÓPIA
+MAIS
+ANTIGA
+
+----------
+
+850 d.C.
+
+900 d.C.
+
+400 d.C.
+
+900 d.C.
+
+950 d.C.
+
+900 d.C.
+
+1100 d.C.
+
+900 d.C.
+
+900 d.C.
+
+----------
+
+1100 d.C.
+
+1100 d.C.
+
+1000 d.C.
+
+400 a.C.
+
+Início do
+século 2o
+d.C.
+
+TEMPO
+ENTRE
+ORIGINAL  E
+CÓPIA
+
+1100 anos
+
+750 anos
+
+1200 anos
+
+800 anos
+
+1300 anos
+
+800 anos
+
+1300 anos
+
+1300 anos
+
+1200 anos
+
+1000 anos
+
+???
+
+1000 anos
+
+1400 anos
+
+1400 anos
+
+500 anos
+
+Menos de 100
+anos
+
+Nº DE
+CÓPIAS
+
+2
+
+7
+
+7
+
+8
+
+8
+
+8
+
+8
+
+9
+
+10
+
+10
+
+20
+
+20
+
+49
+
+193
+
+643
+
+5600
+
+PRECISÃO
+DAS CÓPIAS
+
+----------
+
+----------
+
+----------
+
+----------
+
+----------
+
+----------
+
+----------
+
+----------
+
+----------
+
+----------
+
+----------
+
+----------
+
+----------
+
+----------
+95%
+
+99,5%
+
+Vê-se, facilmente, que se alguém rejeitar a autenticidade histórica do Novo
+Testamento, então deverá, por coerência, rejeitar a autenticidade histórica de todos os
+demais escritos antigos, porque o Novo Testamento é, de longe, o mais bem atestado, tanto
+pelo número de cópias existentes como pela proximidade em anos da cópia mais antiga em
+relação ao original. Nenhum outro escrito sequer chega perto do Novo Testamento nesses
+critérios.
+
+6.6.  As Variantes
+
+As variantes existentes nos evangelhos são outro ponto ressaltado pelos críticos para
+diminuir sua confiabilidade. Será que tais variantes não podem prejudicar a crença de que
+os nossos textos modernos refletem o mesmo texto do original?
+
+Por terem sido produzidos em diferentes áreas e sob diferentes circunstâncias, e
+devido aos erros de ortografia dos copistas, alguns manuscritos contêm diferenças entre si,
+o que chamamos de variantes textuais.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 23
+
+Bruce Metzger, uma das maiores autoridades em grego neotestamentário da
+atualidade, afirma que as diferenças não afetam substancialmente nenhuma doutrina
+cristã.
+
+Norman Geisler e Willian Nix acrescentam: “O Novo Testamento, então, não apenas
+sobreviveu em maior número de manuscritos que qualquer outro livro da antiguidade, mas
+sobreviveu em forma mais pura que qualquer outro grande livro – uma forma 99,5% pura”.
+
+Grasso cita o parecer de algumas autoridades como Amiot e Hort ao se expressar da
+seguinte maneira: “No conjunto dos manuscritos se encontram, aproximadamente, 250 mil
+variantes, incluindo as citações dos padres antes do século 4o e das antigas traduções. A
+maioria delas é insignificante: refere-se somente à ortografia e à disposição das palavras.
+Segundo Hort, 7/8 do texto estão fora de discussão. As variantes que modificam o texto
+abrangem a milésima parte dele: somente umas quinze variantes têm certa importância;
+contudo, nenhuma delas toca a substância do dogma estabelecido pelas passagens
+criticamente certas, sem termos a necessidade de lançar mão de textos duvidosos”.
+
+7 -  O JESUS HISTÓRICO VERSUS O
+JESUS DA FÉ
+
+Resolvido o problema dos documentos cristãos, partimos agora para o personagem
+principal deles: Jesus, a finalidade única para a existência de todo o Novo Testamento. Tal
+como acontece com os documentos, as especulações a respeito de Jesus também são
+polêmicas.
+
+Uma das perguntas que têm causado opiniões cada vez mais divergentes é esta:
+“Quem é Jesus?”. Ao contrário do que muitos pensam, tal pergunta não foi formulada em
+nenhum seminário de crítica textual. É muito mais antiga. Na verdade, o próprio Jesus foi
+quem a formulou pela primeira vez diante de seus discípulos, dizendo: “Quem dizem os
+homens ser o Filho do homem?” (Mt 16.13). E, como sempre, as respostas foram as mais
+variadas possíveis: “Responderam eles: Uns dizem que é João, o Batista; outros, Elias;
+outros, Jeremias, ou algum dos profetas.” (v. 14).
+
+Até a Idade Média, essa pergunta parece não ter oferecido problema algum para a
+maioria das pessoas. Contudo, a coisa começou a mudar com o advento do iluminismo e
+seu inquietante raciocínio crítico. A primeira questão a respeito de Jesus, sob um ponto de
+vista crítico, teve início na Alemanha, com Hermann Samuel Reimarus (1694-1768).
+
+Ao apresentar a primeira investigação histórica sobre Jesus, Hermann alegou que o
+Jesus dos evangelhos e o Jesus da história eram dois personagens completamente
+diferentes. E baseou sua teoria na suposição de que o Jesus apresentado pelos apóstolos
+era apenas fruto de suas concepções teológicas, não refletindo a realidade do carpinteiro
+pobre da Galiléia. E chegou a acusar os discípulos de terem roubado o corpo de Jesus para
+provar a ressurreição.
+
+Depois vieram as escolas críticas com Martin Dibelius e Rudolf Bultmann. Um terceiro
+movimento, porém, iniciado nos anos 70, com John Dominic Crossan e o “Seminário de
+Jesus”, perdura até hoje. Mais tarde, Crossan se uniu a Robert W. Funk, também líder de
+outro movimento com as mesmas posições. O “Seminário de Jesus” é uma coalizão de
+movimentos liberais, composta de católicos protestantes e ateus. Suas teorias liberais fazem
+que consideremos o evangelho apócrifo de Tomé mais antigo do que os quatro evangelhos
+canônicos. Para os integrantes do “seminário”, Jesus teria sido apenas um homem normal.
+Não fez milagres, como dizem os evangelhos. E, segundo afirmam, de tudo o que está escrito
+nos evangelhos somente 2% podem ser atribuídos verdadeiramente ao Jesus original. A
+morte de Cristo é mais de caráter político que espiritual. E mais: na visão do “seminário”,
+Jesus não ressuscitou. A ressurreição, para eles, baseia-se tão-somente nas experiências
+visionárias de seus discípulos.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 24
+
+7.1.  Manipulando o Jesus Histórico
+
+De modos diferentes, em épocas diferentes, diversas culturas têm tentado distorcer o
+Jesus simples dos evangelhos. O Jesus dos evangelhos apócrifos, o Jesus sem carne e osso,
+desprovido de matéria, dos gnósticos do século 1o da Era Cristã, e, atualmente, o Jesus
+místico da Nova Era não passam de reações da cultura da época, que se recusa a aceitar o
+Homem de Nazaré exatamente como Ele é. Cada vez que o espírito de uma raça diferente
+entrou no espírito do evangelho, tentou manipular a figura daquele que é o Senhor da
+história que, algumas vezes, ficou deformada e irreconhecível.
+
+Assim, em nada nos espanta a invasão do liberalismo que levou muitos, no Ocidente,
+a alterarem novamente as características do Senhor. Para tanto, esses movimentos,
+encabeçados por acadêmicos descomprometidos com a fé cristã, procuraram lançar mão de
+hipóteses e documentos duvidosos sobre Jesus para que pudessem tecer um amontoado de
+informações que, longe de acrescentarem algo ao conhecimento a respeito de Jesus,
+distorceram completamente os fatos.
+
+Otto Borchet, em seu livro O Jesus histórico, fez um excelente comentário sobre as
+várias tentativas históricas de distorcerem a imagem de Jesus, conforme nos é
+fidedignamente mostrada por Mateus, Marcos, Lucas e João, testemunhas oculares ou
+contemporâneas do Senhor. “Indubitavelmente [...], cada geração que se aproxima da figura
+de Jesus novamente tem tentado retificar essa imagem no que acha nela deficiente”.
+
+A verdade, porém, é que qualquer tentativa de acrescentar algo ao Jesus bíblico falha.
+
+Outro livro que apresenta os principais estudos acadêmicos atuais dos críticos para
+tentar reconstruir o Jesus histórico foi publicado em 1998, por Mark Alan Powell. Powell. A
+obra é um apanhado sobre os vários retratos do “Jesus histórico” apresentado pelos críticos
+ao longo da história. Assim, R. Horsley vê Jesus como um profeta, G. Vermes como um
+judeu carismático, Morton Smith como um mágico, B. F. Witherington como um sábio judeu
+e F. G. Downing como um filósofo cínico. Esses são apenas alguns dos homens que fazem
+coro com os críticos do “Seminário de Jesus”: J. D. Crossan, M. Borg, E. P. Sanders, J. P.
+Meier e N. T. Wright.
+
+Contudo, urge esclarecer que quando falamos em “Jesus histórico” estamos, na
+verdade, tratando de uma expressão não muito definida. O que seria o Jesus histórico? O
+mesmo Jesus da Bíblia? Caso seja, até que ponto? Trataremos disso logo abaixo.
+
+7.2.  O Jesus Histórico Versus o Jesus Real
+
+Devemos levar em consideração uma distinção muito significativa levantada pelo
+crítico John P. Meier, em seu livro Um judeu marginal, qual seja: “Qual é a diferença entre o
+Jesus histórico e o Jesus real? Será que existe essa diferença?”.
+
+Meier diz que o Jesus histórico não é o Jesus real. E explica que a noção de real é
+enganosa, pois existem varias gradações da noção de real. Não podemos nos referir à
+realidade total de uma pessoa em tudo que ela pensou, sentiu, experimentou, fez e disse.
+Mesmo com todos os documentos oficiais disponíveis não se poderia descobrir a realidade
+total de uma pessoa. O máximo que o historiador ou biógrafo poderia montar seria um
+quadro “razoavelmente completo”.
+
+Os relatos que os evangelhos apresentam de Jesus é justamente isso. Os quatro
+evangelistas se detêm somente nos três últimos anos de sua vida. Apenas dois deles,
+Mateus e Lucas, falam sobre sua infância, mesmo assim de modo bem limitado. A maioria
+dos atos e palavras de Jesus e os chamados anos obscuros de sua vida ficou vedada por um
+véu de mistério. O apóstolo João confirma esta verdade ao narrar em seu evangelho: “Há,
+porém, ainda muitas outras coisas que Jesus fez; as quais, se fossem escritas uma por
+uma, creio que nem ainda no mundo inteiro caberiam os livros que se escrevessem” (Jo
+21.25).
+
+Assim sendo, o Jesus real, mesmo com todos os registros disponíveis sobre Ele, foge à
+nossa verificação total. Mas Jesus não é o único que enfrenta tal dificuldade. A problemática
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 25
+
+dessa abordagem se estende a todos os outros personagens famosos da história, como
+Sócrates, Platão, Augusto, Alexandre, entre outros. Todavia, essa dificuldade está longe de
+ser um obstáculo à existência de Jesus. Estamos tratando somente sobre a diferença
+empírica que se impõe entre o Jesus real e o Jesus da história. As informações que
+subsistiram sobre Jesus, obviamente, nunca conseguirão refletir a totalidade de sua vida.
+Não obstante, podemos conhecer o Jesus histórico.
+
+O exegeta D. A. Carson resume a questão com muita propriedade: “Portanto, o fato de
+que não é possível reconstruir uma vida detalhada de Jesus com base nos evangelhos
+sinópticos não põe, de modo algum, em dúvida os evangelhos como fontes históricas exatas.
+Devem ser julgados por aquilo que de fato nos dizem, não pelo que não nos dizem”.
+
+7.3.  A Busca Pelo Jesus Histórico
+
+Muito embora tenhamos falado que o Jesus real não pode ser resgatado pela pesquisa
+histórica, no entanto, o Jesus histórico pode apresentar fragmentos do Jesus real. O Jesus
+histórico é aquele personagem reconstruído pelas informações que chegaram até nós por
+vários documentos históricos. Alguém poderia nos taxar de fundamentalistas, mas cremos
+que os poucos registros deixados nos evangelhos sobre Jesus são suficientes para o nosso
+conhecimento. Na verdade, João nos fornece, de maneira resumida, o propósito dos
+registros evangélicos sobre Jesus: “Estes, porém, estão escritos para que creiais que Jesus é
+o Cristo, o Filho de Deus, e para que, crendo, tenhais vida em seu nome” (Jo 20.31).
+
+Acreditamos que muitos não considerariam de alguma importância uma pesquisa
+sobre o Jesus da história, antes, contentar-se-iam apenas com o Cristo da fé. Infelizmente, a
+disposição em pesquisar historicamente Jesus parte, em geral, dos críticos agnósticos e não
+dos cristãos ortodoxos. Geralmente, para os cristãos ortodoxos tal busca é de pouca
+relevância, porque o que vale mesmo é o Cristo da fé. No entanto, essa posição é um grande
+paradoxo, pois o Jesus da fé não pode ser desvinculado do Jesus da história. A fé cristã não
+é  um salto no escuro. É, em suma, a aceitação de alguém real que viveu no espaço/tempo.
+Essa busca ressalta que a fé cristã não é uma vaga atitude existencial ou mera maneira de
+ser, mas, sim, que existe um conteúdo específico na fé cristã, ligado a eventos históricos
+especiais.
+
+Essa necessidade foi sentida pelos seguidores de Bultmann que, por isso, acabou
+formando uma nova escola. Bultmann cria que os fatos históricos quanto a Jesus eram
+irrelevantes, pois o que valia mesmo era o Cristo da fé e o nosso encontro pessoal com Ele,
+mesmo que esse Cristo seja o Cristo emergido das supostas lendas e mitos criados pelos
+cristãos primitivos, segundo a opinião de Bultmann. Contudo, uma nova busca teve início,
+pois seus discípulos perceberam que “um rompimento tão completo entre a fé cristã e os
+liames históricos deixaria a Igreja à deriva e sem condições de reivindicar absolutamente
+qualquer coisa para si” (Carson, p.59).
+
+Gregory A. Boyd, refutando os argumentos do “Seminário de Jesus”, acrescenta: “A
+verdade teológica se baseia na verdade histórica”.
+
+7.4.  O Jesus da História é o Mesmo Jesus da Fé?
+
+Uma questão derivada da anterior é a relação entre o Jesus de carne e ossos e o Jesus
+místico (espiritual) adorado pelos cristãos, o que o filósofo e historiador Albert Schweitzer
+denominou de “o tremendo fosso”. Existe realmente alguma relação entre o Jesus histórico e
+o  Cristo da fé? Porventura seriam o mesmo? A historicidade de Jesus é reconhecida
+universalmente hoje em dia, tanto pelos cristãos como pelos críticos da fé cristã. Nenhum
+estudioso sério duvida da existência do carpinteiro de Nazaré. A discussão, entretanto,
+centraliza-se na sua identidade. Para alguns críticos, como os do “Seminário de Jesus”
+(EUA),  os cristãos teriam alterado a imagem de Jesus, um camponês galileu, atribuindo-lhe
+uma identidade divina que o próprio Jesus nunca teria reclamado para si. Como um rabino
+obscuro e, possivelmente, um operador de curas, poderia ter-se transformado num objeto de
+adoração de milhões de pessoas em todo o mundo?
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 26
+
+A resposta oferecida pelos críticos se baseia na mesma premissa utilizada para a
+questão da confiabilidade dos evangelhos. Há um consenso entre esses críticos quanto ao
+fato de que, não importa quem os tenha escrito, os autores não eram testemunhas oculares
+e podem ter feito seus registros um século após a morte de Jesus. Isso facilitaria, e muito,
+que cristãos de gerações posteriores criassem mitos, por meio dos quais o humilde galileu
+fosse transformado no Filho de Deus, com prerrogativas que só o Deus dos judeus ou, em
+menor grau, os deuses greco-romanos e das religiões de mistério possuíam. Paulo chega a
+ser acusado por alguns críticos de ter sido o principal responsável pela transformação do
+homem Jesus no Cristo divino. Segundo eles, Paulo teria distorcido o evangelho original de
+Jesus, convertendo-o de um simples rabino inovador em objeto de devoção de seus
+discípulos posteriores. A evidência histórica, entretanto, aponta em outra direção.
+
+Para Paulo, o Cristo divino e exaltado pela ressurreição é o mesmo Jesus histórico que
+morreu crucificado e foi ressuscitado ao terceiro dia. Em 1Coríntios 15.3-7, Paulo afirma
+sua crença nos fatos históricos, circundando a morte de Jesus. Como já vimos em outra
+parte deste livro, esses mesmos fatos foram asseverados nos evangelhos pelas próprias
+testemunhas oculares da crucificação e ressurreição de Jesus ou por autores ligados a
+essas testemunhas.
+
+Os críticos do cristianismo se levantam contra a posição histórico-ortodoxa dizendo
+que Jesus é uma figura idealizada, um símbolo de fé. No século 19, alguns chegaram até
+mesmo a duvidar de sua existência. Por conta disso, o próximo capítulo se concentrará nas
+evidências históricas disponíveis sobre Jesus Cristo.
+
+8 -  JESUS E SUA HISTORICIDADE
+
+Em meados do século 19, alguns críticos chegaram à incrível conclusão de que Jesus
+nunca existiu. Hoje, talvez, nem mesmo os críticos mais ferozes, como os do “Seminário de
+Jesus”, ousam negar a existência histórica de Jesus Cristo, e isso devido aos muitos
+documentos a respeito de sua pessoa. Negar, hoje, a passagem de Jesus pela terra seria
+como assinar um atestado de obtusidade histórica ou se declarar descontextualizado com as
+novas descobertas.
+
+Apesar da abundância de provas que temos sobre Jesus, muitos estudiosos amadores,
+levados pelo preconceito e pouca seriedade científica, especulam dizendo que não existem
+comprovações concretas da existência de Jesus fora dos evangelhos. Quando não, saem com
+o  disparate de que só existem duas menções ao nome de Jesus fora dos livros religiosos
+(Novo Testamento e os escritos cristãos dos pais da Igreja), as quais se limitariam tão-
+somente a Flávio Josefo e Plínio. Isso mostra o tom preconceituoso e parcial com que tais
+estudiosos tratam os documentos cristãos históricos. Só porque a maioria dos testemunhos
+históricos sobre a existência de Jesus é de cunho religioso, esses testemunhos são postos
+sob suspeita.
+
+É claro que, para quem conhece um pouco de história, isso não passa de falácia.
+
+Fora os próprios evangelhos e os escritos dos pais da Igreja, temos, ainda, outros
+textos dos séculos 1o e 2o que mencionam Jesus Cristo. Podemos dividi-los em dois grupos:
+os documentos provindos de fontes judaicas e os documentos provindos de fontes pagãs. Ei-
+los, em ordem:
+
+8.1.  Fontes Judaicas - Flávio Josefo
+
+Josefo foi contemporâneo de Cristo e viveu até 98 d.C. É considerado um dos melhores
+historiadores antigos. Suas obras sobre o povo judeu são uma preciosidade histórica da vida
+helênica no século 1o. Em seu livro Antiguidades judaicas, faz algumas referências a Jesus.
+E, em uma delas, escreve: “Por esse tempo apareceu Jesus, um homem sábio que praticou
+boas obras e cujas virtudes eram reconhecidas. Muitos judeus e pessoas de outras nações
+se tornaram seus discípulos. Pilatos o condenou a ser crucificado e morto. Mas aqueles que
+se tornaram seus discípulos pregaram sua doutrina. E afirmam que Jesus lhes apareceu
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 27
+
+três dias após a sua crucificação e que está vivo. Talvez, Ele fosse o Messias previsto pelos
+maravilhosos prognósticos dos profetas” (XVIII,3,2).
+
+O texto citado é uma versão árabe e, talvez, seja a que mais perto se aproxima do
+original. Muitos o colocam em dúvida dizendo ser uma interpolação de um escritor cristão.
+E alegam, ainda, que Josefo, na qualidade de judeu, nunca iria se reportar a Jesus dessa
+maneira. Mas parece que não há motivos fortes para isso. A verdade é que cada vez mais
+eruditos hoje em dia estão inclinados a aceitar essa versão do texto como fidedigna, embora
+admitam pequenas interpolações em algumas partes, como, por exemplo, a referência sobre
+a ressurreição e a declaração do messianismo.
+
+Em outros lugares, Josefo registra a execução de João Batista (XVIII,7 ,2) e o martírio
+de Tiago, irmão de Jesus, que era “chamado Cristo” (XX,9,1): “Assim reuniu um conselho
+de juízes, perante o qual trouxe Tiago, irmão de Jesus, que era chamado Cristo, junto com
+alguns outros, e, tendo-os acusado de infração à lei, entregou-os para ser apedrejados”.
+
+Mesmo na versão russa, considerada polêmica, é lamentável ver como o preconceito de
+alguns críticos os impede de aplicar o bom senso na interpretação dessa passagem. Um
+cristão jamais usaria o verbo “ser” no passado, e isso é uma prova favorável contra uma
+suposta interpolação de algum escriba cristão, pois, com certeza, usaria a expressão “que é
+chamado o Cristo” e não a expressão “que era chamado o Cristo”, como está no texto.
+
+8.2.  Talmude
+
+A Encyclopaedia Britannica, ao mencionar os talmudes judaicos como fontes
+históricas sobre Jesus, finaliza o assunto da seguinte maneira: “A tradição judaica recolhe
+também notícias acerca de Jesus. Assim, no Talmude de Jerusalém e no da Babilônia
+incluem-se dados que, evidentemente, contradizem a visão cristã, mas que confirmam a
+existência histórica de Jesus de Nazaré”.
+
+A “contradição” mencionada pela referida enciclopédia é a acusação dos judeus de que
+Jesus realizava magia: “Na véspera da páscoa, eles penduraram Yeshua [...] ia ser
+apedrejado por prática de magia e por enganar Israel e fazê-lo se desviar [...] e eles o
+penduraram na véspera da páscoa” (Talmude Babilônico, Sanhedrim 43a).
+
+Esses relatos da crucificação estão de pleno acordo com os evangelhos (Lc 22.1; Jo
+19.31).
+
+8.3.  Fontes Pagãs - Plínio
+
+No século 2o, quando o cristianismo atravessou as fronteiras do Império, os cristãos
+começaram a chamar a atenção dos pagãos. A difusão do cristianismo foi tão profusa que
+chegou  a ser tema de uma correspondência política entre Plínio, o Jovem, procônsul na Ásia
+Menor, em 111 d.C., e Trajano. A carta dirigida ao imperador Trajano trata das torturas
+infligidas aos cristãos por seus pretensos crimes. Entre tais crimes, está o seguinte: “[Os
+cristãos] têm como hábito se reunir em um dia fixo, antes do nascer do sol, e dirigir palavras
+a Cristo como se este fosse um deus; eles mesmos fazem um juramento, de não cometerem
+qualquer crime, nem roubo ou saque, ou adultério, nem quebrarem sua palavra, nem
+negarem um depósito quando exigido. Após fazerem isso, despedem-se e se encontram
+novamente para a refeição...” (Plínio, Epístola 97).
+
+É interessante ressaltar alguns detalhes nessa carta: Plínio relata fatos históricos
+importantíssimos, tais como: a Igreja em expansão e a adoração ao seu fundador — Cristo
+
+— “como se fosse um deus” (Christo quase deo).
+
+Veja, Plínio não procura negar a existência histórica de Jesus.
+
+8.4.  Tácito
+
+Cornélio Tácito (55-117), um dos mais famosos historiadores romanos, governador da
+Ásia em 112 a.D., genro de Júlio Agrícola, que foi governador da Grã-Bretanha, escreveu o
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 28
+
+seguinte sobre Cristo: “O fundador da seita foi Crestus, executado no tempo de Tibério pelo
+procurador Pôncio Pilatos. Essa superstição perniciosa, controlada por certo tempo, brotou
+novamente, não apenas em toda a Judéia [...], mas também em toda a cidade de Roma”
+(Anais, XV,44).
+
+O contexto dessa carta trata sobre o incêndio criminoso de Roma. Nero mandara
+incendiar Roma e usou os cristãos como bode expiatório. Tácito, apesar de não ser
+simpatizante do cristianismo, confirma, entretanto, fatos históricos importantíssimos, tais
+como:  um personagem histórico chamado “Crestus” (Cristo), sua Igreja, sua morte e a
+expansão do cristianismo no século 1o.
+
+Tácito tão-somente confirma o que já sabíamos pelos relatos evangélicos.
+
+8.5.  Luciano de Samosata
+
+Escritor satírico do século 2o, conta, em sua obra O peregrino, a história de um
+cristão convertido e sua apostasia. O livro é recheado de zombarias. E, entre elas, uma
+referência ao fundador do cristianismo: “Depois daquele, para dizer a verdade, a quem eles
+ainda adoram, o homem que foi crucificado na Palestina porque introduziu este novo culto
+no mundo”. Em outra parte, acrescenta que os cristãos continuam “adorando aquele mesmo
+sofista crucificado e vivendo segundo suas leis”.
+
+Há uma prova implícita nesse texto sobre o paradoxo “Jesus da história versus o
+Cristo da fé”. Em suas linhas zombeteiras, encontra-se uma exposição precisa da fé da
+Igreja primitiva. O homem que os cristãos adoravam era o mesmo que fora crucificado e não
+um deus qualquer inventado pela imaginação da Igreja.
+
+8.6.  Suetônio
+
+Historiador romano e oficial da corte de Adriano, Suetônio (70–160), escritor dos anais
+da casa imperial (obra intitulada Vida de Cláudio, 25.4), conta que o imperador “expulsou
+de Roma os judeus em constante agitação por causa de Chrestus”. E também que “Nero
+infligiu castigo aos cristãos, um grupo de pessoas dadas a uma superstição nova e
+maléfica”.
+
+Em Atos 18.1,2, Lucas faz referência à mesma expulsão.
+Outros testemunhos seculares ao Jesus histórico incluem
+
+8.7.  Talo
+
+Historiador samaritano, Talo (53 d.C.) é um dos primeiros escritores gentios a
+mencionar Cristo indiretamente. Tentando dar uma explicação natural para as trevas que
+ocorreram na crucificação de Jesus, afirmou: “O mundo inteiro foi atingido por uma
+profunda treva; as pedras foram rasgadas por um terremoto, muitos lugares na Judéia e em
+outros distritos foram afetados”. Quanto a essa escuridão, Talos, no terceiro livro de sua
+história, diz o seguinte: “Como me parece sem razão, um eclipse do Sol”.
+
+8.8.  Mara Bar-Serapião - 73 d.C. (?)
+
+Homem sírio que, escrevendo ao seu filho Serapião sobre a busca da sabedoria,
+menciona Cristo como sábio, embora não o chame pelo nome, apenas como “rei dos judeus”.
+Diz Mara Bar-Serapião — 73 d.C. (?): “Que vantagem têm os judeus executando seu sábio
+rei? [...] O rei sábio não morreu; Ele vive nos ensinos que deu”.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 29
+
+8.9.  Justino, o Mártir
+
+Filósofo cristão que, ao escrever ao imperador Antonino Pio, desafia o regente a
+consultar os arquivos imperiais deixados por Pilatos sobre a morte de Jesus Cristo (Apologia
+1.48).
+
+No entanto, gostaríamos deixar claro que essas citações não têm a pretensão de provar
+a identidade de Cristo, ou seja, se Ele era ou não o Filho de Deus. Apenas mostram que os
+anais da história preservaram, por meio de documentos de pessoas não-cristãs, a história
+de um homem que viveu no século 1o, identificado com o Jesus bíblico. À primeira vista,
+talvez, pareça pouca a quantidade de informações que temos sobre Jesus, mas se
+confrontarmos Jesus Cristo com as inúmeras figuras indefinidas da história antiga, é
+surpreendente a quantidade de informações que ainda temos sobre Ele.
+
+Se porventura fôssemos reconstituir a vida de Jesus a partir desses pequenos relatos,
+teríamos o suficiente para saber quem foi Jesus. Ora, tais relatos nos dão a informação
+básica sobre Jesus: um homem que viveu no século 1o, chamado Cristo, Filho de uma
+judia, operador de milagres, que reuniu em torno de si vários seguidores que o adoravam
+como Deus. Este homem foi crucificado sob o governo de Pôncio Pilatos. É claro que muitas
+partes dentro dessas passagens, como, por exemplo, em Josefo e Tibério, são até
+admissíveis de interpolações. Mas o caráter anticristão de seus autores é uma prova
+incontestável de sua veracidade. Plínio, Tibério e muito menos Luciano de Samosata não
+poderiam jamais ser acusados de falsidade. Logo, negar a confiabilidade de todas essas
+fontes que falam de Jesus com base em algumas insignificantes interpolações seria
+menosprezar toda a história antiga.
+
+8.10.  Por Que há Poucos Registros Sobre Jesus na História
+Secular?
+
+Creio que podemos dar algumas razões que levaram as pessoas da época a não dar
+muita atenção ao cristianismo, registrando-o nos anais da história. Como aconteceu com os
+evangelhos, poucos foram os registros históricos que sobreviveram através dos séculos. E
+olha que são 21! Somado a isso, existe a pouca importância que os romanos davam aos
+judeus. Seria quase impossível um biógrafo gentio dar atenção a um carpinteiro pobre da
+Galiléia. O cristianismo nasceu em uma área remota, pouco relevante, do Império. Nas
+palavras de Méier, Jesus era, sem dúvida, um “judeu marginal”.
+
+Mas o que dizer das fontes judaicas? A repercussão não seria mais vultuosa dentro de
+Israel, já que Jesus vivia em constante confronto com as autoridades judaicas? Sim, seria!
+Todavia, devemos também levar em consideração o fato de que os judeus não quiseram dar
+importância a um “herege” e impostor, preferindo esquecê-lo no silêncio do anonimato. As
+primeiras menções que temos sobre os cristãos começam a partir do século 2o, quando,
+então, o cristianismo passou a ganhar força até mesmo nas camadas mais altas da
+sociedade.
+
+8.11. Jesus, Um Mito?
+
+O Jesus apresentado pelos evangelhos é fiel à realidade teológica ao que é dito a seu
+respeito ou Ele não passa apenas de um mito? Estamos diante de outra objeção levantada
+pelos críticos. A moderna crítica procura se basear na metodologia das ciências
+antropológica e sociológica para se chegar ao cerne da pessoa de Jesus. Todos sabemos que,
+de modo geral, floresceram, em torno dos grandes personagens da história antiga, mitos e
+lendas. Quanto mais antigo o personagem, mais suscetível de ser mitificado ele é. Ora, já
+que muitas lendas e mitos povoam a história de personagens como Buda, Maomé e
+Alexandre, o Grande, por que não admitirmos que o mesmo possa ter ocorrido com Jesus?
+O personagem que os evangelhos nos apresentam não seria um arquétipo que, com o passar
+dos anos, foi sendo construído pela mentalidade cristã? O verdadeiro Jesus não teria se
+perdido em meio às lendas e mitos criados em torno de sua pessoa pela Igreja primitiva?
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 30
+
+Não negaremos o fato de que a literatura religiosa cristã do século 2o foi prodigiosa em
+inventar um retrato por vezes fantasioso de Jesus. Mas devemos ressaltar que tais obras
+eram oriundas de pseudocristãos e, de maneira nenhuma, refletiam a ortodoxia cristã da
+época.
+
+Geisler e Nix observam que tais livros revelam “desmedida fantasia religiosa.
+Evidenciavam uma curiosidade incurável para descobrir mistérios não revelados nos livros
+canônicos [...] e exibem uma tendência doentia, mórbida, de dar apoio a idiossincrasias
+doutrinárias mediante fraudes aparentemente piedosas” (Introdução bíblica, p. 112).
+
+Por exemplo, o evangelho de Tomé, no qual se escudam os críticos do “Seminário de
+Jesus”, é uma visão gnóstica dos supostos milagres da infância de Jesus que, em tais
+relatos, aparece como um pirralho com superpoderes, matando crianças e dando vida a
+bonecos de barro.
+
+Méier, comentando sobre o conteúdo desse evangelho, tece a seguinte crítica: “...
+Muito material apócrifo provém dos meios cristãos ‘plebeus’ e não cultos, que não
+representam nem primitivas tradições confiáveis, nem teologia elevada, mas apenas
+curiosidade, a fascinação pelo bizarro e pelo milagroso (para não dizer mágico) e um mero
+desejo de entretenimento ‘religioso’”.
+
+Consideremos, por um instante, outro evangelho, o “evangelho de Pedro” ou
+“evangelho da cruz”, no qual Jesus sai do túmulo com uma estatura gigantesca, que vai
+além do céu, enquanto a cruz sai da sepultura e começa a falar.
+
+Tais relatos fantasiosos sobre Cristo, de per si, são uma prova incontestável de farsa.
+São lendas e mitos vestidos em um personagem real. Devemos levar em conta, porém, que
+mitos inventados em torno de Jesus não são uma prova definitiva de que o próprio Jesus
+seja um mito.
+
+Outra objeção entrelaçada a essa se encontra alicerçada na falsa pressuposição de
+que a comunidade cristã copiou os relatos sobre o nascimento virginal de Jesus, seus
+milagres e sua ressurreição das antigas religiões pagãs de mistério. É sabido que em muitas
+culturas primitivas existem relatos de deuses que nasceram de modo miraculoso de virgens;
+de deuses que operaram milagres e ressuscitaram.
+
+Todavia, a objeção de mitologia no cristianismo não procede, porque “para estas
+histórias  serem  legendárias,  seria  necessário  muito  tempo  para  a  evolução  e
+desenvolvimento das tradições”, conclui Craig.
+
+Um mito demora tempo para se formar, mas vimos que os evangelhos tiveram, entre
+sua forma oral e sua forma escrita, um hiato de apenas duas décadas. Vejamos o que diz
+Will Durant, em seu livro A história da civilização: “Seria um milagre ainda mais incrível que
+apenas em uma geração uns tantos homens simples e rudes (pescadores muitos deles)
+inventassem uma personalidade tão poderosa e atraente como a de Jesus, uma moral tão
+elevada  e uma tão inspiradora idéia da fraternidade humana” (Vol. 3 – César e Cristo).
+
+E prossegue Durant, na mesma obra: “Não será a história do fundador do cristianismo
+um produto da aflição, da imaginação e da esperança humana — um mito comparável às
+lendas de Krishna, Osíris, Átis, Adônis [Dionísio] e Mitra? No século 1o, negar a existência
+de Jesus não parece ter ocorrido nem mesmo aos mais severos oponentes do novo credo,
+judeus ou pagãos”.
+
+Daí a razão da censura de F. F. Bruce: “Alguns escritores podem brincar com a
+imaginação de um ‘cristo-mito’, mas eles não o fazem no campo da evidência histórica. A
+historicidade de Cristo é tão axiomática para um historiador imparcial como a de Júlio
+César. Não são os historiadores que propagam as teorias de um ‘cristo-mito’” (The New
+Testament documents: are they reliable?, Inter-Varsity Press, 1972, p.119).
+
+Os apóstolos, certamente, sabiam a diferença entre lendas e fatos reais. Pedro
+assevera a confiabilidade histórica a respeito dos relatos evangélicos sobre Jesus: “Porque
+não seguimos fábulas engenhosas quando vos fizemos conhecer o poder e a vinda de nosso
+Senhor Jesus Cristo, pois nós fôramos testemunhas oculares da sua majestade” (2Pe 1.16).
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 31
+
+Sim, ser testemunha ocular é um fato que pesa muito na questão. E os apóstolos
+foram testemunhas oculares que receberam as informações de primeira mão e não
+escritores posteriores que costuraram tais relatos com lendas supersticiosas.
+
+João, o apóstolo considerado um dos discípulos mais chegados do Senhor, dá seu
+testemunho pessoal a respeito da historicidade de Cristo: “O que era desde o princípio, o
+que ouvimos, o que vimos com os nossos olhos, o que contemplamos e as nossas mãos
+apalparam, a respeito do Verbo da vida [...] sim, o que vimos e ouvimos, isso vos
+anunciamos, para que vós também tenhais comunhão conosco” (1Jo 1.1-3).
+
+Pedro, ao pregar à multidão de judeus, informa que todos conheciam os eventos da
+vida de Cristo agora proclamado por eles, ou seja, pelos apóstolos: “Varões israelitas,
+escutai estas palavras: a Jesus, o nazareno, varão aprovado por Deus entre vós com
+milagres, prodígios e sinais, que Deus por ele fez no meio de vós, como vós mesmos bem
+sabeis; a este, que foi entregue pelo determinado conselho e presciência de Deus, vós
+matastes, crucificando-o pelas mãos de iníquos” (At 2.22,23).
+
+Paulo é ainda mais enfático. Ao dialogar com o rei Festo, relata que os fatos em que se
+baseia o cristianismo não foram inventados em algum lugar oculto: “Porque o rei, diante de
+quem falo com liberdade, sabe destas coisas, pois não creio que nada disto lhe é oculto;
+porque isto não se fez em qualquer canto” (At 26.26).
+
+Lucas nos deixou a par desses eventos, porque, como ele próprio afirma, havia feito
+uma acurada pesquisa com as testemunhas oculares: “Visto que muitos têm empreendido
+fazer uma narração coordenada dos fatos que entre nós se realizaram, segundo no-los
+transmitiram os que desde o princípio foram testemunhas oculares e ministros da palavra,
+também  a mim, depois de haver investido tudo cuidadosamente desde o começo, pareceu-
+me bem, ó excelentíssimo Teófilo, escrever-te uma narração em ordem” (Lc 1.1-3).
+
+Todos eles foram testemunhas oculares de fatos históricos. Todo o Novo Testamento
+estava completo já no século 1o. Caso os apóstolos estivessem inventando um personagem
+mitológico, seria fácil para aquelas testemunhas oculares desmentirem essa teodicéia
+evangélica, principalmente os opositores do cristianismo. Mas já vimos que, apesar dos
+documentos históricos desses adversários do cristianismo distorcerem a essência da
+mensagem cristã, nunca chegaram a rejeitá-la à classe dos mitos e lendas.
+
+“Os discípulos não podiam se dar ao luxo de correr o risco de apresentar fatos
+inexatos (para não mencionar uma manipulação internacional dos fatos), os quais seriam
+imediatamente denunciados por aqueles que teriam imenso prazer em fazê-lo” (Evidência
+que exige um veredicto I, Josh MacDowell, Ed. Candeia, p. 79).
+
+A bem da verdade, os relatos sobre Jesus e seus feitos diferem grandemente dos mitos
+pagãos. Um fato notável nesses mitos é sua tendência ao fantástico. Mas será que os
+evangelhos canônicos apresentam sinais mitológicos?
+
+Comparemos, por exemplo, o relato do nascimento de Buda com o relato do
+nascimento de Jesus. A diferença entre os dois é abismal!
+
+Dizem os registros sobre o nascimento de Buda que ele foi concebido no ventre da
+rainha Maya, durante o sono, por um elefante branco. Quanto a Jesus, lemos o seguinte:
+“Enquanto estavam ali, chegou o tempo em que ela havia de dar à luz, e teve a seu filho
+primogênito; envolveu-o em faixas e o deitou em uma manjedoura, porque não havia lugar
+para eles na estalagem” (Lc 2.6,7).
+
+Por fim, Norman Geisler, citando C. S. Lewis, diz, a respeito dos relatos evangélicos,
+que “os registros são diretos e simples, escritos de forma histórica, não artística, por judeus
+rigorosos e sem atrativos, que não conheciam a riqueza mitológica do mundo pagão à sua
+volta” (Apologética, Ed. Vida, p. 605).
+
+Um dos exemplos citados pelos críticos desses supostos plágios é justamente o caso
+do nascimento virginal, o qual iremos analisar no próximo capítulo.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 32
+
+9 -  JESUS: SEU NASCIMENTO FOI UMA
+LENDA?
+
+Antes de tecermos quaisquer comentários sobre o tema, é bom ressaltarmos que não é
+nossa intenção provar com argumentos teológicos a concepção virginal de Jesus. Afinal, isso
+é uma questão que ultrapassa os limites da pesquisa histórica, entra no âmbito da fé. O
+nosso objetivo é mostrar que os cristãos da época acreditavam realmente nesse dogma, não
+por causa de uma mitologia antecessora ao acontecimento cristológico, mas pelas evidências
+históricas disponíveis na ocasião.
+
+As mitologias egípcia, babilônica e greco-romana quanto à questão da divindade de
+Jesus.
+
+Sabemos que culturas bem anteriores à cultura judaico-cristã já acreditavam em
+teofanias.
+
+Vejamos alguns exemplos:
+
+9.1.  Egito
+
+Os faraós egípcios retratam bem o que estamos falando, pois centralizavam todo o
+poder em si mesmos e eram tidos como encarnação de Hórus, o grande deus, filho de Osíris
+(senhor dos mortos) e da deusa Ísis. Por conta de tal ostentação, os faraós conseguiram ter
+governabilidade extremamente teocrática e manter uma soberania durável, além de serem
+cultuados como divinos. O faraó não era meramente um representante dos deuses entre os
+homens, mas um dos deuses.
+
+9.2.  Mesopotâmia
+
+As religiões mesopotâmicas abrangem as crenças e práticas religiosas que moldaram a
+cultura dos antigos sumérios e acadianos. E também de seus sucessores, os assírios e os
+babilônios, habitantes da Mesopotâmia até pouco antes da Era Cristã. Para eles, a escolha
+do rei, diferentemente da teofania egípcia, era uma eleição divina, ou seja, acreditavam que
+os reis mais valentes, perspicazes e vitoriosos deveriam ostentar o cetro real e governar por
+ordem dos deuses. Dos panteões dos deuses, podemos destacar dois principais: Marduk e
+Baal.
+
+9.3.  Roma Antiga
+
+Segundo a lenda divulgada pelo grande escritor Vergílio, em 29 a.C., Rômulo e Remo
+foram os fundadores de Roma. A tradição conta que o usurpador Amúlio, após derrubar seu
+irmão Numitor do trono de Alba Longa, obrigou Réia Sílvia, filha de Numitor, a se converter
+em virgem vestal (sacerdotisa de Vesta, deusa do fogo), para que não gerasse descendência
+do antigo rei. Entretanto, a jovem Réia recebeu a visita do deus Marte, que lhe apareceu em
+forma de serpente. Da relação sexual de Réia com essa serpente, Rômulo e Remo foram
+concebidos. E, devido a esse sinal miraculoso, Roma fora fundada.
+
+9.4.  Os Apóstolos Ousariam Apelar Para Uma Mitologia Pagã?
+
+A região da Mesopotâmia é o lugar em que encontramos maior similaridade com a
+cultura judaica, e vice-versa. Tanto é que os judeus também acreditavam em uma teocracia:
+“Então Samuel tomou o chifre do azeite, e ungiu-o no meio de seus irmãos; e desde aquele
+dia em diante o Espírito do Senhor se apoderou de Davi; então Samuel se levantou, e voltou
+a Ramá” (1Sm 16.13).
+
+Isso, no entanto, não significa que os judeus tinham afinidades religiosas com os
+mesopotâmicos. Ao contrário, criou-se uma rivalidade entre eles. Prova disso é que tal
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 33
+
+problemática foi um dos vários motivos de guerras entre os judeus e os povos antigos da
+região (V. os livros de Reis e Crônicas). Depois do cativeiro babilônico, os hebreus se
+fecharam ainda mais. No período helênico, aproximadamente no século 2o a.C., o povo
+hebreu resistiu bravamente à helenização cultural impetrada por Antíoco Epifânio, o que
+mostra a condição sociológica em que sempre se manteve o povo judaico — separado e
+antagônico em relação à mitologia pagã!
+
+A contextualização sociológica da época de Cristo é extremamente relevante para que
+possamos entender se alguma mitologia havia-se infiltrado ou penetrado na cultura judaica.
+Quanto a esse assunto, R. L. Hoover explica o seguinte: “O judaísmo, no século 1o da Era
+Cristã, era uma religião baseada na revelação de Deus por meio das Escrituras, isto é, da lei
+e dos profetas. Os judeus enfatizavam o monoteísmo e não era permitido sequer louvar ou
+admitir a existência de qualquer outro deus”.
+
+Estamos explicando tudo isso para que possamos responder às considerações
+daqueles que argumentam negativamente a respeito da concepção virginal de Jesus. Ou
+seja, para respondermos àqueles que acreditam que se não existissem as lendas que
+antecederam o fato cristão Jesus jamais teria sido aceito como o Messias que nascera de
+uma virgem.
+
+9.5.  Considerações Relevantes
+
+A. O fato mais importante para a aceitação messiânica de Jesus era se Ele descendia
+da linhagem de Davi, pois todas as profecias afirmavam o seguinte a seu respeito: “Eis que
+vêm dias, diz o Senhor, em que levantarei a Davi um Renovo justo; e, sendo rei, reinará e
+agirá sabiamente, e praticará o juízo e a justiça na terra. Nos seus dias Judá será salvo, e
+Israel habitará seguro; e este será o seu nome, com o qual Deus o chamará: O Senhor,
+Justiça Nossa” (Jr 23.5,6; Mq 5.2). Por isso, tanto Mateus quanto Lucas deixaram claro que
+José e Maria eram descendentes da tribo de Judá — tribo de Davi (Mt 1 todo; Lc 3.23-38).
+
+B. A profecia de Isaías 7.14, que afirma que a virgem conceberia, servia, para o
+momento cristológico, mais de embaraço para a exposição do evangelho do que para
+corroborar com a missão messiânica de Cristo. Explicamos: a aplicação imediata desse
+vaticínio seria uma nubente que fora virgem até a ocasião do seu casamento. Antes de o seu
+filho ter idade suficiente para distinguir entre o certo e o errado, os reis da Síria e de Israel
+seriam destruídos (Is 7.16). Ou seja, o fato já havia ocorrido como sinal na época do próprio
+profeta. Elucidar aos judeus que tal profecia teve um duplo cumprimento foi muito difícil
+para os discípulos de Cristo.
+
+Já que Mateus e Lucas haviam provado a messianidade de Jesus pela genealogia
+davídica, seria muito mais aproveitável para a causa se os discípulos tivessem obliquado
+uma polêmica dessa envergadura que, de maneira nenhuma, tiraria a ótica messiânica
+cristã. Além do mais, exige muita credibilidade da parte dos críticos e dos céticos aceitar que
+autores judaicos, monoteístas como eram, poderiam empregar mitologia pagã em suas
+narrativas.
+
+C. Os apóstolos e os discípulos cristãos eram judeus e tinham uma educação religiosa
+judaica, o que tudo indica que a sua maneira de pensar era bem diferente do pensamento
+greco-romano. E, por conta disso, no princípio da pregação evangélica, os seguidores de
+Cristo acreditavam que Jesus deveria ser primeiro apregoado, de maneira exclusivista, aos
+seus patrícios judeus. Só um pouco depois, mais precisamente após a experiência de Pedro
+junto à família gentílica de Cornélio, esse paradigma foi alterado e o evangelho, pregado a
+todos (At 10).
+
+D. A sede da Igreja ficou em Jerusalém até a sua destruição por Tito, em 70 d.C. Isso,
+com certeza, protegeu a teologia cristã em seu alicerce contra o sincretismo religioso que
+vigorava no mundo romano.
+
+Enumeramos essas quatro ocorrências para mostrar que os discípulos não levariam
+vantagens em inventar um embuste como esse na propagação do evangelho, principalmente
+entre os judeus. Jesus poderia ter sido pregado sem necessariamente expor seu nascimento
+virginal. Seria falta de critério uma pregação com mitos greco-romanos dentro do contexto
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 34
+
+judaico oriental, a não ser que os apóstolos acreditassem mesmo que Jesus era nascido de
+uma virgem.
+
+A Igreja Apostólica nunca teve dúvida sobre a questão de Jesus ter sido concebido por
+uma virgem. Os primeiros líderes da Igreja cristã, chamados de pais da Igreja, corroboraram
+positivamente com os ensinos dos apóstolos. Em 110 a.D., Inácio escreveu: “Pois nosso
+Deus Jesus Cristo [...] foi concebido no ventre de Maria [...] pelo Espírito Santo. Pois a
+virgindade de Maria e Aquele que dela nasceu [...] são os mistérios mais comentados em
+todo  o mundo”. Inácio recebeu a informação de seu mestre, o apóstolo João.
+
+Aristides, em 125 a.D., fala do nascimento virginal de Jesus: “Ele é o próprio Filho do
+Deus excelso que se manifestou pelo Espírito Santo, desceu dos céus e, nascido de uma
+virgem hebréia, encarnou-se a partir da virgem”.
+
+Em 150 a.D., Justino ofereceu muitas provas a favor da idéia do nascimento milagroso
+do Senhor: “Nosso Mestre Jesus Cristo, que é o primogênito de Deus Pai, não nasceu como
+resultado de relações sexuais [...] O poder de Deus, descendo sobre a virgem, cobriu-a com
+sua sombra e fez que, embora ainda virgem, concebesse”.
+
+O primeiro grande cristão de fala latina foi o advogado convertido Tertuliano, que nos
+informa que, em seus dias (200 a.D.), existia não apenas um credo cristão estabelecido,
+sobre o qual todas as igrejas concordavam. E cita esse credo quatro vezes, o qual inclui as
+palavras ex virgine Maria, que significa: “da Virgem Maria”, dando a entender claramente
+que Cristo nascera de uma mulher virgem.
+
+O historiador e erudito R. E. Brown ainda comenta: “Paralelos não judaicos têm sido
+encontrados nas religiões mundiais (o nascimento de Buda, de Krishna e do filho de
+Zoroastro), na mitologia greco-romana, no nascimento dos faraós (com o deus Amon-Rá
+agindo por intermédio de seu pai) e no nascimento sensacional dos imperadores e filósofos
+(Augusto, Platão, etc.). Mas esses ‘paralelos’ sempre envolvem um tipo de hierogamos em
+que um macho divino, em forma humana ou em outra, insemina uma mulher, seja por meio
+do ato sexual normal, seja por meio de uma forma substituta de penetração. Eles não são
+realmente semelhantes à concepção virginal não sexual que está no âmago das narrativas
+da infância de Jesus, concepção esta em que nenhum elemento ou deidade macho insemina
+Maria [...] Portanto, nenhuma busca por paralelos nos tem dado explicação verdadeiramente
+satisfatória de como os primitivos cristãos chegaram à idéia de uma concepção virginal — a
+menos, é claro, que ela realmente tenha acontecido historicamente”.
+
+Independente de se acreditar ou não no milagre do nascimento virginal de Cristo, para
+nós, nesta exposição, é mais relevante mostrar que os primeiros cristãos só teriam motivos
+para falar desse nascimento misterioso caso realmente acreditassem nesse milagre. Então,
+podemos afirmar que qualquer conjectura de uma ideologia pagã no seio primitivo da Igreja
+para elevar Cristo ao status de divino seria falar de uma incongruência muito grande, seria
+desconhecer a cultura judaica e sua grande complexidade.
+
+Geisler observa, com muita perspicácia, que “nenhum mito grego ou romano fala da
+encarnação literal de um Deus monoteísta em forma humana (Jo 1.1-3,14) por meio de um
+nascimento virginal literal (Mt 1.18-25), seguido pela morte e ressurreição física”. E
+continua: “Histórias de deuses gregos se  tornando humanos por meio de eventos
+milagrosos como um nascimento virginal não foram anteriores, mas, sim, posteriores à
+época de Cristo (Yamauchi)”.
+
+Compare as narrativas do nascimento de Buda nos Lalita Vistara com os de Jesus
+Cristo nos evangelhos. Tanto Buda quanto o Cristo dos evangelhos apócrifos estão cercados
+de eventos fantasiosos, beirando o ridículo. Agora, compare a sobriedade com que Lucas
+descreve o nascimento de Jesus: “Enquanto estavam ali, chegou o tempo em que ela havia
+de dar à luz, e teve a seu filho primogênito; envolveu-o em faixas e o deitou em uma
+manjedoura, porque não havia lugar para eles na estalagem” (Lc 2.6,7).
+
+Os eventos que marcam o nascimento, vida e morte de Jesus são acompanhados de
+alguma referência histórica: “Naqueles dias saiu um decreto da parte de César Augusto,
+para que todo o mundo habitado fosse recenseado. Este primeiro recenseamento foi feito
+quando Quirino era governador da Síria” (Lc 2.1,2).
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 35
+
+10 - JESUS E SEUS MILAGRES
+
+“Varões israelitas, escutai estas palavras: a Jesus, o nazareno, varão aprovado por
+Deus entre vós com milagres, prodígios e sinais, que Deus por ele fez no meio de vós, como
+vós mesmos bem sabeis” (At 2.22).
+
+O cristianismo é uma religião de milagres. C. S. Lewis observa: “Todos os essenciais do
+hinduísmo ficariam sem impedimento, creio eu, se fossem substituídas as partes
+milagrosas, e o mesmo quase se pode aplicar ao maometismo, mas isso não pode acontecer
+no cristianismo [...] Um cristianismo naturalístico omite tudo aquilo que é especificamente
+cristão”.
+
+Jesus realizou vários milagres durante seu ministério, os quais podem ser
+enquadrados em três categorias: 1) Os milagres de curas; 2) Os milagres sobre as forças da
+natureza; e 3) Os milagres sobre a morte (ressurreições).
+
+Acreditar em milagres é algo natural e até imprescindível para o cristão. O
+cristianismo é uma religião de milagres. A história da vida terrena de seu fundador começa
+com um milagre: seu nascimento virginal (Mt 1.18-25). E termina com outro milagre: sua
+ressurreição (Mt 28.1-10).
+
+Garvie declara: “Um Cristo que, sendo Filho de Deus e buscando se tornar o Salvador
+dos homens, não operasse milagre algum, seria mais difícil de compreender e acreditar do
+que o Jesus relatado tão coerentemente nos evangelhos” (MacDowell I, p. 160).
+
+No entanto, os críticos acreditam que milagres não podem acontecer. Logo, tudo o que
+se refere a eventos milagrosos na Bíblia é relegado a meras lendas e superstições.
+
+Para exemplificar isso, começaremos com o filósofo judeu Benedict Spinoza. Defensor
+do conceito newtoniano (Isaac Newton, cientista inglês) sobre a natureza, Spinoza insistiu
+“que, então, nada acontece na natureza em transgressão às suas leis universais, não, coisa
+nenhuma está de acordo com isso e segue esse conceito [...] ela [a natureza] permanece
+firme  e imutável”. E mais, disse ele: “Um milagre, se transgride a, ou está além da natureza,
+não é mais do que um absurdo”. Spinoza era dogmático quanto à impossibilidade de
+milagres quando proclamou: “Podemos, então, estar completamente certos de que cada
+evento [fato, acontecimento, neste caso, os milagres] descrito na Escritura passou, assim
+como todos os demais, segundo as leis naturais”.
+
+Em apoio à sua premissa crucial, Spinoza insistiu em que a natureza “permanece
+firme e imutável”. Isso quer dizer que tudo “necessariamente ocorreu [...] segundo as leis
+naturais”. E “nada acontece na natureza em transgressão às suas leis naturais”.
+
+As leis naturais e a ciência moderna têm-se tornado o “deus” deste século. Paulu E.
+Little coloca a questão da seguinte maneira: “O problema real não é, pois, o assunto dos
+milagres ou das profecias, mas o conceito de Deus. Uma vez que aceitamos a existência de
+Deus, não há problemas quanto aos milagres, porque Deus, por definição, é onipotente”
+(Você pode explicar sua fé?, p. 83).
+
+Mas os críticos aprisionam Deus dentro de seu calabouço racionalista de modo que o
+Senhor se torna prisioneiro das próprias leis que criou. Mesmo se Deus quisesse, não
+poderia operar num mundo de leis fixas, rígidas e imutáveis. No entanto, esta visão de
+universo mecanista fechado já não prevalece mais hoje em dia. Muitos cientistas acreditam
+que estamos em um universo aberto onde, algumas vezes, as leis fixas newtorianas não
+podem servir de base para o cientista atual.
+
+Analisaremos, agora, algumas das muitas objeções levantadas pelos céticos em
+relação a Jesus e seus milagres.
+
+10.1. Os Milagres são Contrários às Leis da Natureza
+
+Esta é a primeira objeção. Mas a própria etimologia da palavra, por si só, mostra que
+os milagres não estão sujeitos à natureza, antes, são de caráter sobrenatural. Na verdade,
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 36
+
+umas das definições que o dicionário dá ao termo é: “Feito ou ocorrência extraordinária, que
+não se explica pelas leis da natureza”.
+
+Hoje em dia, os cientistas estão fazendo descobertas que contrariam as leis mecânicas
+da física de Newton. Estamos em um universo aberto onde muitas ações não precisam de
+leis físicas imutáveis para se concretizar. E isso é uma prova cabal de que os milagres
+podem acontecer!
+
+10.2. Os Milagres Foram Projetados Pelos Discípulos
+
+Segundo os céticos, a Igreja estava criando seu herói e, para isso, precisava de atos
+miraculosos para adornar suas ações. Contudo, ao lermos as narrativas dos evangelhos,
+não vemos somente os apóstolos, mas também Pedro, jogando em rosto a veracidade de tais
+milagres que, na maioria das vezes, eram operados em público (Lc 19.37; At 2.22).
+
+Até mesmo seus inimigos não podiam negar a realidade dos milagres, por isso
+tentavam dar para eles outra explicação, como, por exemplo, que eram provenientes de
+forças do mal: “Mas os fariseus, ouvindo isto, disseram: Este não expulsa os demônios
+senão por Belzebu, príncipe dos demônios” (Lc 11.15).
+
+Quando não, tentavam matar os apóstolos, para que o povo não os seguisse por causa
+dos milagres, como aconteceu no episódio da ressurreição de Lázaro: “Então os principais
+sacerdotes e os fariseus reuniram o Sinédrio e diziam: Que faremos? Porquanto este homem
+vem operando muitos sinais [...] Desde aquele dia, pois, tomavam conselho para o matarem”
+(Lc 11.47-53).
+
+Os milagres de Jesus foram encarados como mágica pelos judeus, pois nos Talmudes
+está dito que “Jesus praticou magia e fez Israel se desviar”. Seus inimigos, conquanto não
+acreditassem em Jesus, jamais chegaram a dizer que os milagres eram lendas criadas em
+torno  do Filho de Deus. Antes, encaravam seus milagres como históricos.
+
+10.3. As Curas Eram Apenas Psicossomáticas
+
+As curas realizadas por Cristo eram verdadeiras ou apenas psicossomáticas? Por
+psicossomático entendemos as influências psíquicas (emoções, desejos, medo, etc.)
+produzindo reações orgânicas, isto é, a influência da mente sobre o corpo. Era esse, decerto,
+o tipo de cura que Jesus realizava? Talvez, algumas doenças possam se enquadrar nesse
+item, mas não todas.
+
+Jesus operava curas que estavam além dessa esfera, como, por exemplo, as doenças
+congênitas: cego de nascença, paralíticos, surdos, etc. Há, também, os leprosos, que,
+dificilmente, poderiam ser enquadrados nos casos de doenças psicossomáticas. Os
+partidários dessa hipótese sugerem que Jesus exigia fé das pessoas (Mt 13.58) quando ia
+operar as curas. Na opinião desses céticos, Jesus sugestionava as pessoas, como fazem
+muitos curandeiros e hipnotizadores hoje em dia. Mas essa teoria da sugestão falha por não
+levar em conta que a exigência da fé não era condição sine qua non para que uma pessoa
+fosse curada. Houve pessoas de quem não se exigiu fé (Jo 5.6). Esse tipo de cura, segundo
+os especialistas, só funciona em casos de doenças nervosas. Mas muitas curas efetuadas
+por Cristo envolviam lesões em tecidos ósseo e muscular, algo impossível de ser realizado
+por sugestão de terceiros. Na verdade, há registro de curas que Cristo realizou a distância,
+como foi o caso do servo do centurião romano (Mt 8.5-13).
+
+10.4. Os Milagres Eram Fraudulentos
+
+Sabemos que realmente existem fraudes e charlatanismo em muitos milagres das
+religiões. Por exemplo, a revista Época noticiou, em 27/10/03, que a cura que levou Madre
+Teresa de Calcutá a ser beatificada não passava de fraude. O suposto milagre da “santa” foi
+detectado como uma cura de câncer no estômago de uma mulher. Todavia, o médico que
+avaliou a paciente disse que não se tratava de câncer, mas de tuberculose, enfermidade que
+fora tratada com medicamentos.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 37
+
+Há fraudes nos meios cristão e pagão, mas isso não quer dizer que as curas de Cristo
+estejam nessa categoria. Se há moedas falsas no mercado é sinal de que existem as
+verdadeiras! Um exemplo claro da diferença dessas duas categorias se encontra em Atos dos
+Apóstolos. Simão fora um mágico que enganara as pessoas por longo tempo com artes
+mágicas e todos o consideravam como tendo “o grande poder”. No entanto, ao ser
+confrontado com o verdadeiro poder de Deus operado pelas mãos dos apóstolos, esse
+personagem se convenceu da veracidade divina e abandonou as artes mágicas com as quais
+enganava o povo (At 8.8-20). O próprio Simão viu a diferença entre os milagres verdadeiros e
+os falsos!
+
+10.5. Milagres Não Existem
+
+Esta objeção parte da idéia racionalista de observação. Ou seja, se não se realizam
+mais milagres hoje em dia é porque tais milagres nunca existiram. Esse pensamento é um
+grande erro, porque nem todas as coisas que aconteceram no passado são passíveis de
+repetição na atualidade.
+
+Se perguntarmos aos cientistas evolucionistas por que não vemos mais a evolução dos
+macacos, de acordo com as leis da teoria da evolução, hão de nos dizer que tal evolução só
+funcionou em dado momento da história, que hoje em dia ela não funciona mais. Ora, se os
+próprios céticos possuem exemplos desse tipo, por que então descartar os milagres
+baseados nessa mesma hipótese?
+
+11 -  JESUS – DOS DOZE AOS TRINTA
+ANOS
+
+Num primeiro momento, a pergunta “O que fez Jesus dos doze aos trinta anos?” não
+oferece nenhum problema. A curiosidade sobre esse fato é normal. O problema começou
+quando certos grupos religiosos, ligados ao movimento Nova Era, pretenderam respondê-la
+utilizando fontes duvidosas.
+
+Como sabemos, esses movimentos rejeitam toda cultura judaico-cristã do Ocidente,
+logo, rejeitam também as Sagradas Escrituras como padrão de verdades religiosa e
+histórica. Em seu lugar, ou seja, no lugar da Bíblia, abraçam toda sorte de idéias, filosofias
+e doutrinas orientais, principalmente as hindus. Conseqüentemente, a figura que emergiu
+daí é completamente estranha ao Jesus (o filho de Maria) apresentado nas páginas dos
+evangelhos.
+
+Ao invés do carpinteiro de Nazaré, seguidor do judaísmo de sua época, foi pintado o
+quadro de um asceta hindu, viajante oriental, aluno de gurus e praticante de todo um
+misticismo que os cristãos jamais imaginaram fazer parte do comportamento de Jesus.
+Segundo afirmam, Jesus teria viajado ao Extremo Oriente, após o incidente no templo de
+Jerusalém (Lc 2.46), e se iniciado nas doutrinas e práticas da Índia e do Tibete. Na verdade,
+os adeptos da Nova Era criaram um Jesus à sua própria imagem e semelhança, para que,
+assim, pudessem justificar todas as suas práticas ocultistas.
+
+Como fez outrora o kardescismo, os novaerenses não poderiam também deixar de
+incluir Jesus (a quem chamam de Issa ou Isa, seu nome no Alcorão) em seu círculo.
+Qualquer movimento religioso que queira alcançar destaque no Ocidente terá de incluir
+Jesus de alguma forma em seu credo, nem que para isso seja preciso “criar seu próprio
+Jesus”. Mas apenas usar o nome ou a figura de Jesus não é suficiente. Por isso, Paulo
+advertiu os cristãos em Corinto: “Mas temo que, assim como a serpente enganou Eva com a
+sua astúcia, assim também sejam de alguma sorte corrompidos os vossos sentidos, e se
+apartem da simplicidade que há em Cristo. Porque, se alguém for pregar-vos outro Jesus
+que nós não temos pregado, ou se recebeis outro espírito que não recebestes, ou outro
+evangelho que não abraçastes, com razão o sofrereis” (2Co 11.3,4).
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 38
+
+11.1. Inconformados com o Jesus Bíblico
+
+O Jesus bíblico não agrada as pessoas, sejam elas do tipo intelectuais acadêmicos ou
+místicos religiosos. Assim, acabam apresentando um Jesus totalmente às avessas do que é
+declarado na Bíblia.
+
+Para tanto, esses movimentos, encabeçado por adeptos da Nova Era, lançaram mão de
+um período de silêncio biográfico sobre Jesus para que pudessem tecer um amontoado de
+informações que, longe de acrescentarem algo ao conhecimento do Filho de Deus,
+distorceram-no completamente.
+
+Dessa forma, sem quaisquer evidências, baseiam-se em mistificações e boatos
+estranhos e duvidosos. O resultado só poderia ser alguém completamente estranho às
+características de Jesus, conforme nos é mostrado, de forma tão clara, nas páginas do Novo
+Testamento.
+
+11.2. Documentos Versus Divagações
+
+Entre as fontes que se propõem a contar o que ocorreu com Jesus entre os doze e
+trinta anos, está o que os adeptos da Nova Era chamam de “arquivos ou registros
+akáshicos”, que, segundo eles, trata-se de um espaço invisível, simbolizado pelo éter,
+também conhecido como “reservatório cósmico de memórias individuais”, o que seria uma
+espécie de “memória do Universo” para os esotéricos.
+
+Nesses registros, segundo supõem, estão escritas todas as palavras, ações e
+pensamentos de todos os seres e de todos os indivíduos que já existiram ou existem no
+Universo. Afirmam, ainda, que somente as pessoas iniciadas no esoterismo conseguem
+consultar essas informações.
+
+Foi baseado nesses registros que Levi H. Dowling, ex-capelão do Exército americano,
+escreveu o livro O evangelho de Jesus, o Cristo, para a Era de Aquário. Tal obra contém
+muitos relatos da peregrinação de Jesus (ou Issa) pelo Extremo Oriente. O capítulo 23
+ressalta que Jesus esteve na Índia e “procurou aprender a arte hindu de curar, de modo que
+se tornou discípulo de Udraka, o maior dos curadores hindus”. Após aprender alguns
+conceitos sobre cura, Jesus teria baixado “a cabeça em reconhecimento pela sabedoria
+daquela alma superior e seguiu seu caminho”.
+
+O livro também diz que Jesus esteve em um templo em Lhasa, capital do Tibete, onde
+conheceu o grande sábio oriental Meng-Tse, que o ajudou a ler os manuscritos antigos: “E
+Meng-Tse abriu as portas do templo de par em par e todos os sacerdotes e mestres deram as
+boas-vindas ao sábio hebreu”.
+
+O grande problema com essas e outras passagens é que elas são estranhas ao que
+lemos sobre Jesus no Novo Testamento. Jesus jamais curvou a cabeça ou teve qualquer
+atitude que lembrasse o misticismo hindu. Nem mesmo a história registra algum grande
+sábio oriental por nome Meng-Tse. Então, fica a pergunta: “Que credibilidade podemos dar
+às informações retiradas de um arquivo que ninguém pode ver? Alguém pode dizer que são
+confiáveis?”.
+
+Tudo isso se torna mais discrepante quando comparamos as duas fontes de
+informações — as do Jesus bíblico e as dos registros atávicos. Lucas comenta, na
+introdução de seu evangelho: “Tendo, pois, muitos empreendido pôr em ordem a narração
+dos fatos que entre nós se cumpriram, segundo nos transmitiram os mesmos que os
+presenciaram desde o princípio, e foram ministros da palavra, pareceu-me também a mim
+conveniente descrevê-los a ti, ó excelente Teófilo, por sua ordem, havendo-me já informado
+minuciosamente de tudo desde o princípio; para que conheças a certeza das coisas de que já
+estás informado” (1.1-4).
+
+O texto bíblico em referência mostra que, ao lidarmos com o Novo Testamento,
+estamos lidando com documentos históricos escritos por testemunhas oculares ou por
+investigadores que tiveram contato com essas testemunhas oculares. Isso está em aberto
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 39
+
+contraste com aqueles que dizem ter retirado suas informações de um suposto arquivo
+invisível, acessível apenas a um restrito grupo de pessoas exóticas.
+
+11.3. Documentos Fidedignos Versus Documentos Duvidosos
+
+Outra fonte que procura informar as atividades de Jesus entre os doze e trinta anos é
+descrita pelo jornalista russo Nicolai Notovitch, que teria, em 1887, quando então com 29
+anos, conhecido o mosteiro budista de Hemis, em Ladakh, no Norte da Índia. Foi lá que
+soube da existência de escritos tibetanos sobre um misterioso profeta chamado “Santo Issa”
+e cujos dados sobre sua vida eram muito semelhantes aos dados da vida de Jesus de
+Nazaré. Segundo o jornalista, o reverendo abade do mosteiro budista traduzia e lia os
+escritos, às vezes incompletos, e o jornalista, por sua vez, tomava nota de tudo.
+
+Esses supostos escritos afirmavam que um adolescente de Israel chamado Issa tinha
+fugido de casa e chegado àquela região trazido por mercadores com o objetivo de se preparar
+espiritualmente. Os textos diziam ainda que esse suposto Issa foi discipulado nos mosteiros
+budistas e hindus.
+
+Antes de darmos crédito a tais relatos, seria bom compararmos documentalmente
+nossos evangelhos com as narrações do jornalista russo. Segundo o escritor Josh McDowell,
+existem hoje, aproximadamente, 24 mil cópias antigas do Novo Testamento, mais do que
+qualquer outro livro da antiguidade, as quais são suficientes para confirmar a historicidade
+de Jesus.
+
+Em nenhum lugar, esses textos fazem qualquer referência à visita de Jesus ao
+Extremo Oriente ou apresenta qualquer ensino ou prática que lembre os hindus e os
+budistas ou suas escrituras. Portanto, fundamentar-se em um manuscrito obscuro, do qual
+até hoje ninguém, além de Nicolai Notovitch, tem conhecimento, para saber quem é Jesus é
+algo fora de lógica. Seria o equivalente a abraçar boatos e a rejeitar documentos históricos.
+
+11.4. Jesus, o Judeu de Nazaré da Galiléia
+
+Quando lemos os relatos bíblicos da vida de Jesus, ficamos convencidos de que sua
+viagem à Índia, entre os doze e trinta anos, é uma divagação de homens que querem
+transtornar o cristianismo, “deformando” a pessoa de Jesus para embasar seus ensinos.
+
+Quando Jesus começou seu ministério, todos o identificaram como alguém de seu
+
+
+meio:
+
+• Filho do carpinteiro, irmão de Tiago, José, Simão e Judas (Mt 13.55).
+
+• Carpinteiro, filho de Maria (Mc 6.3).
+
+• Filho de José (Lc 4.22).
+
+O epíteto “Jesus de Nazaré” ou “Jesus Nazareno” era o identificador de uma de suas
+
+principais características. Os apelidos, que funcionavam como sobrenome, geralmente eram
+dados de acordo com um fator importante que servia para distinguir uma pessoa de outra
+pessoa com o mesmo nome. Esse acréscimo ao nome poderia ser a filiação, como, por
+exemplo, “Simão Barjonas”, isto é, filho de Jonas (Mt 16.17). Poderia ser de função, como
+João, o Batista (Mt 3.1), ou Simão, o curtidor (At 10.6). Poderia ser de qualidade, como
+“Boanerges”, que significa “filhos do trovão”, como no caso de Tiago e João (Mc 3.17). Ou,
+ainda, poderia ser de lugares, como José de Arimatéia (Jo 19.38).
+
+No caso de Jesus, todos o identificavam como sendo de Nazaré, pequena cidade da
+Galiléia. Em nenhuma parte dos evangelhos há qualquer menção, por menor que seja, que
+relacione Jesus a outra localidade geográfica. Se Jesus tivesse passado esses dezoito anos
+em outro lugar, não o teriam identificado como sendo de Nazaré, mas, sim, de outro lugar.
+
+Ainda que se tratando de outro contexto, podemos usar aqui a ilustração sugerida por
+Hank Hanegraaf para refutar as especulações do “Seminário de Jesus” sobre o local do
+nascimento de Cristo: “Irineu de Lião (c.175—195) provavelmente nasceu em Smirna, onde
+possivelmente estudou enquanto menino, e ensinou em Roma antes de se mudar para Lião”.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 40
+
+Hank continua citando Luciano de Antioquia, Paulo de Constantinopla e outros para,
+finalmente, concluir: “Estes homens nasceram em um lugar e depois se mudaram para
+outro, com o qual seus nomes ficaram associados. Foi justamente o que aconteceu com
+Jesus, que nasceu em Belém, mas viveu a maior parte de sua vida em Nazaré” (Lc 4.16).
+
+11.5. Os Ensinos de Jesus Versus Hinduísmo e Budismo
+
+Para alguém que supostamente passou toda a sua juventude na Índia, isso é
+estranho:
+
+• Jesus ensinava a ressurreição, não a reencarnação (Mt 22.29-32; Lc 16.19-31).
+
+• Jesus dizia que os seres humanos valem mais do que os animais (Mt 6.26).
+
+• Jesus cria em um único Deus (Mc 12.29,30).
+
+• Jesus comia carne de animais (Lc 24.40-44).
+
+• Jesus colocava os judeus como sendo o principal povo (Jo 4.22).
+
+Tudo isso está em explícito contraste com os ensinos do hinduísmo e do budismo.
+Portanto, não há quaisquer evidências ou sinais, por menores que sejam, que indiquem que
+Jesus esteve na Índia. E se os evangelhos não são explícitos sobre o período da vida de
+Jesus dos doze aos trinta anos, é porque esse período não foi o mais importante de sua vida.
+Mas, infelizmente, os homens que rejeitam o verdadeiro Cristo querem fazer o silêncio falar
+demais. Não se conformam com Jesus tal como Ele é e se apegam a um Jesus que não pode
+salvar.
+
+12 - CONCLUSÃO
+
+É claro que a abordagem apologética que acabamos de fazer do Novo Testamento não
+esgota o assunto. Existem muitos outros pontos que poderiam ser abordados, mas que
+ultrapassariam o escopo desta disciplina. Todavia, procuramos ressaltar os aspectos mais
+importantes sobre os problemas enfrentados pelo Novo Testamento frente à artilharia dos
+críticos liberais e das seitas não-cristãs.
+
+O nosso intuito, aqui, foi mostrar que a nossa fé pode ser defendida dentro dos limites
+das ciências humanas e da revelação divina. Afinal de contas, a fé não se limita a um Cristo
+espiritual, mas ao Verbo que se fez carne e habitou entre nós. Existem fartos argumentos
+históricos que o cristianismo pode lançar mão para sustentar sua veracidade. E o estudante
+atento pode usar esses argumentos para aprimorar sua defesa perante aqueles que
+“pedirem a razão da esperança que há em nós”.
+
+E é assim que nesses dois mil anos de cristianismo a nossa religião conseguiu passar
+pelo crivo do escrutínio popular.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+Apologética do Novo Testamento - 41
+
+BIBLIOGRAFIA BÁSICA
+
+BRUCE, F. F. Merece Confiança o Novo Testamento? São Paulo: Edições VIDA
+NOVA, 2004.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
