@@ -37,36 +37,48 @@ import { supabase } from "@/integrations/supabase/client";
 
 // Mapeamento de títulos de lições para arquivos .txt
 const LESSON_FILES: Record<string, { folder: string; filename: string }> = {
-  // Bacharel
+  // Bacharel (11 materiais)
   "Administração Eclesiástica": { folder: "bacharel", filename: "administracao_eclesiastica.txt" },
   "Teologia do Antigo Testamento": { folder: "bacharel", filename: "antigo_testamento.txt" },
+  "Antigo Testamento": { folder: "bacharel", filename: "antigo_testamento.txt" },
   "Arqueologia Bíblica": { folder: "bacharel", filename: "arqueologia_biblica.txt" },
   "Bibliologia": { folder: "bacharel", filename: "bibliologia.txt" },
   "O Culto Bíblico": { folder: "bacharel", filename: "culto_biblico.txt" },
+  "Culto Bíblico": { folder: "bacharel", filename: "culto_biblico.txt" },
   "Doutrinas Bíblicas": { folder: "bacharel", filename: "doutrinas_biblicas.txt" },
   "Educação Cristã": { folder: "bacharel", filename: "educacao_crista.txt" },
   "Estatutos da Igreja": { folder: "bacharel", filename: "estatutos_igreja.txt" },
   "Ética Cristã": { folder: "bacharel", filename: "etica.txt" },
+  "Ética": { folder: "bacharel", filename: "etica.txt" },
   "Evangelismo Pessoal": { folder: "bacharel", filename: "evangelismo_pessoal.txt" },
   "Teologia Pastoral": { folder: "bacharel", filename: "teologia_pastoral.txt" },
-  // Doutorado
+  // Doutorado (18 materiais)
   "Apologética do Antigo Testamento": { folder: "doutorado", filename: "apologetica_at.txt" },
+  "Apologética AT": { folder: "doutorado", filename: "apologetica_at.txt" },
   "Apologética do Novo Testamento": { folder: "doutorado", filename: "apologetica_nt.txt" },
+  "Apologética NT": { folder: "doutorado", filename: "apologetica_nt.txt" },
   "Capelania Evangélica": { folder: "doutorado", filename: "capelania_evangelica.txt" },
+  "Capelania": { folder: "doutorado", filename: "capelania_evangelica.txt" },
   "Direito e Religião": { folder: "doutorado", filename: "direito_religiao.txt" },
   "Ética Cristã Avançada": { folder: "doutorado", filename: "etica_crista.txt" },
   "Exegese Bíblica": { folder: "doutorado", filename: "exegese_biblica.txt" },
+  "Exegese": { folder: "doutorado", filename: "exegese_biblica.txt" },
   "Fenomenologia da Religião": { folder: "doutorado", filename: "fenomenologia_religiao.txt" },
+  "Fenomenologia": { folder: "doutorado", filename: "fenomenologia_religiao.txt" },
   "Filosofia Cristã": { folder: "doutorado", filename: "filosofia_crista.txt" },
   "Filosofia da Educação": { folder: "doutorado", filename: "filosofia_educacao.txt" },
   "Hermenêutica Bíblica": { folder: "doutorado", filename: "hermeneutica_biblica.txt" },
+  "Hermenêutica": { folder: "doutorado", filename: "hermeneutica_biblica.txt" },
   "História da Igreja": { folder: "doutorado", filename: "historia_igreja.txt" },
   "Homilética Narrativa": { folder: "doutorado", filename: "homiletica_narrativa.txt" },
+  "Homilética": { folder: "doutorado", filename: "homiletica_narrativa.txt" },
   "Liturgia": { folder: "doutorado", filename: "liturgia.txt" },
   "Psicologia Geral": { folder: "doutorado", filename: "psicologia_geral.txt" },
   "Psicologia Pastoral": { folder: "doutorado", filename: "psicologia_pastoral.txt" },
   "Sociologia e Antropologia da Religião": { folder: "doutorado", filename: "sociologia_antropologia_religiao.txt" },
+  "Sociologia da Religião": { folder: "doutorado", filename: "sociologia_antropologia_religiao.txt" },
   "Temas Atuais da Teologia": { folder: "doutorado", filename: "temas_atuais_teologia.txt" },
+  "Temas Atuais": { folder: "doutorado", filename: "temas_atuais_teologia.txt" },
   "Teologia Espiritual": { folder: "doutorado", filename: "teologia_espiritual.txt" },
 };
 
