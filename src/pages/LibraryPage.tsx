@@ -13,16 +13,12 @@ import {
   ScrollText,
   Filter,
   Heart,
-  Eye,
   Loader2,
-  FileDown,
 } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLibraryMaterials, useLibraryCategories, LibraryMaterial } from "@/hooks/useLibrary";
 import { SermonReader } from "@/components/library/SermonReader";
-import { supabase } from "@/integrations/supabase/client";
-import { toast } from "sonner";
 
 const defaultCategories = [
   "Todos",
@@ -79,134 +75,9 @@ export default function LibraryPage() {
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedMaterial, setSelectedMaterial] = useState<LibraryMaterial | null>(null);
-  const [generatingPdf, setGeneratingPdf] = useState<string | null>(null);
   
   const { data: materials = [], isLoading } = useLibraryMaterials(selectedCategory);
   const { data: dbCategories } = useLibraryCategories();
-
-  // Mapeamento de materiais para arquivos de texto
-  const materialFileMap: Record<string, string> = {
-    "Administração Eclesiástica": "/materials/bacharel/administracao_eclesiastica.txt",
-    "Antigo Testamento": "/materials/bacharel/antigo_testamento.txt",
-    "Arqueologia Bíblica": "/materials/bacharel/arqueologia_biblica.txt",
-    "Bibliologia": "/materials/bacharel/bibliologia.txt",
-    "Culto Bíblico": "/materials/bacharel/culto_biblico.txt",
-    "Doutrinas Bíblicas": "/materials/bacharel/doutrinas_biblicas.txt",
-    "Educação Cristã": "/materials/bacharel/educacao_crista.txt",
-    "Estatutos da Igreja": "/materials/bacharel/estatutos_igreja.txt",
-    "Ética Cristã": "/materials/bacharel/etica.txt",
-    "Evangelismo Pessoal": "/materials/bacharel/evangelismo_pessoal.txt",
-    "Teologia Pastoral": "/materials/bacharel/teologia_pastoral.txt",
-  };
-
-  // Função para buscar conteúdo do arquivo de texto
-  const fetchMaterialContent = async (title: string): Promise<string> => {
-    const filePath = materialFileMap[title];
-    if (!filePath) {
-      return "";
-    }
-    
-    try {
-      const response = await fetch(filePath);
-      if (!response.ok) return "";
-      const text = await response.text();
-      // Limitar a 50000 caracteres para evitar problemas de memória
-      return text.substring(0, 50000);
-    } catch {
-      return "";
-    }
-  };
-
-  // Função para converter texto em HTML formatado
-  const formatContentToHtml = (text: string): string => {
-    if (!text) return "";
-    
-    // Limpar e formatar o texto
-    let html = text
-      // Remover linhas vazias excessivas
-      .replace(/\n{3,}/g, "\n\n")
-      // Converter títulos (linhas em maiúsculas)
-      .replace(/^([A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇ][A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇ\s\d\-:,]+)$/gm, (match) => {
-        if (match.length > 60) return match;
-        return `<h2>${match.trim()}</h2>`;
-      })
-      // Converter parágrafos
-      .split("\n\n")
-      .map(paragraph => {
-        paragraph = paragraph.trim();
-        if (!paragraph) return "";
-        if (paragraph.startsWith("<h")) return paragraph;
-        // Versículos bíblicos entre parênteses
-        paragraph = paragraph.replace(/\(([A-Za-z]+\s*\d+[:.]\d+(?:-\d+)?)\)/g, '<em>($1)</em>');
-        return `<p>${paragraph}</p>`;
-      })
-      .join("\n");
-    
-    return html;
-  };
-
-  // Função para gerar e baixar PDF formatado
-  const handleDownloadPdf = async (material: LibraryMaterial) => {
-    setGeneratingPdf(material.id);
-    try {
-      toast.info("Carregando conteúdo do material...");
-      
-      // Buscar conteúdo completo do arquivo de texto
-      let content = await fetchMaterialContent(material.title);
-      
-      if (content) {
-        content = formatContentToHtml(content);
-      } else {
-        // Fallback para descrição se não tiver arquivo
-        content = material.description || "";
-      }
-
-      const { data, error } = await supabase.functions.invoke("generate-branded-pdf", {
-        body: {
-          title: material.title,
-          category: material.category || "Material Didático",
-          content: content,
-        },
-      });
-
-      if (error) throw new Error(error.message);
-      if (!data?.html) throw new Error("Falha ao gerar o PDF.");
-
-      // Abrir em nova aba para impressão
-      const popup = window.open("", "_blank");
-      
-      if (!popup || popup.closed || typeof popup.closed === "undefined") {
-        // Popup bloqueado - baixar HTML
-        const blob = new Blob([data.html], { type: "text/html" });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = `${material.title.replace(/[^a-zA-Z0-9]/g, "_")}_POD.html`;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        URL.revokeObjectURL(url);
-        
-        toast.info("Arquivo baixado! Abra no navegador e use Ctrl+P para salvar como PDF.");
-        return;
-      }
-
-      popup.document.open();
-      popup.document.write(data.html);
-      popup.document.close();
-
-      await new Promise((r) => setTimeout(r, 700));
-      popup.focus();
-      popup.print();
-
-      toast.success("PDF gerado com sucesso!");
-    } catch (err) {
-      console.error("Erro ao gerar PDF:", err);
-      toast.error("Erro ao gerar PDF");
-    } finally {
-      setGeneratingPdf(null);
-    }
-  };
 
   const categories = dbCategories?.length ? dbCategories : defaultCategories;
 
@@ -408,21 +279,6 @@ export default function LibraryPage() {
                               Baixar
                             </Button>
                           )}
-                          {/* Botão para baixar PDF formatado */}
-                          <Button 
-                            size="sm" 
-                            variant="secondary"
-                            className="h-8 px-3 gap-1"
-                            onClick={() => handleDownloadPdf(resource)}
-                            disabled={generatingPdf === resource.id}
-                          >
-                            {generatingPdf === resource.id ? (
-                              <Loader2 className="w-3 h-3 animate-spin" />
-                            ) : (
-                              <FileDown className="w-3 h-3" />
-                            )}
-                            PDF
-                          </Button>
                         </div>
                       </div>
                   </div>
