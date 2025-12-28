@@ -4,9 +4,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
-import { FileText, Download, Loader2, Eye } from 'lucide-react';
+import { FileText, Download, Loader2, Eye, Upload, CheckCircle2 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
-
 interface Material {
   id: string;
   title: string;
@@ -269,10 +268,134 @@ function formatBibleVerse(text: string): string {
   return text.replace(refPattern, '<strong>$1</strong>');
 }
 
+// Mapeamento de títulos para arquivos locais
+const TITLE_TO_FILE_MAP: Record<string, { folder: string; filename: string }> = {
+  'Administração Eclesiástica': { folder: 'bacharel', filename: 'administracao_eclesiastica.txt' },
+  'Teologia do Antigo Testamento': { folder: 'bacharel', filename: 'antigo_testamento.txt' },
+  'Antigo Testamento': { folder: 'bacharel', filename: 'antigo_testamento.txt' },
+  'Arqueologia Bíblica': { folder: 'bacharel', filename: 'arqueologia_biblica.txt' },
+  'Bibliologia': { folder: 'bacharel', filename: 'bibliologia.txt' },
+  'Culto Bíblico': { folder: 'bacharel', filename: 'culto_biblico.txt' },
+  'O Culto Bíblico': { folder: 'bacharel', filename: 'culto_biblico.txt' },
+  'Doutrinas Bíblicas': { folder: 'bacharel', filename: 'doutrinas_biblicas.txt' },
+  'Educação Cristã': { folder: 'bacharel', filename: 'educacao_crista.txt' },
+  'Estatutos da Igreja': { folder: 'bacharel', filename: 'estatutos_igreja.txt' },
+  'Ética Cristã': { folder: 'bacharel', filename: 'etica.txt' },
+  'Ética': { folder: 'bacharel', filename: 'etica.txt' },
+  'Evangelismo Pessoal': { folder: 'bacharel', filename: 'evangelismo_pessoal.txt' },
+  'Teologia Pastoral': { folder: 'bacharel', filename: 'teologia_pastoral.txt' },
+  // Doutorado
+  'Apologética do Antigo Testamento': { folder: 'doutorado', filename: 'apologetica_at.txt' },
+  'Apologética do Novo Testamento': { folder: 'doutorado', filename: 'apologetica_nt.txt' },
+  'Capelania Evangélica': { folder: 'doutorado', filename: 'capelania_evangelica.txt' },
+  'Direito e Religião': { folder: 'doutorado', filename: 'direito_religiao.txt' },
+  'Exegese Bíblica': { folder: 'doutorado', filename: 'exegese_biblica.txt' },
+  'Fenomenologia da Religião': { folder: 'doutorado', filename: 'fenomenologia_religiao.txt' },
+  'Filosofia Cristã': { folder: 'doutorado', filename: 'filosofia_crista.txt' },
+  'Filosofia da Educação': { folder: 'doutorado', filename: 'filosofia_educacao.txt' },
+  'Hermenêutica Bíblica': { folder: 'doutorado', filename: 'hermeneutica_biblica.txt' },
+  'História da Igreja': { folder: 'doutorado', filename: 'historia_igreja.txt' },
+  'Homilética Narrativa': { folder: 'doutorado', filename: 'homiletica_narrativa.txt' },
+  'Liturgia': { folder: 'doutorado', filename: 'liturgia.txt' },
+  'Psicologia Geral': { folder: 'doutorado', filename: 'psicologia_geral.txt' },
+  'Psicologia Pastoral': { folder: 'doutorado', filename: 'psicologia_pastoral.txt' },
+  'Sociologia e Antropologia da Religião': { folder: 'doutorado', filename: 'sociologia_antropologia_religiao.txt' },
+  'Temas Atuais da Teologia': { folder: 'doutorado', filename: 'temas_atuais_teologia.txt' },
+  'Teologia Espiritual': { folder: 'doutorado', filename: 'teologia_espiritual.txt' },
+};
+
 export default function AdminMaterialsPage() {
   const [loading, setLoading] = useState<string | null>(null);
   const [previewing, setPreviewing] = useState<string | null>(null);
+  const [importing, setImporting] = useState(false);
+  const [importResults, setImportResults] = useState<{ success: number; failed: number } | null>(null);
 
+  // Função para importar conteúdo dos arquivos TXT para o banco de dados
+  const handleImportContent = async () => {
+    setImporting(true);
+    setImportResults(null);
+    
+    let successCount = 0;
+    let failedCount = 0;
+    
+    try {
+      // Buscar todos os materiais sem conteúdo
+      const { data: materials, error: fetchError } = await supabase
+        .from('library_materials')
+        .select('id, title')
+        .is('content', null);
+      
+      if (fetchError) throw fetchError;
+      
+      if (!materials || materials.length === 0) {
+        toast.info('Todos os materiais já possuem conteúdo!');
+        setImporting(false);
+        return;
+      }
+      
+      toast.info(`Importando conteúdo para ${materials.length} materiais...`);
+      
+      for (const material of materials) {
+        const fileInfo = TITLE_TO_FILE_MAP[material.title];
+        
+        if (!fileInfo) {
+          console.log(`Sem arquivo mapeado para: ${material.title}`);
+          failedCount++;
+          continue;
+        }
+        
+        try {
+          // Buscar conteúdo do arquivo
+          const response = await fetch(`/materials/${fileInfo.folder}/${fileInfo.filename}`);
+          
+          if (!response.ok) {
+            console.log(`Arquivo não encontrado: ${fileInfo.filename}`);
+            failedCount++;
+            continue;
+          }
+          
+          const content = await response.text();
+          
+          if (!content || content.length < 100) {
+            console.log(`Conteúdo vazio ou muito curto: ${fileInfo.filename}`);
+            failedCount++;
+            continue;
+          }
+          
+          // Atualizar o material com o conteúdo
+          const { error: updateError } = await supabase
+            .from('library_materials')
+            .update({ content: content })
+            .eq('id', material.id);
+          
+          if (updateError) {
+            console.error(`Erro ao atualizar ${material.title}:`, updateError);
+            failedCount++;
+          } else {
+            console.log(`✓ Importado: ${material.title}`);
+            successCount++;
+          }
+        } catch (err) {
+          console.error(`Erro ao processar ${material.title}:`, err);
+          failedCount++;
+        }
+      }
+      
+      setImportResults({ success: successCount, failed: failedCount });
+      
+      if (successCount > 0) {
+        toast.success(`${successCount} materiais importados com sucesso!`);
+      }
+      if (failedCount > 0) {
+        toast.warning(`${failedCount} materiais não puderam ser importados (sem arquivo correspondente).`);
+      }
+    } catch (error) {
+      console.error('Erro na importação:', error);
+      toast.error('Erro ao importar conteúdo dos materiais');
+    } finally {
+      setImporting(false);
+    }
+  };
   const handleGeneratePdf = async (material: Material, folder: string, preview = false) => {
     const stateFunc = preview ? setPreviewing : setLoading;
     stateFunc(material.id);
@@ -347,13 +470,40 @@ export default function AdminMaterialsPage() {
   return (
     <AdminLayout>
       <div className="space-y-6">
-        <div>
-          <h1 className="text-3xl font-bold text-foreground font-serif">
-            Materiais Didáticos
-          </h1>
-          <p className="text-muted-foreground mt-2">
-            Gere PDFs formatados com a identidade visual do P.O.D Seminário Teológico
-          </p>
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div>
+            <h1 className="text-3xl font-bold text-foreground font-serif">
+              Materiais Didáticos
+            </h1>
+            <p className="text-muted-foreground mt-2">
+              Gere PDFs formatados com a identidade visual do P.O.D Seminário Teológico
+            </p>
+          </div>
+          
+          <div className="flex flex-col gap-2">
+            <Button
+              onClick={handleImportContent}
+              disabled={importing}
+              className="gap-2"
+              variant="default"
+            >
+              {importing ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                <Upload className="h-4 w-4" />
+              )}
+              {importing ? 'Importando...' : 'Importar Conteúdo dos TXT'}
+            </Button>
+            
+            {importResults && (
+              <div className="flex items-center gap-2 text-sm">
+                <CheckCircle2 className="h-4 w-4 text-emerald-500" />
+                <span className="text-muted-foreground">
+                  {importResults.success} importados, {importResults.failed} sem arquivo
+                </span>
+              </div>
+            )}
+          </div>
         </div>
 
         {MATERIAL_GROUPS.map((group) => (
