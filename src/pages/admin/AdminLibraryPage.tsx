@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import { Library, Plus, Pencil, Trash2, Loader2, FileText, Video, Headphones, Upload, Sparkles } from "lucide-react";
+import { Library, Plus, Pencil, Trash2, Loader2, FileText, Video, Headphones, Upload, Sparkles, FolderUp } from "lucide-react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -51,8 +51,11 @@ export default function AdminLibraryPage() {
   const [editingMaterial, setEditingMaterial] = useState<Partial<Material> | null>(null);
   const [search, setSearch] = useState("");
   const [uploading, setUploading] = useState(false);
+  const [batchUploading, setBatchUploading] = useState(false);
+  const [batchProgress, setBatchProgress] = useState({ current: 0, total: 0 });
   const [generatingPdf, setGeneratingPdf] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const batchFileInputRef = useRef<HTMLInputElement>(null);
 
   // Função para gerar PDF personalizado com marca P.O.D
   const generateBrandedPdf = async (material: Material) => {
@@ -139,6 +142,86 @@ export default function AdminLibraryPage() {
       toast.error("Erro ao enviar arquivo");
     } finally {
       setUploading(false);
+    }
+  };
+
+  // Função para upload em lote
+  const handleBatchUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
+
+    setBatchUploading(true);
+    setBatchProgress({ current: 0, total: files.length });
+
+    const results = { success: 0, failed: 0 };
+
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      setBatchProgress({ current: i + 1, total: files.length });
+
+      try {
+        // Upload do arquivo
+        const fileExt = file.name.split(".").pop()?.toLowerCase();
+        const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
+        const filePath = `materials/${fileName}`;
+
+        const { error: uploadError } = await supabase.storage
+          .from("library")
+          .upload(filePath, file);
+
+        if (uploadError) throw uploadError;
+
+        const { data: { publicUrl } } = supabase.storage
+          .from("library")
+          .getPublicUrl(filePath);
+
+        // Determinar tipo de arquivo
+        let fileType = "pdf";
+        if (fileExt === "mp4" || fileExt === "mov" || fileExt === "avi") {
+          fileType = "video";
+        } else if (fileExt === "mp3" || fileExt === "wav" || fileExt === "m4a") {
+          fileType = "audio";
+        }
+
+        // Criar título a partir do nome do arquivo
+        const title = file.name
+          .replace(/\.[^/.]+$/, "") // Remove extensão
+          .replace(/_/g, " ") // Substitui underscores por espaços
+          .replace(/-/g, " ") // Substitui hífens por espaços
+          .trim();
+
+        // Inserir material no banco
+        const { error: insertError } = await supabase.from("library_materials").insert({
+          title: title || file.name,
+          description: `Material importado: ${file.name}`,
+          category: "Bacharel",
+          file_type: fileType,
+          file_url: publicUrl,
+          is_published: true,
+        });
+
+        if (insertError) throw insertError;
+
+        results.success++;
+      } catch (error) {
+        console.error(`Erro ao processar ${file.name}:`, error);
+        results.failed++;
+      }
+    }
+
+    setBatchUploading(false);
+    setBatchProgress({ current: 0, total: 0 });
+    queryClient.invalidateQueries({ queryKey: ["admin-materials"] });
+    
+    // Limpar o input
+    if (batchFileInputRef.current) {
+      batchFileInputRef.current.value = "";
+    }
+
+    if (results.failed === 0) {
+      toast.success(`${results.success} arquivo(s) enviado(s) com sucesso!`);
+    } else {
+      toast.warning(`${results.success} enviado(s), ${results.failed} falharam.`);
     }
   };
 
@@ -247,16 +330,44 @@ export default function AdminLibraryPage() {
               {materials.length} materiais cadastrados
             </p>
           </div>
-          <Button
-            onClick={() => {
-              setEditingMaterial(defaultMaterial);
-              setIsDialogOpen(true);
-            }}
-            className="gap-2"
-          >
-            <Plus className="w-4 h-4" />
-            Novo Material
-          </Button>
+          <div className="flex gap-2">
+            <input
+              type="file"
+              ref={batchFileInputRef}
+              onChange={handleBatchUpload}
+              className="hidden"
+              accept=".pdf,.doc,.docx,.txt,.mp3,.mp4,.wav"
+              multiple
+            />
+            <Button
+              variant="outline"
+              onClick={() => batchFileInputRef.current?.click()}
+              disabled={batchUploading}
+              className="gap-2"
+            >
+              {batchUploading ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  {batchProgress.current}/{batchProgress.total}
+                </>
+              ) : (
+                <>
+                  <FolderUp className="w-4 h-4" />
+                  Upload em Lote
+                </>
+              )}
+            </Button>
+            <Button
+              onClick={() => {
+                setEditingMaterial(defaultMaterial);
+                setIsDialogOpen(true);
+              }}
+              className="gap-2"
+            >
+              <Plus className="w-4 h-4" />
+              Novo Material
+            </Button>
+          </div>
         </div>
 
         {/* Search */}
