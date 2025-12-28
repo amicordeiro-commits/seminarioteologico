@@ -25,6 +25,7 @@ const MATERIALS: Material[] = [
   { id: '8', title: 'Estatutos da Igreja', filename: 'estatutos_igreja.txt', category: 'Administração' },
   { id: '9', title: 'Ética Cristã', filename: 'etica.txt', category: 'Teologia Prática' },
   { id: '10', title: 'Evangelismo Pessoal', filename: 'evangelismo_pessoal.txt', category: 'Missões' },
+  { id: '11', title: 'Teologia Pastoral', filename: 'teologia_pastoral.txt', category: 'Teologia Prática' },
 ];
 
 // Função para remover referências bibliográficas e linhas de número
