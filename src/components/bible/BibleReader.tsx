@@ -3,6 +3,7 @@ import { useBibleTranslations, AVAILABLE_TRANSLATIONS } from '@/hooks/useBibleTr
 import { useBibleBookmarks } from '@/hooks/useBibleBookmarks';
 import { useBibleNotes } from '@/hooks/useBibleNotes';
 import { useBibleSermons } from '@/hooks/useBibleSermons';
+import { useStudyBibleComments } from '@/hooks/useStudyBibleComments';
 import { getBookName, getTestament, OLD_TESTAMENT_BOOKS, NEW_TESTAMENT_BOOKS } from '@/lib/bibleTypes';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
@@ -43,8 +44,15 @@ export function BibleReader() {
   const { bookmarks, isBookmarked, toggleBookmark } = useBibleBookmarks();
   const { notes, saveNote, getNoteForVerse } = useBibleNotes();
   const { sermons, loading: sermonsLoading, searchSermons } = useBibleSermons();
+  const { 
+    getCommentsForVerse, 
+    hasCommentsForVerse, 
+    loading: studyCommentsLoading,
+    loaded: studyCommentsLoaded 
+  } = useStudyBibleComments();
   const [sermonSearch, setSermonSearch] = useState('');
   const [selectedSermon, setSelectedSermon] = useState<number | null>(null);
+  const [showStudyComments, setShowStudyComments] = useState(true);
   
   const [selectedTestament, setSelectedTestament] = useState<'old' | 'new'>('old');
   const [selectedBook, setSelectedBook] = useState('gn');
@@ -416,6 +424,13 @@ export function BibleReader() {
                     </div>
                     <Switch checked={interlinearMode} onCheckedChange={setInterlinearMode} />
                   </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <BookOpen className="h-4 w-4" />
+                      <Label>Comentários de Estudo</Label>
+                    </div>
+                    <Switch checked={showStudyComments} onCheckedChange={setShowStudyComments} />
+                  </div>
                 </div>
               </PopoverContent>
             </Popover>
@@ -632,6 +647,28 @@ export function BibleReader() {
                         ))}
                       </div>
                     )}
+
+                    {/* Study Bible Comments */}
+                    {showStudyComments && studyCommentsLoaded && (() => {
+                      const comments = getCommentsForVerse(selectedBook, selectedChapterNum, verse.verse_number);
+                      if (comments.length === 0) return null;
+                      
+                      return (
+                        <div className="ml-8 mt-2 space-y-2">
+                          {comments.map((comment, idx) => (
+                            <div 
+                              key={idx} 
+                              className="p-3 bg-accent/30 rounded-lg border-l-4 border-accent text-sm leading-relaxed"
+                            >
+                              <div className="flex items-start gap-2">
+                                <BookOpen className="h-4 w-4 text-accent-foreground mt-0.5 flex-shrink-0" />
+                                <p className="text-muted-foreground whitespace-pre-wrap">{comment}</p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      );
+                    })()}
 
                   </div>
                 );
