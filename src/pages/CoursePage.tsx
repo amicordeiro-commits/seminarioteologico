@@ -28,7 +28,7 @@ import { cn } from "@/lib/utils";
 import { useCourse, useEnrollment, useEnrollInCourse, useLessonProgress, useMarkLessonComplete } from "@/hooks/useCourses";
 import { useQuizzes, useQuizAttempts } from "@/hooks/useQuizzes";
 import { useToast } from "@/hooks/use-toast";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { QuizCard } from "@/components/quiz/QuizCard";
 import { QuizPlayer } from "@/components/quiz/QuizPlayer";
 import { useQuery } from "@tanstack/react-query";
@@ -39,11 +39,19 @@ const CoursePage = () => {
   const { toast } = useToast();
   const [activeQuizId, setActiveQuizId] = useState<string | null>(null);
   const [showMaterials, setShowMaterials] = useState(false);
-  
-  const { data: course, isLoading: loadingCourse } = useCourse(id || '');
-  const { data: enrollment, isLoading: loadingEnrollment } = useEnrollment(id || '');
-  const { data: lessonProgress } = useLessonProgress(id || '');
-  const { data: quizzes = [] } = useQuizzes(id || '');
+
+  // In-app material viewer (avoids browser extensions blocking direct PDF navigation)
+  const [viewerOpen, setViewerOpen] = useState(false);
+  const [viewerTitle, setViewerTitle] = useState<string>("");
+  const [viewerBlobUrl, setViewerBlobUrl] = useState<string | null>(null);
+  const [viewerText, setViewerText] = useState<string | null>(null);
+  const [viewerKind, setViewerKind] = useState<"pdf" | "text">("pdf");
+  const [viewerLoading, setViewerLoading] = useState(false);
+
+  const { data: course, isLoading: loadingCourse } = useCourse(id || "");
+  const { data: enrollment, isLoading: loadingEnrollment } = useEnrollment(id || "");
+  const { data: lessonProgress } = useLessonProgress(id || "");
+  const { data: quizzes = [] } = useQuizzes(id || "");
   const { data: quizAttempts = [] } = useQuizAttempts();
   const enrollMutation = useEnrollInCourse();
   const markCompleteMutation = useMarkLessonComplete();
@@ -96,6 +104,77 @@ const CoursePage = () => {
         description: "Não foi possível marcar a aula como concluída.",
         variant: "destructive",
       });
+    }
+  };
+
+  const resetViewer = () => {
+    if (viewerBlobUrl) URL.revokeObjectURL(viewerBlobUrl);
+    setViewerBlobUrl(null);
+    setViewerText(null);
+    setViewerTitle("");
+    setViewerLoading(false);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (viewerBlobUrl) URL.revokeObjectURL(viewerBlobUrl);
+    };
+  }, [viewerBlobUrl]);
+
+  const handleViewerOpenChange = (open: boolean) => {
+    if (!open) resetViewer();
+    setViewerOpen(open);
+  };
+
+  const handleOpenMaterial = async (material: any) => {
+    const url = material?.file_url as string | null;
+    if (!url) {
+      toast({
+        title: "Material indisponível",
+        description: "Este item não possui um arquivo associado.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const cleanUrl = url.split("?")[0];
+    const ext = cleanUrl.split(".").pop()?.toLowerCase();
+    const fileType = (material?.file_type as string | null)?.toLowerCase();
+    const isPdf = fileType === "pdf" || ext === "pdf";
+    const isText = fileType === "txt" || fileType === "text" || ext === "txt";
+
+    // Open viewer immediately (so pop-up blockers don't interfere)
+    setViewerTitle(material?.title || "Material");
+    setViewerKind(isText ? "text" : "pdf");
+    setViewerOpen(true);
+    setViewerLoading(true);
+
+    try {
+      // Some Chrome extensions block direct navigation to /materials/*.pdf.
+      // Fetching and opening as blob usually bypasses that.
+      const res = await fetch(url, { cache: "no-store" });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+      if (isText) {
+        const text = await res.text();
+        setViewerText(text);
+      } else {
+        const blob = await res.blob();
+        if (viewerBlobUrl) URL.revokeObjectURL(viewerBlobUrl);
+        const blobUrl = URL.createObjectURL(blob);
+        setViewerBlobUrl(blobUrl);
+      }
+    } catch (e) {
+      resetViewer();
+      setViewerOpen(false);
+      toast({
+        title: "Não foi possível abrir o material",
+        description:
+          "Seu navegador/extensão pode estar bloqueando o arquivo. Tente janela anônima ou desative bloqueadores.",
+        variant: "destructive",
+      });
+    } finally {
+      setViewerLoading(false);
     }
   };
 
@@ -330,17 +409,16 @@ const CoursePage = () => {
                               )}
                             </div>
                           </div>
-
                           {material.file_url ? (
-                            <a
-                              href={material.file_url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-colors text-sm font-medium shrink-0"
+                            <Button
+                              variant="secondary"
+                              size="sm"
+                              className="shrink-0"
+                              onClick={() => handleOpenMaterial(material)}
                             >
                               Abrir
-                              <ExternalLink className="w-4 h-4" />
-                            </a>
+                              <ExternalLink className="w-4 h-4 ml-2" />
+                            </Button>
                           ) : (
                             <span className="text-xs text-muted-foreground shrink-0">Sem arquivo</span>
                           )}
@@ -572,15 +650,15 @@ const CoursePage = () => {
                         </div>
                       </div>
                       {material.file_url ? (
-                        <a
-                          href={material.file_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-colors text-sm font-medium shrink-0"
+                        <Button
+                          variant="secondary"
+                          size="sm"
+                          className="shrink-0"
+                          onClick={() => handleOpenMaterial(material)}
                         >
                           Abrir
-                          <ExternalLink className="w-4 h-4" />
-                        </a>
+                          <ExternalLink className="w-4 h-4 ml-2" />
+                        </Button>
                       ) : (
                         <span className="text-xs text-muted-foreground shrink-0">Sem arquivo</span>
                       )}
@@ -590,6 +668,47 @@ const CoursePage = () => {
               </div>
             )}
           </ScrollArea>
+        </DialogContent>
+      </Dialog>
+
+      {/* Material Viewer Dialog */}
+      <Dialog open={viewerOpen} onOpenChange={handleViewerOpenChange}>
+        <DialogContent className="max-w-5xl h-[90vh] flex flex-col">
+          <DialogHeader>
+            <DialogTitle className="font-serif">{viewerTitle || "Material"}</DialogTitle>
+          </DialogHeader>
+
+          {viewerLoading ? (
+            <div className="flex-1 flex items-center justify-center">
+              <Loader2 className="w-8 h-8 animate-spin text-primary" />
+            </div>
+          ) : viewerKind === "text" ? (
+            <ScrollArea className="flex-1 rounded-lg border border-border bg-card">
+              <pre className="p-4 whitespace-pre-wrap text-sm font-sans text-foreground">
+                {viewerText || ""}
+              </pre>
+            </ScrollArea>
+          ) : viewerBlobUrl ? (
+            <iframe
+              title={viewerTitle || "Material"}
+              src={viewerBlobUrl}
+              className="flex-1 w-full rounded-lg border border-border bg-card"
+            />
+          ) : (
+            <div className="flex-1 flex items-center justify-center text-muted-foreground">
+              Nenhum conteúdo para exibir.
+            </div>
+          )}
+
+          {viewerBlobUrl && !viewerLoading && (
+            <div className="pt-3 flex justify-end">
+              <Button variant="outline" asChild>
+                <a href={viewerBlobUrl} download>
+                  Baixar
+                </a>
+              </Button>
+            </div>
+          )}
         </DialogContent>
       </Dialog>
     </AppLayout>
