@@ -285,25 +285,68 @@ const CoursePage = () => {
       .join("\n");
   };
 
+  // Função para buscar conteúdo do material do banco de dados
+  const fetchMaterialFromDb = async (title: string): Promise<string> => {
+    try {
+      // Buscar material do banco de dados
+      const { data, error } = await supabase
+        .from("library_materials")
+        .select("content, file_url")
+        .eq("title", title)
+        .not("content", "is", null)
+        .limit(1)
+        .maybeSingle();
+
+      if (data?.content) {
+        return data.content;
+      }
+
+      // Se não tem content no banco, tenta buscar do arquivo
+      if (data?.file_url && data.file_url.endsWith(".txt")) {
+        const res = await fetch(data.file_url, { cache: "no-store" });
+        if (res.ok) {
+          return await res.text();
+        }
+      }
+
+      // Fallback: tentar arquivo local
+      const lessonFile = LESSON_FILES[title];
+      if (lessonFile) {
+        const url = `/materials/${lessonFile.folder}/${lessonFile.filename}`;
+        const res = await fetch(url, { cache: "no-store" });
+        if (res.ok) {
+          return await res.text();
+        }
+      }
+
+      return "";
+    } catch {
+      return "";
+    }
+  };
+
   // Função para baixar PDF formatado da aula
   const handleDownloadLessonPdf = async (lesson: any) => {
-    const lessonFile = LESSON_FILES[lesson.title];
-    if (!lessonFile) {
-      toast({
-        title: "Material não disponível",
-        description: "Esta aula não possui material para download.",
-        variant: "destructive",
-      });
-      return;
-    }
-
     setGeneratingPdf(lesson.id);
     
     try {
-      const url = `/materials/${lessonFile.folder}/${lessonFile.filename}`;
-      const res = await fetch(url, { cache: "no-store" });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const rawText = await res.text();
+      toast({
+        title: "Carregando material...",
+        description: "Aguarde enquanto preparamos o PDF.",
+      });
+
+      const rawText = await fetchMaterialFromDb(lesson.title);
+      
+      if (!rawText) {
+        toast({
+          title: "Material não disponível",
+          description: "O conteúdo desta aula não foi encontrado.",
+          variant: "destructive",
+        });
+        setGeneratingPdf(null);
+        return;
+      }
+
       const content = formatContentToHtml(rawText.substring(0, 50000));
 
       const { data, error } = await supabase.functions.invoke("generate-branded-pdf", {
@@ -536,8 +579,8 @@ const CoursePage = () => {
                                   </Badge>
                                 )}
                               </button>
-                              {/* Botão para visualizar PDF */}
-                              {enrollment && hasFile && (
+                              {/* Botão para visualizar PDF - disponível para todas as aulas */}
+                              {enrollment && (
                                 <Button
                                   variant="secondary"
                                   size="sm"
