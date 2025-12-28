@@ -422,7 +422,7 @@ export default function AdminLibraryPage() {
                     ref={fileInputRef}
                     onChange={handleFileUpload}
                     className="hidden"
-                    accept=".pdf,.doc,.docx,.mp3,.mp4,.wav"
+                    accept=".pdf,.doc,.docx,.txt,.mp3,.mp4,.wav"
                   />
                   <Button
                     type="button"
