@@ -7,15 +7,16 @@ const corsHeaders = {
 
 // Cores do sistema (burgundy/wine com dourado)
 const COLORS = {
-  primary: "#6b2c3d", // --primary: 345 45% 28%
-  primaryDark: "#4a1f2b", // --primary darker
-  accent: "#d4a520", // --accent: 42 80% 50% (gold)
-  text: "#2a1f1a", // --foreground: 20 25% 12%
-  lightBg: "#faf8f5", // --background: 30 20% 98%
-  muted: "#6b6460", // --muted-foreground
+  primary: "#6b2c3d",
+  primaryDark: "#4a1f2b",
+  accent: "#c9a227",
+  text: "#1a1a1a",
+  textLight: "#4a4a4a",
+  lightBg: "#f9f7f4",
+  cream: "#fdfbf7",
+  border: "#e8e4de",
 };
 
-// Logo em base64 será carregada do storage ou inline
 const INSTITUTION_NAME = "P.O.D Seminário Teológico";
 const INSTITUTION_SUBTITLE = "Formando Líderes para o Reino de Deus";
 
@@ -25,7 +26,7 @@ serve(async (req) => {
   }
 
   try {
-    const { title, category, content, authorName } = await req.json();
+    const { title, category, content } = await req.json();
 
     if (!title) {
       return new Response(
@@ -34,12 +35,10 @@ serve(async (req) => {
       );
     }
 
-    // Gera o HTML do PDF com capa personalizada
     const html = generateBrandedPdfHtml({
       title,
       category: category || "Material Didático",
       content: content || "",
-      authorName: authorName || "",
       date: new Date().toLocaleDateString("pt-BR", {
         year: "numeric",
         month: "long",
@@ -64,12 +63,11 @@ interface PdfOptions {
   title: string;
   category: string;
   content: string;
-  authorName: string;
   date: string;
 }
 
 function generateBrandedPdfHtml(options: PdfOptions): string {
-  const { title, category, content, authorName, date } = options;
+  const { title, category, content, date } = options;
 
   return `<!DOCTYPE html>
 <html lang="pt-BR">
@@ -78,7 +76,18 @@ function generateBrandedPdfHtml(options: PdfOptions): string {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${title} - ${INSTITUTION_NAME}</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:wght@400;500;600;700&display=swap');
+    
+    :root {
+      --primary: ${COLORS.primary};
+      --primary-dark: ${COLORS.primaryDark};
+      --accent: ${COLORS.accent};
+      --text: ${COLORS.text};
+      --text-light: ${COLORS.textLight};
+      --light-bg: ${COLORS.lightBg};
+      --cream: ${COLORS.cream};
+      --border: ${COLORS.border};
+    }
     
     * {
       margin: 0;
@@ -88,415 +97,537 @@ function generateBrandedPdfHtml(options: PdfOptions): string {
     
     @page {
       size: A4;
+      margin: 20mm 18mm 25mm 22mm;
+    }
+    
+    @page :first {
       margin: 0;
     }
     
     body {
-      font-family: 'Inter', sans-serif;
-      font-size: 11pt;
-      line-height: 1.6;
-      color: ${COLORS.text};
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 12pt;
+      line-height: 1.7;
+      color: var(--text);
       background: white;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
     }
     
+    /* ========== CAPA ========== */
     .cover-page {
       width: 210mm;
       height: 297mm;
-      background: linear-gradient(135deg, ${COLORS.primary} 0%, ${COLORS.primaryDark} 100%);
+      background: linear-gradient(160deg, ${COLORS.primaryDark} 0%, ${COLORS.primary} 50%, ${COLORS.primaryDark} 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      page-break-after: always;
+      overflow: hidden;
+      padding: 0;
+    }
+    
+    .cover-ornament-top,
+    .cover-ornament-bottom {
+      width: 100%;
+      height: 60px;
+      background: linear-gradient(90deg, transparent 0%, ${COLORS.accent}30 20%, ${COLORS.accent}50 50%, ${COLORS.accent}30 80%, transparent 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .cover-ornament-line {
+      width: 70%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, ${COLORS.accent}, transparent);
+    }
+    
+    .cover-main {
+      flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      position: relative;
-      page-break-after: always;
-      overflow: hidden;
-    }
-    
-    .cover-pattern {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M28 0v28H0v4h28v28h4V32h28v-4H32V0h-4z' fill='%23d4a520' fill-opacity='0.08'/%3E%3C/svg%3E");
-      opacity: 0.5;
-    }
-    
-    .cover-border {
-      position: absolute;
-      top: 15mm;
-      left: 15mm;
-      right: 15mm;
-      bottom: 15mm;
-      border: 2px solid ${COLORS.accent};
-      border-radius: 4px;
-    }
-    
-    .cover-corner {
-      position: absolute;
-      width: 30px;
-      height: 30px;
-      border: 3px solid ${COLORS.accent};
-    }
-    
-    .cover-corner.top-left { top: 12mm; left: 12mm; border-right: none; border-bottom: none; }
-    .cover-corner.top-right { top: 12mm; right: 12mm; border-left: none; border-bottom: none; }
-    .cover-corner.bottom-left { bottom: 12mm; left: 12mm; border-right: none; border-top: none; }
-    .cover-corner.bottom-right { bottom: 12mm; right: 12mm; border-left: none; border-top: none; }
-    
-    .cover-content {
-      position: relative;
-      z-index: 1;
-      text-align: center;
       padding: 40px;
-      max-width: 160mm;
+      text-align: center;
     }
     
-    .logo-container {
-      margin-bottom: 40px;
+    .cover-logo-area {
+      margin-bottom: 50px;
     }
     
-    .logo-placeholder {
-      width: 120px;
-      height: 120px;
-      margin: 0 auto 20px;
-      background: rgba(255,255,255,0.1);
+    .cover-logo-symbol {
+      width: 100px;
+      height: 100px;
+      border: 3px solid ${COLORS.accent};
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 3px solid ${COLORS.accent};
+      margin: 0 auto 25px;
+      background: rgba(255,255,255,0.05);
     }
     
-    .logo-icon {
-      font-size: 48px;
+    .cover-logo-symbol span {
+      font-size: 42px;
       color: ${COLORS.accent};
     }
     
-    .institution-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 28pt;
-      font-weight: 700;
-      color: white;
+    .cover-institution {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 13pt;
+      font-weight: 600;
+      color: ${COLORS.accent};
       text-transform: uppercase;
-      letter-spacing: 3px;
+      letter-spacing: 4px;
       margin-bottom: 8px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     }
     
-    .institution-subtitle {
+    .cover-slogan {
+      font-family: 'Crimson Pro', serif;
       font-size: 11pt;
-      color: ${COLORS.accent};
+      color: rgba(255,255,255,0.7);
       font-style: italic;
-      margin-bottom: 60px;
-      letter-spacing: 1px;
     }
     
-    .divider {
-      width: 80px;
+    .cover-divider {
+      width: 120px;
       height: 2px;
       background: ${COLORS.accent};
-      margin: 0 auto 40px;
+      margin: 40px auto;
+      position: relative;
     }
     
-    .category-badge {
-      display: inline-block;
-      padding: 8px 24px;
-      background: ${COLORS.accent};
-      color: ${COLORS.primaryDark};
+    .cover-divider::before,
+    .cover-divider::after {
+      content: '◆';
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: ${COLORS.accent};
+      font-size: 8px;
+    }
+    
+    .cover-divider::before { left: -15px; }
+    .cover-divider::after { right: -15px; }
+    
+    .cover-category {
+      font-family: 'Source Sans 3', sans-serif;
       font-size: 10pt;
-      font-weight: 600;
+      font-weight: 500;
+      color: rgba(255,255,255,0.6);
       text-transform: uppercase;
-      letter-spacing: 2px;
-      border-radius: 4px;
-      margin-bottom: 30px;
+      letter-spacing: 3px;
+      margin-bottom: 20px;
     }
     
     .cover-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 32pt;
+      font-family: 'Crimson Pro', serif;
+      font-size: 36pt;
       font-weight: 700;
       color: white;
       line-height: 1.2;
-      margin-bottom: 40px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+      max-width: 500px;
+      margin-bottom: 30px;
     }
     
-    .cover-meta {
-      color: rgba(255,255,255,0.8);
-      font-size: 10pt;
-    }
-    
-    .cover-meta span {
-      display: block;
-      margin-bottom: 4px;
+    .cover-subtitle {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 11pt;
+      color: rgba(255,255,255,0.5);
+      margin-top: 40px;
     }
     
     .cover-footer {
-      position: absolute;
-      bottom: 25mm;
-      left: 0;
-      right: 0;
+      padding: 30px;
       text-align: center;
-      color: rgba(255,255,255,0.6);
-      font-size: 9pt;
-      z-index: 1;
     }
     
-    /* Content pages */
+    .cover-footer-text {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 9pt;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 1px;
+    }
+    
+    /* ========== PÁGINAS DE CONTEÚDO ========== */
+    .content-wrapper {
+      counter-reset: page-counter;
+    }
+    
     .content-page {
-      width: 210mm;
-      min-height: 297mm;
-      padding: 25mm 25mm 30mm 25mm;
       background: white;
       position: relative;
+      counter-increment: page-counter;
     }
     
+    /* Cabeçalho de página */
     .page-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 15mm;
-      background: ${COLORS.primary};
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      padding: 0 25mm;
+      align-items: center;
+      padding-bottom: 12px;
+      margin-bottom: 30px;
+      border-bottom: 1px solid var(--border);
     }
     
-    .page-header-title {
-      font-family: 'Cormorant Garamond', serif;
+    .page-header-left {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 9pt;
+      color: var(--primary);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .page-header-right {
+      font-family: 'Crimson Pro', serif;
       font-size: 10pt;
-      color: white;
+      color: var(--text-light);
+      font-style: italic;
+    }
+    
+    /* Título do documento */
+    .document-title {
+      text-align: center;
+      margin-bottom: 40px;
+      padding-bottom: 30px;
+      border-bottom: 2px solid var(--accent);
+    }
+    
+    .document-title h1 {
+      font-family: 'Crimson Pro', serif;
+      font-size: 28pt;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+    
+    .document-title .category-tag {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 10pt;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 2px;
       font-weight: 600;
     }
     
-    .page-header-institution {
-      font-size: 9pt;
-      color: ${COLORS.accent};
-    }
-    
-    .header-bar {
-      background: linear-gradient(90deg, ${COLORS.primary} 0%, ${COLORS.primaryDark} 100%);
-      height: 8px;
-      margin: -25mm -25mm 20px -25mm;
-      width: calc(100% + 50mm);
-    }
-    
-    .header-accent {
-      height: 3px;
-      background: ${COLORS.accent};
-      margin-top: -3px;
-    }
-    
-    .content-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-      padding-bottom: 15px;
-      border-bottom: 1px solid #e5e5e5;
-    }
-    
-    .content-header-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    
-    .mini-logo {
-      width: 40px;
-      height: 40px;
-      background: ${COLORS.primary};
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: ${COLORS.accent};
-      font-size: 16px;
-    }
-    
-    .header-text {
-      font-size: 9pt;
-      color: ${COLORS.muted};
-    }
-    
-    .header-text strong {
-      color: ${COLORS.primary};
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 11pt;
-    }
-    
-    .content-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 24pt;
-      color: ${COLORS.primary};
-      margin-bottom: 20px;
-      padding-bottom: 15px;
-      border-bottom: 2px solid ${COLORS.accent};
-    }
-    
+    /* Corpo do texto */
     .content-body {
-      font-size: 11pt;
-      line-height: 1.8;
+      columns: 1;
+      column-gap: 30px;
       text-align: justify;
+      hyphens: auto;
     }
-    
-    .content-body h1, .content-body h2, .content-body h3 {
-      font-family: 'Cormorant Garamond', serif;
-      color: ${COLORS.primary};
-      margin: 25px 0 15px 0;
-    }
-    
-    .content-body h1 { font-size: 20pt; }
-    .content-body h2 { font-size: 16pt; }
-    .content-body h3 { font-size: 14pt; }
     
     .content-body p {
-      margin-bottom: 12px;
+      margin-bottom: 16px;
+      text-indent: 2em;
+      orphans: 3;
+      widows: 3;
     }
     
+    .content-body p:first-of-type {
+      text-indent: 0;
+    }
+    
+    .content-body p:first-of-type::first-letter {
+      font-size: 3.5em;
+      float: left;
+      line-height: 0.8;
+      padding-right: 10px;
+      padding-top: 5px;
+      color: var(--primary);
+      font-weight: 700;
+    }
+    
+    /* Títulos */
+    .content-body h1 {
+      font-family: 'Crimson Pro', serif;
+      font-size: 22pt;
+      font-weight: 700;
+      color: var(--primary);
+      margin: 35px 0 20px 0;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      page-break-after: avoid;
+      column-span: all;
+    }
+    
+    .content-body h2 {
+      font-family: 'Crimson Pro', serif;
+      font-size: 17pt;
+      font-weight: 600;
+      color: var(--primary);
+      margin: 30px 0 15px 0;
+      page-break-after: avoid;
+      position: relative;
+      padding-left: 15px;
+    }
+    
+    .content-body h2::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 5px;
+      bottom: 5px;
+      width: 4px;
+      background: var(--accent);
+    }
+    
+    .content-body h3 {
+      font-family: 'Crimson Pro', serif;
+      font-size: 14pt;
+      font-weight: 600;
+      color: var(--primary-dark);
+      margin: 25px 0 12px 0;
+      page-break-after: avoid;
+    }
+    
+    .content-body h4 {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 12pt;
+      font-weight: 600;
+      color: var(--text);
+      margin: 20px 0 10px 0;
+      page-break-after: avoid;
+    }
+    
+    /* Listas */
     .content-body ul, .content-body ol {
-      margin: 15px 0;
-      padding-left: 25px;
+      margin: 20px 0 20px 25px;
+      padding: 0;
     }
     
     .content-body li {
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      padding-left: 8px;
+      text-indent: 0;
     }
     
+    .content-body ul li {
+      list-style-type: none;
+      position: relative;
+    }
+    
+    .content-body ul li::before {
+      content: '▸';
+      color: var(--accent);
+      position: absolute;
+      left: -18px;
+      font-size: 10pt;
+    }
+    
+    .content-body ol {
+      counter-reset: list-counter;
+    }
+    
+    .content-body ol li {
+      list-style: none;
+      counter-increment: list-counter;
+    }
+    
+    .content-body ol li::before {
+      content: counter(list-counter) ".";
+      color: var(--primary);
+      font-weight: 600;
+      position: absolute;
+      left: -25px;
+    }
+    
+    /* Citações / Versículos */
     .content-body blockquote {
-      margin: 20px 0;
-      padding: 15px 20px;
-      background: ${COLORS.lightBg};
-      border-left: 4px solid ${COLORS.accent};
+      margin: 25px 0;
+      padding: 20px 25px;
+      background: linear-gradient(135deg, var(--cream) 0%, var(--light-bg) 100%);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 8px 8px 0;
       font-style: italic;
-      color: ${COLORS.muted};
+      color: var(--text-light);
+      position: relative;
+      page-break-inside: avoid;
     }
     
+    .content-body blockquote::before {
+      content: '"';
+      font-family: 'Crimson Pro', serif;
+      font-size: 48pt;
+      color: var(--accent);
+      opacity: 0.3;
+      position: absolute;
+      top: 5px;
+      left: 10px;
+      line-height: 1;
+    }
+    
+    .content-body blockquote p {
+      text-indent: 0;
+      margin-bottom: 0;
+      padding-left: 25px;
+    }
+    
+    /* Destaques */
+    .content-body strong {
+      color: var(--primary);
+      font-weight: 600;
+    }
+    
+    .content-body em {
+      font-style: italic;
+      color: var(--text-light);
+    }
+    
+    /* Caixa de destaque */
+    .highlight-box {
+      background: var(--light-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      margin: 25px 0;
+      page-break-inside: avoid;
+    }
+    
+    .highlight-box h4 {
+      margin-top: 0;
+      color: var(--primary);
+    }
+    
+    /* Rodapé de página */
     .page-footer {
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
       height: 20mm;
-      background: white;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-top: 1px solid #e5e5e5;
-      padding: 0 25mm;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 9pt;
+      color: var(--text-light);
+      border-top: 1px solid var(--border);
+      background: white;
+      padding: 0 22mm;
     }
     
-    .footer-content {
+    .page-footer-content {
       display: flex;
       justify-content: space-between;
       align-items: center;
       width: 100%;
-      font-size: 8pt;
-      color: ${COLORS.muted};
     }
     
-    .footer-left {
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    .page-footer-left {
+      color: var(--primary);
+      font-weight: 500;
     }
     
-    .footer-divider {
-      width: 1px;
-      height: 15px;
-      background: #ddd;
+    .page-footer-center {
+      color: var(--text-light);
     }
     
+    .page-footer-right {
+      font-weight: 600;
+      color: var(--primary);
+    }
+    
+    /* ========== IMPRESSÃO ========== */
     @media print {
+      body {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+      
       .cover-page {
         page-break-after: always;
       }
       
       .content-page {
+        page-break-before: always;
+      }
+      
+      h1, h2, h3, h4 {
+        page-break-after: avoid;
+      }
+      
+      blockquote, .highlight-box {
         page-break-inside: avoid;
+      }
+      
+      p {
+        orphans: 3;
+        widows: 3;
+      }
+    }
+    
+    /* Responsivo para preview na tela */
+    @media screen {
+      .cover-page,
+      .content-page {
+        max-width: 210mm;
+        margin: 20px auto;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      }
+      
+      .content-page {
+        padding: 25mm 22mm;
+        min-height: 297mm;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Cover Page -->
+  <!-- Capa -->
   <div class="cover-page">
-    <div class="cover-pattern"></div>
-    <div class="cover-border"></div>
-    <div class="cover-corner top-left"></div>
-    <div class="cover-corner top-right"></div>
-    <div class="cover-corner bottom-left"></div>
-    <div class="cover-corner bottom-right"></div>
+    <div class="cover-ornament-top">
+      <div class="cover-ornament-line"></div>
+    </div>
     
-    <div class="cover-content">
-      <div class="logo-container">
-        <div class="logo-placeholder">
-          <span class="logo-icon">✝</span>
+    <div class="cover-main">
+      <div class="cover-logo-area">
+        <div class="cover-logo-symbol">
+          <span>✝</span>
         </div>
-        <div class="institution-name">${INSTITUTION_NAME}</div>
-        <div class="institution-subtitle">${INSTITUTION_SUBTITLE}</div>
+        <div class="cover-institution">${INSTITUTION_NAME}</div>
+        <div class="cover-slogan">${INSTITUTION_SUBTITLE}</div>
       </div>
       
-      <div class="divider"></div>
+      <div class="cover-divider"></div>
       
-      <div class="category-badge">${category}</div>
-      
+      <div class="cover-category">${category}</div>
       <h1 class="cover-title">${title}</h1>
-      
-      <div class="cover-meta">
-        ${authorName ? `<span>Elaborado por: ${authorName}</span>` : ""}
-        <span>${date}</span>
-      </div>
+      <div class="cover-subtitle">Curso Superior de Teologia • Bacharelado</div>
     </div>
     
     <div class="cover-footer">
-      Material de uso exclusivo para alunos do ${INSTITUTION_NAME}
+      <div class="cover-footer-text">${date} • Material Didático Exclusivo</div>
+    </div>
+    
+    <div class="cover-ornament-bottom">
+      <div class="cover-ornament-line"></div>
     </div>
   </div>
   
-  <!-- Content Page -->
-  <div class="content-page">
-    <div class="header-bar">
-      <div class="header-accent"></div>
-    </div>
-    
-    <div class="content-header">
-      <div class="content-header-left">
-        <div class="mini-logo">✝</div>
-        <div class="header-text">
-          <strong>${INSTITUTION_NAME}</strong><br>
-          ${category}
-        </div>
+  <!-- Conteúdo -->
+  <div class="content-wrapper">
+    <div class="content-page">
+      <div class="page-header">
+        <div class="page-header-left">${INSTITUTION_NAME}</div>
+        <div class="page-header-right">${title}</div>
       </div>
-    </div>
-    
-    <h1 class="content-title">${title}</h1>
-    
-    <div class="content-body">
-      ${content || `
-        <p>Este material foi desenvolvido especialmente para os alunos do ${INSTITUTION_NAME}, com o objetivo de proporcionar uma formação teológica sólida e fundamentada nas Escrituras Sagradas.</p>
-        
-        <h2>Apresentação</h2>
-        <p>O estudo da teologia é fundamental para todo cristão que deseja aprofundar seu conhecimento da Palavra de Deus e estar preparado para servir ao Reino com excelência.</p>
-        
-        <blockquote>
-          "Procura apresentar-te a Deus aprovado, como obreiro que não tem de que se envergonhar, que maneja bem a palavra da verdade." - 2 Timóteo 2:15
-        </blockquote>
-        
-        <h2>Objetivos do Curso</h2>
-        <ul>
-          <li>Proporcionar conhecimento teológico fundamentado nas Escrituras</li>
-          <li>Desenvolver habilidades de interpretação bíblica</li>
-          <li>Preparar líderes para o ministério cristão</li>
-          <li>Fortalecer a fé através do estudo sistemático</li>
-        </ul>
-        
-        <h2>Metodologia</h2>
-        <p>Nosso método de ensino combina estudo teórico com aplicação prática, sempre tendo a Bíblia como base fundamental para toda reflexão teológica.</p>
-      `}
+      
+      <div class="document-title">
+        <div class="category-tag">${category}</div>
+        <h1>${title}</h1>
+      </div>
+      
+      <div class="content-body">
+        ${content || generateDefaultContent(title)}
+      </div>
     </div>
   </div>
   
@@ -504,9 +635,33 @@ function generateBrandedPdfHtml(options: PdfOptions): string {
     window.onload = function() {
       setTimeout(function() {
         window.print();
-      }, 500);
+      }, 800);
     };
   </script>
 </body>
 </html>`;
+}
+
+function generateDefaultContent(title: string): string {
+  return `
+    <p>Este material foi desenvolvido especialmente para os alunos do ${INSTITUTION_NAME}, com o objetivo de proporcionar uma formação teológica sólida e fundamentada nas Escrituras Sagradas.</p>
+    
+    <h2>Apresentação</h2>
+    <p>O estudo de ${title} é fundamental para todo cristão que deseja aprofundar seu conhecimento da Palavra de Deus e estar preparado para servir ao Reino com excelência. Este curso foi elaborado com rigor acadêmico e fidelidade às Escrituras.</p>
+    
+    <blockquote>
+      "Procura apresentar-te a Deus aprovado, como obreiro que não tem de que se envergonhar, que maneja bem a palavra da verdade." — 2 Timóteo 2:15
+    </blockquote>
+    
+    <h2>Objetivos do Curso</h2>
+    <ul>
+      <li>Proporcionar conhecimento teológico fundamentado nas Escrituras Sagradas</li>
+      <li>Desenvolver habilidades de interpretação e aplicação bíblica</li>
+      <li>Preparar líderes capacitados para o ministério cristão</li>
+      <li>Fortalecer a fé através do estudo sistemático da Palavra</li>
+    </ul>
+    
+    <h2>Metodologia de Ensino</h2>
+    <p>Nosso método de ensino combina estudo teórico com aplicação prática, sempre tendo a Bíblia como base fundamental para toda reflexão teológica. Os alunos são incentivados a desenvolver um pensamento crítico e uma vida devocional consistente.</p>
+  `;
 }
