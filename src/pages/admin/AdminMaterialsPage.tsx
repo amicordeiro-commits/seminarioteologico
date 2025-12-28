@@ -14,18 +14,54 @@ interface Material {
   category: string;
 }
 
-const MATERIALS: Material[] = [
-  { id: '1', title: 'Administração Eclesiástica', filename: 'administracao_eclesiastica.txt', category: 'Teologia Prática' },
-  { id: '2', title: 'Teologia do Antigo Testamento', filename: 'antigo_testamento.txt', category: 'Teologia Bíblica' },
-  { id: '3', title: 'Arqueologia Bíblica', filename: 'arqueologia_biblica.txt', category: 'Estudos Bíblicos' },
-  { id: '4', title: 'Bibliologia', filename: 'bibliologia.txt', category: 'Teologia Sistemática' },
-  { id: '5', title: 'O Culto Bíblico', filename: 'culto_biblico.txt', category: 'Teologia Prática' },
-  { id: '6', title: 'Doutrinas Bíblicas', filename: 'doutrinas_biblicas.txt', category: 'Teologia Sistemática' },
-  { id: '7', title: 'Educação Cristã', filename: 'educacao_crista.txt', category: 'Teologia Prática' },
-  { id: '8', title: 'Estatutos da Igreja', filename: 'estatutos_igreja.txt', category: 'Administração' },
-  { id: '9', title: 'Ética Cristã', filename: 'etica.txt', category: 'Teologia Prática' },
-  { id: '10', title: 'Evangelismo Pessoal', filename: 'evangelismo_pessoal.txt', category: 'Missões' },
-  { id: '11', title: 'Teologia Pastoral', filename: 'teologia_pastoral.txt', category: 'Teologia Prática' },
+interface MaterialGroup {
+  name: string;
+  folder: string;
+  materials: Material[];
+}
+
+const MATERIAL_GROUPS: MaterialGroup[] = [
+  {
+    name: 'Bacharel em Teologia',
+    folder: 'bacharel',
+    materials: [
+      { id: 'b1', title: 'Administração Eclesiástica', filename: 'administracao_eclesiastica.txt', category: 'Teologia Prática' },
+      { id: 'b2', title: 'Teologia do Antigo Testamento', filename: 'antigo_testamento.txt', category: 'Teologia Bíblica' },
+      { id: 'b3', title: 'Arqueologia Bíblica', filename: 'arqueologia_biblica.txt', category: 'Estudos Bíblicos' },
+      { id: 'b4', title: 'Bibliologia', filename: 'bibliologia.txt', category: 'Teologia Sistemática' },
+      { id: 'b5', title: 'O Culto Bíblico', filename: 'culto_biblico.txt', category: 'Teologia Prática' },
+      { id: 'b6', title: 'Doutrinas Bíblicas', filename: 'doutrinas_biblicas.txt', category: 'Teologia Sistemática' },
+      { id: 'b7', title: 'Educação Cristã', filename: 'educacao_crista.txt', category: 'Teologia Prática' },
+      { id: 'b8', title: 'Estatutos da Igreja', filename: 'estatutos_igreja.txt', category: 'Administração' },
+      { id: 'b9', title: 'Ética Cristã', filename: 'etica.txt', category: 'Teologia Prática' },
+      { id: 'b10', title: 'Evangelismo Pessoal', filename: 'evangelismo_pessoal.txt', category: 'Missões' },
+      { id: 'b11', title: 'Teologia Pastoral', filename: 'teologia_pastoral.txt', category: 'Teologia Prática' },
+    ],
+  },
+  {
+    name: 'Doutorado em Teologia',
+    folder: 'doutorado',
+    materials: [
+      { id: 'd1', title: 'Apologética do Antigo Testamento', filename: 'apologetica_at.txt', category: 'Apologética' },
+      { id: 'd2', title: 'Apologética do Novo Testamento', filename: 'apologetica_nt.txt', category: 'Apologética' },
+      { id: 'd3', title: 'Capelania Evangélica', filename: 'capelania_evangelica.txt', category: 'Teologia Prática' },
+      { id: 'd4', title: 'Direito e Religião', filename: 'direito_religiao.txt', category: 'Estudos Interdisciplinares' },
+      { id: 'd5', title: 'Ética Cristã', filename: 'etica_crista.txt', category: 'Teologia Prática' },
+      { id: 'd6', title: 'Exegese Bíblica', filename: 'exegese_biblica.txt', category: 'Estudos Bíblicos' },
+      { id: 'd7', title: 'Fenomenologia da Religião', filename: 'fenomenologia_religiao.txt', category: 'Estudos Interdisciplinares' },
+      { id: 'd8', title: 'Filosofia Cristã', filename: 'filosofia_crista.txt', category: 'Filosofia' },
+      { id: 'd9', title: 'Filosofia da Educação', filename: 'filosofia_educacao.txt', category: 'Filosofia' },
+      { id: 'd10', title: 'Hermenêutica Bíblica', filename: 'hermeneutica_biblica.txt', category: 'Estudos Bíblicos' },
+      { id: 'd11', title: 'História da Igreja', filename: 'historia_igreja.txt', category: 'História' },
+      { id: 'd12', title: 'Homilética Narrativa', filename: 'homiletica_narrativa.txt', category: 'Teologia Prática' },
+      { id: 'd13', title: 'Liturgia', filename: 'liturgia.txt', category: 'Teologia Prática' },
+      { id: 'd14', title: 'Psicologia Geral', filename: 'psicologia_geral.txt', category: 'Psicologia' },
+      { id: 'd15', title: 'Psicologia Pastoral', filename: 'psicologia_pastoral.txt', category: 'Psicologia' },
+      { id: 'd16', title: 'Sociologia e Antropologia da Religião', filename: 'sociologia_antropologia_religiao.txt', category: 'Estudos Interdisciplinares' },
+      { id: 'd17', title: 'Temas Atuais da Teologia', filename: 'temas_atuais_teologia.txt', category: 'Teologia Sistemática' },
+      { id: 'd18', title: 'Teologia Espiritual', filename: 'teologia_espiritual.txt', category: 'Teologia Sistemática' },
+    ],
+  },
 ];
 
 // Função para remover referências bibliográficas e linhas de número
@@ -237,13 +273,13 @@ export default function AdminMaterialsPage() {
   const [loading, setLoading] = useState<string | null>(null);
   const [previewing, setPreviewing] = useState<string | null>(null);
 
-  const handleGeneratePdf = async (material: Material, preview = false) => {
+  const handleGeneratePdf = async (material: Material, folder: string, preview = false) => {
     const stateFunc = preview ? setPreviewing : setLoading;
     stateFunc(material.id);
     
     try {
       // Carregar o conteúdo do arquivo
-      const response = await fetch(`/materials/bacharel/${material.filename}`);
+      const response = await fetch(`/materials/${folder}/${material.filename}`);
       if (!response.ok) throw new Error('Arquivo não encontrado');
       
       const rawContent = await response.text();
@@ -299,6 +335,11 @@ export default function AdminMaterialsPage() {
       case 'Estudos Bíblicos': return 'bg-blue-500/20 text-blue-700';
       case 'Missões': return 'bg-orange-500/20 text-orange-700';
       case 'Administração': return 'bg-purple-500/20 text-purple-700';
+      case 'Apologética': return 'bg-red-500/20 text-red-700';
+      case 'Estudos Interdisciplinares': return 'bg-indigo-500/20 text-indigo-700';
+      case 'Filosofia': return 'bg-cyan-500/20 text-cyan-700';
+      case 'História': return 'bg-amber-500/20 text-amber-700';
+      case 'Psicologia': return 'bg-pink-500/20 text-pink-700';
       default: return 'bg-muted text-muted-foreground';
     }
   };
@@ -315,55 +356,65 @@ export default function AdminMaterialsPage() {
           </p>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {MATERIALS.map((material) => (
-            <Card key={material.id} className="hover:shadow-lg transition-shadow">
-              <CardHeader className="pb-3">
-                <div className="flex items-start justify-between">
-                  <FileText className="h-8 w-8 text-primary" />
-                  <Badge className={getCategoryColor(material.category)}>
-                    {material.category}
-                  </Badge>
-                </div>
-                <CardTitle className="text-lg font-serif mt-3">
-                  {material.title}
-                </CardTitle>
-                <CardDescription>
-                  Curso Superior de Teologia
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="flex gap-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="flex-1"
-                  onClick={() => handleGeneratePdf(material, true)}
-                  disabled={previewing === material.id || loading === material.id}
-                >
-                  {previewing === material.id ? (
-                    <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                  ) : (
-                    <Eye className="h-4 w-4 mr-2" />
-                  )}
-                  Visualizar
-                </Button>
-                <Button
-                  size="sm"
-                  className="flex-1"
-                  onClick={() => handleGeneratePdf(material, false)}
-                  disabled={loading === material.id || previewing === material.id}
-                >
-                  {loading === material.id ? (
-                    <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                  ) : (
-                    <Download className="h-4 w-4 mr-2" />
-                  )}
-                  Gerar PDF
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        {MATERIAL_GROUPS.map((group) => (
+          <div key={group.name} className="space-y-4">
+            <h2 className="text-xl font-bold text-foreground font-serif border-b pb-2">
+              {group.name}
+              <span className="ml-2 text-sm font-normal text-muted-foreground">
+                ({group.materials.length} materiais)
+              </span>
+            </h2>
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {group.materials.map((material) => (
+                <Card key={material.id} className="hover:shadow-lg transition-shadow">
+                  <CardHeader className="pb-3">
+                    <div className="flex items-start justify-between">
+                      <FileText className="h-8 w-8 text-primary" />
+                      <Badge className={getCategoryColor(material.category)}>
+                        {material.category}
+                      </Badge>
+                    </div>
+                    <CardTitle className="text-lg font-serif mt-3">
+                      {material.title}
+                    </CardTitle>
+                    <CardDescription>
+                      {group.name}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="flex gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="flex-1"
+                      onClick={() => handleGeneratePdf(material, group.folder, true)}
+                      disabled={previewing === material.id || loading === material.id}
+                    >
+                      {previewing === material.id ? (
+                        <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                      ) : (
+                        <Eye className="h-4 w-4 mr-2" />
+                      )}
+                      Visualizar
+                    </Button>
+                    <Button
+                      size="sm"
+                      className="flex-1"
+                      onClick={() => handleGeneratePdf(material, group.folder, false)}
+                      disabled={loading === material.id || previewing === material.id}
+                    >
+                      {loading === material.id ? (
+                        <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                      ) : (
+                        <Download className="h-4 w-4 mr-2" />
+                      )}
+                      Gerar PDF
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </AdminLayout>
   );
