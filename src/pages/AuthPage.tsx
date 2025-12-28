@@ -229,6 +229,19 @@ const AuthPage = () => {
                   <Users className="w-5 h-5" />
                   <span className="font-medium">Milhares de alunos ativos</span>
                 </div>
+
+                <Button
+                  type="button"
+                  variant="secondary"
+                  className="mt-6 w-full"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedPortal('student');
+                  }}
+                  aria-label="Acessar o Portal do Aluno"
+                >
+                  Acessar Portal do Aluno
+                </Button>
               </CardContent>
             </Card>
 
@@ -275,6 +288,19 @@ const AuthPage = () => {
                   <Lock className="w-5 h-5" />
                   <span className="font-medium">Acesso restrito a administradores</span>
                 </div>
+
+                <Button
+                  type="button"
+                  variant="secondary"
+                  className="mt-6 w-full"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedPortal('admin');
+                  }}
+                  aria-label="Acessar o Painel Administrativo"
+                >
+                  Acessar Painel Administrativo
+                </Button>
               </CardContent>
             </Card>
           </div>
