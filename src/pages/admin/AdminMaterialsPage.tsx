@@ -81,64 +81,156 @@ function cleanContent(text: string): string {
   return cleanedLines.join('\n').trim();
 }
 
-// Função para formatar o conteúdo em HTML
+// Função para formatar o conteúdo em HTML profissional
 function formatContentToHtml(text: string): string {
   const lines = text.split('\n');
-  let html = '';
+  const htmlParts: string[] = [];
   let inList = false;
+  let listType: 'ul' | 'ol' = 'ul';
+  let currentParagraph: string[] = [];
+  
+  const flushParagraph = () => {
+    if (currentParagraph.length > 0) {
+      const text = currentParagraph.join(' ').trim();
+      if (text) {
+        htmlParts.push(`<p>${text}</p>`);
+      }
+      currentParagraph = [];
+    }
+  };
+  
+  const closeList = () => {
+    if (inList) {
+      htmlParts.push(`</${listType}>`);
+      inList = false;
+    }
+  };
   
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i].trim();
+    
+    // Linha vazia - finaliza parágrafo atual
     if (!line) {
-      if (inList) {
-        html += '</ul>\n';
-        inList = false;
+      flushParagraph();
+      closeList();
+      continue;
+    }
+    
+    // Ignora linhas de cabeçalho do curso
+    if (line.match(/^CURSO SUPERIOR/i) || line.match(/^DISCIPLINA:/i)) {
+      continue;
+    }
+    
+    // Títulos principais (CONCEITO GERAL, INTRODUÇÃO, etc.)
+    if (line.match(/^(CONCEITO GERAL|INTRODUÇÃO|CONCLUSÃO|CONSIDERAÇÕES FINAIS)/i)) {
+      flushParagraph();
+      closeList();
+      htmlParts.push(`<h1>${capitalizeTitle(line)}</h1>`);
+      continue;
+    }
+    
+    // Títulos em maiúsculas (mais de 10 caracteres, sem pontuação)
+    if (line.match(/^[A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇÑ\s]{10,}$/) && !line.includes('.') && line.length < 80) {
+      flushParagraph();
+      closeList();
+      htmlParts.push(`<h2>${capitalizeTitle(line)}</h2>`);
+      continue;
+    }
+    
+    // Títulos com números romanos (I., II., III., etc.)
+    if (line.match(/^[IVXLC]+[\.\-\)]\s+/i)) {
+      flushParagraph();
+      closeList();
+      const content = line.replace(/^[IVXLC]+[\.\-\)]\s+/i, '');
+      htmlParts.push(`<h3>${capitalizeTitle(content)}</h3>`);
+      continue;
+    }
+    
+    // Títulos numerados (1., 2., 1-, etc.) - curtos
+    if (line.match(/^\d+[\.\-\)]\s+/) && line.length < 80 && !line.match(/^\d+[\.\-\)]\s+[a-z]/)) {
+      flushParagraph();
+      closeList();
+      const content = line.replace(/^\d+[\.\-\)]\s+/, '');
+      htmlParts.push(`<h4>${content}</h4>`);
+      continue;
+    }
+    
+    // Itens de lista ordenada (1. algo, 2. algo)
+    if (line.match(/^\d+[\.\)]\s+/) && line.length > 20) {
+      flushParagraph();
+      if (!inList || listType !== 'ol') {
+        closeList();
+        htmlParts.push('<ol>');
+        inList = true;
+        listType = 'ol';
       }
+      const content = line.replace(/^\d+[\.\)]\s+/, '');
+      htmlParts.push(`<li>${content}</li>`);
       continue;
     }
     
-    // Títulos principais (linhas em maiúsculas)
-    if (line.match(/^[A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇ\s]{15,}$/) && !line.includes('  ')) {
-      if (inList) { html += '</ul>\n'; inList = false; }
-      html += `<h2>${line}</h2>\n`;
+    // Itens de lista com letras (a), b), c)) ou traços/bullets
+    if (line.match(/^[a-z]\)\s+/i) || line.match(/^[\-•►▸◆]\s+/)) {
+      flushParagraph();
+      if (!inList || listType !== 'ul') {
+        closeList();
+        htmlParts.push('<ul>');
+        inList = true;
+        listType = 'ul';
+      }
+      const content = line.replace(/^[a-z]\)\s+|^[\-•►▸◆]\s+/i, '');
+      htmlParts.push(`<li>${content}</li>`);
       continue;
     }
     
-    // Títulos com números romanos
-    if (line.match(/^[IVX]+[\.\-]\s/)) {
-      if (inList) { html += '</ul>\n'; inList = false; }
-      html += `<h3>${line}</h3>\n`;
+    // Versículos bíblicos (Gn 1:1, João 3.16, etc.)
+    const bibleRefPattern = /([1-3]?\s?[A-ZÁ][a-záéíóúâêôã]+\.?\s+\d+[:\.\,]\d+(?:\-\d+)?)/;
+    if (line.match(bibleRefPattern) && line.length < 300) {
+      flushParagraph();
+      closeList();
+      htmlParts.push(`<blockquote>${formatBibleVerse(line)}</blockquote>`);
       continue;
     }
     
-    // Títulos numerados
-    if (line.match(/^\d+[\.\)]\s/) && line.length < 100) {
-      if (inList) { html += '</ul>\n'; inList = false; }
-      html += `<h4>${line}</h4>\n`;
+    // Linha que parece citação (começa com aspas ou é curta e entre aspas)
+    if ((line.startsWith('"') || line.startsWith('"') || line.startsWith("'")) && line.length < 200) {
+      flushParagraph();
+      closeList();
+      htmlParts.push(`<blockquote>${line}</blockquote>`);
       continue;
     }
     
-    // Itens de lista com letras ou traços
-    if (line.match(/^[a-z]\)\s/) || line.match(/^[\-•]\s/)) {
-      if (!inList) { html += '<ul>\n'; inList = true; }
-      html += `<li>${line.replace(/^[a-z]\)\s|^[\-•]\s/, '')}</li>\n`;
-      continue;
-    }
+    // Caso contrário, adiciona ao parágrafo atual
+    closeList();
+    currentParagraph.push(line);
     
-    // Versículos bíblicos (formato "Livro capítulo:versículo")
-    if (line.match(/\([A-Z][a-z]+\s\d+[\.:]\d+.*\)/) || line.match(/[A-Z][a-z]+\s\d+[\.:]\d+/)) {
-      html += `<blockquote>${line}</blockquote>\n`;
-      continue;
+    // Se a linha termina com ponto, fecha o parágrafo
+    if (line.match(/[.!?]$/)) {
+      flushParagraph();
     }
-    
-    // Parágrafos normais
-    if (inList) { html += '</ul>\n'; inList = false; }
-    html += `<p>${line}</p>\n`;
   }
   
-  if (inList) html += '</ul>\n';
+  flushParagraph();
+  closeList();
   
-  return html;
+  return htmlParts.join('\n');
+}
+
+// Capitaliza título (primeira letra de cada palavra importante)
+function capitalizeTitle(text: string): string {
+  const lowerWords = ['de', 'da', 'do', 'das', 'dos', 'e', 'a', 'o', 'as', 'os', 'em', 'no', 'na', 'nos', 'nas', 'para', 'com', 'por', 'que'];
+  return text.toLowerCase().split(' ').map((word, index) => {
+    if (index === 0 || !lowerWords.includes(word)) {
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    }
+    return word;
+  }).join(' ');
+}
+
+// Formata versículo bíblico destacando a referência
+function formatBibleVerse(text: string): string {
+  const refPattern = /([1-3]?\s?[A-ZÁ][a-záéíóúâêôã]+\.?\s+\d+[:\.\,]\d+(?:\-\d+)?)/g;
+  return text.replace(refPattern, '<strong>$1</strong>');
 }
 
 export default function AdminMaterialsPage() {
