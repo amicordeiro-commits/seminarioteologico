@@ -95,71 +95,214 @@ const BOOK_NAME_TO_ABBREV: Record<string, string> = {
   'apocalipse': 'ap',
 };
 
-// Keywords that indicate a comment is from Exodus, not Genesis
-const EXODUS_KEYWORDS = [
-  'faraó', 'israelitas', 'escravos', 'escravidão', 'egípcios', 'hebreus', 
-  'parteiras', 'moisés', 'arão', 'pragas', 'êxodo', 'pitom', 'ramessés',
-  'egito a convite', 'filhos de israel', 'gósen'
+// Book-specific keywords that should ONLY appear in those books
+const BOOK_EXCLUSIVE_KEYWORDS: Record<string, string[]> = {
+  // Pentateuco
+  'gn': ['criação', 'adão', 'eva', 'éden', 'caim', 'abel', 'noé', 'dilúvio', 'babel', 'abraão', 'isaque', 'jacó', 'josé do egito'],
+  'ex': ['faraó', 'pragas', 'moisés menino', 'sarça ardente', 'páscoa', 'travessia do mar', 'maná', 'sinai', 'tabernáculo', 'êxodo'],
+  'lv': ['sacrifício', 'holocausto', 'oferta', 'sacerdote', 'levita', 'purificação', 'impuro', 'lepra'],
+  'nm': ['censo', 'recenseamento', 'deserto', 'peregrinação', 'balaão'],
+  'dt': ['segunda lei', 'recapitulação'],
+  
+  // Históricos
+  'js': ['jericó', 'conquista de canaã', 'josué'],
+  'jz': ['juízes de israel', 'gideão', 'sansão', 'débora'],
+  'rt': ['rute', 'noemi', 'boaz', 'moabita'],
+  '1sm': ['samuel', 'saul rei', 'davi jovem', 'golias'],
+  '2sm': ['davi rei', 'bate-seba', 'absalão'],
+  '1rs': ['salomão', 'templo de salomão', 'elias'],
+  '2rs': ['eliseu', 'queda de israel', 'cativeiro'],
+  
+  // Poéticos
+  'sl': ['salmo', 'louvai', 'senhor é meu pastor'],
+  'pv': ['provérbio', 'sabedoria', 'tolo', 'prudente'],
+  'ec': ['vaidade', 'debaixo do sol', 'pregador'],
+  'ct': ['amada', 'amado', 'sulamita'],
+  'jó': ['jó', 'satanás', 'sofrimento de jó'],
+  
+  // Profetas Maiores
+  'is': ['isaías profeta', 'emanuel', 'servo sofredor'],
+  'jr': ['jeremias profeta', 'lamentações de jeremias'],
+  'lm': ['lamentação', 'jerusalém destruída'],
+  'ez': ['ezequiel', 'visão do vale', 'ossos secos'],
+  'dn': ['daniel', 'nabucodonosor', 'cova dos leões', 'sonho de daniel'],
+  
+  // Profetas Menores
+  'os': ['oséias', 'gômer'],
+  'jl': ['joel profeta', 'gafanhotos'],
+  'am': ['amós profeta', 'pastor de tecoa'],
+  'ob': ['obadias', 'edom'],
+  'jn': ['jonas', 'nínive', 'grande peixe'],
+  'mq': ['miquéias profeta'],
+  'na': ['naum', 'queda de nínive'],
+  'hc': ['habacuque'],
+  'sf': ['sofonias'],
+  'ag': ['ageu', 'reconstrução do templo'],
+  'zc': ['zacarias profeta'],
+  'ml': ['malaquias', 'dízimos e ofertas'],
+  
+  // Evangelhos
+  'mt': ['mateus', 'sermão do monte', 'genealogia de jesus'],
+  'mc': ['marcos evangelista'],
+  'lc': ['lucas', 'bom samaritano', 'filho pródigo'],
+  'joao': ['joão evangelista', 'verbo se fez carne', 'lázaro ressuscitado'],
+  
+  // Atos e Cartas
+  'at': ['pentecostes', 'paulo convertido', 'viagens missionárias'],
+  'rm': ['romanos', 'justificação pela fé'],
+  '1co': ['coríntios', 'dons espirituais', 'corpo de cristo'],
+  '2co': ['coríntios'],
+  'gl': ['gálatas', 'lei e graça'],
+  'ef': ['efésios', 'armadura de deus'],
+  'fp': ['filipenses', 'alegria'],
+  'cl': ['colossenses'],
+  '1ts': ['tessalonicenses', 'volta de cristo'],
+  '2ts': ['tessalonicenses'],
+  '1tm': ['timóteo'],
+  '2tm': ['timóteo'],
+  'tt': ['tito'],
+  'fm': ['filemom', 'onésimo'],
+  'hb': ['hebreus', 'melquisedeque', 'herois da fé'],
+  'tg': ['tiago', 'fé e obras'],
+  '1pe': ['pedro'],
+  '2pe': ['pedro'],
+  '1jo': ['anticristo'],
+  '2jo': [],
+  '3jo': [],
+  'jd': ['judas'],
+  'ap': ['apocalipse', 'revelação', 'sete igrejas', 'dragão', 'besta', 'nova jerusalém'],
+};
+
+// Keywords that indicate Exodus content (common misplacement)
+const EXODUS_INDICATORS = [
+  'faraó', 'parteiras', 'escravos do egito', 'pitom', 'ramessés', 'moisés arão',
+  'pragas do egito', 'primogênitos', 'travessia do mar vermelho', 'êxodo dos hebreus'
 ];
 
-// Keywords that are valid for Genesis creation narrative (chapters 1-2)
-const GENESIS_CREATION_KEYWORDS = [
-  'criação', 'criou', 'deus criou', 'céus e a terra', 'luz', 'trevas',
-  'expansão', 'águas', 'terra seca', 'vegetação', 'sol', 'lua', 'estrelas',
-  'peixes', 'aves', 'animais', 'homem', 'mulher', 'imagem', 'semelhança',
-  'adão', 'eva', 'jardim', 'éden', 'universo', 'mundo'
+// Keywords for NT that shouldn't appear in OT books
+const NT_ONLY_KEYWORDS = [
+  'jesus cristo', 'crucificação', 'ressurreição de jesus', 'igreja primitiva',
+  'apóstolo paulo', 'evangelho de', 'carta aos'
 ];
 
-// Check if a comment belongs to the book based on content analysis
-function isValidCommentForBook(bookName: string, chapter: number, comment: string): boolean {
+// Check if comment is corrupted/garbled
+function isCorruptedText(comment: string): boolean {
+  // Too many special characters
+  const weirdChars = (comment.match(/[­\/\^\|<>«»°§]/g) || []).length;
+  if (weirdChars > 5) return true;
+  
+  // Too many broken words (OCR artifacts)
+  const brokenWords = (comment.match(/[a-záéíóúãõâêô]\s{1,2}[a-záéíóúãõâêô]/gi) || []).length;
+  if (brokenWords > 10) return true;
+  
+  // Mostly reference numbers (not actual content)
+  const refPattern = /^[\d\s:;,.\-a-zA-Z]+$/;
+  if (refPattern.test(comment) && comment.length < 200) {
+    const wordCount = comment.split(/\s+/).filter(w => w.length > 4).length;
+    if (wordCount < 5) return true;
+  }
+  
+  // Starts with random fragments
+  if (comment.match(/^[,.:;)\]]/)) return true;
+  
+  return false;
+}
+
+// Get the book category for context-based filtering
+function getBookCategory(abbrev: string): string {
+  const pentateuch = ['gn', 'ex', 'lv', 'nm', 'dt'];
+  const historical = ['js', 'jz', 'rt', '1sm', '2sm', '1rs', '2rs', '1cr', '2cr', 'ed', 'ne', 'et'];
+  const poetic = ['jo', 'sl', 'pv', 'ec', 'ct'];
+  const majorProphets = ['is', 'jr', 'lm', 'ez', 'dn'];
+  const minorProphets = ['os', 'jl', 'am', 'ob', 'jn', 'mq', 'na', 'hc', 'sf', 'ag', 'zc', 'ml'];
+  const gospels = ['mt', 'mc', 'lc', 'jo'];
+  const acts = ['at'];
+  const pauline = ['rm', '1co', '2co', 'gl', 'ef', 'fp', 'cl', '1ts', '2ts', '1tm', '2tm', 'tt', 'fm'];
+  const general = ['hb', 'tg', '1pe', '2pe', '1jo', '2jo', '3jo', 'jd'];
+  const apocalyptic = ['ap'];
+  
+  if (pentateuch.includes(abbrev)) return 'pentateuch';
+  if (historical.includes(abbrev)) return 'historical';
+  if (poetic.includes(abbrev)) return 'poetic';
+  if (majorProphets.includes(abbrev)) return 'majorProphets';
+  if (minorProphets.includes(abbrev)) return 'minorProphets';
+  if (gospels.includes(abbrev)) return 'gospels';
+  if (acts.includes(abbrev)) return 'acts';
+  if (pauline.includes(abbrev)) return 'pauline';
+  if (general.includes(abbrev)) return 'general';
+  if (apocalyptic.includes(abbrev)) return 'apocalyptic';
+  return 'unknown';
+}
+
+// Check if comment likely belongs to a different book
+function detectMisplacedContent(bookAbbrev: string, chapter: number, comment: string): boolean {
   const lowerComment = comment.toLowerCase();
-  const lowerBook = bookName.toLowerCase();
+  const category = getBookCategory(bookAbbrev);
   
-  // For Genesis chapters 1-11 (primordial history), filter out Exodus content
-  if (lowerBook.includes('gên') || lowerBook.includes('gen')) {
-    // Check if comment contains Exodus-specific keywords
-    const hasExodusContent = EXODUS_KEYWORDS.some(keyword => 
-      lowerComment.includes(keyword.toLowerCase())
-    );
-    
-    // For creation narrative (chapters 1-2), be stricter
-    if (chapter <= 2) {
-      // If it has Exodus keywords but no creation keywords, reject
-      if (hasExodusContent) {
-        const hasCreationContent = GENESIS_CREATION_KEYWORDS.some(keyword =>
-          lowerComment.includes(keyword.toLowerCase())
-        );
-        if (!hasCreationContent) {
-          return false;
-        }
+  // Check for Exodus content in non-Exodus books
+  if (bookAbbrev !== 'ex') {
+    const hasExodusIndicators = EXODUS_INDICATORS.some(kw => lowerComment.includes(kw));
+    if (hasExodusIndicators) {
+      // Allow if it's a cross-reference context
+      if (!lowerComment.includes('ver êx') && !lowerComment.includes('êxodo') && !lowerComment.includes('ex ')) {
+        return true;
       }
     }
+  }
+  
+  // Check for NT content in OT books
+  const isOT = ['pentateuch', 'historical', 'poetic', 'majorProphets', 'minorProphets'].includes(category);
+  if (isOT) {
+    const hasNTContent = NT_ONLY_KEYWORDS.some(kw => lowerComment.includes(kw));
+    if (hasNTContent && !lowerComment.includes('profecia') && !lowerComment.includes('cumprimento')) {
+      return true;
+    }
+  }
+  
+  // Check for specific book content in wrong books
+  for (const [otherBook, keywords] of Object.entries(BOOK_EXCLUSIVE_KEYWORDS)) {
+    if (otherBook === bookAbbrev) continue;
     
-    // For chapters 1-11, reject pure Exodus content
-    if (chapter <= 11 && hasExodusContent) {
-      // Check if it's a cross-reference or genuinely about patriarchs
-      const mentionsPatriarchs = lowerComment.includes('abraão') || 
-        lowerComment.includes('isaque') || lowerComment.includes('jacó') ||
-        lowerComment.includes('noé') || lowerComment.includes('caim') ||
-        lowerComment.includes('abel') || lowerComment.includes('adão');
+    // Check if comment has exclusive keywords from another book
+    const matchCount = keywords.filter(kw => lowerComment.includes(kw)).length;
+    
+    // If 2+ exclusive keywords from another book, likely misplaced
+    if (matchCount >= 2) {
+      // Check if our book also has matching keywords
+      const ourKeywords = BOOK_EXCLUSIVE_KEYWORDS[bookAbbrev] || [];
+      const ourMatchCount = ourKeywords.filter(kw => lowerComment.includes(kw)).length;
       
-      if (!mentionsPatriarchs && !lowerComment.includes('gn ') && !lowerComment.includes('gên')) {
-        return false;
+      if (matchCount > ourMatchCount) {
+        return true;
       }
     }
   }
   
-  // Filter out comments that are just reference lists (no actual content)
-  if (comment.match(/^[A-Za-z0-9\s:;,.\-']+$/) && comment.length < 200) {
-    const hasActualWords = comment.split(/\s+/).filter(w => w.length > 5).length > 3;
-    if (!hasActualWords) {
-      return false;
+  // Special case: Genesis chapters 1-11 (primordial history)
+  if (bookAbbrev === 'gn' && chapter <= 11) {
+    const exodusContent = ['escravos', 'faraó ordenou', 'parteiras', 'pitom', 'hebreus no egito'];
+    if (exodusContent.some(kw => lowerComment.includes(kw))) {
+      return true;
     }
   }
   
-  // Filter out corrupted/garbled text
-  const weirdCharCount = (comment.match(/[­\/\^\|<>]/g) || []).length;
-  if (weirdCharCount > 5) {
+  return false;
+}
+
+// Main validation function
+function isValidCommentForBook(bookName: string, bookAbbrev: string, chapter: number, comment: string): boolean {
+  // Filter corrupted text
+  if (isCorruptedText(comment)) {
+    return false;
+  }
+  
+  // Minimum length check
+  if (comment.trim().length < 30) {
+    return false;
+  }
+  
+  // Filter misplaced content
+  if (detectMisplacedContent(bookAbbrev, chapter, comment)) {
     return false;
   }
   
@@ -176,8 +319,8 @@ let isLoading = false;
 function buildIndex(data: StudyBibleData): CommentsIndex {
   const index: CommentsIndex = new Map();
   let filteredCount = 0;
+  let totalCount = 0;
   
-  // Process both testaments
   const testamentos = data.testamentos;
   
   for (const testamento of Object.values(testamentos)) {
@@ -193,10 +336,11 @@ function buildIndex(data: StudyBibleData): CommentsIndex {
       if (!bookData.estudos) continue;
       
       for (const estudo of bookData.estudos) {
-        if (!estudo.comentario || estudo.comentario.trim().length < 20) continue;
+        totalCount++;
+        if (!estudo.comentario) continue;
         
-        // Validate that comment belongs to this book
-        if (!isValidCommentForBook(bookName, estudo.capitulo, estudo.comentario)) {
+        // Validate comment belongs to this book
+        if (!isValidCommentForBook(bookName, abbrev, estudo.capitulo, estudo.comentario)) {
           filteredCount++;
           continue;
         }
@@ -209,7 +353,7 @@ function buildIndex(data: StudyBibleData): CommentsIndex {
     }
   }
   
-  console.log(`Built study comments index with ${index.size} entries (filtered ${filteredCount} misplaced comments)`);
+  console.log(`📚 Study comments: ${index.size} entries loaded, ${filteredCount}/${totalCount} filtered out`);
   return index;
 }
 
