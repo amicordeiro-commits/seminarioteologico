@@ -1,0 +1,2139 @@
+SUMÁRIO
+
+1 -  HERMENÊUTICA – GENERALIDADES                        2
+
+2 -  HISTÓRIA DA INTERPRETAÇÃO BÍBLICA                     3
+
+2.1.  HERMENÊUTICA ENTRE OS JUDEUS                             3
+
+2.2.  HERMENÊUTICA CRISTÃ                                    7
+
+2.3.  PERÍODO PATRÍSTICO                                     9
+
+2.4.  OS PAIS LATINOS                                       12
+
+2.5.  PERÍODO MEDIEVAL                                     13
+
+2.6.  PERÍODO RENASCENTISTA                                  14
+
+2.7.  PERÍODO MODERNO                                     16
+
+2.8.  A HERMENÊUTICA PÓS-MODERNA                             17
+
+3 -  PRINCÍPIOS DE INTERPRETAÇÃO DA BÍBLIA                   21
+
+3.1.  PRINCÍPIO DA CRENÇA NA AUTORIDADE DAS ESCRITURAS                 21
+
+3.2.  PRINCÍPIO DO SENTIDO USUAL E ORDINÁRIO DAS PALAVRAS                22
+
+3.3.  PRINCÍPIO DA ANÁLISE À LUZ DO CONTEXTO                        22
+
+3.4.  PRINCÍPIO DO DESÍGNIO                                   22
+
+3.5.  PRINCÍPIO DAS PASSAGENS PARALELAS                           22
+
+3.6.  PRINCÍPIO DA ANÁLISE EXPERIENCIAL À LUZ DAS ESCRITURAS               23
+
+4 -  PARTES BÁSICAS DA HERMENÊUTICA BÍBLICA                 23
+
+4.1.  NOEMÁTICA                                         23
+
+4.2.  HEURÍSTICA                                         29
+
+4.3.  PROFORÍSTICA                                        30
+
+5 -  DESAFIOS DA HERMENÊUTICA PARA OS NOSSOS DIAS             31
+
+
+HERMENÊUTICA BÍBLICA - 2
+
+1 -  HERMENÊUTICA – GENERALIDADES
+
+A palavra “Hermenêutica” vem do termo grego “hermeneúo” que significa “interpretar”.
+A Hermenêutica é a disciplina que ensina as regras para interpretar um livro, um texto, e,
+nesse caso especial, o texto bíblico. Em uma outra definição, J. Severino Croatto diz que “
+Hermenêutica é a ciência da compreensão do sentido que o homem traz para sua vida
+prática interpretando a mesma através da palavra, de um texto ou de outras práticas... Toda
+ação humana se converte em sinal que precisa ser decodificado; com maior razão se é o
+próprio Deus quem confere um sentido aos acontecimentos.” Para Paul Ricoeur “ A
+hermenêutica é a teoria das operações de compreensão em sua relação com a interpretação
+dos textos.”
+
+A Hermenêutica abarca, de forma especial, as regras de interpretação que procedem
+do estudo das características da linguagem humana em geral e de toda a classe de escritos
+humanos, tanto profanos quanto sagrados. Toda linguagem humana tem seu próprio gênio
+e idiossincrasias que não conseguem ser definidos em uma tradução literal para outra
+língua. São modismos, provérbios, idiotismos, peculiaridades gramaticais, referências a
+costumes locais, os quais poderiam causar problemas de interpretação para aqueles que
+procuram entender o significado original que o autor quis comunicar, lendo agora em outro
+idioma. O problema aumenta com relação aos textos bíblicos, visto que o tempo que nos
+separa dos escritos originais é grande e só há algumas décadas é que os judeus
+recuperaram seu idioma a nível nacional com a instalação do novo Estado de Israel. Assim,
+por muitos séculos o hebraico foi uma língua morta, embora preservada nos círculos
+rabínicos graças ao desenvolvimento do texto massorético. Isto torna as ferramentas da
+hermenêutica ainda mais importantes e necessárias. Ainda sobre essa vertente, Paul
+Ricoeur identificou três necessidades do estudo hermenêutico, salientando assim a sua
+importância:
+
+• A palavra que em princípio foi “pregada”, “falada” e, desde então,
+enquadrada em formas conceptuais, se transformou, por sua vez, em letra,
+texto, o que limita-se agora ao processo de canonização. Os cristãos
+possuem então não um testamento, mas dois testamentos para interpretar.
+O desafio agora é o do retorno à “palavra” que está antes do texto.
+
+• Existe uma distância cultural (já abordada acima) entre a época das
+escrituras e a nossa época. Uma das funções da hermenêutica consiste em
+vencer essa distância cultural para permitir a manifestação na cultura
+presente daquilo que foi dito em outra cultura e que não é mais do nosso
+tempo.
+
+• Depois da influência do Racionalismo e do movimento de crítica bíblica o
+que ficou do texto bíblico foi um sentido de profano ou de um texto
+qualquer. Entretanto, para o cristão a Bíblia tem um valor particular e o
+desafio do pós-modernismo é o de compreender e aplicar aquilo que se
+constitui em “proclamação” a partir de um texto que teve suas passagens
+dissecadas através do método crítico.
+
+Acrescente-se a isto o fato de que os dias hodiernos apresentam como característica a
+proliferação de “teologias” de pouca profundidade, nas quais o texto bíblico deixa de ser o
+ponto  de  partida  e  se  torna  um  mero  instrumento  de  confirmação  de  idéias
+preestabelecidas, gerando uma distorção da mensagem do texto pelo desprezo ao contexto.
+As partes básicas da Hermenêutica (No cap.IV, estudaremos mais detidamente cada uma
+destas partes) são:
+
+• Noemática (do grego noema, “ pensamento”, “sentido”) – constitui-se no
+estudo dos diversos significados com que o pensamento bíblico é expresso;
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+HERMENÊUTICA BÍBLICA - 3
+
+• Heurística (do grego heurisko, “achar”, “encontrar”) – é a parte que estuda
+as ferramentas que serão utilizadas para o encontro dos diversos
+significados da escritura;
+
+• Proforística (do latim profero, “tirar”, “apresentar”) – é o modo de expor os
+significados contidos na Bíblia.
+
+Filosoficamente, a Hermenêutica se desenvolveu a partir de três momentos: A
+compreensão (subtilitas intelligendi), a interpretação (subtilitas explicandi) e a aplicação
+(subtilitas applicandi). A expressão “subtilitas” denota que se trata muito mais de um saber
+fazer (know how) que de um método propriamente, o que demandaria não apenas um
+conhecimento teórico, mas também uma habilidade especial.
+
+Embora estes três conceitos tenham surgido e se desenvolvido progressivamente, hoje
+são vistos como complementares, estando claro que os dois primeiros são interativos e
+interdependentes. De acordo com Gadamer: “A interpretação não é um ato complementar e
+posterior à compreensão, mas compreender é sempre interpretar e, consequentemente, a
+interpretação é a forma explícita da compreensão”. Embora distinta destes dois elementos, a
+aplicação é vista hoje como tão imprescindível à Hermenêutica quanto a interpretação e a
+compreensão. Isto adquire significado ainda maior quando se refere ao estudo das
+Escrituras onde, muito mais do que um documento a ser dissecado, encontramos uma
+mensagem a ser transmitida.
+
+É importante também que se faça a distinção entre Hermenêutica e Exegese:
+Enquanto a primeira é uma ciência que, conforme já foi visto, inclui todo o processo que vai
+da leitura à aplicação, a exegese consiste na utilização prática de ferramentas da
+Hermenêutica para o resgate do mundo original do texto. Segundo Croatto, “ ...a exegese
+
+...procura identificar o sentido do texto, perquirindo o que há ‘por trás’ ( autor, tradições,
+figuras literárias anteriores ), enquanto que a hermenêutica soma a compreensão do sentido
+que está ‘adiante’ do texto”.5
+
+A partir de então, deve-se examinar a história da interpretação bíblica a partir dos
+primórdios do rabinismo. Para tanto, deve-se levar em consideração raízes históricas
+fundamentais encontradas em Platão e em Heráclito. O primeiro, cerca de 428 AC, em
+Atenas, partiu do conceito de “Mundo das Idéias”, a partir do qual elaborou o conceito de
+símbolo e mito. Verdades espirituais eram representadas por alegorias, figuras muito
+utilizadas também no texto sagrado. Heráclito de Éfeso, entre 540 e 480 AC, estabeleceu o
+conceito de “huponóia” (sentido mais profundo), cujo objetivo inicial era abordar as obras de
+Homero, fugindo das implicações óbvias de se interpretar literalmente o que ele escreveu
+acerca dos deuses gregos (A Odisséia; Ilíada). Observa-se então que a preocupação
+hermenêutica é antiga. Veremos então como essas raízes históricas encontram eco nos
+caminhos percorridos pelas hermenêuticas judaica e cristã.
+
+2 -  HISTÓRIA DA INTERPRETAÇÃO
+BÍBLICA
+
+2.1.  Hermenêutica Entre os Judeus
+
+Provavelmente, um dos primeiros empreendimentos do uso da Hermenêutica entre os
+judeus venha da época de Esdras, conforme lido em Ne.8:1-8, onde consta uma menção
+especial à leitura da Torah nunca dantes vista entre os judeus. Deve-se levar em
+consideração que a extrema preocupação com a leitura da Torah deu-se após ou a partir do
+exílio  babilônico,  por  conta  do  sentimento  de  culpa  nutrido  pelos  movimentos
+deuteronomista e sacerdotal, levando assim à mente da comunidade que o exílio era o
+castigo de Javé ao povo desobediente à sua Palavra. A idéia de reunir pessoas em grupos
+nesse período culminou mais tarde no projeto de sinagoga judaica (Ez.3:15;8:1;14:1;20:1).
+
+Júlio Trebolle Barrera levanta alguns fatores que contribuíram para o nascimento e
+desenvolvimento da interpretação bíblica no judaísmo a partir das épocas persa e
+helenística6. Em primeiro lugar ressalta que o desenvolvimento do cânon hebraico (Tanach)
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+HERMENÊUTICA BÍBLICA - 4
+
+exigiu que os escritos mais tardios (literaturas sapiencial, apocalíptica e apócrifa)
+representassem uma espécie de interpretação e de reescritura de textos e tradições de
+épocas anteriores. Aliás, isso já era uma prática dentro do próprio texto canônico (comparar
+
+o Decálogo em Ex.20, Dt.5 e Jr.17:21-22; ver também a promessa incondicional a Davi que
+
+o seu reino será eterno em II Sm.7:12-16 e I Rs.2:1-9, verificando-se como diferencial o
+cumprimento da Torah). Em segundo lugar, para manter vigentes as leis e instituições do
+povo judeu e para manter a própria identidade e esperança nas difíceis situações de cada
+época, era necessária uma releitura e uma nova compreensão dos velhos textos legais e das
+tradições históricas de Israel. Por fim, a necessidade de traduzir os textos sagrados
+hebraicos para a língua aramaica falada na Palestina e na diáspora judaica oriental e
+também para o grego, falado por muitos judeus na diáspora ocidental, obrigava a um grande
+esforço de interpretação ou de atualização dos textos hebraicos.
+
+Continuando nesse processo histórico, no século III AC aparece a Septuaginta (LXX),
+primeira tradução escrita do AT, que tem sido também considerada uma obra de caráter
+interpretativo do mesmo. Justamente por conta desse aspecto tem sido objeto de diversas
+críticas, sendo que as mais freqüentes apontam para a helenização do texto hebraico.
+Barrera aponta a tradução de Gn.1:2 “deserto e vazio”, helenizado para “invisível e
+desorganizado”.
+
+Já Hans W.Wolff, em sua Antropologia do AT, aponta que a LXX descaracterizou o
+sentido de alguns termos designadores da antropologia judaica tais como “Nephesh” (“goela”
+traduzida por “alma”) e “Ruach” (“vento”, traduzido por “espírito”), dando um outro sentido
+ao leitor moderno que encontra os termos helenizados nas traduções atuais que seguem o
+texto da LXX 8. Outro fator é o da eliminação de antropomorfismos e antropopatismos. Por
+exemplo, em Dt.32:10, falando da relação entre Javé e seu povo, o texto hebraico oferece a
+expressão: “como a menina dos seus olhos”, enquanto que a versão grega omite o pronome
+“seus” (“...como a menina de um olho” ).
+
+Se na LXX a interpretação helenística estava embutida na tradução, nos Targumim a
+interpretação se localizava na fronteira entre a tradução e o comentário. Em estudos
+introdutórios já foi visto que o Targum evoluiu com a diminuição do uso do hebraico como
+língua corrente e a necessidade de se traduzir o texto nas sinagogas para o dialeto aramaico
+da região. Acontece que o Targum é um jogo entre tradução e interpretação que pode
+acontecer de duas formas: parafraseando uma tradução literal ou convertendo a própria
+tradução numa paráfrase verdadeira. A primeira forma é a mais primitiva e corresponde à
+fase oral dos Targumim (tradução-comentário); a segunda corresponde ao período de
+escritura quando apareceram Targumim famosos tais como o “ONKELOS” e o “NEOPHYTI”.
+Abaixo, um exemplo de paráfrase extraído do Targum “NEOPHYTI”:
+
+• Gn.3:15 : “Inimizade colocarei entre ti e a mulher, entre tua prole e a dela, e
+ocorrerá que quando os seus filhos guardarem a Torah e colocarem em
+prática os mandamentos, eles apontarão, esmagarão a cabeça e te matarão;
+quando, porém, abandonarem os mandamentos da Torah, tu apontarás e
+ferirás seu calcanhar e o farás adoecer; somente o filho dela terá cura e tu,
+serpente, não terás remédio, pois eles estarão prontos a reconciliar-se no
+futuro, no dia do Rei Messias”.
+
+Provavelmente, os intérpretes já enfrentavam problemas tais como a explicação de
+termos difíceis, a necessidade de eliminação de antropomorfismos, a atualização de termos
+relativos a lugares, povos e instituições, entre outras dificuldades. A isso soma-se o próprio
+desenvolvimento teológico influenciando a tradução, como foi visto na paráfrase de Gênesis
+acima transcrita, onde o fator determinante é a preocupação com a observância da Torah.
+
+A. Hermenêutica Judaico-helenística. A interpretação utilizada pelos judeus da
+diáspora difere bastante daquela utilizada pelos judeus palestinos, cuja interpretação era
+centrada na prática da Torah. Para os judeus da diáspora helenística, o Pentateuco tinha se
+convertido num corpo legislativo, baseado numa determinada concepção da divindade mais
+próxima da razão filosófica do que da revelação do Sinai. Esta concepção divina é
+demonstrada através das freqüentes referências ao Logos e a conceitos tais como
+causalidade, destino, imortalidade, etc. Assim os mandamentos bíblicos capacitavam o
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+HERMENÊUTICA BÍBLICA - 5
+
+indivíduo para o triunfo sobre suas paixões, libertando a alma da escravidão do corpo,
+podendo assim prosseguir na busca da vida eterna no reino do imaterial. Por essa razão,
+alegorizava-se o Pentateuco, transformando-se o Deus bíblico em razão pura e
+transcendente, totalmente espiritual e livre de paixões ( daí a ausência de antropomorfismos
+e antropopatismos na LXX).
+
+Um outro fator determinante na hermenêutica judaico-helenística foi a influência do
+Gnosticismo. A salvação na história dá lugar à salvação pela gnose, obtida pela revelação
+sobrenatural dispensada unicamente aos iniciados. Os sinais externos e visíveis do
+judaísmo ( circuncisão, leis alimentares e higiênicas ) dão lugar à busca pelo conhecimento
+pleno e verdadeiro. Dois representantes desta tendência merecem destaque: Fílon de
+Alexandria e Flávio Josefo.
+
+Fílon, ao mesmo tempo exegeta e filósofo, se caracterizou pelo uso constante de
+alegorias para interpretar a Torah. Seus estudos eram centrados na lei de Moisés e na
+sabedoria, com uma adaptação da filosofia platônica, apresentando Moisés mais como um
+filósofo que como um legislador. Os temas por ele desenvolvidos são mais antropológicos,
+cosmológicos e psicológicos. Assim, o templo simboliza o mundo(DE ESPECIALIBUS
+LEGIDUS 1:66); as quatro cores das vestimentas do Sumo Sacerdote são símbolos dos
+quatro elementos naturais (DE VITA MOSIS 2:88); Adão é o símbolo da inteligência, Eva da
+sensibilidade, e os animais, das paixões (LEGUM ALLEGORIA 2:8-9, 24, 35–38). Um outro
+exemplo de interpretação alegórica é o texto da escada de Jacó (Gn.28:12), que significa
+para Fílon o ar suspenso entre o céu e terra e também a alma situada entre a sensibilidade
+e o intelecto. O fundamento filosófico para esta hermenêutica está no pensamento platônico,
+que reza que ninguém deve acreditar em algo que seja indigno de Deus. Assim, quando
+Fílon encontrava no texto bíblico algo que contrariava sua lógica recorria à interpretação
+alegórica para explicar o texto. Segundo Battista Mondim, Fílon foi o primeiro a procurar
+uma síntese entre as Escrituras e Platão.
+
+Flávio Josefo é conhecido como historiador judeu no primeiro século d.C. e, apesar de
+receber esta designação, demonstra agir hermeneuticamente com relação aos textos
+bíblicos. Dentro de seu projeto de apresentar a história dos judeus ao público greco-romano
+a partir de uma retórica helenística, ele resume, sistematiza, amplia e dramatiza as
+narrações bíblicas. Por exemplo, no prólogo de “Antigüidades”, Josefo se aproxima de Fílon
+(OPIFICIO MUNDI) explicando o fato da narração sobre a criação preceder o relato da
+entrega da Torah: a ordem dos relatos tem por objetivo preparar a obediência daqueles que
+vão receber a Torah. Da mesma forma, Flávio Josefo e Fílon interpretam alegoricamente a
+tríplice divisão do Tabernáculo: terra, mar e céus.
+
+B. Hermenêutica Rabínica. Para uma compreensão mais adequada do rabinismo, é
+necessário conhecer primeiro os conceitos básicos da interpretação escriturística a partir do
+período persa:
+
+MIDRASH (comentário, investigação) – é a prática da exposição exegética das
+Escrituras, com finalidade homilética e hagádica. É a ponte que liga a escritura à literatura
+rabínica. Apresenta-se em três classes: Halakah, Hagadah e Pesher.
+
+HALAKAH (caminhar, guiar) – representa o desenvolvimento da legislação mosaica
+específica, contendo leis não existentes no texto canônico (ex: 39 tipos de trabalho e outras
+atividades cujo exercício era proibido no sábado). No próprio texto canônico temos um
+exemplo de Halakah na proibição do casamento de judeus com mulheres estrangeiras
+(Esdras capítulos 8 e 10). A Halakah pretenda governar todos os âmbitos da vida de um
+judeu, desde o amanhecer até o anoitecer, desde o nascimento até a morte. Deu origem ao
+legalismo judaico.
+
+HAGADAH (narração) – representa a tendência hermenêutica mais livre e edificante, a
+qual abrange todas as partes não legalistas da Escritura, caracterizando-se mais ilustrativa
+e menos exegética. Por meio de aperfeiçoamento das narrativas e profecias bíblicas,
+fomentava-se a fé e a esperança judaicas.
+
+PESHER (interpretação, comentário) – se propõe a atualizar os oráculos proféticos,
+ligando eventos ou personagens do passado a semelhantes eventos e personagens do
+presente, dando-lhes um sentido de cumprimento.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+HERMENÊUTICA BÍBLICA - 6
+
+MISHNAH (repetição) – constitui-se no resultado escrito da evolução da Halakah, ou
+seja, gerações de intérpretes identificados com os fariseus desde 150 AC desenvolveram leis
+orais codificando-as por volta de 180 DC . É a primeira coleção oficial de doutrina judaica
+pós bíblica de caráter predominantemente jurídico, constando de 73 tratados distribuídos
+em seis divisões, escritos em hebraico. Evoluiu para a GUEMARA.
+
+GUEMARA (complemento) – Por volta de 550 DC os rabinos elaboraram um
+comentário complementar à MISHNAH em aramaico como um tipo de suplemento em duas
+versões: a Guemara Palestinense e a Guemara Babilônica, esta última, a mais completa.
+
+TALMUD (doutrina, ensino) – O Talmud é o resultado final do desenvolvimento da
+MISHNAH e da GUEMARA, cujo trabalho ficou pronto por volta do final do século IV d.C. É
+toda uma síntese de tradições, leis bíblicas, comentários sobre a Torah, resultantes do
+processo hermenêutico iniciado pela MIDRASH.
+
+•  As Escolas de Hillel e Shammay – Através do conhecimento prévio da hermenêutica
+judaico-helenística dos conceitos básicos da hermenêutica rabínica, pode-se
+entender melhor as interpretações de Hillel e Shammay. Hillel, vindo da Babilônia e
+de uma cultura helenística no primeiro século a.C., deu pouco ou quase nenhum
+valor ao fervor apocalíptico e ao messianismo radical de caráter político
+desenvolvido entre os zelotas. Assim, todo o seu ensino vinha mais da dedução
+racional que da tradição, servindo-se do jogo de pergunta e resposta próprio do
+método socrático. Criou sete regras de interpretação, as quais dão ênfase ao estudo
+exegético das escrituras, deixando de lado a tradição oral. Dentre essas regras,
+destacam-se: uso do contexto, dedução do especial para o geral (implicações gerais
+deduzidas de uma passagem), inferência por analogia (palavras que têm
+significação idêntica poderão ser tratadas igualmente, mesmo que estejam ligadas a
+declarações muito diferentes), uso comparativo de outras passagens. Percebe-se,
+então, que Hillel tinha a preocupação sempre nova de atualizar a Torah para os
+judeus das diversas situações (diáspora, palestinos), o que lhe valeu a acusação de
+modificador da Torah e de criador de novas leis (Taqqanot). A sua forma de
+interpretação estava mais afinada com a Halakah, momento em que convertia usos
+e costumes próprios do seu relativismo, conferindo-lhes valor sagrado.
+
+•  Shammay, um outro importante rabino, mais fechado e conservador, e seguidor da
+tradição, demonstra, em determinados momentos, ser mais aberto e flexível que
+Hillel na interpretação da Torah. Não aceitando o influxo do contexto e das
+exigências da modernidade sobre o texto bíblico, demonstra, segundo A. Guttmann
+(citado por Barrera), a “preocupação em salvaguardar os princípios fundamentais e
+não tanto uma intransigência absoluta na aplicação prática da lei.”11 Por exemplo,
+na interpretação do texto de Dt.24:1, sobre o divórcio, o termo “coisa vergonhosa”,
+com relação à mulher como motivo fundamental para o divórcio significava para
+Hillel qualquer coisa que desagradasse ao marido (infidelidade, uma palavra mal
+dirigida, o encontro de uma mulher mais agradável, etc.) enquanto que para
+Shammay representava apenas a infidelidade conjugal.
+
+• Apesar das grandes discussões e acusações, o debate rabínico estava sempre
+inacabado e aberto a reconsiderações, correspondendo mais ao estilo dialógico, o
+que permitia que opiniões contrárias pudessem ser consideradas igualmente
+verdadeiras e dignas de inspiração. Talvez seja este o motivo por que a teologia
+judaica nunca tenha chegado a assumir o caráter de dogma, a não ser em
+momentos em que se viu na tarefa de defender-se de algumas ameaças tais como o
+Gnosticismo, momento em que fez afirmações sobre o monoteísmo e sobre a
+bondade da criação.
+
+• Judeus Caraítas – Caraítas ou “beni mikra” (filhos da leitura), oriundos do século
+IX d.C., cuja seita representa uma reação contra a influência do maometismo no
+rabinismo judeu e na tradição, defendendo a escritura como única autoridade em
+matéria de fé, aplicando nos seus estudos métodos de investigação gramatical e
+lexicográfica, chegando à produção de comentários escritos. Graças a isso, foram
+apelidados de “os protestantes dentre os judeus”. A palavra que os designa (
+caraítas ) vem do nome da cidade onde se originou o movimento: Qayrawan, no
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+HERMENÊUTICA BÍBLICA - 7
+
+Egito. Do ponto de vista hermenêutico são eles os que mais se aproximam dos
+essênios, defendendo o princípio da primazia da lei escrita, a ênfase na esperança
+messiânico-apocalíptica, e determinadas práticas, tais como: a celebração da festa
+de Pentecostes, a monogamia e rituais de sepultamento dentro da liturgia de
+Qumram. Provavelmente os caraítas descendem de uma ala conservadora dos
+saduceus, os zadoquitas. Estudos e descobertas arqueológicas recentes mostram
+que os zadoquitas também habitaram o mosteiro de Qumram. A reação dos rabinos
+ao movimento caraíta culminou na conclusão do texto massorético.
+
+•  Judeus Cabalistas – A palavra Qabbalah significa recepção e designa o conjunto de
+doutrinas judaicas de caráter esotérico, místico e mágico. O movimento teve sua
+origem na Espanha e na Alemanha por volta do século XIII, como uma reação
+contra a filosofia racionalista. Os cabalistas conferiam valor sobrenatural a cada
+palavra, letra ou mesmo sinal do texto massorético, fazendo combinações
+numéricas, superposições e substituições de letras e sinais, na busca de sentidos
+ocultos.
+
+2.2.  Hermenêutica Cristã
+
+Como ponto de partida para o estudo da hermenêutica cristã, deve-se levar em
+consideração que o cânon do AT ainda não se encontrava cristalizado quando os livros do
+NT estavam sendo escritos. De acordo com Barrera, os primeiros cristãos utilizaram os
+princípios e métodos da exegese judaica com uma única diferença: a leitura cristológica do
+AT. A seguir, algumas das características dessa leitura:
+
+A. Seleção temática de passagens do AT. Para desenvolver o tema “Cristo-Pedra” (I Pd
+2:6; Ef 2:20; Mt 21:42; At 4:11), a igreja editou os textos de Is 28:16; Sl 118:22 e Is 8:14.
+Essa técnica é denominada de “testimonia”. Essa prática não foi exclusiva da igreja cristã.
+Em Qumram há um manuscrito repleto desta prática (4QTest); um destes testimonia edita
+as passagens de Dt 5:28s; 18:18s; Nm 24:15s e Dt 33:8-11:
+
+“Um profeta suscitarei para eles do meio de seus irmãos, como a ti, e porei minhas
+palavras na sua boca. E ele lhes comunicará tudo o que eu lhe mandar. Eu mesmo pedirei
+contas a quem não escutar as palavras que ele pronunciar em meu nome. E pronunciou
+sua mensagem e disse: Oráculo de Balaão, filho de Peor, oráculo do homem de olhar
+penetrante, oráculo de quem ouve as palavras de Deus e conhece os pensamentos do
+altíssimo, que vê as visões do poderoso, cai em êxtase e tem os olhos abertos. Vejo-a mas
+não é agora, contemplo mas não está perto: uma estrela se levanta de Jacó e um cetro se
+eleva de Israel, quebra as têmporas de Moab e o crânio de todos os filhos de Set.”
+
+B. Perspectiva Escatológica. A redenção de Deus realiza-se na história, donde vem a
+idéia de que a geração presente se encontra às portas da consumação final dessa história de
+salvação iniciada e concluída por Jesus. Essa divisão da história (sem o cristocentrismo) é
+compartilhada por cristãos e judeus Qumramitas.
+
+C. Leitura Tipológica. Há a compreensão dos elementos do AT como tipos dos
+elementos que se apresentam no novo pacto. Por exemplo, a criação e a salvação (o segundo
+Adão) e a aliança através do novo êxodo. Um outro bom exemplo é a leitura que o livro de
+Hebreus faz do AT.
+
+D. Princípio da Personalidade Corporativa (Corporate Personality). Essa realidade na
+comunidade de israelitas no AT é transposta para a igreja cristã na sua auto-interpretação
+como “corpo de Cristo”(Rm.15; I Cor.12:12-31). Os estudos na área de Antropologia do AT
+feitos por Weler Robinson no início do Século XX mostram com mais detalhes que no AT o
+indivíduo inteiro está na comunidade e a comunidade inteira está no indivíduo, ou seja uma
+figura individual pode englobar todas que com ela se relacionam. Essa concepção permite a
+Paulo falar da existência de todos os homens “em Adão”, ou dos israelitas “em Abraão”. .
+
+E. Jesus e o AT. A primeira coisa a ser trabalhada nesta matéria é o entendimento da
+escolha textual pela qual Jesus citou o AT visto que em sua época eram conhecidos o texto
+grego da LXX e o texto hebraico palestinense. Na maior parte das vezes o texto que está nos
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+HERMENÊUTICA BÍBLICA - 8
+
+lábios de Jesus corresponde ao da LXX (Mt.15:8-9; Mc.7:6-7 comparado a Is.29:13); outras
+vezes corresponde ao texto hebraico (Mt.11:10 e Lc.7:27 comparado a Ml.3:1 e Is.40:3);
+outras vezes não corresponde a qualquer texto conhecido (Lc.4:18-19 comparado a Is.61:1-
+2, no qual omite e acrescenta termos). Esse tipo de ocorrência levantou a atenção para uma
+questão há muito discutida mas que conta com poucas evidências. Como se sabe, Jesus, os
+discípulos e a Igreja palestinense falavam aramaico, mas os evangelhos foram escritos em
+grego.  A existência de inúmeros aramaísmos no texto grego é um forte indício de que um
+texto primitivo aramaico contendo os “Logia” de Jesus teria sido traduzido para o grego,
+utilizando assim preferencialmente passagens do AT oriundas do texto da LXX. Entretanto,
+é  muito provável também que o próprio Jesus tenha modificado ou selecionado partes do
+texto (conforme visto em Lc.4:18s), o que poderia explicar a falta de relação com a LXX ou
+com o texto hebraico.
+
+No que diz respeito à sua visão do AT, Jesus considerou as escrituras inspiradas, sem
+no entanto aceitar a idéia do ditado verbal, conforme fica claro em Mc. 12:36: “Davi mesmo
+disse no Espírito Santo...” ( as palavras são de Davi, ainda que inspiradas pelo Espírito
+Santo ). Além disso, deu ao texto diferentes graus de valorização, na medida em que ajuizou
+a permanência do casamento, estabelecida em Gn. 2:24, superior à lei, permitindo o
+divórcio (Dt. 24: 1- 4), conforme Mateus 19.
+
+A partir desta compreensão de sua relação com o AT, é possível estabelecer a forma da
+hermenêutica de Jesus. Houve momentos em que Jesus modificou o texto para que a
+profecia tivesse sentido em sua pessoa. Por exemplo, comparar Mt.26:31 e Mc.14:27 com
+Zc.13:7; em outros momentos Jesus utilizou a forma “Pesher” (relação de um texto do AT
+com acontecimentos ou personagens da época escatológica que o intérprete crê estar
+vivendo) conforme formulação em Lc.4:21. Nas questões de ordem moral e religiosa Jesus foi
+categórico ao usar a forma literal da letra do texto (como em Mt.15:4 e Mc.7:10) mas
+também, em outros momentos, utilizou a “Midrash” (a expressão “quanto mais” em Mt.7:11;
+Lc.11:13; típica de Hillel).
+
+Jesus criticou duramente a tradição (conforme visto nos “logia” – sermão do monte)
+mas, em outros momentos, não hesitou em usar ensinamentos do rabinismo que viriam a
+constar no Talmud , aplicando-os dentro de sua visão “antropo-teocêntrica” , conforme Mt.
+7:12 . Essa maneira flexível de Jesus usar as Escrituras permite-lhe também, ao mexer com
+a tradição mais antiga, construir uma seqüência lógica de argumentos a partir da própria
+história judaica para apoiar o seu ensinamento, como em Mt. 12:1-8, na questão do
+“Sábado”.
+
+Jesus estabelece ainda, no sermão da montanha, que suas leis iam além das leis do
+AT. Enquanto que os fariseus e escribas interpretavam as leis como proibitivas de ações
+externas, Jesus buscava um sentido mais profundo, que refletisse as atitudes do coração.
+Por exemplo, não bastava retrair-se do adultério ou do crime; o homem deve retrair-se da
+cobiça e da raiva.
+
+De acordo com Viertel, “Jesus usou algumas formas de expressão dos rabinos, mas o
+conteúdo dos seus ensinos era diferente. Ele engrandeceu a presença do Reino de Deus em
+vez da lei. Ele identificou-se como o cumprimento da profecia ao invés de apontar a vinda do
+Messias. Ele interpretou o Velho Testamento à luz de uma nova era que raiava, em vez de
+enfatizar a interpretação de sentenças, cláusulas, frases e até mesmo palavras simples,
+independentemente do contexto ou da ocasião histórica”.13 O fundamental nesse estudo é
+ver que se a Igreja cristã primitiva construiu uma hermenêutica cristocêntrica, esta nasceu
+também graças ao uso que o próprio Jesus fez das Escrituras.
+
+F. Paulo como Intérprete. Dentro do estudo da Hermenêutica paulina vale ressaltar
+algumas de suas características:
+
+• Paulo usa com muita freqüência o texto do AT quando escreve para
+comunidades de origem judaica (Rm., Gálatas e I/II Co.), mas não o utiliza
+quando escreve a comunidades com predominância gentílica (Colossenses,
+Filipenses e I/II Tessalonicenses), o que torna Paulo um exegeta por
+excelência. Fato mais interessante é que das 93 citações que faz do texto do
+AT, modifica o texto em 52 casos (ex.: comparar Rm.9:17 com Ex.9:16).
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+HERMENÊUTICA BÍBLICA - 9
+
+Seria, como dizem alguns14, uma evidência de que Paulo citava textos de
+memória, ou que era influenciado pela sua tradição rabínico-midráxica ?
+
+• Como Hillel, procurou adaptar o texto bíblico aos problemas de seu tempo,
+contextualizando-o (comparar Rm.9:25 com Os.2:21-23).
+
+• Paulo busca elementos de diversas correntes religiosas e filosóficas do seu
+tempo, dialogando com as mesmas e dando-lhes roupagem cristocêntrica.
+Abaixo, eis algumas dessas correntes:
+
+G. Essênios. Todos os homens pecaram (Rm.3:23 comparado a I Qh.1:22 ou a
+Ec.7:20). O texto de I Qh.1:22 é parte da coleção de Hinos ou hodayôt encontrados nas
+descobertas do Mar Morto15. O homem não pode obter o perdão de Deus pelas obras ou
+pelo cumprimento da Torah (Gl.2:16 comparado a I Qh.4:30).
+
+H. Rabinismo. Em I Cor.10:1-4, ao relacionar o batismo cristão com a passagem do
+Mar Vermelho, Paulo alude a textos rabínicos da Gemara Babilônica que justificam o
+batismo de prosélitos à luz do Êxodo.
+
+I. Fílon. Tal qual Fílon, Paulo apela para a retórica grega (At.19:8; 28:23) e
+moderadamente para o uso alegórico (I Cor.9:9-10; Gl.4:21-31).
+
+J. Doutrina Cristã. Sem dúvidas que um dos méritos de Paulo está no fato que ele é
+um dos responsáveis pela sistematização da doutrina cristã, a partir do que outros, como
+Agostinho, fundamentam suas interpretações, as quais até hoje são tidas pela igreja cristã
+(tanto católica quanto protestante) como inspiradas, visto que muito daquilo que se tem
+como “doutrina bíblica” passa pelo filtro patrístico.
+
+Paulo lançou mão da tipologia para estabelecer a relação entre o AT e Cristo ( o servo
+sofredor, de Isaías 53, representa Cristo; as promessas de Deus a Abraão e seus
+descendentes tornaram-se as promessas de Deus aos crentes em Cristo, que são o novo
+Israel   ). Em outro texto, Adão é considerado como um “ tipo de um que devia vir ” ( Rm. 5:14
+
+). Sua interpretação do AT é cristocêntrica: Cristo é o cumprimento do AT.
+
+Paulo utiliza a alegoria com um aspecto distintivo em relação aos gregos e rabinos.
+Enquanto aqueles buscavam a alegoria ou para explicar mitos sobre os deuses ou para dar
+sentido a algo que contraria sua lógica ( concepção do “indigno de Deus” em Platão ), e estes
+usavam as alegorias na busca dos significados ocultos, Paulo encontra nos relatos do A.T.
+fatos que, sem perder sua veracidade histórica, possuem um sentido espiritual que será
+encontrado por meio da alegoria ( exemplo disso é a interpretação da história de Agar e
+Sara, aplicada a Israel escravo e livre, em Gl. 4:22-26 ).
+
+Em Paulo temos o fundamento do conceito de AT , embora a concepção canônica de A
+
+. T. só seja estabelecida após a consolidação dos 27 livros do NT. Isto fica evidente em sua
+declaração de que as escrituras permaneceram encobertas até que o véu foi removido por
+Cristo ( II Cor. 3: 13 – 15 ).
+
+2.3.  Período Patrístico
+
+Após o período apostólico, entram em cena os herdeiros e continuadores da tradição
+apostólica, conhecidos historicamente como os pais da Igreja. Estes se notabilizaram a
+partir  do 2º século da era cristã.
+
+A. A Hermenêutica no 2º Século. Este período caracterizou-se, na história da Igreja,
+por um grande conflito: a falta de consenso quanto à aceitação do AT como um livro cristão.
+Por um lado, havia o desenvolvimento da cultura helenizada como forma e expressão
+legítima da fé cristã e até mesmo a rejeição do AT ( como se vê no pensamento de Marcião,
+em 144 d.C.). Por outro lado, a não interpretação cristológica do texto vetero-testamentário,
+sendo ele valorizado como escritura única da Igreja, como se vê no ebionismo, que leva a
+Igreja à assimilação das práticas legalistas do judaísmo. Provavelmente nesta época, surgiu
+o último texto do NT, a 2ª Epístola de Pedro. Nele, é interessante notar a inclusão das cartas
+de Paulo com escritura ( 3:16 ), o que pode ter tido a finalidade de enfocar a relação entre o
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+HERMENÊUTICA BÍBLICA - 10
+
+Antigo e o NT ( tão presente nos escritos paulinos ). Embora o conflito judaico-cristão
+remonte aos primeiros tempos da Igreja ( At 15; Rm 14; Gálatas ), é no segundo século e,
+principalmente a partir de Marcião, que ganha dimensão de debate sistematizado e
+confronto escrito. Quando Marcião rejeita o AT, ele o faz porque sua interpretação do texto é
+literal. Da mesma forma, Clemente Romano, nem chega a utilizar a interpretação tipológica,
+como fazia o apóstolo Paulo, optando também pelo literalismo. Esta interpretação literal do
+AT torna as leis de Israel vazias e sem aplicação para os tempos modernos.
+
+Esta rejeição do AT também foi forte entre os gnósticos. Valentino aplica a passagem
+de Jo. 10:8 aos profetas: “ Todos os que vieram antes de mim eram ladrões e assaltantes”;
+Ptolomeu, mais moderado, divide o Pentateuco em três partes, quanto a sua origem: a
+primeira parte devida a Deus ( o decálogo ), a segunda atribuída a Moisés ( as leis do
+Deuteronômio ) e a última atribuída aos anciãos ( as leis ritualísticas, de pureza e da guerra
+santa   ). Em sua carta a Flora, condena essas últimas, as quais conduzem o homem ao mal
+e, reduz o valor das leis ritualísticas ao tempo para o qual foram escritas. Quanto aos nomes
+de Deus encontrados no AT ( Elohim, El Shaddai, Javé Tsevaoth ), os gnósticos os
+interpretam como referindo-se a deuses distintos, subordinados ao Deus Pai desconhecido (
+o  criador ).
+
+Diante das tendências marcionitas e gnósticas, a alternativa para a Igreja cristã
+quanto à utilização do AT foi a leitura tipológica. Para Justino, o mártir ( em DIÁLOGO COM
+TRIFON e APOLOGIAS ), em dura crítica a Marcião, a lei é “ tipos ” da realidade futura de
+Cristo e da igreja. Já a carta de Barnabé é rica em alegorias do AT: os sete dias da criação
+simbolizam os seis mil anos de duração do mundo, sendo o sábado símbolo do descanso
+escatológico. O autor dessa epístola ensina que o judaísmo cumpriu a sua missão e que a
+igreja   é herdeira de suas prerrogativas e livros sagrados. Também emprega a GEMATRIA,
+método no qual as letras das palavras eram convertidas em valores numéricos para uma
+aplicação escatológica.
+
+Outro pai apostólico, Irineu de Lyon, no final do 2º século, assume um tipo de
+“exegese de situação” contra o gnosticismo. Se, diante dos judeus, Irineu tende a ser
+literalista na interpretação cristológica das profecias e alegórico na interpretação da lei e
+história de Israel, diante dos gnósticos ele é alegórico na interpretação cristológica do AT
+para poder uni-lo ao NT e tornar Cristo relevante.
+
+Concluindo, pode-se afirmar que a grande questão hermenêutica do cristianismo no 2º
+século dizia respeito à aceitação do A T e mesmo à sua incorporação ao cânon, questão que
+voltou a ecoar muitas vezes ao longo da história do cristianismo. A aceitação do AT pelos
+cristãos não teve um propósito meramente apologético (apontar provas a favor do NT) mas
+resultou da visão do AT como canal de interpretação da morte e ressurreição de Cristo. De
+fato, a Igreja se apropriou do AT, interpretando-o como promessa e profecia do Novo.
+
+É interessante perceber o paralelo existente entre a concepção judaica da relação
+Torah-Profetas e a visão cristã da relação Antigo-NTs. A idéia rabínica concebia a Escritura
+como Lei e os profetas como intérpretes da lei (razão pela qual Jesus justifica sua atitude
+liberal em relação ao sábado citando a postura de Davi em I Sm 21:7 ). Semelhantemente,
+os cristãos vêem o NT como interpretação do Antigo. Nota-se um indício desta percepção até
+mesmo na ordem dos livros no AT: enquanto na Bíblia judaica a Torah é seguida dos
+profetas (NeVI’IM) e escritos (KETUBHIM), na Bíblia cristã, os profetas vêm depois da Torah
+e dos Escritos, numa ratificação de sua relação com o NT, onde se verifica seu
+cumprimento.
+
+Esta visão remonta ao início do cristianismo, cuja hermenêutica já se caracterizava
+por este elemento diferencial (veja-se a hermenêutica de Jesus e de Paulo). É, porém, no
+segundo século, com o desenvolvimento de alguns questionamentos e dentro do processo de
+definição do cânon, que estes conceitos voltam à tona. Outra idéia presente na visão cristã
+do  A T é sua interpretação tipológica, a partir da visão do N T como cumprimento do A T.
+
+B. A Hermenêutica no 3º Século. Até o que se tem visto até agora, o problema
+hermenêutico do segundo século tem sido a leitura do AT e sua interpretação como livro
+cristão, problema esse que a Igreja resolveu através da apropriação das escrituras judaicas e
+de suas profecias. Entretanto, a partir do Século III levanta-se uma outra questão que é o
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+HERMENÊUTICA BÍBLICA - 11
+
+problema hermenêutico da interpretação bíblica em si mesma caracterizada na luta entre o
+literalismo e o simbolismo e notabilizada através da escola alexandrina, com Clemente e
+Orígenes, os quais exaltaram a postura hermenêutica de Fílon, no extremo uso da alegoria,
+em função do conceito platônico do “indigno de Deus”.
+
+O primeiro a enfatizar essa linha hermenêutica foi Clemente de Alexandria (150 – 215
+d.C.). Para ele existe um sentido oculto de face cristológica em cada palavra ou até mesmo
+cada sinal gráfico do texto sagrado. É essa linguagem misteriosa que precisa ser
+decodificada através da alegoria. Compreende, entretanto, que as escrituras têm diversos
+sentidos: literal e teológico, profético e tipológico, filosófico e psicológico e, finalmente, um
+sentido místico. Como exemplo do sentido místico, Clemente dizia que a figura da mulher de
+Lot era símbolo do apego às coisas terrenas que impediam a alma de reconhecer a
+verdade16. Insistia ainda que a alegoria revelava a verdade ao verdadeiro discípulo, mas a
+escondia de outros, pois o objetivo de Deus era ocultar a verdade17.
+
+Um outro pai eclesiástico da época, Orígenes, se notabilizou por ser o mais erudito de
+seu tempo. Valeu-se do princípio da racionalidade para interpretar passagens bíblicas que,
+muitas vezes parecem inacreditáveis, como por exemplo as narrativas de Gênesis (onde
+existem muitos antropomorfismos e relatos míticos da criação), as quais eram interpretadas
+por muitos de forma literal. Para Orígenes esses eram os mais simples, que não tinham a
+capacidade intelectual de compreender o sentido espiritual escondido no texto bíblico
+através de suas metáforas, símbolos e alegorias. Orígenes crê, no entanto, que existem
+passagens das escrituras com características literais mas que todas as passagens das
+escrituras possuem uma vertente espiritual e que a única maneira de se reconhecer o
+mistério escondido ou a mensagem espiritual é através do uso do método alegórico de
+interpretação. Orígenes adaptou a tricotomia platônica à interpretação das escrituras,
+seguindo  os passos de Fílon e de Clemente, através da seguinte divisão:
+
+• Sentido Corpóreo (somatikon) – carne – interpretação literal – para
+principiantes.
+
+• Sentido Psíquico (psiquikon) – alma – para os que já fizeram algum
+progresso.
+
+• Sentido Espiritual (pneumatikon)– espírito – interpretação alegórica – para
+os perfeitos, os que são espirituais.
+
+O valor de Orígenes para o seu tempo está no fato que ele elevou a fé cristã ante as
+críticas externas, as quais enfatizavam a imoralidade do AT bem como a falta de uma
+explicação lógica e racional da fé em Cristo. Pode-se dizer que ele conseguiu o respeito de
+não cristãos do seu tempo.
+
+C. A Reação do Literalismo-Histórico do Século IV. Se em Alexandria houve uma
+grande ênfase da interpretação alegórica das escrituras, em Antioquia, a partir do quarto
+século houve o rechaço desta tendência e a valorização gramatical e histórica com o retorno
+da interpretação literal. Essa maneira dentro da igreja síria de interpretar o texto foi
+grandemente influenciada por exegetas judeus locais e teve como principais expoentes
+Deodoro de Tarso, Teodoro de Mopsuéstia e João Crisóstomo. Teodoro, por exemplo, excluiu
+do cânon livros tais como Jó, Crônicas, Esdras, Neemias e Cânticos, por não encontrar
+neles elementos proféticos, messiânicos ou históricos. Alguns dos princípios defendidos pela
+escola antioquena foram os seguintes:
+
+•  Abordagem Gramático-Histórica, com ênfase na literalidade textual; ressaltavam a
+historicidade da narrativa e procuravam, em seguida, descobrir o sentido teológico
+da mesma. Assim, Adão era realmente Adão e o paraíso era realmente o paraíso,
+contrariando assim o conceito platônico do “Indigno de Deus”. Contra os
+alexandrinos, Teodoro pergunta: “Desde que não há acontecimentos reais, visto que
+Adão não foi realmente desobediente, como então entrou a morte no mundo e qual
+o significado de nossa salvação?”
+
+•  Com alguma cautela defendiam que algumas passagens podem conter um sentido
+metafórico, típico, mas de forma diferente do pensamento alexandrino. Por
+exemplo, em Gl. 4:21-31 o apóstolo Paulo usa o termo “alegoria” para falar dos dois
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+HERMENÊUTICA BÍBLICA - 12
+
+pactos simbolizados em Sara e Agar. No entendimento dos antioquenos, apesar de
+Paulo usar o termo, a sua forma de interpretar foi diferente, ou seja, ele não
+esvaziou o sentido histórico de Sara e de Agar, mas fez analogias e pontes de
+ligação com o seu tempo.
+
+•  Conceito de “theoria” (“observar”, “contemplar”) em oposição à “alegoria”. Nesse
+conceito estuda-se o estado mental dos profetas quando recebiam suas visões. Para
+os antioquenos, os profetas, ao receberem suas visões, não viam o futuro, mas o
+presente, sendo que essa visão era um canal condutor de uma tipologia futura ou
+ainda de acontecimentos messiânicos. O diferencial aqui é que essa tipologia é
+considerada a partir do profeta e não de quem o interpreta.
+
+• Buscavam determinar a intenção do autor do texto, pela atenção ao sentido
+histórico das palavras em seu contexto original.
+
+No final do quinto século, a escola antioquena entrou em decadência, depois de
+perseguições e contradições internas, como por exemplo, Nestor, considerado herege pela
+sua doutrina das duas naturezas de Cristo. Entretanto, ainda hoje percebe-se uma
+influência dos princípios da escola de Antioquia nos modelos ortodoxos da interpretação
+bíblica na igreja cristã.
+
+2.4.  Os Pais Latinos
+
+A Hermenêutica nos Séculos IV e V d.C. Se do lado oriental a hermenêutica foi
+direcionada para a vertente especulativa, na igreja ocidental a preocupação hermenêutica
+atingiu questões relacionadas à prática diária dos cristãos, envolvendo a ética e
+estabelecendo a partir de então o cânon como regra de fé (“regula fidei”). Essa foi a principal
+preocupação dos pais latinos nos Séculos IV e V d.C., assim chamados por escreverem em
+latim. Os mais influentes teólogos dessa tendência foram Jerônimo (347-420 d.C. -
+Palestina), Ticônio (400 d.C. – norte da África) e Agostinho (354-430 d.C. - Hiponna, África).
+Torna-se importante estabelecer uma diferença entre os dois mais notáveis: Jerônimo era
+conhecedor das línguas bíblicas, o que lhe permitiu ser mais exegeta, produzindo trabalhos
+e comentários com notas históricas e lingüísticas, culminando na formação do seu mais
+famoso trabalho, a Vulgata. Agostinho, ao contrário, não conhecia o hebraico e entendia o
+grego com dificuldades. Notabilizou-se, não como exegeta, mas como sistematizador de
+doutrinas cristãs. Abaixo, características fundamentais da hermenêutica dos pais latinos:
+
+• Usavam com mais freqüência a interpretação literal. Jerônimo, no início de sua
+vida eclesiológica, adotava prioritariamente a postura alegórica alexandrina, mas
+influenciado por rabinos palestinenses, converteu-se ao método literal. Agostinho,
+em sua interpretação do Gênesis busca uma linha histórico-literal.
+
+•  Com base nessa idéia os pais latinos preocuparam-se com o contexto histórico da
+passagem. O ambiente do autor original com seus traços lingüisticos e culturais
+devia ser levado em consideração pelo intérprete, antes de poder aplicar o texto às
+questões diárias de sua época.
+
+•  Apesar da ênfase na interpretação literal também alegorizavam o AT. Aqui há uma
+semelhança com os antioquenos na medida em que consideravam a existência de
+um sentido oculto na passagem sem desmerecer sua historicidade, e uma outra
+semelhança com os alexandrinos, no momento em que se alegorizava quando a
+passagem parecia contrária a Deus ou à moral cristã (dessa forma procedeu
+Agostinho em seu comentário ao pedido de Deus para Abraão sacrificar Isac em
+Gn.22). Esse é o reflexo da convicção antiga que o NT está oculto no AT e que este é
+iluminado por aquele.
+
+• A preocupação com questões eclesiológicas de caráter jurídico ou prático numa
+época em que a igreja cristã estava se estabelecendo como religião oficial do império
+romano. A tendência aqui é a de “fechar” uma interpretação única como sendo
+oficial, baseada inclusive na tradição de intérpretes anteriores que pensavam da
+mesma forma que eles (isso foi muito comum em Jerônimo). Ora, a partir dessa
+época, o elemento dogmático começa a desenvolver-se na igreja. Agostinho deu
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+HERMENÊUTICA BÍBLICA - 13
+
+grande contribuição com a sistematização de doutrinas, tais como a da Trindade,
+que até hoje são assimiladas pela cristandade tanto católica quanto protestante,
+com atribuição de valor inspirativo.
+
+Ora, do que se pode perceber das tendências hermenêuticas dos cristãos do período
+patrístico, extrai-se o grande conflito entre o literal e o simbólico, apesar de que cada
+extremo sempre permitia de alguma forma a possibilidade para outra interpretação ainda
+que de forma diminuta. A apropriação do AT pelos cristãos trouxe consigo grandes questões
+hermenêuticas que se arrastaram nos séculos seguintes. Aliás, o apóstolo Paulo já falava do
+problema  da oposição entre a “letra e o espírito”, em Gl.3:6, problema existente ainda nos
+dias hodiernos.
+
+2.5.  Período Medieval
+
+A partir do trabalho hermenêutico de Agostinho, iniciou-se um novo período, marcado
+pela ortodoxia e pelo pouco desenvolvimento da hermenêutica. Prevaleceu, neste período, a
+concepção de que a interpretação da Bíblia teria que se adaptar à tradição eclesiástica, o
+que levou a uma ênfase à interpretação alegórica, ao aspecto prático e à fidelidade aos
+dogmas da igreja. Isto limitou até mesmo a produção literária de textos interpretativos da
+Bíblia além de impedir o surgimento de qualquer contribuição nova; o trabalho dos
+intérpretes consistia em repetir os dogmas já estabelecidos pela igreja. Este dogmatismo
+chegou ao extremo de estabelecer como única tradução considerável o texto da Vulgata.
+
+Depois de um período de quase nenhuma produção nesta área, o final do século XI e o
+século XII já apresentam o início de certo entusiasmo quanto ao estudo das Escrituras.
+Nesta fase, diversos comentários surgiram que, embora de pouca inovação teológica,
+representaram uma boa contribuição ao estudo da Bíblia. É, porém, a partir do século XIII,
+com o escolasticismo, que significativas construções teológicas começam a surgir. Vale a
+pena lembrar que o movimento conhecido como escolástica deriva seu nome do surgimento
+de escolas de teologia nas catedrais, onde se estudava a Bíblia mais academicamente.
+
+As produções deste período apresentavam como características: a riqueza de detalhes,
+a pouca profundidade nos aspectos histórico e filológico, e um grande valor doutrinal, como
+reflexo de seu direcionamento. A Bíblia era considerada um livro cheio de mistérios, só
+podendo ser entendida misticamente. Essa orientação para a leitura espiritual da Bíblia
+conduz para o fato de que a exegese não é tanto uma investigação sobre o significado de
+palavras, senão a busca de um sentido para a vida. Por isso, a leitura medieval atualiza
+imediatamente o texto em estudo, passando a seu valor dogmático sem considerar,
+necessariamente, seu contexto original, ou o sentido que dele se depreenderia. Uma outra
+tendência dessa hermenêutica é considerar que se uma passagem do NT interpretava um
+texto do AT como prefiguração de Cristo, apenas este sentido era considerado verdadeiro,
+rejeitando-se a idéia original do texto ( por exemplo, o texto de Oséias 11:1, aplicado em Mt.
+2:15   em relação a Cristo, é visto na interpretação dogmática medieval sem que se considere
+a possibilidade de o profeta estar originalmente se referindo ao povo de Israel ).
+Preservavam, também, a concepção agostiniana dos quatro sentidos da Bíblia: literal (
+histórico ), alegórico ( cristológico ), tropológico ( moral ) e anagógico (escatológico ).
+
+Entre os expoentes do período escolástico, vale a pena destacar o trabalho de Tomás
+de Aquino, cujos comentários nasceram de seu trabalho como mestre. Em seu trabalho
+exegético, admite a existência de apenas dois sentidos no texto bíblico: o literal, ou histórico,
+e   o espiritual, ou alegórico. Quanto à questão da multiplicidade do sentido literal, já
+presente em Agostinho, Tomás de Aquino parece rejeitar essa possibilidade, admitindo
+muito mais facilmente a multiplicidade do sentido espiritual. De acordo com seu modo de
+ver, o texto do AT já prefigurava Cristo, sendo, portanto a interpretação alegórica a única
+forma de encontrar o sentido desejado, uma vez que na concepção original do texto já estava
+presente o sentido tipológico. Esta preocupação com a interpretação alegórica não impediu,
+no entanto, sua preocupação com a busca do sentido literal como parte do processo de
+interpretação.
+
+No período da Idade Média houve, portanto, algum avanço quanto à preocupação com
+o estudo literal-histórico, embora a limitação imposta pelo dogmatismo e o interesse
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+HERMENÊUTICA BÍBLICA - 14
+
+meramente doutrinal abrissem pouco espaço ao avanço teológico. Houve, inclusive, uma
+significativa contribuição dos filólogos, principalmente nos séculos XIII e XIV. Esta
+preocupação, no entanto, começou a decair, lentamente, no final do século XV, quando a
+interpretação místico-alegórica levou a um descuido do trabalho exegético. Somente no
+século XVI, a exegese propriamente dita, começa a ganhar um novo espaço.
+
+2.6.  Período Renascentista
+
+Depois do longo período medieval, onde a reflexão hermenêutica foi tolhida e limitada
+para dar lugar ao dogma e ao monopólio da igreja, os séculos XV e XVI assistem ao retorno
+da preocupação com os textos originais própria do espírito renascentista. Este movimento,
+de caráter humanista, originou-se na Itália e estendeu-se por toda a Europa,
+caracterizando-se principalmente por uma volta aos clássicos da antigüidade greco-romana
+e,      do ponto de vista religioso, por uma volta à patrística. Este tipo de postura trouxe de
+partida três conseqüências rápidas: primeiro, a preocupação com os textos hebraico e grego
+provocou o surgimento da crítica textual, notabilizando-se aí Johan Reuchlin ( aprox. 1518
+
+), com a publicação da primeira gramática e dicionário da língua hebraica, e Erasmo de
+Roterdã ( aprox. 1530 ), com a publicação do NT grego com notas explicativas; segundo, a
+diluição dos múltiplos sentidos da Bíblia em um único sentido, o gramático histórico;
+terceiro, as traduções antigas, como a LXX e a Vulgata, têm o monopólio ameaçado pelo
+surgimento de novas versões, mais relacionadas aos textos originais.
+
+A nova tendência da crítica textual representa, na verdade, uma influência do
+renascimento cultural sobre a hermenêutica bíblica. Aqui a idéia é que os escritores bíblicos
+poderiam ser lidos da mesma forma que qualquer outra obra de caráter profano, sendo
+submetidos aos métodos críticos como defendia Hugo de Groot, calvinista holandês ( 1583 –
+1645 ). Baruc Spinoza ( 1632 – 1677 ) já negava a autoria mosaica do pentateuco e falava
+em compilação, interpolação e erros de cópia. Esta leitura da Bíblia, que mais tarde vai
+influenciar a hermenêutica moderna, foi rejeitada pelos reformadores graças à sua ênfase na
+infalibilidade das Escrituras.
+
+A. Hermenêutica da Reforma. É neste momento e contexto histórico que desponta o
+trabalho hermenêutico dos reformadores. Notabilizaram-se, nesse aspecto, Melanchton,
+Lutero e Calvino, este último considerado o maior exegeta da Reforma, principalmente em
+função de sua coerência entre as convicções doutrinárias e a postura prática. Embora
+apresentassem algumas diferenças quanto à interpretação de determinados textos, sua
+hermenêutica trazia alguns princípios comuns:
+
+• A interpretação das Escrituras não deve ser monopólio da igreja e seu colegiado Em
+lugar disso, é estabelecido o princípio de que a Bíblia é interpretada pela própria
+Bíblia; Lutero declara que “ se são obscuras num lugar são claras em outros” . Isto
+indica a tentativa de harmonização de passagens difíceis.
+
+• As Escrituras são inspiradas e, por isso, infalíveis; concepção que reforçou a tese
+da inerrância do texto bíblico. Por isso, não podem receber o tratamento crítico
+como se fossem um livro qualquer sobre religião.
+
+• Se as Escrituras são inspiradas, para entendê-las o homem não pode prescindir da
+iluminação do Espírito Santo por causa do estado de cegueira espiritual resultante
+da queda.
+
+• Os reformadores reconhecem também ao lado da natureza divina das Escrituras
+uma face humana, a qual obriga o indivíduo a estudá-las e pesquisá-las,
+principalmente no que diz respeito a alguns textos obscuros que necessitam de
+uma  maior atenção para serem interpretados. Mais uma vez, alude-se aqui ao
+princípio de que a Bíblia é interpretada pela própria Bíblia, o que requer do exegeta
+um conhecimento mais amplo e profundo de todo o texto.
+
+•  O estudo das Escrituras remete o indivíduo à procura da intenção do autor
+original, o que significava geralmente o sentido literal da passagem, a menos que o
+próprio autor indicasse o contrário. Essa tendência indica que o método
+hermenêutico da Reforma dá ênfase ao sentido literal, gramático-histórico, o que
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+HERMENÊUTICA BÍBLICA - 15
+
+não significa que não existam passagens com sentido figurado. Entretanto para
+uma passagem requerer uma interpretação simbólica ela deve ter um influxo do
+seu próprio contexto, ou de um outro texto da Bíblia que indique claramente esse
+sentido.
+
+O princípio da interpretação da escritura pela própria Escritura e a compreensão da
+necessidade de harmonização de passagens, levaram Lutero, inclusive a questionar o cânon
+estabelecido, ao considerar a carta de Tiago como “epístola de palha”, não merecendo seu
+lugar na Bíblia, por apresentar uma teologia das boas obras incongruente com a mensagem
+paulina da justificação pela fé ( pedra de toque da teologia reformada ). O interessante aqui
+é perceber um princípio hermenêutico visto como regra para o questionamento do próprio
+cânon, o que deixa em aberto a questão: a que escritura exatamente Lutero se referia, ao
+considerá-la infalível: ao cânon já estabelecido ou a um novo cânon?
+
+Apesar da rejeição ao monopólio da igreja e da tradição na interpretação bíblica na
+proposta hermenêutica dos reformadores, a história apresenta um curioso paradoxo, pois
+uma vez ocorrida a reforma e a oficialização de seus conceitos em alguns Estados europeus,
+voltou-se ao escolasticismo medieval, e o confessionalismo e a imposição de limites
+doutrinários à liberdade de investigação mais uma vez esteve presente. Neste período,
+conhecido como pós-reforma, verificou-se a tentativa de sufocar qualquer interpretação que
+fosse diferente da dos mentores reformistas. Esta postura, em combinação com o
+fracionamento do protestantismo, fez com que a hermenêutica passasse a ser usada mais
+uma vez como um instrumento a serviço do dogmatismo. Berkhof define assim esse fato: “A
+exegese se tornou serva da dogmática, e degenerou em mera busca de textos-provas”.
+
+B. Confessionalismo. Surge justamente da reintrodução do escolasticismo cristão
+medieval dentro da academia pós-reformista, com ênfase ao sobrenaturalismo e à inspiração
+verbal das escrituras. Primeiro porque a falta de um intérprete único e infalível da Bíblia
+(posição até então ocupada pela igreja ) possibilitou o surgimento de inúmeras
+interpretações diferentes dentro do protestantismo. A partir da controvérsia, nasceu a
+tendência  à sistematização e ao dogmatismo, como reação de defesa de cada movimento.
+
+C. Puritanismo. Este movimento teve sua origem na insatisfação com a reforma
+(considerada incompleta ), principalmente na Inglaterra. Ali, como a história registra, os
+aspectos políticos foram muito mais decisivos que os doutrinários no rompimento com o
+catolicismo romano. De fato, Henrique VIII não deixou de ser católico em suas convicções.
+Por isso, a gênese do movimento puritano ocorreu ainda no século XVI, embora seu auge
+tenha ocorrido no século XVII. Em vários aspectos, a hermenêutica puritana se assemelhava
+aos pressupostos da reforma: a rejeição da tradição, a aceitação da escritura como única
+verdade válida e a interpretação cristológica do A.T. Mas a ênfase principal da interpretação
+puritana era a prática da Escritura; a "consciência puritana" era sua característica mais
+marcante.
+
+"Eles eram escrupulosos em seu desejo de saber qual era a verdade, não simplesmente
+para que tivessem um conhecimento teórico sobre ela, mas a fim de que a levassem a cabo e
+a pusessem em prática a qualquer custo ".21 A partir desta postura, as doutrinas mais
+enfatizadas eram a da Graça e a Teologia Pastoral.
+
+Forneceram uma grande produção de comentários e textos de interpretação, embora
+não consistissem num grupo coeso em suas idéias. O problema é que sua interpretação era
+também controlada pela posição teológica, o que relembra os sérios problemas da
+hermenêutica na Idade Média. Em síntese, pode-se citar as principais características de sua
+postura:
+
+• Valorização da Escritura;
+
+• Rejeição da tradição;
+
+• Uso da alegoria;
+
+• Interpretação cristológica;
+
+• Papel da iluminação na interpretação da Escritura;
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+HERMENÊUTICA BÍBLICA - 16
+
+• Valorização do sentido literal como o sentido básico;
+
+• Aplicação das Escrituras nas experiências do dia-a-dia.
+
+2.7.  Período Moderno
+
+O período moderno, caracterizado pelo surgimento do Iluminismo, movimento surgido
+no início do século XVIII 22, tem na verdade seus antecedentes no Racionalismo do século
+
+XVII. Este, por sua vez, representa o desenvolvimento do Renascimento Cultural. Como o
+próprio nome indica, o Racionalismo abandonou a idéia do sobrenatural, optando pelo uso
+exclusivo da razão, a partir do que se rejeita qualquer possibilidade de interferência divina
+na história, a qual passa a ser vista sob o prisma do secularismo onde a autonomia humana
+é priorizada e a revelação e a ação divina são anuladas. A tendência natural desta postura
+de ordem primariamente filosófica é o esvaziamento do sagrado dentro da Bíblia; milagres e
+manifestações especiais de Deus (teofanias, epifanias) são desacreditados como eventos
+históricos.
+
+Como tentativa de unir a religião à razão, surge na Inglaterra o Deísmo, que foi
+representado, na França pelo filósofo Voltaire. Seu pressuposto básico é que Deus, ao criar
+o mundo e o ser humano, os entregou à sua própria sorte. Assim, o conhecimento de Deus
+só é possível a partir do próprio homem, através do uso da razão e da filosofia. O texto
+bíblico tem sua autenticidade questionada e a autoria mosaica do pentateuco é posta abaixo
+(Spinoza, em 1670, e Richard Simon, em 1712). John Semler (1780), considerado como o
+mais autêntico autor do racionalismo bíblico,23 principalmente por tê-lo elevado à categoria
+de sistema, negou a inspiração da Bíblia e a origem divina da Escritura, considerando-a
+como um livro humano cheio de erros e que, por isso, deveria ser submetido aos métodos
+humanos de interpretação. De acordo com Semler, Cristo teria sido um homem comum, que
+soube se aproveitar da expectativa messiânica do seu tempo para apresentar-se como
+Messias; os evangelhos seriam lendas que, posteriormente, idealizaram a figura histórica de
+Jesus. Que valor teria então a Bíblia na ótica do racionalismo ? Segundo o mesmo John
+Semler, o valor primordial da Bíblia é o do aperfeiçoamento moral do ser humano, e os livros
+que possuem essa característica devem ser autorizados. Um século antes dele, Baruc
+Spinoza não era tão conservador: para ele, a Bíblia apela tão somente para as emoções
+religiosas do homem e seu movimento é o da obediência e submissão mas não o da verdade,
+a qual só pode ser alcançada pelo uso da razão. Assim a religião torna-se um instrumento
+nas mãos dos intelectuais para a manipulação de massas.
+
+Uma outra ala de teólogos racionalistas se caracterizou por uma abordagem mais
+gramatical das Escrituras e tem como representante máximo John Ernesti (1707 – 1781).
+Ele tentou por um fim às lutas primitivas entre interpretação literal e interpretação
+alegórica; rejeitou o sentido múltiplo das Escrituras e defendeu que a interpretação
+alegórica só pode ser aceita quando existe no próprio texto uma indicação do autor nessa
+direção. Isto equivale a dizer que Ernesti fez uma opção pela interpretação literal do texto.
+Dentre as diversas características do período moderno destacam-se:
+
+A. Com o avanço da secularização as idéias de revelação, inspiração das escrituras e
+do sobrenatural foram negadas, pois a ênfase agora é de caráter histórico, onde a
+autonomia e autodeterminação humanas guiam a história e não determinadas ações de
+Deus em série, tais quais intervenções a favor de seu povo. Como conseqüência, os relatos
+de milagres na Bíblia, principalmente os de Jesus nos evangelhos, são negados (Johann
+Eichorn e David Strauss, Sec.XIX).
+
+B. A postura do tipo “leia o Novo para entender o Antigo” foi posta abaixo através da
+gradual separação dos dois testamentos. Essa tendência surgiu a partir do momento em
+que foi constatado o fim da unidade teológica não só dos testamentos (um em relação ao
+outro), mas também do testamento em relação a si mesmo24. Há uma procura em entender
+sobre aquilo que Israel afirmou sobre si mesmo e sobre sua fé. Por conseguinte, há um
+maior dinamismo no estudo bíblico e na multiplicidade de suas tradições (Ernesti e Semler).
+
+O iluminismo era, em vários aspectos, uma revoltacontra o poder da religião
+institucionalizada e con tra a religião em geral.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+HERMENÊUTICA BÍBLICA - 17
+
+Por exemplo, o conceito pecado-culpa e sua evoluçã o nas diferentes partes do AT; o
+conceito de justificação e o conflito fé versus obras em Paulo e em Tiago no NT.
+
+C. As idéias de inspiração e de inerrância das escrituras foram abandonadas a partir
+da compreensão do cânon como resultado de um processo histórico. O texto bíblico teria um
+valor local, para a comunidade que o produziu e o recebeu, sem uma ligação com o presente
+(Semler).
+
+D. Uma forte reação contra o dogmatismo e o controle da exegese pela teologia
+sistemática; aqui a busca do exegeta é, em primeiro lugar, entender o homem, o
+pensamento, a cultura, a teologia que estava por trás do texto, utilizando para isso o
+instrumento da razão, que é a crítica bíblica, tal qual trabalhada nas suas diversas escolas,
+conforme descritas a seguir:
+
+•  Crítica das Fontes. Como o próprio nome sugere, o objetivo desse método é o de
+identificar as fontes escritas (e orais) de que se serviram os escritores para compor
+o texto bíblico. Uma vez identificadas, a preocupação volta-se para a compreensão
+da teologia de cada fonte ou de cada bloco de escritos. Os exemplos mais famosos
+são: a hipótese documentária (Graff-Wellhausen) a qual atribui a autoria do
+Pentatêuco a 04 estratos-fontes , identificados pelas letras “J” (Javista), “E” (Eloísta)
+
+, “D” (Deuteronomista) e “S” (Sacerdotal) . Segundo a hipótese documentária cada
+estrato possui características, formas e teologias próprias; os evangelhos sinópticos
+(Mateus, Marcos e Lucas) cuja curiosidade básica não foi levantada em torno do
+conteúdo que os três possuem em comum, mas naquilo em que diferem um do
+outro. Uma das conclusões foi que 95 % do conteúdo de Marcos está espalhado
+entre Mateus e Lucas. Uma segunda constatação foi que existem materiais que só
+são encontrados em apenas um dos três e não são comuns. Com base no
+percentual e na influência de Marcos, concluiu-se também que este evangelho, e
+não Mateus, foi o primeiro a ser escrito. Essas são algumas contribuições da Crítica
+das Fontes.
+
+•  Crítica das Formas. A preocupação principal desta escola é a fase do texto bíblico
+conhecida como “pré-história” do texto. Nessa compreensão, o texto bíblico se
+apresenta dentro de formas ou gêneros (sagas, ditos, lendas, etiologias, entre
+outros) que nasceram dentro de uma determinada “situação de vida” ou sitz im
+leben , um contexto vital, quando a comunidade de fé experimentava o futuro texto
+na via oral. As formas que essas histórias antigas adquiriram ajudaram a
+preservação das mesmas na vida do povo sendo mais tarde redigidas. Herman
+Günkel (AT) e Rudolf Bultmann (NT) são os nomes mais conhecidos desta escola.
+
+•  Crítica da Redação. Aqui a atenção não se dirige em princípio às fontes, nem à pré-
+história oral do texto, mas ao escritor. O que teria levado os escritores a escolherem
+ou selecionarem fontes, unindo-as num mesmo trabalho? Agora, eles são visto, não
+como simples escritores, mas como redatores-teólogos. A tarefa da Crítica da
+Redação é descobrir a teologia desses escritores que, em última análise, é a teologia
+de sua comunidade.
+
+2.8.  A Hermenêutica Pós-Moderna
+
+Mesmo durante o período moderno já estava ocorrendo uma espécie de insatisfação
+por parte de alguns filósofos e teólogos com o reducionismo racionalista. Dentre eles
+destaca-se a pessoa de Emanuel Kant, o qual questionou com fortes argumentos contra o
+racionalismo do Sec.XVIII. Segundo ele é um erro reduzir a religião à razão, pois a religião
+encontra lugar não no que é puramente racional, mas no que é ético: “nós, seres humanos,
+somos por natureza seres morais e com base nessa moralidade inata é possível provar a
+existência de Deus e da alma, a imortalidade, a liberdade e a vida futura”25. Com sua
+influência, Kant levantou a atenção para outros aspectos da vida do ser humano que não os
+meramente racionais, dando instrumentos a teólogos posteriores para outras reflexões,
+como  por exemplo, Schleiermacher, o qual será estudado mais tarde.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+HERMENÊUTICA BÍBLICA - 18
+
+A. Características do Período Pós-moderno. O que teria influenciado a mudança da
+hermenêutica moderna para a pós-moderna? Utilizaremos aqui o esboço de Augustus
+Nicodemus Lopes26, o qual cita Ricardo Gouveia, apontando as principais características do
+período pós-moderno:
+
+•  A rejeição dos chamados “mitos modernos”: o cientificismo, o tecnologismo e o
+economismo, ídolos de um período utópico, esbarraram na impotência do ser
+humano, antes otimista, mas depois de duas guerras mundiais, desiludido.
+
+•  O Pluralismo inclusivista – O pluralismo não é uma novidade pós-moderna. A partir
+do movimento iluminista enfatizou-se um tipo de pluralismo que visava a
+convivência amigável e tolerante das diferentes visões e formas opostas. O
+pluralismo pós-moderno não quer apenas tolerância mas quer inclusivismo, ou
+seja, espera-se que as opiniões cedam espaço umas às outras. Diante dessa nova
+situação, todo discurso que tem a pretensão de impor-se como superior e único é
+rejeitado, significando, por exemplo, no campo teológico, um golpe no exclusivismo
+denominacional e no fundamentalismo. É interessante lembrar que os movimentos
+de  estudo  bíblico  e  de  representatividade  extra-eclesiástica  de  caráter
+interdenominacional surgiram um pouco antes da metade do século, portanto
+dentro desse novo espírito, onde o elemento doutrinário que diferencia um grupo do
+outro é substituído por crenças básicas gerais.
+
+•  A narrativa e o problema da linguagem – Para o pós-modernismo não há nenhum
+discurso que se aplique indiscriminadamente através de barreiras culturais e não
+há nenhum absoluto que transcenda diferenças culturais. Tudo o que há são
+narrativas intracomunitárias, válidas dentro dos limites de suas tradições
+culturais. O pós-modernismo questiona discursos unívocos e que apresentam o
+autor como “autoridade” e o leitor ou destinatário como aprendiz. O sentido do
+texto é determinado no momento da leitura, à medida em que ele interage com o
+depósito discursivo e ideário do leitor.
+
+B. Vertentes formadoras das hermenêuticas bíblicas atuais.
+
+• A vertente teológico-psicológica – O personagem principal desta linha hermenêutica
+foi, sem dúvida, Friedrich Schleiermacher (1768-1834), o qual seguindo os passos
+de Kant, também desvinculou a religião da razão. Para ele, a religião não é um
+conhecimento, como pretendiam os racionalistas e os ortodoxos, nem mesmo uma
+moral (Kant); antes, a melhor palavra que pode defini-la é “afeto” (do alemão gefühl
+
+) . Para ele, esse afeto é religioso e não algo que apela aos sentimentos ou a uma
+emoção passageira de uma expressão de culto, mas que está ligado fortemente ao
+sentimento que nos permite, em primeiro lugar, tomar consciência da existência
+daquele que é superior à própria existência e base dela; em segundo lugar, o “afeto”
+é   o sentimento que nos leva a reconhecer nossa dependência absoluta de Deus.
+Essas duas definições de “afeto” nos levam ao pensamento que em Schleiermacher
+a religião constitui-se no gosto pelo infinito. A função da teologia consiste em expor
+e atualizar essa idéia da dependência divina. A distinção entre o que é natural e o
+que é sobrenatural deve ser rejeitada, não porque se oponha à ciência moderna,
+mas porque limita o nosso sentimento de dependência de Deus àqueles momentos
+em que se manifestam as coisas sobrenaturais. O modelo utilizado por
+Schleiermacher foi o estudo psicológico das escrituras através do entendimento das
+idéias dos seus autores, que eram humanos. Deixando para trás o conceito de
+inspiração das escrituras, defendia que a Bíblia reflete tão somente as idéias de
+seus autores e só pode ser entendida porque existe uma unidade do espírito
+humano que liga homens de todas as épocas e de todos os lugares uns aos outros.
+Ao valorizar a experiência religiosa do caráter universal e residente no indivíduo,
+Schleiermacher reduziu o cristianismo a uma experiência subjetiva e centralizou a
+teologia no homem deixando de lado a revelação através da Palavra. Com isso,
+abriu caminho para hermenêuticas centradas no leitor, como por exemplo, a
+vertente filosófica de Gadamer.
+
+• A vertente Exegética – Aparece aqui a pessoa de Rudolf Bultmann (1884-1976),
+considerado um dos maiores eruditos em NT do Século XX. Notabilizou-se a partir
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+HERMENÊUTICA BÍBLICA - 19
+
+de sua exegese da demitização . O que seria a demitização em Bultmann? Ricoeur,
+interpretando Bultmann, diz que demitizar “consiste em desfazer a engrenagem
+conceptual por meio da qual foi constituída uma visão do mundo que já não é mais
+a nossa, visto que pertence à uma época pré-científica”28. Para chegar ao seu
+conceito de demitização, Bultmann parte do princípio que toda a interpretação da
+revelação  pressupõe  uma  pré-compreensão  e  esta,  por  sua  vez,  implica
+essencialmente uma filosofia. Ora, é justamente essa pré-compreensão dos
+primeiros discípulos de Cristo caracterizada pela visão místico-metafísica29 que
+Bultmann acreditava ser incompreensível e absurda para o homem moderno, mais
+dirigido pela mentalidade científica e pela orientação existencial. A partir daí,
+Bultmann pregava a necessidade de demitização da mensagem cristã, tirando
+aquela roupagem místico-metafísica, traduzindo-a em categorias existenciais, as
+quais constituem a pré-compreensão do homem moderno. Por isso, se o pregador
+moderno não quiser expor a mensagem cristã à falência total, deverá procurar
+descobrir o significado mais profundo que está escondido sob as concepções
+mitológicas e interpretar tais concepções servindo-se da auto-compreensão que o
+homem do Século XX tem de si mesmo. A hermenêutica de Bultmann foi
+influenciada pela filosofia existencialista de Heiddeger (seu colega de classe), o qual
+defendia que a hermenêutica significa simplesmente o processo de interpretar o
+ser. Essa maneira de interpretar não dá atenção à perspectiva do autor, mas àquilo
+que se expressa no texto, independente do autor. Para Bultmann, no processo de
+leitura acontece a auto-interpretação do leitor, que se processa no nível de suas
+preposições. Segundo Bultmann, a pré-compreensão místico-metafísica caracteriza-
+se pelo uso predominante da referências às potências sobrenaturais e a um mundo
+habitado por espíritos, deuses, potestades, os quais sempre intervêm na história
+dos homens; um mundo dividido em três andares: o céu, ndeo habitam Deus e os
+seres celestiais; o inferno, como o mundo subterrâneo e lugar da pena divina; a
+terra, como p alco dos acontecimentos naturais e cotidianos, mas também como
+campo de batalha entre Deus, os seres celestiais e Satanás e seus demônios.
+
+•  A vertente Lingüística - Os lingüistas em geral concordam que o estudo da
+lingüística é uma coisa antes e outra depois de Ferdinand de Saussure (1857-
+1913), lingüista suíço que deu à lingüística status de ciência.30 A partir da
+descoberta  do  Sânscrito, na  segunda  metade  do  Século  XVIII,  Saussure
+desenvolveu uma teoria segundo a qual existe uma estrutura lingüística comum a
+todos os povos e que consiste na elaboração feita pelo cérebro de um sistema
+fechado de códigos que se organizam de acordo com um padrão universal. Muito
+embora existam idiomas diferentes, todos eles operam a partir de uma base
+estrutural que se desenvolve a nível inconsciente.31 Mesmo que o autor de uma
+passagem  tenha  escrito  com  uma  intenção  consciente,  transmitiu
+inconscientemente uma série de outros sentidos através desta base estrutural que
+governa todas as línguas. A tarefa principal do lingüista (exegeta bíblico) é estudar
+esta estrutura. As idéias de Saussure estão condensadas através de dicotomias,
+das quais as mais importantes são:
+
+o Língua versus fala (langue versus parole) - A língua é um conjunto de hábitos
+lingüísticos  que  permitem  a  uma  pessoa  compreender  e  fazer-se
+compreender. Do ponto de vista funcional é encarada como um sistema de
+signos distintos correspondentes a idéias distintas, mas de tal forma
+organizados para atingir a um determinado fim, ou seja, palavras unidas com
+normas de combinação para traduzir idéias. Já a fala é o lado executivo da
+língua cujo domínio é da inteligência e da vontade do indivíduo, o qual
+manipula combinações de forma que intenta exprimir seu pensamento
+pessoal.
+
+o Sincronia versus diacronia - o objetivo aqui é distinguir no estudo da língua
+uma visão descritiva de uma visão histórica. Saussure procurou despertar a
+consciência daqueles lingüistas que para explicar determinados fenômenos
+recorriam ao passado e à evolução da língua. Tais métodos eram diacrônicos
+pois  se preocupavam excessivamente com a história do texto, seu
+surgimento, seu desenvolvimento, seu contexto, sua gramática; a análise
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+HERMENÊUTICA BÍBLICA - 20
+
+sincrônica, por outro lado, procura ver o texto em si mesmo, sem relação com
+o progresso histórico do qual faz parte. O exegeta neste caso concentra-se na
+presença literária do texto como um todo no mundo de narrativa construído
+pelo autor. Por exemplo, os autores dos evangelhos pintaram quadros e
+criaram mundos de narrativas, buscando causar efeitos nos leitores.
+
+•  A vertente Filosófica - Desde os tempos mais antigos, a luta entre o que é alegórico
+e o que é literal dentro da igreja cristã tem movimentado o ambiente da
+hermenêutica, notadamente pela influência do platonismo, presente na escola
+alexandrina e do aristotelismo, próprio da escola medieval. No início do século XX,
+houve uma mudança na forma de pensar sobre as relações existentes entre o
+escritor, o texto e o destinatário. Isso se deve ao trabalho do filósofo alemão Hans
+Georg Gadamer, cujo fundamento principal é a hermenêutica do tipo Reader
+Response, cujos conceitos básicos são:
+
+o O conceito de fusão de horizontes - "Horizontes" são os mundos vivos do
+autor e do leitor que se fundem quando ambos se encontram no texto. O
+leitor expande o horizonte do texto ao apropriar-se dele em uma nova
+situação histórica; o texto, em troca, impulsiona o leitor a desafiar e expandir
+as estruturas e pressuposições que traz consigo. Em resumo, a hermenêutica
+de Gadamer se move do autor e do texto para uma união entre o texto e o
+leitor com raízes no presente em vez do passado: interpretar é aplicar.
+
+o O conceito da importância das pressuposições do leitor - Aduz-se aqui a
+dicotomia de Saussure sobre diacronia e sincronia. O sentido de um texto
+não é encontrado na pesquisa diacrônica em busca do sentido original e
+histórico do texto, mas através do diálogo com o texto no presente sem
+nenhuma preocupação com a intenção do autor, como faziam os exegetas da
+escola da crítica da redação. Agora, contrariando a perspectiva negativa que o
+racionalismo tinha sobre as pressuposições do leitor na interpretação,
+Gadamer afirma que essas pressuposições são a chave para a compreensão
+de um texto. Esse conceito veio mais tarde influenciar as hermenêuticas de
+libertação.
+
+o O conceito subjetivista - Gadamer não estabelece qualquer critério para
+definir se uma interpretação é falsa ou verdadeira. Segundo ele, todas são
+verdadeiras para quem lê, numa clara demonstração de relativização da
+verdade e de subjetivismo, onde cada nova leitura pode produzir sentidos
+diferentes e inovadores até para o mesmo leitor, e nenhum deles conflitante
+com os demais.
+
+o Desconstrucionismo - Outro expoente da vertente filosófica é o francês
+Jacques Derrida (nascido em 1930 e falecido em 8.10.2004), considerado
+como o pai do desconstrucionismo. Segundo esta linha hermenêutica,
+surgida em meados da década de 1960, não há uma única verdadeira
+interpretação de um fato, de um texto ou discurso mas muitas interpretações
+igualmente válidas. Esta postura é, na verdade, uma ampliação do princípio
+do pluralismo que, neste caso, vai além do inclusivismo e propõe não apenas
+a aceitação e assimilação de pensamentos diferentes, mas a inexistência de
+uma verdade absoluta. A desconstrução surgiu nos textos de Derrida como
+parte de uma crítica abrangente ao pensamento ocidental. Ela é um dos
+termos de uma equação filosófica complexa elaborada em vários livros. Trata-
+se de uma estratégia “subversiva” de leitura que parte do princípio de que
+qualquer texto, por mais que almeje à clareza e ao rigor, sempre contém
+pontos cegos ou módulos de ambigüidade que, devidamente explorados,
+permitem desfazer as amarras lógicas do raciocínio, inverter suas premissas,
+anular sua hierarquia de idéias. O desconstrucionismo abriu portas para
+minorias que se sentiam marginalizadas por aquilo que consideravam o
+“substrato autoritário e opressor do pensamento ocidental”, como por
+exemplo, as feministas. Entretanto, para Derrida, há coisas que não podem
+ser desconstruídas, a saber, justiça, amizade e democracia.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+HERMENÊUTICA BÍBLICA - 21
+
+3 -  PRINCÍPIOS DE INTERPRETAÇÃO DA
+BÍBLIA
+
+No decorrer da história da Hermenêutica foram se formando as diversas tendências de
+interpretação da Bíblia, aliadas a alguns princípios de utilização na tarefa sempre nova e
+desafiadora de atualização do texto. Geralmente os teólogos dividem essas tendências em
+quatro escolas de interpretação: a escola gramatical, a escola histórica, a escola teológica e a
+escola crítica. A escola gramatical lida com o sentido das palavras ora isoladamente (sentido
+etmológico), ou então com o texto como um todo, levando ainda em consideração questões
+relativas ao contexto lingüistico, histórico, social, político e religioso. É nesse aspecto que se
+confunde com a escola histórica, a qual lida com o ambiente em que foi formado o texto
+bíblico. Esse ambiente é o ambiente do autor e do seu povo. Aqui, o lugar, o tempo, as
+circunstâncias e as concepções do ambiente formador da Bíblia são vistos como importantes
+para a interpretação dos textos. Como afirma Louis Berkhof ao utilizar-se desses princípios,
+o interprete transporta-se mentalmente para a época em que o texto foi escrito. Já a escola
+teológica, zela pelo princípio "escriturístico" da Bíblia, ou seja, o caráter místico da Bíblia,
+enquanto Palavra de Deus. A tendência dessa escola é tornar os testamentos como uma
+unidade principalmente no que diz respeito à doutrina da redenção que une tanto israelitas
+no AT quanto gentios do NT. Uma das marcas desse caráter místico da Bíblia é a
+interpretação tipológica das escrituras, a qual será estudada no próximo capítulo. Aqui
+mística-tipo-símbolo constituem uma realidade inseparável. Finalmente, a escola crítica, a
+qual possui seus precedentes na busca de um diálogo entre a linguagem científica e a
+linguagem religiosa própria dos séculos XVII e XVIII, tem, como uma de suas características
+principais, a utilização de métodos científicos na interpretação dos textos. Identificando-se
+com a escola histórica, a escola crítica busca conhecer o texto a partir do autor e do seu
+ambiente, respeitando a antropologia do momento e as categorias sociais; identificando-se
+também com a escola gramatical, procura identificar categorias de linguagem próprias da
+cultura local através do método da história das formas, da crítica textual e da história da
+redação. Do ponto de vista teológico, ao contrário da escola chamada teológica, a escola
+crítica procurar entender a teologia enquanto evolução na história, seccionando períodos e
+tendências teológicas, desistindo assim da idéia da unidade dos testamentos, visto que,
+segundo ela, na Bíblia encontram-se diversas teologias. O diferencial da escola crítica é a
+sua proximidade da Psicologia, da Antropologia, da Filosofia e principalmente da Sociologia.
+O texto é entendido primeiramente no seu ambiente formador e, depois, por analogia, é
+entendido em um novo momento, sempre numa ênfase nova onde a perspectiva da
+comunidade é determinante na interpretação do texto.
+
+Ao estudarem as escolas de interpretação bíblica, os teólogos geralmente dividem os
+princípios hermenêuticos, separando-os por tendência, quer seja gramatical, quer seja
+histórica, quer seja teológica, quer seja crítica. Em nossa abordagem evitaremos as
+classificações, sugerindo apenas alguns princípios válidos para a leitura de textos bíblicos.
+No contato com o estudante da Bíblia em laboratório, faremos as devidas identificações.
+
+3.1.  Princípio da Crença na Autoridade das Escrituras
+
+O primeiro princípio a ser abordado é o da crença na autoridade das Escrituras. Se a
+Bíblia é submetida à razão ou mesmo à tradição ela deixa de ter autoridade sobre a vida de
+uma pessoa. Por exemplo, o que o catolicismo ensina sobre Maria é uma leitura das
+Escrituras a partir da influência da tradição34, o que pressupõe que a crença na autoridade
+da tradição é superior à da autoridade das Escrituras, embora a nível teórico se afirme o
+contrário. Entretanto, pretende-se aqui dar um novo sentido à autoridade das Escrituras,
+visto que tem sido, usada por linhas tidas como "biblicistas" para consolidar ensinos por
+demais alienadores. A autoridade da Bíblia não existe para fundamentar princípios de
+história geral, matemáticos e científicos. Daí a incapacidade da Igreja de conviver com
+descobertas científicas que "abalaram" a crença na autoridade das Escrituras, tais como as
+de Copérnico e de Galileu Galilei. A autoridade das Escrituras não existe para defender as
+Escrituras em si mesmas, a sua inerrância ou a sua infalibilidade, mas para revelar ao ser
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+HERMENÊUTICA BÍBLICA - 22
+
+humano a vontade de Deus, sua misericórdia, seu amor, trazendo ao homem novamente a
+condição de amigo de Deus (II Co. 5:18-19), existindo ainda para conceder a esse ser
+humano princípios para viver de acordo com a vida de uma nova criatura em Jesus Cristo.
+Em suma, o que se quer dizer é que a autoridade das Escrituras existe em matéria de fé.
+
+3.2.  Princípio do Sentido Usual e Ordinário das Palavras
+
+É de suma importância tomar as palavras no seu sentido usual e ordinário. O
+primeiro passo para se determinar o sentido de uma palavra é a busca do seu significado, o
+qual é o valor denotativo da palavra. Um bom exemplo é a palavra "cordeiro" em Ex. 12:3 e
+em Jo. 1:29, onde significa o animal reservado ao sacrifício. No passo seguinte, a palavra em
+questão é interpretada à luz das palavras ou sentenças que precedem ou seguem à mesma.
+Por isso, pode-se dizer que em Ex. 12:3 a palavra "cordeiro" possui um sentido próprio ao
+significado e em Jo. 1:29 possui um sentido metafórico 35. Outro exemplo é a palavra "Fé",
+geralmente entendida como "Confiança". Esta palavra tem em Gl. 1:23 o sentido de "crença",
+"doutrina"; em Rm. 14:23, "convicção"; em Hebreus 11, "confiança" nas promessas divinas
+atestada pelo testemunho dos que crêem. Outro termo é a palavra "carne" que em Rm. 3:20
+traz a idéia de "pessoa"; em Ezequiel 36:26 tem o sentido de uma "disposição maleável à
+obediência"; em Ef. 2:3, "desejos licenciosos oriundos da velha natureza"; em I Tm. 3:16 tem
+o sentido de "forma humana".
+
+3.3.  Princípio da Análise à Luz do Contexto
+
+Além de buscar o contexto literário, analisando a palavra dentro das demais palavras
+ou sentenças, é essencial estudar o texto à luz do ambiente que o produziu, ou seja, à luz do
+seu contexto histórico, socio-cultural, religioso, político e geográfico. É intrigante para a
+pessoa que lê o evangelho pela primeira vez o texto de Jo. 4:9, no texto que relata o encontro
+entre Jesus e a mulher samaritana, onde aparece uma observação dizendo que os judeus
+não se davam com os samaritanos. Entretanto o texto não diz porque. Sugere no verso 20
+uma briga religiosa. Entretanto as razões dessa briga são esclarecidas pelo contexto
+histórico-religioso, o qual leva o estudante da Bíblia para o ambiente pós-exílico do IV século
+a      C., com a repatriação dos judeus em meio à povoação de árabes e de pessoas oriundas
+das misturas raciais advindas da invasão assíria no reino do norte cerca de 700 a C.,
+culminando com divisões políticas na família sacerdotal judaica e a construção de um
+templo  no Monte Gerizim para competir com o Templo de Jerusalém. A postura de Jesus
+diante do ódio dos judeus exposta no corpo do texto do capítulo 4 de João representa uma
+quebra de fortes paradigmas na medida em que se conhece o contexto.
+
+3.4.  Princípio do Desígnio
+
+É preciso levar em consideração o desígnio ou objetivo do livro ou passagem onde
+ocorrem as palavras. Por exemplo, o estudo geral das cartas de Paulo aos Gálatas e aos
+Colossenses com o conhecimento do contexto das mesmas, revela o ambiente de confusão
+doutrinária causado pelos erros dos judaizantes que queriam subverter o evangelho da
+liberdade em Cristo Jesus, reduzindo-o à Lei com a observância de dias e cerimonias
+judaicas e da falsa filosofia. Nesses casos durante todo o corpo do texto aparecem com
+freqüência palavras que denunciam esse ambiente. A insistência do autor em usar alguns
+termos, como por exemplo, o termo "rudimentos do mundo" em Gl. 4:3,9,11. Se lido
+isoladamente, o termo pode sugerir algum tipo de prática oriunda do paganismo e da
+carnalidade própria do velho homem, mas quando lido à luz do contexto e do livro como um
+todo,   o termo apontará para as práticas legalistas que eram colocadas pelos judaizantes
+como obrigatórias e integrantes para o verdadeiro cristão.
+
+3.5.  Princípio das Passagens Paralelas
+
+Com bastante cuidado é importante consultar passagens paralelas. O conjunto de
+passagens que combinam entre si podem levar o estudante ao conhecimento de uma
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+HERMENÊUTICA BÍBLICA - 23
+
+doutrina ou idéia. As "marcas de Cristo" reclamadas por Paulo em II Co. 4:10, II Co. 11:23-
+
+25 e Gl. 6:17, são alusões que o apóstolo faz dos seus sofrimentos e das perseguições
+advindas de sua opção a favor do evangelho de Cristo.
+
+A partir deste princípio pode-se assumir que o texto bíblico, na verdade, possui um
+único sentido, a saber, o literal. O sentido literal não é o sentido "ao pé-da-letra", mas é o
+sentido da intenção do autor. E o autor pode ter usado palavras com formas metafóricas, ou
+formas próprias ao seu signi ficado. O sentido literal é o que o autor quis dizer.
+
+3.6.  Princípio da Análise Experiencial à Luz das Escrituras
+
+De acordo com W.A. Henrichsen 36, deve-se interpretar a experiência pessoal à luz
+das Escrituras e não as Escrituras à luz da experiência pessoal. E aqui temos uma delicada
+premissa que, quando comparada às afirmações da Hermenêutica pós-moderna pode levar o
+princípio a duas vertentes. Por um lado, admite-se que não é recomendável imprimir sobre o
+texto e o seu resultado hermenêutico, ou seja, sua interpretação local, a experiência da
+pessoa, no sentido de fazer o texto significar o que ela queira que ele signifique ou mesmo o
+que ela precise que ele signifique. É justamente aqui que nascem as interpretações de
+conveniência tão comuns à época em que vivemos. Por outro lado, existe aquilo que R.
+Lapointe 37 chama de "Circularidade Hermenêutica", ou seja, a mútua iluminação entre o
+acontecimento fundamental (primeiro) e o acontecimento derivado, ou ainda entre o
+primeiro e a sua "palavra". Por exemplo, se a Igreja Primitiva interpretou Jesus a partir das
+Escrituras, estava também interpretando as Escrituras a partir do acontecimento de Jesus (
+acontecimento: Jesus; palavra: NT ) . Em termos práticos, pode-se tentar uma conciliação
+entre partes aparentemente contrárias. Se o Dêutero-Isaías fala no capítulo 61 sobre uma
+pessoa sobre a qual repousa o Espírito do Senhor para libertar cativos, curar aflitos, tirar
+cegos da escuridão e apregoar o ano aceitável do Senhor, ele pode estar falando de si mesmo
+como pessoa, ou até mesmo do povo liberto do cativeiro da Babilônia para exercer esse
+ministério diante dos povos, ou até mesmo de um outro profeta (o que é menos provável).
+Entretanto, nada há que impeça o texto a ter uma nova leitura na pessoa de Jesus Cristo,
+mas sempre de forma tal que venha a parecer que o Dêutero-Isaías estava falando para uma
+outra época, a do porvir, onde sua pregação teria um sentido de vaticínio. É o que temos em
+Lucas 4, onde Jesus afirma que "se cumpriu hoje" diante das pessoas ali presentes o que
+falara o profeta. "Desobedecendo" um pouco a idéia de que profecia cumprida jamais se
+repete, nada há que impeça a interpretação de que no mundo hodierno, a Igreja de Jesus
+Cristo deve assumir o ministério que no AT pertenceu ao profeta ou à sua comunidade e que
+no NT cumpriu-se em Jesus Cristo.
+
+4 -  PARTES BÁSICAS DA
+HERMENÊUTICA BÍBLICA
+
+O estudo da Hermenêutica requer um adequado conhecimento de seus elementos
+fundamentais. São esses elementos que comporão cada etapa do processo de interpretação
+e aplicação do texto em estudo. Conforme apresentado na Introdução do presente trabalho,
+são três as partes básicas da Hermenêutica, voltadas para o sentido do texto: A Noemática (
+do grego noema, "pensamento, sentido" ) aponta o sentido presente no texto; a Heurística (
+do grego eurisko, "achar, encontrar") estuda as ferramentas utilizadas para se determinar o
+sentido do texto; e a Proforística ( do grego profero, "mostrar, expor" ) trabalha com o modo,
+a maneira, de expor os sentidos contidos na Bíblia.
+
+4.1.  Noemática
+
+Para a compreensão deste elemento, é imprescindível o entendimento do conceito de
+SENTIDO, bem como a sua distinção de SIGNIFICADO: enquanto este é o que uma palavra,
+em seu valor denotativo, pode significar, aquele é o significado que a palavra recebe pelo
+influxo do autor ou mesmo até do intérprete. Segundo Georges Mounin, citado por Fernando
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+HERMENÊUTICA BÍBLICA - 24
+
+Castin, 38 o sentido é o valor preciso que um significado adquire num contexto. Pierre
+Guiraud, também citado por Castin no mesmo texto, defende a dinâmica das relações da
+palavra com as outras palavras do contexto. Tais relações são determinadas pela estrutura
+do sistema lingüístico, o que equivale a dizer que palavras isoladas não possuem sentido
+mas significado, somente adquirindo sentido dentro de um determinado contexto. Um
+exemplo disto pode ser visto no provérbio "Quem tem boca vai a Roma ". O significado das
+palavras isoladas nos traz uma frase sem nexo, mas o valor que cada palavra adquire na
+frase nos levará a um sentido, qual seja: podemos ir a qualquer lugar desconhecido e
+longínquo desde que estejamos dispostos a pedir orientação ou a perguntar.
+
+Entrando no campo bíblico, chegamos à histórica questão hermenêutica da busca do
+sentido original do texto, o que deu origem às célebres controvérsias entre interpretação
+alegórica e literal, e às mais variadas propostas quanto à multiplicidade dos sentidos do
+texto bíblico: sentidos anagógico, tropológico, escatológico, etc. Uma das tendências
+hermenêuticas é achar que só existe na Bíblia um único sentido, o literal, seja ele próprio ou
+metafórico. Por sentido literal entende-se aquele sentido do domínio direto e consciente do
+autor em seu momento histórico. É aquilo que ele intenta dizer independente da forma (
+estilo, gênero, etc. ); por exemplo: O cordeiro pascal em Ex. 12:3 e em Jo. 1:29 deve ser
+entendido em sentido literal; em ambos os casos, a palavra cordeiro tem um só significado (
+o animal sacrificado no rito de expiação ) e um só sentido, embora próprio no primeiro caso
+e metafórico no segundo. Como fundamento, admite-se que se Deus fala aos homens
+através da Escritura, Ele o faz através de homens que, por sua vez, não escreveram para
+não dizer nada, mas possuem uma intenção através das palavras que usam.
+
+Entretanto, outros teólogos defendem, ao lado deste, um outro sentido literal chamado
+de pleno, também conhecido como sensus plenior. Compreende-se aqui que Deus coloca
+uma consistência mais profunda no conteúdo expresso pelo autor, ainda que seu
+pensamento se limite ao seu momento histórico, pois o sentido pleno está fora do seu
+alcance intelectivo ou visual. O sensus plenior não é, portanto, do domínio do autor.
+Algumas das profecias messiânicas encontradas em Isaías e em Malaquias são
+interpretadas a partir do sensus plenior, cujas características gerais são as seguintes:
+
+• Está incluído na letra do texto, apesar de ser desconhecido do escritor;
+
+• É da alçada divina e de sua intenção;
+
+• Só pode ser descoberto à luz de uma revelação ou ensinamento posterior;
+
+• É homogêneo em seu conteúdo.
+
+Manuel de Tuya e Jose Salguero apresentam um exemplo de homogeneidade do
+sentido pleno: Em Sl. 2:7 a expressão "Tu és meu filho; hoje te gerei" tem relação com a
+entronização do messias vetero-testamentário. Entretanto, o sentido pleno do texto
+encontra-se centrado na pessoa de Jesus Cristo em três textos do NT, nos quais os sentidos
+são polivalentes e divergentes (quanto ao significado), embora homogêneos no sentido: Em
+At. 13:33, alude-se à ressurreição de Cristo; em Hb. 1:5 à divindade de Cristo e em Hb. 5:5
+à sua posição de superioridade em relação ao modelo humano representado pelo sumo-
+sacerdote.
+
+Outra tendência é indicar, além do sentido literal, o sentido "típico" das Escrituras. O
+tipo é uma espécie de metáfora que não consiste meramente em palavras mas em atos,
+pessoas ou objetos que designam semelhantes atos, pessoas ou objetos no porvir,
+apontando, portanto, para uma realidade futura. Foi bastante enfatizado pelos pais
+apostólicos. De acordo com Tuya e Salguero são necessárias para a configuração do sentido
+típico, as seguintes características:
+
+• Uma realidade histórica ou literária. O fundamento do tipo possui uma
+realidade histórica anterior, independente do próprio tipo, realidade essa
+que, utilizada por Deus, vem a significar outra coisa. Por exemplo, a
+serpente levantada no deserto (Nm.21:9 e Jo. 3:14 ). Do ponto de vista
+literário aparece um texto curioso que, contrariando o padrão judaico de
+narrativa sobre um personagem histórico no qual o personagem é sempre
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+HERMENÊUTICA BÍBLICA - 25
+
+identificado pela sua genealogia, apresenta Melquisedeque apenas como "rei
+de Salém” e sacerdote do Deus altíssimo "(Gn. 14:18). Por conta disto, o NT
+o apresenta como "tipo" do sacerdócio eterno de Cristo (Hb. 7:3) pois se
+"assemelha" (do grego afomoiomenos) ao Filho de Deus. É natural que
+Melquisedeque tivesse pai e mãe pois foi sacerdote e rei, entretanto o texto
+omite essa informação. Por isso a relação de um texto com o outro torna-se
+espiritual.
+
+• A partir desta idéia, se requer uma semelhança entre o tipo e o antítipo. O
+tipo deve ser uma imagem sensível e menos perfeita que a realidade
+espiritual que ilustra, o que significa dizer que existe uma relação de
+proporção e análoga entre eles. Esta analogia não significa que deve haver
+uma adequação entre o tipo e o antítipo em todas as suas partes. Um só
+aspecto dessa relação basta para caracterizar esta tipologia (comparar Ex.
+12:46 com Nm. 9:12 e Jo. 19:33-36 ).
+
+• A mais importante característica do tipo está no fato de que a realidade que
+ele representa vem da sobrenatural escolha de Deus. O escritor não tem
+como ou por que saber se o que ele escreve é usado por Deus para
+representar outra realidade no futuro.
+
+Em suma, o sentido literal não significa necessariamente literalismo (leitura ao pé da
+letra) mas aquilo que o autor quis efetivamente dizer, usando para isto palavras no seu
+sentido denotativo ou de forma retórica, lançando mão das figuras de linguagem, numa
+espécie de "sentido literal-figurado". Por isso torna-se importante o conhecimento dos tipos
+mais freqüentes de figuras de linguagem existentes no texto bíblico:
+
+• Metáfora ("levar mais além") - é uma figura comparativa na qual um objeto é
+assemelhado a outro, afirmando ser o outro ou falando de si como se fosse
+o outro, ressaltando assim suas qualidades ou características ( Is. 40:6; Sl.
+18:2; Mt. 5:13; Lc. 13:32; Jo. 6:48; Jo. 10:7 e 9; Jo. 10:11 e 14 ). São
+
+considerados como tipos secundários de metáforas os antropomorfismos e
+os antropopatismos. Nos primeiros atribui-se a Deus formas humanas e
+atividades físicas ( Sl. 33:18; Sl. 34:16; Tg. 5:4 ); nos últimos atribui-se a
+Deus sentimentos e paixões humanas (Gn. 6:6; Dt. 13:17; Ef. 4:30).
+
+• Símile - é uma figura comparativa na qual um objeto é assemelhado a
+outro, existindo aí a cláusula comparativa ( "como", "tal qual", "assim
+como", "tal como"). Na metáfora a comparação está implícita e na símile,
+explícita. Assim, em I Pd. 1:24 temos uma símile e em Is. 40:6 uma
+metáfora. Outros exemplos de símile podem ser encontrados em Lc. 10:3 e
+Sl. 1:3-4.
+
+• Metonímia (metonomazo - "denominar de outra maneira") - emprega-se esta
+figura quando a causa é tomada pelo efeito ou vice-versa, ou o símbolo pela
+realidade que ele indica. Baseia-se numa relação mental. Por exemplo, em
+Lc. 16:29 o termo "Moisés e os profetas" significa o conjunto de textos do
+AT; em I Co. 10:21 o termo "cálice do Senhor" refere-se ao conteúdo do
+cálice mas não ao cálice em si mesmo; em At. 7:8 a circuncisão é chamada
+de concerto porque é um sinal do concerto; em I Jo. 1:7 a palavra "sangue"
+indica toda a paixão e morte expiatória.
+
+• Sinédoque ("receber juntamente") - é a substituição da parte pelo todo
+ou do todo pela parte. Assemelha-se à metonímia mas a relação em que
+se encontra é mais física que mental. Por exemplo, em Lc. 2:1 "todo o
+mundo..." se refere apenas à parte do mundo que César Augusto governava,
+ou seja, o Império Romano; em Pv. 1:16 a sentença "os seus pés correm
+para o mal" não significa que apenas os pés deles correm para o mal mas
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+HERMENÊUTICA BÍBLICA - 26
+
+eles mesmos. Os pés são a parte que representa o todo – “eles”. Outros
+textos: Rm. 1:16; 16:3-4.
+
+• Prosopopéia - usa-se esta figura quando se personificam as coisas
+inanimadas atribuindo-lhes ações de pessoas. Exemplos: Sl. 85:10-11; Is.
+35:1; I Co. 15:55; Tg. 5:4; I Pd. 2:8.
+
+• Eufemismo - consiste na substituição de uma expressão desagradável,
+pesada ou injuriosa por outra inócua ou suave. A Bíblia fala da morte dos
+cristãos como um adormecimento (Ex.1:5, Is.6:2b, Ez.16:26, At. 7:60 e I Ts.
+4:13-15). Eufemismos podem também ocorrer nas traduções e não apenas
+no texto original (o termo esterco – “peresh” traduzido por “imundície” em
+Ml.2:3)
+
+• Hipérbole (hiperballos - "sobrepor, colocar acima") - apresenta uma coisa
+grandemente aumentada ou grandemente diminuída do seu tamanho real
+para apresentá-la viva à imaginação ( I Samuel 18:7; Sl. 6:6; Sl. 119:136;
+Miquéias 6:7; Mt. 23:24; Mc. 10:25; Lc. 6:42; Jo. 21:25 ). Algumas vezes
+quando a hipérbole reduz demasiadamente ou deprecia, como em Nm.
+13:33 e I Co. 15:9, recebe o nome "lilote".
+
+• Ironia (do grego eironeia - "simulação") - faz-se uso da ironia quando se
+expressa o contrário do que se quer dizer mas sempre de tal modo que se
+faz ressaltar o sentido verdadeiro. A ironia é uma maneira de ridicularizar
+indiretamente sob a forma de elogio. Com freqüência vem marcada pelo tom
+de    voz de quem fala, o que torna difícil, às vezes, distinguir uma ironia num
+texto a não ser que o contexto ajude. Exemplos: II Sm. 6:20; I Rs. 18:27; Jó
+12:2; Am. 4:4-5; II Co. 11:5.
+
+• Pleonasmo - consiste na repetição de palavras ou no acréscimo de palavras
+semelhantes que em nossa língua parecem redundantes. Exemplos: Jó
+42:5; Mt. 2:10; At. 2:30 ).
+
+• Paradoxo - é uma afirmação aparentemente absurda e contrária ao bom
+senso. Caracteriza-se pela união de duas idéias opostas numa mesma
+sentença de forma proposital. Por isso não é o mesmo que contradição.
+Exemplo: Mc. 8:35.
+
+• Paronomásia - Consiste no emprego das mesmas palavras ou de palavras de
+sons semelhantes para produzir sentidos diferentes. Às vezes é chamada de
+“jogo de palavras” ou “trocadilho”. Ex. Mt. 8:22; É muito bonita quando
+aparece na língua original. Por exemplo, Isaías utilizou palavras de sons
+parecidos para produzir um impacto verbal nos ouvintes ou leitores de Is.
+5:7. Nesse texto, o Senhor buscava “juízo”.
+
+Além do conhecimento das figuras de linguagem, torna-se igualmente importante o
+estudo dos diferentes gêneros literários e de sua utilização no texto das escrituras. Por
+gêneros literários entende-se o modo de expor por escrito um pensamento. Em geral, estão
+ligados a grupos de textos maiores, sejam orações ou unidades distintas. O pressuposto que
+fundamenta o estudo dos gêneros literários é a concepção de que o autor se expressa dentro
+das categorias literárias que lhe sejam comuns, familiares e adequadas ao seu propósito.
+Quando se estuda a cultura de um povo percebe-se que quando ele tem algo a dizer sobre si
+mesmo e sobre os seus dramas ele o faz sempre dentro de formas próprias nas quais possa
+entender-se e ser entendido. Existe melhor forma de entender o drama do homem
+nordestino senão pela literatura de cordel? Assim também o drama teológico do homem
+bíblico, expresso dentro de várias formas (aqui uma contribuição da crítica das formas) e
+gêneros literários. Entretanto, persiste a tentativa de tentar "salvar" o texto bíblico desses
+gêneros com o objetivo de perpetuar determinadas posturas teológicas ou de proteger aquilo
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+HERMENÊUTICA BÍBLICA - 27
+
+que se pretende por "Palavra de Deus", sempre na ótica de grupos ou pessoas que
+demonstram ter o monopólio da verdade unívoca.
+
+Os gêneros literários são mais caracterizados na forma de orações e textos maiores,
+entretanto há alguns que os classificam também em unidades menores, quer sejam palavras
+ou frases. Este último estudo foi feito no item anterior, o qual trata das figuras de linguagem
+ou de retórica. No que diz respeito às unidades maiores, os principais gêneros literários são
+os seguintes:
+
+Parábola (do grego parabállein - "colocar junto, confrontar") - É um tipo de história
+criada a partir de uma montagem feita pelo autor com base em fatos fictícios em um cenário
+extraído da vida real, sempre com o objetivo de ilustrar uma verdade moral ou espiritual,
+utilizando como recurso principal a comparação , às vezes implícita no texto, outras vezes
+explícita ( a cláusula "O reino dos céus é semelhante ..."). Devido ao fato da parábola estar
+montada sempre na égide da verdade central, deve-se tomar bastante cuidado ao usar os
+detalhes que compõem a história para criar doutrinas e ensinamentos, quer seja através da
+alegorização, quer seja pela comparação direta (O local onde estavam o rico e Lázaro é o
+mesmo Sheol do AT ou o mesmo inferno e céu do NT ? - Lc.16:19 ss ).
+
+• Alegoria (do grego Allos-agoreúo - "dizer outra coisa" ) - Consiste em um
+conjunto de várias metáforas ou uma metáfora continuada numa narrativa
+em que as expressões adquirem sentido figurado sempre por intenção do
+autor. Muitas vezes confunde-se a Parábola com a Alegoria. Na Parábola, o
+autor mostra-se interessado em comparar ou assemelhar de forma clara e
+explícita (símile ampliado), enquanto que na Alegoria, o sentido ao qual
+quer se referir o autor está implícito, residente nos elementos que usa de
+forma figurada (metáfora ampliada). Uma segunda distinção é que enquanto
+a Parábola possui geralmente um só elemento principal de comparação, a
+Alegoria contém vários (Vide Sl. 80:8-16); em terceiro lugar, enquanto a
+Parábola  apresenta  um  evento  factível,  na  Alegoria  não  há  essa
+caracterização . Outros textos: Ezequiel 17:1-10; Is. 5:1 ss; Mt. 3:12; 23:4;
+
+• Fábula - É uma narrativa que se caracteriza principalmente pela atribuição
+de qualidades humanas a seres irracionais ou mesmo inanimados. Há
+sempre na Fábula a preocupação com a emissão de um juízo de valor ou de
+um ensinamento moral. Exemplos: Dt. 9:8-15; II Rs. 14:9; II Cr. 25:18. No
+que diz respeito ao estudo de unidades de texto ainda maiores, alguns
+textos formando livros inteiros, observa-se a existência de diversos gêneros
+literários, dos quais pode-se relacionar os mais freqüentes:
+
+• Jurídico ou Nomístico - Associado a uma boa parte dos cinco primeiros
+livros da Bíblia. Esses textos compreendem dois tipos de leis: apodíticas e
+casuísticas. Nas leis apodíticas, os mandamentos são iniciados com uma
+cláusula proibitiva - a palavra não - como acontece no Decálogo (Ex. 20:3-
+17). Nas sentenças casuísticas, as leis são apresentadas por uma condição
+que origina determinada situação. São leis dadas para situações específicas
+(Lv. 20:9-18, 21; Dt. 15:7-17).
+
+• Narrativo - Neste gênero, tem-se uma espécie de história, cuja idéia não é
+mesma da maneira de se fazer história própria do historiador moderno, o
+qual trabalha a partir de uma visão científica. Na narrativa bíblica a história
+é contada com o intuito de transmitir uma mensagem, uma teologia. Por
+exemplo, um leitor desavisado crerá que I e II Crônicas são uma cópia
+idêntica do texto de II Samuel, principalmente no que diz respeito à vida de
+Davi. Ora, lendo os capítulos 11 a 21 de II Samuel tem-se um claro sentido
+de que ao relatar as falhas de Davi, o autor queria ilustrar o fato de que o
+pecado produz conseqüências devastadoras, combinando com a mensagem
+dos livros de Deuteronômio e I e II Reis, os quais foram produzidos num
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+HERMENÊUTICA BÍBLICA - 28
+
+ambiente de culpa dos exilados na Babilônia quando se via na infidelidade
+espiritual do povo a causa principal da catástrofe de 586 a.C. Entretanto, I
+e   II Crônicas omitem os pecados de Davi, dando ênfase ao seu fulgor real,
+aos sacerdotes e ao templo. Essas obras se encaixam perfeitamente numa
+época de restauração física e espiritual dos judeus, no retorno do cativeiro
+babilônico, quando o povo se queixava da perda de seus símbolos
+nacionais, conforme está implícito em Ag. 2:3. I e II Crônicas encorajam o
+povo  a manter-se na fidelidade ao Senhor, na promessa de que a linhagem
+de Davi e o templo seriam preservados.
+
+Existem vários tipos de narrativas, dentre as quais se destacam: Epopéia, Épico,
+Etiologia e Tragédia. Na Epopéia aparece a narrativa sobre os feitos e a vida de um herói
+nacional ou protagonista, uma pessoa que por vezes torna-se padrão para os outros como
+por exemplo, Abraão, Gideão e Davi. No gênero épico aparecem as narrativas contendo uma
+série de episódios centralizados numa pessoa ou num grupo de pessoas com façanhas
+militares e eventos de milagres. Um bom exemplo é o período de peregrinação dos israelitas
+no deserto e a conquista de Canaã. A Etiologia é uma narrativa cujo propósito é o de
+justificar uma realidade a partir de causas encontradas em tradições orais bem antigas.
+Para justificar o domínio sobre os cananeus, os israelitas incluíram em sua narrativa das
+origens o episódio da nudez de Noé e da maldição imposta a Cam e sua descendência,
+conforme Gn.9:22-27. Existem etiologias ligadas ao culto para explicar a importância de
+lugares sagrados. Já a Tragédia é a história da decadência de um indivíduo, do apogeu ao
+desastre (Sansão, Saul e Salomão).
+
+• Poético - Não se pode limitar a poesia hebraica apenas aos livros de Jó,
+Salmos, Provérbios, Eclesiastes e
+
+• Cânticos. Há poesia no Pentatêuco e também nos livros proféticos. Na
+poesia ocidental existe a força da métrica e da rima; na poesia oriental
+repetição e ritmo se unem para tornar uma passagem duplamente
+memorável. A esta característica dá-se o nome de Paralelismo, muito
+comum no livro de Provérbios. Observa-se no texto bíblico vários tipos de
+Paralelismo dentre os quais destacam-se o sinônimo, o antitético e o
+sintético. No Paralelismo sinônimo duas sentenças repetem com palavras
+diferentes uma mesma idéia na mesma ênfase e sentido (Pv. 5:1); no
+Paralelismo antitético, a segunda sentença apresenta uma declaração
+oposta à primeira, mas sempre numa relação dimetral (Pv. 10:1); no
+Paralelismo sintético, uma segunda ou terceira sentença complementam a
+idéia da primeira, levando-a adiante sem repeti-la com palavras diferentes
+(Sl. 27:1; 1:3; 103:1).
+
+• Apocalíptico - Carregado de simbolismos, imagens, visões e revelações, este
+tipo de literatura aparecia com mais freqüência em momentos de grande
+perseguição contra judeus ou cristãos. Nele percebe-se um estado de tensão
+entre justos e ímpios, reino de Deus e reino dos homens, com resultados de
+recompensa para ambos. No AT aparece nos livros de Daniel e Zacarias e no
+NT,   no Apocalipse de João. Entretanto, no período intertestamentário,
+houve uma proliferação deste tipo de literatura aparecendo livros tais como
+o de Henoc e outros considerados pseudepígrafos. A literatura apocalíptica,
+muito mais que previsões, contém verdadeiros tratados de fé com o objetivo
+de confortar os fiéis perseguidos e exortá-los a permanecerem firmes. Em
+síntese, o apocalipse é um documento da resistência dos fiéis.
+
+• Sapiencial - Alguns podem confundir poesia com sabedoria. Toda literatura
+sapiencial tem caráter poético, mas nem todo texto poético pertence à
+literatura sapiencial. Pode-se encontrar um tipo de sabedoria dos simples, a
+sabedoria cotidiana (Provérbios); uma sabedoria que reflete a crise da idéia
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+HERMENÊUTICA BÍBLICA - 29
+
+de Deus (Jó) ; uma sabedoria que reflete a crise na própria sabedoria
+(Eclesiastes). Muito mais do que os profetas, os sábios incomodaram as
+estruturas religiosas do seu tempo e até hoje incomodam àqueles que
+realizam uma leitura moralista do AT.
+
+• Evangelhos (do grego euangellion - "boa notícia") - Essas narrativas não
+podem ser consideradas simplesmente como uma biografia de Jesus e, por
+isso, históricas sob o ponto de vista estrito da palavra "história". Isso fica
+evidente na conclusão do Evangelho de João (21:25). Aqui o verdadeiro
+Jesus é o Cristo, Filho de Deus. Os evangelhos contêm algum material
+biográfico sobre Jesus, mas apresentam muito mais o que ele significou
+para  a comunidade que guardou as suas palavras e o conteúdo de doutrina
+que dele ficou (Lc. 1:1-4). Representam, na verdade, a pregação sobre Jesus
+Cristo encarnada na atividade da Igreja primitiva, com ações de louvor.
+
+• Epistolar - Esse tipo de literatura era muito comum no império romano e
+tornou-se depois útil dentro dos objetivos canônicos. Uma epístola não é
+simplesmente uma carta, que é mais curta em seu conteúdo e tem um
+caráter pessoal. Numa epístola, existe uma variedade de temas, abordados
+de maneira sistemática, na forma de uma circular dirigida a várias
+comunidades. A epístola aos Gálatas por exemplo, é dirigida não apenas a
+uma comunidade mas às igrejas da Galácia. Entretanto, a prática de
+algumas igrejas de usarem coletivamente cartas menores dirigidas a
+indivíduos (Por exemplo, a carta de Paulo a Filemom, lida e conservada pela
+igreja de Colossos) fez desaparecer essa distinção entre carta e epístola,
+principalmente em virtude da autoridade crescente do apóstolo Paulo sobre
+essas comunidades.
+
+4.2.  Heurística
+
+De acordo com que o próprio termo sugere, a tarefa da Hermenêutica é "encontrar" os
+sentidos do texto bíblico, mediante procedimentos científicos. Um deles é o da investigação,
+o qual desembocará na exegese. Diante do texto, o investigador defronta-se com várias
+questões. É como se o exegeta estivesse perguntando ao texto. As questões que mais se
+destacam diante do pesquisador são as seguintes:
+
+A. Crítica Textual - O que há de mais original no texto? O texto atual é resultado de
+um desenvolvimento redacional? As variantes encontradas são acidentais ou substanciais?
+41
+
+B. Autoria do livro - Através do estilo literário e do conteúdo do livro, coletam-se dados
+que podem conduzir ao autor do livro (ou autores), seu meio ambiente, sua família,
+tendências teológicas, sua profissão, sua cultura. São notáveis a diferenças entre o linguajar
+poético do autor do livro de Jó, o estilo rústico e agressivo de Amós e Jeremias, e linguagem
+elegante do livro do Profeta Isaías.
+
+C. Época e finalidade do livro - O que estava acontecendo por ocasião da escrita do
+livro ? Há uma íntima relação entre a ocasião e a finalidade de um texto pois não há texto
+sem propósito. O que pode acusar a época e a finalidade do livro está dentro do próprio
+texto. A partir da insistência do uso de alguns termos, mesmo que não seja uma indicação
+explícita da intenção do autor, pode-se perceber uma finalidade que, por sua vez, indica um
+drama de época. Por exemplo, as várias referências à Lei, aos "rudimentos do mundo" e à
+escravidão que a Lei provoca , revelam em Gálatas uma clara intenção de resolver os
+problemas e estragos causados pela infiltração de judaizantes na igreja primitiva. Outras
+vezes o autor indica de forma clara e explícita a sua finalidade ao escrever o livro, como em
+Pv.1: 1-6, Lc.1:1-4 e Jo. 20:30-31.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+HERMENÊUTICA BÍBLICA - 30
+
+D. Condições ambientais do autor - O autor é filho de seu tempo e do ambiente em
+que vive. Expressa-se numa mentalidade correspondente a si e aos seus leitores. Por sua
+vez, essa mentalidade reproduz determinadas condições ambientais, que podem ser de
+natureza cultural, físico-geográfica e histórica. Do ponto de vista cultural, por exemplo, é
+imprescindível o estudo da língua e do estilo literário para uma correta interpretação do
+pensamento do autor. Cada língua tem sua própria dinâmica e seus próprios idiomatismos.
+Outro instrumento importante é o estudo das religiões comparadas. Uma das contribuições
+desse estudo é a separação entre aquilo que é teológico e aquilo que é cultural dentro de um
+ponto de vista global. Como exemplo de determinantes físico-geográficos existe a
+caracterização da Palestina como uma terra seca e estéril, onde a água e a fertilidade eram
+uma necessidade constante. A relação entre o homem e a terra passa de geográfica para
+religiosa. O livro de Gênesis descreve enfaticamente essa relação nos seus primeiros
+capítulos para falar do pecado das origens com a divinização dos elementos naturais, o que
+constitui uma reação da religião de Israel contra as propostas da religião agrária dos
+cananeus.
+
+4.3.  Proforística
+
+A Proforística é a terceira parte básica da Hermenêutica e de acordo com o significado
+do nome no grego ( mostrar, expor, levar adiante ), sua finalidade é a de expor a Bíblia.
+Como se expõe as Escrituras? Algumas das formas mais comuns são as seguintes:
+
+A. Versões - Pode parecer estranho que uma tradução da Bíblia seja uma exposição
+da mesma. A versão se apresenta como uma tradução bem feita, talvez a melhor. Muitas
+vezes, entretanto, está a serviço de uma determinada tendência hermenêutica. Já foi visto
+no primeiro capítulo como a Septuaginta e os Targumim fizeram esse papel. Um outro
+exemplo muito interessante, mais para dentro do nosso tempo é o Salmo 116:15 onde a
+palavra "preciosa" pode sugerir um real interesse de Deus pela morte do fiel, quando no
+original indica mais um alto custo ou uma tristeza de Deus por estar agora "perdendo" o
+contato com o fiel pela sua morte (conforme doutrina do Sheol no AT). Aqui, um real
+interesse em ligar o Salmo à expectativa cristã da ressurreição e do encontro com Cristo
+após  a morte do fiel, não existente no texto original. Outro bom exemplo é a tradução da
+palavra hebraica “ ‘al’mah” – mulher jovem, moça em Is.7.14 por virgem que em hebraico é
+“na’arah”. Menciono ainda um arranjo na numeração de versículos separadas por unidades
+vistas em alguns textos como por exemplo em Ef.5.21-22. Como exercício, observe as
+diferenças deste texto nas versões NVI, ALMEIDA, NTLH, BJ e outras.
+
+Muitas vezes o pesquisador percebe que o texto foi modificado substancialmente em
+função de acréscimos ou de retiradas ou modificações feitas no decorrer da história. Const
+ata isto geralmente quando possui duas ou mais cópi as de manuscritos do mesmo texto.
+Geralmente aí vê-se uma série de interesses de ordem teológica ou particular. Entretanto,
+muitas varia ntes ocorrem devido a acidentes, ou seja, falhas de copistas quando da ocasião
+de trans crição de textos de um manuscrito antigo para outro novo.
+
+B. Comentários - É uma forma sistemática de estudo e de exposição de um livro
+bíblico ou de parte dele. Aí se lança mão de vários recursos, alguns deles já expostos no
+estudo sobre Noemática e Heurística. Os comentários representam posições teológicas de
+pessoas ou escolas de estudos bíblicos das mais diversas tendências hermenêuticas. Cada
+vez mais instituições procuram um maior aprofundamento, principalmente nas questões
+lingüísticas-históricas visando a uma interpretação mais próxima do sentido do texto.
+Outras formas de comentários são as chamadas notas de rodapé constantes em bíblias
+especiais ou bíblias de estudo. Percebe-se, por exemplo, na Bíblia de Scofield, uma
+inclinação tendenciosa em suas notas (em Daniel, Ezequiel, Mateus e Apocalipse, entre
+outros) para a defesa de uma escatologia de tendência dispensacionalista, futurista e pré-
+milenista. Um outro exemplo interessante é a nota de rodapé da Bíblia de Jerusalém, um
+dos mais importantes textos surgidos nas últimas décadas, para o texto de Mt. 1:25, no
+qual se percebe uma determinante dogmática sobre a interpretação do mesmo.
+
+C. Teologia Bíblica - Alguns acham que a teologia bíblica não é uma interpretação em
+si, mas o resultado da interpretação. Entretanto isso pode ser questionável, pois "fazer
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+HERMENÊUTICA BÍBLICA - 31
+
+Teologia" significa também interpretar. Aquilo que se chama de forma analítica da teologia
+bíblica é o caminhar histórico e evolutivo da exposição da temática religiosa e bíblica,
+separando a Teologia bíblica em partes e unidades distintas e independentes. Assim, os
+escritores são vistos como intérpretes e teólogos ao mesmo tempo. Outra forma de teologia
+segue o método lógico, o qual está relacionado com os sistemas nos quais a Teologia é
+apresentada, existindo assim o chamado elemento doutrinário ou dogmático.
+
+5 -  DESAFIOS DA HERMENÊUTICA PARA
+OS NOSSOS DIAS
+
+Para Augusto Nicodemus um dos desafios atuais da Hermenêutica é saber até que
+ponto as ferramentas do método histórico-crítico podem ser úteis na interpretação do texto
+sagrado visto que utilizam pressupostos por vezes antagônicos à convicção de que a Bíblia é
+a Palavra de Deus. Um desses exemplos e a busca pelo Jesus histórico. A leitura dos
+evangelhos dentro dessa ótica sem a tradicional roupagem moralista geralmente atribuída a
+Jesus, tira muitos mitos sobre o Cristo-homem e, de uma certa forma, deixa para trás o
+dogma e a Teologia Sistemática. Nessa abordagem se conhece o Cristo que desafiou
+estruturas familiares e sociais : ele rejeita o casamento, deixa sua família e sai pelo mundo
+reunindo pessoas que escolhe como seus familiares; o Cristo amigo do povo, dos excluídos e
+dos bem-de-vida: seus amigos são cobradores de impostos (inimigos dos judeus), homens
+ricos, pescadores, beberrões e prostitutas; o Cristo nada "religioso", ou seja, que desafia
+estruturas da religião constituída : ele cura e desafia o monopólio da religião dominada
+pelos sacerdotes e pelos escribas. É o Cristo do sorriso que afaga crianças e as toma em
+seus braços; mas também é o Cristo aborrecido que expulsa cambistas do templo. Esse
+Cristo é Senhor. Como conciliar essas tendências e como aplicá-las hoje, construindo pontes
+de relação entre a situação enfrentada por Jesus e a situação que ora enfrentamos? Poder-
+se-ia aqui traçar algumas linhas de tratamento para o problema:
+
+• Com grande probabilidade, pode-se encontrar tanto no método histórico-
+crítico quanto na proposta biblicista elementos positivos em suas
+respectivas propostas hermenêuticas, desde que não haja um radicalismo
+de ambas as partes. Trabalhos como o de Gerhard Maier43 tem mostrado
+algumas deficiências do método histórico-crítico a partir da realidade
+alemã. É a luta entre o conceito "razão" e a "Palavra de Deus".
+
+• O relativismo teológico tem se constituído em um dos principais resultados
+finais do método histórico-crítico e também num elemento questionador da
+proposta de formação de igrejas devidamente fundamentadas em doutrinas
+bíblicas. A necessidade de um esteio, um "cânon espiritual" não tem servido
+apenas como fator de segurança individual do crente em sua fé, mas
+também a nível coletivo, no sentido de identificar o grupo diante da
+secularidade, sendo útil inclusive para servir de referencial ao não-crente.
+
+• Entretanto, não há como menosprezar os resultados da pesquisa histórico-
+crítica. É praticamente impossível negar a falta da unidade "doutrinária"
+existente nos testamentos, quer seja do testamento em relação a si mesmo,
+quer seja de um testamento em relação ao outro testamento. É óbvio, por
+exemplo, que os próprios profetas, porta-vozes de Deus, se encontravam
+sempre na tarefa nova de contestar posturas doutrinárias antigas que, por
+vezes, eram utilizadas para legitimar posturas antiéticas do povo que ia sob
+o nome do Senhor. São notórias as posturas de alguns profetas contra o
+sacrifício ( Is. 1:11-12), o cerimonialismo (Is. 1:13-14), a eleição de Israel
+(Am. 3:1-2 e 6:1; Am. 9:7 contrariando Jeremias 47:4 ), o Dia do Senhor
+como dia do favor divino ao seu povo (Am. 5:18). É igualmente significativo
+como o livro de Jó questiona a íntegra da doutrina da retribuição e do
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
+
+HERMENÊUTICA BÍBLICA - 32
+
+individualismo ético, entrevisto em Ezequiel 18, o qual, por sua vez,
+representa uma reação contra antigos pressupostos do Anátema44 e da
+Guerra Santa. Pode-se assumir, entretanto, que a Bíblia possui uma
+unidade central de tema: o que se vê de Gênesis a Apocalipse é a idéia de
+um Deus que ama o ser humano e que vai buscá-lo em sua indignidade e
+de um ser humano que foge desse Deus e de seu amor.
+
+• Provavelmente, um dos maiores desafios da Hermenêutica para os tempos
+hodiernos é a leitura de "conveniência" que existe da Bíblia. Esse tipo de
+leitura é seletiva e parte, quase sempre, de idéias pré-concebidas. Por
+exemplo, como ler o texto dos "Cântico dos Cânticos"? Alegoricamente ou
+naturalmente ? 45 É alegórico quando fere o pudor moralista; é natural
+quando se precisa de um argumento litúrgico-especial, uma cerimônia de
+casamento. Outro elemento, o da Teologia da Prosperidade, é quase sempre
+um discurso nos lábios de pessoas que atingiram situação econômica
+privilegiada e sentimento de culpa para aqueles que ainda não saíram do
+ocaso financeiro ou ainda que não “digeriram” o ser parte de uma classe
+média decadente.
+
+• Dessa leitura advém um problema, o do conflito entre a complacência da
+aceitação das opiniões dos outros de uma espécie de “ditadura da mídia”,
+que impõe o “politicamente correto”, e aquilo que a Bíblia ensina nas suas
+bases de fé (graça, culpa, condenação eterna, salvação, arrependimento,
+mudança de vida, santidade, etc)
+
+• Gostaria de deixar alguns temas para discussão em classe. Entre eles, o
+problema da “razão sensível” (questão estética). Os desafios de um mundo
+globalizado e transcultural movido cada vez mais pelas informações obtidas
+da Internet. A necessidade de uma releitura do princípio do “Sola Scriptura”
+e  a  leitura  fixista  da  Bíblia  cada  vez  mais  comum  nos  meios
+fundamentalistas.
+
+BIBLIOGRAFIA BÁSICA
+
+BENTHO, Esdras Costa. Hermenêutica Fácil e Descomplicada. Rio de Janeiro:
+CPAD, 2003.
+
+Instituto de Teologia Logos – “Preparando cristãos para a defesa da fé!”
+
+www.institutodeteologialogos.com.br | contato@institutodeteologialogos.com.br
+
