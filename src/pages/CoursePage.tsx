@@ -321,7 +321,7 @@ const CoursePage = () => {
                             )}
                             <div className="flex items-center gap-2 mt-2">
                               <Badge variant="secondary" className="text-xs">
-                                {material.category || 'Geral'}
+                                {material.category || "Geral"}
                               </Badge>
                               {material.file_type && (
                                 <Badge variant="outline" className="text-xs uppercase">
@@ -330,19 +330,26 @@ const CoursePage = () => {
                               )}
                             </div>
                           </div>
-                          {material.file_url && (
-                            <Button variant="ghost" size="icon" asChild>
-                              <a href={material.file_url} target="_blank" rel="noopener noreferrer">
-                                <ExternalLink className="w-4 h-4" />
-                              </a>
-                            </Button>
+
+                          {material.file_url ? (
+                            <a
+                              href={material.file_url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-colors text-sm font-medium shrink-0"
+                            >
+                              Abrir
+                              <ExternalLink className="w-4 h-4" />
+                            </a>
+                          ) : (
+                            <span className="text-xs text-muted-foreground shrink-0">Sem arquivo</span>
                           )}
                         </div>
                       </div>
                     ))}
                     {courseMaterials.length > 6 && (
-                      <Button 
-                        variant="outline" 
+                      <Button
+                        variant="outline"
                         className="w-full"
                         onClick={() => setShowMaterials(true)}
                       >
@@ -555,7 +562,7 @@ const CoursePage = () => {
                         )}
                         <div className="flex items-center gap-2 mt-2">
                           <Badge variant="secondary" className="text-xs">
-                            {material.category || 'Geral'}
+                            {material.category || "Geral"}
                           </Badge>
                           {material.file_type && (
                             <Badge variant="outline" className="text-xs uppercase">
@@ -564,12 +571,18 @@ const CoursePage = () => {
                           )}
                         </div>
                       </div>
-                      {material.file_url && (
-                        <Button variant="ghost" size="icon" asChild>
-                          <a href={material.file_url} target="_blank" rel="noopener noreferrer">
-                            <ExternalLink className="w-4 h-4" />
-                          </a>
-                        </Button>
+                      {material.file_url ? (
+                        <a
+                          href={material.file_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-colors text-sm font-medium shrink-0"
+                        >
+                          Abrir
+                          <ExternalLink className="w-4 h-4" />
+                        </a>
+                      ) : (
+                        <span className="text-xs text-muted-foreground shrink-0">Sem arquivo</span>
                       )}
                     </div>
                   </div>
