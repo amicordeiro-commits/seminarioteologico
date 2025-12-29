@@ -19,23 +19,43 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Set up auth state listener FIRST
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        setSession(session);
-        setUser(session?.user ?? null);
-        setLoading(false);
-      }
-    );
+    // Failsafe: if something blocks auth resolution, don't leave the app stuck in "loading"
+    const failsafe = window.setTimeout(() => {
+      setLoading((prev) => {
+        if (prev) console.warn("[Auth] Failsafe triggered: forcing loading=false");
+        return false;
+      });
+    }, 3500);
 
-    // THEN check for existing session
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    // Set up auth state listener FIRST
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((event, session) => {
+      window.clearTimeout(failsafe);
       setSession(session);
       setUser(session?.user ?? null);
       setLoading(false);
     });
 
-    return () => subscription.unsubscribe();
+    // THEN check for existing session
+    supabase.auth
+      .getSession()
+      .then(({ data: { session } }) => {
+        window.clearTimeout(failsafe);
+        setSession(session);
+        setUser(session?.user ?? null);
+        setLoading(false);
+      })
+      .catch((err) => {
+        window.clearTimeout(failsafe);
+        console.error("[Auth] getSession failed:", err);
+        setLoading(false);
+      });
+
+    return () => {
+      window.clearTimeout(failsafe);
+      subscription.unsubscribe();
+    };
   }, []);
 
   const signUp = async (email: string, password: string, fullName: string) => {
