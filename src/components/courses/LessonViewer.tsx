@@ -145,39 +145,82 @@ export function LessonViewer({
                     </div>
                   )}
                   
-                  {/* Texto com espaçamento generoso */}
-                  <div className="space-y-8">
+                  {/* Texto com separação clara de tópicos */}
+                  <div className="space-y-6">
                     {pages[currentPage - 1]?.split(/\n\n+/).map((p, i) => {
                       const t = p.trim();
                       if (!t) return null;
                       
-                      const isMainHeading = /^[A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇ][A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇ\s\d\-:,.]+$/.test(t) && t.length < 80;
-                      const isSubHeading = /^[IVX]+\.\s/.test(t) || /^\d+\.\s/.test(t);
+                      // Detecta diferentes tipos de cabeçalhos
+                      const isMainHeading = /^[A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇ][A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇ\s\d\-:,.()]+$/.test(t) && t.length < 100;
+                      const isNumberedTopic = /^[IVX]+[\.\)]\s/.test(t) || /^\d+[\.\)]\s/.test(t);
+                      const isLetterTopic = /^[a-zA-Z][\.\)]\s/.test(t);
+                      const isBulletPoint = /^[-•]\s/.test(t);
                       
+                      // Título principal do tópico
                       if (isMainHeading) {
                         return (
-                          <div key={i} className="mt-12 mb-8">
-                            <h2 className="text-xl sm:text-2xl font-serif font-bold text-primary pb-3 border-b-2 border-accent">
-                              {t}
-                            </h2>
-                          </div>
+                          <section key={i} className="mt-14 first:mt-0">
+                            <div className="bg-primary/5 rounded-xl p-6 border-l-4 border-primary">
+                              <h2 className="text-lg sm:text-xl font-serif font-bold text-primary">
+                                {t}
+                              </h2>
+                            </div>
+                          </section>
                         );
                       }
                       
-                      if (isSubHeading) {
+                      // Subtópico numerado (I. II. III. ou 1. 2. 3.)
+                      if (isNumberedTopic) {
                         return (
-                          <div key={i} className="mt-10 mb-6">
-                            <h3 className="text-lg sm:text-xl font-semibold text-foreground pl-5 border-l-4 border-primary/50">
-                              {t}
-                            </h3>
+                          <div key={i} className="mt-8 mb-4">
+                            <div className="flex items-start gap-4 bg-muted/50 rounded-lg p-4">
+                              <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                <span className="text-primary font-bold text-sm">
+                                  {t.match(/^([IVX\d]+)/)?.[1]}
+                                </span>
+                              </div>
+                              <h3 className="text-base sm:text-lg font-semibold text-foreground pt-1">
+                                {t.replace(/^[IVX\d]+[\.\)]\s*/, '')}
+                              </h3>
+                            </div>
                           </div>
                         );
                       }
                       
+                      // Subtópico com letra (a. b. c.)
+                      if (isLetterTopic) {
+                        return (
+                          <div key={i} className="ml-6 mb-3">
+                            <div className="flex items-start gap-3 pl-4 border-l-2 border-accent/50">
+                              <span className="text-primary font-semibold">{t.charAt(0)}.</span>
+                              <p className="text-base text-foreground/90 leading-relaxed">
+                                {t.replace(/^[a-zA-Z][\.\)]\s*/, '')}
+                              </p>
+                            </div>
+                          </div>
+                        );
+                      }
+                      
+                      // Bullet point
+                      if (isBulletPoint) {
+                        return (
+                          <div key={i} className="ml-6 mb-2">
+                            <div className="flex items-start gap-3">
+                              <span className="text-primary mt-2">•</span>
+                              <p className="text-base text-foreground/90 leading-relaxed">
+                                {t.replace(/^[-•]\s*/, '')}
+                              </p>
+                            </div>
+                          </div>
+                        );
+                      }
+                      
+                      // Parágrafo normal
                       return (
                         <p 
                           key={i} 
-                          className="text-base sm:text-lg text-foreground/90 leading-[1.9] sm:leading-[2] text-justify indent-8 first-letter:text-xl first-letter:font-medium"
+                          className="text-base sm:text-lg text-foreground/85 leading-[1.9] sm:leading-[2] text-justify indent-10"
                         >
                           {t}
                         </p>
