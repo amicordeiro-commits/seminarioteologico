@@ -251,7 +251,7 @@ const CoursePage = () => {
     }
   };
 
-  // Abre material da lição - busca do storage do Supabase
+  // Abre material da lição
   const handleOpenLesson = async (lesson: any) => {
     setViewerTitle(lesson.title);
     setViewerKind("text");
@@ -259,39 +259,42 @@ const CoursePage = () => {
     setViewerLoading(true);
 
     try {
-      // Normaliza o título para busca
-      const normalizeTitle = (title: string) => 
-        title.toLowerCase()
-          .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-          .replace(/[^a-z0-9\s]/g, '')
+      // 1) Primeiro tenta buscar do banco/arquivo local (fallback)
+      const rawText = await fetchMaterialFromDb(lesson.title);
+      if (rawText) {
+        setViewerText(rawText);
+        setViewerLoading(false);
+        return;
+      }
+
+      // 2) Se não achou, tenta correspondência por título na biblioteca (mais flexível)
+      const normalizeTitle = (title: string) =>
+        title
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replace(/[^a-z0-9\s]/g, "")
           .trim();
-      
+
       const lessonNormalized = normalizeTitle(lesson.title);
-      const lessonWords = lessonNormalized.split(' ').filter(w => w.length > 2);
-      
-      // Busca todos os materiais do Bacharel
+      const lessonWords = lessonNormalized.split(" ").filter((w) => w.length > 2);
+
       const { data: materials } = await supabase
         .from("library_materials")
         .select("file_url, content, title")
         .eq("category", "Bacharel")
         .not("file_url", "is", null);
-      
-      // Procura material que corresponda ao título da lição
-      let matchingMaterial = materials?.find(m => {
+
+      let matchingMaterial = materials?.find((m) => {
         if (!m.title) return false;
         const materialNormalized = normalizeTitle(m.title);
-        
-        // Verifica se pelo menos 2 palavras coincidem
-        const matchCount = lessonWords.filter(word => materialNormalized.includes(word)).length;
+        const matchCount = lessonWords.filter((word) => materialNormalized.includes(word)).length;
         return matchCount >= 1;
       });
 
-      // Se não encontrou, tenta busca mais ampla
       if (!matchingMaterial && materials) {
         const firstWord = lessonWords[0];
-        matchingMaterial = materials.find(m => 
-          normalizeTitle(m.title || '').includes(firstWord)
-        );
+        matchingMaterial = materials.find((m) => normalizeTitle(m.title || "").includes(firstWord));
       }
 
       if (matchingMaterial?.file_url) {
@@ -299,8 +302,7 @@ const CoursePage = () => {
         const res = await fetch(matchingMaterial.file_url, { cache: "no-store" });
         if (res.ok) {
           const text = await res.text();
-          // Verifica se não é HTML (fallback de 404)
-          if (!text.trim().startsWith('<!') && !text.trim().startsWith('<html')) {
+          if (!text.trim().startsWith("<!") && !text.trim().startsWith("<html")) {
             setViewerText(text);
             setViewerLoading(false);
             return;
@@ -308,7 +310,6 @@ const CoursePage = () => {
         }
       }
 
-      // Se nenhum funcionou
       console.log("Material não encontrado para:", lesson.title);
       throw new Error("Material não encontrado");
     } catch (e) {
@@ -586,20 +587,24 @@ const CoursePage = () => {
                     <AccordionContent className="px-5 pb-4">
                       <div className="space-y-2 pt-2 border-t border-border">
                         {course.lessons.map((lesson) => {
-                          const isCompleted = lessonProgress?.some(p => p.lesson_id === lesson.id && p.completed);
-                          const hasFile = !!LESSON_FILES[lesson.title];
+                          const isCompleted = lessonProgress?.some(
+                            (p) => p.lesson_id === lesson.id && p.completed
+                          );
+
+                          const canOpen = !!enrollment;
+
                           return (
                             <div key={lesson.id} className="flex items-center gap-2">
                               <button
-                                onClick={() => enrollment && hasFile && handleOpenLesson(lesson)}
-                                disabled={!enrollment || !hasFile}
+                                onClick={() => canOpen && handleOpenLesson(lesson)}
+                                disabled={!canOpen}
                                 className={cn(
                                   "flex-1 flex items-center gap-3 p-3 rounded-lg transition-all duration-200 text-left group font-sans",
                                   isCompleted
                                     ? "bg-success/10"
-                                    : enrollment && hasFile
-                                    ? "hover:bg-secondary cursor-pointer"
-                                    : "opacity-50 cursor-not-allowed"
+                                    : canOpen
+                                      ? "hover:bg-secondary cursor-pointer"
+                                      : "opacity-50 cursor-not-allowed"
                                 )}
                               >
                                 <div
