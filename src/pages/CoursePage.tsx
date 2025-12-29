@@ -35,9 +35,12 @@ import { QuizPlayer } from "@/components/quiz/QuizPlayer";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 
-// Mapeamento de títulos de lições para arquivos .txt
+// Mapeamento de títulos de lições para URLs de arquivos no storage
+const LESSON_STORAGE_URLS: Record<string, string> = {};
+
+// Mapeamento de títulos de lições para arquivos .txt locais (fallback)
 const LESSON_FILES: Record<string, { folder: string; filename: string }> = {
-  // Bacharel (11 materiais)
+  // Bacharel - 33 disciplinas
   "Administração Eclesiástica": { folder: "bacharel", filename: "administracao_eclesiastica.txt" },
   "Teologia do Antigo Testamento": { folder: "bacharel", filename: "antigo_testamento.txt" },
   "Antigo Testamento": { folder: "bacharel", filename: "antigo_testamento.txt" },
@@ -52,6 +55,30 @@ const LESSON_FILES: Record<string, { folder: string; filename: string }> = {
   "Ética": { folder: "bacharel", filename: "etica.txt" },
   "Evangelismo Pessoal": { folder: "bacharel", filename: "evangelismo_pessoal.txt" },
   "Teologia Pastoral": { folder: "bacharel", filename: "teologia_pastoral.txt" },
+  // Novas disciplinas do Bacharel
+  "Escatologia": { folder: "bacharel", filename: "escatologia.txt" },
+  "Ofícios Eclesiásticos": { folder: "bacharel", filename: "oficios.txt" },
+  "Oratória": { folder: "bacharel", filename: "oratoria.txt" },
+  "Ordenação Pastoral": { folder: "bacharel", filename: "ordenacao_pastoral.txt" },
+  "Pneumatologia": { folder: "bacharel", filename: "pneumatologia.txt" },
+  "Psicologia da Educação Cristã": { folder: "bacharel", filename: "psicologia_educaco_crista.txt" },
+  "Psicologia Pastoral": { folder: "bacharel", filename: "psicologia_pastoral.txt" },
+  "Responsabilidade Social da Igreja": { folder: "bacharel", filename: "responsabilidade_social_igreja.txt" },
+  "Soteriologia": { folder: "bacharel", filename: "soteriologia.txt" },
+  "Cristologia": { folder: "bacharel", filename: "cristologia.txt" },
+  // Outras disciplinas do Bacharel
+  "Exegese Bíblica": { folder: "bacharel", filename: "exegese_biblica.txt" },
+  "Filosofia Cristã": { folder: "bacharel", filename: "filosofia.txt" },
+  "Geografia Bíblica": { folder: "bacharel", filename: "geografia_biblica.txt" },
+  "Hermenêutica Bíblica": { folder: "bacharel", filename: "hermeneutica.txt" },
+  "História do Cristianismo": { folder: "bacharel", filename: "historia_cristianismo.txt" },
+  "Homilética I": { folder: "bacharel", filename: "homiletica1.txt" },
+  "Homilética II": { folder: "bacharel", filename: "homiletica2.txt" },
+  "Igreja e Direitos Humanos": { folder: "bacharel", filename: "igreja_direitos_humanos.txt" },
+  "Liderança Cristã": { folder: "bacharel", filename: "lideranca.txt" },
+  "Ministérios Eclesiásticos": { folder: "bacharel", filename: "ministerios_eclesiasticos.txt" },
+  "Missiologia": { folder: "bacharel", filename: "missiologia.txt" },
+  "Teologia do Novo Testamento": { folder: "bacharel", filename: "novo_testamento.txt" },
   // Doutorado (18 materiais)
   "Apologética do Antigo Testamento": { folder: "doutorado", filename: "apologetica_at.txt" },
   "Apologética AT": { folder: "doutorado", filename: "apologetica_at.txt" },
@@ -61,20 +88,16 @@ const LESSON_FILES: Record<string, { folder: string; filename: string }> = {
   "Capelania": { folder: "doutorado", filename: "capelania_evangelica.txt" },
   "Direito e Religião": { folder: "doutorado", filename: "direito_religiao.txt" },
   "Ética Cristã Avançada": { folder: "doutorado", filename: "etica_crista.txt" },
-  "Exegese Bíblica": { folder: "doutorado", filename: "exegese_biblica.txt" },
   "Exegese": { folder: "doutorado", filename: "exegese_biblica.txt" },
   "Fenomenologia da Religião": { folder: "doutorado", filename: "fenomenologia_religiao.txt" },
   "Fenomenologia": { folder: "doutorado", filename: "fenomenologia_religiao.txt" },
-  "Filosofia Cristã": { folder: "doutorado", filename: "filosofia_crista.txt" },
   "Filosofia da Educação": { folder: "doutorado", filename: "filosofia_educacao.txt" },
-  "Hermenêutica Bíblica": { folder: "doutorado", filename: "hermeneutica_biblica.txt" },
   "Hermenêutica": { folder: "doutorado", filename: "hermeneutica_biblica.txt" },
   "História da Igreja": { folder: "doutorado", filename: "historia_igreja.txt" },
   "Homilética Narrativa": { folder: "doutorado", filename: "homiletica_narrativa.txt" },
   "Homilética": { folder: "doutorado", filename: "homiletica_narrativa.txt" },
   "Liturgia": { folder: "doutorado", filename: "liturgia.txt" },
   "Psicologia Geral": { folder: "doutorado", filename: "psicologia_geral.txt" },
-  "Psicologia Pastoral": { folder: "doutorado", filename: "psicologia_pastoral.txt" },
   "Sociologia e Antropologia da Religião": { folder: "doutorado", filename: "sociologia_antropologia_religiao.txt" },
   "Sociologia da Religião": { folder: "doutorado", filename: "sociologia_antropologia_religiao.txt" },
   "Temas Atuais da Teologia": { folder: "doutorado", filename: "temas_atuais_teologia.txt" },
@@ -227,36 +250,60 @@ const CoursePage = () => {
     }
   };
 
-  // Abre material da lição diretamente do arquivo .txt
+  // Abre material da lição - busca primeiro do storage, depois local
   const handleOpenLesson = async (lesson: any) => {
-    const lessonFile = LESSON_FILES[lesson.title];
-    if (!lessonFile) {
-      toast({
-        title: "Material não encontrado",
-        description: "O material desta aula não está disponível.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    const url = `/materials/${lessonFile.folder}/${lessonFile.filename}`;
-    
     setViewerTitle(lesson.title);
     setViewerKind("text");
     setViewerOpen(true);
     setViewerLoading(true);
 
     try {
-      const res = await fetch(url, { cache: "no-store" });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const text = await res.text();
-      setViewerText(text);
+      // Primeiro, tenta buscar do banco de dados / storage
+      const searchTerm = lesson.title.toLowerCase().split(' ')[0];
+      const { data: materials } = await supabase
+        .from("library_materials")
+        .select("file_url, content, title")
+        .ilike("title", `%${searchTerm}%`)
+        .limit(10);
+      
+      // Procura material que corresponda ao título da lição
+      const matchingMaterial = materials?.find(m => {
+        const materialTitle = m.title?.toLowerCase() || '';
+        const lessonTitle = lesson.title.toLowerCase();
+        return materialTitle.includes(searchTerm) || lessonTitle.includes(materialTitle.split(' ')[0]);
+      });
+
+      if (matchingMaterial?.file_url) {
+        const res = await fetch(matchingMaterial.file_url, { cache: "no-store" });
+        if (res.ok) {
+          const text = await res.text();
+          setViewerText(text);
+          setViewerLoading(false);
+          return;
+        }
+      }
+
+      // Fallback: tenta arquivo local
+      const lessonFile = LESSON_FILES[lesson.title];
+      if (lessonFile) {
+        const url = `/materials/${lessonFile.folder}/${lessonFile.filename}`;
+        const res = await fetch(url, { cache: "no-store" });
+        if (res.ok) {
+          const text = await res.text();
+          setViewerText(text);
+          setViewerLoading(false);
+          return;
+        }
+      }
+
+      // Se nenhum funcionou
+      throw new Error("Material não encontrado");
     } catch (e) {
       resetViewer();
       setViewerOpen(false);
       toast({
-        title: "Não foi possível abrir o material",
-        description: "Erro ao carregar o arquivo da aula.",
+        title: "Material não disponível",
+        description: "O conteúdo desta aula ainda não foi carregado.",
         variant: "destructive",
       });
     } finally {
