@@ -39,21 +39,21 @@ export function Header({ isSidebarCollapsed }: HeaderProps) {
 
   return (
     <header className="sticky top-0 z-20 bg-background/80 backdrop-blur-md border-b border-border">
-      <div className="flex items-center justify-between h-16 px-6">
+      <div className="flex items-center justify-between h-14 sm:h-16 px-3 sm:px-6">
         {/* Page Title - Dynamic based on route */}
         <div className="lg:ml-0 ml-12">
-          <h1 className="text-xl font-serif font-semibold text-foreground">Portal do Aluno</h1>
-          <p className="text-sm text-muted-foreground font-sans">Seminário Teológico</p>
+          <h1 className="text-base sm:text-xl font-serif font-semibold text-foreground truncate max-w-[150px] sm:max-w-none">Portal do Aluno</h1>
+          <p className="text-xs sm:text-sm text-muted-foreground font-sans hidden xs:block">Seminário Teológico</p>
         </div>
 
         {/* Right Side */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 sm:gap-2">
           {/* Theme Toggle */}
           <ThemeToggle />
 
           {/* Notifications */}
-          <Button variant="ghost" size="icon" className="relative">
-            <Bell className="w-5 h-5" />
+          <Button variant="ghost" size="icon" className="relative h-8 w-8 sm:h-10 sm:w-10">
+            <Bell className="w-4 h-4 sm:w-5 sm:h-5" />
             <span className="absolute -top-1 -right-1 w-4 h-4 bg-accent text-accent-foreground text-[10px] font-bold rounded-full flex items-center justify-center">
               3
             </span>
@@ -62,10 +62,10 @@ export function Header({ isSidebarCollapsed }: HeaderProps) {
           {/* User Menu */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="flex items-center gap-3 pl-2 pr-4">
-                <Avatar className="w-8 h-8">
+              <Button variant="ghost" className="flex items-center gap-2 sm:gap-3 px-1 sm:pl-2 sm:pr-4 h-8 sm:h-10">
+                <Avatar className="w-7 h-7 sm:w-8 sm:h-8">
                   <AvatarImage src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${user?.email}`} />
-                  <AvatarFallback>{userInitials}</AvatarFallback>
+                  <AvatarFallback className="text-xs">{userInitials}</AvatarFallback>
                 </Avatar>
                 <div className="hidden md:block text-left">
                   <p className="text-sm font-medium font-sans">{userName}</p>
@@ -73,7 +73,7 @@ export function Header({ isSidebarCollapsed }: HeaderProps) {
                 </div>
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56">
+            <DropdownMenuContent align="end" className="w-56 z-50">
               <DropdownMenuLabel>Minha Conta</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={() => navigate('/profile')}>

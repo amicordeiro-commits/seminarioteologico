@@ -90,36 +90,36 @@ const Index = () => {
 
   return (
     <AppLayout>
-      <div className="space-y-8">
+      <div className="space-y-4 sm:space-y-6 md:space-y-8">
         {/* Welcome Hero */}
         <section 
-          className="relative rounded-2xl overflow-hidden bg-cover bg-center"
+          className="relative rounded-xl sm:rounded-2xl overflow-hidden bg-cover bg-center"
           style={{ backgroundImage: `url(${heroBanner})` }}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-foreground/90 via-foreground/70 to-foreground/40" />
-          <div className="relative p-8 md:p-12">
+          <div className="relative p-4 sm:p-6 md:p-8 lg:p-12">
             <div className="max-w-xl">
-              <div className="flex items-center gap-2 mb-4">
-                <Cross className="w-5 h-5 text-accent" />
-                <span className="text-accent text-sm font-medium font-sans">Seminário Teológico</span>
+              <div className="flex items-center gap-2 mb-2 sm:mb-4">
+                <Cross className="w-4 h-4 sm:w-5 sm:h-5 text-accent" />
+                <span className="text-accent text-xs sm:text-sm font-medium font-sans">Seminário Teológico</span>
               </div>
-              <h1 className="text-3xl md:text-4xl font-serif font-bold text-primary-foreground mb-4 animate-fade-in">
+              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif font-bold text-primary-foreground mb-2 sm:mb-4 animate-fade-in">
                 Graça e paz, {userName}!
               </h1>
-              <p className="text-primary-foreground/80 text-lg mb-6 animate-fade-in font-sans" style={{ animationDelay: "100ms" }}>
+              <p className="text-primary-foreground/80 text-sm sm:text-base md:text-lg mb-4 sm:mb-6 animate-fade-in font-sans" style={{ animationDelay: "100ms" }}>
                 Continue sua jornada de formação teológica. Você tem <span className="text-accent font-semibold">{coursesWithProgress.length} cursos</span> disponíveis.
               </p>
-              <div className="flex flex-wrap gap-4 animate-fade-in" style={{ animationDelay: "200ms" }}>
-                <Button variant="accent" size="lg" asChild>
+              <div className="flex flex-col xs:flex-row gap-2 sm:gap-4 animate-fade-in" style={{ animationDelay: "200ms" }}>
+                <Button variant="accent" size="default" className="text-sm sm:text-base" asChild>
                   <Link to="/courses">
                     Explorar Cursos
-                    <ArrowRight className="w-5 h-5 ml-2" />
+                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
                   </Link>
                 </Button>
-                <Button variant="hero-outline" size="lg" asChild className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground">
+                <Button variant="hero-outline" size="default" asChild className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground text-sm sm:text-base">
                   <Link to="/devotional">
-                    <BookMarked className="w-5 h-5 mr-2" />
-                    Devocional do Dia
+                    <BookMarked className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                    Devocional
                   </Link>
                 </Button>
               </div>
@@ -128,7 +128,7 @@ const Index = () => {
         </section>
 
         {/* Stats Grid */}
-        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <section className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
           <StatsCard
             title="Cursos Disponíveis"
             value={coursesWithProgress.length}
@@ -160,24 +160,24 @@ const Index = () => {
         </section>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {/* Courses in Progress */}
-          <section className="lg:col-span-2 space-y-6">
+          <section className="lg:col-span-2 space-y-3 sm:space-y-6">
             <div className="flex items-center justify-between">
-              <h2 className="text-xl font-serif font-semibold text-foreground">Cursos Disponíveis</h2>
-              <Button variant="ghost" asChild>
-                <Link to="/courses" className="text-primary font-sans">
+              <h2 className="text-base sm:text-lg md:text-xl font-serif font-semibold text-foreground">Cursos Disponíveis</h2>
+              <Button variant="ghost" size="sm" asChild>
+                <Link to="/courses" className="text-primary font-sans text-xs sm:text-sm">
                   Ver todos
-                  <ArrowRight className="w-4 h-4 ml-1" />
+                  <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1" />
                 </Link>
               </Button>
             </div>
             {isLoading ? (
-              <div className="flex items-center justify-center py-12">
-                <Loader2 className="w-8 h-8 animate-spin text-primary" />
+              <div className="flex items-center justify-center py-8 sm:py-12">
+                <Loader2 className="w-6 h-6 sm:w-8 sm:h-8 animate-spin text-primary" />
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 xs:grid-cols-2 gap-2 sm:gap-3 md:gap-4">
                 {coursesWithProgress.slice(0, 4).map((course, index) => (
                   <div
                     key={course.id}
@@ -192,20 +192,20 @@ const Index = () => {
           </section>
 
           {/* Sidebar */}
-          <aside className="space-y-6">
+          <aside className="space-y-4 sm:space-y-6">
             {/* Calendar */}
             <CalendarWidget events={calendarEvents} />
 
             {/* Activities */}
-            <div className="space-y-4">
-              <h3 className="font-serif font-semibold text-foreground">Próximas Atividades</h3>
+            <div className="space-y-2 sm:space-y-4">
+              <h3 className="font-serif font-semibold text-foreground text-sm sm:text-base">Próximas Atividades</h3>
               {loadingEvents ? (
-                <div className="flex items-center justify-center py-8">
-                  <Loader2 className="w-6 h-6 animate-spin text-primary" />
+                <div className="flex items-center justify-center py-6 sm:py-8">
+                  <Loader2 className="w-5 h-5 sm:w-6 sm:h-6 animate-spin text-primary" />
                 </div>
               ) : activities.length === 0 ? (
-                <div className="p-6 rounded-xl bg-card border border-border text-center">
-                  <p className="text-muted-foreground text-sm">Nenhuma atividade agendada</p>
+                <div className="p-4 sm:p-6 rounded-lg sm:rounded-xl bg-card border border-border text-center">
+                  <p className="text-muted-foreground text-xs sm:text-sm">Nenhuma atividade agendada</p>
                 </div>
               ) : (
                 <ActivityTimeline activities={activities} />
@@ -216,8 +216,8 @@ const Index = () => {
 
         {/* Featured Course */}
         {coursesWithProgress.length > 4 && (
-          <section className="space-y-6">
-            <h2 className="text-xl font-serif font-semibold text-foreground">Curso em Destaque</h2>
+          <section className="space-y-3 sm:space-y-6">
+            <h2 className="text-base sm:text-lg md:text-xl font-serif font-semibold text-foreground">Curso em Destaque</h2>
             <CourseCard course={coursesWithProgress[4]} variant="featured" />
           </section>
         )}

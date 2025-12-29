@@ -12,7 +12,7 @@ export function AppLayout({ children }: AppLayoutProps) {
       <Sidebar />
       <div className="lg:ml-64 transition-all duration-300">
         <Header />
-        <main className="p-6">{children}</main>
+        <main className="p-3 sm:p-4 md:p-6">{children}</main>
       </div>
     </div>
   );

@@ -106,16 +106,16 @@ export function CourseCard({ course, variant = "default" }: CourseCardProps) {
   return (
     <Link
       to={`/course/${course.id}`}
-      className="block rounded-xl bg-card overflow-hidden hover:shadow-lg transition-all duration-300 group border border-border/50"
+      className="block rounded-lg sm:rounded-xl bg-card overflow-hidden hover:shadow-lg transition-all duration-300 group border border-border/50"
     >
-      <div className="relative h-44 overflow-hidden">
+      <div className="relative h-32 sm:h-36 md:h-44 overflow-hidden">
         <img
           src={course.thumbnail}
           alt={course.title}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-        <Badge className="absolute top-3 left-3 bg-card/90 text-card-foreground font-sans">
+        <Badge className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-card/90 text-card-foreground font-sans text-[10px] sm:text-xs">
           {course.category}
         </Badge>
         {course.progress > 0 && (
@@ -127,34 +127,34 @@ export function CourseCard({ course, variant = "default" }: CourseCardProps) {
           </div>
         )}
       </div>
-      <div className="p-5">
-        <h3 className="font-serif font-semibold text-foreground text-lg mb-2 group-hover:text-primary transition-colors line-clamp-2">
+      <div className="p-3 sm:p-4 md:p-5">
+        <h3 className="font-serif font-semibold text-foreground text-sm sm:text-base md:text-lg mb-1 sm:mb-2 group-hover:text-primary transition-colors line-clamp-2">
           {course.title}
         </h3>
-        <p className="text-muted-foreground text-sm mb-4 font-sans">{course.instructor}</p>
-        <div className="flex items-center justify-between text-sm text-muted-foreground font-sans">
-          <div className="flex items-center gap-3">
+        <p className="text-muted-foreground text-xs sm:text-sm mb-2 sm:mb-4 font-sans truncate">{course.instructor}</p>
+        <div className="flex items-center justify-between text-xs sm:text-sm text-muted-foreground font-sans">
+          <div className="flex items-center gap-2 sm:gap-3">
             <span className="flex items-center gap-1">
-              <Clock className="w-4 h-4" />
+              <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
               {course.duration}
             </span>
             <span className="flex items-center gap-1">
-              <BookOpen className="w-4 h-4" />
+              <BookOpen className="w-3 h-3 sm:w-4 sm:h-4" />
               {course.totalLessons}
             </span>
           </div>
           <span className="flex items-center gap-1">
-            <Star className="w-4 h-4 fill-warning text-warning" />
+            <Star className="w-3 h-3 sm:w-4 sm:h-4 fill-warning text-warning" />
             {course.rating}
           </span>
         </div>
         {course.progress > 0 && (
-          <div className="mt-4 pt-4 border-t border-border">
-            <div className="flex justify-between text-sm mb-2 font-sans">
+          <div className="mt-2 sm:mt-4 pt-2 sm:pt-4 border-t border-border">
+            <div className="flex justify-between text-xs sm:text-sm mb-1 sm:mb-2 font-sans">
               <span className="text-muted-foreground">Progresso</span>
               <span className="font-medium text-primary">{Math.round(progressPercentage)}%</span>
             </div>
-            <Progress value={progressPercentage} className="h-2" />
+            <Progress value={progressPercentage} className="h-1.5 sm:h-2" />
           </div>
         )}
       </div>
