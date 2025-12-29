@@ -63,54 +63,157 @@ const MATERIAL_GROUPS: MaterialGroup[] = [
   },
 ];
 
-// Função para remover referências bibliográficas e linhas de número
+// REGRA DE OURO: Extrair APENAS conteúdo disciplinar
+// Remove: cabeçalhos, informações institucionais, bibliografias, URLs, números de página, etc.
 function cleanContent(text: string): string {
   const lines = text.split('\n');
   const cleanedLines: string[] = [];
   
   let skipSection = false;
+  let inHeaderSection = true; // Assumir que o início é cabeçalho institucional
+  let foundContentStart = false;
   
   for (const line of lines) {
-    // Remove linhas com números de linha no início
-    const cleanLine = line.replace(/^\d+:\s*/, '');
+    // Remove linhas com números de linha no início (1: texto, 2: texto, etc.)
+    let cleanLine = line.replace(/^\d+:\s*/, '').trim();
     
-    // Ignora linhas de referências bibliográficas
+    // Remove números de página isolados
+    if (cleanLine.match(/^[\d]+$/) && cleanLine.length <= 4) continue;
+    if (cleanLine.match(/^página\s*\d+/i)) continue;
+    if (cleanLine.match(/^\d+\s*de\s*\d+$/i)) continue;
+    
     const lowerLine = cleanLine.toLowerCase();
+    
+    // ==========================================
+    // DETECTAR FIM DO CABEÇALHO INSTITUCIONAL
+    // O conteúdo disciplinar geralmente começa com:
+    // - "INTRODUÇÃO", "CONCEITO", "CAPÍTULO", "LIÇÃO"
+    // - Números romanos (I., II., etc.)
+    // ==========================================
+    if (inHeaderSection) {
+      if (
+        lowerLine.match(/^(introdução|conceito|capítulo|lição|sumário|índice)/i) ||
+        cleanLine.match(/^[IVX]+[\.\-\)]\s+/) ||
+        (cleanLine.match(/^[A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇÑ\s]{15,}$/) && 
+         !lowerLine.includes('curso') && 
+         !lowerLine.includes('seminário') && 
+         !lowerLine.includes('faculdade') &&
+         !lowerLine.includes('disciplina') &&
+         !lowerLine.includes('professor') &&
+         !lowerLine.includes('aluno'))
+      ) {
+        inHeaderSection = false;
+        foundContentStart = true;
+      } else {
+        // Ainda no cabeçalho - ignorar
+        continue;
+      }
+    }
+    
+    // ==========================================
+    // IGNORAR CABEÇALHOS INSTITUCIONAIS
+    // (mesmo que apareçam no meio do documento)
+    // ==========================================
+    if (
+      lowerLine.includes('curso superior') ||
+      lowerLine.includes('seminário') ||
+      lowerLine.includes('faculdade') ||
+      lowerLine.includes('instituto') ||
+      lowerLine.includes('disciplina:') ||
+      lowerLine.includes('professor:') ||
+      lowerLine.includes('docente:') ||
+      lowerLine.includes('aluno:') ||
+      lowerLine.includes('matrícula:') ||
+      lowerLine.includes('período:') ||
+      lowerLine.includes('semestre:') ||
+      lowerLine.includes('carga horária') ||
+      lowerLine.includes('ementa:') ||
+      lowerLine.includes('plano de ensino') ||
+      lowerLine.includes('objetivos gerais') ||
+      lowerLine.includes('objetivos específicos') ||
+      lowerLine.includes('metodologia de ensino') ||
+      lowerLine.includes('critérios de avaliação') ||
+      lowerLine.includes('cronograma')
+    ) {
+      continue;
+    }
+    
+    // ==========================================
+    // DETECTAR E PULAR SEÇÕES DE REFERÊNCIAS
+    // ==========================================
     if (
       lowerLine.includes('referência bibliográfica') ||
       lowerLine.includes('referências bibliográficas') ||
       lowerLine.includes('bibliografia') ||
-      lowerLine.includes('fonte:') ||
-      lowerLine.includes('adaptado de') ||
-      lowerLine.includes('retirado de') ||
-      lowerLine.includes('extraído de')
+      lowerLine.includes('bibliografias') ||
+      lowerLine.match(/^referências?\s*$/) ||
+      lowerLine.includes('obras consultadas') ||
+      lowerLine.includes('fontes consultadas') ||
+      lowerLine.includes('leitura complementar') ||
+      lowerLine.includes('leituras recomendadas') ||
+      lowerLine.includes('sugestões de leitura')
     ) {
       skipSection = true;
       continue;
     }
     
-    // Para de pular quando encontra um título novo (linha toda em maiúsculas ou começa com número romano)
+    // Parar de pular quando encontrar novo capítulo/seção de conteúdo
     if (skipSection && (
-      cleanLine.match(/^[IVX]+\.\s/) ||
-      cleanLine.match(/^[A-Z\s]{10,}$/) ||
-      cleanLine.match(/^CAPÍTULO/) ||
-      cleanLine.match(/^LIÇÃO/)
+      cleanLine.match(/^[IVX]+[\.\-\)]\s+/) ||
+      cleanLine.match(/^CAPÍTULO/i) ||
+      cleanLine.match(/^LIÇÃO/i) ||
+      cleanLine.match(/^UNIDADE/i) ||
+      (cleanLine.match(/^[A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇÑ\s]{15,}$/) && !lowerLine.includes('referência'))
     )) {
       skipSection = false;
     }
     
     if (skipSection) continue;
     
-    // Remove menções a "imagem meramente ilustrativa"
-    if (lowerLine.includes('imagem meramente ilustrativa')) continue;
+    // ==========================================
+    // REMOVER LINHAS NÃO-DISCIPLINARES
+    // ==========================================
     
-    // Remove URLs e links
+    // URLs e links
     if (cleanLine.match(/https?:\/\/|www\./)) continue;
     
-    // Remove linhas com ISBN, DOI, etc
+    // ISBN, DOI, editoras
     if (lowerLine.includes('isbn') || lowerLine.includes('doi:')) continue;
+    if (lowerLine.match(/editora\s+[a-z]+/)) continue;
     
-    cleanedLines.push(cleanLine);
+    // Menções a imagens
+    if (lowerLine.includes('imagem meramente ilustrativa')) continue;
+    if (lowerLine.includes('figura ilustrativa')) continue;
+    if (lowerLine.match(/^figura\s*\d+/)) continue;
+    if (lowerLine.match(/^imagem\s*\d+/)) continue;
+    
+    // Citações de autores com ano (SILVA, 2020)
+    if (cleanLine.match(/\([A-Z]+,?\s*\d{4}\)/)) {
+      // Remove apenas a citação, mantém o resto do texto
+      cleanLine = cleanLine.replace(/\s*\([A-Z]+,?\s*\d{4}\)/g, '');
+    }
+    
+    // "Fonte:" seguido de referência
+    if (lowerLine.startsWith('fonte:')) continue;
+    if (lowerLine.startsWith('adaptado de')) continue;
+    if (lowerLine.startsWith('retirado de')) continue;
+    if (lowerLine.startsWith('extraído de')) continue;
+    if (lowerLine.startsWith('cf.')) continue;
+    if (lowerLine.startsWith('apud')) continue;
+    
+    // Rodapés e notas
+    if (lowerLine.match(/^nota\s*\d*:/)) continue;
+    if (lowerLine.match(/^\[\d+\]/)) continue;
+    
+    // Linhas muito curtas que provavelmente são lixo
+    if (cleanLine.length < 3 && !cleanLine.match(/^[IVX]+$/)) continue;
+    
+    // ==========================================
+    // ADICIONAR LINHA LIMPA
+    // ==========================================
+    if (cleanLine.trim()) {
+      cleanedLines.push(cleanLine);
+    }
   }
   
   return cleanedLines.join('\n').trim();
