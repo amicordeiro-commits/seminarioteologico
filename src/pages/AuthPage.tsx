@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { useUserRole } from '@/hooks/useUserRole';
 import { Button } from '@/components/ui/button';
@@ -18,6 +18,8 @@ const nameSchema = z.string().min(2, 'Nome deve ter pelo menos 2 caracteres');
 type PortalType = 'student' | 'admin' | null;
 
 const AuthPage = () => {
+  const location = useLocation();
+
   const [isLoading, setIsLoading] = useState(false);
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
@@ -26,6 +28,9 @@ const AuthPage = () => {
   const [registerPassword, setRegisterPassword] = useState('');
   const [registerConfirmPassword, setRegisterConfirmPassword] = useState('');
   const [selectedPortal, setSelectedPortal] = useState<PortalType>(() => {
+    const statePortal = (location.state as any)?.portal as PortalType | undefined;
+    if (statePortal === 'admin' || statePortal === 'student') return statePortal;
+
     const portal = new URLSearchParams(window.location.search).get('portal');
     if (portal === 'admin') return 'admin';
     if (portal === 'student') return 'student';
@@ -39,13 +44,15 @@ const AuthPage = () => {
 
   useEffect(() => {
     if (!loading && !loadingRole && user) {
+      const from = (location.state as any)?.from as string | undefined;
+
       if (selectedPortal === 'admin' && isAdmin) {
         navigate('/admin');
       } else {
-        navigate('/');
+        navigate(from || '/');
       }
     }
-  }, [user, loading, loadingRole, navigate, selectedPortal, isAdmin]);
+  }, [user, loading, loadingRole, navigate, selectedPortal, isAdmin, location.state]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
