@@ -129,24 +129,24 @@ export function LessonViewer({
             <div className="flex-1 flex flex-col">
               {/* Área de leitura */}
               <ScrollArea className="flex-1">
-                <article className="max-w-3xl mx-auto px-6 sm:px-10 py-8">
+                <article className="max-w-2xl mx-auto px-8 sm:px-12 py-10 sm:py-14">
                   {/* Cabeçalho na primeira página */}
                   {currentPage === 1 && (
-                    <div className="text-center mb-10 pb-6 border-b border-border">
-                      <p className="text-xs uppercase tracking-widest text-primary/70 mb-3 font-medium">
+                    <div className="text-center mb-14 pb-8 border-b-2 border-primary/20">
+                      <p className="text-xs uppercase tracking-[0.2em] text-primary/60 mb-4 font-medium">
                         {category}
                       </p>
-                      <h1 className="text-2xl sm:text-3xl font-serif font-bold text-foreground leading-tight">
+                      <h1 className="text-2xl sm:text-4xl font-serif font-bold text-foreground leading-snug">
                         {title}
                       </h1>
-                      <p className="text-sm text-muted-foreground mt-3">
+                      <p className="text-sm text-muted-foreground mt-4">
                         P.O.D Seminário Teológico
                       </p>
                     </div>
                   )}
                   
-                  {/* Texto */}
-                  <div className="prose prose-sm sm:prose-base max-w-none">
+                  {/* Texto com espaçamento generoso */}
+                  <div className="space-y-8">
                     {pages[currentPage - 1]?.split(/\n\n+/).map((p, i) => {
                       const t = p.trim();
                       if (!t) return null;
@@ -156,36 +156,37 @@ export function LessonViewer({
                       
                       if (isMainHeading) {
                         return (
-                          <h2 
-                            key={i} 
-                            className="text-lg sm:text-xl font-serif font-semibold text-primary mt-8 mb-4 pb-2 border-b border-primary/20"
-                          >
-                            {t}
-                          </h2>
+                          <div key={i} className="mt-12 mb-8">
+                            <h2 className="text-xl sm:text-2xl font-serif font-bold text-primary pb-3 border-b-2 border-accent">
+                              {t}
+                            </h2>
+                          </div>
                         );
                       }
                       
                       if (isSubHeading) {
                         return (
-                          <h3 
-                            key={i} 
-                            className="text-base sm:text-lg font-semibold text-foreground mt-6 mb-3 pl-4 border-l-3 border-accent"
-                          >
-                            {t}
-                          </h3>
+                          <div key={i} className="mt-10 mb-6">
+                            <h3 className="text-lg sm:text-xl font-semibold text-foreground pl-5 border-l-4 border-primary/50">
+                              {t}
+                            </h3>
+                          </div>
                         );
                       }
                       
                       return (
                         <p 
                           key={i} 
-                          className="text-foreground leading-relaxed text-justify mb-4 text-sm sm:text-base"
+                          className="text-base sm:text-lg text-foreground/90 leading-[1.9] sm:leading-[2] text-justify indent-8 first-letter:text-xl first-letter:font-medium"
                         >
                           {t}
                         </p>
                       );
                     })}
                   </div>
+                  
+                  {/* Espaço extra no final */}
+                  <div className="h-16" />
                 </article>
               </ScrollArea>
 
