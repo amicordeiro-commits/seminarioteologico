@@ -25,12 +25,7 @@ const AuthPage = () => {
   const [registerEmail, setRegisterEmail] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
   const [registerConfirmPassword, setRegisterConfirmPassword] = useState('');
-  const [selectedPortal, setSelectedPortal] = useState<PortalType>(() => {
-    const portal = new URLSearchParams(window.location.search).get('portal');
-    if (portal === 'admin') return 'admin';
-    if (portal === 'student') return 'student';
-    return null;
-  });
+  const [selectedPortal, setSelectedPortal] = useState<PortalType>(null);
   
   const { signIn, signUp, user, loading } = useAuth();
   const { isAdmin, isLoading: loadingRole } = useUserRole();
@@ -340,11 +335,7 @@ const AuthPage = () => {
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => {
-              setSelectedPortal(null);
-              // Remove o parâmetro ?portal=... para permitir voltar à seleção de portais
-              navigate('/auth', { replace: true });
-            }}
+            onClick={() => setSelectedPortal(null)}
             className="mb-6 text-muted-foreground hover:text-foreground group"
           >
             <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
