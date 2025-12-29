@@ -34,6 +34,7 @@ import { QuizCard } from "@/components/quiz/QuizCard";
 import { QuizPlayer } from "@/components/quiz/QuizPlayer";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { LessonViewer } from "@/components/courses/LessonViewer";
 
 // Mapeamento de títulos de lições para URLs de arquivos no storage
 const LESSON_STORAGE_URLS: Record<string, string> = {};
@@ -991,46 +992,15 @@ const CoursePage = () => {
         </DialogContent>
       </Dialog>
 
-      {/* Material Viewer Dialog */}
-      <Dialog open={viewerOpen} onOpenChange={handleViewerOpenChange}>
-        <DialogContent className="max-w-5xl h-[90vh] flex flex-col">
-          <DialogHeader>
-            <DialogTitle className="font-serif">{viewerTitle || "Material"}</DialogTitle>
-          </DialogHeader>
-
-          {viewerLoading ? (
-            <div className="flex-1 flex items-center justify-center">
-              <Loader2 className="w-8 h-8 animate-spin text-primary" />
-            </div>
-          ) : viewerKind === "text" ? (
-            <ScrollArea className="flex-1 rounded-lg border border-border bg-card">
-              <pre className="p-4 whitespace-pre-wrap text-sm font-sans text-foreground">
-                {viewerText || ""}
-              </pre>
-            </ScrollArea>
-          ) : viewerBlobUrl ? (
-            <iframe
-              title={viewerTitle || "Material"}
-              src={viewerBlobUrl}
-              className="flex-1 w-full rounded-lg border border-border bg-card"
-            />
-          ) : (
-            <div className="flex-1 flex items-center justify-center text-muted-foreground">
-              Nenhum conteúdo para exibir.
-            </div>
-          )}
-
-          {viewerBlobUrl && !viewerLoading && (
-            <div className="pt-3 flex justify-end">
-              <Button variant="outline" asChild>
-                <a href={viewerBlobUrl} download>
-                  Baixar
-                </a>
-              </Button>
-            </div>
-          )}
-        </DialogContent>
-      </Dialog>
+      {/* Lesson Viewer - Novo componente melhorado */}
+      <LessonViewer
+        open={viewerOpen}
+        onOpenChange={handleViewerOpenChange}
+        title={viewerTitle}
+        content={viewerText}
+        loading={viewerLoading}
+        category={course?.category}
+      />
     </AppLayout>
   );
 };
