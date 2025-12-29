@@ -7,7 +7,7 @@
 @layer base {
   :root {
     /* Theological warm palette - burgundy/wine with gold accents */
-    --background: 35 35% 94%;
+    --background: 35 30% 88%;
     --foreground: 20 25% 12%;
 
     --card: 0 0% 100%;
@@ -127,6 +127,10 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', system-ui, sans-serif;
+    background-image:
+      radial-gradient(1100px circle at 12% 10%, hsl(var(--accent) / 0.14), transparent 55%),
+      radial-gradient(900px circle at 86% 22%, hsl(var(--primary) / 0.10), transparent 60%);
+    background-attachment: fixed;
   }
 
   h1, h2, h3, h4, h5, h6 {
