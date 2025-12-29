@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { AuthProvider, useAuth } from "@/hooks/useAuth";
 import { useUserRole } from "@/hooks/useUserRole";
 import Index from "./pages/Index";
@@ -42,6 +42,7 @@ const queryClient = new QueryClient();
 // Protected Route Component
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { user, loading } = useAuth();
+  const location = useLocation();
 
   if (loading) {
     return (
@@ -52,7 +53,13 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   }
 
   if (!user) {
-    return <Navigate to="/auth?portal=student" replace />;
+    return (
+      <Navigate
+        to="/auth"
+        replace
+        state={{ portal: "student", from: location.pathname + location.search, reason: "auth_required" }}
+      />
+    );
   }
 
   return <>{children}</>;
@@ -62,6 +69,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
 const AdminRoute = ({ children }: { children: React.ReactNode }) => {
   const { user, loading } = useAuth();
   const { isAdmin, isLoading: loadingRole } = useUserRole();
+  const location = useLocation();
 
   if (loading || loadingRole) {
     return (
@@ -72,7 +80,13 @@ const AdminRoute = ({ children }: { children: React.ReactNode }) => {
   }
 
   if (!user) {
-    return <Navigate to="/auth?portal=admin" replace />;
+    return (
+      <Navigate
+        to="/auth"
+        replace
+        state={{ portal: "admin", from: location.pathname + location.search, reason: "auth_required" }}
+      />
+    );
   }
 
   if (!isAdmin) {
