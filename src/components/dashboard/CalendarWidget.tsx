@@ -58,33 +58,33 @@ export function CalendarWidget({ events = [] }: CalendarWidgetProps) {
   };
 
   return (
-    <div className="p-6 rounded-xl bg-card border border-border">
+    <div className="p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl bg-card border border-border">
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
-        <h3 className="font-semibold text-foreground">
+      <div className="flex items-center justify-between mb-3 sm:mb-6">
+        <h3 className="font-semibold text-foreground text-sm sm:text-base">
           {MONTHS[currentDate.getMonth()]} {currentDate.getFullYear()}
         </h3>
-        <div className="flex gap-1">
-          <Button variant="ghost" size="icon" onClick={() => navigateMonth(-1)}>
-            <ChevronLeft className="w-4 h-4" />
+        <div className="flex gap-0.5 sm:gap-1">
+          <Button variant="ghost" size="icon" className="h-7 w-7 sm:h-9 sm:w-9" onClick={() => navigateMonth(-1)}>
+            <ChevronLeft className="w-3 h-3 sm:w-4 sm:h-4" />
           </Button>
-          <Button variant="ghost" size="icon" onClick={() => navigateMonth(1)}>
-            <ChevronRight className="w-4 h-4" />
+          <Button variant="ghost" size="icon" className="h-7 w-7 sm:h-9 sm:w-9" onClick={() => navigateMonth(1)}>
+            <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />
           </Button>
         </div>
       </div>
 
       {/* Day Headers */}
-      <div className="grid grid-cols-7 gap-1 mb-2">
+      <div className="grid grid-cols-7 gap-0.5 sm:gap-1 mb-1 sm:mb-2">
         {DAYS.map((day) => (
-          <div key={day} className="text-center text-xs font-medium text-muted-foreground py-2">
-            {day}
+          <div key={day} className="text-center text-[10px] sm:text-xs font-medium text-muted-foreground py-1 sm:py-2">
+            {day.slice(0, 1)}
           </div>
         ))}
       </div>
 
       {/* Calendar Grid */}
-      <div className="grid grid-cols-7 gap-1">
+      <div className="grid grid-cols-7 gap-0.5 sm:gap-1">
         {Array.from({ length: startingDay }).map((_, i) => (
           <div key={`empty-${i}`} className="aspect-square" />
         ))}
@@ -94,7 +94,7 @@ export function CalendarWidget({ events = [] }: CalendarWidgetProps) {
             <button
               key={day}
               className={cn(
-                "aspect-square rounded-lg text-sm font-medium transition-all duration-200 hover:bg-secondary relative",
+                "aspect-square rounded-md sm:rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 hover:bg-secondary relative",
                 isToday(day)
                   ? "bg-primary text-primary-foreground hover:bg-primary/90"
                   : "text-foreground"
@@ -102,7 +102,7 @@ export function CalendarWidget({ events = [] }: CalendarWidgetProps) {
             >
               {day}
               {hasEvent(day) && (
-                <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-accent" />
+                <span className="absolute bottom-0.5 sm:bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-accent" />
               )}
             </button>
           );

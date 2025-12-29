@@ -38,36 +38,36 @@ export function StatsCard({
   return (
     <div
       className={cn(
-        "p-6 rounded-xl border transition-all duration-300 hover:shadow-lg group",
+        "p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl border transition-all duration-300 hover:shadow-lg group",
         variantStyles[variant]
       )}
     >
-      <div className="flex items-start justify-between">
-        <div>
-          <p className="text-sm font-medium text-muted-foreground">{title}</p>
-          <p className="text-3xl font-bold text-foreground mt-2">{value}</p>
+      <div className="flex items-start justify-between gap-2">
+        <div className="min-w-0 flex-1">
+          <p className="text-xs sm:text-sm font-medium text-muted-foreground truncate">{title}</p>
+          <p className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground mt-1 sm:mt-2">{value}</p>
           {subtitle && (
-            <p className="text-sm text-muted-foreground mt-1">{subtitle}</p>
+            <p className="text-xs sm:text-sm text-muted-foreground mt-0.5 sm:mt-1 truncate">{subtitle}</p>
           )}
           {trend && (
             <p
               className={cn(
-                "text-sm font-medium mt-2",
+                "text-xs sm:text-sm font-medium mt-1 sm:mt-2",
                 trend.isPositive ? "text-success" : "text-destructive"
               )}
             >
               {trend.isPositive ? "↑" : "↓"} {Math.abs(trend.value)}%{" "}
-              <span className="text-muted-foreground font-normal">vs semana passada</span>
+              <span className="text-muted-foreground font-normal hidden sm:inline">vs semana passada</span>
             </p>
           )}
         </div>
         <div
           className={cn(
-            "w-12 h-12 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110",
+            "w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-lg sm:rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110 flex-shrink-0",
             iconStyles[variant]
           )}
         >
-          <Icon className="w-6 h-6" />
+          <Icon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
         </div>
       </div>
     </div>
