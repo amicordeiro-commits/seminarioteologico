@@ -19,13 +19,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Failsafe: if something blocks auth resolution, don't leave the app stuck in "loading"
+    // Failsafe: max 1.5s waiting for auth
     const failsafe = window.setTimeout(() => {
-      setLoading((prev) => {
-        if (prev) console.warn("[Auth] Failsafe triggered: forcing loading=false");
-        return false;
-      });
-    }, 3500);
+      setLoading(false);
+    }, 1500);
 
     // Set up auth state listener FIRST
     const {
