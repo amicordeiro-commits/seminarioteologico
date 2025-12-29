@@ -1,7 +1,7 @@
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
-import { Loader2, Download, X, BookOpen, ChevronLeft, ChevronRight } from "lucide-react";
+import { Loader2, X, BookOpen, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useMemo, useEffect } from "react";
 
 interface LessonViewerProps {
@@ -51,31 +51,6 @@ export function LessonViewer({
   const pages = useMemo(() => splitIntoPages(content || ""), [content]);
   const totalPages = Math.max(1, pages.length);
 
-  const handleDownloadPDF = () => {
-    const w = window.open("", "_blank");
-    if (!w) return;
-    
-    w.document.write(`<!DOCTYPE html><html><head><title>${title}</title>
-      <style>
-        body{font-family:Georgia,serif;font-size:12pt;line-height:1.8;max-width:700px;margin:40px auto;padding:20px;color:#1a1a1a}
-        h1{text-align:center;color:#7c2d12;border-bottom:2px solid #d4af37;padding-bottom:15px;margin-bottom:30px}
-        h2{color:#7c2d12;margin-top:25px;border-left:3px solid #d4af37;padding-left:10px}
-        p{text-align:justify;margin-bottom:12px}
-        @media print{body{margin:0;padding:2cm}}
-      </style></head><body>
-      <h1>${title}</h1>
-      <p style="text-align:center;color:#666;margin-bottom:30px">${category || "Material Didático"} • P.O.D Seminário Teológico</p>
-      ${(content || "").split(/\n\n+/).map(p => {
-        const t = p.trim();
-        if (/^[A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇ][A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇ\s\d\-:,.]+$/.test(t) && t.length < 80) return `<h2>${t}</h2>`;
-        if (/^[IVX]+\.\s/.test(t)) return `<h2>${t}</h2>`;
-        return `<p>${t}</p>`;
-      }).join("")}
-    </body></html>`);
-    w.document.close();
-    setTimeout(() => { w.focus(); w.print(); }, 300);
-  };
-
   const goToPage = (page: number) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
@@ -96,26 +71,14 @@ export function LessonViewer({
               {category && <p className="text-xs opacity-80">{category}</p>}
             </div>
           </div>
-          <div className="flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={handleDownloadPDF}
-              disabled={loading || !content}
-              className="text-primary-foreground hover:bg-primary-foreground/20 gap-2"
-            >
-              <Download className="w-4 h-4" />
-              <span className="hidden sm:inline">Imprimir</span>
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => onOpenChange(false)}
-              className="text-primary-foreground hover:bg-primary-foreground/20"
-            >
-              <X className="w-5 h-5" />
-            </Button>
-          </div>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => onOpenChange(false)}
+            className="text-primary-foreground hover:bg-primary-foreground/20"
+          >
+            <X className="w-5 h-5" />
+          </Button>
         </header>
 
         {/* Conteúdo principal */}
