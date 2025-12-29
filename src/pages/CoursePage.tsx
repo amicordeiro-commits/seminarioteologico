@@ -29,7 +29,7 @@ import { cn } from "@/lib/utils";
 import { useCourse, useEnrollment, useEnrollInCourse, useLessonProgress, useMarkLessonComplete } from "@/hooks/useCourses";
 import { useQuizzes, useQuizAttempts } from "@/hooks/useQuizzes";
 import { useToast } from "@/hooks/use-toast";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { QuizCard } from "@/components/quiz/QuizCard";
 import { QuizPlayer } from "@/components/quiz/QuizPlayer";
 import { useQuery } from "@tanstack/react-query";
@@ -120,6 +120,9 @@ const CoursePage = () => {
   const [viewerText, setViewerText] = useState<string | null>(null);
   const [viewerKind, setViewerKind] = useState<"pdf" | "text">("pdf");
   const [viewerLoading, setViewerLoading] = useState(false);
+
+  // Cache em memória para reabrir aulas instantaneamente na mesma sessão
+  const lessonContentCacheRef = useRef<Record<string, string>>({});
 
   const { data: course, isLoading: loadingCourse } = useCourse(id || "");
   const { data: enrollment, isLoading: loadingEnrollment } = useEnrollment(id || "");
@@ -256,12 +259,22 @@ const CoursePage = () => {
     setViewerTitle(lesson.title);
     setViewerKind("text");
     setViewerOpen(true);
+
+    // cache (mesma sessão)
+    const cached = lessonContentCacheRef.current[lesson.title];
+    if (cached) {
+      setViewerText(cached);
+      setViewerLoading(false);
+      return;
+    }
+
     setViewerLoading(true);
 
     try {
       // 1) Primeiro tenta buscar do banco/arquivo local (fallback)
       const rawText = await fetchMaterialFromDb(lesson.title);
       if (rawText) {
+        lessonContentCacheRef.current[lesson.title] = rawText;
         setViewerText(rawText);
         setViewerLoading(false);
         return;
@@ -278,12 +291,33 @@ const CoursePage = () => {
 
       const lessonNormalized = normalizeTitle(lesson.title);
       const lessonWords = lessonNormalized.split(" ").filter((w) => w.length > 2);
+      const firstWord = lessonWords[0];
 
-      const { data: materials } = await supabase
-        .from("library_materials")
-        .select("file_url, content, title")
-        .eq("category", "Bacharel")
-        .not("file_url", "is", null);
+      // Evita baixar a lista inteira de materiais (melhora muito o tempo de abertura)
+      let materials: Array<{ file_url: string | null; content: string | null; title: string | null }> | null | undefined =
+        undefined;
+
+      if (firstWord) {
+        const { data } = await supabase
+          .from("library_materials")
+          .select("file_url, content, title")
+          .eq("category", "Bacharel")
+          .not("file_url", "is", null)
+          .ilike("title", `%${firstWord}%`)
+          .limit(80);
+        materials = data;
+      }
+
+      // fallback limitado (não pode ficar pesado demais)
+      if (!materials || materials.length === 0) {
+        const { data } = await supabase
+          .from("library_materials")
+          .select("file_url, content, title")
+          .eq("category", "Bacharel")
+          .not("file_url", "is", null)
+          .limit(200);
+        materials = data;
+      }
 
       let matchingMaterial = materials?.find((m) => {
         if (!m.title) return false;
@@ -293,16 +327,16 @@ const CoursePage = () => {
       });
 
       if (!matchingMaterial && materials) {
-        const firstWord = lessonWords[0];
-        matchingMaterial = materials.find((m) => normalizeTitle(m.title || "").includes(firstWord));
+        matchingMaterial = materials.find((m) => normalizeTitle(m.title || "").includes(firstWord || ""));
       }
 
       if (matchingMaterial?.file_url) {
         console.log("Buscando material:", matchingMaterial.title, matchingMaterial.file_url);
-        const res = await fetch(matchingMaterial.file_url, { cache: "no-store" });
+        const res = await fetch(matchingMaterial.file_url, { cache: "force-cache" });
         if (res.ok) {
           const text = await res.text();
           if (!text.trim().startsWith("<!") && !text.trim().startsWith("<html")) {
+            lessonContentCacheRef.current[lesson.title] = text;
             setViewerText(text);
             setViewerLoading(false);
             return;
@@ -350,12 +384,11 @@ const CoursePage = () => {
   // Função para buscar conteúdo do material do banco de dados
   const fetchMaterialFromDb = async (title: string): Promise<string> => {
     try {
-      // Buscar material do banco de dados
-      const { data, error } = await supabase
+      // Buscar material do banco de dados (content OU file_url)
+      const { data } = await supabase
         .from("library_materials")
         .select("content, file_url")
         .eq("title", title)
-        .not("content", "is", null)
         .limit(1)
         .maybeSingle();
 
@@ -365,7 +398,7 @@ const CoursePage = () => {
 
       // Se não tem content no banco, tenta buscar do arquivo
       if (data?.file_url && data.file_url.endsWith(".txt")) {
-        const res = await fetch(data.file_url, { cache: "no-store" });
+        const res = await fetch(data.file_url, { cache: "force-cache" });
         if (res.ok) {
           return await res.text();
         }
@@ -375,7 +408,7 @@ const CoursePage = () => {
       const lessonFile = LESSON_FILES[title];
       if (lessonFile) {
         const url = `/materials/${lessonFile.folder}/${lessonFile.filename}`;
-        const res = await fetch(url, { cache: "no-store" });
+        const res = await fetch(url, { cache: "force-cache" });
         if (res.ok) {
           return await res.text();
         }
