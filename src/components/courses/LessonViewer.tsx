@@ -13,7 +13,7 @@ interface LessonViewerProps {
   category?: string;
 }
 
-// Normaliza quebras de linha e divide em parágrafos lógicos
+// Normaliza quebras de linha e reconstrói parágrafos
 function normalizeText(text: string): string {
   if (!text) return "";
   // Remove caracteres de controle exceto \n e \t
@@ -22,20 +22,84 @@ function normalizeText(text: string): string {
   t = t.replace(/\r\n/g, "\n").replace(/\r/g, "\n");
   // Remove espaços em branco no final das linhas
   t = t.replace(/[ \t]+$/gm, "");
-  // Colapsa 3+ quebras em 2
-  t = t.replace(/\n{3,}/g, "\n\n");
   return t.trim();
 }
 
-// Divide texto em blocos (parágrafos ou linhas individuais se não houver \n\n)
+// Verifica se uma linha parece ser um título/cabeçalho
+function isHeadingLine(line: string): boolean {
+  const t = line.trim();
+  if (!t) return false;
+  // Linha curta toda em maiúsculas
+  if (/^[A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇ][A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇ\s\d\-:,.()]+$/.test(t) && t.length < 80) return true;
+  // Numeração romana ou numérica
+  if (/^[IVX]+[\.\)]\s/.test(t) || /^\d+[\.\)]\s/.test(t)) return true;
+  // Subtópico com letra
+  if (/^[a-zA-Z][\.\)]\s/.test(t) && t.length < 100) return true;
+  // Bullet point
+  if (/^[-•]\s/.test(t)) return true;
+  return false;
+}
+
+// Verifica se uma linha termina de forma incompleta (sem pontuação final)
+function isIncompleteLine(line: string): boolean {
+  const t = line.trim();
+  if (!t || t.length < 20) return false;
+  // Termina com pontuação final = completa
+  if (/[.!?:;]$/.test(t)) return false;
+  // Termina com parêntese fechando referência bíblica = completa
+  if (/\)$/.test(t) && /\([A-Z][a-z]+ \d/.test(t)) return false;
+  return true;
+}
+
+// Divide texto em blocos lógicos, juntando linhas quebradas artificialmente
 function splitIntoBlocks(text: string): string[] {
   const normalized = normalizeText(text);
-  // Se tem parágrafos reais (\n\n), usa eles
-  if (/\n\n/.test(normalized)) {
-    return normalized.split(/\n\n+/).filter((b) => b.trim());
+  const lines = normalized.split("\n");
+  const blocks: string[] = [];
+  let currentBlock = "";
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const trimmed = line.trim();
+    const nextLine = lines[i + 1]?.trim() || "";
+    
+    // Linha vazia = separador de parágrafo
+    if (!trimmed) {
+      if (currentBlock.trim()) {
+        blocks.push(currentBlock.trim());
+        currentBlock = "";
+      }
+      continue;
+    }
+
+    // Se é um título/cabeçalho, fecha bloco anterior e inicia novo
+    if (isHeadingLine(trimmed) && (!currentBlock || !isIncompleteLine(currentBlock))) {
+      if (currentBlock.trim()) {
+        blocks.push(currentBlock.trim());
+      }
+      currentBlock = trimmed;
+      // Se a próxima linha é vazia ou outro título, fecha este bloco
+      if (!nextLine || isHeadingLine(nextLine)) {
+        blocks.push(currentBlock.trim());
+        currentBlock = "";
+      }
+      continue;
+    }
+
+    // Adiciona ao bloco atual
+    if (currentBlock) {
+      // Junta linhas com espaço se a anterior terminou incompleta
+      currentBlock += " " + trimmed;
+    } else {
+      currentBlock = trimmed;
+    }
   }
-  // Caso contrário, trata cada linha como bloco
-  return normalized.split(/\n/).filter((b) => b.trim());
+
+  if (currentBlock.trim()) {
+    blocks.push(currentBlock.trim());
+  }
+
+  return blocks.filter((b) => b.trim());
 }
 
 // Simple content splitting - fast and lightweight
