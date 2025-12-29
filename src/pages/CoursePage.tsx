@@ -250,7 +250,7 @@ const CoursePage = () => {
     }
   };
 
-  // Abre material da lição - busca primeiro do storage, depois local
+  // Abre material da lição - busca do storage do Supabase
   const handleOpenLesson = async (lesson: any) => {
     setViewerTitle(lesson.title);
     setViewerKind("text");
@@ -258,52 +258,65 @@ const CoursePage = () => {
     setViewerLoading(true);
 
     try {
-      // Primeiro, tenta buscar do banco de dados / storage
-      const searchTerm = lesson.title.toLowerCase().split(' ')[0];
+      // Normaliza o título para busca
+      const normalizeTitle = (title: string) => 
+        title.toLowerCase()
+          .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+          .replace(/[^a-z0-9\s]/g, '')
+          .trim();
+      
+      const lessonNormalized = normalizeTitle(lesson.title);
+      const lessonWords = lessonNormalized.split(' ').filter(w => w.length > 2);
+      
+      // Busca todos os materiais do Bacharel
       const { data: materials } = await supabase
         .from("library_materials")
         .select("file_url, content, title")
-        .ilike("title", `%${searchTerm}%`)
-        .limit(10);
+        .eq("category", "Bacharel")
+        .not("file_url", "is", null);
       
       // Procura material que corresponda ao título da lição
-      const matchingMaterial = materials?.find(m => {
-        const materialTitle = m.title?.toLowerCase() || '';
-        const lessonTitle = lesson.title.toLowerCase();
-        return materialTitle.includes(searchTerm) || lessonTitle.includes(materialTitle.split(' ')[0]);
+      let matchingMaterial = materials?.find(m => {
+        if (!m.title) return false;
+        const materialNormalized = normalizeTitle(m.title);
+        
+        // Verifica se pelo menos 2 palavras coincidem
+        const matchCount = lessonWords.filter(word => materialNormalized.includes(word)).length;
+        return matchCount >= 1;
       });
 
+      // Se não encontrou, tenta busca mais ampla
+      if (!matchingMaterial && materials) {
+        const firstWord = lessonWords[0];
+        matchingMaterial = materials.find(m => 
+          normalizeTitle(m.title || '').includes(firstWord)
+        );
+      }
+
       if (matchingMaterial?.file_url) {
+        console.log("Buscando material:", matchingMaterial.title, matchingMaterial.file_url);
         const res = await fetch(matchingMaterial.file_url, { cache: "no-store" });
         if (res.ok) {
           const text = await res.text();
-          setViewerText(text);
-          setViewerLoading(false);
-          return;
-        }
-      }
-
-      // Fallback: tenta arquivo local
-      const lessonFile = LESSON_FILES[lesson.title];
-      if (lessonFile) {
-        const url = `/materials/${lessonFile.folder}/${lessonFile.filename}`;
-        const res = await fetch(url, { cache: "no-store" });
-        if (res.ok) {
-          const text = await res.text();
-          setViewerText(text);
-          setViewerLoading(false);
-          return;
+          // Verifica se não é HTML (fallback de 404)
+          if (!text.trim().startsWith('<!') && !text.trim().startsWith('<html')) {
+            setViewerText(text);
+            setViewerLoading(false);
+            return;
+          }
         }
       }
 
       // Se nenhum funcionou
+      console.log("Material não encontrado para:", lesson.title);
       throw new Error("Material não encontrado");
     } catch (e) {
+      console.error("Erro ao carregar material:", e);
       resetViewer();
       setViewerOpen(false);
       toast({
         title: "Material não disponível",
-        description: "O conteúdo desta aula ainda não foi carregado.",
+        description: `O conteúdo de "${lesson.title}" ainda não foi carregado.`,
         variant: "destructive",
       });
     } finally {
