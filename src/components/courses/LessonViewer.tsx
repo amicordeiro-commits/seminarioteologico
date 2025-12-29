@@ -55,51 +55,70 @@ function isIncompleteLine(line: string): boolean {
 function splitIntoBlocks(text: string): string[] {
   const normalized = normalizeText(text);
   const lines = normalized.split("\n");
-  const blocks: string[] = [];
+  const rawBlocks: string[] = [];
   let currentBlock = "";
+
+  const pushCurrent = () => {
+    if (currentBlock.trim()) rawBlocks.push(currentBlock.trim());
+    currentBlock = "";
+  };
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
     const trimmed = line.trim();
     const nextLine = lines[i + 1]?.trim() || "";
-    
-    // Linha vazia = separador de parágrafo
+
+    // Linha vazia = separador (pode ser parágrafo OU quebra artificial, vamos tratar depois)
     if (!trimmed) {
-      if (currentBlock.trim()) {
-        blocks.push(currentBlock.trim());
-        currentBlock = "";
-      }
+      pushCurrent();
       continue;
     }
 
     // Se é um título/cabeçalho, fecha bloco anterior e inicia novo
     if (isHeadingLine(trimmed) && (!currentBlock || !isIncompleteLine(currentBlock))) {
-      if (currentBlock.trim()) {
-        blocks.push(currentBlock.trim());
-      }
+      pushCurrent();
       currentBlock = trimmed;
-      // Se a próxima linha é vazia ou outro título, fecha este bloco
-      if (!nextLine || isHeadingLine(nextLine)) {
-        blocks.push(currentBlock.trim());
-        currentBlock = "";
-      }
+      if (!nextLine || isHeadingLine(nextLine)) pushCurrent();
       continue;
     }
 
-    // Adiciona ao bloco atual
     if (currentBlock) {
-      // Junta linhas com espaço se a anterior terminou incompleta
-      currentBlock += " " + trimmed;
+      // Hifenização de quebra de linha (ex: teolo-\ngia)
+      if (/-$/.test(currentBlock.trim())) {
+        currentBlock = currentBlock.replace(/-\s*$/, "");
+        currentBlock += trimmed;
+      } else {
+        currentBlock += " " + trimmed;
+      }
     } else {
       currentBlock = trimmed;
     }
   }
 
-  if (currentBlock.trim()) {
-    blocks.push(currentBlock.trim());
+  pushCurrent();
+
+  // Pós-processamento: une blocos separados por linhas vazias “artificiais”
+  const merged: string[] = [];
+  for (const b of rawBlocks) {
+    const prev = merged[merged.length - 1];
+    if (!prev) {
+      merged.push(b);
+      continue;
+    }
+
+    const bTrim = b.trim();
+    const startsLikeContinuation = /^[a-záàâãçéêíóôõúü(“"']/.test(bTrim);
+    const prevEndsIncomplete = isIncompleteLine(prev) || /[,–—:-]$/.test(prev.trim());
+    const shouldMerge = prevEndsIncomplete && startsLikeContinuation && !isHeadingLine(bTrim);
+
+    if (shouldMerge) {
+      merged[merged.length - 1] = prev.replace(/\s+$/, "") + " " + bTrim;
+    } else {
+      merged.push(bTrim);
+    }
   }
 
-  return blocks.filter((b) => b.trim());
+  return merged.filter((b) => b.trim());
 }
 
 // Simple content splitting - fast and lightweight
