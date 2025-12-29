@@ -594,129 +594,130 @@ const CoursePage = () => {
 
             {/* Lessons */}
             {course.lessons && course.lessons.length > 0 && (
-              <div className="space-y-4">
-                <h2 className="text-xl font-serif font-semibold text-foreground">Conteúdo Programático</h2>
-                <Accordion type="single" collapsible defaultValue="lessons" className="space-y-3">
-                  <AccordionItem
-                    value="lessons"
-                    className="border border-border rounded-xl overflow-hidden bg-card"
-                  >
-                    <AccordionTrigger className="px-5 py-4 hover:no-underline hover:bg-secondary/50">
-                      <div className="flex items-center gap-4 flex-1">
-                        <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center font-serif font-semibold">
-                          1
-                        </div>
-                        <div className="flex-1 text-left">
-                          <h3 className="font-serif font-medium text-foreground">Módulo Principal</h3>
-                          <p className="text-sm text-muted-foreground font-sans">
-                            {completedLessonsCount}/{course.lessons.length} aulas • {course.duration_hours}h
-                          </p>
-                        </div>
-                        {completedLessonsCount === course.lessons.length && (
-                          <CheckCircle2 className="w-5 h-5 text-success" />
+              <div className="space-y-6">
+                <div className="flex items-center justify-between">
+                  <h2 className="text-xl font-serif font-semibold text-foreground">Conteúdo Programático</h2>
+                  <Badge variant="outline" className="text-xs">
+                    {completedLessonsCount}/{course.lessons.length} concluídas
+                  </Badge>
+                </div>
+                
+                <div className="grid gap-3">
+                  {course.lessons.map((lesson, index) => {
+                    const isCompleted = lessonProgress?.some(
+                      (p) => p.lesson_id === lesson.id && p.completed
+                    );
+                    const canOpen = !!enrollment;
+
+                    return (
+                      <div
+                        key={lesson.id}
+                        className={cn(
+                          "group relative p-4 rounded-xl border transition-all duration-200",
+                          isCompleted
+                            ? "bg-success/5 border-success/30"
+                            : "bg-card border-border hover:border-primary/40 hover:shadow-sm"
                         )}
-                      </div>
-                    </AccordionTrigger>
-                    <AccordionContent className="px-5 pb-4">
-                      <div className="space-y-2 pt-2 border-t border-border">
-                        {course.lessons.map((lesson) => {
-                          const isCompleted = lessonProgress?.some(
-                            (p) => p.lesson_id === lesson.id && p.completed
-                          );
+                      >
+                        <div className="flex items-start gap-4">
+                          {/* Número da aula */}
+                          <div
+                            className={cn(
+                              "w-10 h-10 rounded-xl flex items-center justify-center font-serif font-semibold text-sm shrink-0 transition-colors",
+                              isCompleted
+                                ? "bg-success text-success-foreground"
+                                : "bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground"
+                            )}
+                          >
+                            {isCompleted ? (
+                              <CheckCircle2 className="w-5 h-5" />
+                            ) : (
+                              String(index + 1).padStart(2, "0")
+                            )}
+                          </div>
 
-                          const canOpen = !!enrollment;
+                          {/* Conteúdo */}
+                          <div className="flex-1 min-w-0">
+                            <h3
+                              className={cn(
+                                "font-medium text-sm sm:text-base leading-snug",
+                                isCompleted
+                                  ? "text-muted-foreground"
+                                  : "text-foreground"
+                              )}
+                            >
+                              {lesson.title}
+                            </h3>
+                            {lesson.description && (
+                              <p className="text-xs text-muted-foreground mt-1 line-clamp-1">
+                                {lesson.description}
+                              </p>
+                            )}
+                            <div className="flex items-center gap-3 mt-2">
+                              <span className="text-xs text-muted-foreground flex items-center gap-1">
+                                <Clock className="w-3 h-3" />
+                                {lesson.duration_minutes}min
+                              </span>
+                              {lesson.is_free && (
+                                <Badge variant="secondary" className="text-[10px] px-1.5 py-0">
+                                  Grátis
+                                </Badge>
+                              )}
+                            </div>
+                          </div>
 
-                          return (
-                            <div key={lesson.id} className="flex items-center gap-2">
-                              <button
-                                onClick={() => canOpen && handleOpenLesson(lesson)}
-                                disabled={!canOpen}
-                                className={cn(
-                                  "flex-1 flex items-center gap-3 p-3 rounded-lg transition-all duration-200 text-left group font-sans",
-                                  isCompleted
-                                    ? "bg-success/10"
-                                    : canOpen
-                                      ? "hover:bg-secondary cursor-pointer"
-                                      : "opacity-50 cursor-not-allowed"
-                                )}
-                              >
-                                <div
-                                  className={cn(
-                                    "w-8 h-8 rounded-full flex items-center justify-center transition-colors",
-                                    isCompleted
-                                      ? "bg-success text-success-foreground"
-                                      : "bg-muted text-muted-foreground group-hover:bg-primary/20 group-hover:text-primary"
-                                  )}
-                                >
-                                  {isCompleted ? (
-                                    <CheckCircle2 className="w-4 h-4" />
-                                  ) : (
-                                    <BookOpen className="w-4 h-4" />
-                                  )}
-                                </div>
-                                <div className="flex-1">
-                                  <p
-                                    className={cn(
-                                      "text-sm font-medium",
-                                      isCompleted
-                                        ? "text-muted-foreground line-through"
-                                        : "text-foreground"
-                                    )}
-                                  >
-                                    {lesson.title}
-                                  </p>
-                                  {lesson.description && (
-                                    <p className="text-xs text-muted-foreground">{lesson.description}</p>
-                                  )}
-                                </div>
-                                <span className="text-xs text-muted-foreground">
-                                  {lesson.duration_minutes}min
-                                </span>
-                                {lesson.is_free && (
-                                  <Badge variant="secondary" className="text-xs">
-                                    Grátis
-                                  </Badge>
-                                )}
-                              </button>
-                              {/* Botão para visualizar PDF - disponível para todas as aulas */}
-                              {enrollment && (
+                          {/* Ações */}
+                          <div className="flex items-center gap-2 shrink-0">
+                            {enrollment && (
+                              <>
                                 <Button
-                                  variant="secondary"
+                                  variant="ghost"
                                   size="sm"
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleDownloadLessonPdf(lesson);
-                                  }}
+                                  onClick={() => handleOpenLesson(lesson)}
+                                  className="text-xs gap-1.5 h-8"
+                                >
+                                  <BookOpen className="w-4 h-4" />
+                                  <span className="hidden sm:inline">Ler</span>
+                                </Button>
+                                <Button
+                                  variant="outline"
+                                  size="sm"
+                                  onClick={() => handleDownloadLessonPdf(lesson)}
                                   disabled={generatingPdf === lesson.id}
-                                  className="text-xs gap-1"
-                                  title="Visualizar PDF"
+                                  className="text-xs gap-1.5 h-8"
                                 >
                                   {generatingPdf === lesson.id ? (
                                     <Loader2 className="w-4 h-4 animate-spin" />
                                   ) : (
                                     <FileDown className="w-4 h-4" />
                                   )}
-                                  Visualizar
+                                  <span className="hidden sm:inline">PDF</span>
                                 </Button>
-                              )}
-                              {enrollment && !isCompleted && (
-                                <Button
-                                  variant="ghost"
-                                  size="sm"
-                                  onClick={() => handleMarkComplete(lesson.id)}
-                                  disabled={markCompleteMutation.isPending}
-                                  className="text-xs text-muted-foreground hover:text-success"
-                                >
-                                  <CheckCircle2 className="w-4 h-4" />
-                                </Button>
-                              )}
-                            </div>
-                          );
-                        })}
+                                {!isCompleted && (
+                                  <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    onClick={() => handleMarkComplete(lesson.id)}
+                                    disabled={markCompleteMutation.isPending}
+                                    className="h-8 w-8 text-muted-foreground hover:text-success hover:bg-success/10"
+                                    title="Marcar como concluída"
+                                  >
+                                    <CheckCircle2 className="w-4 h-4" />
+                                  </Button>
+                                )}
+                              </>
+                            )}
+                            {!enrollment && (
+                              <Badge variant="secondary" className="text-xs">
+                                Matricule-se
+                              </Badge>
+                            )}
+                          </div>
+                        </div>
                       </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
+                    );
+                  })}
+                </div>
               </div>
             )}
 
