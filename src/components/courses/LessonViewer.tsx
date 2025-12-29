@@ -13,23 +13,48 @@ interface LessonViewerProps {
   category?: string;
 }
 
+// Normaliza quebras de linha e divide em parágrafos lógicos
+function normalizeText(text: string): string {
+  if (!text) return "";
+  // Remove caracteres de controle exceto \n e \t
+  let t = text.replace(/[\x00-\x09\x0B\x0C\x0E-\x1F]/g, "");
+  // Normaliza diferentes tipos de quebra de linha
+  t = t.replace(/\r\n/g, "\n").replace(/\r/g, "\n");
+  // Remove espaços em branco no final das linhas
+  t = t.replace(/[ \t]+$/gm, "");
+  // Colapsa 3+ quebras em 2
+  t = t.replace(/\n{3,}/g, "\n\n");
+  return t.trim();
+}
+
+// Divide texto em blocos (parágrafos ou linhas individuais se não houver \n\n)
+function splitIntoBlocks(text: string): string[] {
+  const normalized = normalizeText(text);
+  // Se tem parágrafos reais (\n\n), usa eles
+  if (/\n\n/.test(normalized)) {
+    return normalized.split(/\n\n+/).filter((b) => b.trim());
+  }
+  // Caso contrário, trata cada linha como bloco
+  return normalized.split(/\n/).filter((b) => b.trim());
+}
+
 // Simple content splitting - fast and lightweight
 function splitIntoPages(text: string, charsPerPage = 4500): string[] {
   if (!text) return [];
-  
-  const paragraphs = text.split(/\n\n+/).filter(p => p.trim());
+
+  const blocks = splitIntoBlocks(text);
   const pages: string[] = [];
   let currentPage = "";
-  
-  for (const p of paragraphs) {
-    if (currentPage.length + p.length > charsPerPage && currentPage) {
+
+  for (const b of blocks) {
+    if (currentPage.length + b.length > charsPerPage && currentPage) {
       pages.push(currentPage.trim());
-      currentPage = p;
+      currentPage = b;
     } else {
-      currentPage += (currentPage ? "\n\n" : "") + p;
+      currentPage += (currentPage ? "\n\n" : "") + b;
     }
   }
-  
+
   if (currentPage.trim()) pages.push(currentPage.trim());
   return pages.length > 0 ? pages : [text];
 }
@@ -109,22 +134,25 @@ export function LessonViewer({
                   )}
                   
                   {/* Texto com separação clara de tópicos */}
-                  <div className="space-y-6">
-                    {pages[currentPage - 1]?.split(/\n\n+/).map((p, i) => {
-                      const t = p.trim();
+                  <div className="space-y-5">
+                    {splitIntoBlocks(pages[currentPage - 1] || "").map((block, i) => {
+                      const t = block.trim();
                       if (!t) return null;
-                      
-                      // Detecta diferentes tipos de cabeçalhos
-                      const isMainHeading = /^[A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇ][A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇ\s\d\-:,.()]+$/.test(t) && t.length < 100;
+
+                      // Detecta diferentes tipos de cabeçalhos (apenas se for linha curta e maiúscula)
+                      const isMainHeading =
+                        /^[A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇ][A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇ\s\d\-:,.()]+$/.test(t) &&
+                        t.length < 80 &&
+                        !t.includes(".");
                       const isNumberedTopic = /^[IVX]+[\.\)]\s/.test(t) || /^\d+[\.\)]\s/.test(t);
-                      const isLetterTopic = /^[a-zA-Z][\.\)]\s/.test(t);
+                      const isLetterTopic = /^[a-zA-Z][\.\)]\s/.test(t) && t.length < 200;
                       const isBulletPoint = /^[-•]\s/.test(t);
-                      
+
                       // Título principal do tópico
                       if (isMainHeading) {
                         return (
-                          <section key={i} className="mt-14 first:mt-0">
-                            <div className="bg-primary/5 rounded-xl p-6 border-l-4 border-primary">
+                          <section key={i} className="mt-10 first:mt-0">
+                            <div className="bg-primary/5 rounded-xl p-5 border-l-4 border-primary">
                               <h2 className="text-lg sm:text-xl lg:text-2xl font-serif font-bold text-primary">
                                 {t}
                               </h2>
@@ -132,58 +160,58 @@ export function LessonViewer({
                           </section>
                         );
                       }
-                      
+
                       // Subtópico numerado (I. II. III. ou 1. 2. 3.)
                       if (isNumberedTopic) {
                         return (
-                          <div key={i} className="mt-8 mb-4">
+                          <div key={i} className="mt-6 mb-3">
                             <div className="flex items-start gap-4 bg-muted/50 rounded-lg p-4">
                               <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                                 <span className="text-primary font-bold text-sm">
                                   {t.match(/^([IVX\d]+)/)?.[1]}
                                 </span>
                               </div>
-                              <h3 className="text-base sm:text-lg lg:text-xl font-semibold text-foreground pt-1">
-                                {t.replace(/^[IVX\d]+[\.\)]\s*/, '')}
-                              </h3>
+                              <p className="text-base sm:text-lg lg:text-xl font-semibold text-foreground pt-1 whitespace-pre-wrap">
+                                {t.replace(/^[IVX\d]+[\.\)]\s*/, "")}
+                              </p>
                             </div>
                           </div>
                         );
                       }
-                      
+
                       // Subtópico com letra (a. b. c.)
                       if (isLetterTopic) {
                         return (
-                          <div key={i} className="ml-6 mb-3">
+                          <div key={i} className="ml-4 mb-2">
                             <div className="flex items-start gap-3 pl-4 border-l-2 border-accent/50">
-                              <span className="text-primary font-semibold">{t.charAt(0)}.</span>
-                              <p className="text-base sm:text-lg lg:text-xl text-foreground/90 leading-relaxed">
-                                {t.replace(/^[a-zA-Z][\.\)]\s*/, '')}
+                              <span className="text-primary font-semibold shrink-0">{t.charAt(0)}.</span>
+                              <p className="text-base sm:text-lg text-foreground/90 leading-relaxed whitespace-pre-wrap">
+                                {t.replace(/^[a-zA-Z][\.\)]\s*/, "")}
                               </p>
                             </div>
                           </div>
                         );
                       }
-                      
+
                       // Bullet point
                       if (isBulletPoint) {
                         return (
-                          <div key={i} className="ml-6 mb-2">
+                          <div key={i} className="ml-4 mb-2">
                             <div className="flex items-start gap-3">
-                              <span className="text-primary mt-2">•</span>
-                              <p className="text-base sm:text-lg lg:text-xl text-foreground/90 leading-relaxed">
-                                {t.replace(/^[-•]\s*/, '')}
+                              <span className="text-primary mt-1.5 shrink-0">•</span>
+                              <p className="text-base sm:text-lg text-foreground/90 leading-relaxed whitespace-pre-wrap">
+                                {t.replace(/^[-•]\s*/, "")}
                               </p>
                             </div>
                           </div>
                         );
                       }
-                      
-                      // Parágrafo normal
+
+                      // Parágrafo normal - preserva quebras internas
                       return (
-                        <p 
-                          key={i} 
-                          className="text-base sm:text-lg lg:text-xl text-foreground/85 leading-[1.9] sm:leading-[2] text-justify indent-10"
+                        <p
+                          key={i}
+                          className="text-base sm:text-lg text-foreground/90 leading-[1.8] sm:leading-[1.9] whitespace-pre-wrap"
                         >
                           {t}
                         </p>
