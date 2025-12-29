@@ -92,7 +92,7 @@ export function LessonViewer({
             <div className="flex-1 flex flex-col">
               {/* Área de leitura */}
               <ScrollArea className="flex-1">
-                <article className="max-w-2xl mx-auto px-8 sm:px-12 py-10 sm:py-14">
+                <article className="w-full max-w-5xl mx-auto px-6 sm:px-10 lg:px-14 py-10 sm:py-14">
                   {/* Cabeçalho na primeira página */}
                   {currentPage === 1 && (
                     <div className="text-center mb-14 pb-8 border-b-2 border-primary/20">
@@ -125,7 +125,7 @@ export function LessonViewer({
                         return (
                           <section key={i} className="mt-14 first:mt-0">
                             <div className="bg-primary/5 rounded-xl p-6 border-l-4 border-primary">
-                              <h2 className="text-lg sm:text-xl font-serif font-bold text-primary">
+                              <h2 className="text-lg sm:text-xl lg:text-2xl font-serif font-bold text-primary">
                                 {t}
                               </h2>
                             </div>
@@ -143,7 +143,7 @@ export function LessonViewer({
                                   {t.match(/^([IVX\d]+)/)?.[1]}
                                 </span>
                               </div>
-                              <h3 className="text-base sm:text-lg font-semibold text-foreground pt-1">
+                              <h3 className="text-base sm:text-lg lg:text-xl font-semibold text-foreground pt-1">
                                 {t.replace(/^[IVX\d]+[\.\)]\s*/, '')}
                               </h3>
                             </div>
@@ -157,7 +157,7 @@ export function LessonViewer({
                           <div key={i} className="ml-6 mb-3">
                             <div className="flex items-start gap-3 pl-4 border-l-2 border-accent/50">
                               <span className="text-primary font-semibold">{t.charAt(0)}.</span>
-                              <p className="text-base text-foreground/90 leading-relaxed">
+                              <p className="text-base sm:text-lg lg:text-xl text-foreground/90 leading-relaxed">
                                 {t.replace(/^[a-zA-Z][\.\)]\s*/, '')}
                               </p>
                             </div>
@@ -171,7 +171,7 @@ export function LessonViewer({
                           <div key={i} className="ml-6 mb-2">
                             <div className="flex items-start gap-3">
                               <span className="text-primary mt-2">•</span>
-                              <p className="text-base text-foreground/90 leading-relaxed">
+                              <p className="text-base sm:text-lg lg:text-xl text-foreground/90 leading-relaxed">
                                 {t.replace(/^[-•]\s*/, '')}
                               </p>
                             </div>
@@ -183,7 +183,7 @@ export function LessonViewer({
                       return (
                         <p 
                           key={i} 
-                          className="text-base sm:text-lg text-foreground/85 leading-[1.9] sm:leading-[2] text-justify indent-10"
+                          className="text-base sm:text-lg lg:text-xl text-foreground/85 leading-[1.9] sm:leading-[2] text-justify indent-10"
                         >
                           {t}
                         </p>
