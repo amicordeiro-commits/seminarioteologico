@@ -54,10 +54,130 @@ export default function AdminLibraryPage() {
   const [batchUploading, setBatchUploading] = useState(false);
   const [batchProgress, setBatchProgress] = useState({ current: 0, total: 0 });
   const [generatingPdf, setGeneratingPdf] = useState<string | null>(null);
-  const [generatingAllPdfs, setGeneratingAllPdfs] = useState(false);
+const [generatingAllPdfs, setGeneratingAllPdfs] = useState(false);
   const [pdfProgress, setPdfProgress] = useState({ current: 0, total: 0 });
+  const [importing, setImporting] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const batchFileInputRef = useRef<HTMLInputElement>(null);
+
+  // Mapeamento de títulos para arquivos locais
+  const TITLE_TO_FILE_MAP: Record<string, { folder: string; filename: string }> = {
+    'Administração Eclesiástica': { folder: 'bacharel', filename: 'administracao_eclesiastica.txt' },
+    'Teologia do Antigo Testamento': { folder: 'bacharel', filename: 'antigo_testamento.txt' },
+    'Antigo Testamento': { folder: 'bacharel', filename: 'antigo_testamento.txt' },
+    'Arqueologia Bíblica': { folder: 'bacharel', filename: 'arqueologia_biblica.txt' },
+    'Bibliologia': { folder: 'bacharel', filename: 'bibliologia.txt' },
+    'Culto Bíblico': { folder: 'bacharel', filename: 'culto_biblico.txt' },
+    'O Culto Bíblico': { folder: 'bacharel', filename: 'culto_biblico.txt' },
+    'Doutrinas Bíblicas': { folder: 'bacharel', filename: 'doutrinas_biblicas.txt' },
+    'Educação Cristã': { folder: 'bacharel', filename: 'educacao_crista.txt' },
+    'Estatutos da Igreja': { folder: 'bacharel', filename: 'estatutos_igreja.txt' },
+    'Ética Cristã': { folder: 'bacharel', filename: 'etica.txt' },
+    'Ética': { folder: 'bacharel', filename: 'etica.txt' },
+    'Evangelismo Pessoal': { folder: 'bacharel', filename: 'evangelismo_pessoal.txt' },
+    'Teologia Pastoral': { folder: 'bacharel', filename: 'teologia_pastoral.txt' },
+    'Apologética do Antigo Testamento': { folder: 'doutorado', filename: 'apologetica_at.txt' },
+    'Apologética do Novo Testamento': { folder: 'doutorado', filename: 'apologetica_nt.txt' },
+    'Capelania Evangélica': { folder: 'doutorado', filename: 'capelania_evangelica.txt' },
+    'Direito e Religião': { folder: 'doutorado', filename: 'direito_religiao.txt' },
+    'Exegese Bíblica': { folder: 'doutorado', filename: 'exegese_biblica.txt' },
+    'Fenomenologia da Religião': { folder: 'doutorado', filename: 'fenomenologia_religiao.txt' },
+    'Filosofia Cristã': { folder: 'doutorado', filename: 'filosofia_crista.txt' },
+    'Filosofia da Educação': { folder: 'doutorado', filename: 'filosofia_educacao.txt' },
+    'Hermenêutica Bíblica': { folder: 'doutorado', filename: 'hermeneutica_biblica.txt' },
+    'História da Igreja': { folder: 'doutorado', filename: 'historia_igreja.txt' },
+    'Homilética Narrativa': { folder: 'doutorado', filename: 'homiletica_narrativa.txt' },
+    'Liturgia': { folder: 'doutorado', filename: 'liturgia.txt' },
+    'Psicologia Geral': { folder: 'doutorado', filename: 'psicologia_geral.txt' },
+    'Psicologia Pastoral': { folder: 'doutorado', filename: 'psicologia_pastoral.txt' },
+    'Sociologia e Antropologia da Religião': { folder: 'doutorado', filename: 'sociologia_antropologia_religiao.txt' },
+    'Temas Atuais da Teologia': { folder: 'doutorado', filename: 'temas_atuais_teologia.txt' },
+    'Teologia Espiritual': { folder: 'doutorado', filename: 'teologia_espiritual.txt' },
+  };
+
+  // Função para importar conteúdo dos arquivos TXT para o banco de dados
+  const handleImportContent = async () => {
+    setImporting(true);
+    
+    let successCount = 0;
+    let failedCount = 0;
+    
+    try {
+      // Buscar todos os materiais sem conteúdo
+      const { data: materialsWithoutContent, error: fetchError } = await supabase
+        .from('library_materials')
+        .select('id, title')
+        .is('content', null);
+      
+      if (fetchError) throw fetchError;
+      
+      if (!materialsWithoutContent || materialsWithoutContent.length === 0) {
+        toast.info('Todos os materiais já possuem conteúdo!');
+        setImporting(false);
+        return;
+      }
+      
+      toast.info(`Importando conteúdo para ${materialsWithoutContent.length} materiais...`);
+      
+      for (const material of materialsWithoutContent) {
+        const fileInfo = TITLE_TO_FILE_MAP[material.title];
+        
+        if (!fileInfo) {
+          console.log(`Sem arquivo mapeado para: ${material.title}`);
+          failedCount++;
+          continue;
+        }
+        
+        try {
+          const response = await fetch(`/materials/${fileInfo.folder}/${fileInfo.filename}`);
+          
+          if (!response.ok) {
+            console.log(`Arquivo não encontrado: ${fileInfo.filename}`);
+            failedCount++;
+            continue;
+          }
+          
+          const content = await response.text();
+          
+          if (!content || content.length < 100) {
+            console.log(`Conteúdo vazio ou muito curto: ${fileInfo.filename}`);
+            failedCount++;
+            continue;
+          }
+          
+          const { error: updateError } = await supabase
+            .from('library_materials')
+            .update({ content: content })
+            .eq('id', material.id);
+          
+          if (updateError) {
+            console.error(`Erro ao atualizar ${material.title}:`, updateError);
+            failedCount++;
+          } else {
+            console.log(`✓ Importado: ${material.title}`);
+            successCount++;
+          }
+        } catch (err) {
+          console.error(`Erro ao processar ${material.title}:`, err);
+          failedCount++;
+        }
+      }
+      
+      queryClient.invalidateQueries({ queryKey: ["admin-materials"] });
+      
+      if (successCount > 0) {
+        toast.success(`${successCount} materiais importados com sucesso!`);
+      }
+      if (failedCount > 0) {
+        toast.warning(`${failedCount} materiais não puderam ser importados.`);
+      }
+    } catch (error) {
+      console.error('Erro na importação:', error);
+      toast.error('Erro ao importar conteúdo dos materiais');
+    } finally {
+      setImporting(false);
+    }
+  };
 
   // Função para gerar PDF personalizado com marca P.O.D
   const generateBrandedPdf = async (material: Material) => {
@@ -706,6 +826,24 @@ export default function AdminLibraryPage() {
                 <>
                   <FileDown className="w-4 h-4" />
                   Gerar Todos PDFs
+                </>
+              )}
+            </Button>
+            <Button
+              variant="outline"
+              onClick={handleImportContent}
+              disabled={importing}
+              className="gap-2"
+            >
+              {importing ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  Importando...
+                </>
+              ) : (
+                <>
+                  <Upload className="w-4 h-4" />
+                  Importar TXT
                 </>
               )}
             </Button>
