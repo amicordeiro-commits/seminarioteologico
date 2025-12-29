@@ -178,18 +178,6 @@ export function LessonViewer({
           )}
         </div>
 
-        {/* Footer */}
-        {content && totalPages > 1 && (
-          <div className="flex items-center justify-center gap-4 px-4 py-2 bg-card border-t shrink-0">
-            <Button variant="ghost" size="sm" onClick={() => setCurrentPage(p => Math.max(1, p - 1))} disabled={currentPage <= 1}>
-              <ChevronLeft className="w-4 h-4" />
-            </Button>
-            <span className="text-sm text-muted-foreground">{currentPage} / {totalPages}</span>
-            <Button variant="ghost" size="sm" onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))} disabled={currentPage >= totalPages}>
-              <ChevronRight className="w-4 h-4" />
-            </Button>
-          </div>
-        )}
       </DialogContent>
     </Dialog>
   );
