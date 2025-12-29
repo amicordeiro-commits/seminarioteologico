@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import { Library, Plus, Pencil, Trash2, Loader2, FileText, Video, Headphones, Upload, Sparkles, FolderUp, FileDown } from "lucide-react";
+import { Library, Plus, Pencil, Trash2, Loader2, FileText, Video, Headphones, Upload, Sparkles, FolderUp, FileDown, BookPlus } from "lucide-react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -179,6 +179,336 @@ const [generatingAllPdfs, setGeneratingAllPdfs] = useState(false);
     }
   };
 
+  // Função para formatar conteúdo TXT em HTML profissional para PDF
+  const formatContentForPdf = (text: string): string => {
+    const lines = text.split('\n');
+    const htmlParts: string[] = [];
+    let inList = false;
+    let listType: 'ul' | 'ol' = 'ul';
+    let currentParagraph: string[] = [];
+    let skipSection = false;
+    
+    const flushParagraph = () => {
+      if (currentParagraph.length > 0) {
+        const text = currentParagraph.join(' ').trim();
+        if (text && text.length > 10) {
+          htmlParts.push(`<p>${text}</p>`);
+        }
+        currentParagraph = [];
+      }
+    };
+    
+    const closeList = () => {
+      if (inList) {
+        htmlParts.push(`</${listType}>`);
+        inList = false;
+      }
+    };
+    
+    const capitalizeTitle = (text: string): string => {
+      const lowerWords = ['de', 'da', 'do', 'das', 'dos', 'e', 'a', 'o', 'as', 'os', 'em', 'no', 'na', 'nos', 'nas', 'para', 'com', 'por', 'que'];
+      return text.toLowerCase().split(' ').map((word, index) => {
+        if (index === 0 || !lowerWords.includes(word)) {
+          return word.charAt(0).toUpperCase() + word.slice(1);
+        }
+        return word;
+      }).join(' ');
+    };
+    
+    for (let i = 0; i < lines.length; i++) {
+      let line = lines[i].trim();
+      
+      // Remove números de linha
+      line = line.replace(/^\d+:\s*/, '');
+      
+      // Skip referências bibliográficas
+      const lowerLine = line.toLowerCase();
+      if (lowerLine.includes('referência bibliográfica') || 
+          lowerLine.includes('referências bibliográficas') ||
+          lowerLine.includes('bibliografia') ||
+          lowerLine.includes('fonte:') ||
+          lowerLine.includes('imagem meramente ilustrativa')) {
+        skipSection = true;
+        continue;
+      }
+      
+      if (skipSection && (line.match(/^[IVX]+\.\s/) || line.match(/^CAPÍTULO/) || line.match(/^LIÇÃO/))) {
+        skipSection = false;
+      }
+      
+      if (skipSection) continue;
+      if (line.match(/https?:\/\/|www\./)) continue;
+      if (lowerLine.includes('isbn') || lowerLine.includes('doi:')) continue;
+      
+      // Linha vazia
+      if (!line) {
+        flushParagraph();
+        closeList();
+        continue;
+      }
+      
+      // Ignora cabeçalhos do curso
+      if (line.match(/^CURSO SUPERIOR/i) || line.match(/^DISCIPLINA:/i)) {
+        continue;
+      }
+      
+      // Títulos principais
+      if (line.match(/^(CONCEITO GERAL|INTRODUÇÃO|CONCLUSÃO|CONSIDERAÇÕES FINAIS)/i)) {
+        flushParagraph();
+        closeList();
+        htmlParts.push(`<h2>${capitalizeTitle(line)}</h2>`);
+        continue;
+      }
+      
+      // Títulos em maiúsculas
+      if (line.match(/^[A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇÑ\s]{10,}$/) && !line.includes('.') && line.length < 80) {
+        flushParagraph();
+        closeList();
+        htmlParts.push(`<h2>${capitalizeTitle(line)}</h2>`);
+        continue;
+      }
+      
+      // Títulos com números romanos
+      if (line.match(/^[IVXLC]+[\.\-\)]\s+/i)) {
+        flushParagraph();
+        closeList();
+        const content = line.replace(/^[IVXLC]+[\.\-\)]\s+/i, '');
+        htmlParts.push(`<h3>${capitalizeTitle(content)}</h3>`);
+        continue;
+      }
+      
+      // Títulos numerados curtos
+      if (line.match(/^\d+[\.\-\)]\s+/) && line.length < 80 && !line.match(/^\d+[\.\-\)]\s+[a-z]/)) {
+        flushParagraph();
+        closeList();
+        const content = line.replace(/^\d+[\.\-\)]\s+/, '');
+        htmlParts.push(`<h4>${content}</h4>`);
+        continue;
+      }
+      
+      // Itens de lista ordenada
+      if (line.match(/^\d+[\.\)]\s+/) && line.length > 20) {
+        flushParagraph();
+        if (!inList || listType !== 'ol') {
+          closeList();
+          htmlParts.push('<ol>');
+          inList = true;
+          listType = 'ol';
+        }
+        const content = line.replace(/^\d+[\.\)]\s+/, '');
+        htmlParts.push(`<li>${content}</li>`);
+        continue;
+      }
+      
+      // Itens de lista com letras ou bullets
+      if (line.match(/^[a-z]\)\s+/i) || line.match(/^[\-•►▸◆]\s+/)) {
+        flushParagraph();
+        if (!inList || listType !== 'ul') {
+          closeList();
+          htmlParts.push('<ul>');
+          inList = true;
+          listType = 'ul';
+        }
+        const content = line.replace(/^[a-z]\)\s+|^[\-•►▸◆]\s+/i, '');
+        htmlParts.push(`<li>${content}</li>`);
+        continue;
+      }
+      
+      // Versículos bíblicos
+      const bibleRefPattern = /([1-3]?\s?[A-ZÁ][a-záéíóúâêôã]+\.?\s+\d+[:\.\,]\d+(?:\-\d+)?)/;
+      if (line.match(bibleRefPattern) && line.length < 300 && line.length > 30) {
+        flushParagraph();
+        closeList();
+        const formatted = line.replace(bibleRefPattern, '<strong>$1</strong>');
+        htmlParts.push(`<blockquote>${formatted}</blockquote>`);
+        continue;
+      }
+      
+      // Citações
+      if ((line.startsWith('"') || line.startsWith('"') || line.startsWith("'")) && line.length < 200) {
+        flushParagraph();
+        closeList();
+        htmlParts.push(`<blockquote>${line}</blockquote>`);
+        continue;
+      }
+      
+      // Adiciona ao parágrafo atual
+      closeList();
+      currentParagraph.push(line);
+      
+      if (line.match(/[.!?]$/) && currentParagraph.join(' ').length > 100) {
+        flushParagraph();
+      }
+    }
+    
+    flushParagraph();
+    closeList();
+    
+    return htmlParts.join('\n');
+  };
+
+  // Função para criar materiais automaticamente a partir dos TXTs
+  const handleCreateMaterialsFromTxt = async () => {
+    setImporting(true);
+    
+    let successCount = 0;
+    let failedCount = 0;
+    
+    const materialsToCreate = [
+      // Bacharel
+      { title: 'Administração Eclesiástica', folder: 'bacharel', filename: 'administracao_eclesiastica.txt', category: 'Bacharel' },
+      { title: 'Teologia do Antigo Testamento', folder: 'bacharel', filename: 'antigo_testamento.txt', category: 'Bacharel' },
+      { title: 'Arqueologia Bíblica', folder: 'bacharel', filename: 'arqueologia_biblica.txt', category: 'Bacharel' },
+      { title: 'Bibliologia', folder: 'bacharel', filename: 'bibliologia.txt', category: 'Bacharel' },
+      { title: 'Culto Bíblico', folder: 'bacharel', filename: 'culto_biblico.txt', category: 'Bacharel' },
+      { title: 'Doutrinas Bíblicas', folder: 'bacharel', filename: 'doutrinas_biblicas.txt', category: 'Bacharel' },
+      { title: 'Educação Cristã', folder: 'bacharel', filename: 'educacao_crista.txt', category: 'Bacharel' },
+      { title: 'Estatutos da Igreja', folder: 'bacharel', filename: 'estatutos_igreja.txt', category: 'Bacharel' },
+      { title: 'Ética Cristã', folder: 'bacharel', filename: 'etica.txt', category: 'Bacharel' },
+      { title: 'Evangelismo Pessoal', folder: 'bacharel', filename: 'evangelismo_pessoal.txt', category: 'Bacharel' },
+      { title: 'Teologia Pastoral', folder: 'bacharel', filename: 'teologia_pastoral.txt', category: 'Bacharel' },
+      // Doutorado
+      { title: 'Apologética do Antigo Testamento', folder: 'doutorado', filename: 'apologetica_at.txt', category: 'Doutorado' },
+      { title: 'Apologética do Novo Testamento', folder: 'doutorado', filename: 'apologetica_nt.txt', category: 'Doutorado' },
+      { title: 'Capelania Evangélica', folder: 'doutorado', filename: 'capelania_evangelica.txt', category: 'Doutorado' },
+      { title: 'Direito e Religião', folder: 'doutorado', filename: 'direito_religiao.txt', category: 'Doutorado' },
+      { title: 'Ética Cristã Avançada', folder: 'doutorado', filename: 'etica_crista.txt', category: 'Doutorado' },
+      { title: 'Exegese Bíblica', folder: 'doutorado', filename: 'exegese_biblica.txt', category: 'Doutorado' },
+      { title: 'Fenomenologia da Religião', folder: 'doutorado', filename: 'fenomenologia_religiao.txt', category: 'Doutorado' },
+      { title: 'Filosofia Cristã', folder: 'doutorado', filename: 'filosofia_crista.txt', category: 'Doutorado' },
+      { title: 'Filosofia da Educação', folder: 'doutorado', filename: 'filosofia_educacao.txt', category: 'Doutorado' },
+      { title: 'Hermenêutica Bíblica', folder: 'doutorado', filename: 'hermeneutica_biblica.txt', category: 'Doutorado' },
+      { title: 'História da Igreja', folder: 'doutorado', filename: 'historia_igreja.txt', category: 'Doutorado' },
+      { title: 'Homilética Narrativa', folder: 'doutorado', filename: 'homiletica_narrativa.txt', category: 'Doutorado' },
+      { title: 'Liturgia', folder: 'doutorado', filename: 'liturgia.txt', category: 'Doutorado' },
+      { title: 'Psicologia Geral', folder: 'doutorado', filename: 'psicologia_geral.txt', category: 'Doutorado' },
+      { title: 'Psicologia Pastoral', folder: 'doutorado', filename: 'psicologia_pastoral.txt', category: 'Doutorado' },
+      { title: 'Sociologia e Antropologia da Religião', folder: 'doutorado', filename: 'sociologia_antropologia_religiao.txt', category: 'Doutorado' },
+      { title: 'Temas Atuais da Teologia', folder: 'doutorado', filename: 'temas_atuais_teologia.txt', category: 'Doutorado' },
+      { title: 'Teologia Espiritual', folder: 'doutorado', filename: 'teologia_espiritual.txt', category: 'Doutorado' },
+    ];
+    
+    toast.info(`Criando ${materialsToCreate.length} materiais...`);
+    
+    for (const mat of materialsToCreate) {
+      try {
+        const response = await fetch(`/materials/${mat.folder}/${mat.filename}`);
+        
+        if (!response.ok) {
+          console.log(`Arquivo não encontrado: ${mat.filename}`);
+          failedCount++;
+          continue;
+        }
+        
+        const rawContent = await response.text();
+        
+        if (!rawContent || rawContent.length < 100) {
+          console.log(`Conteúdo vazio: ${mat.filename}`);
+          failedCount++;
+          continue;
+        }
+        
+        // Inserir no banco
+        const { error: insertError } = await supabase
+          .from('library_materials')
+          .insert({
+            title: mat.title,
+            description: `Material didático do curso de ${mat.category} em Teologia`,
+            category: mat.category,
+            file_type: 'pdf',
+            content: rawContent,
+            is_published: true,
+          });
+        
+        if (insertError) {
+          console.error(`Erro ao criar ${mat.title}:`, insertError);
+          failedCount++;
+        } else {
+          console.log(`✓ Criado: ${mat.title}`);
+          successCount++;
+        }
+      } catch (err) {
+        console.error(`Erro ao processar ${mat.title}:`, err);
+        failedCount++;
+      }
+    }
+    
+    queryClient.invalidateQueries({ queryKey: ["admin-materials"] });
+    
+    if (successCount > 0) {
+      toast.success(`${successCount} materiais criados com sucesso!`);
+    }
+    if (failedCount > 0) {
+      toast.warning(`${failedCount} materiais não puderam ser criados.`);
+    }
+    
+    setImporting(false);
+  };
+
+  // Função para gerar PDF profissional de um material
+  const generateProfessionalPdf = async (material: Material) => {
+    setGeneratingPdf(material.id);
+    
+    try {
+      // Buscar conteúdo completo do material
+      const { data: fullMaterial, error: fetchError } = await supabase
+        .from('library_materials')
+        .select('content')
+        .eq('id', material.id)
+        .single();
+      
+      if (fetchError || !fullMaterial?.content) {
+        throw new Error('Conteúdo do material não encontrado');
+      }
+      
+      // Formatar conteúdo para HTML profissional
+      const formattedContent = formatContentForPdf(fullMaterial.content);
+      
+      const { data, error } = await supabase.functions.invoke("generate-branded-pdf", {
+        body: {
+          title: material.title,
+          category: material.category || "Material Didático",
+          content: formattedContent,
+        },
+      });
+
+      if (error) throw new Error(error.message);
+      if (!data?.html) throw new Error("Falha ao gerar o PDF.");
+
+      const popup = window.open("", "_blank");
+      
+      if (!popup || popup.closed || typeof popup.closed === 'undefined') {
+        const blob = new Blob([data.html], { type: 'text/html' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `${material.title.replace(/[^a-zA-Z0-9]/g, '_')}_POD.html`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+        
+        toast.info("Arquivo baixado! Abra no navegador e use Ctrl+P para salvar como PDF.");
+        return;
+      }
+
+      popup.document.open();
+      popup.document.write(data.html);
+      popup.document.close();
+
+      await new Promise((r) => setTimeout(r, 700));
+      popup.focus();
+      popup.print();
+
+      toast.success("PDF profissional gerado!");
+    } catch (err) {
+      console.error("Error generating PDF:", err);
+      toast.error(`Erro ao gerar PDF: ${err instanceof Error ? err.message : 'Erro desconhecido'}`);
+    } finally {
+      setGeneratingPdf(null);
+    }
+  };
+
   // Função para gerar PDF personalizado com marca P.O.D
   const generateBrandedPdf = async (material: Material) => {
     setGeneratingPdf(material.id);
@@ -238,31 +568,45 @@ const [generatingAllPdfs, setGeneratingAllPdfs] = useState(false);
     }
   };
 
-  // Função para gerar todos os PDFs em lote
+  // Função para gerar todos os PDFs em lote com formatação profissional
   const generateAllPdfs = async () => {
-    const materialsToGenerate = materials.filter(m => m.category === "Bacharel");
-    
-    if (materialsToGenerate.length === 0) {
-      toast.error("Nenhum material do Bacharel encontrado");
+    if (materials.length === 0) {
+      toast.error("Nenhum material encontrado. Crie os materiais primeiro.");
       return;
     }
 
     setGeneratingAllPdfs(true);
-    setPdfProgress({ current: 0, total: materialsToGenerate.length });
+    setPdfProgress({ current: 0, total: materials.length });
     
     const results = { success: 0, failed: 0 };
     const generatedFiles: { title: string; html: string }[] = [];
 
-    for (let i = 0; i < materialsToGenerate.length; i++) {
-      const material = materialsToGenerate[i];
-      setPdfProgress({ current: i + 1, total: materialsToGenerate.length });
+    for (let i = 0; i < materials.length; i++) {
+      const material = materials[i];
+      setPdfProgress({ current: i + 1, total: materials.length });
 
       try {
+        // Buscar conteúdo completo do material
+        const { data: fullMaterial, error: fetchError } = await supabase
+          .from('library_materials')
+          .select('content')
+          .eq('id', material.id)
+          .single();
+        
+        if (fetchError || !fullMaterial?.content) {
+          console.log(`Sem conteúdo para: ${material.title}`);
+          results.failed++;
+          continue;
+        }
+        
+        // Formatar conteúdo para HTML profissional
+        const formattedContent = formatContentForPdf(fullMaterial.content);
+        
         const { data, error } = await supabase.functions.invoke("generate-branded-pdf", {
           body: {
             title: material.title,
-            category: material.category || "Bacharel em Teologia",
-            content: material.description || "",
+            category: material.category || "Material Didático",
+            content: formattedContent,
           },
         });
 
@@ -844,6 +1188,24 @@ const [generatingAllPdfs, setGeneratingAllPdfs] = useState(false);
                 <>
                   <Upload className="w-4 h-4" />
                   Importar TXT
+                </>
+              )}
+            </Button>
+            <Button
+              variant="default"
+              onClick={handleCreateMaterialsFromTxt}
+              disabled={importing}
+              className="gap-2 bg-primary"
+            >
+              {importing ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  Criando...
+                </>
+              ) : (
+                <>
+                  <BookPlus className="w-4 h-4" />
+                  Criar Aulas dos TXTs
                 </>
               )}
             </Button>
