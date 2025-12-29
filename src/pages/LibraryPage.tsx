@@ -14,14 +14,19 @@ import {
   Filter,
   Heart,
   Loader2,
+  Eye,
 } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLibraryMaterials, useLibraryCategories, LibraryMaterial } from "@/hooks/useLibrary";
 import { SermonReader } from "@/components/library/SermonReader";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 const defaultCategories = [
   "Todos",
+  "Bacharel",
+  "Doutorado",
   "Bíblias",
   "Comentários",
   "Teologia Sistemática",
@@ -75,6 +80,7 @@ export default function LibraryPage() {
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedMaterial, setSelectedMaterial] = useState<LibraryMaterial | null>(null);
+  const [generatingPdf, setGeneratingPdf] = useState<string | null>(null);
   
   const { data: materials = [], isLoading } = useLibraryMaterials(selectedCategory);
   const { data: dbCategories } = useLibraryCategories();
@@ -93,6 +99,156 @@ export default function LibraryPage() {
     videos: materials.filter(m => m.file_type === 'video' || m.file_type === 'mp4').length,
     audios: materials.filter(m => m.file_type === 'audio' || m.file_type === 'mp3').length,
     documents: materials.filter(m => m.file_type === 'document' || m.file_type === 'docx').length,
+  };
+
+  // Função para limpar conteúdo - REGRA DE OURO: apenas conteúdo disciplinar
+  const cleanContent = (text: string): string => {
+    const lines = text.split('\n');
+    const cleanedLines: string[] = [];
+    
+    let skipSection = false;
+    let inHeaderSection = true;
+    
+    for (const line of lines) {
+      let cleanLine = line.replace(/^\d+:\s*/, '').trim();
+      
+      if (cleanLine.match(/^[\d]+$/) && cleanLine.length <= 4) continue;
+      if (cleanLine.match(/^página\s*\d+/i)) continue;
+      
+      const lowerLine = cleanLine.toLowerCase();
+      
+      // Detectar fim do cabeçalho institucional
+      if (inHeaderSection) {
+        if (
+          lowerLine.match(/^(introdução|conceito|capítulo|lição|sumário)/i) ||
+          cleanLine.match(/^[IVX]+[\.\-\)]\s+/) ||
+          (cleanLine.match(/^[A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇÑ\s]{15,}$/) && 
+           !lowerLine.includes('curso') && 
+           !lowerLine.includes('seminário') && 
+           !lowerLine.includes('disciplina'))
+        ) {
+          inHeaderSection = false;
+        } else {
+          continue;
+        }
+      }
+      
+      // Ignorar cabeçalhos institucionais
+      if (
+        lowerLine.includes('curso superior') ||
+        lowerLine.includes('seminário') ||
+        lowerLine.includes('disciplina:') ||
+        lowerLine.includes('professor:') ||
+        lowerLine.includes('carga horária')
+      ) continue;
+      
+      // Pular seções de referências
+      if (
+        lowerLine.includes('referência bibliográfica') ||
+        lowerLine.includes('bibliografia') ||
+        lowerLine.match(/^referências?\s*$/)
+      ) {
+        skipSection = true;
+        continue;
+      }
+      
+      if (skipSection && cleanLine.match(/^[IVX]+[\.\-\)]\s+/)) {
+        skipSection = false;
+      }
+      
+      if (skipSection) continue;
+      
+      // Remover URLs, ISBN
+      if (cleanLine.match(/https?:\/\/|www\./)) continue;
+      if (lowerLine.includes('isbn')) continue;
+      if (lowerLine.startsWith('fonte:')) continue;
+      
+      if (cleanLine.trim()) {
+        cleanedLines.push(cleanLine);
+      }
+    }
+    
+    return cleanedLines.join('\n').trim();
+  };
+
+  // Formatar conteúdo para HTML
+  const formatContentToHtml = (text: string): string => {
+    const lines = text.split('\n');
+    const htmlParts: string[] = [];
+    
+    for (const line of lines) {
+      const trimmedLine = line.trim();
+      if (!trimmedLine) continue;
+      
+      // Títulos em maiúsculas
+      if (trimmedLine.match(/^[A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇÑ\s]{15,}$/) && trimmedLine.length < 80) {
+        htmlParts.push(`<h2>${trimmedLine.charAt(0) + trimmedLine.slice(1).toLowerCase()}</h2>`);
+        continue;
+      }
+      
+      // Números romanos
+      if (trimmedLine.match(/^[IVXLC]+[\.\-\)]\s+/i)) {
+        const content = trimmedLine.replace(/^[IVXLC]+[\.\-\)]\s+/i, '');
+        htmlParts.push(`<h3>${content}</h3>`);
+        continue;
+      }
+      
+      // Listas
+      if (trimmedLine.match(/^[\-•►]\s+/) || trimmedLine.match(/^[a-z]\)\s+/i)) {
+        const content = trimmedLine.replace(/^[\-•►]\s+|^[a-z]\)\s+/i, '');
+        htmlParts.push(`<li>${content}</li>`);
+        continue;
+      }
+      
+      htmlParts.push(`<p>${trimmedLine}</p>`);
+    }
+    
+    return htmlParts.join('\n');
+  };
+
+  // Visualizar PDF do material
+  const handleViewPdf = async (material: LibraryMaterial) => {
+    if (!material.file_url) {
+      toast.error("Material sem arquivo disponível");
+      return;
+    }
+
+    setGeneratingPdf(material.id);
+
+    try {
+      // Buscar conteúdo do arquivo TXT
+      const response = await fetch(material.file_url);
+      if (!response.ok) throw new Error("Arquivo não encontrado");
+      
+      const rawContent = await response.text();
+      const cleanedContent = cleanContent(rawContent);
+      const htmlContent = formatContentToHtml(cleanedContent);
+
+      // Gerar PDF via edge function
+      const { data, error } = await supabase.functions.invoke('generate-branded-pdf', {
+        body: {
+          title: material.title,
+          category: material.category || 'Bacharel em Teologia',
+          content: htmlContent,
+        },
+      });
+
+      if (error) throw error;
+
+      // Abrir em nova aba
+      const newWindow = window.open('', '_blank');
+      if (newWindow) {
+        newWindow.document.write(data.html);
+        newWindow.document.close();
+      } else {
+        toast.error("Popup bloqueado. Permita popups para visualizar o PDF.");
+      }
+    } catch (err) {
+      console.error("Erro ao gerar PDF:", err);
+      toast.error("Erro ao gerar visualização do PDF");
+    } finally {
+      setGeneratingPdf(null);
+    }
   };
 
   return (
@@ -269,7 +425,24 @@ export default function LibraryPage() {
                               Ler
                             </Button>
                           )}
-                          {resource.file_url && (
+                          {/* Botão Visualizar PDF para materiais do Bacharel/Doutorado */}
+                          {resource.file_url && resource.file_url.endsWith('.txt') && (
+                            <Button 
+                              size="sm" 
+                              variant="outline"
+                              className="h-8 px-3 gap-1"
+                              onClick={() => handleViewPdf(resource)}
+                              disabled={generatingPdf === resource.id}
+                            >
+                              {generatingPdf === resource.id ? (
+                                <Loader2 className="w-3 h-3 animate-spin" />
+                              ) : (
+                                <Eye className="w-3 h-3" />
+                              )}
+                              Ver PDF
+                            </Button>
+                          )}
+                          {resource.file_url && !resource.file_url.endsWith('.txt') && (
                             <Button 
                               size="sm" 
                               className="h-8 px-3 gap-1"
