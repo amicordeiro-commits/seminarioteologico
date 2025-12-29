@@ -7,7 +7,7 @@
 @layer base {
   :root {
     /* Theological warm palette - burgundy/wine with gold accents */
-    --background: 30 20% 98%;
+    --background: 35 35% 94%;
     --foreground: 20 25% 12%;
 
     --card: 0 0% 100%;
@@ -22,11 +22,11 @@
     --primary-glow: 345 45% 38%;
 
     /* Warm cream secondary */
-    --secondary: 35 30% 94%;
+    --secondary: 35 40% 90%;
     --secondary-foreground: 20 25% 20%;
 
     /* Muted warm tones */
-    --muted: 30 20% 95%;
+    --muted: 35 25% 92%;
     --muted-foreground: 20 15% 45%;
 
     /* Gold accent for sacred elements */
@@ -44,8 +44,8 @@
     --warning: 38 92% 50%;
     --warning-foreground: 20 25% 12%;
 
-    --border: 30 20% 88%;
-    --input: 30 20% 88%;
+    --border: 35 18% 82%;
+    --input: 35 18% 82%;
     --ring: 345 45% 28%;
 
     --radius: 0.5rem;
@@ -85,9 +85,9 @@
 
     --primary: 345 45% 45%;
     --primary-foreground: 40 30% 98%;
+    --primary-glow: 345 45% 55%;
 
     --secondary: 20 20% 18%;
-    --secondary-foreground: 40 30% 90%;
 
     --muted: 20 20% 15%;
     --muted-foreground: 30 15% 55%;
@@ -215,6 +215,6 @@
 
   /* Decorative cross pattern */
   .pattern-cross {
-    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M18 0v18H0v4h18v18h4V22h18v-4H22V0h-4z' fill='%23d4af37' fill-opacity='0.05'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M18 0v18H0v4h18v18h4V22h18v-4H22V0h-4z' fill='%23d4af37' fill-opacity='0.1'/%3E%3C/svg%3E");
   }
 }
