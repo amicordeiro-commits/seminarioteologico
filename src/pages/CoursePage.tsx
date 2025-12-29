@@ -272,7 +272,10 @@ const CoursePage = () => {
 
     try {
       // 1) Primeiro tenta buscar do banco/arquivo local (fallback)
-      const rawText = await fetchMaterialFromDb(lesson.title);
+      const rawText = await fetchMaterialFromDb(
+        lesson.title,
+        (course?.category || "").toLowerCase()
+      );
       if (rawText) {
         lessonContentCacheRef.current[lesson.title] = rawText;
         setViewerText(rawText);
@@ -382,7 +385,33 @@ const CoursePage = () => {
   };
 
   // Função para buscar conteúdo do material do banco de dados
-  const fetchMaterialFromDb = async (title: string): Promise<string> => {
+  const fetchMaterialFromDb = async (title: string, preferredFolder?: string): Promise<string> => {
+    const isProbablyHtml = (t: string) =>
+      /^\s*<!doctype\s+html/i.test(t) || /^\s*<html/i.test(t) || /^\s*<head/i.test(t);
+
+    const normalize = (t: string) =>
+      t
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9\s]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+
+    const guessFileBase = (t: string) => {
+      const stop = new Set(["da", "do", "das", "dos", "de", "e", "em", "ao", "aos", "a", "as", "o", "os"]);
+      const words = normalize(t).split(" ").filter((w) => w && !stop.has(w));
+      return (words.length ? words : normalize(t).split(" ")).join("_");
+    };
+
+    const tryFetchText = async (url: string) => {
+      const res = await fetch(url, { cache: "force-cache" });
+      if (!res.ok) return "";
+      const txt = await res.text();
+      if (!txt.trim() || isProbablyHtml(txt)) return "";
+      return txt;
+    };
+
     try {
       // Buscar material do banco de dados (content OU file_url)
       const { data } = await supabase
@@ -392,26 +421,29 @@ const CoursePage = () => {
         .limit(1)
         .maybeSingle();
 
-      if (data?.content) {
+      if (data?.content && !isProbablyHtml(data.content)) {
         return data.content;
       }
 
       // Se não tem content no banco, tenta buscar do arquivo
       if (data?.file_url && data.file_url.endsWith(".txt")) {
-        const res = await fetch(data.file_url, { cache: "force-cache" });
-        if (res.ok) {
-          return await res.text();
-        }
+        const t = await tryFetchText(data.file_url);
+        if (t) return t;
       }
 
-      // Fallback: tentar arquivo local
+      // Tentativa por heurística (evita mostrar index.html quando o arquivo não existe)
+      const base = guessFileBase(title);
+      const folders = [preferredFolder, "doutorado", "bacharel"].filter(Boolean) as string[];
+      for (const folder of Array.from(new Set(folders))) {
+        const t = await tryFetchText(`/materials/${folder}/${base}.txt`);
+        if (t) return t;
+      }
+
+      // Fallback: tentar arquivo local (mapeamento manual)
       const lessonFile = LESSON_FILES[title];
       if (lessonFile) {
-        const url = `/materials/${lessonFile.folder}/${lessonFile.filename}`;
-        const res = await fetch(url, { cache: "force-cache" });
-        if (res.ok) {
-          return await res.text();
-        }
+        const t = await tryFetchText(`/materials/${lessonFile.folder}/${lessonFile.filename}`);
+        if (t) return t;
       }
 
       return "";
