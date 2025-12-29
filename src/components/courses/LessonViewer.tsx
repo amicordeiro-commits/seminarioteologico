@@ -59,7 +59,7 @@ export function LessonViewer({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl w-[95vw] h-[92vh] flex flex-col p-0 gap-0 bg-background overflow-hidden">
+      <DialogContent className="max-w-none w-screen h-screen flex flex-col p-0 gap-0 bg-background overflow-hidden rounded-none border-none">
         {/* Header elegante */}
         <header className="flex items-center justify-between px-6 py-4 bg-gradient-to-r from-primary to-primary/90 text-primary-foreground shrink-0">
           <div className="flex items-center gap-4 min-w-0">
