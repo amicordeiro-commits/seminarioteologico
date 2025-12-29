@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { AuthProvider, useAuth } from "@/hooks/useAuth";
 import { useUserRole } from "@/hooks/useUserRole";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 import Index from "./pages/Index";
 import CoursesPage from "./pages/CoursesPage";
 import CoursePage from "./pages/CoursePage";
@@ -35,7 +36,6 @@ import AdminQuizzesPage from "./pages/admin/AdminQuizzesPage";
 import AdminLessonsPage from "./pages/admin/AdminLessonsPage";
 import AdminStrongsPage from "./pages/admin/AdminStrongsPage";
 import AdminMaterialsPage from "./pages/admin/AdminMaterialsPage";
-
 
 const queryClient = new QueryClient();
 
@@ -100,36 +100,217 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/auth" element={<AuthPage />} />
-      <Route path="/" element={<ProtectedRoute><Index /></ProtectedRoute>} />
-      <Route path="/courses" element={<ProtectedRoute><CoursesPage /></ProtectedRoute>} />
-      <Route path="/course/:id" element={<ProtectedRoute><CoursePage /></ProtectedRoute>} />
-      <Route path="/calendar" element={<ProtectedRoute><CalendarPage /></ProtectedRoute>} />
-      <Route path="/messages" element={<ProtectedRoute><MessagesPage /></ProtectedRoute>} />
-      <Route path="/progress" element={<ProtectedRoute><ProgressPage /></ProtectedRoute>} />
-      <Route path="/library" element={<ProtectedRoute><LibraryPage /></ProtectedRoute>} />
-      <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
-      <Route path="/community" element={<ProtectedRoute><CommunityPage /></ProtectedRoute>} />
-      <Route path="/settings" element={<ProtectedRoute><SettingsPage /></ProtectedRoute>} />
-      <Route path="/devotional" element={<ProtectedRoute><DevotionalPage /></ProtectedRoute>} />
-      <Route path="/bible" element={<ProtectedRoute><BiblePage /></ProtectedRoute>} />
-      <Route path="/certificates" element={<ProtectedRoute><CertificatesPage /></ProtectedRoute>} />
-      
+      <Route
+        path="/"
+        element={
+          <ProtectedRoute>
+            <Index />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/courses"
+        element={
+          <ProtectedRoute>
+            <CoursesPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/course/:id"
+        element={
+          <ProtectedRoute>
+            <CoursePage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/calendar"
+        element={
+          <ProtectedRoute>
+            <CalendarPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/messages"
+        element={
+          <ProtectedRoute>
+            <MessagesPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/progress"
+        element={
+          <ProtectedRoute>
+            <ProgressPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/library"
+        element={
+          <ProtectedRoute>
+            <LibraryPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/profile"
+        element={
+          <ProtectedRoute>
+            <ProfilePage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/community"
+        element={
+          <ProtectedRoute>
+            <CommunityPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/settings"
+        element={
+          <ProtectedRoute>
+            <SettingsPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/devotional"
+        element={
+          <ProtectedRoute>
+            <DevotionalPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/bible"
+        element={
+          <ProtectedRoute>
+            <BiblePage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/certificates"
+        element={
+          <ProtectedRoute>
+            <CertificatesPage />
+          </ProtectedRoute>
+        }
+      />
+
       {/* Admin Routes */}
-      <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
-      <Route path="/admin/users" element={<AdminRoute><AdminUsersPage /></AdminRoute>} />
-      <Route path="/admin/courses" element={<AdminRoute><AdminCoursesPage /></AdminRoute>} />
-      <Route path="/admin/lessons" element={<AdminRoute><AdminLessonsPage /></AdminRoute>} />
-      <Route path="/admin/quizzes" element={<AdminRoute><AdminQuizzesPage /></AdminRoute>} />
-      <Route path="/admin/library" element={<AdminRoute><AdminLibraryPage /></AdminRoute>} />
-      <Route path="/admin/events" element={<AdminRoute><AdminEventsPage /></AdminRoute>} />
-      <Route path="/admin/devotionals" element={<AdminRoute><AdminDevotionalsPage /></AdminRoute>} />
-      <Route path="/admin/messages" element={<AdminRoute><AdminMessagesPage /></AdminRoute>} />
-      <Route path="/admin/certificates" element={<AdminRoute><AdminCertificatesPage /></AdminRoute>} />
-      <Route path="/admin/strongs" element={<AdminRoute><AdminStrongsPage /></AdminRoute>} />
-      <Route path="/admin/materials" element={<AdminRoute><AdminMaterialsPage /></AdminRoute>} />
-      <Route path="/admin/settings" element={<AdminRoute><AdminSettingsPage /></AdminRoute>} />
-      
-      
+      <Route
+        path="/admin"
+        element={
+          <AdminRoute>
+            <AdminDashboard />
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/users"
+        element={
+          <AdminRoute>
+            <AdminUsersPage />
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/courses"
+        element={
+          <AdminRoute>
+            <AdminCoursesPage />
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/lessons"
+        element={
+          <AdminRoute>
+            <AdminLessonsPage />
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/quizzes"
+        element={
+          <AdminRoute>
+            <AdminQuizzesPage />
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/library"
+        element={
+          <AdminRoute>
+            <AdminLibraryPage />
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/events"
+        element={
+          <AdminRoute>
+            <AdminEventsPage />
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/devotionals"
+        element={
+          <AdminRoute>
+            <AdminDevotionalsPage />
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/messages"
+        element={
+          <AdminRoute>
+            <AdminMessagesPage />
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/certificates"
+        element={
+          <AdminRoute>
+            <AdminCertificatesPage />
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/strongs"
+        element={
+          <AdminRoute>
+            <AdminStrongsPage />
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/materials"
+        element={
+          <AdminRoute>
+            <AdminMaterialsPage />
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/settings"
+        element={
+          <AdminRoute>
+            <AdminSettingsPage />
+          </AdminRoute>
+        }
+      />
+
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
@@ -142,7 +323,9 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <AuthProvider>
-          <AppRoutes />
+          <ErrorBoundary>
+            <AppRoutes />
+          </ErrorBoundary>
         </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>
@@ -150,3 +333,4 @@ const App = () => (
 );
 
 export default App;
+
