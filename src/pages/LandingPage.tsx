@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -32,10 +32,13 @@ import {
   TrendingUp,
   Clock,
   Lock,
+  Laptop,
+  Smartphone,
+  Headphones,
+  Quote,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import heroImage from '@/assets/hero-theology.jpg';
-import logoImage from '@/assets/logo-pod-seminario.png';
 
 const features = [
   {
@@ -468,8 +471,137 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Testimonials */}
+      {/* How It Works Section */}
+      <section className="py-20 md:py-32 relative bg-muted/20">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <Badge variant="outline" className="mb-4 px-4 py-2">
+              <Target className="w-4 h-4 mr-2 text-accent" />
+              Como Funciona
+            </Badge>
+            <h2 className="text-3xl md:text-5xl font-serif font-bold text-foreground mb-4">
+              Sua jornada em <span className="text-primary">4 passos simples</span>
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-6">
+            {[
+              {
+                step: '01',
+                icon: Users,
+                title: 'Matricule-se',
+                description: 'Crie sua conta gratuita e escolha seu curso de formação',
+              },
+              {
+                step: '02',
+                icon: Video,
+                title: 'Estude Online',
+                description: 'Assista às videoaulas em seu próprio ritmo, de qualquer lugar',
+              },
+              {
+                step: '03',
+                icon: Brain,
+                title: 'Avalie seu Conhecimento',
+                description: 'Complete os quizzes e atividades para fixar o conteúdo',
+              },
+              {
+                step: '04',
+                icon: Award,
+                title: 'Receba seu Certificado',
+                description: 'Ao concluir, baixe seu certificado oficial em PDF',
+              },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="relative group"
+              >
+                {/* Connector Line */}
+                {i < 3 && (
+                  <div className="hidden md:block absolute top-16 left-1/2 w-full h-0.5 bg-gradient-to-r from-primary/50 to-accent/50" />
+                )}
+                
+                <div className="relative bg-card rounded-2xl p-6 border border-border/50 hover:border-primary/40 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 text-center">
+                  {/* Step Number */}
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-accent flex items-center justify-center text-sm font-bold text-accent-foreground shadow-lg">
+                    {item.step}
+                  </div>
+                  
+                  <div className="w-16 h-16 mx-auto mt-4 mb-4 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <item.icon className="w-8 h-8 text-primary" />
+                  </div>
+                  
+                  <h3 className="text-xl font-serif font-semibold text-foreground mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm">
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Platform Features */}
       <section className="py-20 md:py-32 relative">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <Badge variant="outline" className="mb-4 px-4 py-2">
+                <Laptop className="w-4 h-4 mr-2 text-accent" />
+                Plataforma Completa
+              </Badge>
+              <h2 className="text-3xl md:text-5xl font-serif font-bold text-foreground mb-6">
+                Estude em <span className="text-primary">qualquer dispositivo</span>
+              </h2>
+              <p className="text-lg text-muted-foreground mb-8">
+                Nossa plataforma é totalmente responsiva e otimizada para todos os dispositivos.
+                Estude no computador, tablet ou celular com a mesma experiência de qualidade.
+              </p>
+
+              <div className="space-y-4">
+                {[
+                  { icon: Laptop, text: 'Interface moderna e intuitiva' },
+                  { icon: Smartphone, text: 'Aplicativo web progressivo (PWA)' },
+                  { icon: Clock, text: 'Acesso 24 horas, 7 dias por semana' },
+                  { icon: Headphones, text: 'Suporte técnico especializado' },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-3 p-3 rounded-xl bg-muted/50 hover:bg-muted transition-colors">
+                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <item.icon className="w-5 h-5 text-primary" />
+                    </div>
+                    <span className="text-foreground font-medium">{item.text}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className="absolute inset-0 bg-primary/10 rounded-3xl blur-3xl" />
+              <div className="relative grid grid-cols-2 gap-4">
+                {[
+                  { value: '99.9%', label: 'Uptime garantido', icon: TrendingUp },
+                  { value: '< 1s', label: 'Tempo de carregamento', icon: Zap },
+                  { value: '256-bit', label: 'Criptografia SSL', icon: Shield },
+                  { value: '24/7', label: 'Suporte disponível', icon: MessageCircle },
+                ].map((stat, i) => (
+                  <Card key={i} className="bg-card/80 backdrop-blur-sm border-border/50 hover:border-primary/40 transition-all duration-300 hover:-translate-y-1">
+                    <CardContent className="p-4 text-center">
+                      <stat.icon className="w-6 h-6 text-accent mx-auto mb-2" />
+                      <div className="text-2xl font-bold text-foreground">{stat.value}</div>
+                      <div className="text-xs text-muted-foreground">{stat.label}</div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-20 md:py-32 relative bg-muted/30">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <Badge variant="outline" className="mb-4 px-4 py-2">
@@ -488,11 +620,12 @@ const LandingPage = () => {
                 className={cn(
                   'relative overflow-hidden transition-all duration-500',
                   activeTestimonial === i
-                    ? 'border-accent/50 shadow-lg scale-105'
-                    : 'border-border/50'
+                    ? 'border-accent/50 shadow-xl scale-105 bg-card'
+                    : 'border-border/50 bg-card/80'
                 )}
               >
                 <CardContent className="p-6">
+                  <Quote className="w-8 h-8 text-accent/30 mb-4" />
                   <div className="flex gap-1 mb-4">
                     {[...Array(testimonial.rating)].map((_, j) => (
                       <Star
@@ -501,12 +634,12 @@ const LandingPage = () => {
                       />
                     ))}
                   </div>
-                  <p className="text-foreground mb-4 italic">
+                  <p className="text-foreground mb-4 italic leading-relaxed">
                     "{testimonial.content}"
                   </p>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                      <Users className="w-5 h-5 text-primary" />
+                  <div className="flex items-center gap-3 pt-4 border-t border-border/50">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-lg font-bold text-primary-foreground">
+                      {testimonial.name.charAt(0)}
                     </div>
                     <div>
                       <p className="font-semibold text-foreground">
@@ -521,11 +654,27 @@ const LandingPage = () => {
               </Card>
             ))}
           </div>
+
+          {/* Testimonial Indicators */}
+          <div className="flex justify-center gap-2 mt-8">
+            {testimonials.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveTestimonial(i)}
+                className={cn(
+                  'w-2 h-2 rounded-full transition-all duration-300',
+                  activeTestimonial === i
+                    ? 'w-8 bg-accent'
+                    : 'bg-border hover:bg-muted-foreground'
+                )}
+              />
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Admin Features */}
-      <section className="py-20 md:py-32 relative bg-muted/30">
+      <section className="py-20 md:py-32 relative">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <Badge variant="outline" className="mb-4 px-4 py-2">
@@ -554,9 +703,9 @@ const LandingPage = () => {
             ].map((item, i) => (
               <div
                 key={i}
-                className="flex items-center gap-3 p-4 rounded-xl bg-card border border-border/50 hover:border-accent/40 transition-colors"
+                className="flex items-center gap-3 p-4 rounded-xl bg-card border border-border/50 hover:border-accent/40 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group"
               >
-                <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                   <item.icon className="w-5 h-5 text-accent" />
                 </div>
                 <div>
@@ -568,7 +717,7 @@ const LandingPage = () => {
           </div>
 
           <div className="text-center mt-12">
-            <Button size="lg" variant="outline" asChild>
+            <Button size="lg" variant="outline" asChild className="hover:scale-105 transition-transform">
               <Link to="/auth?portal=admin">
                 <Shield className="w-5 h-5 mr-2" />
                 Acessar Painel Admin
@@ -582,9 +731,13 @@ const LandingPage = () => {
       <section className="py-20 md:py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/90 to-primary/80" />
         <div className="absolute inset-0 pattern-cross opacity-10" />
+        
+        {/* Floating Elements */}
+        <div className="absolute top-20 left-10 w-20 h-20 bg-accent/20 rounded-full blur-2xl animate-pulse" />
+        <div className="absolute bottom-20 right-10 w-32 h-32 bg-accent/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
 
         <div className="relative max-w-4xl mx-auto px-4 text-center">
-          <div className="w-20 h-20 mx-auto mb-8 rounded-full bg-accent/20 flex items-center justify-center">
+          <div className="w-20 h-20 mx-auto mb-8 rounded-full bg-accent/20 flex items-center justify-center animate-float">
             <Cross className="w-10 h-10 text-accent" />
           </div>
 
@@ -603,7 +756,7 @@ const LandingPage = () => {
               size="lg"
               variant="accent"
               asChild
-              className="w-full sm:w-auto text-lg px-8 py-6 shadow-lg shadow-accent/30"
+              className="w-full sm:w-auto text-lg px-8 py-6 shadow-lg shadow-accent/30 hover:scale-105 transition-transform"
             >
               <Link to="/auth?portal=student">
                 <GraduationCap className="w-5 h-5 mr-2" />
@@ -613,11 +766,27 @@ const LandingPage = () => {
             <Button
               size="lg"
               variant="outline"
-              className="w-full sm:w-auto text-lg px-8 py-6 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
+              className="w-full sm:w-auto text-lg px-8 py-6 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 hover:scale-105 transition-transform"
             >
               <MessageSquare className="w-5 h-5 mr-2" />
               Fale Conosco
             </Button>
+          </div>
+
+          {/* Trust Badges */}
+          <div className="flex flex-wrap justify-center gap-6 mt-12 text-primary-foreground/60 text-sm">
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-accent" />
+              <span>Acesso Imediato</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-accent" />
+              <span>Suporte 24/7</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-accent" />
+              <span>Certificado Incluso</span>
+            </div>
           </div>
         </div>
       </section>
@@ -625,39 +794,64 @@ const LandingPage = () => {
       {/* Footer */}
       <footer className="py-12 bg-card border-t border-border">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full gradient-sacred flex items-center justify-center">
-                <Church className="w-5 h-5 text-primary-foreground" />
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
+            {/* Brand */}
+            <div className="md:col-span-2">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-full gradient-sacred flex items-center justify-center">
+                  <Church className="w-5 h-5 text-primary-foreground" />
+                </div>
+                <div>
+                  <p className="font-serif font-bold text-foreground">
+                    Seminário Teológico
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    Formação ministerial de excelência
+                  </p>
+                </div>
               </div>
-              <div>
-                <p className="font-serif font-bold text-foreground">
-                  Seminário Teológico
-                </p>
-                <p className="text-xs text-muted-foreground">
-                  Formação ministerial de excelência
-                </p>
+              <p className="text-sm text-muted-foreground max-w-md">
+                Nossa missão é preparar líderes para o Reino de Deus com formação teológica
+                de qualidade, acessível e fundamentada nas Escrituras.
+              </p>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h4 className="font-semibold text-foreground mb-4">Acesso Rápido</h4>
+              <div className="space-y-2">
+                <Link
+                  to="/auth?portal=student"
+                  className="block text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  Portal do Aluno
+                </Link>
+                <Link
+                  to="/auth?portal=admin"
+                  className="block text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  Área Administrativa
+                </Link>
               </div>
             </div>
 
-            <div className="flex items-center gap-6">
-              <Link
-                to="/auth?portal=student"
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Portal do Aluno
-              </Link>
-              <Link
-                to="/auth?portal=admin"
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Área Admin
-              </Link>
+            {/* Contact */}
+            <div>
+              <h4 className="font-semibold text-foreground mb-4">Contato</h4>
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <p>contato@seminario.com.br</p>
+                <p>(11) 99999-9999</p>
+              </div>
             </div>
+          </div>
 
+          <div className="pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-muted-foreground">
               © {new Date().getFullYear()} Seminário Teológico. Todos os direitos reservados.
             </p>
+            <div className="flex items-center gap-4 text-sm text-muted-foreground">
+              <span>Feito com ❤️ para o Reino</span>
+            </div>
           </div>
         </div>
       </footer>
