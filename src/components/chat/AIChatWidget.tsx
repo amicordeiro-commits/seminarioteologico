@@ -170,12 +170,12 @@ export function AIChatWidget() {
     return (
       <Button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-2xl gradient-primary hover:opacity-90 transition-all hover:scale-110 z-50"
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 h-12 w-12 sm:h-14 sm:w-14 rounded-full shadow-xl gradient-primary hover:opacity-90 transition-all hover:scale-105 z-50"
         size="icon"
       >
-        <MessageCircle className="h-6 w-6" />
-        <span className="absolute -top-1 -right-1 w-4 h-4 bg-accent rounded-full flex items-center justify-center">
-          <Sparkles className="h-2.5 w-2.5 text-accent-foreground" />
+        <MessageCircle className="h-5 w-5 sm:h-6 sm:w-6" />
+        <span className="absolute -top-1 -right-1 w-3.5 h-3.5 sm:w-4 sm:h-4 bg-accent rounded-full flex items-center justify-center">
+          <Sparkles className="h-2 w-2 sm:h-2.5 sm:w-2.5 text-accent-foreground" />
         </span>
       </Button>
     );
@@ -183,8 +183,8 @@ export function AIChatWidget() {
 
   return (
     <Card className={cn(
-      "fixed bottom-6 right-6 shadow-2xl border-2 border-primary/20 z-50 transition-all duration-300",
-      isMinimized ? "w-72 h-14" : "w-96 h-[500px] max-h-[80vh]"
+      "fixed bottom-4 right-4 sm:bottom-6 sm:right-6 shadow-2xl border-2 border-primary/20 z-50 transition-all duration-200",
+      isMinimized ? "w-64 sm:w-72 h-14" : "w-[calc(100vw-2rem)] sm:w-80 md:w-96 h-[60vh] sm:h-[500px] max-h-[80vh]"
     )}>
       {/* Header */}
       <div className="flex items-center justify-between p-3 border-b bg-gradient-to-r from-primary/10 to-accent/10 rounded-t-lg">
