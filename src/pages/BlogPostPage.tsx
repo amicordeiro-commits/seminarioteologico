@@ -17,7 +17,11 @@ export default function BlogPostPage() {
   const { data: post, isLoading } = useBlogPost(id || "");
   const [copied, setCopied] = useState(false);
 
+  // URL for regular viewing
   const postUrl = typeof window !== "undefined" ? window.location.href : "";
+  
+  // URL for Facebook sharing (uses edge function for proper OG tags)
+  const ogShareUrl = `https://hjorsjoaykgnsmbxgnyn.supabase.co/functions/v1/og-blog?id=${id}`;
 
   // Update meta tags for social sharing
   useEffect(() => {
@@ -84,7 +88,7 @@ export default function BlogPostPage() {
   };
 
   const handleShareFacebook = () => {
-    const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postUrl)}`;
+    const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(ogShareUrl)}`;
     window.open(fbUrl, "_blank", "width=600,height=400");
   };
 

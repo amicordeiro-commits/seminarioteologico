@@ -1,5 +1,8 @@
 project_id = "hjorsjoaykgnsmbxgnyn"
 
+[functions.og-blog]
+verify_jwt = false
+
 [functions.bible-chat]
 verify_jwt = false
 
