@@ -37,6 +37,7 @@ import AdminLessonsPage from "./pages/admin/AdminLessonsPage";
 import AdminStrongsPage from "./pages/admin/AdminStrongsPage";
 import AdminMaterialsPage from "./pages/admin/AdminMaterialsPage";
 import AdminEnrollmentsPage from "./pages/admin/AdminEnrollmentsPage";
+import AdminReportsPage from "./pages/admin/AdminReportsPage";
 
 const queryClient = new QueryClient();
 
@@ -316,6 +317,14 @@ const AppRoutes = () => {
         element={
           <AdminRoute>
             <AdminSettingsPage />
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/reports"
+        element={
+          <AdminRoute>
+            <AdminReportsPage />
           </AdminRoute>
         }
       />

@@ -20,6 +20,8 @@ import {
   PlayCircle,
   Languages,
   FileDown,
+  Award,
+  BarChart3,
 } from "lucide-react";
 
 interface AdminLayoutProps {
@@ -33,12 +35,14 @@ const menuItems = [
   { icon: BookOpen, label: "Cursos", path: "/admin/courses" },
   { icon: PlayCircle, label: "Aulas", path: "/admin/lessons" },
   { icon: ClipboardList, label: "Quizzes", path: "/admin/quizzes" },
+  { icon: Award, label: "Certificados", path: "/admin/certificates" },
   { icon: Library, label: "Biblioteca", path: "/admin/library" },
   { icon: Calendar, label: "Eventos", path: "/admin/events" },
   { icon: FileText, label: "Devocionais", path: "/admin/devotionals" },
   { icon: MessageSquare, label: "Mensagens", path: "/admin/messages" },
   { icon: Languages, label: "Strong's PT", path: "/admin/strongs" },
   { icon: FileDown, label: "Materiais PDF", path: "/admin/materials" },
+  { icon: BarChart3, label: "Relatórios", path: "/admin/reports" },
   { icon: Settings, label: "Configurações", path: "/admin/settings" },
 ];
 

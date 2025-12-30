@@ -244,6 +244,29 @@ export const useMarkLessonComplete = () => {
           })
           .eq('user_id', user.id)
           .eq('course_id', courseId);
+
+        // Auto-generate certificate when course is 100% complete
+        if (progressPercent === 100) {
+          // Check if certificate already exists
+          const { data: existingCert } = await supabase
+            .from('certificates')
+            .select('id')
+            .eq('user_id', user.id)
+            .eq('course_id', courseId)
+            .maybeSingle();
+
+          if (!existingCert) {
+            const certificateNumber = `CERT-${Date.now()}-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
+            
+            await supabase
+              .from('certificates')
+              .insert({
+                user_id: user.id,
+                course_id: courseId,
+                certificate_number: certificateNumber,
+              });
+          }
+        }
       }
 
       return data;
@@ -251,6 +274,7 @@ export const useMarkLessonComplete = () => {
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({ queryKey: ['lesson-progress', variables.courseId] });
       queryClient.invalidateQueries({ queryKey: ['enrollments'] });
+      queryClient.invalidateQueries({ queryKey: ['certificates'] });
     },
   });
 };
