@@ -72,7 +72,6 @@ import {
   EyeOff,
 } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { RichTextPreview } from "@/components/editor/RichTextPreview";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -122,7 +121,6 @@ export default function AdminLessonsPage() {
   const [selectedCourseId, setSelectedCourseId] = useState<string | null>(null);
   const [colorDrawerOpen, setColorDrawerOpen] = useState(false);
   const [sizeDrawerOpen, setSizeDrawerOpen] = useState(false);
-  const [showInlinePreview, setShowInlinePreview] = useState(true);
   
   // Refs e estado para o editor
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -831,27 +829,6 @@ export default function AdminLessonsPage() {
                         {(editingLesson?.content || "").length.toLocaleString()} caracteres
                       </span>
 
-                      {isMobile && (
-                        <Button
-                          type="button"
-                          variant="outline"
-                          size="sm"
-                          className="h-8 px-2 gap-1 text-xs"
-                          onClick={() => setShowInlinePreview((v) => !v)}
-                        >
-                          {showInlinePreview ? (
-                            <>
-                              <EyeOff className="w-4 h-4" />
-                              Ocultar
-                            </>
-                          ) : (
-                            <>
-                              <Eye className="w-4 h-4" />
-                              Ver
-                            </>
-                          )}
-                        </Button>
-                      )}
                     </div>
                   </div>
                   
@@ -1191,48 +1168,31 @@ export default function AdminLessonsPage() {
                     )}
                   </div>
                   
-                  <div className="flex-1 min-h-0 grid gap-3 sm:gap-4 lg:grid-cols-2">
-                    <Textarea
-                      ref={textareaRef}
-                      data-content-editor
-                      value={editingLesson?.content || ""}
-                      onChange={(e) =>
-                        setEditingLesson({ ...editingLesson, content: e.target.value })
-                      }
-                      onSelect={saveSelection}
-                      onMouseUp={saveSelection}
-                      onPointerUp={saveSelection}
-                      onTouchEnd={saveSelection}
-                      onKeyUp={saveSelection}
-                      onClick={saveSelection}
-                      placeholder="Digite ou cole o conteúdo completo da aula aqui...
+                  <Textarea
+                    ref={textareaRef}
+                    data-content-editor
+                    value={editingLesson?.content || ""}
+                    onChange={(e) =>
+                      setEditingLesson({ ...editingLesson, content: e.target.value })
+                    }
+                    onSelect={saveSelection}
+                    onMouseUp={saveSelection}
+                    onPointerUp={saveSelection}
+                    onTouchEnd={saveSelection}
+                    onKeyUp={saveSelection}
+                    onClick={saveSelection}
+                    placeholder="Digite ou cole o conteúdo completo da aula aqui...
 
 Selecione o texto e use a barra de ferramentas para formatar:
 • Negrito, Itálico, Sublinhado
 • Títulos e Subtítulos
 • Cores e Tamanhos de Fonte
 • Listas e Alinhamento"
-                      className="flex-1 min-h-[200px] sm:min-h-0 font-mono text-xs sm:text-sm resize-none"
-                    />
-
-                    {( !isMobile || showInlinePreview) && (
-                      <div className={`min-h-0 rounded-lg border bg-muted/30 overflow-hidden flex-col ${isMobile ? "flex h-[38vh]" : "hidden lg:flex"}`}>
-                        <div className="px-3 py-2 border-b bg-background/60">
-                          <p className="text-xs font-medium text-foreground">Visualização ao vivo</p>
-                          <p className="text-[11px] text-muted-foreground">
-                            Cores e tamanhos aparecem aqui
-                          </p>
-                        </div>
-                        <ScrollArea className="flex-1">
-                          <div className="p-3">
-                            <RichTextPreview content={editingLesson?.content || ""} />
-                          </div>
-                        </ScrollArea>
-                      </div>
-                    )}
-                  </div>
+                    className="flex-1 min-h-[300px] sm:min-h-0 font-mono text-xs sm:text-sm resize-none"
+                  />
                 </div>
               </TabsContent>
+              
               
               {/* Aba de Configurações */}
               <TabsContent value="settings" className="flex-1 m-0 overflow-auto">
