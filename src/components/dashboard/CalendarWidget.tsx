@@ -1,6 +1,6 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, forwardRef } from "react";
 import { cn } from "@/lib/utils";
 
 interface CalendarEvent {
@@ -19,7 +19,7 @@ const MONTHS = [
   "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
 ];
 
-export function CalendarWidget({ events = [] }: CalendarWidgetProps) {
+export const CalendarWidget = forwardRef<HTMLDivElement, CalendarWidgetProps>(({ events = [] }, ref) => {
   const [currentDate, setCurrentDate] = useState(new Date());
 
   const getDaysInMonth = (date: Date) => {
@@ -58,7 +58,7 @@ export function CalendarWidget({ events = [] }: CalendarWidgetProps) {
   };
 
   return (
-    <div className="p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl bg-card border border-border">
+    <div ref={ref} className="p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl bg-card border border-border">
       {/* Header */}
       <div className="flex items-center justify-between mb-3 sm:mb-6">
         <h3 className="font-semibold text-foreground text-sm sm:text-base">
@@ -110,4 +110,6 @@ export function CalendarWidget({ events = [] }: CalendarWidgetProps) {
       </div>
     </div>
   );
-}
+});
+
+CalendarWidget.displayName = "CalendarWidget";
