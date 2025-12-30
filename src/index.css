@@ -2,7 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+/* Preload fonts with display swap for faster rendering */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('https://fonts.gstatic.com/s/cormorantgaramond/v16/co3YmX5slCNuHLi8bLeY9MK7whWMhyjornFLsS6V7w.woff2') format('woff2');
+}
 
 @layer base {
   :root {
@@ -127,10 +142,7 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', system-ui, sans-serif;
-    background-image:
-      radial-gradient(1100px circle at 12% 10%, hsl(var(--accent) / 0.14), transparent 55%),
-      radial-gradient(900px circle at 86% 22%, hsl(var(--primary) / 0.10), transparent 60%);
-    background-attachment: fixed;
+    /* Simplified background for better performance */
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -175,15 +187,15 @@
 
 @layer utilities {
   .animate-fade-in {
-    animation: fadeIn 0.5s ease-out forwards;
+    animation: fadeIn 0.3s ease-out forwards;
   }
 
   .animate-slide-up {
-    animation: slideUp 0.5s ease-out forwards;
+    animation: slideUp 0.3s ease-out forwards;
   }
 
   .animate-scale-in {
-    animation: scaleIn 0.3s ease-out forwards;
+    animation: scaleIn 0.2s ease-out forwards;
   }
 
   @keyframes fadeIn {
@@ -198,7 +210,7 @@
   @keyframes slideUp {
     from {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(10px);
     }
     to {
       opacity: 1;
@@ -209,17 +221,12 @@
   @keyframes scaleIn {
     from {
       opacity: 0;
-      transform: scale(0.95);
+      transform: scale(0.98);
     }
     to {
       opacity: 1;
       transform: scale(1);
     }
-  }
-
-  /* Decorative cross pattern */
-  .pattern-cross {
-    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M18 0v18H0v4h18v18h4V22h18v-4H22V0h-4z' fill='%23d4af37' fill-opacity='0.1'/%3E%3C/svg%3E");
   }
 }
 

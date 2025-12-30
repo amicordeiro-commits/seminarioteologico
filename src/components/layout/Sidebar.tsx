@@ -97,15 +97,15 @@ export function Sidebar() {
           </Link>
         </div>
 
-        {/* Daily Verse */}
+        {/* Daily Verse - Hidden on small screens when open for better UX */}
         {!isCollapsed && (
-          <div className="p-4 mx-4 mt-4 rounded-lg bg-sidebar-accent/50 border border-sidebar-border">
+          <div className="hidden sm:block p-4 mx-4 mt-4 rounded-lg bg-sidebar-accent/50 border border-sidebar-border">
             <div className="flex items-center gap-2 mb-2">
               <BookMarked className="w-4 h-4 text-sidebar-primary" />
               <span className="text-xs font-medium text-sidebar-primary">Versículo do Dia</span>
             </div>
-            <p className="text-xs text-sidebar-foreground/80 italic leading-relaxed">
-              "Lâmpada para os meus pés é a tua palavra, e luz para o meu caminho."
+            <p className="text-xs text-sidebar-foreground/80 italic leading-relaxed line-clamp-2">
+              "Lâmpada para os meus pés é a tua palavra..."
             </p>
             <p className="text-xs text-sidebar-foreground/60 mt-1 font-medium">Salmos 119:105</p>
           </div>
