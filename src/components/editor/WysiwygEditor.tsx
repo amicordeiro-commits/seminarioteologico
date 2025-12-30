@@ -1,6 +1,6 @@
 import { useRef, useCallback, useEffect, forwardRef, useImperativeHandle } from "react";
 import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
+
 import {
   Drawer,
   DrawerContent,
@@ -299,7 +299,12 @@ export const WysiwygEditor = forwardRef<WysiwygEditorRef, WysiwygEditorProps>(
         </div>
 
         {/* Editor */}
-        <ScrollArea className="flex-1 min-h-[300px] rounded-lg border bg-background">
+        <div className="flex-1 min-h-[300px] max-h-[400px] rounded-lg border bg-background overflow-y-auto scrollbar-thin scrollbar-thumb-primary/30 scrollbar-track-muted"
+          style={{
+            scrollbarWidth: "thin",
+            scrollbarColor: "hsl(var(--primary) / 0.3) hsl(var(--muted))",
+          }}
+        >
           <div
             ref={editorRef}
             contentEditable
@@ -312,7 +317,7 @@ export const WysiwygEditor = forwardRef<WysiwygEditorRef, WysiwygEditorProps>(
               whiteSpace: "pre-wrap",
             }}
           />
-        </ScrollArea>
+        </div>
       </div>
     );
   }
