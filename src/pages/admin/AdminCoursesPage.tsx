@@ -88,6 +88,7 @@ export default function AdminCoursesPage() {
   const queryClient = useQueryClient();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editingCourse, setEditingCourse] = useState<Partial<Course> | null>(null);
+  const generateQuizMutation = useGenerateQuiz();
 
   // Fetch courses
   const { data: courses = [], isLoading } = useQuery({
