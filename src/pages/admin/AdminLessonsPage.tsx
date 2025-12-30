@@ -24,6 +24,13 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownMenuSeparator,
+} from "@/components/ui/dropdown-menu";
+import {
   PlayCircle,
   Plus,
   Pencil,
@@ -49,6 +56,13 @@ import {
   AlignJustify,
   Palette,
   Type,
+  MoreVertical,
+  Copy,
+  GripVertical,
+  ChevronUp,
+  ChevronDown,
+  Eye,
+  EyeOff,
 } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { RichTextPreview } from "@/components/editor/RichTextPreview";
@@ -254,6 +268,81 @@ export default function AdminLessonsPage() {
     },
   });
 
+  // Duplicate lesson mutation
+  const duplicateLessonMutation = useMutation({
+    mutationFn: async (lesson: Lesson) => {
+      const { error } = await supabase.from("lessons").insert({
+        course_id: lesson.course_id,
+        title: `${lesson.title} (cópia)`,
+        description: lesson.description,
+        content: lesson.content,
+        video_url: lesson.video_url,
+        duration_minutes: lesson.duration_minutes,
+        order_index: lessons.length,
+        is_free: lesson.is_free,
+      });
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["admin-lessons"] });
+      toast({ title: "Aula duplicada!" });
+    },
+    onError: () => {
+      toast({ title: "Erro ao duplicar aula", variant: "destructive" });
+    },
+  });
+
+  // Reorder lesson mutation
+  const reorderLessonMutation = useMutation({
+    mutationFn: async ({ lessonId, direction }: { lessonId: string; direction: 'up' | 'down' }) => {
+      const currentIndex = lessons.findIndex(l => l.id === lessonId);
+      if (currentIndex === -1) return;
+      
+      const targetIndex = direction === 'up' ? currentIndex - 1 : currentIndex + 1;
+      if (targetIndex < 0 || targetIndex >= lessons.length) return;
+      
+      const currentLesson = lessons[currentIndex];
+      const targetLesson = lessons[targetIndex];
+      
+      // Swap order indexes
+      const { error: error1 } = await supabase
+        .from("lessons")
+        .update({ order_index: targetLesson.order_index })
+        .eq("id", currentLesson.id);
+      if (error1) throw error1;
+      
+      const { error: error2 } = await supabase
+        .from("lessons")
+        .update({ order_index: currentLesson.order_index })
+        .eq("id", targetLesson.id);
+      if (error2) throw error2;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["admin-lessons"] });
+    },
+    onError: () => {
+      toast({ title: "Erro ao reordenar aula", variant: "destructive" });
+    },
+  });
+
+  // Toggle free mutation
+  const toggleFreeMutation = useMutation({
+    mutationFn: async ({ id, isFree }: { id: string; isFree: boolean }) => {
+      const { error } = await supabase
+        .from("lessons")
+        .update({ is_free: isFree })
+        .eq("id", id);
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["admin-lessons"] });
+      toast({ title: "Aula atualizada!" });
+    },
+    onError: () => {
+      toast({ title: "Erro ao atualizar aula", variant: "destructive" });
+    },
+  });
+
   // Batch import mutation
   const batchImportMutation = useMutation({
     mutationFn: async (lessons: BatchLesson[]) => {
@@ -335,45 +424,66 @@ export default function AdminLessonsPage() {
     <AdminLayout>
       <div className="p-6 lg:p-8 space-y-8">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div className="space-y-1">
-            <h1 className="text-3xl font-serif font-bold text-foreground flex items-center gap-3">
-              <div className="p-2.5 rounded-xl bg-primary/10 text-primary">
-                <PlayCircle className="w-7 h-7" />
-              </div>
-              Gerenciar Aulas
-            </h1>
-            <p className="text-muted-foreground">
-              Organize o conteúdo de cada curso
-            </p>
-          </div>
-          {selectedCourseId && (
-            <div className="flex gap-2">
-              <Button
-                variant="outline"
-                onClick={() => setIsBatchDialogOpen(true)}
-                className="gap-2"
-              >
-                <Upload className="w-4 h-4" />
-                Importar Lote
-              </Button>
-              <Button
-                onClick={() => {
-                  setEditingLesson(defaultLesson);
-                  setIsDialogOpen(true);
-                }}
-                className="gap-2"
-              >
-                <Plus className="w-4 h-4" />
-                Nova Aula
-              </Button>
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="space-y-1">
+              <h1 className="text-2xl sm:text-3xl font-serif font-bold text-foreground flex items-center gap-2 sm:gap-3">
+                <div className="p-2 sm:p-2.5 rounded-xl bg-primary/10 text-primary">
+                  <PlayCircle className="w-5 h-5 sm:w-7 sm:h-7" />
+                </div>
+                Gerenciar Aulas
+              </h1>
+              <p className="text-sm text-muted-foreground">
+                Organize o conteúdo de cada curso
+              </p>
             </div>
-          )}
+            {selectedCourseId && (
+              <div className="flex gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setIsBatchDialogOpen(true)}
+                  className="gap-1.5 sm:gap-2 text-xs sm:text-sm"
+                >
+                  <Upload className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                  <span className="hidden xs:inline">Importar</span> Lote
+                </Button>
+                <Button
+                  size="sm"
+                  onClick={() => {
+                    setEditingLesson(defaultLesson);
+                    setIsDialogOpen(true);
+                  }}
+                  className="gap-1.5 sm:gap-2 text-xs sm:text-sm"
+                >
+                  <Plus className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                  Nova Aula
+                </Button>
+              </div>
+            )}
+          </div>
+
+          {/* Mobile Course Selector */}
+          <div className="lg:hidden">
+            <Select value={selectedCourseId || ""} onValueChange={setSelectedCourseId}>
+              <SelectTrigger className="w-full">
+                <FolderOpen className="w-4 h-4 mr-2 text-primary" />
+                <SelectValue placeholder="Selecione um curso" />
+              </SelectTrigger>
+              <SelectContent>
+                {courses.map((course) => (
+                  <SelectItem key={course.id} value={course.id}>
+                    {course.title}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
         </div>
 
-        <div className="grid lg:grid-cols-4 gap-6">
-          {/* Courses List */}
-          <Card className="lg:col-span-1 overflow-hidden">
+        <div className="grid lg:grid-cols-4 gap-4 sm:gap-6">
+          {/* Courses List - Desktop */}
+          <Card className="hidden lg:block lg:col-span-1 overflow-hidden">
             <CardHeader className="pb-3 border-b bg-muted/30">
               <CardTitle className="text-base font-semibold flex items-center gap-2">
                 <FolderOpen className="w-4 h-4 text-primary" />
@@ -386,51 +496,53 @@ export default function AdminLessonsPage() {
                   <Loader2 className="w-6 h-6 animate-spin text-primary" />
                 </div>
               ) : (
-                <div className="space-y-1.5">
-                  {courses.map((course) => (
-                    <button
-                      key={course.id}
-                      onClick={() => setSelectedCourseId(course.id)}
-                      className={`w-full p-3 rounded-lg text-left transition-all duration-200 ${
-                        selectedCourseId === course.id
-                          ? "bg-primary text-primary-foreground shadow-md"
-                          : "bg-background hover:bg-muted/80 border border-border/50 hover:border-primary/30"
-                      }`}
-                    >
-                      <span className="font-medium text-sm line-clamp-2">{course.title}</span>
-                    </button>
-                  ))}
-                  {courses.length === 0 && (
-                    <p className="text-center text-muted-foreground py-6 text-sm">
-                      Nenhum curso cadastrado
-                    </p>
-                  )}
-                </div>
+                <ScrollArea className="h-[calc(100vh-20rem)]">
+                  <div className="space-y-1.5 pr-2">
+                    {courses.map((course) => (
+                      <button
+                        key={course.id}
+                        onClick={() => setSelectedCourseId(course.id)}
+                        className={`w-full p-3 rounded-lg text-left transition-all duration-200 ${
+                          selectedCourseId === course.id
+                            ? "bg-primary text-primary-foreground shadow-md"
+                            : "bg-background hover:bg-muted/80 border border-border/50 hover:border-primary/30"
+                        }`}
+                      >
+                        <span className="font-medium text-sm line-clamp-2">{course.title}</span>
+                      </button>
+                    ))}
+                    {courses.length === 0 && (
+                      <p className="text-center text-muted-foreground py-6 text-sm">
+                        Nenhum curso cadastrado
+                      </p>
+                    )}
+                  </div>
+                </ScrollArea>
               )}
             </CardContent>
           </Card>
 
           {/* Lessons List */}
-          <div className="lg:col-span-3 space-y-4">
+          <div className="lg:col-span-3 space-y-3 sm:space-y-4">
             {selectedCourseId ? (
               <>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <h2 className="font-serif font-semibold text-xl">
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+                    <h2 className="font-serif font-semibold text-lg sm:text-xl truncate">
                       Aulas do Curso
                     </h2>
-                    <Badge variant="outline" className="font-normal">
+                    <Badge variant="outline" className="font-normal text-xs shrink-0">
                       {lessons.length} {lessons.length === 1 ? 'aula' : 'aulas'}
                     </Badge>
                   </div>
                 </div>
 
                 {lessonsLoading ? (
-                  <div className="flex items-center justify-center py-16">
-                    <Loader2 className="w-8 h-8 animate-spin text-primary" />
+                  <div className="flex items-center justify-center py-12 sm:py-16">
+                    <Loader2 className="w-6 h-6 sm:w-8 sm:h-8 animate-spin text-primary" />
                   </div>
                 ) : lessons.length > 0 ? (
-                  <div className="space-y-2.5">
+                  <div className="space-y-2">
                     {lessons.map((lesson, idx) => (
                       <Card 
                         key={lesson.id} 
@@ -438,53 +550,73 @@ export default function AdminLessonsPage() {
                       >
                         <CardContent className="p-0">
                           <div className="flex items-center">
-                            {/* Lesson number */}
-                            <div className="flex items-center justify-center w-14 h-full min-h-[4.5rem] bg-muted/40 border-r border-border/50">
-                              <span className="text-lg font-serif font-bold text-primary/80">
-                                {String(idx + 1).padStart(2, '0')}
-                              </span>
+                            {/* Drag handle & Lesson number */}
+                            <div className="flex flex-col items-center justify-center w-12 sm:w-14 h-full min-h-[4rem] sm:min-h-[4.5rem] bg-muted/40 border-r border-border/50 gap-1">
+                              <div className="flex flex-col gap-0.5">
+                                <Button
+                                  variant="ghost"
+                                  size="icon"
+                                  className="h-5 w-5 opacity-40 hover:opacity-100"
+                                  disabled={idx === 0 || reorderLessonMutation.isPending}
+                                  onClick={() => reorderLessonMutation.mutate({ lessonId: lesson.id, direction: 'up' })}
+                                >
+                                  <ChevronUp className="w-3 h-3" />
+                                </Button>
+                                <span className="text-xs sm:text-sm font-serif font-bold text-primary/80 text-center">
+                                  {String(idx + 1).padStart(2, '0')}
+                                </span>
+                                <Button
+                                  variant="ghost"
+                                  size="icon"
+                                  className="h-5 w-5 opacity-40 hover:opacity-100"
+                                  disabled={idx === lessons.length - 1 || reorderLessonMutation.isPending}
+                                  onClick={() => reorderLessonMutation.mutate({ lessonId: lesson.id, direction: 'down' })}
+                                >
+                                  <ChevronDown className="w-3 h-3" />
+                                </Button>
+                              </div>
                             </div>
                             
                             {/* Content */}
-                            <div className="flex-1 p-4 min-w-0">
+                            <div className="flex-1 p-3 sm:p-4 min-w-0">
                               <div className="flex items-start gap-2 flex-wrap">
-                                <h3 className="font-semibold text-foreground leading-tight">
+                                <h3 className="font-semibold text-foreground leading-tight text-sm sm:text-base line-clamp-2">
                                   {lesson.title}
                                 </h3>
                                 {lesson.is_free && (
-                                  <Badge className="bg-success/10 text-success border-success/20 text-xs">
+                                  <Badge className="bg-success/10 text-success border-success/20 text-[10px] sm:text-xs">
                                     Gratuita
                                   </Badge>
                                 )}
                               </div>
-                              <div className="flex items-center gap-4 text-sm text-muted-foreground mt-2">
+                              <div className="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm text-muted-foreground mt-1.5 sm:mt-2 flex-wrap">
                                 {lesson.duration_minutes && lesson.duration_minutes > 0 && (
-                                  <span className="flex items-center gap-1.5">
-                                    <PlayCircle className="w-3.5 h-3.5" />
+                                  <span className="flex items-center gap-1">
+                                    <PlayCircle className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                                     {lesson.duration_minutes} min
                                   </span>
                                 )}
                                 {lesson.video_url && (
-                                  <span className="flex items-center gap-1.5 text-primary/70">
-                                    <Video className="w-3.5 h-3.5" />
+                                  <span className="flex items-center gap-1 text-primary/70">
+                                    <Video className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                                     Vídeo
                                   </span>
                                 )}
                                 {lesson.content && (
-                                  <span className="flex items-center gap-1.5">
-                                    <FileText className="w-3.5 h-3.5" />
+                                  <span className="flex items-center gap-1">
+                                    <FileText className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                                     Texto
                                   </span>
                                 )}
                               </div>
                             </div>
                             
-                            {/* Actions */}
-                            <div className="flex items-center gap-1 px-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                            {/* Actions - Desktop */}
+                            <div className="hidden sm:flex items-center gap-1 px-3 opacity-0 group-hover:opacity-100 transition-opacity">
                               <Button
                                 variant="ghost"
                                 size="icon"
-                                className="h-9 w-9 hover:bg-primary/10 hover:text-primary"
+                                className="h-8 w-8 hover:bg-primary/10 hover:text-primary"
                                 onClick={() => {
                                   setEditingLesson(lesson);
                                   setIsDialogOpen(true);
@@ -495,11 +627,72 @@ export default function AdminLessonsPage() {
                               <Button
                                 variant="ghost"
                                 size="icon"
-                                className="h-9 w-9 hover:bg-destructive/10 text-muted-foreground hover:text-destructive"
-                                onClick={() => deleteLessonMutation.mutate(lesson.id)}
+                                className="h-8 w-8 hover:bg-muted"
+                                onClick={() => duplicateLessonMutation.mutate(lesson)}
+                              >
+                                <Copy className="w-4 h-4" />
+                              </Button>
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="h-8 w-8 hover:bg-destructive/10 text-muted-foreground hover:text-destructive"
+                                onClick={() => {
+                                  if (confirm('Deseja excluir esta aula?')) {
+                                    deleteLessonMutation.mutate(lesson.id);
+                                  }
+                                }}
                               >
                                 <Trash2 className="w-4 h-4" />
                               </Button>
+                            </div>
+
+                            {/* Actions - Mobile */}
+                            <div className="sm:hidden px-2">
+                              <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                  <Button variant="ghost" size="icon" className="h-8 w-8">
+                                    <MoreVertical className="w-4 h-4" />
+                                  </Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent align="end" className="w-48">
+                                  <DropdownMenuItem onClick={() => {
+                                    setEditingLesson(lesson);
+                                    setIsDialogOpen(true);
+                                  }}>
+                                    <Pencil className="w-4 h-4 mr-2" />
+                                    Editar
+                                  </DropdownMenuItem>
+                                  <DropdownMenuItem onClick={() => duplicateLessonMutation.mutate(lesson)}>
+                                    <Copy className="w-4 h-4 mr-2" />
+                                    Duplicar
+                                  </DropdownMenuItem>
+                                  <DropdownMenuItem onClick={() => toggleFreeMutation.mutate({ id: lesson.id, isFree: !lesson.is_free })}>
+                                    {lesson.is_free ? (
+                                      <>
+                                        <EyeOff className="w-4 h-4 mr-2" />
+                                        Remover Gratuita
+                                      </>
+                                    ) : (
+                                      <>
+                                        <Eye className="w-4 h-4 mr-2" />
+                                        Marcar Gratuita
+                                      </>
+                                    )}
+                                  </DropdownMenuItem>
+                                  <DropdownMenuSeparator />
+                                  <DropdownMenuItem 
+                                    className="text-destructive focus:text-destructive"
+                                    onClick={() => {
+                                      if (confirm('Deseja excluir esta aula?')) {
+                                        deleteLessonMutation.mutate(lesson.id);
+                                      }
+                                    }}
+                                  >
+                                    <Trash2 className="w-4 h-4 mr-2" />
+                                    Excluir
+                                  </DropdownMenuItem>
+                                </DropdownMenuContent>
+                              </DropdownMenu>
                             </div>
                           </div>
                         </CardContent>
@@ -549,42 +742,44 @@ export default function AdminLessonsPage() {
         {/* Dialog de Edição Melhorado */}
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogContent className="!fixed !inset-0 !max-w-none !w-screen !h-screen !translate-x-0 !translate-y-0 !left-0 !top-0 flex flex-col p-0 gap-0 bg-background overflow-hidden !rounded-none border-none">
-            <DialogHeader className="px-6 py-4 border-b bg-muted/30 shrink-0">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                    <BookOpen className="w-5 h-5 text-primary" />
+            <DialogHeader className="px-3 sm:px-6 py-3 sm:py-4 border-b bg-muted/30 shrink-0">
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                    <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                   </div>
-                  <div>
-                    <DialogTitle className="text-lg font-serif">
+                  <div className="min-w-0">
+                    <DialogTitle className="text-base sm:text-lg font-serif truncate">
                       {editingLesson?.id ? "Editar Aula" : "Nova Aula"}
                     </DialogTitle>
-                    <DialogDescription className="text-sm text-muted-foreground">
+                    <DialogDescription className="text-xs sm:text-sm text-muted-foreground truncate">
                       {editingLesson?.title || "Configure os detalhes da aula"}
                     </DialogDescription>
                   </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
-                    Cancelar
+                <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+                  <Button variant="outline" size="sm" onClick={() => setIsDialogOpen(false)} className="text-xs sm:text-sm h-8 sm:h-9 px-2 sm:px-3">
+                    <X className="w-4 h-4 sm:hidden" />
+                    <span className="hidden sm:inline">Cancelar</span>
                   </Button>
-                  <Button onClick={handleSave} disabled={saveLessonMutation.isPending}>
-                    {saveLessonMutation.isPending && <Loader2 className="w-4 h-4 animate-spin mr-2" />}
-                    Salvar Aula
+                  <Button size="sm" onClick={handleSave} disabled={saveLessonMutation.isPending} className="text-xs sm:text-sm h-8 sm:h-9 px-2 sm:px-4">
+                    {saveLessonMutation.isPending && <Loader2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 animate-spin mr-1 sm:mr-2" />}
+                    <span className="hidden xs:inline">Salvar</span> <span className="hidden sm:inline">Aula</span>
+                    <span className="xs:hidden">OK</span>
                   </Button>
                 </div>
               </div>
             </DialogHeader>
             
             <Tabs defaultValue="content" className="flex-1 flex flex-col overflow-hidden">
-              <div className="px-6 border-b bg-background">
-                <TabsList className="h-12 bg-transparent gap-2">
-                  <TabsTrigger value="content" className="gap-2 data-[state=active]:bg-primary/10">
-                    <FileText className="w-4 h-4" />
+              <div className="px-3 sm:px-6 border-b bg-background">
+                <TabsList className="h-10 sm:h-12 bg-transparent gap-1 sm:gap-2 w-full justify-start">
+                  <TabsTrigger value="content" className="gap-1 sm:gap-2 data-[state=active]:bg-primary/10 text-xs sm:text-sm">
+                    <FileText className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     Conteúdo
                   </TabsTrigger>
-                  <TabsTrigger value="settings" className="gap-2 data-[state=active]:bg-primary/10">
-                    <Settings className="w-4 h-4" />
+                  <TabsTrigger value="settings" className="gap-1 sm:gap-2 data-[state=active]:bg-primary/10 text-xs sm:text-sm">
+                    <Settings className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     Configurações
                   </TabsTrigger>
                 </TabsList>
@@ -592,16 +787,16 @@ export default function AdminLessonsPage() {
               
               {/* Aba de Conteúdo - Editor em Tela Cheia */}
               <TabsContent value="content" className="flex-1 flex flex-col m-0 overflow-hidden">
-                <div className="flex-1 flex flex-col p-6 gap-4 overflow-hidden">
+                <div className="flex-1 flex flex-col p-3 sm:p-6 gap-3 sm:gap-4 overflow-hidden">
                   <div className="flex items-center justify-between">
-                    <Label className="text-base font-semibold">Conteúdo da Aula</Label>
-                    <span className="text-xs text-muted-foreground">
+                    <Label className="text-sm sm:text-base font-semibold">Conteúdo da Aula</Label>
+                    <span className="text-[10px] sm:text-xs text-muted-foreground">
                       {(editingLesson?.content || "").length.toLocaleString()} caracteres
                     </span>
                   </div>
                   
                   {/* Barra de Ferramentas de Formatação */}
-                  <div className="flex flex-wrap items-center gap-1 p-2 bg-muted/50 rounded-lg border">
+                  <div className="flex flex-wrap items-center gap-0.5 sm:gap-1 p-1.5 sm:p-2 bg-muted/50 rounded-lg border overflow-x-auto">
                     {/* Formatação de Texto */}
                     <div className="flex items-center gap-0.5 pr-2 border-r">
                       <Button
@@ -835,7 +1030,7 @@ export default function AdminLessonsPage() {
                     </Popover>
                   </div>
                   
-                  <div className="flex-1 min-h-0 grid gap-4 lg:grid-cols-2">
+                  <div className="flex-1 min-h-0 grid gap-3 sm:gap-4 lg:grid-cols-2">
                     <Textarea
                       ref={textareaRef}
                       data-content-editor
@@ -854,14 +1049,14 @@ Selecione o texto e use a barra de ferramentas para formatar:
 • Títulos e Subtítulos
 • Cores e Tamanhos de Fonte
 • Listas e Alinhamento"
-                      className="flex-1 min-h-0 font-mono text-sm resize-none"
+                      className="flex-1 min-h-[200px] sm:min-h-0 font-mono text-xs sm:text-sm resize-none"
                     />
 
-                    <div className="min-h-0 rounded-lg border bg-muted/30 overflow-hidden flex flex-col">
+                    <div className="hidden lg:flex min-h-0 rounded-lg border bg-muted/30 overflow-hidden flex-col">
                       <div className="px-3 py-2 border-b bg-background/60">
                         <p className="text-xs font-medium text-foreground">Pré-visualização</p>
                         <p className="text-[11px] text-muted-foreground">
-                          Aqui as cores/tamanhos aparecem (o campo de edição é texto puro)
+                          Aqui as cores/tamanhos aparecem
                         </p>
                       </div>
                       <ScrollArea className="flex-1">
@@ -877,23 +1072,24 @@ Selecione o texto e use a barra de ferramentas para formatar:
               {/* Aba de Configurações */}
               <TabsContent value="settings" className="flex-1 m-0 overflow-auto">
                 <ScrollArea className="h-full">
-                  <div className="max-w-2xl mx-auto p-6 space-y-6">
-                    <div className="space-y-4">
-                      <h3 className="font-semibold text-lg border-b pb-2">Informações Básicas</h3>
+                  <div className="max-w-2xl mx-auto p-4 sm:p-6 space-y-4 sm:space-y-6">
+                    <div className="space-y-3 sm:space-y-4">
+                      <h3 className="font-semibold text-base sm:text-lg border-b pb-2">Informações Básicas</h3>
                       
                       <div className="space-y-2">
-                        <Label>Título da Aula *</Label>
+                        <Label className="text-sm">Título da Aula *</Label>
                         <Input
                           value={editingLesson?.title || ""}
                           onChange={(e) =>
                             setEditingLesson({ ...editingLesson, title: e.target.value })
                           }
                           placeholder="Ex: Introdução à Teologia Sistemática"
+                          className="text-sm sm:text-base"
                         />
                       </div>
                       
                       <div className="space-y-2">
-                        <Label>Descrição (opcional)</Label>
+                        <Label className="text-sm">Descrição (opcional)</Label>
                         <Textarea
                           value={editingLesson?.description || ""}
                           onChange={(e) =>
@@ -901,26 +1097,28 @@ Selecione o texto e use a barra de ferramentas para formatar:
                           }
                           rows={3}
                           placeholder="Uma breve descrição do que será abordado nesta aula..."
+                          className="text-sm sm:text-base"
                         />
                       </div>
                     </div>
                     
-                    <div className="space-y-4">
-                      <h3 className="font-semibold text-lg border-b pb-2">Mídia e Duração</h3>
+                    <div className="space-y-3 sm:space-y-4">
+                      <h3 className="font-semibold text-base sm:text-lg border-b pb-2">Mídia e Duração</h3>
                       
-                      <div className="grid grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                         <div className="space-y-2">
-                          <Label>URL do Vídeo (opcional)</Label>
+                          <Label className="text-sm">URL do Vídeo (opcional)</Label>
                           <Input
                             value={editingLesson?.video_url || ""}
                             onChange={(e) =>
                               setEditingLesson({ ...editingLesson, video_url: e.target.value })
                             }
                             placeholder="https://youtube.com/..."
+                            className="text-sm"
                           />
                         </div>
                         <div className="space-y-2">
-                          <Label>Duração (minutos)</Label>
+                          <Label className="text-sm">Duração (minutos)</Label>
                           <Input
                             type="number"
                             value={editingLesson?.duration_minutes || ""}
@@ -928,19 +1126,20 @@ Selecione o texto e use a barra de ferramentas para formatar:
                               setEditingLesson({ ...editingLesson, duration_minutes: parseInt(e.target.value) || 0 })
                             }
                             placeholder="15"
+                            className="text-sm"
                           />
                         </div>
                       </div>
                     </div>
                     
-                    <div className="space-y-4">
-                      <h3 className="font-semibold text-lg border-b pb-2">Acesso</h3>
+                    <div className="space-y-3 sm:space-y-4">
+                      <h3 className="font-semibold text-base sm:text-lg border-b pb-2">Acesso</h3>
                       
-                      <div className="flex items-center justify-between p-4 rounded-lg border bg-muted/30">
-                        <div className="space-y-1">
-                          <Label className="text-base">Aula Gratuita</Label>
-                          <p className="text-sm text-muted-foreground">
-                            Permite que alunos não matriculados visualizem esta aula
+                      <div className="flex items-center justify-between p-3 sm:p-4 rounded-lg border bg-muted/30 gap-4">
+                        <div className="space-y-0.5 sm:space-y-1 min-w-0">
+                          <Label className="text-sm sm:text-base">Aula Gratuita</Label>
+                          <p className="text-xs sm:text-sm text-muted-foreground">
+                            Permite que alunos não matriculados visualizem
                           </p>
                         </div>
                         <Switch
