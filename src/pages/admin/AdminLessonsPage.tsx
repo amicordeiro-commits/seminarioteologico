@@ -10,6 +10,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogDescription,
 } from "@/components/ui/dialog";
 import {
   Select,
@@ -18,9 +19,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import { PlayCircle, Plus, Pencil, Trash2, Loader2, Video, Upload, FileText, FolderOpen } from "lucide-react";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { PlayCircle, Plus, Pencil, Trash2, Loader2, Video, Upload, FileText, FolderOpen, BookOpen, Settings, X } from "lucide-react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
@@ -444,86 +447,157 @@ export default function AdminLessonsPage() {
           </div>
         </div>
 
-        {/* Dialog */}
+        {/* Dialog de Edição Melhorado */}
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-          <DialogContent className="max-w-2xl">
-            <DialogHeader>
-              <DialogTitle>
-                {editingLesson?.id ? "Editar Aula" : "Nova Aula"}
-              </DialogTitle>
+          <DialogContent className="!fixed !inset-0 !max-w-none !w-screen !h-screen !translate-x-0 !translate-y-0 !left-0 !top-0 flex flex-col p-0 gap-0 bg-background overflow-hidden !rounded-none border-none">
+            <DialogHeader className="px-6 py-4 border-b bg-muted/30 shrink-0">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                    <BookOpen className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <DialogTitle className="text-lg font-serif">
+                      {editingLesson?.id ? "Editar Aula" : "Nova Aula"}
+                    </DialogTitle>
+                    <DialogDescription className="text-sm text-muted-foreground">
+                      {editingLesson?.title || "Configure os detalhes da aula"}
+                    </DialogDescription>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
+                    Cancelar
+                  </Button>
+                  <Button onClick={handleSave} disabled={saveLessonMutation.isPending}>
+                    {saveLessonMutation.isPending && <Loader2 className="w-4 h-4 animate-spin mr-2" />}
+                    Salvar Aula
+                  </Button>
+                </div>
+              </div>
             </DialogHeader>
-            <div className="space-y-4 py-4">
-              <div className="space-y-2">
-                <Label>Título *</Label>
-                <Input
-                  value={editingLesson?.title || ""}
-                  onChange={(e) =>
-                    setEditingLesson({ ...editingLesson, title: e.target.value })
-                  }
-                />
+            
+            <Tabs defaultValue="content" className="flex-1 flex flex-col overflow-hidden">
+              <div className="px-6 border-b bg-background">
+                <TabsList className="h-12 bg-transparent gap-2">
+                  <TabsTrigger value="content" className="gap-2 data-[state=active]:bg-primary/10">
+                    <FileText className="w-4 h-4" />
+                    Conteúdo
+                  </TabsTrigger>
+                  <TabsTrigger value="settings" className="gap-2 data-[state=active]:bg-primary/10">
+                    <Settings className="w-4 h-4" />
+                    Configurações
+                  </TabsTrigger>
+                </TabsList>
               </div>
-              <div className="space-y-2">
-                <Label>Descrição</Label>
-                <Textarea
-                  value={editingLesson?.description || ""}
-                  onChange={(e) =>
-                    setEditingLesson({ ...editingLesson, description: e.target.value })
-                  }
-                  rows={2}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label>Conteúdo da Aula</Label>
-                <Textarea
-                  value={editingLesson?.content || ""}
-                  onChange={(e) =>
-                    setEditingLesson({ ...editingLesson, content: e.target.value })
-                  }
-                  rows={4}
-                  placeholder="Texto da aula, instruções, etc..."
-                />
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label>URL do Vídeo</Label>
-                  <Input
-                    value={editingLesson?.video_url || ""}
+              
+              {/* Aba de Conteúdo - Editor em Tela Cheia */}
+              <TabsContent value="content" className="flex-1 flex flex-col m-0 overflow-hidden">
+                <div className="flex-1 flex flex-col p-6 gap-4 overflow-hidden">
+                  <div className="flex items-center justify-between">
+                    <Label className="text-base font-semibold">Conteúdo da Aula</Label>
+                    <span className="text-xs text-muted-foreground">
+                      {(editingLesson?.content || "").length.toLocaleString()} caracteres
+                    </span>
+                  </div>
+                  <Textarea
+                    value={editingLesson?.content || ""}
                     onChange={(e) =>
-                      setEditingLesson({ ...editingLesson, video_url: e.target.value })
+                      setEditingLesson({ ...editingLesson, content: e.target.value })
                     }
-                    placeholder="https://youtube.com/..."
+                    placeholder="Digite ou cole o conteúdo completo da aula aqui...
+
+Use formatação simples:
+- Títulos em MAIÚSCULAS para seções principais
+- 1. 2. 3. para tópicos numerados
+- a. b. c. para subtópicos
+- Parágrafos separados por linhas em branco"
+                    className="flex-1 min-h-0 font-mono text-sm resize-none"
                   />
                 </div>
-                <div className="space-y-2">
-                  <Label>Duração (minutos)</Label>
-                  <Input
-                    type="number"
-                    value={editingLesson?.duration_minutes || ""}
-                    onChange={(e) =>
-                      setEditingLesson({ ...editingLesson, duration_minutes: parseInt(e.target.value) || 0 })
-                    }
-                  />
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <Switch
-                  checked={editingLesson?.is_free || false}
-                  onCheckedChange={(checked) =>
-                    setEditingLesson({ ...editingLesson, is_free: checked })
-                  }
-                />
-                <Label>Aula Gratuita (visível sem matrícula)</Label>
-              </div>
-              <div className="flex justify-end gap-2 pt-4">
-                <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
-                  Cancelar
-                </Button>
-                <Button onClick={handleSave} disabled={saveLessonMutation.isPending}>
-                  {saveLessonMutation.isPending && <Loader2 className="w-4 h-4 animate-spin mr-2" />}
-                  Salvar
-                </Button>
-              </div>
-            </div>
+              </TabsContent>
+              
+              {/* Aba de Configurações */}
+              <TabsContent value="settings" className="flex-1 m-0 overflow-auto">
+                <ScrollArea className="h-full">
+                  <div className="max-w-2xl mx-auto p-6 space-y-6">
+                    <div className="space-y-4">
+                      <h3 className="font-semibold text-lg border-b pb-2">Informações Básicas</h3>
+                      
+                      <div className="space-y-2">
+                        <Label>Título da Aula *</Label>
+                        <Input
+                          value={editingLesson?.title || ""}
+                          onChange={(e) =>
+                            setEditingLesson({ ...editingLesson, title: e.target.value })
+                          }
+                          placeholder="Ex: Introdução à Teologia Sistemática"
+                        />
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <Label>Descrição (opcional)</Label>
+                        <Textarea
+                          value={editingLesson?.description || ""}
+                          onChange={(e) =>
+                            setEditingLesson({ ...editingLesson, description: e.target.value })
+                          }
+                          rows={3}
+                          placeholder="Uma breve descrição do que será abordado nesta aula..."
+                        />
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-4">
+                      <h3 className="font-semibold text-lg border-b pb-2">Mídia e Duração</h3>
+                      
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                          <Label>URL do Vídeo (opcional)</Label>
+                          <Input
+                            value={editingLesson?.video_url || ""}
+                            onChange={(e) =>
+                              setEditingLesson({ ...editingLesson, video_url: e.target.value })
+                            }
+                            placeholder="https://youtube.com/..."
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label>Duração (minutos)</Label>
+                          <Input
+                            type="number"
+                            value={editingLesson?.duration_minutes || ""}
+                            onChange={(e) =>
+                              setEditingLesson({ ...editingLesson, duration_minutes: parseInt(e.target.value) || 0 })
+                            }
+                            placeholder="15"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-4">
+                      <h3 className="font-semibold text-lg border-b pb-2">Acesso</h3>
+                      
+                      <div className="flex items-center justify-between p-4 rounded-lg border bg-muted/30">
+                        <div className="space-y-1">
+                          <Label className="text-base">Aula Gratuita</Label>
+                          <p className="text-sm text-muted-foreground">
+                            Permite que alunos não matriculados visualizem esta aula
+                          </p>
+                        </div>
+                        <Switch
+                          checked={editingLesson?.is_free || false}
+                          onCheckedChange={(checked) =>
+                            setEditingLesson({ ...editingLesson, is_free: checked })
+                          }
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </ScrollArea>
+              </TabsContent>
+            </Tabs>
           </DialogContent>
         </Dialog>
 
