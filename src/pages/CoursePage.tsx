@@ -271,7 +271,29 @@ const CoursePage = () => {
     setViewerLoading(true);
 
     try {
-      // 1) Primeiro tenta buscar do banco/arquivo local (fallback)
+      // 1) PRIMEIRO: Verifica se a lição já tem conteúdo diretamente
+      if (lesson.content && lesson.content.trim()) {
+        lessonContentCacheRef.current[lesson.title] = lesson.content;
+        setViewerText(lesson.content);
+        setViewerLoading(false);
+        return;
+      }
+
+      // 2) Tenta buscar do banco de dados pelo título
+      const { data: lessonData } = await supabase
+        .from("lessons")
+        .select("content")
+        .eq("id", lesson.id)
+        .maybeSingle();
+      
+      if (lessonData?.content && lessonData.content.trim()) {
+        lessonContentCacheRef.current[lesson.title] = lessonData.content;
+        setViewerText(lessonData.content);
+        setViewerLoading(false);
+        return;
+      }
+
+      // 3) Fallback: tenta buscar da biblioteca de materiais
       const rawText = await fetchMaterialFromDb(
         lesson.title,
         (course?.category || "").toLowerCase()
@@ -283,7 +305,7 @@ const CoursePage = () => {
         return;
       }
 
-      // 2) Se não achou, tenta correspondência por título na biblioteca (mais flexível)
+      // 4) Último recurso: busca por correspondência de título na biblioteca
       const normalizeTitle = (title: string) =>
         title
           .toLowerCase()
@@ -296,27 +318,22 @@ const CoursePage = () => {
       const lessonWords = lessonNormalized.split(" ").filter((w) => w.length > 2);
       const firstWord = lessonWords[0];
 
-      // Evita baixar a lista inteira de materiais (melhora muito o tempo de abertura)
-      let materials: Array<{ file_url: string | null; content: string | null; title: string | null }> | null | undefined =
-        undefined;
+      let materials: Array<{ file_url: string | null; content: string | null; title: string | null }> | null | undefined;
 
       if (firstWord) {
         const { data } = await supabase
           .from("library_materials")
           .select("file_url, content, title")
-          .eq("category", "Bacharel")
           .not("file_url", "is", null)
           .ilike("title", `%${firstWord}%`)
           .limit(80);
         materials = data;
       }
 
-      // fallback limitado (não pode ficar pesado demais)
       if (!materials || materials.length === 0) {
         const { data } = await supabase
           .from("library_materials")
           .select("file_url, content, title")
-          .eq("category", "Bacharel")
           .not("file_url", "is", null)
           .limit(200);
         materials = data;
@@ -333,8 +350,14 @@ const CoursePage = () => {
         matchingMaterial = materials.find((m) => normalizeTitle(m.title || "").includes(firstWord || ""));
       }
 
+      if (matchingMaterial?.content && matchingMaterial.content.trim()) {
+        lessonContentCacheRef.current[lesson.title] = matchingMaterial.content;
+        setViewerText(matchingMaterial.content);
+        setViewerLoading(false);
+        return;
+      }
+
       if (matchingMaterial?.file_url) {
-        console.log("Buscando material:", matchingMaterial.title, matchingMaterial.file_url);
         const res = await fetch(matchingMaterial.file_url, { cache: "force-cache" });
         if (res.ok) {
           const text = await res.text();
