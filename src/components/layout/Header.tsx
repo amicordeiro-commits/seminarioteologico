@@ -26,12 +26,18 @@ export function Header({ isSidebarCollapsed }: HeaderProps) {
   const { toast } = useToast();
 
   const handleSignOut = async () => {
-    await signOut();
+    try {
+      await signOut();
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+    // Always show toast and navigate, even if signOut had issues
     toast({
       title: "Até logo!",
       description: "Você saiu da sua conta.",
     });
-    navigate("/auth");
+    // Force navigation to auth page
+    window.location.href = "/auth";
   };
 
   const userName = user?.user_metadata?.full_name || user?.email?.split('@')[0] || 'Aluno';
