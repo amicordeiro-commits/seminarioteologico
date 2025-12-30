@@ -23,7 +23,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { PlayCircle, Plus, Pencil, Trash2, Loader2, Video, Upload, FileText, FolderOpen, BookOpen, Settings, X } from "lucide-react";
+import { PlayCircle, Plus, Pencil, Trash2, Loader2, Video, Upload, FileText, FolderOpen, BookOpen, Settings, X, Bold, Italic, Underline, Heading1, Heading2, Heading3, List, ListOrdered, AlignLeft, AlignCenter, AlignJustify, Palette, Type } from "lucide-react";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
@@ -500,18 +505,347 @@ export default function AdminLessonsPage() {
                       {(editingLesson?.content || "").length.toLocaleString()} caracteres
                     </span>
                   </div>
+                  
+                  {/* Barra de Ferramentas de Formatação */}
+                  <div className="flex flex-wrap items-center gap-1 p-2 bg-muted/50 rounded-lg border">
+                    {/* Formatação de Texto */}
+                    <div className="flex items-center gap-0.5 pr-2 border-r">
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        className="h-8 w-8 p-0"
+                        title="Negrito"
+                        onClick={() => {
+                          const textarea = document.querySelector('textarea[data-content-editor]') as HTMLTextAreaElement;
+                          if (textarea) {
+                            const start = textarea.selectionStart;
+                            const end = textarea.selectionEnd;
+                            const text = editingLesson?.content || "";
+                            const selectedText = text.substring(start, end);
+                            const newText = text.substring(0, start) + `**${selectedText}**` + text.substring(end);
+                            setEditingLesson({ ...editingLesson, content: newText });
+                          }
+                        }}
+                      >
+                        <Bold className="w-4 h-4" />
+                      </Button>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        className="h-8 w-8 p-0"
+                        title="Itálico"
+                        onClick={() => {
+                          const textarea = document.querySelector('textarea[data-content-editor]') as HTMLTextAreaElement;
+                          if (textarea) {
+                            const start = textarea.selectionStart;
+                            const end = textarea.selectionEnd;
+                            const text = editingLesson?.content || "";
+                            const selectedText = text.substring(start, end);
+                            const newText = text.substring(0, start) + `*${selectedText}*` + text.substring(end);
+                            setEditingLesson({ ...editingLesson, content: newText });
+                          }
+                        }}
+                      >
+                        <Italic className="w-4 h-4" />
+                      </Button>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        className="h-8 w-8 p-0"
+                        title="Sublinhado"
+                        onClick={() => {
+                          const textarea = document.querySelector('textarea[data-content-editor]') as HTMLTextAreaElement;
+                          if (textarea) {
+                            const start = textarea.selectionStart;
+                            const end = textarea.selectionEnd;
+                            const text = editingLesson?.content || "";
+                            const selectedText = text.substring(start, end);
+                            const newText = text.substring(0, start) + `<u>${selectedText}</u>` + text.substring(end);
+                            setEditingLesson({ ...editingLesson, content: newText });
+                          }
+                        }}
+                      >
+                        <Underline className="w-4 h-4" />
+                      </Button>
+                    </div>
+                    
+                    {/* Cabeçalhos */}
+                    <div className="flex items-center gap-0.5 px-2 border-r">
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        className="h-8 w-8 p-0"
+                        title="Título Principal"
+                        onClick={() => {
+                          const textarea = document.querySelector('textarea[data-content-editor]') as HTMLTextAreaElement;
+                          if (textarea) {
+                            const start = textarea.selectionStart;
+                            const end = textarea.selectionEnd;
+                            const text = editingLesson?.content || "";
+                            const selectedText = text.substring(start, end);
+                            const newText = text.substring(0, start) + `# ${selectedText}` + text.substring(end);
+                            setEditingLesson({ ...editingLesson, content: newText });
+                          }
+                        }}
+                      >
+                        <Heading1 className="w-4 h-4" />
+                      </Button>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        className="h-8 w-8 p-0"
+                        title="Subtítulo"
+                        onClick={() => {
+                          const textarea = document.querySelector('textarea[data-content-editor]') as HTMLTextAreaElement;
+                          if (textarea) {
+                            const start = textarea.selectionStart;
+                            const end = textarea.selectionEnd;
+                            const text = editingLesson?.content || "";
+                            const selectedText = text.substring(start, end);
+                            const newText = text.substring(0, start) + `## ${selectedText}` + text.substring(end);
+                            setEditingLesson({ ...editingLesson, content: newText });
+                          }
+                        }}
+                      >
+                        <Heading2 className="w-4 h-4" />
+                      </Button>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        className="h-8 w-8 p-0"
+                        title="Subtítulo Menor"
+                        onClick={() => {
+                          const textarea = document.querySelector('textarea[data-content-editor]') as HTMLTextAreaElement;
+                          if (textarea) {
+                            const start = textarea.selectionStart;
+                            const end = textarea.selectionEnd;
+                            const text = editingLesson?.content || "";
+                            const selectedText = text.substring(start, end);
+                            const newText = text.substring(0, start) + `### ${selectedText}` + text.substring(end);
+                            setEditingLesson({ ...editingLesson, content: newText });
+                          }
+                        }}
+                      >
+                        <Heading3 className="w-4 h-4" />
+                      </Button>
+                    </div>
+                    
+                    {/* Listas */}
+                    <div className="flex items-center gap-0.5 px-2 border-r">
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        className="h-8 w-8 p-0"
+                        title="Lista com Marcadores"
+                        onClick={() => {
+                          const textarea = document.querySelector('textarea[data-content-editor]') as HTMLTextAreaElement;
+                          if (textarea) {
+                            const start = textarea.selectionStart;
+                            const text = editingLesson?.content || "";
+                            const newText = text.substring(0, start) + `\n- Item 1\n- Item 2\n- Item 3\n` + text.substring(start);
+                            setEditingLesson({ ...editingLesson, content: newText });
+                          }
+                        }}
+                      >
+                        <List className="w-4 h-4" />
+                      </Button>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        className="h-8 w-8 p-0"
+                        title="Lista Numerada"
+                        onClick={() => {
+                          const textarea = document.querySelector('textarea[data-content-editor]') as HTMLTextAreaElement;
+                          if (textarea) {
+                            const start = textarea.selectionStart;
+                            const text = editingLesson?.content || "";
+                            const newText = text.substring(0, start) + `\n1. Item 1\n2. Item 2\n3. Item 3\n` + text.substring(start);
+                            setEditingLesson({ ...editingLesson, content: newText });
+                          }
+                        }}
+                      >
+                        <ListOrdered className="w-4 h-4" />
+                      </Button>
+                    </div>
+                    
+                    {/* Alinhamento */}
+                    <div className="flex items-center gap-0.5 px-2 border-r">
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        className="h-8 w-8 p-0"
+                        title="Alinhar à Esquerda"
+                        onClick={() => {
+                          const textarea = document.querySelector('textarea[data-content-editor]') as HTMLTextAreaElement;
+                          if (textarea) {
+                            const start = textarea.selectionStart;
+                            const end = textarea.selectionEnd;
+                            const text = editingLesson?.content || "";
+                            const selectedText = text.substring(start, end);
+                            const newText = text.substring(0, start) + `<div style="text-align: left">${selectedText}</div>` + text.substring(end);
+                            setEditingLesson({ ...editingLesson, content: newText });
+                          }
+                        }}
+                      >
+                        <AlignLeft className="w-4 h-4" />
+                      </Button>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        className="h-8 w-8 p-0"
+                        title="Centralizar"
+                        onClick={() => {
+                          const textarea = document.querySelector('textarea[data-content-editor]') as HTMLTextAreaElement;
+                          if (textarea) {
+                            const start = textarea.selectionStart;
+                            const end = textarea.selectionEnd;
+                            const text = editingLesson?.content || "";
+                            const selectedText = text.substring(start, end);
+                            const newText = text.substring(0, start) + `<div style="text-align: center">${selectedText}</div>` + text.substring(end);
+                            setEditingLesson({ ...editingLesson, content: newText });
+                          }
+                        }}
+                      >
+                        <AlignCenter className="w-4 h-4" />
+                      </Button>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        className="h-8 w-8 p-0"
+                        title="Justificar"
+                        onClick={() => {
+                          const textarea = document.querySelector('textarea[data-content-editor]') as HTMLTextAreaElement;
+                          if (textarea) {
+                            const start = textarea.selectionStart;
+                            const end = textarea.selectionEnd;
+                            const text = editingLesson?.content || "";
+                            const selectedText = text.substring(start, end);
+                            const newText = text.substring(0, start) + `<div style="text-align: justify">${selectedText}</div>` + text.substring(end);
+                            setEditingLesson({ ...editingLesson, content: newText });
+                          }
+                        }}
+                      >
+                        <AlignJustify className="w-4 h-4" />
+                      </Button>
+                    </div>
+                    
+                    {/* Cores */}
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="sm"
+                          className="h-8 px-2 gap-1"
+                          title="Cor do Texto"
+                        >
+                          <Palette className="w-4 h-4" />
+                          <span className="text-xs">Cor</span>
+                        </Button>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-2">
+                        <div className="grid grid-cols-6 gap-1">
+                          {[
+                            "#000000", "#374151", "#6B7280", "#9CA3AF", "#D1D5DB", "#FFFFFF",
+                            "#EF4444", "#F97316", "#F59E0B", "#EAB308", "#84CC16", "#22C55E",
+                            "#10B981", "#14B8A6", "#06B6D4", "#0EA5E9", "#3B82F6", "#6366F1",
+                            "#8B5CF6", "#A855F7", "#D946EF", "#EC4899", "#F43F5E", "#78350F",
+                          ].map((color) => (
+                            <button
+                              key={color}
+                              type="button"
+                              className="w-6 h-6 rounded border border-border hover:scale-110 transition-transform"
+                              style={{ backgroundColor: color }}
+                              onClick={() => {
+                                const textarea = document.querySelector('textarea[data-content-editor]') as HTMLTextAreaElement;
+                                if (textarea) {
+                                  const start = textarea.selectionStart;
+                                  const end = textarea.selectionEnd;
+                                  const text = editingLesson?.content || "";
+                                  const selectedText = text.substring(start, end);
+                                  const newText = text.substring(0, start) + `<span style="color: ${color}">${selectedText}</span>` + text.substring(end);
+                                  setEditingLesson({ ...editingLesson, content: newText });
+                                }
+                              }}
+                            />
+                          ))}
+                        </div>
+                      </PopoverContent>
+                    </Popover>
+                    
+                    {/* Tamanho da Fonte */}
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="sm"
+                          className="h-8 px-2 gap-1"
+                          title="Tamanho da Fonte"
+                        >
+                          <Type className="w-4 h-4" />
+                          <span className="text-xs">Tamanho</span>
+                        </Button>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-2">
+                        <div className="flex flex-col gap-1">
+                          {[
+                            { label: "Pequeno", size: "12px" },
+                            { label: "Normal", size: "16px" },
+                            { label: "Médio", size: "18px" },
+                            { label: "Grande", size: "24px" },
+                            { label: "Muito Grande", size: "32px" },
+                            { label: "Título", size: "48px" },
+                          ].map((option) => (
+                            <button
+                              key={option.size}
+                              type="button"
+                              className="px-3 py-1.5 text-left hover:bg-muted rounded text-sm"
+                              style={{ fontSize: option.size }}
+                              onClick={() => {
+                                const textarea = document.querySelector('textarea[data-content-editor]') as HTMLTextAreaElement;
+                                if (textarea) {
+                                  const start = textarea.selectionStart;
+                                  const end = textarea.selectionEnd;
+                                  const text = editingLesson?.content || "";
+                                  const selectedText = text.substring(start, end);
+                                  const newText = text.substring(0, start) + `<span style="font-size: ${option.size}">${selectedText}</span>` + text.substring(end);
+                                  setEditingLesson({ ...editingLesson, content: newText });
+                                }
+                              }}
+                            >
+                              {option.label}
+                            </button>
+                          ))}
+                        </div>
+                      </PopoverContent>
+                    </Popover>
+                  </div>
+                  
                   <Textarea
+                    data-content-editor
                     value={editingLesson?.content || ""}
                     onChange={(e) =>
                       setEditingLesson({ ...editingLesson, content: e.target.value })
                     }
                     placeholder="Digite ou cole o conteúdo completo da aula aqui...
 
-Use formatação simples:
-- Títulos em MAIÚSCULAS para seções principais
-- 1. 2. 3. para tópicos numerados
-- a. b. c. para subtópicos
-- Parágrafos separados por linhas em branco"
+Selecione o texto e use a barra de ferramentas para formatar:
+• Negrito, Itálico, Sublinhado
+• Títulos e Subtítulos
+• Cores e Tamanhos de Fonte
+• Listas e Alinhamento"
                     className="flex-1 min-h-0 font-mono text-sm resize-none"
                   />
                 </div>
