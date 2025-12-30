@@ -25,51 +25,51 @@ export default function CertificatesPage() {
 
   return (
     <AppLayout>
-      <div className="p-6 lg:p-8 space-y-8 animate-fade-in">
+      <div className="space-y-4 sm:space-y-6 md:space-y-8 animate-fade-in">
         {/* Header */}
-        <div className="space-y-2">
-          <h1 className="text-3xl lg:text-4xl font-serif font-bold text-foreground">
+        <div className="space-y-1 sm:space-y-2">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-foreground">
             Meus Certificados
           </h1>
-          <p className="text-muted-foreground">
+          <p className="text-sm text-muted-foreground">
             Seus certificados de conclusão de cursos
           </p>
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="bg-card rounded-xl p-6 border border-border">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                <Award className="w-6 h-6 text-primary" />
+        <div className="grid grid-cols-3 gap-2 sm:gap-4">
+          <div className="bg-card rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border border-border">
+            <div className="flex items-center gap-2 sm:gap-4">
+              <div className="w-8 h-8 sm:w-10 md:w-12 sm:h-10 md:h-12 rounded-lg sm:rounded-xl bg-primary/10 flex items-center justify-center">
+                <Award className="w-4 h-4 sm:w-5 md:w-6 sm:h-5 md:h-6 text-primary" />
               </div>
               <div>
-                <p className="text-3xl font-bold text-foreground">{certificates.length}</p>
-                <p className="text-sm text-muted-foreground">Certificados</p>
+                <p className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground">{certificates.length}</p>
+                <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground">Certificados</p>
               </div>
             </div>
           </div>
-          <div className="bg-card rounded-xl p-6 border border-border">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center">
-                <BookOpen className="w-6 h-6 text-accent" />
+          <div className="bg-card rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border border-border">
+            <div className="flex items-center gap-2 sm:gap-4">
+              <div className="w-8 h-8 sm:w-10 md:w-12 sm:h-10 md:h-12 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center">
+                <BookOpen className="w-4 h-4 sm:w-5 md:w-6 sm:h-5 md:h-6 text-accent" />
               </div>
               <div>
-                <p className="text-3xl font-bold text-foreground">
+                <p className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground">
                   {certificates.reduce((acc, c) => acc + (c.course?.duration_hours || 0), 0)}h
                 </p>
-                <p className="text-sm text-muted-foreground">Horas de Estudo</p>
+                <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground">Horas</p>
               </div>
             </div>
           </div>
-          <div className="bg-card rounded-xl p-6 border border-border">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center">
-                <GraduationCap className="w-6 h-6 text-green-500" />
+          <div className="bg-card rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border border-border">
+            <div className="flex items-center gap-2 sm:gap-4">
+              <div className="w-8 h-8 sm:w-10 md:w-12 sm:h-10 md:h-12 rounded-lg sm:rounded-xl bg-green-500/10 flex items-center justify-center">
+                <GraduationCap className="w-4 h-4 sm:w-5 md:w-6 sm:h-5 md:h-6 text-green-500" />
               </div>
               <div>
-                <p className="text-3xl font-bold text-foreground">{certificates.length}</p>
-                <p className="text-sm text-muted-foreground">Cursos Concluídos</p>
+                <p className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground">{certificates.length}</p>
+                <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground">Concluídos</p>
               </div>
             </div>
           </div>
@@ -77,14 +77,14 @@ export default function CertificatesPage() {
 
         {/* Loading */}
         {isLoading && (
-          <div className="flex items-center justify-center py-12">
-            <Loader2 className="w-8 h-8 animate-spin text-primary" />
+          <div className="flex items-center justify-center py-8 sm:py-12">
+            <Loader2 className="w-6 h-6 sm:w-8 sm:h-8 animate-spin text-primary" />
           </div>
         )}
 
         {/* Certificates Grid */}
         {!isLoading && certificates.length > 0 && (
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             {certificates.map((certificate) => (
               <div
                 key={certificate.id}

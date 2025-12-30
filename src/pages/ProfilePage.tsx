@@ -141,20 +141,20 @@ export default function ProfilePage() {
 
   return (
     <AppLayout>
-      <div className="p-6 lg:p-8 space-y-8 animate-fade-in">
+      <div className="space-y-4 sm:space-y-6 md:space-y-8 animate-fade-in">
         {/* Profile Header */}
-        <div className="bg-card rounded-2xl border border-border overflow-hidden">
+        <div className="bg-card rounded-xl sm:rounded-2xl border border-border overflow-hidden">
           {/* Cover */}
-          <div className="h-32 lg:h-48 bg-gradient-to-r from-primary via-primary/80 to-accent relative">
+          <div className="h-24 sm:h-32 lg:h-48 bg-gradient-to-r from-primary via-primary/80 to-accent relative">
             <div className="absolute inset-0 pattern-cross opacity-10" />
           </div>
 
           {/* Profile Info */}
-          <div className="px-6 lg:px-8 pb-6">
-            <div className="flex flex-col lg:flex-row lg:items-end gap-4 -mt-16 lg:-mt-20">
+          <div className="px-4 sm:px-6 lg:px-8 pb-4 sm:pb-6">
+            <div className="flex flex-col sm:flex-row sm:items-end gap-3 sm:gap-4 -mt-12 sm:-mt-16 lg:-mt-20">
               {/* Avatar */}
-              <div className="relative">
-                <div className="w-32 h-32 lg:w-40 lg:h-40 rounded-2xl bg-background border-4 border-background shadow-xl overflow-hidden">
+              <div className="relative self-center sm:self-auto">
+                <div className="w-24 h-24 sm:w-32 sm:h-32 lg:w-40 lg:h-40 rounded-xl sm:rounded-2xl bg-background border-4 border-background shadow-xl overflow-hidden">
                   {profile?.avatar_url ? (
                     <img 
                       src={profile.avatar_url} 
@@ -163,7 +163,7 @@ export default function ProfilePage() {
                     />
                   ) : (
                     <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                      <User className="w-16 h-16 lg:w-20 lg:h-20 text-primary" />
+                      <User className="w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 text-primary" />
                     </div>
                   )}
                 </div>
@@ -177,26 +177,27 @@ export default function ProfilePage() {
                 <button 
                   onClick={() => fileInputRef.current?.click()}
                   disabled={uploading}
-                  className="absolute bottom-2 right-2 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-lg hover:scale-110 transition-transform disabled:opacity-50"
+                  className="absolute bottom-1 right-1 sm:bottom-2 sm:right-2 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-lg hover:scale-110 transition-transform disabled:opacity-50"
                 >
-                  {uploading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Camera className="w-4 h-4" />}
+                  {uploading ? <Loader2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 animate-spin" /> : <Camera className="w-3.5 h-3.5 sm:w-4 sm:h-4" />}
                 </button>
               </div>
 
               {/* Name and Actions */}
-              <div className="flex-1 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+              <div className="flex-1 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 text-center sm:text-left">
                 <div>
-                  <h1 className="text-2xl lg:text-3xl font-serif font-bold text-foreground">
+                  <h1 className="text-xl sm:text-2xl lg:text-3xl font-serif font-bold text-foreground">
                     {profile?.full_name || "Estudante"}
                   </h1>
-                  <p className="text-muted-foreground flex items-center gap-2 mt-1">
+                  <p className="text-muted-foreground flex items-center justify-center sm:justify-start gap-2 mt-1 text-sm">
                     <Mail className="w-4 h-4" />
-                    {user?.email}
+                    <span className="truncate max-w-[200px] sm:max-w-none">{user?.email}</span>
                   </p>
                 </div>
                 <Button
                   onClick={() => isEditing ? handleSave() : setIsEditing(true)}
                   variant={isEditing ? "default" : "outline"}
+                  size="sm"
                   className="gap-2"
                   disabled={isUpdating}
                 >
@@ -208,12 +209,12 @@ export default function ProfilePage() {
                   ) : isEditing ? (
                     <>
                       <Save className="w-4 h-4" />
-                      Salvar Alterações
+                      Salvar
                     </>
                   ) : (
                     <>
                       <Edit className="w-4 h-4" />
-                      Editar Perfil
+                      Editar
                     </>
                   )}
                 </Button>
@@ -221,56 +222,56 @@ export default function ProfilePage() {
             </div>
 
             {/* Quick Stats */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
-              <div className="bg-background rounded-xl p-4 border border-border">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <GraduationCap className="w-5 h-5 text-primary" />
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 mt-4 sm:mt-6">
+              <div className="bg-background rounded-lg sm:rounded-xl p-3 sm:p-4 border border-border">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <GraduationCap className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                   </div>
                   <div>
-                    <p className="text-2xl font-bold text-foreground">
+                    <p className="text-lg sm:text-2xl font-bold text-foreground">
                       {stats.coursesCompleted}
                     </p>
-                    <p className="text-xs text-muted-foreground">Concluídos</p>
+                    <p className="text-[10px] sm:text-xs text-muted-foreground">Concluídos</p>
                   </div>
                 </div>
               </div>
-              <div className="bg-background rounded-xl p-4 border border-border">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
-                    <BookOpen className="w-5 h-5 text-accent" />
+              <div className="bg-background rounded-lg sm:rounded-xl p-3 sm:p-4 border border-border">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-accent/10 flex items-center justify-center">
+                    <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-accent" />
                   </div>
                   <div>
-                    <p className="text-2xl font-bold text-foreground">
+                    <p className="text-lg sm:text-2xl font-bold text-foreground">
                       {stats.coursesInProgress}
                     </p>
-                    <p className="text-xs text-muted-foreground">Em Progresso</p>
+                    <p className="text-[10px] sm:text-xs text-muted-foreground">Em Progresso</p>
                   </div>
                 </div>
               </div>
-              <div className="bg-background rounded-xl p-4 border border-border">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-secondary/50 flex items-center justify-center">
-                    <Clock className="w-5 h-5 text-secondary-foreground" />
+              <div className="bg-background rounded-lg sm:rounded-xl p-3 sm:p-4 border border-border">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-secondary/50 flex items-center justify-center">
+                    <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-secondary-foreground" />
                   </div>
                   <div>
-                    <p className="text-2xl font-bold text-foreground">
+                    <p className="text-lg sm:text-2xl font-bold text-foreground">
                       {stats.totalHours}h
                     </p>
-                    <p className="text-xs text-muted-foreground">Estudadas</p>
+                    <p className="text-[10px] sm:text-xs text-muted-foreground">Estudadas</p>
                   </div>
                 </div>
               </div>
-              <div className="bg-background rounded-xl p-4 border border-border">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <Award className="w-5 h-5 text-primary" />
+              <div className="bg-background rounded-lg sm:rounded-xl p-3 sm:p-4 border border-border">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <Award className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                   </div>
                   <div>
-                    <p className="text-2xl font-bold text-foreground">
+                    <p className="text-lg sm:text-2xl font-bold text-foreground">
                       {stats.certificates}
                     </p>
-                    <p className="text-xs text-muted-foreground">Certificados</p>
+                    <p className="text-[10px] sm:text-xs text-muted-foreground">Certificados</p>
                   </div>
                 </div>
               </div>
