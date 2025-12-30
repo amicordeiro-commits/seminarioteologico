@@ -67,15 +67,18 @@ Deno.serve(async (req) => {
 
     console.log("Post found:", post.title);
 
-    // Site URL (used only for building a human-friendly link)
-    // In production, set SITE_URL in backend secrets to your real domain.
-    const siteUrl = Deno.env.get("SITE_URL") || "https://seminarioteologico.app";
+    // Base URL for building public links (prefer explicit origin from client)
+    const originParam = url.searchParams.get("origin");
+    const safeOrigin = originParam && /^https?:\/\/[\w.-]+(?::\d+)?$/i.test(originParam)
+      ? originParam
+      : null;
 
-    // Use the current request URL as the canonical/share URL
-    const postUrl = req.url;
+    // In production, set SITE_URL in backend secrets to your real domain.
+    const siteUrl = safeOrigin || Deno.env.get("SITE_URL") || "https://seminarioteologico.app";
 
     // Public route (no login wall)
-    const redirectUrl = `${siteUrl}/p/blog/${postId}`;
+    const canonicalUrl = `${siteUrl}/p/blog/${postId}`;
+    const redirectUrl = canonicalUrl;
     
     // Get description - clean and limit to 200 chars for OG
     const rawDescription = post.excerpt || post.content || "";
@@ -98,7 +101,7 @@ Deno.serve(async (req) => {
 
     console.log("Generating HTML with OG tags...");
     console.log("Image URL:", imageUrl);
-    console.log("Post URL:", postUrl);
+    console.log("Canonical URL:", canonicalUrl);
 
     // Generate HTML with Open Graph meta tags
     // Facebook crawler will read this HTML and extract the OG tags
@@ -111,7 +114,7 @@ Deno.serve(async (req) => {
   
   <!-- Essential Open Graph / Facebook -->
   <meta property="og:type" content="article">
-  <meta property="og:url" content="${escapeHtml(postUrl)}">
+  <meta property="og:url" content="${escapeHtml(canonicalUrl)}">
   <meta property="og:title" content="${escapeHtml(post.title)}">
   <meta property="og:description" content="${escapeHtml(description)}">
   <meta property="og:image" content="${escapeHtml(imageUrl)}">
@@ -133,7 +136,7 @@ Deno.serve(async (req) => {
   ${post.author_name ? `<meta property="article:author" content="${escapeHtml(post.author_name)}">` : ''}
   
   <!-- Canonical URL -->
-  <link rel="canonical" href="${escapeHtml(postUrl)}">
+  <link rel="canonical" href="${escapeHtml(canonicalUrl)}">
   
   <!-- No meta-refresh redirect: Facebook sometimes follows it and breaks the preview -->
 
