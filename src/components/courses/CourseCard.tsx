@@ -2,6 +2,7 @@ import { BookOpen, Clock, Users, Star, Play } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Link } from "react-router-dom";
+import { forwardRef } from "react";
 
 export interface Course {
   id: string;
@@ -25,7 +26,7 @@ interface CourseCardProps {
   variant?: "default" | "compact" | "featured";
 }
 
-export function CourseCard({ course, variant = "default" }: CourseCardProps) {
+export const CourseCard = forwardRef<HTMLAnchorElement, CourseCardProps>(({ course, variant = "default" }, ref) => {
   const progressPercentage = (course.completedLessons / course.totalLessons) * 100;
 
   if (variant === "compact") {
@@ -160,4 +161,6 @@ export function CourseCard({ course, variant = "default" }: CourseCardProps) {
       </div>
     </Link>
   );
-}
+});
+
+CourseCard.displayName = "CourseCard";
