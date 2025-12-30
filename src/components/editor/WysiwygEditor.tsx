@@ -1,6 +1,5 @@
-import { useRef, useCallback, useEffect, forwardRef, useImperativeHandle } from "react";
+import { useRef, useCallback, useEffect, forwardRef, useImperativeHandle, useState } from "react";
 import { Button } from "@/components/ui/button";
-
 import {
   Drawer,
   DrawerContent,
@@ -24,6 +23,9 @@ import {
   Palette,
   Type,
   Eraser,
+  Undo,
+  Redo,
+  Highlighter,
 } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -39,20 +41,42 @@ export interface WysiwygEditorRef {
   getContent: () => string;
 }
 
-const COLORS = [
-  "#000000", "#374151", "#6B7280", "#9CA3AF", "#D1D5DB", "#FFFFFF",
-  "#EF4444", "#F97316", "#F59E0B", "#EAB308", "#84CC16", "#22C55E",
-  "#10B981", "#14B8A6", "#06B6D4", "#0EA5E9", "#3B82F6", "#6366F1",
-  "#8B5CF6", "#A855F7", "#D946EF", "#EC4899", "#F43F5E", "#78350F",
+// Paleta de cores organizada por categoria
+const COLOR_CATEGORIES = [
+  {
+    name: "Básicas",
+    colors: ["#000000", "#FFFFFF", "#374151", "#6B7280", "#9CA3AF", "#D1D5DB"],
+  },
+  {
+    name: "Vibrantes",
+    colors: ["#EF4444", "#F97316", "#F59E0B", "#EAB308", "#84CC16", "#22C55E"],
+  },
+  {
+    name: "Frias",
+    colors: ["#10B981", "#14B8A6", "#06B6D4", "#0EA5E9", "#3B82F6", "#6366F1"],
+  },
+  {
+    name: "Roxas/Rosas",
+    colors: ["#8B5CF6", "#A855F7", "#D946EF", "#EC4899", "#F43F5E", "#BE185D"],
+  },
+];
+
+const HIGHLIGHT_COLORS = [
+  { name: "Amarelo", color: "#FEF08A" },
+  { name: "Verde", color: "#BBF7D0" },
+  { name: "Azul", color: "#BFDBFE" },
+  { name: "Rosa", color: "#FBCFE8" },
+  { name: "Laranja", color: "#FED7AA" },
+  { name: "Roxo", color: "#DDD6FE" },
 ];
 
 const FONT_SIZES = [
-  { label: "Pequeno", size: "12px" },
-  { label: "Normal", size: "16px" },
-  { label: "Médio", size: "18px" },
-  { label: "Grande", size: "24px" },
-  { label: "Muito Grande", size: "32px" },
-  { label: "Título", size: "48px" },
+  { label: "Pequeno", size: "12px", preview: "Aa" },
+  { label: "Normal", size: "16px", preview: "Aa" },
+  { label: "Médio", size: "18px", preview: "Aa" },
+  { label: "Grande", size: "24px", preview: "Aa" },
+  { label: "Muito Grande", size: "32px", preview: "Aa" },
+  { label: "Título", size: "48px", preview: "Aa" },
 ];
 
 export const WysiwygEditor = forwardRef<WysiwygEditorRef, WysiwygEditorProps>(
@@ -60,13 +84,13 @@ export const WysiwygEditor = forwardRef<WysiwygEditorRef, WysiwygEditorProps>(
     const editorRef = useRef<HTMLDivElement>(null);
     const isMobile = useIsMobile();
     const isInternalChange = useRef(false);
+    const [activeColor, setActiveColor] = useState("#000000");
 
     useImperativeHandle(ref, () => ({
       focus: () => editorRef.current?.focus(),
       getContent: () => editorRef.current?.innerHTML || "",
     }));
 
-    // Sincroniza o valor externo com o editor
     useEffect(() => {
       if (editorRef.current && !isInternalChange.current) {
         if (editorRef.current.innerHTML !== value) {
@@ -90,11 +114,15 @@ export const WysiwygEditor = forwardRef<WysiwygEditorRef, WysiwygEditorProps>(
     }, [handleInput]);
 
     const applyColor = useCallback((color: string) => {
+      setActiveColor(color);
       execCommand("foreColor", color);
     }, [execCommand]);
 
+    const applyHighlight = useCallback((color: string) => {
+      execCommand("hiliteColor", color);
+    }, [execCommand]);
+
     const applyFontSize = useCallback((size: string) => {
-      // Usa span com estilo inline para tamanho
       const selection = window.getSelection();
       if (!selection || selection.rangeCount === 0) return;
       
@@ -108,9 +136,7 @@ export const WysiwygEditor = forwardRef<WysiwygEditorRef, WysiwygEditorProps>(
         range.surroundContents(span);
         handleInput();
       } catch {
-        // Se surroundContents falhar (seleção atravessa nós), usa execCommand
         execCommand("fontSize", "7");
-        // Depois ajusta o tamanho
         const fonts = editorRef.current?.querySelectorAll('font[size="7"]');
         fonts?.forEach(font => {
           const newSpan = document.createElement("span");
@@ -140,184 +166,326 @@ export const WysiwygEditor = forwardRef<WysiwygEditorRef, WysiwygEditorProps>(
     }, [execCommand]);
 
     const ColorPicker = ({ onSelect, onClose }: { onSelect: (color: string) => void; onClose?: () => void }) => (
-      <div className="grid grid-cols-6 gap-2 p-2">
-        {COLORS.map((color) => (
-          <button
-            key={color}
-            type="button"
-            className="w-8 h-8 rounded-lg border-2 border-border hover:scale-110 transition-transform active:scale-95"
-            style={{ backgroundColor: color }}
-            onClick={() => {
-              onSelect(color);
-              onClose?.();
-            }}
-          />
+      <div className="p-3 space-y-3 min-w-[280px]">
+        {COLOR_CATEGORIES.map((category) => (
+          <div key={category.name}>
+            <p className="text-xs font-medium text-muted-foreground mb-2">{category.name}</p>
+            <div className="grid grid-cols-6 gap-2">
+              {category.colors.map((color) => (
+                <button
+                  key={color}
+                  type="button"
+                  className={`w-8 h-8 rounded-lg border-2 transition-all duration-150 hover:scale-110 active:scale-95 shadow-sm ${
+                    activeColor === color ? "ring-2 ring-primary ring-offset-2" : "border-border"
+                  } ${color === "#FFFFFF" ? "border-gray-300" : ""}`}
+                  style={{ backgroundColor: color }}
+                  onClick={() => {
+                    onSelect(color);
+                    onClose?.();
+                  }}
+                />
+              ))}
+            </div>
+          </div>
         ))}
       </div>
     );
 
+    const HighlightPicker = ({ onSelect, onClose }: { onSelect: (color: string) => void; onClose?: () => void }) => (
+      <div className="p-3 space-y-2 min-w-[200px]">
+        <p className="text-xs font-medium text-muted-foreground mb-2">Destaque</p>
+        <div className="grid grid-cols-3 gap-2">
+          {HIGHLIGHT_COLORS.map((item) => (
+            <button
+              key={item.color}
+              type="button"
+              className="flex flex-col items-center gap-1 p-2 rounded-lg hover:bg-muted transition-colors"
+              onClick={() => {
+                onSelect(item.color);
+                onClose?.();
+              }}
+            >
+              <div
+                className="w-8 h-8 rounded-lg border border-border shadow-sm"
+                style={{ backgroundColor: item.color }}
+              />
+              <span className="text-[10px] text-muted-foreground">{item.name}</span>
+            </button>
+          ))}
+        </div>
+        <button
+          type="button"
+          className="w-full mt-2 px-3 py-2 text-xs text-muted-foreground hover:bg-muted rounded-lg transition-colors flex items-center justify-center gap-2"
+          onClick={() => {
+            onSelect("transparent");
+            onClose?.();
+          }}
+        >
+          <Eraser className="w-3 h-3" />
+          Remover destaque
+        </button>
+      </div>
+    );
+
     const SizePicker = ({ onSelect, onClose }: { onSelect: (size: string) => void; onClose?: () => void }) => (
-      <div className="flex flex-col gap-1 p-2">
+      <div className="p-2 space-y-1 min-w-[180px]">
         {FONT_SIZES.map((option) => (
           <button
             key={option.size}
             type="button"
-            className="px-3 py-2 text-left hover:bg-muted rounded text-sm"
+            className="w-full px-3 py-2 text-left hover:bg-muted rounded-lg transition-colors flex items-center justify-between group"
             onClick={() => {
               onSelect(option.size);
               onClose?.();
             }}
           >
-            <span style={{ fontSize: option.size }}>{option.label}</span>
+            <span className="text-sm">{option.label}</span>
+            <span 
+              className="text-muted-foreground group-hover:text-foreground transition-colors font-serif"
+              style={{ fontSize: option.size, lineHeight: 1 }}
+            >
+              {option.preview}
+            </span>
           </button>
         ))}
       </div>
     );
 
+    const ToolbarButton = ({ 
+      onClick, 
+      title, 
+      children,
+      active = false 
+    }: { 
+      onClick: () => void; 
+      title: string; 
+      children: React.ReactNode;
+      active?: boolean;
+    }) => (
+      <Button 
+        type="button" 
+        variant={active ? "secondary" : "ghost"} 
+        size="sm" 
+        className={`h-9 w-9 p-0 transition-all ${active ? "bg-primary/20 text-primary" : "hover:bg-primary/10 hover:text-primary"}`}
+        title={title} 
+        onClick={onClick}
+      >
+        {children}
+      </Button>
+    );
+
+    const ToolbarGroup = ({ children }: { children: React.ReactNode }) => (
+      <div className="flex items-center gap-0.5 px-1 first:pl-0 last:pr-0 border-r border-border/50 last:border-r-0">
+        {children}
+      </div>
+    );
+
     return (
-      <div className={`flex flex-col gap-2 ${className || ""}`}>
-        {/* Barra de Ferramentas */}
-        <div className="flex flex-wrap items-center gap-0.5 sm:gap-1 p-1.5 sm:p-2 bg-muted/50 rounded-lg border overflow-x-auto">
-          {/* Formatação de Texto */}
-          <div className="flex items-center gap-0.5 pr-2 border-r">
-            <Button type="button" variant="ghost" size="sm" className="h-8 w-8 p-0" title="Negrito" onClick={() => execCommand("bold")}>
-              <Bold className="w-4 h-4" />
-            </Button>
-            <Button type="button" variant="ghost" size="sm" className="h-8 w-8 p-0" title="Itálico" onClick={() => execCommand("italic")}>
-              <Italic className="w-4 h-4" />
-            </Button>
-            <Button type="button" variant="ghost" size="sm" className="h-8 w-8 p-0" title="Sublinhado" onClick={() => execCommand("underline")}>
-              <Underline className="w-4 h-4" />
-            </Button>
+      <div className={`flex flex-col gap-3 ${className || ""}`}>
+        {/* Barra de Ferramentas Premium */}
+        <div className="bg-gradient-to-r from-card via-card to-card/80 rounded-xl border border-border/50 shadow-sm p-2 backdrop-blur-sm">
+          <div className="flex flex-wrap items-center gap-1">
+            {/* Desfazer/Refazer */}
+            <ToolbarGroup>
+              <ToolbarButton title="Desfazer (Ctrl+Z)" onClick={() => execCommand("undo")}>
+                <Undo className="w-4 h-4" />
+              </ToolbarButton>
+              <ToolbarButton title="Refazer (Ctrl+Y)" onClick={() => execCommand("redo")}>
+                <Redo className="w-4 h-4" />
+              </ToolbarButton>
+            </ToolbarGroup>
+
+            {/* Formatação de Texto */}
+            <ToolbarGroup>
+              <ToolbarButton title="Negrito (Ctrl+B)" onClick={() => execCommand("bold")}>
+                <Bold className="w-4 h-4" />
+              </ToolbarButton>
+              <ToolbarButton title="Itálico (Ctrl+I)" onClick={() => execCommand("italic")}>
+                <Italic className="w-4 h-4" />
+              </ToolbarButton>
+              <ToolbarButton title="Sublinhado (Ctrl+U)" onClick={() => execCommand("underline")}>
+                <Underline className="w-4 h-4" />
+              </ToolbarButton>
+            </ToolbarGroup>
+
+            {/* Cabeçalhos */}
+            <ToolbarGroup>
+              <ToolbarButton title="Título Principal" onClick={() => insertHeading(1)}>
+                <Heading1 className="w-4 h-4" />
+              </ToolbarButton>
+              <ToolbarButton title="Subtítulo" onClick={() => insertHeading(2)}>
+                <Heading2 className="w-4 h-4" />
+              </ToolbarButton>
+              <ToolbarButton title="Subtítulo Menor" onClick={() => insertHeading(3)}>
+                <Heading3 className="w-4 h-4" />
+              </ToolbarButton>
+            </ToolbarGroup>
+
+            {/* Listas */}
+            <ToolbarGroup>
+              <ToolbarButton title="Lista com Marcadores" onClick={() => insertList(false)}>
+                <List className="w-4 h-4" />
+              </ToolbarButton>
+              <ToolbarButton title="Lista Numerada" onClick={() => insertList(true)}>
+                <ListOrdered className="w-4 h-4" />
+              </ToolbarButton>
+            </ToolbarGroup>
+
+            {/* Alinhamento */}
+            <ToolbarGroup>
+              <ToolbarButton title="Alinhar à Esquerda" onClick={() => alignText("left")}>
+                <AlignLeft className="w-4 h-4" />
+              </ToolbarButton>
+              <ToolbarButton title="Centralizar" onClick={() => alignText("center")}>
+                <AlignCenter className="w-4 h-4" />
+              </ToolbarButton>
+              <ToolbarButton title="Justificar" onClick={() => alignText("justify")}>
+                <AlignJustify className="w-4 h-4" />
+              </ToolbarButton>
+            </ToolbarGroup>
+
+            {/* Cores e Tamanho */}
+            <ToolbarGroup>
+              {isMobile ? (
+                <>
+                  <Drawer>
+                    <DrawerTrigger asChild>
+                      <Button type="button" variant="ghost" size="sm" className="h-9 px-2.5 gap-1.5 hover:bg-primary/10" title="Cor do Texto">
+                        <div className="relative">
+                          <Palette className="w-4 h-4" />
+                          <div 
+                            className="absolute -bottom-0.5 left-0 right-0 h-1 rounded-full" 
+                            style={{ backgroundColor: activeColor }}
+                          />
+                        </div>
+                        <span className="text-xs font-medium">Cor</span>
+                      </Button>
+                    </DrawerTrigger>
+                    <DrawerContent>
+                      <DrawerHeader>
+                        <DrawerTitle>Cor do Texto</DrawerTitle>
+                      </DrawerHeader>
+                      <ColorPicker onSelect={applyColor} />
+                    </DrawerContent>
+                  </Drawer>
+                  <Drawer>
+                    <DrawerTrigger asChild>
+                      <Button type="button" variant="ghost" size="sm" className="h-9 px-2.5 gap-1.5 hover:bg-primary/10" title="Destaque">
+                        <Highlighter className="w-4 h-4" />
+                      </Button>
+                    </DrawerTrigger>
+                    <DrawerContent>
+                      <DrawerHeader>
+                        <DrawerTitle>Destaque</DrawerTitle>
+                      </DrawerHeader>
+                      <HighlightPicker onSelect={applyHighlight} />
+                    </DrawerContent>
+                  </Drawer>
+                  <Drawer>
+                    <DrawerTrigger asChild>
+                      <Button type="button" variant="ghost" size="sm" className="h-9 px-2.5 gap-1.5 hover:bg-primary/10" title="Tamanho">
+                        <Type className="w-4 h-4" />
+                      </Button>
+                    </DrawerTrigger>
+                    <DrawerContent>
+                      <DrawerHeader>
+                        <DrawerTitle>Tamanho da Fonte</DrawerTitle>
+                      </DrawerHeader>
+                      <SizePicker onSelect={applyFontSize} />
+                    </DrawerContent>
+                  </Drawer>
+                </>
+              ) : (
+                <>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button type="button" variant="ghost" size="sm" className="h-9 px-2.5 gap-1.5 hover:bg-primary/10" title="Cor do Texto">
+                        <div className="relative">
+                          <Palette className="w-4 h-4" />
+                          <div 
+                            className="absolute -bottom-0.5 left-0 right-0 h-1 rounded-full" 
+                            style={{ backgroundColor: activeColor }}
+                          />
+                        </div>
+                        <span className="text-xs font-medium">Cor</span>
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0 bg-card border-border shadow-xl" align="start">
+                      <ColorPicker onSelect={applyColor} />
+                    </PopoverContent>
+                  </Popover>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button type="button" variant="ghost" size="sm" className="h-9 w-9 p-0 hover:bg-primary/10" title="Destaque">
+                        <Highlighter className="w-4 h-4" />
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0 bg-card border-border shadow-xl" align="start">
+                      <HighlightPicker onSelect={applyHighlight} />
+                    </PopoverContent>
+                  </Popover>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button type="button" variant="ghost" size="sm" className="h-9 px-2.5 gap-1.5 hover:bg-primary/10" title="Tamanho da Fonte">
+                        <Type className="w-4 h-4" />
+                        <span className="text-xs font-medium">Tamanho</span>
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0 bg-card border-border shadow-xl" align="start">
+                      <SizePicker onSelect={applyFontSize} />
+                    </PopoverContent>
+                  </Popover>
+                </>
+              )}
+            </ToolbarGroup>
+
+            {/* Limpar Formatação */}
+            <div className="ml-auto">
+              <Button 
+                type="button" 
+                variant="ghost" 
+                size="sm" 
+                className="h-9 px-2.5 gap-1.5 text-muted-foreground hover:text-destructive hover:bg-destructive/10" 
+                title="Remover Formatação" 
+                onClick={removeFormatting}
+              >
+                <Eraser className="w-4 h-4" />
+                <span className="text-xs font-medium hidden sm:inline">Limpar</span>
+              </Button>
+            </div>
           </div>
-
-          {/* Cabeçalhos */}
-          <div className="flex items-center gap-0.5 px-2 border-r">
-            <Button type="button" variant="ghost" size="sm" className="h-8 w-8 p-0" title="Título Principal" onClick={() => insertHeading(1)}>
-              <Heading1 className="w-4 h-4" />
-            </Button>
-            <Button type="button" variant="ghost" size="sm" className="h-8 w-8 p-0" title="Subtítulo" onClick={() => insertHeading(2)}>
-              <Heading2 className="w-4 h-4" />
-            </Button>
-            <Button type="button" variant="ghost" size="sm" className="h-8 w-8 p-0" title="Subtítulo Menor" onClick={() => insertHeading(3)}>
-              <Heading3 className="w-4 h-4" />
-            </Button>
-          </div>
-
-          {/* Listas */}
-          <div className="flex items-center gap-0.5 px-2 border-r">
-            <Button type="button" variant="ghost" size="sm" className="h-8 w-8 p-0" title="Lista com Marcadores" onClick={() => insertList(false)}>
-              <List className="w-4 h-4" />
-            </Button>
-            <Button type="button" variant="ghost" size="sm" className="h-8 w-8 p-0" title="Lista Numerada" onClick={() => insertList(true)}>
-              <ListOrdered className="w-4 h-4" />
-            </Button>
-          </div>
-
-          {/* Alinhamento */}
-          <div className="flex items-center gap-0.5 px-2 border-r">
-            <Button type="button" variant="ghost" size="sm" className="h-8 w-8 p-0" title="Alinhar à Esquerda" onClick={() => alignText("left")}>
-              <AlignLeft className="w-4 h-4" />
-            </Button>
-            <Button type="button" variant="ghost" size="sm" className="h-8 w-8 p-0" title="Centralizar" onClick={() => alignText("center")}>
-              <AlignCenter className="w-4 h-4" />
-            </Button>
-            <Button type="button" variant="ghost" size="sm" className="h-8 w-8 p-0" title="Justificar" onClick={() => alignText("justify")}>
-              <AlignJustify className="w-4 h-4" />
-            </Button>
-          </div>
-
-          {/* Cores */}
-          {isMobile ? (
-            <Drawer>
-              <DrawerTrigger asChild>
-                <Button type="button" variant="ghost" size="sm" className="h-8 px-2 gap-1" title="Cor do Texto">
-                  <Palette className="w-4 h-4" />
-                  <span className="text-xs">Cor</span>
-                </Button>
-              </DrawerTrigger>
-              <DrawerContent>
-                <DrawerHeader>
-                  <DrawerTitle>Cor do Texto</DrawerTitle>
-                </DrawerHeader>
-                <div className="p-4">
-                  <ColorPicker onSelect={applyColor} />
-                </div>
-              </DrawerContent>
-            </Drawer>
-          ) : (
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button type="button" variant="ghost" size="sm" className="h-8 px-2 gap-1" title="Cor do Texto">
-                  <Palette className="w-4 h-4" />
-                  <span className="text-xs">Cor</span>
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto p-0" align="start">
-                <ColorPicker onSelect={applyColor} />
-              </PopoverContent>
-            </Popover>
-          )}
-
-          {/* Tamanho */}
-          {isMobile ? (
-            <Drawer>
-              <DrawerTrigger asChild>
-                <Button type="button" variant="ghost" size="sm" className="h-8 px-2 gap-1" title="Tamanho da Fonte">
-                  <Type className="w-4 h-4" />
-                  <span className="text-xs">Tamanho</span>
-                </Button>
-              </DrawerTrigger>
-              <DrawerContent>
-                <DrawerHeader>
-                  <DrawerTitle>Tamanho da Fonte</DrawerTitle>
-                </DrawerHeader>
-                <div className="p-4">
-                  <SizePicker onSelect={applyFontSize} />
-                </div>
-              </DrawerContent>
-            </Drawer>
-          ) : (
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button type="button" variant="ghost" size="sm" className="h-8 px-2 gap-1" title="Tamanho da Fonte">
-                  <Type className="w-4 h-4" />
-                  <span className="text-xs">Tamanho</span>
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto p-0" align="start">
-                <SizePicker onSelect={applyFontSize} />
-              </PopoverContent>
-            </Popover>
-          )}
-
-          {/* Remover Formatação */}
-          <Button type="button" variant="ghost" size="sm" className="h-8 px-2 gap-1 ml-auto" title="Remover Formatação" onClick={removeFormatting}>
-            <Eraser className="w-4 h-4" />
-            <span className="text-xs hidden sm:inline">Limpar</span>
-          </Button>
         </div>
 
-        {/* Editor */}
-        <div className="flex-1 min-h-[300px] max-h-[400px] rounded-lg border bg-background overflow-y-auto scrollbar-thin scrollbar-thumb-primary/30 scrollbar-track-muted"
-          style={{
-            scrollbarWidth: "thin",
-            scrollbarColor: "hsl(var(--primary) / 0.3) hsl(var(--muted))",
-          }}
+        {/* Editor Premium */}
+        <div 
+          className="flex-1 min-h-[350px] max-h-[500px] rounded-xl border-2 border-border/50 bg-gradient-to-b from-background to-muted/20 overflow-hidden shadow-inner"
         >
-          <div
-            ref={editorRef}
-            contentEditable
-            className="min-h-[300px] p-4 outline-none text-sm leading-relaxed focus:ring-2 focus:ring-primary/20 rounded-lg"
-            onInput={handleInput}
-            onBlur={handleInput}
-            data-placeholder={placeholder}
+          <div 
+            className="h-full overflow-y-auto"
             style={{
-              wordBreak: "break-word",
-              whiteSpace: "pre-wrap",
+              scrollbarWidth: "thin",
+              scrollbarColor: "hsl(var(--primary) / 0.3) transparent",
             }}
-          />
+          >
+            <div
+              ref={editorRef}
+              contentEditable
+              className="min-h-[350px] p-5 outline-none text-base leading-relaxed focus:bg-background/50 transition-colors"
+              onInput={handleInput}
+              onBlur={handleInput}
+              data-placeholder={placeholder}
+              style={{
+                wordBreak: "break-word",
+                whiteSpace: "pre-wrap",
+              }}
+            />
+          </div>
         </div>
+
+        {/* Dica */}
+        <p className="text-xs text-muted-foreground text-center">
+          Selecione o texto para aplicar formatação • Use Ctrl+B para negrito, Ctrl+I para itálico
+        </p>
       </div>
     );
   }
