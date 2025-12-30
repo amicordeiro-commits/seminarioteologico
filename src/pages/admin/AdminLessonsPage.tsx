@@ -127,10 +127,15 @@ export default function AdminLessonsPage() {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const selectionRef = useRef<{ start: number; end: number }>({ start: 0, end: 0 });
 
-  // Salva a seleção atual do textarea (sincrono, sem re-render)
+  // Salva a seleção atual do textarea (somente quando ele está em foco)
   const saveSelection = useCallback(() => {
     const el = textareaRef.current;
     if (!el) return;
+
+    // No mobile, ao abrir Drawer/menus o foco sai do textarea e alguns browsers zeram selectionStart/End.
+    // Para não perder a seleção anterior, só atualizamos quando o textarea está realmente ativo.
+    if (document.activeElement !== el) return;
+
     selectionRef.current = { start: el.selectionStart ?? 0, end: el.selectionEnd ?? 0 };
   }, []);
 
@@ -165,7 +170,11 @@ export default function AdminLessonsPage() {
         const selectedText = text.substring(start, end);
         const newText = text.substring(0, start) + before + selectedText + after + text.substring(end);
 
-        const cursor = start + before.length + selectedText.length + after.length;
+        // Se não há seleção, posiciona o cursor DENTRO da marcação para facilitar digitação colorida/formatada.
+        const cursor = selectedText.length === 0
+          ? start + before.length
+          : start + before.length + selectedText.length + after.length;
+
         restoreSelection(cursor, cursor);
 
         return { ...prev, content: newText };
@@ -1144,6 +1153,8 @@ export default function AdminLessonsPage() {
                       }
                       onSelect={saveSelection}
                       onMouseUp={saveSelection}
+                      onPointerUp={saveSelection}
+                      onTouchEnd={saveSelection}
                       onKeyUp={saveSelection}
                       onClick={saveSelection}
                       placeholder="Digite ou cole o conteúdo completo da aula aqui...
