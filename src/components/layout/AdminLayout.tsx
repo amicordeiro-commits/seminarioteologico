@@ -29,6 +29,7 @@ interface AdminLayoutProps {
 const menuItems = [
   { icon: LayoutDashboard, label: "Dashboard", path: "/admin" },
   { icon: Users, label: "Usuários", path: "/admin/users" },
+  { icon: GraduationCap, label: "Matrículas", path: "/admin/enrollments" },
   { icon: BookOpen, label: "Cursos", path: "/admin/courses" },
   { icon: PlayCircle, label: "Aulas", path: "/admin/lessons" },
   { icon: ClipboardList, label: "Quizzes", path: "/admin/quizzes" },
@@ -36,7 +37,6 @@ const menuItems = [
   { icon: Calendar, label: "Eventos", path: "/admin/events" },
   { icon: FileText, label: "Devocionais", path: "/admin/devotionals" },
   { icon: MessageSquare, label: "Mensagens", path: "/admin/messages" },
-  { icon: GraduationCap, label: "Certificados", path: "/admin/certificates" },
   { icon: Languages, label: "Strong's PT", path: "/admin/strongs" },
   { icon: FileDown, label: "Materiais PDF", path: "/admin/materials" },
   { icon: Settings, label: "Configurações", path: "/admin/settings" },

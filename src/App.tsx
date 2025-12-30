@@ -36,6 +36,7 @@ import AdminQuizzesPage from "./pages/admin/AdminQuizzesPage";
 import AdminLessonsPage from "./pages/admin/AdminLessonsPage";
 import AdminStrongsPage from "./pages/admin/AdminStrongsPage";
 import AdminMaterialsPage from "./pages/admin/AdminMaterialsPage";
+import AdminEnrollmentsPage from "./pages/admin/AdminEnrollmentsPage";
 
 const queryClient = new QueryClient();
 
@@ -219,6 +220,14 @@ const AppRoutes = () => {
         element={
           <AdminRoute>
             <AdminUsersPage />
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/enrollments"
+        element={
+          <AdminRoute>
+            <AdminEnrollmentsPage />
           </AdminRoute>
         }
       />
