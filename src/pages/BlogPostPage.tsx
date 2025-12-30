@@ -17,15 +17,17 @@ export default function BlogPostPage() {
   const { data: post, isLoading } = useBlogPost(id || "");
   const [copied, setCopied] = useState(false);
 
-  // URL for regular viewing
+  // URLs
+  const origin = typeof window !== "undefined" ? window.location.origin : "";
   const postUrl = typeof window !== "undefined" ? window.location.href : "";
-  
-  // URL for Facebook sharing (uses edge function for proper OG tags)
+  const publicUrl = id && origin ? `${origin}/p/blog/${id}` : postUrl;
+
+  // URL for Facebook sharing (uses backend function for proper OG tags)
   // Add a cache-buster so Facebook re-scrapes after edits.
   const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || "";
-  const ogShareUrl = id && supabaseUrl
-    ? `${supabaseUrl}/functions/v1/og-blog?id=${id}${post?.updated_at ? `&v=${encodeURIComponent(post.updated_at)}` : ""}`
-    : "";
+  const ogShareUrl = id && supabaseUrl && origin
+    ? `${supabaseUrl}/functions/v1/og-blog?id=${id}&origin=${encodeURIComponent(origin)}${post?.updated_at ? `&v=${encodeURIComponent(post.updated_at)}` : ""}`
+    : publicUrl;
 
   // Update meta tags for social sharing
   useEffect(() => {
@@ -58,7 +60,7 @@ export default function BlogPostPage() {
       updateMetaTag("og:title", post.title);
       updateMetaTag("og:description", post.excerpt || post.content.substring(0, 160));
       updateMetaTag("og:type", "article");
-      updateMetaTag("og:url", postUrl);
+      updateMetaTag("og:url", publicUrl);
       if (post.featured_image) {
         updateMetaTag("og:image", post.featured_image);
         updateMetaTag("og:image:width", "1200");

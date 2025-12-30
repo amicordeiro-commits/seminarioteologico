@@ -17,14 +17,16 @@ export default function PublicBlogPostPage() {
   const { data: post, isLoading } = useBlogPost(id || "");
   const [copied, setCopied] = useState(false);
 
-  // Current page URL for sharing
+  // URLs
+  const origin = typeof window !== "undefined" ? window.location.origin : "";
   const currentUrl = typeof window !== "undefined" ? window.location.href : "";
-  
-  // URL for Facebook sharing (uses edge function for proper OG tags)
+  const publicUrl = id && origin ? `${origin}/p/blog/${id}` : currentUrl;
+
+  // URL for Facebook sharing (uses backend function for proper OG tags)
   const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || "";
-  const ogShareUrl = id && supabaseUrl
-    ? `${supabaseUrl}/functions/v1/og-blog?id=${id}`
-    : currentUrl;
+  const ogShareUrl = id && supabaseUrl && origin
+    ? `${supabaseUrl}/functions/v1/og-blog?id=${id}&origin=${encodeURIComponent(origin)}`
+    : publicUrl;
 
   // Update meta tags for social sharing
   useEffect(() => {
@@ -54,7 +56,7 @@ export default function PublicBlogPostPage() {
       updateMetaTag("og:title", post.title);
       updateMetaTag("og:description", post.excerpt || post.content.substring(0, 160));
       updateMetaTag("og:type", "article");
-      updateMetaTag("og:url", currentUrl);
+      updateMetaTag("og:url", publicUrl);
       if (post.featured_image) {
         updateMetaTag("og:image", post.featured_image);
         updateMetaTag("og:image:width", "1200");
