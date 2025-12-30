@@ -1,22 +1,15 @@
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { AppLayout } from "@/components/layout/AppLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 import { Skeleton } from "@/components/ui/skeleton";
 import { BookOpen, Calendar, User, ArrowRight } from "lucide-react";
-import { useBlogPosts, BlogPost } from "@/hooks/useBlogPosts";
+import { useBlogPosts } from "@/hooks/useBlogPosts";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
 export default function BlogPage() {
   const { data: posts = [], isLoading } = useBlogPosts(true);
-  const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
+  const navigate = useNavigate();
 
   if (isLoading) {
     return (
@@ -66,7 +59,7 @@ export default function BlogPage() {
               <Card
                 key={post.id}
                 className="hover:shadow-lg transition-shadow cursor-pointer group overflow-hidden"
-                onClick={() => setSelectedPost(post)}
+                onClick={() => navigate(`/blog/${post.id}`)}
               >
                 {post.featured_image && (
                   <div className="aspect-video w-full overflow-hidden">
@@ -112,63 +105,6 @@ export default function BlogPage() {
             ))}
           </div>
         )}
-
-        <Dialog
-          open={!!selectedPost}
-          onOpenChange={() => setSelectedPost(null)}
-        >
-          <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
-            {selectedPost && (
-              <>
-                {selectedPost.featured_image && (
-                  <div className="aspect-video w-full overflow-hidden rounded-lg mb-4">
-                    <img
-                      src={selectedPost.featured_image}
-                      alt={selectedPost.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                )}
-                <DialogHeader>
-                  <DialogTitle className="text-2xl">
-                    {selectedPost.title}
-                  </DialogTitle>
-                  <div className="flex items-center gap-4 text-sm text-muted-foreground pt-2">
-                    {selectedPost.author_name && (
-                      <span className="flex items-center gap-1">
-                        <User className="h-4 w-4" />
-                        {selectedPost.author_name}
-                      </span>
-                    )}
-                    <span className="flex items-center gap-1">
-                      <Calendar className="h-4 w-4" />
-                      {format(
-                        new Date(
-                          selectedPost.published_at || selectedPost.created_at
-                        ),
-                        "dd 'de' MMMM 'de' yyyy",
-                        { locale: ptBR }
-                      )}
-                    </span>
-                  </div>
-                </DialogHeader>
-                <div className="prose prose-sm dark:prose-invert max-w-none mt-4">
-                  {selectedPost.content.split("\n").map((paragraph, index) => (
-                    <p key={index}>{paragraph}</p>
-                  ))}
-                </div>
-                <div className="flex justify-end pt-4">
-                  <Button
-                    variant="outline"
-                    onClick={() => setSelectedPost(null)}
-                  >
-                    Fechar
-                  </Button>
-                </div>
-              </>
-            )}
-          </DialogContent>
-        </Dialog>
       </div>
     </AppLayout>
   );
