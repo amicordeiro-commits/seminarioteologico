@@ -650,123 +650,165 @@ const CoursePage = () => {
             {/* Lessons */}
             {course.lessons && course.lessons.length > 0 && (
               <div className="space-y-6">
-                <div className="flex items-center justify-between">
-                  <h2 className="text-xl font-serif font-semibold text-foreground">Conteúdo Programático</h2>
-                  <Badge variant="outline" className="text-xs">
-                    {completedLessonsCount}/{course.lessons.length} concluídas
-                  </Badge>
+                <div className="flex items-center justify-between flex-wrap gap-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-md">
+                      <BookMarked className="w-5 h-5 text-primary-foreground" />
+                    </div>
+                    <div>
+                      <h2 className="text-xl font-serif font-semibold text-foreground">Conteúdo Programático</h2>
+                      <p className="text-xs text-muted-foreground">{course.lessons.length} disciplinas disponíveis</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-success/10 border border-success/20">
+                      <CheckCircle2 className="w-4 h-4 text-success" />
+                      <span className="text-sm font-medium text-success">{completedLessonsCount}/{course.lessons.length}</span>
+                    </div>
+                  </div>
                 </div>
                 
-                <div className="grid gap-3">
+                {/* Grade de aulas estilo revista */}
+                <div className="grid gap-4 sm:gap-5">
                   {course.lessons.map((lesson, index) => {
                     const isCompleted = lessonProgress?.some(
                       (p) => p.lesson_id === lesson.id && p.completed
                     );
-                    const canOpen = !!enrollment;
 
                     return (
                       <div
                         key={lesson.id}
                         className={cn(
-                          "group relative p-4 rounded-xl border transition-all duration-200",
+                          "group relative rounded-2xl border-2 transition-all duration-300 overflow-hidden",
                           isCompleted
-                            ? "bg-success/5 border-success/30"
-                            : "bg-card border-border hover:border-primary/40 hover:shadow-sm"
+                            ? "bg-gradient-to-r from-success/5 to-success/10 border-success/30 shadow-sm"
+                            : "bg-card border-border hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5"
                         )}
                       >
-                        <div className="flex items-start gap-4">
-                          {/* Número da aula */}
-                          <div
-                            className={cn(
-                              "w-10 h-10 rounded-xl flex items-center justify-center font-serif font-semibold text-sm shrink-0 transition-colors",
-                              isCompleted
-                                ? "bg-success text-success-foreground"
-                                : "bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground"
-                            )}
-                          >
-                            {isCompleted ? (
-                              <CheckCircle2 className="w-5 h-5" />
-                            ) : (
-                              String(index + 1).padStart(2, "0")
-                            )}
-                          </div>
-
-                          {/* Conteúdo */}
-                          <div className="flex-1 min-w-0">
-                            <h3
+                        {/* Barra de progresso no topo */}
+                        <div 
+                          className={cn(
+                            "h-1 transition-all duration-500",
+                            isCompleted 
+                              ? "bg-gradient-to-r from-success via-success/80 to-success" 
+                              : "bg-gradient-to-r from-primary/20 via-primary/10 to-transparent"
+                          )}
+                        />
+                        
+                        <div className="p-4 sm:p-5">
+                          <div className="flex items-start gap-4">
+                            {/* Número da aula - estilo moderno */}
+                            <div
                               className={cn(
-                                "font-medium text-sm sm:text-base leading-snug",
+                                "w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex flex-col items-center justify-center font-serif shrink-0 transition-all duration-300 shadow-md",
                                 isCompleted
-                                  ? "text-muted-foreground"
-                                  : "text-foreground"
+                                  ? "bg-gradient-to-br from-success to-success/80 text-white"
+                                  : "bg-gradient-to-br from-primary/15 to-primary/5 text-primary group-hover:from-primary group-hover:to-primary/80 group-hover:text-white group-hover:scale-105"
                               )}
                             >
-                              {lesson.title}
-                            </h3>
-                            {lesson.description && (
-                              <p className="text-xs text-muted-foreground mt-1 line-clamp-1">
-                                {lesson.description}
-                              </p>
-                            )}
-                            <div className="flex items-center gap-3 mt-2">
-                              <span className="text-xs text-muted-foreground flex items-center gap-1">
-                                <Clock className="w-3 h-3" />
-                                {lesson.duration_minutes}min
-                              </span>
-                              {lesson.is_free && (
-                                <Badge variant="secondary" className="text-[10px] px-1.5 py-0">
-                                  Grátis
+                              {isCompleted ? (
+                                <CheckCircle2 className="w-6 h-6" />
+                              ) : (
+                                <>
+                                  <span className="text-[10px] uppercase tracking-wider opacity-70">Aula</span>
+                                  <span className="text-lg sm:text-xl font-bold -mt-0.5">{String(index + 1).padStart(2, "0")}</span>
+                                </>
+                              )}
+                            </div>
+
+                            {/* Conteúdo */}
+                            <div className="flex-1 min-w-0 py-1">
+                              <h3
+                                className={cn(
+                                  "font-serif font-semibold text-base sm:text-lg leading-snug transition-colors",
+                                  isCompleted
+                                    ? "text-muted-foreground"
+                                    : "text-foreground group-hover:text-primary"
+                                )}
+                              >
+                                {lesson.title}
+                              </h3>
+                              
+                              {lesson.description && (
+                                <p className="text-sm text-muted-foreground mt-1.5 line-clamp-2">
+                                  {lesson.description}
+                                </p>
+                              )}
+                              
+                              <div className="flex items-center flex-wrap gap-2 mt-3">
+                                <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground bg-muted/50 px-2.5 py-1 rounded-full">
+                                  <Clock className="w-3.5 h-3.5" />
+                                  {lesson.duration_minutes} minutos
+                                </span>
+                                
+                                {lesson.is_free && (
+                                  <Badge className="bg-accent/20 text-accent border-accent/30 text-xs">
+                                    Grátis
+                                  </Badge>
+                                )}
+                                
+                                {isCompleted && (
+                                  <Badge className="bg-success/15 text-success border-success/25 text-xs">
+                                    Concluída
+                                  </Badge>
+                                )}
+                              </div>
+                            </div>
+
+                            {/* Ações */}
+                            <div className="flex flex-col sm:flex-row items-end sm:items-center gap-2 shrink-0">
+                              {enrollment ? (
+                                <>
+                                  <Button
+                                    onClick={() => handleOpenLesson(lesson)}
+                                    className={cn(
+                                      "gap-2 font-medium shadow-md transition-all",
+                                      isCompleted 
+                                        ? "bg-success/20 text-success hover:bg-success/30 border border-success/30" 
+                                        : "bg-primary hover:bg-primary/90"
+                                    )}
+                                    size="sm"
+                                  >
+                                    <BookOpen className="w-4 h-4" />
+                                    <span className="hidden sm:inline">Estudar</span>
+                                  </Button>
+                                  
+                                  <div className="flex items-center gap-1">
+                                    <Button
+                                      variant="outline"
+                                      size="icon"
+                                      onClick={() => handleDownloadLessonPdf(lesson)}
+                                      disabled={generatingPdf === lesson.id}
+                                      className="h-9 w-9 hover:border-primary/50"
+                                      title="Baixar PDF"
+                                    >
+                                      {generatingPdf === lesson.id ? (
+                                        <Loader2 className="w-4 h-4 animate-spin" />
+                                      ) : (
+                                        <FileDown className="w-4 h-4" />
+                                      )}
+                                    </Button>
+                                    
+                                    {!isCompleted && (
+                                      <Button
+                                        variant="outline"
+                                        size="icon"
+                                        onClick={() => handleMarkComplete(lesson.id)}
+                                        disabled={markCompleteMutation.isPending}
+                                        className="h-9 w-9 hover:border-success/50 hover:text-success hover:bg-success/10"
+                                        title="Marcar como concluída"
+                                      >
+                                        <CheckCircle2 className="w-4 h-4" />
+                                      </Button>
+                                    )}
+                                  </div>
+                                </>
+                              ) : (
+                                <Badge variant="secondary" className="text-sm px-3 py-1">
+                                  Matricule-se para acessar
                                 </Badge>
                               )}
                             </div>
-                          </div>
-
-                          {/* Ações */}
-                          <div className="flex items-center gap-2 shrink-0">
-                            {enrollment && (
-                              <>
-                                <Button
-                                  variant="ghost"
-                                  size="sm"
-                                  onClick={() => handleOpenLesson(lesson)}
-                                  className="text-xs gap-1.5 h-8"
-                                >
-                                  <BookOpen className="w-4 h-4" />
-                                  <span className="hidden sm:inline">Ler</span>
-                                </Button>
-                                <Button
-                                  variant="outline"
-                                  size="sm"
-                                  onClick={() => handleDownloadLessonPdf(lesson)}
-                                  disabled={generatingPdf === lesson.id}
-                                  className="text-xs gap-1.5 h-8"
-                                >
-                                  {generatingPdf === lesson.id ? (
-                                    <Loader2 className="w-4 h-4 animate-spin" />
-                                  ) : (
-                                    <FileDown className="w-4 h-4" />
-                                  )}
-                                  <span className="hidden sm:inline">PDF</span>
-                                </Button>
-                                {!isCompleted && (
-                                  <Button
-                                    variant="ghost"
-                                    size="icon"
-                                    onClick={() => handleMarkComplete(lesson.id)}
-                                    disabled={markCompleteMutation.isPending}
-                                    className="h-8 w-8 text-muted-foreground hover:text-success hover:bg-success/10"
-                                    title="Marcar como concluída"
-                                  >
-                                    <CheckCircle2 className="w-4 h-4" />
-                                  </Button>
-                                )}
-                              </>
-                            )}
-                            {!enrollment && (
-                              <Badge variant="secondary" className="text-xs">
-                                Matricule-se
-                              </Badge>
-                            )}
                           </div>
                         </div>
                       </div>
