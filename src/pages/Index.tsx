@@ -4,16 +4,18 @@ import { StatsCard } from "@/components/dashboard/StatsCard";
 import { ActivityTimeline } from "@/components/dashboard/ActivityTimeline";
 import { CalendarWidget } from "@/components/dashboard/CalendarWidget";
 import { useUpcomingEvents } from "@/hooks/useCalendarEvents";
-import { BookOpen, Clock, Trophy, TrendingUp, ArrowRight, Cross, BookMarked, Loader2, GraduationCap, FileText } from "lucide-react";
+import { BookOpen, Clock, Trophy, TrendingUp, ArrowRight, Cross, BookMarked, Loader2, GraduationCap, FileText, Award, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import heroBanner from "@/assets/hero-theology.jpg";
 import { useAuth } from "@/hooks/useAuth";
 import { useCourses, useEnrollments } from "@/hooks/useCourses";
+import { useCertificates } from "@/hooks/useCertificates";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import { Badge } from "@/components/ui/badge";
 
 const Index = () => {
   const { user } = useAuth();
@@ -22,6 +24,7 @@ const Index = () => {
   const { data: courses, isLoading: loadingCourses } = useCourses();
   const { data: enrollments, isLoading: loadingEnrollments } = useEnrollments();
   const { data: upcomingEvents, isLoading: loadingEvents } = useUpcomingEvents(4);
+  const { data: certificates, isLoading: loadingCertificates } = useCertificates();
 
   // Fetch real system stats
   const { data: systemStats } = useQuery({
@@ -221,6 +224,77 @@ const Index = () => {
             <CourseCard course={coursesWithProgress[4]} variant="featured" />
           </section>
         )}
+
+        {/* Certificates Section */}
+        <section className="space-y-3 sm:space-y-6">
+          <div className="flex items-center justify-between">
+            <h2 className="text-base sm:text-lg md:text-xl font-serif font-semibold text-foreground flex items-center gap-2">
+              <Award className="w-5 h-5 text-accent" />
+              Meus Certificados
+            </h2>
+            <Button variant="ghost" size="sm" asChild>
+              <Link to="/certificates" className="text-primary font-sans text-xs sm:text-sm">
+                Ver todos
+                <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1" />
+              </Link>
+            </Button>
+          </div>
+          
+          {loadingCertificates ? (
+            <div className="flex items-center justify-center py-8 sm:py-12">
+              <Loader2 className="w-6 h-6 sm:w-8 sm:h-8 animate-spin text-primary" />
+            </div>
+          ) : certificates && certificates.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+              {certificates.slice(0, 3).map((cert, index) => (
+                <div
+                  key={cert.id}
+                  className="p-4 sm:p-6 rounded-xl bg-gradient-to-br from-accent/10 via-card to-primary/5 border border-accent/20 hover:border-accent/40 transition-all duration-300 animate-slide-up"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="p-2 rounded-lg bg-accent/20">
+                      <Award className="w-6 h-6 text-accent" />
+                    </div>
+                    <Badge variant="secondary" className="text-xs">
+                      {format(new Date(cert.issued_at), "MMM yyyy", { locale: ptBR })}
+                    </Badge>
+                  </div>
+                  <h3 className="font-serif font-semibold text-foreground mb-1 line-clamp-2">
+                    {(cert as any).courses?.title || "Curso Concluído"}
+                  </h3>
+                  <p className="text-xs text-muted-foreground mb-3 font-sans">
+                    Nº {cert.certificate_number}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-muted-foreground">
+                      {(cert as any).courses?.duration_hours || 0}h de carga horária
+                    </span>
+                    <Button variant="ghost" size="sm" asChild className="h-8 px-2">
+                      <Link to="/certificates">
+                        <Download className="w-4 h-4" />
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="p-6 sm:p-8 rounded-xl bg-card border border-border text-center">
+              <Award className="w-12 h-12 text-muted-foreground/50 mx-auto mb-4" />
+              <h3 className="font-serif font-semibold text-foreground mb-2">Nenhum certificado ainda</h3>
+              <p className="text-sm text-muted-foreground mb-4 font-sans">
+                Complete um curso para receber seu certificado de conclusão.
+              </p>
+              <Button variant="outline" size="sm" asChild>
+                <Link to="/courses">
+                  Explorar Cursos
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Link>
+              </Button>
+            </div>
+          )}
+        </section>
       </div>
     </AppLayout>
   );
