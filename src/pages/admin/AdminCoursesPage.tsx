@@ -21,10 +21,43 @@ import {
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import { BookOpen, Plus, Pencil, Trash2, Loader2, Users } from "lucide-react";
+import { BookOpen, Plus, Pencil, Trash2, Loader2, Users, Sparkles } from "lucide-react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+
+const useGenerateQuiz = () => {
+  const { toast } = useToast();
+  const queryClient = useQueryClient();
+  
+  return useMutation({
+    mutationFn: async ({ courseId, courseName }: { courseId: string; courseName: string }) => {
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/generate-quiz`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ courseId, courseName, numberOfQuestions: 10, passingScore: 70 }),
+        }
+      );
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || "Erro ao gerar quiz");
+      }
+      return response.json();
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["admin-quizzes"] });
+      toast({ 
+        title: "Quiz gerado com sucesso!", 
+        description: `${data.quiz.questionsCount} questões criadas. Acesse Quizzes para revisar.` 
+      });
+    },
+    onError: (error: Error) => {
+      toast({ title: "Erro ao gerar quiz", description: error.message, variant: "destructive" });
+    },
+  });
+};
 
 interface Course {
   id: string;
@@ -228,6 +261,14 @@ export default function AdminCoursesPage() {
                     >
                       <Pencil className="w-4 h-4 mr-1" />
                       Editar
+                    </Button>
+                    <Button
+                      variant="secondary"
+                      size="sm"
+                      onClick={() => generateQuizMutation.mutate({ courseId: course.id, courseName: course.title })}
+                      disabled={generateQuizMutation.isPending}
+                    >
+                      {generateQuizMutation.isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
                     </Button>
                     <Button
                       variant="destructive"
