@@ -158,7 +158,7 @@ export function useGenerateDevotional() {
       );
 
       if (error) throw error;
-      return data as { title: string; excerpt: string; content: string };
+      return data as { title: string; excerpt: string; content: string; imageUrl?: string };
     },
   });
 }
