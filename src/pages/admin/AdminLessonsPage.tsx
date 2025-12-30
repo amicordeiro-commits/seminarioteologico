@@ -128,17 +128,32 @@ export default function AdminLessonsPage() {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const selectionRef = useRef<{ start: number; end: number }>({ start: 0, end: 0 });
 
-  // Salva a seleção atual do textarea (somente quando ele está em foco)
-  const saveSelection = useCallback(() => {
+  // Salva a seleção atual do textarea
+  // force = true ignora verificação de foco (usado no onPointerDown dos botões)
+  const saveSelection = useCallback((force: boolean | React.SyntheticEvent = false) => {
+    // Se foi passado um evento, ignoramos (é chamada de handler de evento)
+    const forceCapture = typeof force === 'boolean' ? force : false;
+    
     const el = textareaRef.current;
     if (!el) return;
 
-    // No mobile, ao abrir Drawer/menus o foco sai do textarea e alguns browsers zeram selectionStart/End.
-    // Para não perder a seleção anterior, só atualizamos quando o textarea está realmente ativo.
-    if (document.activeElement !== el) return;
+    // Se force=true, sempre captura (mesmo que o foco ainda não tenha saído)
+    // Caso contrário, só atualiza quando o textarea está ativo
+    if (!forceCapture && document.activeElement !== el) return;
 
-    selectionRef.current = { start: el.selectionStart ?? 0, end: el.selectionEnd ?? 0 };
+    const start = el.selectionStart ?? 0;
+    const end = el.selectionEnd ?? 0;
+    
+    // Só atualiza se houver valores válidos
+    if (start !== 0 || end !== 0 || selectionRef.current.start === 0) {
+      selectionRef.current = { start, end };
+    }
   }, []);
+
+  // Wrapper para forçar captura da seleção (para uso nos botões de formatação)
+  const forceSaveSelection = useCallback(() => {
+    saveSelection(true);
+  }, [saveSelection]);
 
   const getSelection = useCallback(() => {
     const el = textareaRef.current;
@@ -826,7 +841,7 @@ export default function AdminLessonsPage() {
                               className="h-8 px-2 gap-1 text-xs"
                               onPointerDown={() => {
                                 // não deixa a seleção do editor se perder antes de abrir o drawer
-                                saveSelection();
+                                forceSaveSelection();
                               }}
                             >
                               <Eye className="w-4 h-4" />
@@ -1005,7 +1020,7 @@ export default function AdminLessonsPage() {
                             className="h-8 px-2 gap-1"
                             title="Cor do Texto"
                             onPointerDown={(e) => {
-                              saveSelection();
+                              forceSaveSelection();
                             }}
                           >
                             <Palette className="w-4 h-4" />
@@ -1101,7 +1116,7 @@ export default function AdminLessonsPage() {
                             className="h-8 px-2 gap-1"
                             title="Tamanho da Fonte"
                             onPointerDown={(e) => {
-                              saveSelection();
+                              forceSaveSelection();
                             }}
                           >
                             <Type className="w-4 h-4" />
