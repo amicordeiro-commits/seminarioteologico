@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Skeleton } from "@/components/ui/skeleton";
 import { MessageSquare, Plus, MessageCircle, Eye } from "lucide-react";
 import { useForumTopics, useCreateTopic } from "@/hooks/useForum";
@@ -50,7 +50,10 @@ export default function ForumPage() {
               <Button><Plus className="h-4 w-4 mr-2" /> Novo Tópico</Button>
             </DialogTrigger>
             <DialogContent>
-              <DialogHeader><DialogTitle>Novo Tópico</DialogTitle></DialogHeader>
+              <DialogHeader>
+                <DialogTitle>Novo Tópico</DialogTitle>
+                <DialogDescription>Crie um novo tópico de discussão para a comunidade.</DialogDescription>
+              </DialogHeader>
               <div className="space-y-4">
                 <Input placeholder="Título do tópico" value={title} onChange={e => setTitle(e.target.value)} />
                 <Textarea placeholder="Conteúdo..." value={content} onChange={e => setContent(e.target.value)} rows={5} />
