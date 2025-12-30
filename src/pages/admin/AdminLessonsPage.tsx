@@ -23,12 +23,35 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { PlayCircle, Plus, Pencil, Trash2, Loader2, Video, Upload, FileText, FolderOpen, BookOpen, Settings, X, Bold, Italic, Underline, Heading1, Heading2, Heading3, List, ListOrdered, AlignLeft, AlignCenter, AlignJustify, Palette, Type } from "lucide-react";
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+  PlayCircle,
+  Plus,
+  Pencil,
+  Trash2,
+  Loader2,
+  Video,
+  Upload,
+  FileText,
+  FolderOpen,
+  BookOpen,
+  Settings,
+  X,
+  Bold,
+  Italic,
+  Underline,
+  Heading1,
+  Heading2,
+  Heading3,
+  List,
+  ListOrdered,
+  AlignLeft,
+  AlignCenter,
+  AlignJustify,
+  Palette,
+  Type,
+} from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { RichTextPreview } from "@/components/editor/RichTextPreview";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
@@ -812,26 +835,42 @@ export default function AdminLessonsPage() {
                     </Popover>
                   </div>
                   
-                  <Textarea
-                    ref={textareaRef}
-                    data-content-editor
-                    value={editingLesson?.content || ""}
-                    onChange={(e) =>
-                      setEditingLesson({ ...editingLesson, content: e.target.value })
-                    }
-                    onSelect={saveSelection}
-                    onMouseUp={saveSelection}
-                    onKeyUp={saveSelection}
-                    onClick={saveSelection}
-                    placeholder="Digite ou cole o conteúdo completo da aula aqui...
+                  <div className="flex-1 min-h-0 grid gap-4 lg:grid-cols-2">
+                    <Textarea
+                      ref={textareaRef}
+                      data-content-editor
+                      value={editingLesson?.content || ""}
+                      onChange={(e) =>
+                        setEditingLesson({ ...editingLesson, content: e.target.value })
+                      }
+                      onSelect={saveSelection}
+                      onMouseUp={saveSelection}
+                      onKeyUp={saveSelection}
+                      onClick={saveSelection}
+                      placeholder="Digite ou cole o conteúdo completo da aula aqui...
 
 Selecione o texto e use a barra de ferramentas para formatar:
 • Negrito, Itálico, Sublinhado
 • Títulos e Subtítulos
 • Cores e Tamanhos de Fonte
 • Listas e Alinhamento"
-                    className="flex-1 min-h-0 font-mono text-sm resize-none"
-                  />
+                      className="flex-1 min-h-0 font-mono text-sm resize-none"
+                    />
+
+                    <div className="min-h-0 rounded-lg border bg-muted/30 overflow-hidden flex flex-col">
+                      <div className="px-3 py-2 border-b bg-background/60">
+                        <p className="text-xs font-medium text-foreground">Pré-visualização</p>
+                        <p className="text-[11px] text-muted-foreground">
+                          Aqui as cores/tamanhos aparecem (o campo de edição é texto puro)
+                        </p>
+                      </div>
+                      <ScrollArea className="flex-1">
+                        <div className="p-3">
+                          <RichTextPreview content={editingLesson?.content || ""} />
+                        </div>
+                      </ScrollArea>
+                    </div>
+                  </div>
                 </div>
               </TabsContent>
               
