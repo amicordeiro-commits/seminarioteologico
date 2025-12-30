@@ -22,8 +22,9 @@ export default function BlogPostPage() {
   
   // URL for Facebook sharing (uses edge function for proper OG tags)
   // Add a cache-buster so Facebook re-scrapes after edits.
-  const ogShareUrl = id
-    ? `https://hjorsjoaykgnsmbxgnyn.supabase.co/functions/v1/og-blog?id=${id}${post?.updated_at ? `&v=${encodeURIComponent(post.updated_at)}` : ""}`
+  const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || "";
+  const ogShareUrl = id && supabaseUrl
+    ? `${supabaseUrl}/functions/v1/og-blog?id=${id}${post?.updated_at ? `&v=${encodeURIComponent(post.updated_at)}` : ""}`
     : "";
 
   // Update meta tags for social sharing

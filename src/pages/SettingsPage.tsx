@@ -28,9 +28,15 @@ import {
   Save,
 } from "lucide-react";
 import { useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 export default function SettingsPage() {
   const [showPassword, setShowPassword] = useState(false);
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [isUpdatingPassword, setIsUpdatingPassword] = useState(false);
   const [notifications, setNotifications] = useState({
     email: true,
     push: true,
@@ -39,6 +45,36 @@ export default function SettingsPage() {
     reminders: false,
     weeklyDigest: true,
   });
+
+  const handleUpdatePassword = async () => {
+    if (!newPassword || !confirmPassword) {
+      toast.error("Preencha todos os campos de senha");
+      return;
+    }
+    if (newPassword !== confirmPassword) {
+      toast.error("As senhas não coincidem");
+      return;
+    }
+    if (newPassword.length < 6) {
+      toast.error("A senha deve ter pelo menos 6 caracteres");
+      return;
+    }
+
+    setIsUpdatingPassword(true);
+    try {
+      const { error } = await supabase.auth.updateUser({ password: newPassword });
+      if (error) throw error;
+      
+      toast.success("Senha atualizada com sucesso!");
+      setCurrentPassword("");
+      setNewPassword("");
+      setConfirmPassword("");
+    } catch (error: any) {
+      toast.error(error.message || "Erro ao atualizar senha");
+    } finally {
+      setIsUpdatingPassword(false);
+    }
+  };
 
   return (
     <AppLayout>
@@ -246,6 +282,8 @@ export default function SettingsPage() {
                       <Input
                         type={showPassword ? "text" : "password"}
                         placeholder="Senha atual"
+                        value={currentPassword}
+                        onChange={(e) => setCurrentPassword(e.target.value)}
                       />
                       <button
                         type="button"
@@ -259,11 +297,25 @@ export default function SettingsPage() {
                         )}
                       </button>
                     </div>
-                    <Input type="password" placeholder="Nova senha" />
-                    <Input type="password" placeholder="Confirmar nova senha" />
-                    <Button className="gap-2">
+                    <Input 
+                      type="password" 
+                      placeholder="Nova senha" 
+                      value={newPassword}
+                      onChange={(e) => setNewPassword(e.target.value)}
+                    />
+                    <Input 
+                      type="password" 
+                      placeholder="Confirmar nova senha" 
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                    />
+                    <Button 
+                      className="gap-2" 
+                      onClick={handleUpdatePassword}
+                      disabled={isUpdatingPassword || !newPassword || !confirmPassword}
+                    >
                       <Key className="w-4 h-4" />
-                      Atualizar Senha
+                      {isUpdatingPassword ? "Atualizando..." : "Atualizar Senha"}
                     </Button>
                   </div>
                 </div>
