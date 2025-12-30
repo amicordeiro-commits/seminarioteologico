@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -22,10 +22,8 @@ import {
   Play,
   BookMarked,
   Brain,
-  Globe,
   Download,
   MessageCircle,
-  ChevronRight,
   Zap,
   Heart,
   Target,
@@ -36,6 +34,9 @@ import {
   Smartphone,
   Headphones,
   Quote,
+  Menu,
+  X,
+  ChevronDown,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import heroImage from '@/assets/hero-theology.jpg';
@@ -44,7 +45,7 @@ const features = [
   {
     icon: BookOpen,
     title: 'Cursos Teológicos',
-    description: 'Formação completa em Teologia, Ministério Pastoral e Liderança Cristã',
+    description: 'Formação completa em Teologia e Ministério Pastoral',
     color: 'primary',
   },
   {
@@ -55,52 +56,34 @@ const features = [
   },
   {
     icon: Brain,
-    title: 'Quizzes Inteligentes',
-    description: 'Avaliações geradas por IA para fixação do conteúdo',
+    title: 'Quizzes com IA',
+    description: 'Avaliações inteligentes para fixação do conteúdo',
     color: 'success',
   },
   {
     icon: Award,
-    title: 'Certificados',
-    description: 'Certificação reconhecida ao concluir cada módulo',
+    title: 'Certificados PDF',
+    description: 'Certificação oficial ao concluir cada curso',
     color: 'accent',
   },
   {
     icon: BookMarked,
     title: 'Bíblia Interlinear',
-    description: 'Estudo aprofundado com Strong\'s em Português',
+    description: "Strong's completo traduzido para Português",
     color: 'primary',
   },
   {
     icon: Heart,
-    title: 'Devocionais Diários',
-    description: 'Reflexões espirituais geradas para edificação',
+    title: 'Devocionais IA',
+    description: 'Reflexões diárias geradas para edificação',
     color: 'destructive',
-  },
-  {
-    icon: FileText,
-    title: 'Biblioteca Digital',
-    description: 'Milhares de sermões, estudos e materiais de apoio',
-    color: 'success',
-  },
-  {
-    icon: MessageCircle,
-    title: 'Fórum Comunitário',
-    description: 'Discussões teológicas com colegas e professores',
-    color: 'accent',
-  },
-  {
-    icon: Calendar,
-    title: 'Agenda Integrada',
-    description: 'Organize seus estudos e compromissos',
-    color: 'primary',
   },
 ];
 
 const stats = [
-  { value: '500+', label: 'Aulas Disponíveis', icon: Video },
-  { value: '50+', label: 'Cursos Completos', icon: BookOpen },
-  { value: '10k+', label: 'Alunos Formados', icon: GraduationCap },
+  { value: '500+', label: 'Aulas', icon: Video },
+  { value: '50+', label: 'Cursos', icon: BookOpen },
+  { value: '10k+', label: 'Alunos', icon: GraduationCap },
   { value: '98%', label: 'Satisfação', icon: Star },
 ];
 
@@ -108,31 +91,30 @@ const testimonials = [
   {
     name: 'Pastor João Silva',
     role: 'Igreja Batista Central',
-    content: 'A formação teológica mais completa que já encontrei. Os professores são excepcionais e o conteúdo é profundo.',
-    rating: 5,
+    content: 'A formação teológica mais completa que já encontrei. Os professores são excepcionais.',
+    avatar: 'JS',
   },
   {
     name: 'Maria Souza',
     role: 'Líder de Jovens',
-    content: 'Os devocionais diários e a bíblia interlinear transformaram meu tempo com Deus. Simplesmente incrível!',
-    rating: 5,
+    content: 'Os devocionais diários e a bíblia interlinear transformaram meu tempo com Deus!',
+    avatar: 'MS',
   },
   {
     name: 'Rev. Carlos Santos',
     role: 'Igreja Presbiteriana',
-    content: 'A plataforma é moderna, intuitiva e o sistema de certificados é muito profissional. Recomendo!',
-    rating: 5,
+    content: 'Plataforma moderna, intuitiva e o sistema de certificados é muito profissional.',
+    avatar: 'CS',
   },
 ];
 
 const LandingPage = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -140,150 +122,192 @@ const LandingPage = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
+    }, 4000);
     return () => clearInterval(interval);
   }, []);
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
-      {/* Fixed Navigation */}
+      {/* Navigation */}
       <nav
         className={cn(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+          'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
           isScrolled
-            ? 'bg-background/95 backdrop-blur-md shadow-md py-2'
-            : 'bg-transparent py-4'
+            ? 'bg-background/95 backdrop-blur-lg shadow-lg border-b border-border/50 py-2'
+            : 'bg-gradient-to-b from-background/80 to-transparent py-3 md:py-4'
         )}
       >
-        <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full gradient-sacred flex items-center justify-center">
-              <Church className="w-5 h-5 text-primary-foreground" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="flex items-center justify-between">
+            {/* Logo */}
+            <Link to="/home" className="flex items-center gap-2 sm:gap-3 group">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl gradient-sacred flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
+                <Church className="w-5 h-5 sm:w-5 sm:h-5 text-primary-foreground" />
+              </div>
+              <div className="hidden sm:block">
+                <span className="font-serif font-bold text-base md:text-lg text-foreground">
+                  Seminário
+                </span>
+                <span className="font-serif font-bold text-base md:text-lg text-primary ml-1">
+                  Teológico
+                </span>
+              </div>
+            </Link>
+
+            {/* Desktop Nav */}
+            <div className="hidden md:flex items-center gap-6">
+              <a href="#features" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                Recursos
+              </a>
+              <a href="#testimonials" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                Depoimentos
+              </a>
             </div>
-            <span className="font-serif font-bold text-lg text-foreground hidden sm:block">
-              Seminário Teológico
-            </span>
+
+            {/* Auth Buttons */}
+            <div className="flex items-center gap-2">
+              <Button
+                variant="ghost"
+                size="sm"
+                asChild
+                className="hidden sm:inline-flex text-xs md:text-sm"
+              >
+                <Link to="/auth?portal=student">
+                  <GraduationCap className="w-4 h-4 mr-1.5" />
+                  Aluno
+                </Link>
+              </Button>
+              <Button
+                variant="default"
+                size="sm"
+                asChild
+                className="text-xs md:text-sm bg-accent hover:bg-accent/90 text-accent-foreground"
+              >
+                <Link to="/auth?portal=admin">
+                  <Shield className="w-4 h-4 mr-1.5" />
+                  <span className="hidden xs:inline">Admin</span>
+                </Link>
+              </Button>
+              
+              {/* Mobile Menu Button */}
+              <Button
+                variant="ghost"
+                size="icon"
+                className="md:hidden"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              >
+                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </Button>
+            </div>
           </div>
 
-          {/* Compact Login Buttons */}
-          <div className="flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              asChild
-              className="text-xs sm:text-sm"
-            >
-              <Link to="/auth?portal=student">
-                <GraduationCap className="w-4 h-4 mr-1" />
-                <span className="hidden xs:inline">Aluno</span>
-              </Link>
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              asChild
-              className="text-xs sm:text-sm border-accent/50 hover:border-accent"
-            >
-              <Link to="/auth?portal=admin">
-                <Shield className="w-4 h-4 mr-1" />
-                <span className="hidden xs:inline">Admin</span>
-              </Link>
-            </Button>
-          </div>
+          {/* Mobile Menu */}
+          {mobileMenuOpen && (
+            <div className="md:hidden mt-4 pb-4 border-t border-border/50 pt-4 animate-fade-in">
+              <div className="flex flex-col gap-3">
+                <Link
+                  to="/auth?portal=student"
+                  className="flex items-center gap-2 p-3 rounded-lg bg-card hover:bg-muted transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <GraduationCap className="w-5 h-5 text-primary" />
+                  <span className="font-medium">Portal do Aluno</span>
+                </Link>
+                <Link
+                  to="/auth?portal=admin"
+                  className="flex items-center gap-2 p-3 rounded-lg bg-card hover:bg-muted transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <Shield className="w-5 h-5 text-accent" />
+                  <span className="font-medium">Painel Admin</span>
+                </Link>
+              </div>
+            </div>
+          )}
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Image */}
+      <section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden pt-16">
+        {/* Background */}
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
           style={{ backgroundImage: `url(${heroImage})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-foreground/90 via-foreground/80 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/85 to-background" />
+        
+        {/* Animated Glow */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-accent/20 rounded-full blur-[100px] sm:blur-[150px] animate-pulse" />
 
-        {/* Animated Particles */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(20)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 bg-accent/30 rounded-full animate-pulse"
-              style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 3}s`,
-                animationDuration: `${2 + Math.random() * 3}s`,
-              }}
-            />
-          ))}
-        </div>
-
-        <div className="relative z-10 max-w-6xl mx-auto px-4 py-20 text-center">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-20 text-center">
           {/* Badge */}
           <Badge
             variant="outline"
-            className="mb-6 px-4 py-2 bg-background/10 backdrop-blur-sm border-accent/40 text-primary-foreground animate-fade-in"
+            className="mb-4 sm:mb-6 px-3 sm:px-4 py-1.5 sm:py-2 bg-card/50 backdrop-blur-sm border-accent/30 text-foreground animate-fade-in text-xs sm:text-sm"
           >
-            <Sparkles className="w-4 h-4 mr-2 text-accent" />
-            Plataforma de Ensino Teológico mais completa do Brasil
+            <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2 text-accent" />
+            Plataforma de Ensino Teológico #1 do Brasil
           </Badge>
 
-          {/* Main Title */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-primary-foreground mb-6 leading-tight animate-slide-up">
-            Formação <span className="text-accent">Teológica</span>
-            <br />
+          {/* Title */}
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-bold text-foreground mb-4 sm:mb-6 leading-[1.1] animate-slide-up">
+            Formação{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary to-accent">
+              Teológica
+            </span>
+            <br className="hidden sm:block" />
+            <span className="sm:hidden"> </span>
             de Excelência
           </h1>
 
           <p
-            className="text-lg sm:text-xl md:text-2xl text-primary-foreground/80 max-w-3xl mx-auto mb-8 animate-slide-up"
+            className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-6 sm:mb-8 animate-slide-up px-2"
             style={{ animationDelay: '100ms' }}
           >
-            Prepare-se para o ministério com cursos completos, devocionais
-            diários, bíblia interlinear e muito mais.
+            Prepare-se para o ministério com cursos completos, devocionais diários, 
+            bíblia interlinear e certificados reconhecidos.
           </p>
 
           {/* CTA Buttons */}
           <div
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-slide-up"
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 animate-slide-up mb-10 sm:mb-16"
             style={{ animationDelay: '200ms' }}
           >
             <Button
               size="lg"
-              variant="accent"
               asChild
-              className="w-full sm:w-auto text-lg px-8 py-6 shadow-lg shadow-accent/30"
+              className="w-full sm:w-auto text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 bg-accent hover:bg-accent/90 text-accent-foreground shadow-xl shadow-accent/25 hover:shadow-accent/40 transition-all hover:scale-105"
             >
               <Link to="/auth?portal=student">
                 Começar Agora
-                <ArrowRight className="w-5 h-5 ml-2" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
               </Link>
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="w-full sm:w-auto text-lg px-8 py-6 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
+              className="w-full sm:w-auto text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 border-border/50 hover:bg-card/50"
             >
-              <Play className="w-5 h-5 mr-2" />
+              <Play className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
               Ver Demonstração
             </Button>
           </div>
 
-          {/* Quick Stats */}
+          {/* Stats */}
           <div
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 animate-fade-in"
+            className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-3xl mx-auto animate-fade-in"
             style={{ animationDelay: '400ms' }}
           >
             {stats.map((stat, i) => (
               <div
                 key={i}
-                className="bg-background/10 backdrop-blur-sm rounded-xl p-4 border border-primary-foreground/10"
+                className="bg-card/60 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-border/30 hover:border-accent/30 transition-colors group"
               >
-                <stat.icon className="w-6 h-6 text-accent mx-auto mb-2" />
-                <div className="text-2xl md:text-3xl font-bold text-primary-foreground">
+                <stat.icon className="w-5 h-5 sm:w-6 sm:h-6 text-accent mx-auto mb-1.5 sm:mb-2 group-hover:scale-110 transition-transform" />
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground">
                   {stat.value}
                 </div>
-                <div className="text-xs md:text-sm text-primary-foreground/70">
+                <div className="text-[10px] sm:text-xs text-muted-foreground">
                   {stat.label}
                 </div>
               </div>
@@ -292,54 +316,50 @@ const LandingPage = () => {
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 rounded-full border-2 border-primary-foreground/30 flex items-start justify-center p-2">
-            <div className="w-1.5 h-3 bg-accent rounded-full animate-pulse" />
-          </div>
+        <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 animate-bounce hidden sm:block">
+          <ChevronDown className="w-6 h-6 text-muted-foreground" />
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-20 md:py-32 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/20 to-background" />
+      <section id="features" className="py-16 sm:py-20 md:py-28 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-card/30 to-background" />
 
-        <div className="relative max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <Badge variant="outline" className="mb-4 px-4 py-2">
-              <Zap className="w-4 h-4 mr-2 text-accent" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-10 sm:mb-16">
+            <Badge variant="outline" className="mb-3 sm:mb-4 px-3 sm:px-4 py-1.5 text-xs sm:text-sm">
+              <Zap className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 text-accent" />
               Funcionalidades
             </Badge>
-            <h2 className="text-3xl md:text-5xl font-serif font-bold text-foreground mb-4">
-              Tudo que você precisa para sua{' '}
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-foreground mb-3 sm:mb-4 px-2">
+              Tudo para sua{' '}
               <span className="text-primary">formação ministerial</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Uma plataforma completa com recursos avançados para seu
-              crescimento espiritual e acadêmico
+            <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-xl mx-auto px-4">
+              Recursos avançados para seu crescimento espiritual e acadêmico
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {features.map((feature, i) => (
               <Card
                 key={i}
                 className="group relative overflow-hidden border-border/50 hover:border-primary/40 transition-all duration-500 hover:shadow-xl hover:-translate-y-1 bg-card/80 backdrop-blur-sm"
-                style={{ animationDelay: `${i * 50}ms` }}
               >
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-                <CardContent className="p-6">
+                <CardContent className="p-5 sm:p-6">
                   <div
                     className={cn(
-                      'w-14 h-14 rounded-2xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110',
-                      feature.color === 'primary' && 'bg-primary/10',
-                      feature.color === 'accent' && 'bg-accent/10',
-                      feature.color === 'success' && 'bg-success/10',
-                      feature.color === 'destructive' && 'bg-destructive/10'
+                      'w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 transition-transform group-hover:scale-110',
+                      feature.color === 'primary' && 'bg-primary/15',
+                      feature.color === 'accent' && 'bg-accent/15',
+                      feature.color === 'success' && 'bg-success/15',
+                      feature.color === 'destructive' && 'bg-destructive/15'
                     )}
                   >
                     <feature.icon
                       className={cn(
-                        'w-7 h-7',
+                        'w-6 h-6 sm:w-7 sm:h-7',
                         feature.color === 'primary' && 'text-primary',
                         feature.color === 'accent' && 'text-accent',
                         feature.color === 'success' && 'text-success',
@@ -347,10 +367,10 @@ const LandingPage = () => {
                       )}
                     />
                   </div>
-                  <h3 className="text-xl font-serif font-semibold text-foreground mb-2">
+                  <h3 className="text-lg sm:text-xl font-serif font-semibold text-foreground mb-1.5 sm:mb-2">
                     {feature.title}
                   </h3>
-                  <p className="text-muted-foreground">{feature.description}</p>
+                  <p className="text-sm text-muted-foreground">{feature.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -359,109 +379,90 @@ const LandingPage = () => {
       </section>
 
       {/* Bible Section */}
-      <section className="py-20 md:py-32 relative overflow-hidden">
-        <div className="absolute inset-0 gradient-sacred opacity-95" />
-        <div className="absolute inset-0 pattern-cross opacity-10" />
+      <section className="py-16 sm:py-20 md:py-28 relative overflow-hidden">
+        <div className="absolute inset-0 gradient-sacred" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-accent/10 via-transparent to-transparent" />
 
-        <div className="relative max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="text-primary-foreground">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <div className="text-primary-foreground order-2 lg:order-1">
               <Badge
                 variant="outline"
-                className="mb-4 px-4 py-2 border-accent/40 text-accent"
+                className="mb-3 sm:mb-4 px-3 sm:px-4 py-1.5 border-accent/40 text-accent text-xs sm:text-sm"
               >
-                <BookMarked className="w-4 h-4 mr-2" />
+                <BookMarked className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5" />
                 Recurso Exclusivo
               </Badge>
-              <h2 className="text-3xl md:text-5xl font-serif font-bold mb-6">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold mb-4 sm:mb-6">
                 Bíblia Interlinear com{' '}
                 <span className="text-accent">Strong's em Português</span>
               </h2>
-              <p className="text-lg text-primary-foreground/80 mb-8">
+              <p className="text-sm sm:text-base md:text-lg text-primary-foreground/80 mb-6 sm:mb-8">
                 Estude as Escrituras no original com tradução completa dos
-                códigos Strong para o Português. Compreenda cada palavra
-                hebraica e grega em profundidade.
+                códigos Strong para o Português.
               </p>
 
-              <div className="space-y-4 mb-8">
+              <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
                 {[
-                  'Concordância Strong completa traduzida',
-                  'Múltiplas traduções bíblicas (ACF, ARA, NVI...)',
+                  'Concordância Strong completa',
+                  'Múltiplas traduções (ACF, ARA, NVI...)',
                   'Comentários de estudo integrados',
-                  'Sistema de anotações pessoais',
-                  'Favoritos e marcações por versículo',
+                  'Anotações e favoritos por versículo',
                 ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0" />
-                    <span className="text-primary-foreground/90">{item}</span>
+                  <div key={i} className="flex items-center gap-2 sm:gap-3">
+                    <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-accent flex-shrink-0" />
+                    <span className="text-sm sm:text-base text-primary-foreground/90">{item}</span>
                   </div>
                 ))}
               </div>
 
               <Button
                 size="lg"
-                variant="accent"
                 asChild
-                className="shadow-lg shadow-accent/30"
+                className="w-full sm:w-auto bg-accent hover:bg-accent/90 text-accent-foreground shadow-lg"
               >
                 <Link to="/auth?portal=student">
                   Acessar Bíblia
-                  <ArrowRight className="w-5 h-5 ml-2" />
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
                 </Link>
               </Button>
             </div>
 
-            <div className="relative">
-              <div className="absolute inset-0 bg-accent/20 rounded-3xl blur-3xl" />
+            <div className="relative order-1 lg:order-2">
+              <div className="absolute inset-0 bg-accent/20 rounded-2xl sm:rounded-3xl blur-3xl" />
               <Card className="relative bg-card/95 backdrop-blur-sm border-accent/30 overflow-hidden">
-                <CardContent className="p-6">
-                  <div className="bg-muted/50 rounded-xl p-4 mb-4">
-                    <p className="text-sm text-muted-foreground mb-2">
+                <CardContent className="p-4 sm:p-6">
+                  <div className="bg-muted/50 rounded-lg sm:rounded-xl p-3 sm:p-4 mb-3 sm:mb-4">
+                    <p className="text-xs sm:text-sm text-muted-foreground mb-1.5 sm:mb-2">
                       João 1:1
                     </p>
-                    <p className="text-lg font-serif text-foreground">
+                    <p className="text-sm sm:text-lg font-serif text-foreground leading-relaxed">
                       No{' '}
-                      <span className="text-primary underline decoration-accent/50 cursor-help">
+                      <span className="text-primary underline decoration-accent/50 decoration-2 cursor-help">
                         princípio
                       </span>{' '}
                       era o{' '}
-                      <span className="text-primary underline decoration-accent/50 cursor-help">
+                      <span className="text-primary underline decoration-accent/50 decoration-2 cursor-help">
                         Verbo
                       </span>
-                      , e o{' '}
-                      <span className="text-primary underline decoration-accent/50 cursor-help">
-                        Verbo
-                      </span>{' '}
-                      estava com{' '}
-                      <span className="text-primary underline decoration-accent/50 cursor-help">
+                      , e o Verbo estava com{' '}
+                      <span className="text-primary underline decoration-accent/50 decoration-2 cursor-help">
                         Deus
                       </span>
-                      , e o{' '}
-                      <span className="text-primary underline decoration-accent/50 cursor-help">
-                        Verbo
-                      </span>{' '}
-                      era{' '}
-                      <span className="text-primary underline decoration-accent/50 cursor-help">
-                        Deus
-                      </span>
-                      .
+                      , e o Verbo era Deus.
                     </p>
                   </div>
-                  <div className="bg-accent/10 rounded-xl p-4 border border-accent/20">
+                  <div className="bg-accent/10 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-accent/20">
                     <div className="flex items-center gap-2 mb-2">
-                      <Badge variant="secondary" className="text-xs">
+                      <Badge variant="secondary" className="text-[10px] sm:text-xs">
                         G3056
                       </Badge>
-                      <span className="font-semibold text-foreground">
+                      <span className="font-semibold text-foreground text-sm sm:text-base">
                         λόγος (logos)
                       </span>
                     </div>
-                    <p className="text-sm text-muted-foreground mb-2">
+                    <p className="text-xs sm:text-sm text-muted-foreground">
                       <strong>Verbo</strong> - Palavra, discurso, razão divina
-                    </p>
-                    <p className="text-xs text-muted-foreground">
-                      Do grego λέγω (legō) - "falar". Refere-se à expressão do
-                      pensamento divino, a segunda pessoa da Trindade.
                     </p>
                   </div>
                 </CardContent>
@@ -471,71 +472,38 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* How It Works Section */}
-      <section className="py-20 md:py-32 relative bg-muted/20">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <Badge variant="outline" className="mb-4 px-4 py-2">
-              <Target className="w-4 h-4 mr-2 text-accent" />
+      {/* How It Works */}
+      <section className="py-16 sm:py-20 md:py-28 relative bg-card/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-10 sm:mb-16">
+            <Badge variant="outline" className="mb-3 sm:mb-4 px-3 sm:px-4 py-1.5 text-xs sm:text-sm">
+              <Target className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 text-accent" />
               Como Funciona
             </Badge>
-            <h2 className="text-3xl md:text-5xl font-serif font-bold text-foreground mb-4">
-              Sua jornada em <span className="text-primary">4 passos simples</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-foreground mb-3 sm:mb-4">
+              Sua jornada em <span className="text-primary">4 passos</span>
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {[
-              {
-                step: '01',
-                icon: Users,
-                title: 'Matricule-se',
-                description: 'Crie sua conta gratuita e escolha seu curso de formação',
-              },
-              {
-                step: '02',
-                icon: Video,
-                title: 'Estude Online',
-                description: 'Assista às videoaulas em seu próprio ritmo, de qualquer lugar',
-              },
-              {
-                step: '03',
-                icon: Brain,
-                title: 'Avalie seu Conhecimento',
-                description: 'Complete os quizzes e atividades para fixar o conteúdo',
-              },
-              {
-                step: '04',
-                icon: Award,
-                title: 'Receba seu Certificado',
-                description: 'Ao concluir, baixe seu certificado oficial em PDF',
-              },
+              { step: '01', icon: Users, title: 'Matricule-se', desc: 'Crie sua conta gratuita' },
+              { step: '02', icon: Video, title: 'Estude', desc: 'Assista às videoaulas' },
+              { step: '03', icon: Brain, title: 'Pratique', desc: 'Complete os quizzes' },
+              { step: '04', icon: Award, title: 'Certifique-se', desc: 'Baixe seu certificado' },
             ].map((item, i) => (
-              <div
-                key={i}
-                className="relative group"
-              >
-                {/* Connector Line */}
-                {i < 3 && (
-                  <div className="hidden md:block absolute top-16 left-1/2 w-full h-0.5 bg-gradient-to-r from-primary/50 to-accent/50" />
-                )}
-                
-                <div className="relative bg-card rounded-2xl p-6 border border-border/50 hover:border-primary/40 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 text-center">
-                  {/* Step Number */}
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-accent flex items-center justify-center text-sm font-bold text-accent-foreground shadow-lg">
+              <div key={i} className="relative group">
+                <div className="bg-card rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-border/50 hover:border-primary/40 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 text-center h-full">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-accent flex items-center justify-center text-[10px] sm:text-xs font-bold text-accent-foreground shadow-lg">
                     {item.step}
                   </div>
-                  
-                  <div className="w-16 h-16 mx-auto mt-4 mb-4 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <item.icon className="w-8 h-8 text-primary" />
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mt-2 sm:mt-4 mb-3 sm:mb-4 rounded-xl sm:rounded-2xl bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <item.icon className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
                   </div>
-                  
-                  <h3 className="text-xl font-serif font-semibold text-foreground mb-2">
+                  <h3 className="text-sm sm:text-lg font-serif font-semibold text-foreground mb-1">
                     {item.title}
                   </h3>
-                  <p className="text-muted-foreground text-sm">
-                    {item.description}
-                  </p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -543,183 +511,139 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Platform Features */}
-      <section className="py-20 md:py-32 relative">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <Badge variant="outline" className="mb-4 px-4 py-2">
-                <Laptop className="w-4 h-4 mr-2 text-accent" />
-                Plataforma Completa
-              </Badge>
-              <h2 className="text-3xl md:text-5xl font-serif font-bold text-foreground mb-6">
-                Estude em <span className="text-primary">qualquer dispositivo</span>
-              </h2>
-              <p className="text-lg text-muted-foreground mb-8">
-                Nossa plataforma é totalmente responsiva e otimizada para todos os dispositivos.
-                Estude no computador, tablet ou celular com a mesma experiência de qualidade.
-              </p>
-
-              <div className="space-y-4">
-                {[
-                  { icon: Laptop, text: 'Interface moderna e intuitiva' },
-                  { icon: Smartphone, text: 'Aplicativo web progressivo (PWA)' },
-                  { icon: Clock, text: 'Acesso 24 horas, 7 dias por semana' },
-                  { icon: Headphones, text: 'Suporte técnico especializado' },
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3 p-3 rounded-xl bg-muted/50 hover:bg-muted transition-colors">
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <item.icon className="w-5 h-5 text-primary" />
-                    </div>
-                    <span className="text-foreground font-medium">{item.text}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="relative">
-              <div className="absolute inset-0 bg-primary/10 rounded-3xl blur-3xl" />
-              <div className="relative grid grid-cols-2 gap-4">
-                {[
-                  { value: '99.9%', label: 'Uptime garantido', icon: TrendingUp },
-                  { value: '< 1s', label: 'Tempo de carregamento', icon: Zap },
-                  { value: '256-bit', label: 'Criptografia SSL', icon: Shield },
-                  { value: '24/7', label: 'Suporte disponível', icon: MessageCircle },
-                ].map((stat, i) => (
-                  <Card key={i} className="bg-card/80 backdrop-blur-sm border-border/50 hover:border-primary/40 transition-all duration-300 hover:-translate-y-1">
-                    <CardContent className="p-4 text-center">
-                      <stat.icon className="w-6 h-6 text-accent mx-auto mb-2" />
-                      <div className="text-2xl font-bold text-foreground">{stat.value}</div>
-                      <div className="text-xs text-muted-foreground">{stat.label}</div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Testimonials */}
-      <section className="py-20 md:py-32 relative bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <Badge variant="outline" className="mb-4 px-4 py-2">
-              <Star className="w-4 h-4 mr-2 text-accent" />
+      <section id="testimonials" className="py-16 sm:py-20 md:py-28 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-10 sm:mb-16">
+            <Badge variant="outline" className="mb-3 sm:mb-4 px-3 sm:px-4 py-1.5 text-xs sm:text-sm">
+              <Star className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 text-accent" />
               Depoimentos
             </Badge>
-            <h2 className="text-3xl md:text-5xl font-serif font-bold text-foreground mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-foreground">
               O que nossos <span className="text-primary">alunos dizem</span>
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          {/* Mobile: Carousel / Desktop: Grid */}
+          <div className="block sm:hidden">
+            <Card className="bg-card border-accent/30 shadow-xl">
+              <CardContent className="p-5">
+                <Quote className="w-8 h-8 text-accent/30 mb-3" />
+                <div className="flex gap-1 mb-3">
+                  {[...Array(5)].map((_, j) => (
+                    <Star key={j} className="w-4 h-4 fill-accent text-accent" />
+                  ))}
+                </div>
+                <p className="text-foreground mb-4 italic text-sm leading-relaxed">
+                  "{testimonials[activeTestimonial].content}"
+                </p>
+                <div className="flex items-center gap-3 pt-3 border-t border-border/50">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-sm font-bold text-primary-foreground">
+                    {testimonials[activeTestimonial].avatar}
+                  </div>
+                  <div>
+                    <p className="font-semibold text-foreground text-sm">
+                      {testimonials[activeTestimonial].name}
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      {testimonials[activeTestimonial].role}
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            {/* Indicators */}
+            <div className="flex justify-center gap-2 mt-4">
+              {testimonials.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActiveTestimonial(i)}
+                  className={cn(
+                    'w-2 h-2 rounded-full transition-all',
+                    activeTestimonial === i ? 'w-6 bg-accent' : 'bg-border'
+                  )}
+                />
+              ))}
+            </div>
+          </div>
+
+          <div className="hidden sm:grid md:grid-cols-3 gap-6">
             {testimonials.map((testimonial, i) => (
               <Card
                 key={i}
                 className={cn(
-                  'relative overflow-hidden transition-all duration-500',
-                  activeTestimonial === i
-                    ? 'border-accent/50 shadow-xl scale-105 bg-card'
-                    : 'border-border/50 bg-card/80'
+                  'bg-card/80 border-border/50 hover:border-accent/40 transition-all duration-300 hover:-translate-y-1'
                 )}
               >
                 <CardContent className="p-6">
                   <Quote className="w-8 h-8 text-accent/30 mb-4" />
                   <div className="flex gap-1 mb-4">
-                    {[...Array(testimonial.rating)].map((_, j) => (
-                      <Star
-                        key={j}
-                        className="w-4 h-4 fill-accent text-accent"
-                      />
+                    {[...Array(5)].map((_, j) => (
+                      <Star key={j} className="w-4 h-4 fill-accent text-accent" />
                     ))}
                   </div>
                   <p className="text-foreground mb-4 italic leading-relaxed">
                     "{testimonial.content}"
                   </p>
                   <div className="flex items-center gap-3 pt-4 border-t border-border/50">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-lg font-bold text-primary-foreground">
-                      {testimonial.name.charAt(0)}
+                    <div className="w-11 h-11 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-sm font-bold text-primary-foreground">
+                      {testimonial.avatar}
                     </div>
                     <div>
-                      <p className="font-semibold text-foreground">
-                        {testimonial.name}
-                      </p>
-                      <p className="text-sm text-muted-foreground">
-                        {testimonial.role}
-                      </p>
+                      <p className="font-semibold text-foreground">{testimonial.name}</p>
+                      <p className="text-sm text-muted-foreground">{testimonial.role}</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
             ))}
           </div>
-
-          {/* Testimonial Indicators */}
-          <div className="flex justify-center gap-2 mt-8">
-            {testimonials.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setActiveTestimonial(i)}
-                className={cn(
-                  'w-2 h-2 rounded-full transition-all duration-300',
-                  activeTestimonial === i
-                    ? 'w-8 bg-accent'
-                    : 'bg-border hover:bg-muted-foreground'
-                )}
-              />
-            ))}
-          </div>
         </div>
       </section>
 
-      {/* Admin Features */}
-      <section className="py-20 md:py-32 relative">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <Badge variant="outline" className="mb-4 px-4 py-2">
-              <Shield className="w-4 h-4 mr-2 text-accent" />
-              Para Administradores
+      {/* Admin Section */}
+      <section className="py-16 sm:py-20 md:py-28 relative bg-card/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-10 sm:mb-16">
+            <Badge variant="outline" className="mb-3 sm:mb-4 px-3 sm:px-4 py-1.5 text-xs sm:text-sm">
+              <Shield className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 text-accent" />
+              Administradores
             </Badge>
-            <h2 className="text-3xl md:text-5xl font-serif font-bold text-foreground mb-4">
-              Painel Administrativo{' '}
-              <span className="text-primary">Completo</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-foreground mb-3 sm:mb-4">
+              Painel Admin <span className="text-primary">Completo</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-sm sm:text-base text-muted-foreground max-w-xl mx-auto">
               Gerencie todo o seminário com ferramentas profissionais
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
             {[
-              { icon: Users, label: 'Gestão de Alunos', desc: 'Controle completo' },
-              { icon: BookOpen, label: 'Cursos e Aulas', desc: 'CRUD completo' },
-              { icon: Brain, label: 'Quizzes com IA', desc: 'Geração automática' },
-              { icon: Award, label: 'Certificados PDF', desc: 'Emissão automática' },
-              { icon: FileText, label: 'Relatórios', desc: 'Análises detalhadas' },
-              { icon: Calendar, label: 'Eventos', desc: 'Agenda integrada' },
-              { icon: Download, label: 'Backups', desc: 'Restauração completa' },
-              { icon: Lock, label: 'Segurança', desc: 'RLS em todas tabelas' },
+              { icon: Users, label: 'Gestão de Alunos' },
+              { icon: BookOpen, label: 'Cursos e Aulas' },
+              { icon: Brain, label: 'Quizzes com IA' },
+              { icon: Award, label: 'Certificados' },
+              { icon: FileText, label: 'Relatórios' },
+              { icon: Calendar, label: 'Eventos' },
+              { icon: Download, label: 'Backups' },
+              { icon: Lock, label: 'Segurança RLS' },
             ].map((item, i) => (
               <div
                 key={i}
-                className="flex items-center gap-3 p-4 rounded-xl bg-card border border-border/50 hover:border-accent/40 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group"
+                className="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-lg sm:rounded-xl bg-card border border-border/50 hover:border-accent/40 hover:shadow-lg transition-all group"
               >
-                <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                  <item.icon className="w-5 h-5 text-accent" />
+                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                  <item.icon className="w-4 h-4 sm:w-5 sm:h-5 text-accent" />
                 </div>
-                <div>
-                  <p className="font-medium text-foreground">{item.label}</p>
-                  <p className="text-xs text-muted-foreground">{item.desc}</p>
-                </div>
+                <span className="text-xs sm:text-sm font-medium text-foreground">{item.label}</span>
               </div>
             ))}
           </div>
 
-          <div className="text-center mt-12">
-            <Button size="lg" variant="outline" asChild className="hover:scale-105 transition-transform">
+          <div className="text-center mt-8 sm:mt-12">
+            <Button size="lg" variant="outline" asChild className="w-full sm:w-auto">
               <Link to="/auth?portal=admin">
-                <Shield className="w-5 h-5 mr-2" />
+                <Shield className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 Acessar Painel Admin
               </Link>
             </Button>
@@ -728,130 +652,98 @@ const LandingPage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 md:py-32 relative overflow-hidden">
+      <section className="py-16 sm:py-20 md:py-28 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/90 to-primary/80" />
-        <div className="absolute inset-0 pattern-cross opacity-10" />
-        
-        {/* Floating Elements */}
-        <div className="absolute top-20 left-10 w-20 h-20 bg-accent/20 rounded-full blur-2xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-32 h-32 bg-accent/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-accent/20 via-transparent to-transparent" />
 
-        <div className="relative max-w-4xl mx-auto px-4 text-center">
-          <div className="w-20 h-20 mx-auto mb-8 rounded-full bg-accent/20 flex items-center justify-center animate-float">
-            <Cross className="w-10 h-10 text-accent" />
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 text-center">
+          <div className="w-14 h-14 sm:w-20 sm:h-20 mx-auto mb-6 sm:mb-8 rounded-full bg-accent/20 flex items-center justify-center animate-pulse">
+            <Cross className="w-7 h-7 sm:w-10 sm:h-10 text-accent" />
           </div>
 
-          <h2 className="text-3xl md:text-5xl font-serif font-bold text-primary-foreground mb-6">
-            Comece sua jornada de{' '}
-            <span className="text-accent">formação ministerial</span> hoje
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-primary-foreground mb-4 sm:mb-6 px-2">
+            Comece sua jornada{' '}
+            <span className="text-accent">ministerial</span> hoje
           </h2>
 
-          <p className="text-lg text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
-            Junte-se a milhares de ministros que estão se preparando para o
-            Reino de Deus com nossa plataforma completa de ensino teológico.
+          <p className="text-sm sm:text-base md:text-lg text-primary-foreground/80 mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
+            Junte-se a milhares de ministros que estão se preparando para o Reino de Deus.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
             <Button
               size="lg"
-              variant="accent"
               asChild
-              className="w-full sm:w-auto text-lg px-8 py-6 shadow-lg shadow-accent/30 hover:scale-105 transition-transform"
+              className="w-full sm:w-auto text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 bg-accent hover:bg-accent/90 text-accent-foreground shadow-xl"
             >
               <Link to="/auth?portal=student">
-                <GraduationCap className="w-5 h-5 mr-2" />
+                <GraduationCap className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 Matricular-se Agora
               </Link>
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="w-full sm:w-auto text-lg px-8 py-6 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 hover:scale-105 transition-transform"
+              className="w-full sm:w-auto text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
             >
-              <MessageSquare className="w-5 h-5 mr-2" />
+              <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
               Fale Conosco
             </Button>
           </div>
 
           {/* Trust Badges */}
-          <div className="flex flex-wrap justify-center gap-6 mt-12 text-primary-foreground/60 text-sm">
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-accent" />
-              <span>Acesso Imediato</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-accent" />
-              <span>Suporte 24/7</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-accent" />
-              <span>Certificado Incluso</span>
-            </div>
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mt-8 sm:mt-12 text-primary-foreground/70 text-xs sm:text-sm">
+            {[
+              { icon: CheckCircle2, text: 'Acesso Imediato' },
+              { icon: Headphones, text: 'Suporte 24/7' },
+              { icon: Award, text: 'Certificado Incluso' },
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-1.5 sm:gap-2">
+                <item.icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent" />
+                <span>{item.text}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-12 bg-card border-t border-border">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            {/* Brand */}
-            <div className="md:col-span-2">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-full gradient-sacred flex items-center justify-center">
-                  <Church className="w-5 h-5 text-primary-foreground" />
-                </div>
-                <div>
-                  <p className="font-serif font-bold text-foreground">
-                    Seminário Teológico
-                  </p>
-                  <p className="text-xs text-muted-foreground">
-                    Formação ministerial de excelência
-                  </p>
-                </div>
+      <footer className="py-8 sm:py-12 bg-card border-t border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl gradient-sacred flex items-center justify-center">
+                <Church className="w-5 h-5 text-primary-foreground" />
               </div>
-              <p className="text-sm text-muted-foreground max-w-md">
-                Nossa missão é preparar líderes para o Reino de Deus com formação teológica
-                de qualidade, acessível e fundamentada nas Escrituras.
-              </p>
-            </div>
-
-            {/* Quick Links */}
-            <div>
-              <h4 className="font-semibold text-foreground mb-4">Acesso Rápido</h4>
-              <div className="space-y-2">
-                <Link
-                  to="/auth?portal=student"
-                  className="block text-sm text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Portal do Aluno
-                </Link>
-                <Link
-                  to="/auth?portal=admin"
-                  className="block text-sm text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Área Administrativa
-                </Link>
+              <div>
+                <p className="font-serif font-bold text-foreground text-sm sm:text-base">
+                  Seminário Teológico
+                </p>
+                <p className="text-[10px] sm:text-xs text-muted-foreground">
+                  Formação ministerial de excelência
+                </p>
               </div>
             </div>
 
-            {/* Contact */}
-            <div>
-              <h4 className="font-semibold text-foreground mb-4">Contato</h4>
-              <div className="space-y-2 text-sm text-muted-foreground">
-                <p>contato@seminario.com.br</p>
-                <p>(11) 99999-9999</p>
-              </div>
+            <div className="flex items-center gap-4 sm:gap-6 text-xs sm:text-sm">
+              <Link
+                to="/auth?portal=student"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Portal do Aluno
+              </Link>
+              <Link
+                to="/auth?portal=admin"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Área Admin
+              </Link>
             </div>
-          </div>
 
-          <div className="pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} Seminário Teológico. Todos os direitos reservados.
+            <p className="text-[10px] sm:text-xs text-muted-foreground text-center sm:text-right">
+              © {new Date().getFullYear()} Seminário Teológico
+              <span className="hidden sm:inline"> • Feito com ❤️ para o Reino</span>
             </p>
-            <div className="flex items-center gap-4 text-sm text-muted-foreground">
-              <span>Feito com ❤️ para o Reino</span>
-            </div>
           </div>
         </div>
       </footer>
