@@ -20,3 +20,6 @@ verify_jwt = false
 
 [functions.complete-bible-comment]
 verify_jwt = false
+
+[functions.generate-devotional]
+verify_jwt = false

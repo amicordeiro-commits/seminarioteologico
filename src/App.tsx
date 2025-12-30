@@ -38,6 +38,9 @@ import AdminStrongsPage from "./pages/admin/AdminStrongsPage";
 import AdminMaterialsPage from "./pages/admin/AdminMaterialsPage";
 import AdminEnrollmentsPage from "./pages/admin/AdminEnrollmentsPage";
 import AdminReportsPage from "./pages/admin/AdminReportsPage";
+import AdminBlogPage from "./pages/admin/AdminBlogPage";
+import AdminManualPage from "./pages/admin/AdminManualPage";
+import BlogPage from "./pages/BlogPage";
 
 const queryClient = new QueryClient();
 
@@ -206,6 +209,17 @@ const AppRoutes = () => {
           </ProtectedRoute>
         }
       />
+      <Route
+        path="/blog"
+        element={
+          <ProtectedRoute>
+            <BlogPage />
+          </ProtectedRoute>
+        }
+      />
+          </ProtectedRoute>
+        }
+      />
 
       {/* Admin Routes */}
       <Route
@@ -325,6 +339,22 @@ const AppRoutes = () => {
         element={
           <AdminRoute>
             <AdminReportsPage />
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/blog"
+        element={
+          <AdminRoute>
+            <AdminBlogPage />
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/manual"
+        element={
+          <AdminRoute>
+            <AdminManualPage />
           </AdminRoute>
         }
       />
