@@ -29,6 +29,7 @@ import {
   Share2,
   BookMarked,
   ScrollText,
+  Database,
 } from "lucide-react";
 
 const manualSections = [
@@ -559,6 +560,55 @@ const manualSections = [
 - Gere relatórios em PDF
 
 **Dica:** Analise relatórios mensalmente para identificar tendências e oportunidades.`,
+  },
+  {
+    id: "backups",
+    icon: Database,
+    title: "Backup e Restauração",
+    content: `Gerencie backups completos do sistema:
+
+**Criar Backup:**
+1. Acesse Admin → Backup
+2. Clique em "Criar Backup"
+3. Adicione notas descritivas (opcional)
+4. Aguarde a conclusão do processo
+5. O backup será salvo automaticamente
+
+**Dados Incluídos no Backup:**
+- Usuários e perfis
+- Cursos e aulas
+- Matrículas e progresso
+- Quizzes e tentativas
+- Certificados emitidos
+- Biblioteca e materiais
+- Blog e devocionais
+- Fórum e mensagens
+- Transações financeiras
+- Configurações
+
+**Restaurar Backup:**
+1. Selecione o backup desejado na lista
+2. Clique no botão de restauração (ícone upload)
+3. Escolha se deseja limpar dados existentes
+4. Confirme a operação
+5. Aguarde a restauração completa
+
+**Download de Backup:**
+- Baixe backups em formato JSON
+- Guarde cópias externas para segurança adicional
+
+**Boas Práticas:**
+- Crie backups regulares (semanal ou antes de atualizações)
+- Mantenha pelo menos 3 backups recentes
+- Teste a restauração periodicamente
+- Documente o conteúdo de cada backup nas notas
+
+**Atenção:**
+- A restauração sobrescreve dados existentes
+- Sempre crie um backup atual antes de restaurar
+- O processo pode levar alguns minutos dependendo do volume de dados
+
+**Dica:** Crie um backup antes de qualquer alteração significativa no sistema.`,
   },
   {
     id: "settings",
