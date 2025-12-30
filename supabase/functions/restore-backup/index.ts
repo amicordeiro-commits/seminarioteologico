@@ -6,6 +6,7 @@ const corsHeaders = {
 };
 
 // Order matters for foreign key constraints
+// Order matters for foreign key constraints
 const RESTORE_ORDER = [
   'profiles',
   'user_roles',
@@ -19,6 +20,7 @@ const RESTORE_ORDER = [
   'quiz_questions',
   'quiz_options',
   'quiz_attempts',
+  'quiz_recovery_settings',
   'certificates',
   'academic_records',
   'library_materials',
