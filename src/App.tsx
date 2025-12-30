@@ -52,6 +52,7 @@ const AdminFinancePage = lazy(() => import("./pages/admin/AdminFinancePage"));
 const AdminAdmissionsPage = lazy(() => import("./pages/admin/AdminAdmissionsPage"));
 const AdminForumPage = lazy(() => import("./pages/admin/AdminForumPage"));
 const AdminTranscriptsPage = lazy(() => import("./pages/admin/AdminTranscriptsPage"));
+const AdminBackupsPage = lazy(() => import("./pages/admin/AdminBackupsPage"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -439,6 +440,14 @@ const AppRoutes = () => {
           element={
             <AdminRoute>
               <AdminTranscriptsPage />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/admin/backups"
+          element={
+            <AdminRoute>
+              <AdminBackupsPage />
             </AdminRoute>
           }
         />

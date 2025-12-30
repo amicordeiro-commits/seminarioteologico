@@ -122,6 +122,42 @@ export type Database = {
         }
         Relationships: []
       }
+      backups: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          file_name: string
+          file_size: number | null
+          file_url: string
+          id: string
+          notes: string | null
+          records_count: Json | null
+          tables_included: string[]
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          file_name: string
+          file_size?: number | null
+          file_url: string
+          id?: string
+          notes?: string | null
+          records_count?: Json | null
+          tables_included: string[]
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          file_name?: string
+          file_size?: number | null
+          file_url?: string
+          id?: string
+          notes?: string | null
+          records_count?: Json | null
+          tables_included?: string[]
+        }
+        Relationships: []
+      }
       bible_bookmarks: {
         Row: {
           book_abbrev: string
