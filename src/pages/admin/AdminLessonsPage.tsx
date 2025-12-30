@@ -77,32 +77,71 @@ export default function AdminLessonsPage() {
   
   // Refs e estado para o editor
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const [selection, setSelection] = useState({ start: 0, end: 0 });
-  
-  // Salva a seleção atual do textarea
+  const selectionRef = useRef<{ start: number; end: number }>({ start: 0, end: 0 });
+
+  // Salva a seleção atual do textarea (sincrono, sem re-render)
   const saveSelection = useCallback(() => {
-    if (textareaRef.current) {
-      setSelection({
-        start: textareaRef.current.selectionStart,
-        end: textareaRef.current.selectionEnd
-      });
-    }
+    const el = textareaRef.current;
+    if (!el) return;
+    selectionRef.current = { start: el.selectionStart ?? 0, end: el.selectionEnd ?? 0 };
   }, []);
-  
+
+  const getSelection = useCallback(() => {
+    const el = textareaRef.current;
+    if (el && document.activeElement === el) {
+      return { start: el.selectionStart ?? 0, end: el.selectionEnd ?? 0 };
+    }
+    return selectionRef.current;
+  }, []);
+
+  const restoreSelection = useCallback((start: number, end: number) => {
+    requestAnimationFrame(() => {
+      const el = textareaRef.current;
+      if (!el) return;
+      el.focus();
+      el.setSelectionRange(start, end);
+      selectionRef.current = { start, end };
+    });
+  }, []);
+
   // Aplica formatação ao texto selecionado
-  const applyFormat = useCallback((before: string, after: string = before) => {
-    const text = editingLesson?.content || "";
-    const selectedText = text.substring(selection.start, selection.end);
-    const newText = text.substring(0, selection.start) + before + selectedText + after + text.substring(selection.end);
-    setEditingLesson({ ...editingLesson, content: newText });
-  }, [editingLesson, selection]);
-  
+  const applyFormat = useCallback(
+    (before: string, after: string = before) => {
+      const { start, end } = getSelection();
+
+      setEditingLesson((prev) => {
+        if (!prev) return prev;
+        const text = prev.content || "";
+        const selectedText = text.substring(start, end);
+        const newText = text.substring(0, start) + before + selectedText + after + text.substring(end);
+
+        const cursor = start + before.length + selectedText.length + after.length;
+        restoreSelection(cursor, cursor);
+
+        return { ...prev, content: newText };
+      });
+    },
+    [getSelection, restoreSelection],
+  );
+
   // Insere texto na posição do cursor
-  const insertText = useCallback((insertedText: string) => {
-    const text = editingLesson?.content || "";
-    const newText = text.substring(0, selection.start) + insertedText + text.substring(selection.start);
-    setEditingLesson({ ...editingLesson, content: newText });
-  }, [editingLesson, selection]);
+  const insertText = useCallback(
+    (insertedText: string) => {
+      const { start, end } = getSelection();
+
+      setEditingLesson((prev) => {
+        if (!prev) return prev;
+        const text = prev.content || "";
+        const newText = text.substring(0, start) + insertedText + text.substring(end);
+
+        const cursor = start + insertedText.length;
+        restoreSelection(cursor, cursor);
+
+        return { ...prev, content: newText };
+      });
+    },
+    [getSelection, restoreSelection],
+  );
 
   // Fetch courses
   const { data: courses = [], isLoading: coursesLoading } = useQuery({
@@ -702,7 +741,10 @@ export default function AdminLessonsPage() {
                               type="button"
                               className="w-6 h-6 rounded border border-border hover:scale-110 transition-transform"
                               style={{ backgroundColor: color }}
-                              onClick={() => applyFormat(`<span style="color: ${color}">`, '</span>')}
+                              onMouseDown={(e) => {
+                                e.preventDefault();
+                              }}
+                              onClick={() => applyFormat(`<span style="color: ${color}">`, "</span>")}
                             />
                           ))}
                         </div>
@@ -738,7 +780,10 @@ export default function AdminLessonsPage() {
                               key={option.size}
                               type="button"
                               className="px-3 py-1.5 text-left hover:bg-muted rounded text-sm"
-                              onClick={() => applyFormat(`<span style="font-size: ${option.size}">`, '</span>')}
+                              onMouseDown={(e) => {
+                                e.preventDefault();
+                              }}
+                              onClick={() => applyFormat(`<span style="font-size: ${option.size}">`, "</span>")}
                             >
                               {option.label}
                             </button>
