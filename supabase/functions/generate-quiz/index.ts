@@ -24,7 +24,7 @@ serve(async (req) => {
   }
 
   try {
-    const { courseId, courseName, numberOfQuestions = 10, passingScore = 70 } = await req.json();
+    const { courseId, courseName, lessonId, lessonName, numberOfQuestions = 10, passingScore = 70 } = await req.json();
 
     if (!courseId) {
       return new Response(
@@ -42,32 +42,62 @@ serve(async (req) => {
     const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
     const supabase = createClient(supabaseUrl, supabaseKey);
 
-    // Fetch lessons for the course
-    const { data: lessons, error: lessonsError } = await supabase
-      .from("lessons")
-      .select("id, title, content, description")
-      .eq("course_id", courseId)
-      .order("order_index");
+    let lessonsContent: string;
+    let quizTitle: string;
+    let quizDescription: string;
 
-    if (lessonsError) {
-      throw new Error(`Erro ao buscar aulas: ${lessonsError.message}`);
-    }
+    if (lessonId) {
+      // Generate quiz for a specific lesson
+      const { data: lesson, error: lessonError } = await supabase
+        .from("lessons")
+        .select("id, title, content, description")
+        .eq("id", lessonId)
+        .single();
 
-    if (!lessons || lessons.length === 0) {
-      return new Response(
-        JSON.stringify({ error: "Nenhuma aula encontrada para este curso" }),
-        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
-    }
+      if (lessonError || !lesson) {
+        return new Response(
+          JSON.stringify({ error: "Aula não encontrada" }),
+          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
 
-    // Build content summary from lessons
-    const lessonsContent = lessons.map((lesson: Lesson, idx: number) => {
-      const content = lesson.content?.replace(/<[^>]*>/g, ' ').substring(0, 2000) || '';
+      const content = lesson.content?.replace(/<[^>]*>/g, ' ') || '';
       const description = lesson.description || '';
-      return `Aula ${idx + 1}: ${lesson.title}\n${description}\n${content}`;
-    }).join('\n\n---\n\n');
+      lessonsContent = `Aula: ${lesson.title}\n${description}\n${content}`;
+      quizTitle = `Avaliação - ${lessonName || lesson.title}`;
+      quizDescription = `Avaliação gerada automaticamente baseada na aula "${lesson.title}".`;
+      
+      console.log(`Gerando quiz com ${numberOfQuestions} questões para aula: ${lesson.title}`);
+    } else {
+      // Generate quiz for entire course
+      const { data: lessons, error: lessonsError } = await supabase
+        .from("lessons")
+        .select("id, title, content, description")
+        .eq("course_id", courseId)
+        .order("order_index");
 
-    console.log(`Gerando quiz com ${numberOfQuestions} questões para curso: ${courseName}`);
+      if (lessonsError) {
+        throw new Error(`Erro ao buscar aulas: ${lessonsError.message}`);
+      }
+
+      if (!lessons || lessons.length === 0) {
+        return new Response(
+          JSON.stringify({ error: "Nenhuma aula encontrada para este curso" }),
+          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+
+      lessonsContent = lessons.map((lesson: Lesson, idx: number) => {
+        const content = lesson.content?.replace(/<[^>]*>/g, ' ').substring(0, 2000) || '';
+        const description = lesson.description || '';
+        return `Aula ${idx + 1}: ${lesson.title}\n${description}\n${content}`;
+      }).join('\n\n---\n\n');
+      
+      quizTitle = `Avaliação Final - ${courseName}`;
+      quizDescription = `Avaliação gerada automaticamente com ${numberOfQuestions} questões baseadas no conteúdo do curso.`;
+      
+      console.log(`Gerando quiz com ${numberOfQuestions} questões para curso: ${courseName}`);
+    }
 
     // Call Lovable AI to generate questions
     const aiResponse = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
@@ -169,15 +199,15 @@ Retorne APENAS um JSON válido no seguinte formato (sem markdown, sem explicaç�
     }
 
     // Create the quiz in the database
-    const quizTitle = `Avaliação - ${courseName}`;
     const { data: quiz, error: quizError } = await supabase
       .from("quizzes")
       .insert({
         course_id: courseId,
+        lesson_id: lessonId || null,
         title: quizTitle,
-        description: `Avaliação gerada automaticamente com ${generatedQuestions.length} questões baseadas no conteúdo do curso.`,
+        description: quizDescription,
         passing_score: passingScore,
-        time_limit_minutes: Math.ceil(generatedQuestions.length * 3), // 3 min per question
+        time_limit_minutes: Math.ceil(numberOfQuestions * 3),
         is_published: false,
       })
       .select()
