@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { useUserRole } from '@/hooks/useUserRole';
 import { Button } from '@/components/ui/button';
@@ -388,6 +388,13 @@ const AuthPage = () => {
 
           {/* Footer */}
           <div className="text-center mt-6 md:mt-12 animate-fade-in" style={{ animationDelay: '400ms' }}>
+            <Link 
+              to="/home" 
+              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-4"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Voltar para página inicial
+            </Link>
             <div className="inline-flex flex-col sm:flex-row items-center gap-1 sm:gap-3 px-4 md:px-6 py-2 md:py-3 rounded-2xl sm:rounded-full bg-secondary/50 backdrop-blur-sm border border-border/50">
               <BookOpen className="w-4 h-4 md:w-5 md:h-5 text-accent hidden sm:block" />
               <span className="italic text-muted-foreground text-xs md:text-sm">"Lâmpada para os meus pés é a tua palavra"</span>
