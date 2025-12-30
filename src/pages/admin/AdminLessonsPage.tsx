@@ -503,16 +503,43 @@ export default function AdminLessonsPage() {
                     type="file"
                     accept=".txt,.md,.text"
                     id="batch-file-input"
+                    multiple
                     className="hidden"
-                    onChange={(e) => {
-                      const file = e.target.files?.[0];
-                      if (file) {
-                        const reader = new FileReader();
-                        reader.onload = (event) => {
-                          const content = event.target?.result as string;
-                          setBatchText(content);
-                        };
-                        reader.readAsText(file);
+                    onChange={async (e) => {
+                      const files = e.target.files;
+                      if (files && files.length > 0) {
+                        // Sort files by name to maintain order
+                        const sortedFiles = Array.from(files).sort((a, b) => 
+                          a.name.localeCompare(b.name, undefined, { numeric: true })
+                        );
+                        
+                        const allContents: string[] = [];
+                        
+                        for (const file of sortedFiles) {
+                          const content = await new Promise<string>((resolve) => {
+                            const reader = new FileReader();
+                            reader.onload = (event) => {
+                              resolve(event.target?.result as string || '');
+                            };
+                            reader.readAsText(file);
+                          });
+                          
+                          // Use filename (without extension) as title if content doesn't start with #
+                          const fileName = file.name.replace(/\.(txt|md|text)$/i, '');
+                          const trimmedContent = content.trim();
+                          
+                          if (trimmedContent.startsWith('#')) {
+                            allContents.push(trimmedContent);
+                          } else {
+                            allContents.push(`# ${fileName}\n${trimmedContent}`);
+                          }
+                        }
+                        
+                        setBatchText(allContents.join('\n\n---\n\n'));
+                        toast({ 
+                          title: `${sortedFiles.length} arquivo(s) carregado(s)`,
+                          description: "Verifique o conteúdo e clique em Importar"
+                        });
                       }
                       e.target.value = '';
                     }}
@@ -524,10 +551,10 @@ export default function AdminLessonsPage() {
                     className="gap-2"
                   >
                     <FolderOpen className="w-4 h-4" />
-                    Abrir Arquivo
+                    Selecionar Arquivos
                   </Button>
                   <span className="text-sm text-muted-foreground self-center">
-                    .txt ou .md
+                    Selecione múltiplos .txt ou .md
                   </span>
                 </div>
 
@@ -535,7 +562,7 @@ export default function AdminLessonsPage() {
                   value={batchText}
                   onChange={(e) => setBatchText(e.target.value)}
                   rows={12}
-                  placeholder="Cole aqui o texto de todas as aulas ou clique em 'Abrir Arquivo'..."
+                  placeholder="Selecione arquivos ou cole o texto das aulas aqui..."
                   className="font-mono text-sm"
                 />
               </div>
