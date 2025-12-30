@@ -165,7 +165,17 @@ export const WysiwygEditor = forwardRef<WysiwygEditorRef, WysiwygEditorProps>(
       execCommand(command);
     }, [execCommand]);
 
-    const ColorPicker = ({ onSelect, onClose }: { onSelect: (color: string) => void; onClose?: () => void }) => (
+    // Botões de cor rápida
+    const QUICK_COLORS = [
+      { name: "Vermelho", color: "#EF4444" },
+      { name: "Azul", color: "#3B82F6" },
+      { name: "Verde", color: "#22C55E" },
+      { name: "Roxo", color: "#8B5CF6" },
+      { name: "Laranja", color: "#F97316" },
+      { name: "Rosa", color: "#EC4899" },
+    ];
+
+    const ColorPickerContent = ({ onSelect, onClose }: { onSelect: (color: string) => void; onClose?: () => void }) => (
       <div className="p-3 space-y-3 min-w-[280px]">
         {COLOR_CATEGORIES.map((category) => (
           <div key={category.name}>
@@ -191,7 +201,7 @@ export const WysiwygEditor = forwardRef<WysiwygEditorRef, WysiwygEditorProps>(
       </div>
     );
 
-    const HighlightPicker = ({ onSelect, onClose }: { onSelect: (color: string) => void; onClose?: () => void }) => (
+    const HighlightPickerContent = ({ onSelect, onClose }: { onSelect: (color: string) => void; onClose?: () => void }) => (
       <div className="p-3 space-y-2 min-w-[200px]">
         <p className="text-xs font-medium text-muted-foreground mb-2">Destaque</p>
         <div className="grid grid-cols-3 gap-2">
@@ -227,7 +237,7 @@ export const WysiwygEditor = forwardRef<WysiwygEditorRef, WysiwygEditorProps>(
       </div>
     );
 
-    const SizePicker = ({ onSelect, onClose }: { onSelect: (size: string) => void; onClose?: () => void }) => (
+    const SizePickerContent = ({ onSelect, onClose }: { onSelect: (size: string) => void; onClose?: () => void }) => (
       <div className="p-2 space-y-1 min-w-[180px]">
         {FONT_SIZES.map((option) => (
           <button
@@ -344,7 +354,25 @@ export const WysiwygEditor = forwardRef<WysiwygEditorRef, WysiwygEditorProps>(
               </ToolbarButton>
             </ToolbarGroup>
 
-            {/* Cores e Tamanho */}
+            {/* Cores Rápidas */}
+            <ToolbarGroup>
+              <div className="flex items-center gap-1">
+                {QUICK_COLORS.map((item) => (
+                  <button
+                    key={item.color}
+                    type="button"
+                    title={item.name}
+                    className={`w-6 h-6 rounded-full border-2 transition-all duration-150 hover:scale-110 active:scale-95 shadow-sm ${
+                      activeColor === item.color ? "ring-2 ring-primary ring-offset-1" : "border-white/50"
+                    }`}
+                    style={{ backgroundColor: item.color }}
+                    onClick={() => applyColor(item.color)}
+                  />
+                ))}
+              </div>
+            </ToolbarGroup>
+
+            {/* Mais Cores e Tamanho */}
             <ToolbarGroup>
               {isMobile ? (
                 <>
@@ -365,7 +393,7 @@ export const WysiwygEditor = forwardRef<WysiwygEditorRef, WysiwygEditorProps>(
                       <DrawerHeader>
                         <DrawerTitle>Cor do Texto</DrawerTitle>
                       </DrawerHeader>
-                      <ColorPicker onSelect={applyColor} />
+                      <ColorPickerContent onSelect={applyColor} />
                     </DrawerContent>
                   </Drawer>
                   <Drawer>
@@ -378,7 +406,7 @@ export const WysiwygEditor = forwardRef<WysiwygEditorRef, WysiwygEditorProps>(
                       <DrawerHeader>
                         <DrawerTitle>Destaque</DrawerTitle>
                       </DrawerHeader>
-                      <HighlightPicker onSelect={applyHighlight} />
+                      <HighlightPickerContent onSelect={applyHighlight} />
                     </DrawerContent>
                   </Drawer>
                   <Drawer>
@@ -391,7 +419,7 @@ export const WysiwygEditor = forwardRef<WysiwygEditorRef, WysiwygEditorProps>(
                       <DrawerHeader>
                         <DrawerTitle>Tamanho da Fonte</DrawerTitle>
                       </DrawerHeader>
-                      <SizePicker onSelect={applyFontSize} />
+                      <SizePickerContent onSelect={applyFontSize} />
                     </DrawerContent>
                   </Drawer>
                 </>
@@ -411,7 +439,7 @@ export const WysiwygEditor = forwardRef<WysiwygEditorRef, WysiwygEditorProps>(
                       </Button>
                     </PopoverTrigger>
                     <PopoverContent className="w-auto p-0 bg-card border-border shadow-xl" align="start">
-                      <ColorPicker onSelect={applyColor} />
+                      <ColorPickerContent onSelect={applyColor} />
                     </PopoverContent>
                   </Popover>
                   <Popover>
@@ -421,7 +449,7 @@ export const WysiwygEditor = forwardRef<WysiwygEditorRef, WysiwygEditorProps>(
                       </Button>
                     </PopoverTrigger>
                     <PopoverContent className="w-auto p-0 bg-card border-border shadow-xl" align="start">
-                      <HighlightPicker onSelect={applyHighlight} />
+                      <HighlightPickerContent onSelect={applyHighlight} />
                     </PopoverContent>
                   </Popover>
                   <Popover>
@@ -432,7 +460,7 @@ export const WysiwygEditor = forwardRef<WysiwygEditorRef, WysiwygEditorProps>(
                       </Button>
                     </PopoverTrigger>
                     <PopoverContent className="w-auto p-0 bg-card border-border shadow-xl" align="start">
-                      <SizePicker onSelect={applyFontSize} />
+                      <SizePickerContent onSelect={applyFontSize} />
                     </PopoverContent>
                   </Popover>
                 </>
