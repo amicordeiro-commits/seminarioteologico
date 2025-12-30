@@ -114,46 +114,46 @@ const ProgressPage = () => {
 
   return (
     <AppLayout>
-      <div className="space-y-8">
+      <div className="space-y-4 sm:space-y-6 md:space-y-8">
         {/* Header */}
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <Cross className="w-5 h-5 text-primary" />
-            <span className="text-sm text-primary font-medium font-sans">Jornada de Formação</span>
+            <Cross className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
+            <span className="text-xs sm:text-sm text-primary font-medium font-sans">Jornada de Formação</span>
           </div>
-          <h1 className="text-2xl font-serif font-bold text-foreground">Meu Progresso</h1>
-          <p className="text-muted-foreground font-sans">Acompanhe sua evolução na formação teológica</p>
+          <h1 className="text-xl sm:text-2xl font-serif font-bold text-foreground">Meu Progresso</h1>
+          <p className="text-sm text-muted-foreground font-sans">Acompanhe sua evolução na formação teológica</p>
         </div>
 
         {/* Stats Overview */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="p-6 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/20">
-            <div className="flex items-center justify-between mb-4">
-              <TrendingUp className="w-8 h-8 text-primary" />
-              <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full font-sans">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4">
+          <div className="p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/20">
+            <div className="flex items-center justify-between mb-2 sm:mb-4">
+              <TrendingUp className="w-5 h-5 sm:w-6 md:w-8 sm:h-6 md:h-8 text-primary" />
+              <span className="text-[10px] sm:text-xs font-medium text-primary bg-primary/10 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full font-sans">
                 +12%
               </span>
             </div>
-            <p className="text-3xl font-serif font-bold text-foreground">{totalHoursWeek.toFixed(1)}h</p>
-            <p className="text-sm text-muted-foreground font-sans">Esta semana</p>
+            <p className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-foreground">{totalHoursWeek.toFixed(1)}h</p>
+            <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground font-sans">Esta semana</p>
           </div>
 
-          <div className="p-6 rounded-xl bg-card border border-border">
-            <Clock className="w-8 h-8 text-muted-foreground mb-4" />
-            <p className="text-3xl font-serif font-bold text-foreground">{totalStudyHours}h</p>
-            <p className="text-sm text-muted-foreground font-sans">Total estudado</p>
+          <div className="p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl bg-card border border-border">
+            <Clock className="w-5 h-5 sm:w-6 md:w-8 sm:h-6 md:h-8 text-muted-foreground mb-2 sm:mb-4" />
+            <p className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-foreground">{totalStudyHours}h</p>
+            <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground font-sans">Total estudado</p>
           </div>
 
-          <div className="p-6 rounded-xl bg-card border border-border">
-            <Trophy className="w-8 h-8 text-warning mb-4" />
-            <p className="text-3xl font-serif font-bold text-foreground">{completedCourses.length}</p>
-            <p className="text-sm text-muted-foreground font-sans">Cursos concluídos</p>
+          <div className="p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl bg-card border border-border">
+            <Trophy className="w-5 h-5 sm:w-6 md:w-8 sm:h-6 md:h-8 text-warning mb-2 sm:mb-4" />
+            <p className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-foreground">{completedCourses.length}</p>
+            <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground font-sans">Concluídos</p>
           </div>
 
-          <div className="p-6 rounded-xl bg-card border border-border">
-            <BookOpen className="w-8 h-8 text-accent mb-4" />
-            <p className="text-3xl font-serif font-bold text-foreground">{coursesInProgress.length}</p>
-            <p className="text-sm text-muted-foreground font-sans">Cursos em andamento</p>
+          <div className="p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl bg-card border border-border">
+            <BookOpen className="w-5 h-5 sm:w-6 md:w-8 sm:h-6 md:h-8 text-accent mb-2 sm:mb-4" />
+            <p className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-foreground">{coursesInProgress.length}</p>
+            <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground font-sans">Em andamento</p>
           </div>
         </div>
 

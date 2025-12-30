@@ -59,66 +59,67 @@ const CoursesPage = () => {
 
   return (
     <AppLayout>
-      <div className="space-y-8">
+      <div className="space-y-4 sm:space-y-6 md:space-y-8">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="flex flex-col gap-4">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <Cross className="w-5 h-5 text-primary" />
-              <span className="text-sm text-primary font-medium font-sans">Biblioteca Teológica</span>
+              <Cross className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
+              <span className="text-xs sm:text-sm text-primary font-medium font-sans">Biblioteca Teológica</span>
             </div>
-            <h1 className="text-2xl font-serif font-bold text-foreground">Meus Cursos</h1>
-            <p className="text-muted-foreground font-sans">Gerencie seus cursos e continue sua formação</p>
+            <h1 className="text-xl sm:text-2xl font-serif font-bold text-foreground">Meus Cursos</h1>
+            <p className="text-sm text-muted-foreground font-sans">Gerencie seus cursos e continue sua formação</p>
           </div>
-          <div className="flex items-center gap-3">
-            <div className="relative">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3">
+            <div className="relative flex-1 sm:max-w-xs">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <Input
                 placeholder="Buscar cursos..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 w-64"
+                className="pl-10 h-9"
               />
             </div>
-            <Button variant="outline" size="icon">
-              <Filter className="w-4 h-4" />
+            <Button variant="outline" size="sm" className="h-9 px-3">
+              <Filter className="w-4 h-4 mr-2 sm:mr-0" />
+              <span className="sm:hidden">Filtrar</span>
             </Button>
           </div>
         </div>
 
         {/* Stats Overview */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="flex items-center gap-4 p-4 rounded-xl bg-primary/5 border border-primary/20">
-            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-              <Clock className="w-6 h-6 text-primary" />
+        <div className="grid grid-cols-3 gap-2 sm:gap-4">
+          <div className="flex items-center gap-2 sm:gap-4 p-3 sm:p-4 rounded-xl bg-primary/5 border border-primary/20">
+            <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-primary/10 flex items-center justify-center">
+              <Clock className="w-4 h-4 sm:w-6 sm:h-6 text-primary" />
             </div>
             <div>
-              <p className="text-2xl font-serif font-bold text-foreground">{inProgressCourses.length}</p>
-              <p className="text-sm text-muted-foreground font-sans">Em andamento</p>
+              <p className="text-lg sm:text-2xl font-serif font-bold text-foreground">{inProgressCourses.length}</p>
+              <p className="text-xs sm:text-sm text-muted-foreground font-sans">Andamento</p>
             </div>
           </div>
-          <div className="flex items-center gap-4 p-4 rounded-xl bg-success/5 border border-success/20">
-            <div className="w-12 h-12 rounded-xl bg-success/10 flex items-center justify-center">
-              <Trophy className="w-6 h-6 text-success" />
+          <div className="flex items-center gap-2 sm:gap-4 p-3 sm:p-4 rounded-xl bg-success/5 border border-success/20">
+            <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-success/10 flex items-center justify-center">
+              <Trophy className="w-4 h-4 sm:w-6 sm:h-6 text-success" />
             </div>
             <div>
-              <p className="text-2xl font-serif font-bold text-foreground">{completedCourses.length}</p>
-              <p className="text-sm text-muted-foreground font-sans">Concluídos</p>
+              <p className="text-lg sm:text-2xl font-serif font-bold text-foreground">{completedCourses.length}</p>
+              <p className="text-xs sm:text-sm text-muted-foreground font-sans">Concluídos</p>
             </div>
           </div>
-          <div className="flex items-center gap-4 p-4 rounded-xl bg-secondary border border-border">
-            <div className="w-12 h-12 rounded-xl bg-muted flex items-center justify-center">
-              <BookOpen className="w-6 h-6 text-muted-foreground" />
+          <div className="flex items-center gap-2 sm:gap-4 p-3 sm:p-4 rounded-xl bg-secondary border border-border">
+            <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-muted flex items-center justify-center">
+              <BookOpen className="w-4 h-4 sm:w-6 sm:h-6 text-muted-foreground" />
             </div>
             <div>
-              <p className="text-2xl font-serif font-bold text-foreground">{notStartedCourses.length}</p>
-              <p className="text-sm text-muted-foreground font-sans">Não iniciados</p>
+              <p className="text-lg sm:text-2xl font-serif font-bold text-foreground">{notStartedCourses.length}</p>
+              <p className="text-xs sm:text-sm text-muted-foreground font-sans">Não iniciados</p>
             </div>
           </div>
         </div>
 
         {/* Category Filter */}
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1.5 sm:gap-2">
           {categories.map((category) => (
             <Button
               key={category}
@@ -126,7 +127,7 @@ const CoursesPage = () => {
               size="sm"
               onClick={() => setSelectedCategory(category)}
               className={cn(
-                "transition-all duration-200 font-sans",
+                "transition-all duration-200 font-sans text-xs sm:text-sm h-7 sm:h-8 px-2 sm:px-3",
                 selectedCategory === category && "shadow-md"
               )}
             >
@@ -137,11 +138,11 @@ const CoursesPage = () => {
 
         {/* Loading State */}
         {isLoading ? (
-          <div className="flex items-center justify-center py-12">
-            <Loader2 className="w-8 h-8 animate-spin text-primary" />
+          <div className="flex items-center justify-center py-8 sm:py-12">
+            <Loader2 className="w-6 h-6 sm:w-8 sm:h-8 animate-spin text-primary" />
           </div>
         ) : filteredCourses.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
             {filteredCourses.map((course, index) => (
               <div
                 key={course.id}
@@ -153,10 +154,10 @@ const CoursesPage = () => {
             ))}
           </div>
         ) : (
-          <div className="text-center py-12">
-            <BookOpen className="w-16 h-16 text-muted-foreground/50 mx-auto mb-4" />
-            <h3 className="text-lg font-serif font-medium text-foreground mb-2">Nenhum curso encontrado</h3>
-            <p className="text-muted-foreground font-sans">Tente ajustar seus filtros de busca</p>
+          <div className="text-center py-8 sm:py-12">
+            <BookOpen className="w-12 h-12 sm:w-16 sm:h-16 text-muted-foreground/50 mx-auto mb-4" />
+            <h3 className="text-base sm:text-lg font-serif font-medium text-foreground mb-2">Nenhum curso encontrado</h3>
+            <p className="text-sm text-muted-foreground font-sans">Tente ajustar seus filtros de busca</p>
           </div>
         )}
       </div>

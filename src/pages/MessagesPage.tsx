@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { Search, Send, MoreVertical, Paperclip, MessageSquare, Loader2 } from "lucide-react";
+import { Search, Send, MoreVertical, Paperclip, MessageSquare, Loader2, ChevronLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState, useEffect, useRef } from "react";
 import { useConversations, useMessages, useSendMessage, useMarkAsRead, useRealtimeMessages } from "@/hooks/useMessages";
@@ -89,18 +89,23 @@ const MessagesPage = () => {
     return format(date, "d MMM", { locale: ptBR });
   };
 
+  const [showConversations, setShowConversations] = useState(true);
+
   return (
     <AppLayout>
-      <div className="h-[calc(100vh-8rem)] flex rounded-xl overflow-hidden border border-border bg-card">
+      <div className="h-[calc(100vh-8rem)] flex flex-col md:flex-row rounded-xl overflow-hidden border border-border bg-card">
         {/* Conversations List */}
-        <div className="w-80 border-r border-border flex flex-col">
-          <div className="p-4 border-b border-border">
+        <div className={cn(
+          "w-full md:w-80 border-b md:border-b-0 md:border-r border-border flex flex-col",
+          !showConversations && selectedPartnerId ? "hidden md:flex" : "flex"
+        )}>
+          <div className="p-3 md:p-4 border-b border-border">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <Input placeholder="Buscar conversas..." className="pl-10" />
+              <Input placeholder="Buscar conversas..." className="pl-10 h-9" />
             </div>
           </div>
-          <div className="flex-1 overflow-y-auto">
+          <div className="flex-1 overflow-y-auto max-h-[40vh] md:max-h-none">
             {loadingConversations ? (
               <div className="flex items-center justify-center h-32">
                 <Loader2 className="w-6 h-6 animate-spin text-primary" />
@@ -114,29 +119,32 @@ const MessagesPage = () => {
               conversations.map((conversation) => (
                 <button
                   key={conversation.partnerId}
-                  onClick={() => setSelectedPartnerId(conversation.partnerId)}
+                  onClick={() => {
+                    setSelectedPartnerId(conversation.partnerId);
+                    setShowConversations(false);
+                  }}
                   className={cn(
-                    "w-full flex items-center gap-3 p-4 hover:bg-secondary transition-colors text-left",
+                    "w-full flex items-center gap-3 p-3 md:p-4 hover:bg-secondary transition-colors text-left",
                     selectedPartnerId === conversation.partnerId && "bg-secondary"
                   )}
                 >
                   <div className="relative">
-                    <Avatar>
+                    <Avatar className="w-10 h-10">
                       <AvatarImage src={conversation.partnerAvatar || undefined} />
-                      <AvatarFallback>{conversation.partnerName[0]}</AvatarFallback>
+                      <AvatarFallback className="text-sm">{conversation.partnerName[0]}</AvatarFallback>
                     </Avatar>
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between">
-                      <p className="font-medium text-foreground truncate">{conversation.partnerName}</p>
-                      <span className="text-xs text-muted-foreground">
+                      <p className="font-medium text-foreground truncate text-sm">{conversation.partnerName}</p>
+                      <span className="text-xs text-muted-foreground ml-2 flex-shrink-0">
                         {formatConversationTime(conversation.lastMessageTime)}
                       </span>
                     </div>
-                    <p className="text-sm text-muted-foreground truncate">{conversation.lastMessage}</p>
+                    <p className="text-xs md:text-sm text-muted-foreground truncate">{conversation.lastMessage}</p>
                   </div>
                   {conversation.unreadCount > 0 && (
-                    <Badge className="bg-accent text-accent-foreground">{conversation.unreadCount}</Badge>
+                    <Badge className="bg-accent text-accent-foreground text-xs">{conversation.unreadCount}</Badge>
                   )}
                 </button>
               ))
@@ -145,19 +153,30 @@ const MessagesPage = () => {
         </div>
 
         {/* Chat Area */}
-        <div className="flex-1 flex flex-col">
+        <div className={cn(
+          "flex-1 flex flex-col",
+          showConversations && !selectedPartnerId ? "hidden md:flex" : "flex"
+        )}>
           {selectedConversation ? (
             <>
               {/* Chat Header */}
-              <div className="flex items-center justify-between p-4 border-b border-border">
+              <div className="flex items-center justify-between p-3 md:p-4 border-b border-border">
                 <div className="flex items-center gap-3">
-                  <Avatar>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="md:hidden"
+                    onClick={() => setShowConversations(true)}
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </Button>
+                  <Avatar className="w-9 h-9 md:w-10 md:h-10">
                     <AvatarImage src={selectedConversation.partnerAvatar || undefined} />
-                    <AvatarFallback>{selectedConversation.partnerName[0]}</AvatarFallback>
+                    <AvatarFallback className="text-sm">{selectedConversation.partnerName[0]}</AvatarFallback>
                   </Avatar>
                   <div>
-                    <p className="font-medium text-foreground">{selectedConversation.partnerName}</p>
-                    <p className="text-sm text-muted-foreground">Online</p>
+                    <p className="font-medium text-foreground text-sm md:text-base">{selectedConversation.partnerName}</p>
+                    <p className="text-xs md:text-sm text-muted-foreground">Online</p>
                   </div>
                 </div>
                 <Button variant="ghost" size="icon">
