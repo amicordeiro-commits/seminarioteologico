@@ -1107,8 +1107,11 @@ export type Database = {
           answers: Json | null
           completed_at: string | null
           id: string
+          is_recovery: boolean | null
+          original_attempt_id: string | null
           passed: boolean | null
           quiz_id: string
+          recovery_count: number | null
           score: number | null
           started_at: string | null
           user_id: string
@@ -1117,8 +1120,11 @@ export type Database = {
           answers?: Json | null
           completed_at?: string | null
           id?: string
+          is_recovery?: boolean | null
+          original_attempt_id?: string | null
           passed?: boolean | null
           quiz_id: string
+          recovery_count?: number | null
           score?: number | null
           started_at?: string | null
           user_id: string
@@ -1127,13 +1133,23 @@ export type Database = {
           answers?: Json | null
           completed_at?: string | null
           id?: string
+          is_recovery?: boolean | null
+          original_attempt_id?: string | null
           passed?: boolean | null
           quiz_id?: string
+          recovery_count?: number | null
           score?: number | null
           started_at?: string | null
           user_id?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "quiz_attempts_original_attempt_id_fkey"
+            columns: ["original_attempt_id"]
+            isOneToOne: false
+            referencedRelation: "quiz_attempts"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "quiz_attempts_quiz_id_fkey"
             columns: ["quiz_id"]
@@ -1208,6 +1224,47 @@ export type Database = {
             foreignKeyName: "quiz_questions_quiz_id_fkey"
             columns: ["quiz_id"]
             isOneToOne: false
+            referencedRelation: "quizzes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      quiz_recovery_settings: {
+        Row: {
+          allow_recovery: boolean | null
+          created_at: string | null
+          id: string
+          max_recovery_attempts: number | null
+          quiz_id: string
+          recovery_passing_score: number | null
+          updated_at: string | null
+          wait_hours_before_recovery: number | null
+        }
+        Insert: {
+          allow_recovery?: boolean | null
+          created_at?: string | null
+          id?: string
+          max_recovery_attempts?: number | null
+          quiz_id: string
+          recovery_passing_score?: number | null
+          updated_at?: string | null
+          wait_hours_before_recovery?: number | null
+        }
+        Update: {
+          allow_recovery?: boolean | null
+          created_at?: string | null
+          id?: string
+          max_recovery_attempts?: number | null
+          quiz_id?: string
+          recovery_passing_score?: number | null
+          updated_at?: string | null
+          wait_hours_before_recovery?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "quiz_recovery_settings_quiz_id_fkey"
+            columns: ["quiz_id"]
+            isOneToOne: true
             referencedRelation: "quizzes"
             referencedColumns: ["id"]
           },

@@ -20,10 +20,11 @@ import {
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import { ClipboardList, Plus, Pencil, Trash2, Loader2, ListChecks, HelpCircle, Sparkles, BookOpen } from "lucide-react";
+import { ClipboardList, Plus, Pencil, Trash2, Loader2, ListChecks, HelpCircle, Sparkles, BookOpen, RefreshCw, Settings2 } from "lucide-react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface Quiz {
   id: string;
@@ -64,6 +65,15 @@ interface Lesson {
   course_id: string;
 }
 
+interface RecoverySettings {
+  id?: string;
+  quiz_id: string;
+  allow_recovery: boolean;
+  max_recovery_attempts: number;
+  recovery_passing_score: number;
+  wait_hours_before_recovery: number;
+}
+
 const defaultQuiz: Partial<Quiz> = {
   title: "",
   description: "",
@@ -90,6 +100,14 @@ export default function AdminQuizzesPage() {
   const [editingQuiz, setEditingQuiz] = useState<Partial<Quiz> | null>(null);
   const [editingQuestion, setEditingQuestion] = useState<Partial<QuizQuestion> | null>(null);
   const [selectedQuizId, setSelectedQuizId] = useState<string | null>(null);
+  const [isRecoveryDialogOpen, setIsRecoveryDialogOpen] = useState(false);
+  const [recoverySettings, setRecoverySettings] = useState<RecoverySettings>({
+    quiz_id: "",
+    allow_recovery: true,
+    max_recovery_attempts: 2,
+    recovery_passing_score: 60,
+    wait_hours_before_recovery: 24,
+  });
   const [newOptions, setNewOptions] = useState<Array<{ text: string; isCorrect: boolean }>>([
     { text: "", isCorrect: true },
     { text: "", isCorrect: false },
@@ -148,6 +166,46 @@ export default function AdminQuizzesPage() {
         .select("id, title, course_id");
       if (error) throw error;
       return data as Lesson[];
+    },
+  });
+
+  // Fetch recovery settings for selected quiz
+  const { data: currentRecoverySettings } = useQuery({
+    queryKey: ["quiz-recovery-settings", selectedQuizId],
+    queryFn: async () => {
+      if (!selectedQuizId) return null;
+      const { data, error } = await supabase
+        .from("quiz_recovery_settings")
+        .select("*")
+        .eq("quiz_id", selectedQuizId)
+        .maybeSingle();
+      if (error) throw error;
+      return data as RecoverySettings | null;
+    },
+    enabled: !!selectedQuizId,
+  });
+
+  // Save recovery settings mutation
+  const saveRecoverySettingsMutation = useMutation({
+    mutationFn: async (settings: RecoverySettings) => {
+      const { error } = await supabase
+        .from("quiz_recovery_settings")
+        .upsert({
+          quiz_id: settings.quiz_id,
+          allow_recovery: settings.allow_recovery,
+          max_recovery_attempts: settings.max_recovery_attempts,
+          recovery_passing_score: settings.recovery_passing_score,
+          wait_hours_before_recovery: settings.wait_hours_before_recovery,
+        }, { onConflict: "quiz_id" });
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["quiz-recovery-settings"] });
+      toast({ title: "Configurações de recuperação salvas!" });
+      setIsRecoveryDialogOpen(false);
+    },
+    onError: () => {
+      toast({ title: "Erro ao salvar configurações", variant: "destructive" });
     },
   });
 
@@ -546,23 +604,43 @@ export default function AdminQuizzesPage() {
                 {selectedQuizId ? "Questões" : "Selecione um Quiz"}
               </h2>
               {selectedQuizId && (
-                <Button
-                  size="sm"
-                  onClick={() => {
-                    setEditingQuestion(defaultQuestion);
-                    setNewOptions([
-                      { text: "", isCorrect: true },
-                      { text: "", isCorrect: false },
-                      { text: "", isCorrect: false },
-                      { text: "", isCorrect: false },
-                    ]);
-                    setIsQuestionDialogOpen(true);
-                  }}
-                  className="gap-1"
-                >
-                  <Plus className="w-4 h-4" />
-                  Nova Questão
-                </Button>
+                <div className="flex gap-2">
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => {
+                      setRecoverySettings({
+                        quiz_id: selectedQuizId,
+                        allow_recovery: currentRecoverySettings?.allow_recovery ?? true,
+                        max_recovery_attempts: currentRecoverySettings?.max_recovery_attempts ?? 2,
+                        recovery_passing_score: currentRecoverySettings?.recovery_passing_score ?? 60,
+                        wait_hours_before_recovery: currentRecoverySettings?.wait_hours_before_recovery ?? 24,
+                      });
+                      setIsRecoveryDialogOpen(true);
+                    }}
+                    className="gap-1"
+                  >
+                    <RefreshCw className="w-4 h-4" />
+                    Recuperação
+                  </Button>
+                  <Button
+                    size="sm"
+                    onClick={() => {
+                      setEditingQuestion(defaultQuestion);
+                      setNewOptions([
+                        { text: "", isCorrect: true },
+                        { text: "", isCorrect: false },
+                        { text: "", isCorrect: false },
+                        { text: "", isCorrect: false },
+                      ]);
+                      setIsQuestionDialogOpen(true);
+                    }}
+                    className="gap-1"
+                  >
+                    <Plus className="w-4 h-4" />
+                    Nova Questão
+                  </Button>
+                </div>
               )}
             </div>
             
@@ -915,6 +993,114 @@ export default function AdminQuizzesPage() {
                       <Sparkles className="w-4 h-4 mr-2" />
                       Gerar Quiz
                     </>
+                  )}
+                </Button>
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
+
+        {/* Recovery Settings Dialog */}
+        <Dialog open={isRecoveryDialogOpen} onOpenChange={setIsRecoveryDialogOpen}>
+          <DialogContent className="max-w-md">
+            <DialogHeader>
+              <DialogTitle className="flex items-center gap-2">
+                <RefreshCw className="w-5 h-5 text-primary" />
+                Configurações de Recuperação
+              </DialogTitle>
+            </DialogHeader>
+            <div className="space-y-4 py-4">
+              <p className="text-sm text-muted-foreground">
+                Configure as regras de recuperação para alunos reprovados neste quiz.
+              </p>
+              
+              <div className="flex items-center justify-between">
+                <Label htmlFor="allow-recovery">Permitir Recuperação</Label>
+                <Switch
+                  id="allow-recovery"
+                  checked={recoverySettings.allow_recovery}
+                  onCheckedChange={(checked) =>
+                    setRecoverySettings({ ...recoverySettings, allow_recovery: checked })
+                  }
+                />
+              </div>
+
+              {recoverySettings.allow_recovery && (
+                <>
+                  <div className="space-y-2">
+                    <Label>Máximo de Tentativas de Recuperação</Label>
+                    <Input
+                      type="number"
+                      min={1}
+                      max={5}
+                      value={recoverySettings.max_recovery_attempts}
+                      onChange={(e) =>
+                        setRecoverySettings({
+                          ...recoverySettings,
+                          max_recovery_attempts: parseInt(e.target.value) || 2,
+                        })
+                      }
+                    />
+                    <p className="text-xs text-muted-foreground">
+                      Quantas vezes o aluno pode tentar a recuperação
+                    </p>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label>Nota Mínima da Recuperação (%)</Label>
+                    <Input
+                      type="number"
+                      min={0}
+                      max={100}
+                      value={recoverySettings.recovery_passing_score}
+                      onChange={(e) =>
+                        setRecoverySettings({
+                          ...recoverySettings,
+                          recovery_passing_score: parseInt(e.target.value) || 60,
+                        })
+                      }
+                    />
+                    <p className="text-xs text-muted-foreground">
+                      Geralmente menor que a nota da prova regular
+                    </p>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label>Tempo de Espera (horas)</Label>
+                    <Input
+                      type="number"
+                      min={0}
+                      max={168}
+                      value={recoverySettings.wait_hours_before_recovery}
+                      onChange={(e) =>
+                        setRecoverySettings({
+                          ...recoverySettings,
+                          wait_hours_before_recovery: parseInt(e.target.value) || 24,
+                        })
+                      }
+                    />
+                    <p className="text-xs text-muted-foreground">
+                      Tempo mínimo entre tentativas (0 = imediato)
+                    </p>
+                  </div>
+                </>
+              )}
+
+              <div className="flex justify-end gap-2 pt-4">
+                <Button variant="outline" onClick={() => setIsRecoveryDialogOpen(false)}>
+                  Cancelar
+                </Button>
+                <Button
+                  onClick={() => saveRecoverySettingsMutation.mutate(recoverySettings)}
+                  disabled={saveRecoverySettingsMutation.isPending}
+                >
+                  {saveRecoverySettingsMutation.isPending ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                      Salvando...
+                    </>
+                  ) : (
+                    "Salvar"
                   )}
                 </Button>
               </div>

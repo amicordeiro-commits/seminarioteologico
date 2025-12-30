@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
@@ -9,9 +9,12 @@ import {
   ChevronRight, 
   ChevronLeft,
   Award,
-  RotateCcw
+  RotateCcw,
+  RefreshCw,
+  AlertTriangle
 } from "lucide-react";
 import { useQuiz, useQuizQuestions, useSubmitQuiz } from "@/hooks/useQuizzes";
+import { useQuizRecovery } from "@/hooks/useQuizRecovery";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
@@ -19,18 +22,39 @@ interface QuizPlayerProps {
   quizId: string;
   onComplete?: (passed: boolean, score: number) => void;
   onClose?: () => void;
+  isRecoveryMode?: boolean;
 }
 
-export function QuizPlayer({ quizId, onComplete, onClose }: QuizPlayerProps) {
+export function QuizPlayer({ quizId, onComplete, onClose, isRecoveryMode = false }: QuizPlayerProps) {
   const { data: quiz } = useQuiz(quizId);
   const { data: questions } = useQuizQuestions(quizId);
   const submitQuiz = useSubmitQuiz();
+  const { 
+    recoverySettings, 
+    canTakeRecovery, 
+    startRecovery, 
+    startingRecovery,
+    getOriginalFailedAttempt,
+    userAttempts
+  } = useQuizRecovery(quizId);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [results, setResults] = useState<{ score: number; passed: boolean } | null>(null);
   const [timeRemaining, setTimeRemaining] = useState<number | null>(null);
+  const [showRecoveryOption, setShowRecoveryOption] = useState(false);
+
+  // Check if should show recovery option
+  useEffect(() => {
+    if (userAttempts && userAttempts.length > 0) {
+      const failedAttempt = userAttempts.find(a => a.passed === false && !a.is_recovery);
+      if (failedAttempt && recoverySettings?.allow_recovery) {
+        const recoveryCheck = canTakeRecovery();
+        setShowRecoveryOption(recoveryCheck.allowed);
+      }
+    }
+  }, [userAttempts, recoverySettings]);
 
   if (!quiz || !questions) {
     return (
@@ -44,6 +68,9 @@ export function QuizPlayer({ quizId, onComplete, onClose }: QuizPlayerProps) {
   const progress = ((currentIndex + 1) / questions.length) * 100;
   const isLastQuestion = currentIndex === questions.length - 1;
   const answeredCount = Object.keys(answers).length;
+  const passingScore = isRecoveryMode && recoverySettings 
+    ? recoverySettings.recovery_passing_score 
+    : (quiz.passing_score || 70);
 
   const handleAnswer = (optionId: string) => {
     if (isSubmitted) return;
@@ -89,7 +116,7 @@ export function QuizPlayer({ quizId, onComplete, onClose }: QuizPlayerProps) {
     }
 
     const score = calculateScore();
-    const passed = score >= (quiz.passing_score || 70);
+    const passed = score >= passingScore;
 
     try {
       await submitQuiz.mutateAsync({
@@ -97,6 +124,7 @@ export function QuizPlayer({ quizId, onComplete, onClose }: QuizPlayerProps) {
         answers,
         score,
         passed,
+        isRecovery: isRecoveryMode,
       });
 
       setResults({ score, passed });
@@ -120,8 +148,23 @@ export function QuizPlayer({ quizId, onComplete, onClose }: QuizPlayerProps) {
     setResults(null);
   };
 
+  const handleStartRecovery = async () => {
+    try {
+      const originalAttempt = getOriginalFailedAttempt();
+      if (originalAttempt) {
+        await startRecovery(originalAttempt.id);
+        handleRetry();
+        toast.success("Prova de recuperação iniciada!");
+      }
+    } catch (error: any) {
+      toast.error(error.message || "Erro ao iniciar recuperação");
+    }
+  };
+
   // Results screen
   if (isSubmitted && results) {
+    const recoveryCheck = canTakeRecovery();
+    
     return (
       <div className="bg-card rounded-2xl border border-border p-8 max-w-2xl mx-auto text-center space-y-6">
         <div
@@ -145,9 +188,17 @@ export function QuizPlayer({ quizId, onComplete, onClose }: QuizPlayerProps) {
           </h2>
           <p className="text-muted-foreground mt-2">
             {results.passed
-              ? "Você completou o quiz com sucesso!"
+              ? isRecoveryMode 
+                ? "Você passou na recuperação!"
+                : "Você completou o quiz com sucesso!"
               : "Continue estudando e tente novamente."}
           </p>
+          {isRecoveryMode && (
+            <Badge variant="secondary" className="mt-2">
+              <RefreshCw className="w-3 h-3 mr-1" />
+              Prova de Recuperação
+            </Badge>
+          )}
         </div>
 
         <div className="bg-background rounded-xl p-6 border border-border">
@@ -161,12 +212,29 @@ export function QuizPlayer({ quizId, onComplete, onClose }: QuizPlayerProps) {
             {results.score}%
           </p>
           <p className="text-sm text-muted-foreground mt-2">
-            Mínimo necessário: {quiz.passing_score}%
+            Mínimo necessário: {passingScore}%
           </p>
         </div>
 
-        <div className="flex gap-3 justify-center">
-          {!results.passed && (
+        <div className="flex gap-3 justify-center flex-wrap">
+          {!results.passed && recoverySettings?.allow_recovery && recoveryCheck.allowed && (
+            <Button 
+              onClick={handleStartRecovery} 
+              variant="outline" 
+              className="gap-2"
+              disabled={startingRecovery}
+            >
+              <RefreshCw className={cn("w-4 h-4", startingRecovery && "animate-spin")} />
+              Fazer Recuperação
+            </Button>
+          )}
+          {!results.passed && !recoveryCheck.allowed && recoverySettings?.allow_recovery && (
+            <div className="flex items-center gap-2 text-sm text-muted-foreground bg-muted px-3 py-2 rounded-lg">
+              <AlertTriangle className="w-4 h-4" />
+              {recoveryCheck.reason}
+            </div>
+          )}
+          {!results.passed && !isRecoveryMode && (
             <Button onClick={handleRetry} variant="outline" className="gap-2">
               <RotateCcw className="w-4 h-4" />
               Tentar Novamente

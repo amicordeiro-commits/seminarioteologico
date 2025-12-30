@@ -202,22 +202,24 @@ const manualSections = [
 4. Configure nota mínima para aprovação (%)
 5. Defina tempo limite em minutos (opcional)
 
-**Adicionar Perguntas:**
-1. Abra o quiz criado
-2. Clique em "Adicionar Pergunta"
-3. Escreva a pergunta
-4. Adicione 4 opções de resposta
-5. Marque a resposta correta
-6. Defina pontos da questão
+**Gerar Quiz com IA:**
+1. Clique em "Gerar com IA"
+2. Selecione o curso
+3. Escolha escopo: curso inteiro (10 questões) ou aula (5 questões)
+4. A IA analisa o conteúdo e gera questões automaticamente
+
+**Sistema de Recuperação:**
+1. Selecione um quiz e clique em "Recuperação"
+2. Configure: permitir recuperação, máximo de tentativas, nota mínima
+3. Defina tempo de espera entre tentativas (em horas)
+4. Alunos reprovados podem fazer prova de recuperação
+5. Nota mínima da recuperação geralmente é menor que a prova regular
 
 **Publicação:**
 - Marque o quiz como publicado quando pronto
 - Alunos só verão quizzes publicados
-- Resultados são salvos automaticamente
 
-**Estatísticas:**
-- Veja tentativas e notas dos alunos
-- Identifique questões mais difíceis`,
+**Dica:** Configure recuperação com nota mínima de 60% para dar chance extra aos alunos.`,
   },
   {
     id: "certificates",

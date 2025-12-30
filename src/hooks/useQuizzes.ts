@@ -146,11 +146,13 @@ export function useSubmitQuiz() {
       answers,
       score,
       passed,
+      isRecovery = false,
     }: {
       quizId: string;
       answers: Record<string, string>;
       score: number;
       passed: boolean;
+      isRecovery?: boolean;
     }) => {
       if (!user?.id) throw new Error("User not authenticated");
 
@@ -162,6 +164,7 @@ export function useSubmitQuiz() {
           answers,
           score,
           passed,
+          is_recovery: isRecovery,
           completed_at: new Date().toISOString(),
         })
         .select()
