@@ -22,6 +22,7 @@ import CertificatesPage from "./pages/CertificatesPage";
 import AuthPage from "./pages/AuthPage";
 import NotFound from "./pages/NotFound";
 import BlogPage from "./pages/BlogPage";
+import BlogPostPage from "./pages/BlogPostPage";
 import ForumPage from "./pages/ForumPage";
 import FinancePage from "./pages/FinancePage";
 import TranscriptPage from "./pages/TranscriptPage";
@@ -221,6 +222,14 @@ const AppRoutes = () => {
         element={
           <ProtectedRoute>
             <BlogPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/blog/:id"
+        element={
+          <ProtectedRoute>
+            <BlogPostPage />
           </ProtectedRoute>
         }
       />
