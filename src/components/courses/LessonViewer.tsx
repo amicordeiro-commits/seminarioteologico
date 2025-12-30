@@ -167,7 +167,7 @@ export function LessonViewer({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="!fixed !inset-0 !max-w-none !w-screen !h-screen !translate-x-0 !translate-y-0 !left-0 !top-0 flex flex-col p-0 gap-0 bg-background overflow-hidden !rounded-none border-none">
+      <DialogContent className="!fixed !inset-0 !max-w-none !w-screen !h-screen !translate-x-0 !translate-y-0 !left-0 !top-0 flex flex-col p-0 gap-0 bg-[hsl(35,30%,96%)] dark:bg-[hsl(20,25%,8%)] overflow-hidden !rounded-none border-none">
         {/* Header elegante */}
         <header className="flex items-center justify-between px-6 py-4 bg-gradient-to-r from-primary to-primary/90 text-primary-foreground shrink-0">
           <div className="flex items-center gap-4 min-w-0">
@@ -190,7 +190,7 @@ export function LessonViewer({
         </header>
 
         {/* Conteúdo principal */}
-        <div className="flex-1 overflow-hidden flex bg-muted/30">
+        <div className="flex-1 overflow-hidden flex">
           {loading ? (
             <div className="flex-1 flex flex-col items-center justify-center gap-4">
               <Loader2 className="w-10 h-10 animate-spin text-primary" />
@@ -200,29 +200,29 @@ export function LessonViewer({
             <div className="flex-1 flex flex-col">
               {/* Área de leitura */}
               <ScrollArea className="flex-1">
-                <article className="w-full max-w-5xl mx-auto px-6 sm:px-10 lg:px-14 py-10 sm:py-14">
+                <article className="w-full max-w-4xl mx-auto px-6 sm:px-12 lg:px-16 py-12 sm:py-16">
                   {/* Cabeçalho na primeira página */}
                   {currentPage === 1 && (
-                    <div className="text-center mb-14 pb-8 border-b-2 border-primary/20">
-                      <p className="text-xs uppercase tracking-[0.2em] text-primary/60 mb-4 font-medium">
+                    <div className="text-center mb-16 pb-10 border-b border-primary/20">
+                      <p className="text-xs uppercase tracking-[0.25em] text-primary/70 mb-5 font-semibold">
                         {category}
                       </p>
-                      <h1 className="text-2xl sm:text-4xl font-serif font-bold text-foreground leading-snug">
+                      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-foreground leading-tight">
                         {title}
                       </h1>
-                      <p className="text-sm text-muted-foreground mt-4">
+                      <p className="text-sm text-muted-foreground mt-5 font-medium">
                         P.O.D Seminário Teológico
                       </p>
                     </div>
                   )}
                   
-                  {/* Texto com separação clara de tópicos */}
-                  <div className="space-y-5">
+                  {/* Texto com formatação melhorada */}
+                  <div className="space-y-6">
                     {splitIntoBlocks(pages[currentPage - 1] || "").map((block, i) => {
                       const t = block.trim();
                       if (!t) return null;
 
-                      // Detecta diferentes tipos de cabeçalhos (apenas se for linha curta e maiúscula)
+                      // Detecta diferentes tipos de cabeçalhos
                       const isMainHeading =
                         /^[A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇ][A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇ\s\d\-:,.()]+$/.test(t) &&
                         t.length < 80 &&
@@ -234,9 +234,9 @@ export function LessonViewer({
                       // Título principal do tópico
                       if (isMainHeading) {
                         return (
-                          <section key={i} className="mt-10 first:mt-0">
-                            <div className="bg-primary/5 rounded-xl p-5 border-l-4 border-primary">
-                              <h2 className="text-lg sm:text-xl lg:text-2xl font-serif font-bold text-primary">
+                          <section key={i} className="mt-12 first:mt-0">
+                            <div className="bg-primary/8 dark:bg-primary/15 rounded-xl p-6 border-l-4 border-primary shadow-sm">
+                              <h2 className="text-xl sm:text-2xl lg:text-3xl font-serif font-bold text-primary leading-snug">
                                 {t}
                               </h2>
                             </div>
@@ -247,14 +247,14 @@ export function LessonViewer({
                       // Subtópico numerado (I. II. III. ou 1. 2. 3.)
                       if (isNumberedTopic) {
                         return (
-                          <div key={i} className="mt-6 mb-3">
-                            <div className="flex items-start gap-4 bg-muted/50 rounded-lg p-4">
-                              <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                                <span className="text-primary font-bold text-sm">
+                          <div key={i} className="mt-8 mb-4">
+                            <div className="flex items-start gap-4 bg-muted/60 dark:bg-muted/30 rounded-xl p-5 border border-border/50">
+                              <div className="w-10 h-10 rounded-full bg-primary/15 flex items-center justify-center shrink-0">
+                                <span className="text-primary font-bold text-base font-serif">
                                   {t.match(/^([IVX\d]+)/)?.[1]}
                                 </span>
                               </div>
-                              <p className="text-base sm:text-lg lg:text-xl font-semibold text-foreground pt-1 whitespace-pre-wrap">
+                              <p className="text-lg sm:text-xl lg:text-2xl font-semibold text-foreground pt-1.5 leading-relaxed whitespace-pre-wrap font-serif">
                                 {t.replace(/^[IVX\d]+[\.\)]\s*/, "")}
                               </p>
                             </div>
@@ -265,10 +265,10 @@ export function LessonViewer({
                       // Subtópico com letra (a. b. c.)
                       if (isLetterTopic) {
                         return (
-                          <div key={i} className="ml-4 mb-2">
-                            <div className="flex items-start gap-3 pl-4 border-l-2 border-accent/50">
-                              <span className="text-primary font-semibold shrink-0">{t.charAt(0)}.</span>
-                              <p className="text-base sm:text-lg text-foreground/90 leading-relaxed whitespace-pre-wrap">
+                          <div key={i} className="ml-6 mb-3">
+                            <div className="flex items-start gap-4 pl-5 border-l-2 border-accent/60 py-1">
+                              <span className="text-primary font-bold text-lg shrink-0 font-serif">{t.charAt(0)}.</span>
+                              <p className="text-base sm:text-lg lg:text-xl text-foreground/90 leading-relaxed whitespace-pre-wrap">
                                 {t.replace(/^[a-zA-Z][\.\)]\s*/, "")}
                               </p>
                             </div>
@@ -279,10 +279,10 @@ export function LessonViewer({
                       // Bullet point
                       if (isBulletPoint) {
                         return (
-                          <div key={i} className="ml-4 mb-2">
-                            <div className="flex items-start gap-3">
-                              <span className="text-primary mt-1.5 shrink-0">•</span>
-                              <p className="text-base sm:text-lg text-foreground/90 leading-relaxed whitespace-pre-wrap">
+                          <div key={i} className="ml-6 mb-3">
+                            <div className="flex items-start gap-4">
+                              <span className="text-primary text-xl mt-0.5 shrink-0">•</span>
+                              <p className="text-base sm:text-lg lg:text-xl text-foreground/90 leading-relaxed whitespace-pre-wrap">
                                 {t.replace(/^[-•]\s*/, "")}
                               </p>
                             </div>
@@ -290,11 +290,12 @@ export function LessonViewer({
                         );
                       }
 
-                      // Parágrafo normal - preserva quebras internas
+                      // Parágrafo normal - texto principal
                       return (
                         <p
                           key={i}
-                          className="text-base sm:text-lg text-foreground/90 leading-[1.8] sm:leading-[1.9] whitespace-pre-wrap"
+                          className="text-base sm:text-lg lg:text-xl text-foreground/85 leading-[1.9] sm:leading-[2] whitespace-pre-wrap first-letter:text-2xl first-letter:font-serif first-letter:font-bold first-letter:text-primary/80"
+                          style={{ textAlign: 'justify', textIndent: '2em' }}
                         >
                           {t}
                         </p>
@@ -303,7 +304,7 @@ export function LessonViewer({
                   </div>
                   
                   {/* Espaço extra no final */}
-                  <div className="h-16" />
+                  <div className="h-20" />
                 </article>
               </ScrollArea>
 
