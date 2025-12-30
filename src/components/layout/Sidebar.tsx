@@ -17,6 +17,7 @@ import {
   User,
   Award,
   FolderOpen,
+  Newspaper,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -26,6 +27,7 @@ const navItems = [
   { icon: Library, label: "Bíblia de Estudo", path: "/bible" },
   { icon: FolderOpen, label: "Biblioteca", path: "/library" },
   { icon: BookMarked, label: "Devocional", path: "/devotional" },
+  { icon: Newspaper, label: "Blog", path: "/blog" },
   { icon: Calendar, label: "Calendário", path: "/calendar" },
   { icon: MessageSquare, label: "Mensagens", path: "/messages" },
   { icon: BarChart3, label: "Meu Progresso", path: "/progress" },
