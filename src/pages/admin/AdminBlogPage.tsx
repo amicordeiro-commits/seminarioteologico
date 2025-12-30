@@ -30,6 +30,8 @@ import {
   Loader2,
   FileText,
   Eye,
+  ImageIcon,
+  X,
 } from "lucide-react";
 import {
   useBlogPosts,
@@ -57,6 +59,7 @@ export default function AdminBlogPage() {
     content: "",
     excerpt: "",
     author_name: "",
+    featured_image: "",
     is_published: false,
   });
   const [aiTopic, setAiTopic] = useState("");
@@ -70,6 +73,7 @@ export default function AdminBlogPage() {
         content: post.content,
         excerpt: post.excerpt || "",
         author_name: post.author_name || "",
+        featured_image: post.featured_image || "",
         is_published: post.is_published,
       });
     } else {
@@ -79,6 +83,7 @@ export default function AdminBlogPage() {
         content: "",
         excerpt: "",
         author_name: "",
+        featured_image: "",
         is_published: false,
       });
     }
@@ -98,9 +103,14 @@ export default function AdminBlogPage() {
         title: result.title,
         content: result.content,
         excerpt: result.excerpt,
+        featured_image: result.imageUrl || "",
       });
 
-      toast.success("Conteúdo gerado com sucesso!");
+      if (result.imageUrl) {
+        toast.success("Conteúdo e imagem gerados com sucesso!");
+      } else {
+        toast.success("Conteúdo gerado com sucesso!");
+      }
       setAiTopic("");
       setAiBibleRef("");
     } catch (error) {
@@ -164,14 +174,18 @@ export default function AdminBlogPage() {
     }
   };
 
+  const removeImage = () => {
+    setFormData({ ...formData, featured_image: "" });
+  };
+
   return (
     <AdminLayout>
-      <div className="space-y-6">
+      <div className="space-y-6 p-6">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold">Blog / Devocionais</h1>
             <p className="text-muted-foreground">
-              Gerencie os posts do blog com IA para criação de conteúdo
+              Gerencie os posts do blog com IA para criação de conteúdo e imagens
             </p>
           </div>
           <Button onClick={() => handleOpenForm()}>
@@ -208,6 +222,7 @@ export default function AdminBlogPage() {
               <Table>
                 <TableHeader>
                   <TableRow>
+                    <TableHead>Imagem</TableHead>
                     <TableHead>Título</TableHead>
                     <TableHead>Autor</TableHead>
                     <TableHead>Status</TableHead>
@@ -218,6 +233,19 @@ export default function AdminBlogPage() {
                 <TableBody>
                   {posts.map((post) => (
                     <TableRow key={post.id}>
+                      <TableCell>
+                        {post.featured_image ? (
+                          <img
+                            src={post.featured_image}
+                            alt={post.title}
+                            className="w-12 h-12 object-cover rounded-md"
+                          />
+                        ) : (
+                          <div className="w-12 h-12 bg-muted rounded-md flex items-center justify-center">
+                            <ImageIcon className="h-5 w-5 text-muted-foreground" />
+                          </div>
+                        )}
+                      </TableCell>
                       <TableCell className="font-medium max-w-xs truncate">
                         {post.title}
                       </TableCell>
@@ -283,7 +311,7 @@ export default function AdminBlogPage() {
               <CardHeader className="pb-3">
                 <CardTitle className="text-lg flex items-center gap-2">
                   <Wand2 className="h-5 w-5 text-primary" />
-                  Gerar com IA
+                  Gerar com IA (Texto + Imagem)
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
@@ -316,7 +344,7 @@ export default function AdminBlogPage() {
                   {isGenerating ? (
                     <>
                       <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                      Gerando conteúdo...
+                      Gerando conteúdo e imagem...
                     </>
                   ) : (
                     <>
@@ -329,6 +357,29 @@ export default function AdminBlogPage() {
             </Card>
 
             <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Featured Image Preview */}
+              {formData.featured_image && (
+                <div className="relative">
+                  <Label>Imagem de Capa (Gerada pela IA)</Label>
+                  <div className="relative mt-2 rounded-lg overflow-hidden">
+                    <img
+                      src={formData.featured_image}
+                      alt="Imagem de capa"
+                      className="w-full h-48 object-cover rounded-lg"
+                    />
+                    <Button
+                      type="button"
+                      variant="destructive"
+                      size="icon"
+                      className="absolute top-2 right-2"
+                      onClick={removeImage}
+                    >
+                      <X className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+              )}
+
               <div>
                 <Label htmlFor="title">Título *</Label>
                 <Input
