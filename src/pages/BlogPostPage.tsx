@@ -90,7 +90,17 @@ export default function BlogPostPage() {
     }
   };
 
-  const handleShareFacebook = () => {
+  const handleShareFacebook = async () => {
+    // First, ask Facebook to re-scrape the URL to clear cache
+    try {
+      await fetch(`https://graph.facebook.com/?id=${encodeURIComponent(ogShareUrl)}&scrape=true`, {
+        method: 'POST',
+        mode: 'no-cors'
+      });
+    } catch {
+      // Ignore errors - the scrape is best-effort
+    }
+    
     const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(ogShareUrl)}`;
     window.open(fbUrl, "_blank", "width=600,height=400");
   };
