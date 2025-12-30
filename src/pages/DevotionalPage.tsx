@@ -103,137 +103,137 @@ export default function DevotionalPage() {
 
   return (
     <AppLayout>
-      <div className="p-6 lg:p-8 space-y-8 animate-fade-in">
+      <div className="p-4 sm:p-6 lg:p-8 space-y-6 lg:space-y-8 animate-fade-in">
         {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-          <div className="space-y-2">
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <TimeIcon className="w-5 h-5 text-accent" />
+        <div className="flex flex-col gap-3 sm:gap-4">
+          <div className="space-y-1 sm:space-y-2">
+            <div className="flex items-center gap-2 text-muted-foreground text-sm sm:text-base">
+              <TimeIcon className="w-4 h-4 sm:w-5 sm:h-5 text-accent" />
               <span>{greeting}, {userName}!</span>
             </div>
-            <h1 className="text-3xl lg:text-4xl font-serif font-bold text-foreground">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-foreground">
               Devocional Diário
             </h1>
           </div>
-          <div className="flex items-center gap-2">
-            <Button variant="outline" size="icon">
+          <div className="flex items-center gap-2 flex-wrap">
+            <Button variant="outline" size="icon" className="h-8 w-8 sm:h-10 sm:w-10">
               <ChevronLeft className="w-4 h-4" />
             </Button>
-            <div className="flex items-center gap-2 px-4 py-2 bg-card rounded-lg border border-border">
-              <Calendar className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium">{formattedDate}</span>
+            <div className="flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-card rounded-lg border border-border">
+              <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary" />
+              <span className="text-xs sm:text-sm font-medium">{formattedDate}</span>
             </div>
-            <Button variant="outline" size="icon">
+            <Button variant="outline" size="icon" className="h-8 w-8 sm:h-10 sm:w-10">
               <ChevronRight className="w-4 h-4" />
             </Button>
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
           {/* Main Content */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-2 space-y-4 sm:space-y-6">
             {/* Title Card */}
-            <div className="bg-card rounded-2xl border border-border overflow-hidden">
-              <div className="h-2 bg-gradient-to-r from-primary to-accent" />
-              <div className="p-6 lg:p-8">
-                <div className="flex items-start justify-between gap-4 mb-6">
-                  <div>
-                    <Badge className="mb-3 bg-primary/10 text-primary">
+            <div className="bg-card rounded-xl sm:rounded-2xl border border-border overflow-hidden">
+              <div className="h-1.5 sm:h-2 bg-gradient-to-r from-primary to-accent" />
+              <div className="p-4 sm:p-6 lg:p-8">
+                <div className="flex items-start justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
+                  <div className="min-w-0 flex-1">
+                    <Badge className="mb-2 sm:mb-3 bg-primary/10 text-primary text-xs">
                       Devocional
                     </Badge>
-                    <h2 className="text-2xl lg:text-3xl font-serif font-bold text-foreground">
+                    <h2 className="text-xl sm:text-2xl lg:text-3xl font-serif font-bold text-foreground leading-tight">
                       {todayDevotional.title}
                     </h2>
-                    <div className="flex items-center gap-4 mt-3 text-sm text-muted-foreground">
+                    <div className="flex items-center gap-3 sm:gap-4 mt-2 sm:mt-3 text-xs sm:text-sm text-muted-foreground">
                       <span className="flex items-center gap-1">
-                        <Clock className="w-4 h-4" />
+                        <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                         5 min
                       </span>
                     </div>
                   </div>
-                  <Button variant="outline" size="icon" className="shrink-0">
+                  <Button variant="outline" size="icon" className="shrink-0 h-8 w-8 sm:h-10 sm:w-10">
                     <Volume2 className="w-4 h-4" />
                   </Button>
                 </div>
 
                 {/* Verse */}
-                <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-xl p-6 border border-primary/10 mb-6">
-                  <BookOpen className="w-8 h-8 text-primary mb-4" />
-                  <blockquote className="text-lg lg:text-xl font-serif italic text-foreground leading-relaxed">
+                <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-primary/10 mb-4 sm:mb-6">
+                  <BookOpen className="w-6 h-6 sm:w-8 sm:h-8 text-primary mb-3 sm:mb-4" />
+                  <blockquote className="text-base sm:text-lg lg:text-xl font-serif italic text-foreground leading-relaxed">
                     "{todayDevotional.verse_text}"
                   </blockquote>
-                  <p className="text-primary font-semibold mt-4">
+                  <p className="text-primary font-semibold mt-3 sm:mt-4 text-sm sm:text-base">
                     — {todayDevotional.verse_reference}
                   </p>
                 </div>
 
                 {/* Reflection */}
-                <div className="prose prose-lg max-w-none">
-                  <h3 className="text-xl font-serif font-semibold text-foreground mb-4">
+                <div className="prose prose-sm sm:prose-lg max-w-none">
+                  <h3 className="text-lg sm:text-xl font-serif font-semibold text-foreground mb-3 sm:mb-4">
                     Reflexão
                   </h3>
-                  <div className="text-muted-foreground leading-relaxed whitespace-pre-line">
+                  <div className="text-sm sm:text-base text-muted-foreground leading-relaxed whitespace-pre-line">
                     {todayDevotional.reflection}
                   </div>
                 </div>
 
                 {/* Prayer */}
                 {todayDevotional.prayer && (
-                  <div className="mt-8 p-6 bg-accent/5 rounded-xl border border-accent/20">
-                    <h3 className="text-lg font-serif font-semibold text-foreground mb-3 flex items-center gap-2">
+                  <div className="mt-6 sm:mt-8 p-4 sm:p-6 bg-accent/5 rounded-lg sm:rounded-xl border border-accent/20">
+                    <h3 className="text-base sm:text-lg font-serif font-semibold text-foreground mb-2 sm:mb-3 flex items-center gap-2">
                       🙏 Oração
                     </h3>
-                    <p className="text-muted-foreground italic leading-relaxed">
+                    <p className="text-sm sm:text-base text-muted-foreground italic leading-relaxed">
                       {todayDevotional.prayer}
                     </p>
                   </div>
                 )}
 
                 {/* Actions */}
-                <div className="flex items-center gap-3 mt-6 pt-6 border-t border-border">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-border">
                   <Button
                     variant={isLiked ? "default" : "outline"}
                     size="sm"
                     onClick={() => setIsLiked(!isLiked)}
-                    className="gap-2"
+                    className="gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9"
                   >
-                    <Heart className={`w-4 h-4 ${isLiked ? "fill-current" : ""}`} />
+                    <Heart className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${isLiked ? "fill-current" : ""}`} />
                     {isLiked ? "Amei!" : "Gostei"}
                   </Button>
                   <Button
                     variant={isSaved ? "default" : "outline"}
                     size="sm"
                     onClick={() => setIsSaved(!isSaved)}
-                    className="gap-2"
+                    className="gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9"
                   >
-                    <Bookmark className={`w-4 h-4 ${isSaved ? "fill-current" : ""}`} />
+                    <Bookmark className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${isSaved ? "fill-current" : ""}`} />
                     {isSaved ? "Salvo" : "Salvar"}
                   </Button>
-                  <Button variant="outline" size="sm" className="gap-2">
-                    <Share className="w-4 h-4" />
-                    Compartilhar
+                  <Button variant="outline" size="sm" className="gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9">
+                    <Share className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                    <span className="hidden xs:inline">Compartilhar</span>
                   </Button>
                 </div>
               </div>
             </div>
 
             {/* Notes */}
-            <div className="bg-card rounded-xl border border-border p-6">
-              <h3 className="text-lg font-serif font-semibold text-foreground mb-4 flex items-center gap-2">
-                <PenLine className="w-5 h-5 text-primary" />
+            <div className="bg-card rounded-lg sm:rounded-xl border border-border p-4 sm:p-6">
+              <h3 className="text-base sm:text-lg font-serif font-semibold text-foreground mb-3 sm:mb-4 flex items-center gap-2">
+                <PenLine className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                 Minhas Anotações
               </h3>
               <Textarea
                 placeholder="Escreva suas reflexões pessoais sobre o devocional de hoje..."
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
-                className="min-h-[120px] resize-none"
+                className="min-h-[100px] sm:min-h-[120px] resize-none text-sm sm:text-base"
               />
               <div className="flex justify-end mt-3">
-                <Button size="sm" onClick={handleSaveNotes} disabled={isSaving}>
+                <Button size="sm" onClick={handleSaveNotes} disabled={isSaving} className="text-xs sm:text-sm h-8 sm:h-9">
                   {isSaving ? (
                     <>
-                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      <Loader2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-2 animate-spin" />
                       Salvando...
                     </>
                   ) : (
@@ -245,51 +245,51 @@ export default function DevotionalPage() {
           </div>
 
           {/* Sidebar */}
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             {/* Reading Plan Progress */}
-            <div className="bg-card rounded-xl border border-border p-5">
-              <h3 className="font-serif font-semibold text-foreground mb-4">
+            <div className="bg-card rounded-lg sm:rounded-xl border border-border p-4 sm:p-5">
+              <h3 className="font-serif font-semibold text-foreground mb-3 sm:mb-4 text-sm sm:text-base">
                 Plano de Leitura
               </h3>
-              <div className="space-y-3">
-                <div className="flex items-center justify-between text-sm">
+              <div className="space-y-2 sm:space-y-3">
+                <div className="flex items-center justify-between text-xs sm:text-sm">
                   <span className="text-muted-foreground">Advento 2024</span>
                   <span className="font-medium text-foreground">Dia 24/25</span>
                 </div>
-                <div className="h-2 bg-muted rounded-full overflow-hidden">
+                <div className="h-1.5 sm:h-2 bg-muted rounded-full overflow-hidden">
                   <div
                     className="h-full bg-gradient-to-r from-primary to-accent rounded-full transition-all"
                     style={{ width: "96%" }}
                   />
                 </div>
-                <p className="text-xs text-muted-foreground">
+                <p className="text-[10px] sm:text-xs text-muted-foreground">
                   Faltam apenas 1 dia para completar!
                 </p>
               </div>
             </div>
 
             {/* Previous Devotionals */}
-            <div className="bg-card rounded-xl border border-border p-5">
-              <h3 className="font-serif font-semibold text-foreground mb-4">
+            <div className="bg-card rounded-lg sm:rounded-xl border border-border p-4 sm:p-5">
+              <h3 className="font-serif font-semibold text-foreground mb-3 sm:mb-4 text-sm sm:text-base">
                 Devocionais Anteriores
               </h3>
-              <div className="space-y-3">
+              <div className="space-y-2 sm:space-y-3">
                 {recentDevotionals.slice(0, 4).map((dev) => (
                   <button
                     key={dev.id}
-                    className="w-full text-left p-3 rounded-lg hover:bg-accent transition-colors"
+                    className="w-full text-left p-2.5 sm:p-3 rounded-lg hover:bg-accent transition-colors"
                   >
-                    <div className="flex items-start gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                        <span className="text-xs font-medium text-primary">
+                    <div className="flex items-start gap-2.5 sm:gap-3">
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                        <span className="text-[10px] sm:text-xs font-medium text-primary">
                           {format(new Date(dev.publish_date), "dd", { locale: ptBR })}
                         </span>
                       </div>
-                      <div>
-                        <h4 className="text-sm font-medium text-foreground line-clamp-1">
+                      <div className="min-w-0 flex-1">
+                        <h4 className="text-xs sm:text-sm font-medium text-foreground line-clamp-1">
                           {dev.title}
                         </h4>
-                        <p className="text-xs text-muted-foreground">
+                        <p className="text-[10px] sm:text-xs text-muted-foreground">
                           {dev.verse_reference}
                         </p>
                       </div>
@@ -297,19 +297,19 @@ export default function DevotionalPage() {
                   </button>
                 ))}
               </div>
-              <Button variant="ghost" className="w-full mt-3">
+              <Button variant="ghost" className="w-full mt-2 sm:mt-3 text-xs sm:text-sm h-8 sm:h-9">
                 Ver Todos
               </Button>
             </div>
 
             {/* Reading Streak */}
-            <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-xl border border-primary/20 p-5">
+            <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg sm:rounded-xl border border-primary/20 p-4 sm:p-5">
               <div className="text-center">
-                <div className="text-4xl mb-2">🔥</div>
-                <h3 className="font-serif font-bold text-2xl text-foreground">
+                <div className="text-3xl sm:text-4xl mb-1.5 sm:mb-2">🔥</div>
+                <h3 className="font-serif font-bold text-xl sm:text-2xl text-foreground">
                   15 dias
                 </h3>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-xs sm:text-sm text-muted-foreground">
                   de leitura consecutiva
                 </p>
               </div>
