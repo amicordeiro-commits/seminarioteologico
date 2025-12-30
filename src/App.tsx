@@ -27,6 +27,7 @@ const AuthPage = lazy(() => import("./pages/AuthPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const BlogPage = lazy(() => import("./pages/BlogPage"));
 const BlogPostPage = lazy(() => import("./pages/BlogPostPage"));
+const PublicBlogPostPage = lazy(() => import("./pages/PublicBlogPostPage"));
 const ForumPage = lazy(() => import("./pages/ForumPage"));
 const FinancePage = lazy(() => import("./pages/FinancePage"));
 const TranscriptPage = lazy(() => import("./pages/TranscriptPage"));
@@ -120,6 +121,8 @@ const AppRoutes = () => {
         {/* Public Landing Page */}
         <Route path="/home" element={<LandingPage />} />
         <Route path="/auth" element={<AuthPage />} />
+        {/* Public blog post page for Facebook sharing */}
+        <Route path="/p/blog/:id" element={<PublicBlogPostPage />} />
         <Route
           path="/"
           element={

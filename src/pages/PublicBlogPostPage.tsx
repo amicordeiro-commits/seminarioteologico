@@ -1,39 +1,36 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { AppLayout } from "@/components/layout/AppLayout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ArrowLeft, Calendar, User, Share2, Facebook, Copy, Check } from "lucide-react";
+import { ArrowLeft, Calendar, User, Share2, Facebook, Copy, Check, LogIn } from "lucide-react";
 import { useBlogPost } from "@/hooks/useBlogPosts";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { useState } from "react";
 import { toast } from "sonner";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
-export default function BlogPostPage() {
+export default function PublicBlogPostPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { data: post, isLoading } = useBlogPost(id || "");
   const [copied, setCopied] = useState(false);
 
-  // URL for regular viewing
-  const postUrl = typeof window !== "undefined" ? window.location.href : "";
+  // Current page URL for sharing
+  const currentUrl = typeof window !== "undefined" ? window.location.href : "";
   
   // URL for Facebook sharing (uses edge function for proper OG tags)
-  // Add a cache-buster so Facebook re-scrapes after edits.
   const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || "";
   const ogShareUrl = id && supabaseUrl
-    ? `${supabaseUrl}/functions/v1/og-blog?id=${id}${post?.updated_at ? `&v=${encodeURIComponent(post.updated_at)}` : ""}`
-    : "";
+    ? `${supabaseUrl}/functions/v1/og-blog?id=${id}`
+    : currentUrl;
 
   // Update meta tags for social sharing
   useEffect(() => {
     if (post) {
-      // Update title
       document.title = `${post.title} | Seminário Teológico`;
 
-      // Update or create meta tags
       const updateMetaTag = (property: string, content: string) => {
         let meta = document.querySelector(`meta[property="${property}"]`) as HTMLMetaElement;
         if (!meta) {
@@ -54,18 +51,16 @@ export default function BlogPostPage() {
         meta.content = content;
       };
 
-      // Open Graph tags for Facebook
       updateMetaTag("og:title", post.title);
       updateMetaTag("og:description", post.excerpt || post.content.substring(0, 160));
       updateMetaTag("og:type", "article");
-      updateMetaTag("og:url", postUrl);
+      updateMetaTag("og:url", currentUrl);
       if (post.featured_image) {
         updateMetaTag("og:image", post.featured_image);
         updateMetaTag("og:image:width", "1200");
         updateMetaTag("og:image:height", "630");
       }
 
-      // Twitter Card tags
       updateNameMetaTag("twitter:card", "summary_large_image");
       updateNameMetaTag("twitter:title", post.title);
       updateNameMetaTag("twitter:description", post.excerpt || post.content.substring(0, 160));
@@ -75,28 +70,33 @@ export default function BlogPostPage() {
     }
 
     return () => {
-      // Cleanup - restore default title
       document.title = "Seminário Teológico";
     };
-  }, [post, postUrl]);
+  }, [post, currentUrl]);
 
   const handleCopyLink = async () => {
     try {
       await navigator.clipboard.writeText(ogShareUrl);
       setCopied(true);
-      toast.success("Link do Facebook copiado!");
+      toast.success("Link copiado!");
       setTimeout(() => setCopied(false), 2000);
     } catch {
       toast.error("Erro ao copiar link");
     }
   };
 
-  // Facebook share URL - use anchor tag to avoid popup blockers
+  // Facebook share URL - opens in same tab to avoid popup blockers
   const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(ogShareUrl)}`;
 
   if (isLoading) {
     return (
-      <AppLayout>
+      <div className="min-h-screen bg-background">
+        <header className="sticky top-0 z-20 bg-background/80 backdrop-blur-md border-b border-border">
+          <div className="container mx-auto flex items-center justify-between h-14 px-4">
+            <Skeleton className="h-8 w-48" />
+            <ThemeToggle />
+          </div>
+        </header>
         <div className="container mx-auto py-6 px-4 max-w-3xl">
           <Skeleton className="h-8 w-32 mb-6" />
           <Skeleton className="h-64 w-full mb-4" />
@@ -104,32 +104,54 @@ export default function BlogPostPage() {
           <Skeleton className="h-4 w-1/2 mb-8" />
           <Skeleton className="h-96 w-full" />
         </div>
-      </AppLayout>
+      </div>
     );
   }
 
   if (!post) {
     return (
-      <AppLayout>
+      <div className="min-h-screen bg-background">
+        <header className="sticky top-0 z-20 bg-background/80 backdrop-blur-md border-b border-border">
+          <div className="container mx-auto flex items-center justify-between h-14 px-4">
+            <h1 className="text-xl font-serif font-semibold">Seminário Teológico</h1>
+            <ThemeToggle />
+          </div>
+        </header>
         <div className="container mx-auto py-6 px-4 text-center">
           <h1 className="text-2xl font-bold mb-4">Post não encontrado</h1>
-          <Button onClick={() => navigate("/blog")}>Voltar ao Blog</Button>
+          <Button onClick={() => navigate("/home")}>Ir para o início</Button>
         </div>
-      </AppLayout>
+      </div>
     );
   }
 
   return (
-    <AppLayout>
+    <div className="min-h-screen bg-background">
+      {/* Simple public header */}
+      <header className="sticky top-0 z-20 bg-background/80 backdrop-blur-md border-b border-border">
+        <div className="container mx-auto flex items-center justify-between h-14 px-4">
+          <a href="/home" className="text-xl font-serif font-semibold text-foreground hover:text-primary transition-colors">
+            Seminário Teológico
+          </a>
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <Button variant="outline" size="sm" onClick={() => navigate("/auth")} className="gap-2">
+              <LogIn className="h-4 w-4" />
+              <span className="hidden sm:inline">Entrar</span>
+            </Button>
+          </div>
+        </div>
+      </header>
+
       <div className="container mx-auto py-6 px-4 max-w-3xl">
         {/* Back Button */}
         <Button
           variant="ghost"
           className="mb-6"
-          onClick={() => navigate("/blog")}
+          onClick={() => navigate("/home")}
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
-          Voltar ao Blog
+          Ir para o início
         </Button>
 
         <article>
@@ -168,15 +190,13 @@ export default function BlogPostPage() {
           {/* Share Buttons */}
           <Card className="mb-8">
             <CardContent className="py-4">
-              <p className="text-xs text-muted-foreground mb-3">
-                Para a imagem aparecer no Facebook, use estes botões (não copie o link da barra do navegador).
-              </p>
               <div className="flex items-center justify-between flex-wrap gap-4">
                 <span className="text-sm font-medium flex items-center gap-2">
                   <Share2 className="h-4 w-4" />
                   Compartilhar:
                 </span>
                 <div className="flex gap-2">
+                  {/* Use anchor tag instead of window.open to avoid popup blockers */}
                   <Button
                     variant="outline"
                     size="sm"
@@ -199,7 +219,7 @@ export default function BlogPostPage() {
                     ) : (
                       <Copy className="h-4 w-4" />
                     )}
-                    {copied ? "Copiado!" : "Copiar link p/ Facebook"}
+                    {copied ? "Copiado!" : "Copiar link"}
                   </Button>
                 </div>
               </div>
@@ -231,8 +251,22 @@ export default function BlogPostPage() {
               </Button>
             </div>
           </div>
+
+          {/* CTA to login */}
+          <Card className="mt-12 bg-primary/5 border-primary/20">
+            <CardContent className="py-6 text-center">
+              <h3 className="text-xl font-semibold mb-2">Quer acessar mais conteúdos?</h3>
+              <p className="text-muted-foreground mb-4">
+                Entre na plataforma para ter acesso a cursos, devocionais e muito mais!
+              </p>
+              <Button onClick={() => navigate("/auth")} className="gap-2">
+                <LogIn className="h-4 w-4" />
+                Entrar ou Cadastrar
+              </Button>
+            </CardContent>
+          </Card>
         </article>
       </div>
-    </AppLayout>
+    </div>
   );
 }

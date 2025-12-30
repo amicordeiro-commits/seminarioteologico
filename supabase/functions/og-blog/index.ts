@@ -69,7 +69,8 @@ Deno.serve(async (req) => {
 
     // Use the actual site URL - MUST be the production URL
     const siteUrl = "https://hjorsjoaykgnsmbxgnyn.lovableproject.com";
-    const postUrl = `${siteUrl}/blog/${postId}`;
+    // Use public route /p/blog/:id so Facebook users don't hit login wall
+    const postUrl = `${siteUrl}/p/blog/${postId}`;
     
     // Get description - clean and limit to 200 chars for OG
     const rawDescription = post.excerpt || post.content || "";
