@@ -26,17 +26,25 @@ import {
   Eye,
   EyeOff,
   Save,
+  Loader2,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { useUserSettings } from "@/hooks/useUserSettings";
+import { useTheme } from "@/hooks/useTheme";
 
 export default function SettingsPage() {
+  const { settings, isLoading, updateSettings, isUpdating } = useUserSettings();
+  const { theme, setTheme } = useTheme();
+  
   const [showPassword, setShowPassword] = useState(false);
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isUpdatingPassword, setIsUpdatingPassword] = useState(false);
+
+  // Local state for notifications (synced with settings)
   const [notifications, setNotifications] = useState({
     email: true,
     push: true,
@@ -45,6 +53,20 @@ export default function SettingsPage() {
     reminders: false,
     weeklyDigest: true,
   });
+
+  // Sync local state with settings when loaded
+  useEffect(() => {
+    if (settings) {
+      setNotifications({
+        email: settings.email_notifications,
+        push: settings.push_notifications,
+        newCourse: settings.new_course_notifications,
+        messages: settings.message_notifications,
+        reminders: settings.reminder_notifications,
+        weeklyDigest: settings.weekly_digest,
+      });
+    }
+  }, [settings]);
 
   const handleUpdatePassword = async () => {
     if (!newPassword || !confirmPassword) {
@@ -75,6 +97,73 @@ export default function SettingsPage() {
       setIsUpdatingPassword(false);
     }
   };
+
+  const handleNotificationChange = async (key: keyof typeof notifications, value: boolean) => {
+    setNotifications(prev => ({ ...prev, [key]: value }));
+    
+    const fieldMap: Record<string, string> = {
+      email: "email_notifications",
+      push: "push_notifications",
+      newCourse: "new_course_notifications",
+      messages: "message_notifications",
+      reminders: "reminder_notifications",
+      weeklyDigest: "weekly_digest",
+    };
+    
+    try {
+      await updateSettings({ [fieldMap[key]]: value });
+    } catch (error) {
+      toast.error("Erro ao salvar configuração");
+      setNotifications(prev => ({ ...prev, [key]: !value }));
+    }
+  };
+
+  const handleThemeChange = async (newTheme: string) => {
+    setTheme(newTheme as 'light' | 'dark' | 'system');
+    try {
+      await updateSettings({ theme: newTheme });
+      toast.success("Tema atualizado!");
+    } catch (error) {
+      toast.error("Erro ao salvar tema");
+    }
+  };
+
+  const handleFontSizeChange = async (size: string) => {
+    try {
+      await updateSettings({ font_size: size });
+      toast.success("Tamanho da fonte atualizado!");
+    } catch (error) {
+      toast.error("Erro ao salvar configuração");
+    }
+  };
+
+  const handleLanguageChange = async (language: string) => {
+    try {
+      await updateSettings({ language });
+      toast.success("Idioma atualizado!");
+    } catch (error) {
+      toast.error("Erro ao salvar configuração");
+    }
+  };
+
+  const handleTimezoneChange = async (timezone: string) => {
+    try {
+      await updateSettings({ timezone });
+      toast.success("Fuso horário atualizado!");
+    } catch (error) {
+      toast.error("Erro ao salvar configuração");
+    }
+  };
+
+  if (isLoading) {
+    return (
+      <AppLayout>
+        <div className="flex items-center justify-center h-96">
+          <Loader2 className="w-8 h-8 animate-spin text-primary" />
+        </div>
+      </AppLayout>
+    );
+  }
 
   return (
     <AppLayout>
@@ -134,9 +223,8 @@ export default function SettingsPage() {
                   </div>
                   <Switch
                     checked={notifications.email}
-                    onCheckedChange={(checked) =>
-                      setNotifications({ ...notifications, email: checked })
-                    }
+                    onCheckedChange={(checked) => handleNotificationChange("email", checked)}
+                    disabled={isUpdating}
                   />
                 </div>
 
@@ -156,9 +244,8 @@ export default function SettingsPage() {
                   </div>
                   <Switch
                     checked={notifications.push}
-                    onCheckedChange={(checked) =>
-                      setNotifications({ ...notifications, push: checked })
-                    }
+                    onCheckedChange={(checked) => handleNotificationChange("push", checked)}
+                    disabled={isUpdating}
                   />
                 </div>
 
@@ -170,18 +257,16 @@ export default function SettingsPage() {
                       <Label className="text-muted-foreground">Novos cursos</Label>
                       <Switch
                         checked={notifications.newCourse}
-                        onCheckedChange={(checked) =>
-                          setNotifications({ ...notifications, newCourse: checked })
-                        }
+                        onCheckedChange={(checked) => handleNotificationChange("newCourse", checked)}
+                        disabled={isUpdating}
                       />
                     </div>
                     <div className="flex items-center justify-between">
                       <Label className="text-muted-foreground">Mensagens</Label>
                       <Switch
                         checked={notifications.messages}
-                        onCheckedChange={(checked) =>
-                          setNotifications({ ...notifications, messages: checked })
-                        }
+                        onCheckedChange={(checked) => handleNotificationChange("messages", checked)}
+                        disabled={isUpdating}
                       />
                     </div>
                     <div className="flex items-center justify-between">
@@ -190,9 +275,8 @@ export default function SettingsPage() {
                       </Label>
                       <Switch
                         checked={notifications.reminders}
-                        onCheckedChange={(checked) =>
-                          setNotifications({ ...notifications, reminders: checked })
-                        }
+                        onCheckedChange={(checked) => handleNotificationChange("reminders", checked)}
+                        disabled={isUpdating}
                       />
                     </div>
                     <div className="flex items-center justify-between">
@@ -201,9 +285,8 @@ export default function SettingsPage() {
                       </Label>
                       <Switch
                         checked={notifications.weeklyDigest}
-                        onCheckedChange={(checked) =>
-                          setNotifications({ ...notifications, weeklyDigest: checked })
-                        }
+                        onCheckedChange={(checked) => handleNotificationChange("weeklyDigest", checked)}
+                        disabled={isUpdating}
                       />
                     </div>
                   </div>
@@ -225,19 +308,34 @@ export default function SettingsPage() {
                     Tema
                   </Label>
                   <div className="grid grid-cols-3 gap-4">
-                    <button className="p-4 rounded-xl border-2 border-primary bg-card hover:border-primary/80 transition-all">
+                    <button 
+                      onClick={() => handleThemeChange("light")}
+                      className={`p-4 rounded-xl border-2 bg-card hover:border-primary/80 transition-all ${
+                        (settings?.theme || theme) === "light" ? "border-primary" : "border-border"
+                      }`}
+                    >
                       <div className="w-full h-20 rounded-lg bg-background mb-3 flex items-center justify-center">
                         <Sun className="w-8 h-8 text-accent" />
                       </div>
                       <p className="text-sm font-medium text-foreground">Claro</p>
                     </button>
-                    <button className="p-4 rounded-xl border border-border bg-card hover:border-primary/50 transition-all">
+                    <button 
+                      onClick={() => handleThemeChange("dark")}
+                      className={`p-4 rounded-xl border-2 bg-card hover:border-primary/80 transition-all ${
+                        (settings?.theme || theme) === "dark" ? "border-primary" : "border-border"
+                      }`}
+                    >
                       <div className="w-full h-20 rounded-lg bg-foreground mb-3 flex items-center justify-center">
                         <Moon className="w-8 h-8 text-background" />
                       </div>
                       <p className="text-sm font-medium text-foreground">Escuro</p>
                     </button>
-                    <button className="p-4 rounded-xl border border-border bg-card hover:border-primary/50 transition-all">
+                    <button 
+                      onClick={() => handleThemeChange("system")}
+                      className={`p-4 rounded-xl border-2 bg-card hover:border-primary/80 transition-all ${
+                        (settings?.theme || theme) === "system" ? "border-primary" : "border-border"
+                      }`}
+                    >
                       <div className="w-full h-20 rounded-lg bg-gradient-to-b from-background to-foreground mb-3 flex items-center justify-center">
                         <Settings className="w-8 h-8 text-muted" />
                       </div>
@@ -250,7 +348,10 @@ export default function SettingsPage() {
                   <Label className="text-foreground font-medium mb-3 block">
                     Tamanho da Fonte
                   </Label>
-                  <Select defaultValue="medium">
+                  <Select 
+                    value={settings?.font_size || "medium"} 
+                    onValueChange={handleFontSizeChange}
+                  >
                     <SelectTrigger className="w-full max-w-xs">
                       <SelectValue placeholder="Selecione o tamanho" />
                     </SelectTrigger>
@@ -354,7 +455,10 @@ export default function SettingsPage() {
                   <Label className="text-foreground font-medium mb-2 block">
                     Idioma
                   </Label>
-                  <Select defaultValue="pt-BR">
+                  <Select 
+                    value={settings?.language || "pt-BR"} 
+                    onValueChange={handleLanguageChange}
+                  >
                     <SelectTrigger>
                       <SelectValue placeholder="Selecione o idioma" />
                     </SelectTrigger>
@@ -371,7 +475,10 @@ export default function SettingsPage() {
                   <Label className="text-foreground font-medium mb-2 block">
                     Fuso Horário
                   </Label>
-                  <Select defaultValue="america-sao_paulo">
+                  <Select 
+                    value={settings?.timezone || "america-sao_paulo"} 
+                    onValueChange={handleTimezoneChange}
+                  >
                     <SelectTrigger>
                       <SelectValue placeholder="Selecione o fuso horário" />
                     </SelectTrigger>
@@ -388,11 +495,6 @@ export default function SettingsPage() {
                     </SelectContent>
                   </Select>
                 </div>
-
-                <Button className="gap-2">
-                  <Save className="w-4 h-4" />
-                  Salvar Preferências
-                </Button>
               </div>
             </div>
           </TabsContent>

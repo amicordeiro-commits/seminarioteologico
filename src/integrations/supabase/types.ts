@@ -467,6 +467,44 @@ export type Database = {
         }
         Relationships: []
       }
+      devotional_interactions: {
+        Row: {
+          created_at: string | null
+          devotional_id: string
+          id: string
+          is_bookmarked: boolean | null
+          is_liked: boolean | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          devotional_id: string
+          id?: string
+          is_bookmarked?: boolean | null
+          is_liked?: boolean | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          devotional_id?: string
+          id?: string
+          is_bookmarked?: boolean | null
+          is_liked?: boolean | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "devotional_interactions_devotional_id_fkey"
+            columns: ["devotional_id"]
+            isOneToOne: false
+            referencedRelation: "devotionals"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       devotional_notes: {
         Row: {
           created_at: string | null
@@ -508,6 +546,33 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      devotional_streaks: {
+        Row: {
+          current_streak: number | null
+          id: string
+          last_read_date: string | null
+          longest_streak: number | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          current_streak?: number | null
+          id?: string
+          last_read_date?: string | null
+          longest_streak?: number | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          current_streak?: number | null
+          id?: string
+          last_read_date?: string | null
+          longest_streak?: number | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
       }
       devotionals: {
         Row: {
@@ -1202,6 +1267,54 @@ export type Database = {
         }
         Relationships: []
       }
+      study_sessions: {
+        Row: {
+          course_id: string | null
+          duration_seconds: number | null
+          ended_at: string | null
+          id: string
+          lesson_id: string | null
+          session_date: string
+          started_at: string
+          user_id: string
+        }
+        Insert: {
+          course_id?: string | null
+          duration_seconds?: number | null
+          ended_at?: string | null
+          id?: string
+          lesson_id?: string | null
+          session_date?: string
+          started_at?: string
+          user_id: string
+        }
+        Update: {
+          course_id?: string | null
+          duration_seconds?: number | null
+          ended_at?: string | null
+          id?: string
+          lesson_id?: string | null
+          session_date?: string
+          started_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "study_sessions_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "courses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "study_sessions_lesson_id_fkey"
+            columns: ["lesson_id"]
+            isOneToOne: false
+            referencedRelation: "lessons"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_roles: {
         Row: {
           created_at: string | null
@@ -1220,6 +1333,57 @@ export type Database = {
           id?: string
           role?: Database["public"]["Enums"]["app_role"]
           user_id?: string
+        }
+        Relationships: []
+      }
+      user_settings: {
+        Row: {
+          created_at: string | null
+          email_notifications: boolean | null
+          font_size: string | null
+          id: string
+          language: string | null
+          message_notifications: boolean | null
+          new_course_notifications: boolean | null
+          push_notifications: boolean | null
+          reminder_notifications: boolean | null
+          theme: string | null
+          timezone: string | null
+          updated_at: string | null
+          user_id: string
+          weekly_digest: boolean | null
+        }
+        Insert: {
+          created_at?: string | null
+          email_notifications?: boolean | null
+          font_size?: string | null
+          id?: string
+          language?: string | null
+          message_notifications?: boolean | null
+          new_course_notifications?: boolean | null
+          push_notifications?: boolean | null
+          reminder_notifications?: boolean | null
+          theme?: string | null
+          timezone?: string | null
+          updated_at?: string | null
+          user_id: string
+          weekly_digest?: boolean | null
+        }
+        Update: {
+          created_at?: string | null
+          email_notifications?: boolean | null
+          font_size?: string | null
+          id?: string
+          language?: string | null
+          message_notifications?: boolean | null
+          new_course_notifications?: boolean | null
+          push_notifications?: boolean | null
+          reminder_notifications?: boolean | null
+          theme?: string | null
+          timezone?: string | null
+          updated_at?: string | null
+          user_id?: string
+          weekly_digest?: boolean | null
         }
         Relationships: []
       }
