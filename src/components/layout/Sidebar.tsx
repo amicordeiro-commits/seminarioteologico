@@ -18,6 +18,8 @@ import {
   Award,
   FolderOpen,
   Newspaper,
+  DollarSign,
+  GraduationCap,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -28,9 +30,11 @@ const navItems = [
   { icon: FolderOpen, label: "Biblioteca", path: "/library" },
   { icon: BookMarked, label: "Devocional", path: "/devotional" },
   { icon: Newspaper, label: "Blog", path: "/blog" },
+  { icon: MessageSquare, label: "Fórum", path: "/forum" },
   { icon: Calendar, label: "Calendário", path: "/calendar" },
-  { icon: MessageSquare, label: "Mensagens", path: "/messages" },
   { icon: BarChart3, label: "Meu Progresso", path: "/progress" },
+  { icon: GraduationCap, label: "Histórico", path: "/transcript" },
+  { icon: DollarSign, label: "Financeiro", path: "/finance" },
   { icon: Award, label: "Certificados", path: "/certificates" },
   { icon: Users, label: "Comunidade", path: "/community" },
   { icon: User, label: "Meu Perfil", path: "/profile" },

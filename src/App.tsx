@@ -21,6 +21,10 @@ import BiblePage from "./pages/BiblePage";
 import CertificatesPage from "./pages/CertificatesPage";
 import AuthPage from "./pages/AuthPage";
 import NotFound from "./pages/NotFound";
+import BlogPage from "./pages/BlogPage";
+import ForumPage from "./pages/ForumPage";
+import FinancePage from "./pages/FinancePage";
+import TranscriptPage from "./pages/TranscriptPage";
 
 // Admin Pages
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -40,7 +44,10 @@ import AdminEnrollmentsPage from "./pages/admin/AdminEnrollmentsPage";
 import AdminReportsPage from "./pages/admin/AdminReportsPage";
 import AdminBlogPage from "./pages/admin/AdminBlogPage";
 import AdminManualPage from "./pages/admin/AdminManualPage";
-import BlogPage from "./pages/BlogPage";
+import AdminFinancePage from "./pages/admin/AdminFinancePage";
+import AdminAdmissionsPage from "./pages/admin/AdminAdmissionsPage";
+import AdminForumPage from "./pages/admin/AdminForumPage";
+import AdminTranscriptsPage from "./pages/admin/AdminTranscriptsPage";
 
 const queryClient = new QueryClient();
 
@@ -217,6 +224,30 @@ const AppRoutes = () => {
           </ProtectedRoute>
         }
       />
+      <Route
+        path="/forum"
+        element={
+          <ProtectedRoute>
+            <ForumPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/finance"
+        element={
+          <ProtectedRoute>
+            <FinancePage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/transcript"
+        element={
+          <ProtectedRoute>
+            <TranscriptPage />
+          </ProtectedRoute>
+        }
+      />
 
       {/* Admin Routes */}
       <Route
@@ -352,6 +383,38 @@ const AppRoutes = () => {
         element={
           <AdminRoute>
             <AdminManualPage />
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/finance"
+        element={
+          <AdminRoute>
+            <AdminFinancePage />
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/admissions"
+        element={
+          <AdminRoute>
+            <AdminAdmissionsPage />
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/forum"
+        element={
+          <AdminRoute>
+            <AdminForumPage />
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/transcripts"
+        element={
+          <AdminRoute>
+            <AdminTranscriptsPage />
           </AdminRoute>
         }
       />
