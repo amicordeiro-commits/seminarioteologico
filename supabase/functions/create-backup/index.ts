@@ -18,6 +18,7 @@ const TABLES_TO_BACKUP = [
   'quiz_questions',
   'quiz_options',
   'quiz_attempts',
+  'quiz_recovery_settings',
   'certificates',
   'academic_records',
   'library_materials',
@@ -39,6 +40,7 @@ const TABLES_TO_BACKUP = [
   'admission_leads',
   'strongs_translations',
   'study_sessions',
+  'backups',
 ];
 
 Deno.serve(async (req) => {

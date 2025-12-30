@@ -737,10 +737,10 @@ export default function AdminManualPage() {
                 </p>
                 <div className="mt-4 flex flex-wrap gap-2">
                   <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">
-                    Versão 2.0
+                    Versão 2.1
                   </span>
                   <span className="text-xs bg-muted text-muted-foreground px-2 py-1 rounded">
-                    Última atualização: Dezembro 2024
+                    Última atualização: Dezembro 2024 (com Sistema de Recuperação)
                   </span>
                 </div>
               </div>
