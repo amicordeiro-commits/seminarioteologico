@@ -122,6 +122,7 @@ export default function AdminLessonsPage() {
   const [selectedCourseId, setSelectedCourseId] = useState<string | null>(null);
   const [colorDrawerOpen, setColorDrawerOpen] = useState(false);
   const [sizeDrawerOpen, setSizeDrawerOpen] = useState(false);
+  const [previewDrawerOpen, setPreviewDrawerOpen] = useState(false);
   
   // Refs e estado para o editor
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -808,11 +809,50 @@ export default function AdminLessonsPage() {
               {/* Aba de Conteúdo - Editor em Tela Cheia */}
               <TabsContent value="content" className="flex-1 flex flex-col m-0 overflow-hidden">
                 <div className="flex-1 flex flex-col p-3 sm:p-6 gap-3 sm:gap-4 overflow-hidden">
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between gap-2">
                     <Label className="text-sm sm:text-base font-semibold">Conteúdo da Aula</Label>
-                    <span className="text-[10px] sm:text-xs text-muted-foreground">
-                      {(editingLesson?.content || "").length.toLocaleString()} caracteres
-                    </span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-[10px] sm:text-xs text-muted-foreground">
+                        {(editingLesson?.content || "").length.toLocaleString()} caracteres
+                      </span>
+
+                      {isMobile && (
+                        <Drawer open={previewDrawerOpen} onOpenChange={setPreviewDrawerOpen}>
+                          <DrawerTrigger asChild>
+                            <Button
+                              type="button"
+                              variant="outline"
+                              size="sm"
+                              className="h-8 px-2 gap-1 text-xs"
+                              onPointerDown={() => {
+                                // não deixa a seleção do editor se perder antes de abrir o drawer
+                                saveSelection();
+                              }}
+                            >
+                              <Eye className="w-4 h-4" />
+                              Preview
+                            </Button>
+                          </DrawerTrigger>
+                          <DrawerContent>
+                            <DrawerHeader>
+                              <DrawerTitle>Pré-visualização</DrawerTitle>
+                            </DrawerHeader>
+                            <div className="px-4 pb-6">
+                              <p className="text-xs text-muted-foreground mb-2">
+                                Aqui as cores e tamanhos aparecem.
+                              </p>
+                              <div className="rounded-lg border bg-muted/30 overflow-hidden">
+                                <ScrollArea className="h-[60vh]">
+                                  <div className="p-3">
+                                    <RichTextPreview content={editingLesson?.content || ""} />
+                                  </div>
+                                </ScrollArea>
+                              </div>
+                            </div>
+                          </DrawerContent>
+                        </Drawer>
+                      )}
+                    </div>
                   </div>
                   
                   {/* Barra de Ferramentas de Formatação */}
@@ -991,6 +1031,10 @@ export default function AdminLessonsPage() {
                                   style={{ backgroundColor: color }}
                                   onClick={() => {
                                     applyFormat(`<span style="color: ${color}">`, "</span>");
+                                    toast({
+                                      title: "Cor aplicada",
+                                      description: "Abra o Preview para ver o resultado.",
+                                    });
                                     setColorDrawerOpen(false);
                                   }}
                                 />
@@ -1083,6 +1127,10 @@ export default function AdminLessonsPage() {
                                 className="w-full px-4 py-3 text-left hover:bg-muted rounded-lg text-base active:bg-muted/80"
                                 onClick={() => {
                                   applyFormat(`<span style="font-size: ${option.size}">`, "</span>");
+                                  toast({
+                                    title: "Tamanho aplicado",
+                                    description: "Abra o Preview para ver o resultado.",
+                                  });
                                   setSizeDrawerOpen(false);
                                 }}
                               >
