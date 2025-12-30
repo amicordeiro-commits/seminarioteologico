@@ -21,7 +21,10 @@ export default function BlogPostPage() {
   const postUrl = typeof window !== "undefined" ? window.location.href : "";
   
   // URL for Facebook sharing (uses edge function for proper OG tags)
-  const ogShareUrl = `https://hjorsjoaykgnsmbxgnyn.supabase.co/functions/v1/og-blog?id=${id}`;
+  // Add a cache-buster so Facebook re-scrapes after edits.
+  const ogShareUrl = id
+    ? `https://hjorsjoaykgnsmbxgnyn.supabase.co/functions/v1/og-blog?id=${id}${post?.updated_at ? `&v=${encodeURIComponent(post.updated_at)}` : ""}`
+    : "";
 
   // Update meta tags for social sharing
   useEffect(() => {
@@ -78,9 +81,9 @@ export default function BlogPostPage() {
 
   const handleCopyLink = async () => {
     try {
-      await navigator.clipboard.writeText(postUrl);
+      await navigator.clipboard.writeText(ogShareUrl);
       setCopied(true);
-      toast.success("Link copiado!");
+      toast.success("Link do Facebook copiado!");
       setTimeout(() => setCopied(false), 2000);
     } catch {
       toast.error("Erro ao copiar link");
@@ -166,6 +169,9 @@ export default function BlogPostPage() {
           {/* Share Buttons */}
           <Card className="mb-8">
             <CardContent className="py-4">
+              <p className="text-xs text-muted-foreground mb-3">
+                Para a imagem aparecer no Facebook, use estes botões (não copie o link da barra do navegador).
+              </p>
               <div className="flex items-center justify-between flex-wrap gap-4">
                 <span className="text-sm font-medium flex items-center gap-2">
                   <Share2 className="h-4 w-4" />
@@ -192,7 +198,7 @@ export default function BlogPostPage() {
                     ) : (
                       <Copy className="h-4 w-4" />
                     )}
-                    {copied ? "Copiado!" : "Copiar Link"}
+                    {copied ? "Copiado!" : "Copiar link p/ Facebook"}
                   </Button>
                 </div>
               </div>
@@ -218,7 +224,7 @@ export default function BlogPostPage() {
               </Button>
               <Button variant="outline" onClick={handleCopyLink} className="gap-2">
                 {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-                Copiar Link
+                Copiar link p/ Facebook
               </Button>
             </div>
           </div>
