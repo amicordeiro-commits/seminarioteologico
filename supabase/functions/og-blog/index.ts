@@ -67,10 +67,15 @@ Deno.serve(async (req) => {
 
     console.log("Post found:", post.title);
 
-    // Use the actual site URL - MUST be the production URL
-    const siteUrl = "https://hjorsjoaykgnsmbxgnyn.lovableproject.com";
-    // Use public route /p/blog/:id so Facebook users don't hit login wall
-    const postUrl = `${siteUrl}/p/blog/${postId}`;
+    // Site URL (used only for building a human-friendly link)
+    // In production, set SITE_URL in backend secrets to your real domain.
+    const siteUrl = Deno.env.get("SITE_URL") || "https://seminarioteologico.app";
+
+    // Use the current request URL as the canonical/share URL
+    const postUrl = req.url;
+
+    // Public route (no login wall)
+    const redirectUrl = `${siteUrl}/p/blog/${postId}`;
     
     // Get description - clean and limit to 200 chars for OG
     const rawDescription = post.excerpt || post.content || "";
