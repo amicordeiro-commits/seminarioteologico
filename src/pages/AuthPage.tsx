@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { useUserRole } from '@/hooks/useUserRole';
@@ -8,8 +8,10 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
-import { Church, Mail, Lock, User, BookOpen, Shield, GraduationCap, ArrowLeft, Sparkles, Users, Cross } from 'lucide-react';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Church, Mail, Lock, User, BookOpen, Shield, GraduationCap, ArrowLeft, Sparkles, Users, Cross, Camera, Upload, Phone } from 'lucide-react';
 import { z } from 'zod';
+import { supabase } from '@/integrations/supabase/client';
 
 const emailSchema = z.string().email('Email inválido');
 const passwordSchema = z.string().min(6, 'Senha deve ter pelo menos 6 caracteres');
@@ -27,6 +29,10 @@ const AuthPage = () => {
   const [registerEmail, setRegisterEmail] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
   const [registerConfirmPassword, setRegisterConfirmPassword] = useState('');
+  const [registerPhone, setRegisterPhone] = useState('');
+  const [avatarFile, setAvatarFile] = useState<File | null>(null);
+  const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [selectedPortal, setSelectedPortal] = useState<PortalType>(() => {
     const statePortal = (location.state as any)?.portal as PortalType | undefined;
     if (statePortal === 'admin' || statePortal === 'student') return statePortal;
@@ -36,6 +42,7 @@ const AuthPage = () => {
     if (portal === 'student') return 'student';
     return null;
   });
+
   
   const { signIn, signUp, user, loading } = useAuth();
   const { isAdmin, isLoading: loadingRole } = useUserRole();
@@ -95,6 +102,49 @@ const AuthPage = () => {
     }
   };
 
+  const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      if (file.size > 2 * 1024 * 1024) {
+        toast({
+          title: 'Arquivo muito grande',
+          description: 'A foto deve ter no máximo 2MB.',
+          variant: 'destructive',
+        });
+        return;
+      }
+      setAvatarFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setAvatarPreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const uploadAvatar = async (userId: string): Promise<string | null> => {
+    if (!avatarFile) return null;
+    
+    const fileExt = avatarFile.name.split('.').pop();
+    const fileName = `${userId}.${fileExt}`;
+    const filePath = `${fileName}`;
+    
+    const { error: uploadError } = await supabase.storage
+      .from('avatars')
+      .upload(filePath, avatarFile, { upsert: true });
+    
+    if (uploadError) {
+      console.error('Error uploading avatar:', uploadError);
+      return null;
+    }
+    
+    const { data: { publicUrl } } = supabase.storage
+      .from('avatars')
+      .getPublicUrl(filePath);
+    
+    return publicUrl;
+  };
+
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -123,10 +173,10 @@ const AuthPage = () => {
     }
 
     setIsLoading(true);
-    const { error } = await signUp(registerEmail, registerPassword, registerName);
-    setIsLoading(false);
+    const { error, data } = await signUp(registerEmail, registerPassword, registerName);
 
     if (error) {
+      setIsLoading(false);
       let message = 'Erro ao criar conta. Tente novamente.';
       if (error.message.includes('User already registered')) {
         message = 'Este email já está cadastrado. Faça login.';
@@ -137,6 +187,26 @@ const AuthPage = () => {
         variant: 'destructive',
       });
     } else {
+      // Upload avatar if provided
+      if (avatarFile && data?.user?.id) {
+        const avatarUrl = await uploadAvatar(data.user.id);
+        if (avatarUrl) {
+          await supabase
+            .from('profiles')
+            .update({ 
+              avatar_url: avatarUrl,
+              phone: registerPhone || null 
+            })
+            .eq('id', data.user.id);
+        }
+      } else if (registerPhone && data?.user?.id) {
+        await supabase
+          .from('profiles')
+          .update({ phone: registerPhone })
+          .eq('id', data.user.id);
+      }
+      
+      setIsLoading(false);
       toast({
         title: 'Conta criada!',
         description: 'Bem-vindo ao Seminário Teológico.',
@@ -485,6 +555,37 @@ const AuthPage = () => {
                   </div>
 
                   <form onSubmit={handleRegister} className="space-y-4">
+                    {/* Avatar Upload */}
+                    <div className="flex flex-col items-center gap-3">
+                      <div 
+                        className="relative cursor-pointer group"
+                        onClick={() => fileInputRef.current?.click()}
+                      >
+                        <Avatar className="w-24 h-24 border-4 border-primary/20 group-hover:border-primary/40 transition-colors">
+                          {avatarPreview ? (
+                            <AvatarImage src={avatarPreview} alt="Preview" />
+                          ) : (
+                            <AvatarFallback className="bg-secondary text-muted-foreground">
+                              <Camera className="w-8 h-8" />
+                            </AvatarFallback>
+                          )}
+                        </Avatar>
+                        <div className="absolute bottom-0 right-0 p-1.5 rounded-full bg-primary text-primary-foreground shadow-lg group-hover:scale-110 transition-transform">
+                          <Upload className="w-4 h-4" />
+                        </div>
+                      </div>
+                      <input
+                        ref={fileInputRef}
+                        type="file"
+                        accept="image/*"
+                        onChange={handleAvatarChange}
+                        className="hidden"
+                      />
+                      <span className="text-sm text-muted-foreground">
+                        {avatarFile ? avatarFile.name : 'Adicionar foto (opcional)'}
+                      </span>
+                    </div>
+
                     <div className="space-y-2">
                       <Label htmlFor="register-name" className="text-sm font-medium">Nome completo</Label>
                       <div className="relative group">
@@ -513,6 +614,21 @@ const AuthPage = () => {
                           onChange={(e) => setRegisterEmail(e.target.value)}
                           className="pl-11 h-12 bg-secondary/30 border-border/50 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
                           required
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="register-phone" className="text-sm font-medium">Telefone (opcional)</Label>
+                      <div className="relative group">
+                        <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
+                        <Input
+                          id="register-phone"
+                          type="tel"
+                          placeholder="(11) 99999-9999"
+                          value={registerPhone}
+                          onChange={(e) => setRegisterPhone(e.target.value)}
+                          className="pl-11 h-12 bg-secondary/30 border-border/50 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
                         />
                       </div>
                     </div>
