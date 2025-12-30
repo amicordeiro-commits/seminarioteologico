@@ -16,6 +16,55 @@ export interface BlogPost {
   updated_at: string;
 }
 
+// Helper function to upload base64 image to storage
+async function uploadImageToStorage(base64Image: string, postId: string): Promise<string> {
+  // If it's not a base64 image, return as is
+  if (!base64Image.startsWith("data:")) {
+    return base64Image;
+  }
+
+  // Extract the base64 data and mime type
+  const matches = base64Image.match(/^data:([^;]+);base64,(.+)$/);
+  if (!matches) {
+    console.error("Invalid base64 format");
+    return base64Image;
+  }
+
+  const mimeType = matches[1];
+  const base64Data = matches[2];
+  const extension = mimeType.split("/")[1] || "png";
+
+  // Convert base64 to Blob
+  const byteCharacters = atob(base64Data);
+  const byteNumbers = new Array(byteCharacters.length);
+  for (let i = 0; i < byteCharacters.length; i++) {
+    byteNumbers[i] = byteCharacters.charCodeAt(i);
+  }
+  const byteArray = new Uint8Array(byteNumbers);
+  const blob = new Blob([byteArray], { type: mimeType });
+
+  // Upload to storage
+  const fileName = `${postId}.${extension}`;
+  const { error: uploadError } = await supabase.storage
+    .from("blog-images")
+    .upload(fileName, blob, {
+      contentType: mimeType,
+      upsert: true,
+    });
+
+  if (uploadError) {
+    console.error("Upload error:", uploadError);
+    throw uploadError;
+  }
+
+  // Get public URL
+  const { data: publicUrlData } = supabase.storage
+    .from("blog-images")
+    .getPublicUrl(fileName);
+
+  return publicUrlData.publicUrl;
+}
+
 export function useBlogPosts(onlyPublished = true) {
   return useQuery({
     queryKey: ["blog-posts", onlyPublished],
@@ -83,17 +132,45 @@ export function useCreateBlogPost() {
       featured_image?: string;
       is_published?: boolean;
     }) => {
+      // First create the post to get the ID
       const { data, error } = await supabase
         .from("blog_posts")
         .insert({
-          ...post,
+          title: post.title,
+          content: post.content,
+          excerpt: post.excerpt,
+          author_name: post.author_name,
           author_id: user?.id,
+          is_published: post.is_published,
           published_at: post.is_published ? new Date().toISOString() : null,
         })
         .select()
         .single();
 
       if (error) throw error;
+
+      // If there's a featured image, upload it to storage
+      if (post.featured_image && post.featured_image.startsWith("data:")) {
+        try {
+          const imageUrl = await uploadImageToStorage(post.featured_image, data.id);
+          
+          // Update the post with the storage URL
+          const { error: updateError } = await supabase
+            .from("blog_posts")
+            .update({ featured_image: imageUrl })
+            .eq("id", data.id);
+
+          if (updateError) {
+            console.error("Error updating image URL:", updateError);
+          } else {
+            data.featured_image = imageUrl;
+          }
+        } catch (uploadErr) {
+          console.error("Error uploading image:", uploadErr);
+          // Continue without the image URL update
+        }
+      }
+
       return data;
     },
     onSuccess: () => {
@@ -111,10 +188,22 @@ export function useUpdateBlogPost() {
       id,
       ...updates
     }: Partial<BlogPost> & { id: string }) => {
+      // If there's a new base64 image, upload it first
+      let finalImageUrl = updates.featured_image;
+      if (updates.featured_image && updates.featured_image.startsWith("data:")) {
+        try {
+          finalImageUrl = await uploadImageToStorage(updates.featured_image, id);
+        } catch (uploadErr) {
+          console.error("Error uploading image:", uploadErr);
+          // Keep the original if upload fails
+        }
+      }
+
       const { data, error } = await supabase
         .from("blog_posts")
         .update({
           ...updates,
+          featured_image: finalImageUrl,
           published_at: updates.is_published ? new Date().toISOString() : null,
         })
         .eq("id", id)
@@ -137,6 +226,14 @@ export function useDeleteBlogPost() {
 
   return useMutation({
     mutationFn: async (id: string) => {
+      // Also delete the image from storage
+      const extensions = ["png", "jpg", "jpeg", "webp", "gif"];
+      for (const ext of extensions) {
+        await supabase.storage
+          .from("blog-images")
+          .remove([`${id}.${ext}`]);
+      }
+      
       const { error } = await supabase.from("blog_posts").delete().eq("id", id);
       if (error) throw error;
     },
