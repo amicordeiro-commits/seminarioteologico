@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import { AdminLayout } from "@/components/layout/AdminLayout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -74,6 +74,35 @@ export default function AdminLessonsPage() {
   const [batchText, setBatchText] = useState("");
   const [editingLesson, setEditingLesson] = useState<Partial<Lesson> | null>(null);
   const [selectedCourseId, setSelectedCourseId] = useState<string | null>(null);
+  
+  // Refs e estado para o editor
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const [selection, setSelection] = useState({ start: 0, end: 0 });
+  
+  // Salva a seleção atual do textarea
+  const saveSelection = useCallback(() => {
+    if (textareaRef.current) {
+      setSelection({
+        start: textareaRef.current.selectionStart,
+        end: textareaRef.current.selectionEnd
+      });
+    }
+  }, []);
+  
+  // Aplica formatação ao texto selecionado
+  const applyFormat = useCallback((before: string, after: string = before) => {
+    const text = editingLesson?.content || "";
+    const selectedText = text.substring(selection.start, selection.end);
+    const newText = text.substring(0, selection.start) + before + selectedText + after + text.substring(selection.end);
+    setEditingLesson({ ...editingLesson, content: newText });
+  }, [editingLesson, selection]);
+  
+  // Insere texto na posição do cursor
+  const insertText = useCallback((insertedText: string) => {
+    const text = editingLesson?.content || "";
+    const newText = text.substring(0, selection.start) + insertedText + text.substring(selection.start);
+    setEditingLesson({ ...editingLesson, content: newText });
+  }, [editingLesson, selection]);
 
   // Fetch courses
   const { data: courses = [], isLoading: coursesLoading } = useQuery({
@@ -516,17 +545,8 @@ export default function AdminLessonsPage() {
                         size="sm"
                         className="h-8 w-8 p-0"
                         title="Negrito"
-                        onClick={() => {
-                          const textarea = document.querySelector('textarea[data-content-editor]') as HTMLTextAreaElement;
-                          if (textarea) {
-                            const start = textarea.selectionStart;
-                            const end = textarea.selectionEnd;
-                            const text = editingLesson?.content || "";
-                            const selectedText = text.substring(start, end);
-                            const newText = text.substring(0, start) + `**${selectedText}**` + text.substring(end);
-                            setEditingLesson({ ...editingLesson, content: newText });
-                          }
-                        }}
+                        onMouseDown={(e) => { e.preventDefault(); saveSelection(); }}
+                        onClick={() => applyFormat("**", "**")}
                       >
                         <Bold className="w-4 h-4" />
                       </Button>
@@ -536,17 +556,8 @@ export default function AdminLessonsPage() {
                         size="sm"
                         className="h-8 w-8 p-0"
                         title="Itálico"
-                        onClick={() => {
-                          const textarea = document.querySelector('textarea[data-content-editor]') as HTMLTextAreaElement;
-                          if (textarea) {
-                            const start = textarea.selectionStart;
-                            const end = textarea.selectionEnd;
-                            const text = editingLesson?.content || "";
-                            const selectedText = text.substring(start, end);
-                            const newText = text.substring(0, start) + `*${selectedText}*` + text.substring(end);
-                            setEditingLesson({ ...editingLesson, content: newText });
-                          }
-                        }}
+                        onMouseDown={(e) => { e.preventDefault(); saveSelection(); }}
+                        onClick={() => applyFormat("*", "*")}
                       >
                         <Italic className="w-4 h-4" />
                       </Button>
@@ -556,17 +567,8 @@ export default function AdminLessonsPage() {
                         size="sm"
                         className="h-8 w-8 p-0"
                         title="Sublinhado"
-                        onClick={() => {
-                          const textarea = document.querySelector('textarea[data-content-editor]') as HTMLTextAreaElement;
-                          if (textarea) {
-                            const start = textarea.selectionStart;
-                            const end = textarea.selectionEnd;
-                            const text = editingLesson?.content || "";
-                            const selectedText = text.substring(start, end);
-                            const newText = text.substring(0, start) + `<u>${selectedText}</u>` + text.substring(end);
-                            setEditingLesson({ ...editingLesson, content: newText });
-                          }
-                        }}
+                        onMouseDown={(e) => { e.preventDefault(); saveSelection(); }}
+                        onClick={() => applyFormat("<u>", "</u>")}
                       >
                         <Underline className="w-4 h-4" />
                       </Button>
@@ -580,17 +582,8 @@ export default function AdminLessonsPage() {
                         size="sm"
                         className="h-8 w-8 p-0"
                         title="Título Principal"
-                        onClick={() => {
-                          const textarea = document.querySelector('textarea[data-content-editor]') as HTMLTextAreaElement;
-                          if (textarea) {
-                            const start = textarea.selectionStart;
-                            const end = textarea.selectionEnd;
-                            const text = editingLesson?.content || "";
-                            const selectedText = text.substring(start, end);
-                            const newText = text.substring(0, start) + `# ${selectedText}` + text.substring(end);
-                            setEditingLesson({ ...editingLesson, content: newText });
-                          }
-                        }}
+                        onMouseDown={(e) => { e.preventDefault(); saveSelection(); }}
+                        onClick={() => applyFormat("# ", "")}
                       >
                         <Heading1 className="w-4 h-4" />
                       </Button>
@@ -600,17 +593,8 @@ export default function AdminLessonsPage() {
                         size="sm"
                         className="h-8 w-8 p-0"
                         title="Subtítulo"
-                        onClick={() => {
-                          const textarea = document.querySelector('textarea[data-content-editor]') as HTMLTextAreaElement;
-                          if (textarea) {
-                            const start = textarea.selectionStart;
-                            const end = textarea.selectionEnd;
-                            const text = editingLesson?.content || "";
-                            const selectedText = text.substring(start, end);
-                            const newText = text.substring(0, start) + `## ${selectedText}` + text.substring(end);
-                            setEditingLesson({ ...editingLesson, content: newText });
-                          }
-                        }}
+                        onMouseDown={(e) => { e.preventDefault(); saveSelection(); }}
+                        onClick={() => applyFormat("## ", "")}
                       >
                         <Heading2 className="w-4 h-4" />
                       </Button>
@@ -620,17 +604,8 @@ export default function AdminLessonsPage() {
                         size="sm"
                         className="h-8 w-8 p-0"
                         title="Subtítulo Menor"
-                        onClick={() => {
-                          const textarea = document.querySelector('textarea[data-content-editor]') as HTMLTextAreaElement;
-                          if (textarea) {
-                            const start = textarea.selectionStart;
-                            const end = textarea.selectionEnd;
-                            const text = editingLesson?.content || "";
-                            const selectedText = text.substring(start, end);
-                            const newText = text.substring(0, start) + `### ${selectedText}` + text.substring(end);
-                            setEditingLesson({ ...editingLesson, content: newText });
-                          }
-                        }}
+                        onMouseDown={(e) => { e.preventDefault(); saveSelection(); }}
+                        onClick={() => applyFormat("### ", "")}
                       >
                         <Heading3 className="w-4 h-4" />
                       </Button>
@@ -644,15 +619,8 @@ export default function AdminLessonsPage() {
                         size="sm"
                         className="h-8 w-8 p-0"
                         title="Lista com Marcadores"
-                        onClick={() => {
-                          const textarea = document.querySelector('textarea[data-content-editor]') as HTMLTextAreaElement;
-                          if (textarea) {
-                            const start = textarea.selectionStart;
-                            const text = editingLesson?.content || "";
-                            const newText = text.substring(0, start) + `\n- Item 1\n- Item 2\n- Item 3\n` + text.substring(start);
-                            setEditingLesson({ ...editingLesson, content: newText });
-                          }
-                        }}
+                        onMouseDown={(e) => { e.preventDefault(); saveSelection(); }}
+                        onClick={() => insertText("\n- Item 1\n- Item 2\n- Item 3\n")}
                       >
                         <List className="w-4 h-4" />
                       </Button>
@@ -662,15 +630,8 @@ export default function AdminLessonsPage() {
                         size="sm"
                         className="h-8 w-8 p-0"
                         title="Lista Numerada"
-                        onClick={() => {
-                          const textarea = document.querySelector('textarea[data-content-editor]') as HTMLTextAreaElement;
-                          if (textarea) {
-                            const start = textarea.selectionStart;
-                            const text = editingLesson?.content || "";
-                            const newText = text.substring(0, start) + `\n1. Item 1\n2. Item 2\n3. Item 3\n` + text.substring(start);
-                            setEditingLesson({ ...editingLesson, content: newText });
-                          }
-                        }}
+                        onMouseDown={(e) => { e.preventDefault(); saveSelection(); }}
+                        onClick={() => insertText("\n1. Item 1\n2. Item 2\n3. Item 3\n")}
                       >
                         <ListOrdered className="w-4 h-4" />
                       </Button>
@@ -684,17 +645,8 @@ export default function AdminLessonsPage() {
                         size="sm"
                         className="h-8 w-8 p-0"
                         title="Alinhar à Esquerda"
-                        onClick={() => {
-                          const textarea = document.querySelector('textarea[data-content-editor]') as HTMLTextAreaElement;
-                          if (textarea) {
-                            const start = textarea.selectionStart;
-                            const end = textarea.selectionEnd;
-                            const text = editingLesson?.content || "";
-                            const selectedText = text.substring(start, end);
-                            const newText = text.substring(0, start) + `<div style="text-align: left">${selectedText}</div>` + text.substring(end);
-                            setEditingLesson({ ...editingLesson, content: newText });
-                          }
-                        }}
+                        onMouseDown={(e) => { e.preventDefault(); saveSelection(); }}
+                        onClick={() => applyFormat('<div style="text-align: left">', '</div>')}
                       >
                         <AlignLeft className="w-4 h-4" />
                       </Button>
@@ -704,17 +656,8 @@ export default function AdminLessonsPage() {
                         size="sm"
                         className="h-8 w-8 p-0"
                         title="Centralizar"
-                        onClick={() => {
-                          const textarea = document.querySelector('textarea[data-content-editor]') as HTMLTextAreaElement;
-                          if (textarea) {
-                            const start = textarea.selectionStart;
-                            const end = textarea.selectionEnd;
-                            const text = editingLesson?.content || "";
-                            const selectedText = text.substring(start, end);
-                            const newText = text.substring(0, start) + `<div style="text-align: center">${selectedText}</div>` + text.substring(end);
-                            setEditingLesson({ ...editingLesson, content: newText });
-                          }
-                        }}
+                        onMouseDown={(e) => { e.preventDefault(); saveSelection(); }}
+                        onClick={() => applyFormat('<div style="text-align: center">', '</div>')}
                       >
                         <AlignCenter className="w-4 h-4" />
                       </Button>
@@ -724,17 +667,8 @@ export default function AdminLessonsPage() {
                         size="sm"
                         className="h-8 w-8 p-0"
                         title="Justificar"
-                        onClick={() => {
-                          const textarea = document.querySelector('textarea[data-content-editor]') as HTMLTextAreaElement;
-                          if (textarea) {
-                            const start = textarea.selectionStart;
-                            const end = textarea.selectionEnd;
-                            const text = editingLesson?.content || "";
-                            const selectedText = text.substring(start, end);
-                            const newText = text.substring(0, start) + `<div style="text-align: justify">${selectedText}</div>` + text.substring(end);
-                            setEditingLesson({ ...editingLesson, content: newText });
-                          }
-                        }}
+                        onMouseDown={(e) => { e.preventDefault(); saveSelection(); }}
+                        onClick={() => applyFormat('<div style="text-align: justify">', '</div>')}
                       >
                         <AlignJustify className="w-4 h-4" />
                       </Button>
@@ -749,6 +683,7 @@ export default function AdminLessonsPage() {
                           size="sm"
                           className="h-8 px-2 gap-1"
                           title="Cor do Texto"
+                          onMouseDown={(e) => { e.preventDefault(); saveSelection(); }}
                         >
                           <Palette className="w-4 h-4" />
                           <span className="text-xs">Cor</span>
@@ -767,17 +702,7 @@ export default function AdminLessonsPage() {
                               type="button"
                               className="w-6 h-6 rounded border border-border hover:scale-110 transition-transform"
                               style={{ backgroundColor: color }}
-                              onClick={() => {
-                                const textarea = document.querySelector('textarea[data-content-editor]') as HTMLTextAreaElement;
-                                if (textarea) {
-                                  const start = textarea.selectionStart;
-                                  const end = textarea.selectionEnd;
-                                  const text = editingLesson?.content || "";
-                                  const selectedText = text.substring(start, end);
-                                  const newText = text.substring(0, start) + `<span style="color: ${color}">${selectedText}</span>` + text.substring(end);
-                                  setEditingLesson({ ...editingLesson, content: newText });
-                                }
-                              }}
+                              onClick={() => applyFormat(`<span style="color: ${color}">`, '</span>')}
                             />
                           ))}
                         </div>
@@ -793,6 +718,7 @@ export default function AdminLessonsPage() {
                           size="sm"
                           className="h-8 px-2 gap-1"
                           title="Tamanho da Fonte"
+                          onMouseDown={(e) => { e.preventDefault(); saveSelection(); }}
                         >
                           <Type className="w-4 h-4" />
                           <span className="text-xs">Tamanho</span>
@@ -812,18 +738,7 @@ export default function AdminLessonsPage() {
                               key={option.size}
                               type="button"
                               className="px-3 py-1.5 text-left hover:bg-muted rounded text-sm"
-                              style={{ fontSize: option.size }}
-                              onClick={() => {
-                                const textarea = document.querySelector('textarea[data-content-editor]') as HTMLTextAreaElement;
-                                if (textarea) {
-                                  const start = textarea.selectionStart;
-                                  const end = textarea.selectionEnd;
-                                  const text = editingLesson?.content || "";
-                                  const selectedText = text.substring(start, end);
-                                  const newText = text.substring(0, start) + `<span style="font-size: ${option.size}">${selectedText}</span>` + text.substring(end);
-                                  setEditingLesson({ ...editingLesson, content: newText });
-                                }
-                              }}
+                              onClick={() => applyFormat(`<span style="font-size: ${option.size}">`, '</span>')}
                             >
                               {option.label}
                             </button>
@@ -834,11 +749,15 @@ export default function AdminLessonsPage() {
                   </div>
                   
                   <Textarea
+                    ref={textareaRef}
                     data-content-editor
                     value={editingLesson?.content || ""}
                     onChange={(e) =>
                       setEditingLesson({ ...editingLesson, content: e.target.value })
                     }
+                    onSelect={saveSelection}
+                    onKeyUp={saveSelection}
+                    onClick={saveSelection}
                     placeholder="Digite ou cole o conteúdo completo da aula aqui...
 
 Selecione o texto e use a barra de ferramentas para formatar:
