@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from "react";
+import { useState } from "react";
 import { AdminLayout } from "@/components/layout/AdminLayout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -31,13 +31,6 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import {
-  Drawer,
-  DrawerContent,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
-import {
   PlayCircle,
   Plus,
   Pencil,
@@ -50,19 +43,6 @@ import {
   BookOpen,
   Settings,
   X,
-  Bold,
-  Italic,
-  Underline,
-  Heading1,
-  Heading2,
-  Heading3,
-  List,
-  ListOrdered,
-  AlignLeft,
-  AlignCenter,
-  AlignJustify,
-  Palette,
-  Type,
   MoreVertical,
   Copy,
   GripVertical,
@@ -71,11 +51,10 @@ import {
   Eye,
   EyeOff,
 } from "lucide-react";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { useIsMobile } from "@/hooks/use-mobile";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { WysiwygEditor } from "@/components/editor/WysiwygEditor";
 
 interface Lesson {
   id: string;
@@ -113,109 +92,11 @@ const defaultLesson: Partial<Lesson> = {
 export default function AdminLessonsPage() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
-  const isMobile = useIsMobile();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isBatchDialogOpen, setIsBatchDialogOpen] = useState(false);
   const [batchText, setBatchText] = useState("");
   const [editingLesson, setEditingLesson] = useState<Partial<Lesson> | null>(null);
   const [selectedCourseId, setSelectedCourseId] = useState<string | null>(null);
-  const [colorDrawerOpen, setColorDrawerOpen] = useState(false);
-  const [sizeDrawerOpen, setSizeDrawerOpen] = useState(false);
-  
-  // Refs e estado para o editor
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const selectionRef = useRef<{ start: number; end: number }>({ start: 0, end: 0 });
-
-  // Salva a seleção atual do textarea
-  // force = true ignora verificação de foco (usado no onPointerDown dos botões)
-  const saveSelection = useCallback((force: boolean | React.SyntheticEvent = false) => {
-    // Se foi passado um evento, ignoramos (é chamada de handler de evento)
-    const forceCapture = typeof force === 'boolean' ? force : false;
-    
-    const el = textareaRef.current;
-    if (!el) return;
-
-    // Se force=true, sempre captura (mesmo que o foco ainda não tenha saído)
-    // Caso contrário, só atualiza quando o textarea está ativo
-    if (!forceCapture && document.activeElement !== el) return;
-
-    const start = el.selectionStart ?? 0;
-    const end = el.selectionEnd ?? 0;
-    
-    // Só atualiza se houver valores válidos
-    if (start !== 0 || end !== 0 || selectionRef.current.start === 0) {
-      selectionRef.current = { start, end };
-    }
-  }, []);
-
-  // Wrapper para forçar captura da seleção (para uso nos botões de formatação)
-  const forceSaveSelection = useCallback(() => {
-    saveSelection(true);
-  }, [saveSelection]);
-
-  const getSelection = useCallback(() => {
-    const el = textareaRef.current;
-    if (el && document.activeElement === el) {
-      return { start: el.selectionStart ?? 0, end: el.selectionEnd ?? 0 };
-    }
-    return selectionRef.current;
-  }, []);
-
-  const restoreSelection = useCallback((start: number, end: number) => {
-    requestAnimationFrame(() => {
-      const el = textareaRef.current;
-      if (!el) return;
-      el.focus();
-      el.setSelectionRange(start, end);
-      selectionRef.current = { start, end };
-    });
-  }, []);
-
-  // Aplica formatação ao texto selecionado
-  const applyFormat = useCallback(
-    (before: string, after: string = before) => {
-      // garante que a última seleção do textarea foi capturada (quando houver foco)
-      saveSelection();
-      const { start, end } = getSelection();
-
-      setEditingLesson((prev) => {
-        if (!prev) return prev;
-        const text = prev.content || "";
-        const selectedText = text.substring(start, end);
-        const newText = text.substring(0, start) + before + selectedText + after + text.substring(end);
-
-        // Se não há seleção, posiciona o cursor DENTRO da marcação para facilitar digitação colorida/formatada.
-        const cursor = selectedText.length === 0
-          ? start + before.length
-          : start + before.length + selectedText.length + after.length;
-
-        restoreSelection(cursor, cursor);
-
-        return { ...prev, content: newText };
-      });
-    },
-    [getSelection, restoreSelection, saveSelection],
-  );
-
-  // Insere texto na posição do cursor
-  const insertText = useCallback(
-    (insertedText: string) => {
-      saveSelection();
-      const { start, end } = getSelection();
-
-      setEditingLesson((prev) => {
-        if (!prev) return prev;
-        const text = prev.content || "";
-        const newText = text.substring(0, start) + insertedText + text.substring(end);
-
-        const cursor = start + insertedText.length;
-        restoreSelection(cursor, cursor);
-
-        return { ...prev, content: newText };
-      });
-    },
-    [getSelection, restoreSelection, saveSelection],
-  );
 
   // Fetch courses
   const { data: courses = [], isLoading: coursesLoading } = useQuery({
@@ -819,380 +700,17 @@ export default function AdminLessonsPage() {
                 </TabsList>
               </div>
               
-              {/* Aba de Conteúdo - Editor em Tela Cheia */}
+              {/* Aba de Conteúdo - Editor Visual WYSIWYG */}
               <TabsContent value="content" className="flex-1 flex flex-col m-0 overflow-hidden">
-                <div className="flex-1 flex flex-col p-3 sm:p-6 gap-3 sm:gap-4 overflow-hidden">
-                  <div className="flex items-center justify-between gap-2">
-                    <Label className="text-sm sm:text-base font-semibold">Conteúdo da Aula</Label>
-                    <div className="flex items-center gap-2">
-                      <span className="text-[10px] sm:text-xs text-muted-foreground">
-                        {(editingLesson?.content || "").length.toLocaleString()} caracteres
-                      </span>
-
-                    </div>
-                  </div>
-                  
-                  {/* Barra de Ferramentas de Formatação */}
-                  <div className="flex flex-wrap items-center gap-0.5 sm:gap-1 p-1.5 sm:p-2 bg-muted/50 rounded-lg border overflow-x-auto">
-                    {/* Formatação de Texto */}
-                    <div className="flex items-center gap-0.5 pr-2 border-r">
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        size="sm"
-                        className="h-8 w-8 p-0"
-                        title="Negrito"
-                        onMouseDown={(e) => { e.preventDefault(); saveSelection(); }}
-                        onClick={() => applyFormat("**", "**")}
-                      >
-                        <Bold className="w-4 h-4" />
-                      </Button>
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        size="sm"
-                        className="h-8 w-8 p-0"
-                        title="Itálico"
-                        onMouseDown={(e) => { e.preventDefault(); saveSelection(); }}
-                        onClick={() => applyFormat("*", "*")}
-                      >
-                        <Italic className="w-4 h-4" />
-                      </Button>
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        size="sm"
-                        className="h-8 w-8 p-0"
-                        title="Sublinhado"
-                        onMouseDown={(e) => { e.preventDefault(); saveSelection(); }}
-                        onClick={() => applyFormat("<u>", "</u>")}
-                      >
-                        <Underline className="w-4 h-4" />
-                      </Button>
-                    </div>
-                    
-                    {/* Cabeçalhos */}
-                    <div className="flex items-center gap-0.5 px-2 border-r">
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        size="sm"
-                        className="h-8 w-8 p-0"
-                        title="Título Principal"
-                        onMouseDown={(e) => { e.preventDefault(); saveSelection(); }}
-                        onClick={() => applyFormat("# ", "")}
-                      >
-                        <Heading1 className="w-4 h-4" />
-                      </Button>
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        size="sm"
-                        className="h-8 w-8 p-0"
-                        title="Subtítulo"
-                        onMouseDown={(e) => { e.preventDefault(); saveSelection(); }}
-                        onClick={() => applyFormat("## ", "")}
-                      >
-                        <Heading2 className="w-4 h-4" />
-                      </Button>
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        size="sm"
-                        className="h-8 w-8 p-0"
-                        title="Subtítulo Menor"
-                        onMouseDown={(e) => { e.preventDefault(); saveSelection(); }}
-                        onClick={() => applyFormat("### ", "")}
-                      >
-                        <Heading3 className="w-4 h-4" />
-                      </Button>
-                    </div>
-                    
-                    {/* Listas */}
-                    <div className="flex items-center gap-0.5 px-2 border-r">
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        size="sm"
-                        className="h-8 w-8 p-0"
-                        title="Lista com Marcadores"
-                        onMouseDown={(e) => { e.preventDefault(); saveSelection(); }}
-                        onClick={() => insertText("\n- Item 1\n- Item 2\n- Item 3\n")}
-                      >
-                        <List className="w-4 h-4" />
-                      </Button>
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        size="sm"
-                        className="h-8 w-8 p-0"
-                        title="Lista Numerada"
-                        onMouseDown={(e) => { e.preventDefault(); saveSelection(); }}
-                        onClick={() => insertText("\n1. Item 1\n2. Item 2\n3. Item 3\n")}
-                      >
-                        <ListOrdered className="w-4 h-4" />
-                      </Button>
-                    </div>
-                    
-                    {/* Alinhamento */}
-                    <div className="flex items-center gap-0.5 px-2 border-r">
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        size="sm"
-                        className="h-8 w-8 p-0"
-                        title="Alinhar à Esquerda"
-                        onMouseDown={(e) => { e.preventDefault(); saveSelection(); }}
-                        onClick={() => applyFormat('<div style="text-align: left">', '</div>')}
-                      >
-                        <AlignLeft className="w-4 h-4" />
-                      </Button>
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        size="sm"
-                        className="h-8 w-8 p-0"
-                        title="Centralizar"
-                        onMouseDown={(e) => { e.preventDefault(); saveSelection(); }}
-                        onClick={() => applyFormat('<div style="text-align: center">', '</div>')}
-                      >
-                        <AlignCenter className="w-4 h-4" />
-                      </Button>
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        size="sm"
-                        className="h-8 w-8 p-0"
-                        title="Justificar"
-                        onMouseDown={(e) => { e.preventDefault(); saveSelection(); }}
-                        onClick={() => applyFormat('<div style="text-align: justify">', '</div>')}
-                      >
-                        <AlignJustify className="w-4 h-4" />
-                      </Button>
-                    </div>
-                    
-                    {/* Cores - Desktop: Popover, Mobile: Drawer */}
-                    {isMobile ? (
-                      <Drawer open={colorDrawerOpen} onOpenChange={setColorDrawerOpen}>
-                        <DrawerTrigger asChild>
-                          <Button
-                            type="button"
-                            variant="ghost"
-                            size="sm"
-                            className="h-8 px-2 gap-1"
-                            title="Cor do Texto"
-                            onPointerDown={(e) => {
-                              forceSaveSelection();
-                            }}
-                          >
-                            <Palette className="w-4 h-4" />
-                            <span className="text-xs">Cor</span>
-                          </Button>
-                        </DrawerTrigger>
-                        <DrawerContent>
-                          <DrawerHeader>
-                            <DrawerTitle>Cor do Texto</DrawerTitle>
-                          </DrawerHeader>
-                          <div className="p-4">
-                            <div className="grid grid-cols-6 gap-3">
-                              {[
-                                "#000000", "#374151", "#6B7280", "#9CA3AF", "#D1D5DB", "#FFFFFF",
-                                "#EF4444", "#F97316", "#F59E0B", "#EAB308", "#84CC16", "#22C55E",
-                                "#10B981", "#14B8A6", "#06B6D4", "#0EA5E9", "#3B82F6", "#6366F1",
-                                "#8B5CF6", "#A855F7", "#D946EF", "#EC4899", "#F43F5E", "#78350F",
-                              ].map((color) => (
-                                <button
-                                  key={color}
-                                  type="button"
-                                  className="w-10 h-10 rounded-lg border-2 border-border hover:scale-110 transition-transform active:scale-95"
-                                  style={{ backgroundColor: color }}
-                                  onClick={() => {
-                                    applyFormat(`<span style="color: ${color}">`, "</span>");
-                                    toast({
-                                      title: "Cor aplicada",
-                                      description: "Veja na visualização ao vivo abaixo.",
-                                    });
-                                    setColorDrawerOpen(false);
-                                  }}
-                                />
-                              ))}
-                            </div>
-                          </div>
-                        </DrawerContent>
-                      </Drawer>
-                    ) : (
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <Button
-                            type="button"
-                            variant="ghost"
-                            size="sm"
-                            className="h-8 px-2 gap-1"
-                            title="Cor do Texto"
-                            onPointerDown={(e) => {
-                              e.preventDefault();
-                              saveSelection();
-                            }}
-                          >
-                            <Palette className="w-4 h-4" />
-                            <span className="text-xs">Cor</span>
-                          </Button>
-                        </PopoverTrigger>
-                        <PopoverContent
-                          className="w-auto p-2"
-                          onOpenAutoFocus={(e) => e.preventDefault()}
-                          onCloseAutoFocus={(e) => e.preventDefault()}
-                        >
-                          <div className="grid grid-cols-6 gap-1">
-                            {[
-                              "#000000", "#374151", "#6B7280", "#9CA3AF", "#D1D5DB", "#FFFFFF",
-                              "#EF4444", "#F97316", "#F59E0B", "#EAB308", "#84CC16", "#22C55E",
-                              "#10B981", "#14B8A6", "#06B6D4", "#0EA5E9", "#3B82F6", "#6366F1",
-                              "#8B5CF6", "#A855F7", "#D946EF", "#EC4899", "#F43F5E", "#78350F",
-                            ].map((color) => (
-                              <button
-                                key={color}
-                                type="button"
-                                className="w-6 h-6 rounded border border-border hover:scale-110 transition-transform"
-                                style={{ backgroundColor: color }}
-                                onPointerDown={(e) => {
-                                  e.preventDefault();
-                                  saveSelection();
-                                }}
-                                onClick={() => applyFormat(`<span style="color: ${color}">`, "</span>")}
-                              />
-                            ))}
-                          </div>
-                        </PopoverContent>
-                      </Popover>
-                    )}
-                    
-                    {/* Tamanho da Fonte - Desktop: Popover, Mobile: Drawer */}
-                    {isMobile ? (
-                      <Drawer open={sizeDrawerOpen} onOpenChange={setSizeDrawerOpen}>
-                        <DrawerTrigger asChild>
-                          <Button
-                            type="button"
-                            variant="ghost"
-                            size="sm"
-                            className="h-8 px-2 gap-1"
-                            title="Tamanho da Fonte"
-                            onPointerDown={(e) => {
-                              forceSaveSelection();
-                            }}
-                          >
-                            <Type className="w-4 h-4" />
-                            <span className="text-xs">Tamanho</span>
-                          </Button>
-                        </DrawerTrigger>
-                        <DrawerContent>
-                          <DrawerHeader>
-                            <DrawerTitle>Tamanho da Fonte</DrawerTitle>
-                          </DrawerHeader>
-                          <div className="p-4 space-y-2">
-                            {[
-                              { label: "Pequeno", size: "12px" },
-                              { label: "Normal", size: "16px" },
-                              { label: "Médio", size: "18px" },
-                              { label: "Grande", size: "24px" },
-                              { label: "Muito Grande", size: "32px" },
-                              { label: "Título", size: "48px" },
-                            ].map((option) => (
-                              <button
-                                key={option.size}
-                                type="button"
-                                className="w-full px-4 py-3 text-left hover:bg-muted rounded-lg text-base active:bg-muted/80"
-                                onClick={() => {
-                                  applyFormat(`<span style="font-size: ${option.size}">`, "</span>");
-                                  toast({
-                                    title: "Tamanho aplicado",
-                                    description: "Veja na visualização ao vivo abaixo.",
-                                  });
-                                  setSizeDrawerOpen(false);
-                                }}
-                              >
-                                <span style={{ fontSize: option.size }}>{option.label}</span>
-                              </button>
-                            ))}
-                          </div>
-                        </DrawerContent>
-                      </Drawer>
-                    ) : (
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <Button
-                            type="button"
-                            variant="ghost"
-                            size="sm"
-                            className="h-8 px-2 gap-1"
-                            title="Tamanho da Fonte"
-                            onPointerDown={(e) => {
-                              e.preventDefault();
-                              saveSelection();
-                            }}
-                          >
-                            <Type className="w-4 h-4" />
-                            <span className="text-xs">Tamanho</span>
-                          </Button>
-                        </PopoverTrigger>
-                        <PopoverContent
-                          className="w-auto p-2"
-                          onOpenAutoFocus={(e) => e.preventDefault()}
-                          onCloseAutoFocus={(e) => e.preventDefault()}
-                        >
-                          <div className="flex flex-col gap-1">
-                            {[
-                              { label: "Pequeno", size: "12px" },
-                              { label: "Normal", size: "16px" },
-                              { label: "Médio", size: "18px" },
-                              { label: "Grande", size: "24px" },
-                              { label: "Muito Grande", size: "32px" },
-                              { label: "Título", size: "48px" },
-                            ].map((option) => (
-                              <button
-                                key={option.size}
-                                type="button"
-                                className="px-3 py-1.5 text-left hover:bg-muted rounded text-sm"
-                                onPointerDown={(e) => {
-                                  e.preventDefault();
-                                  saveSelection();
-                                }}
-                                onClick={() => applyFormat(`<span style="font-size: ${option.size}">`, "</span>")}
-                              >
-                                {option.label}
-                              </button>
-                            ))}
-                          </div>
-                        </PopoverContent>
-                      </Popover>
-                    )}
-                  </div>
-                  
-                  <Textarea
-                    ref={textareaRef}
-                    data-content-editor
+                <div className="flex-1 flex flex-col p-3 sm:p-6 overflow-hidden">
+                  <WysiwygEditor
                     value={editingLesson?.content || ""}
-                    onChange={(e) =>
-                      setEditingLesson({ ...editingLesson, content: e.target.value })
-                    }
-                    onSelect={saveSelection}
-                    onMouseUp={saveSelection}
-                    onPointerUp={saveSelection}
-                    onTouchEnd={saveSelection}
-                    onKeyUp={saveSelection}
-                    onClick={saveSelection}
-                    placeholder="Digite ou cole o conteúdo completo da aula aqui...
-
-Selecione o texto e use a barra de ferramentas para formatar:
-• Negrito, Itálico, Sublinhado
-• Títulos e Subtítulos
-• Cores e Tamanhos de Fonte
-• Listas e Alinhamento"
-                    className="flex-1 min-h-[300px] sm:min-h-0 font-mono text-xs sm:text-sm resize-none"
+                    onChange={(html) => setEditingLesson({ ...editingLesson, content: html })}
+                    placeholder="Digite o conteúdo da aula aqui. Selecione o texto e use a barra de ferramentas para formatar com cores, tamanhos, negrito, etc."
+                    className="flex-1"
                   />
                 </div>
               </TabsContent>
-              
               
               {/* Aba de Configurações */}
               <TabsContent value="settings" className="flex-1 m-0 overflow-auto">
