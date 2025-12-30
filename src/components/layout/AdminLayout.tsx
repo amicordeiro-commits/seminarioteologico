@@ -28,6 +28,7 @@ import {
   DollarSign,
   UserPlus,
   Menu,
+  Database,
 } from "lucide-react";
 
 interface AdminLayoutProps {
@@ -53,6 +54,7 @@ const menuItems = [
   { icon: Languages, label: "Strong's PT", path: "/admin/strongs" },
   { icon: FileDown, label: "Materiais PDF", path: "/admin/materials" },
   { icon: BarChart3, label: "Relatórios", path: "/admin/reports" },
+  { icon: Database, label: "Backup", path: "/admin/backups" },
   { icon: HelpCircle, label: "Manual", path: "/admin/manual" },
   { icon: Settings, label: "Configurações", path: "/admin/settings" },
 ];
