@@ -20,6 +20,8 @@ import {
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useDevotionals } from "@/hooks/useDevotionals";
+import { useDevotionalInteraction } from "@/hooks/useDevotionalInteractions";
+import { useDevotionalStreak } from "@/hooks/useDevotionalStreak";
 import { useAuth } from "@/hooks/useAuth";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
@@ -35,9 +37,22 @@ export default function DevotionalPage() {
     saveNotes 
   } = useDevotionals();
   
+  const { 
+    isLiked, 
+    isBookmarked, 
+    toggleLike, 
+    toggleBookmark,
+    isTogglingLike,
+    isTogglingBookmark 
+  } = useDevotionalInteraction(todayDevotional?.id);
+  
+  const { 
+    currentStreak, 
+    recordReading,
+    isRecording 
+  } = useDevotionalStreak();
+  
   const [notes, setNotes] = useState("");
-  const [isSaved, setIsSaved] = useState(false);
-  const [isLiked, setIsLiked] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
@@ -45,6 +60,13 @@ export default function DevotionalPage() {
       setNotes(userNotes.notes || "");
     }
   }, [userNotes]);
+
+  // Record reading when devotional is viewed
+  useEffect(() => {
+    if (todayDevotional && user) {
+      recordReading().catch(console.error);
+    }
+  }, [todayDevotional?.id, user?.id]);
 
   const getTimeOfDay = () => {
     const hour = new Date().getHours();
@@ -66,6 +88,24 @@ export default function DevotionalPage() {
       toast.error("Erro ao salvar anotações");
     } finally {
       setIsSaving(false);
+    }
+  };
+
+  const handleToggleLike = async () => {
+    try {
+      await toggleLike();
+      toast.success(isLiked ? "Removido dos favoritos" : "Adicionado aos favoritos!");
+    } catch (error) {
+      toast.error("Erro ao atualizar");
+    }
+  };
+
+  const handleToggleBookmark = async () => {
+    try {
+      await toggleBookmark();
+      toast.success(isBookmarked ? "Removido dos salvos" : "Salvo com sucesso!");
+    } catch (error) {
+      toast.error("Erro ao salvar");
     }
   };
 
@@ -194,20 +234,30 @@ export default function DevotionalPage() {
                   <Button
                     variant={isLiked ? "default" : "outline"}
                     size="sm"
-                    onClick={() => setIsLiked(!isLiked)}
+                    onClick={handleToggleLike}
+                    disabled={isTogglingLike}
                     className="gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9"
                   >
-                    <Heart className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${isLiked ? "fill-current" : ""}`} />
+                    {isTogglingLike ? (
+                      <Loader2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 animate-spin" />
+                    ) : (
+                      <Heart className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${isLiked ? "fill-current" : ""}`} />
+                    )}
                     {isLiked ? "Amei!" : "Gostei"}
                   </Button>
                   <Button
-                    variant={isSaved ? "default" : "outline"}
+                    variant={isBookmarked ? "default" : "outline"}
                     size="sm"
-                    onClick={() => setIsSaved(!isSaved)}
+                    onClick={handleToggleBookmark}
+                    disabled={isTogglingBookmark}
                     className="gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9"
                   >
-                    <Bookmark className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${isSaved ? "fill-current" : ""}`} />
-                    {isSaved ? "Salvo" : "Salvar"}
+                    {isTogglingBookmark ? (
+                      <Loader2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 animate-spin" />
+                    ) : (
+                      <Bookmark className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${isBookmarked ? "fill-current" : ""}`} />
+                    )}
+                    {isBookmarked ? "Salvo" : "Salvar"}
                   </Button>
                   <Button variant="outline" size="sm" className="gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9">
                     <Share className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
@@ -246,24 +296,15 @@ export default function DevotionalPage() {
 
           {/* Sidebar */}
           <div className="space-y-4 sm:space-y-6">
-            {/* Reading Plan Progress */}
-            <div className="bg-card rounded-lg sm:rounded-xl border border-border p-4 sm:p-5">
-              <h3 className="font-serif font-semibold text-foreground mb-3 sm:mb-4 text-sm sm:text-base">
-                Plano de Leitura
-              </h3>
-              <div className="space-y-2 sm:space-y-3">
-                <div className="flex items-center justify-between text-xs sm:text-sm">
-                  <span className="text-muted-foreground">Advento 2024</span>
-                  <span className="font-medium text-foreground">Dia 24/25</span>
-                </div>
-                <div className="h-1.5 sm:h-2 bg-muted rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-gradient-to-r from-primary to-accent rounded-full transition-all"
-                    style={{ width: "96%" }}
-                  />
-                </div>
-                <p className="text-[10px] sm:text-xs text-muted-foreground">
-                  Faltam apenas 1 dia para completar!
+            {/* Reading Streak */}
+            <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg sm:rounded-xl border border-primary/20 p-4 sm:p-5">
+              <div className="text-center">
+                <div className="text-3xl sm:text-4xl mb-1.5 sm:mb-2">🔥</div>
+                <h3 className="font-serif font-bold text-xl sm:text-2xl text-foreground">
+                  {currentStreak} {currentStreak === 1 ? "dia" : "dias"}
+                </h3>
+                <p className="text-xs sm:text-sm text-muted-foreground">
+                  de leitura consecutiva
                 </p>
               </div>
             </div>
@@ -300,19 +341,6 @@ export default function DevotionalPage() {
               <Button variant="ghost" className="w-full mt-2 sm:mt-3 text-xs sm:text-sm h-8 sm:h-9">
                 Ver Todos
               </Button>
-            </div>
-
-            {/* Reading Streak */}
-            <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg sm:rounded-xl border border-primary/20 p-4 sm:p-5">
-              <div className="text-center">
-                <div className="text-3xl sm:text-4xl mb-1.5 sm:mb-2">🔥</div>
-                <h3 className="font-serif font-bold text-xl sm:text-2xl text-foreground">
-                  15 dias
-                </h3>
-                <p className="text-xs sm:text-sm text-muted-foreground">
-                  de leitura consecutiva
-                </p>
-              </div>
             </div>
           </div>
         </div>

@@ -3,33 +3,16 @@ import { Progress } from "@/components/ui/progress";
 import { Trophy, Target, Clock, TrendingUp, BookOpen, Award, Flame, Cross, BookMarked, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useCourses, useEnrollments } from "@/hooks/useCourses";
+import { useStudySessions } from "@/hooks/useStudySessions";
 import { useAuth } from "@/hooks/useAuth";
-
-const achievements = [
-  { id: "1", title: "Primeiro Passo", description: "Complete sua primeira aula", icon: BookOpen, unlocked: true },
-  { id: "2", title: "Devocional Fiel", description: "7 dias seguidos de estudo", icon: Flame, unlocked: true },
-  { id: "3", title: "Buscador da Palavra", description: "Inscreva-se em 5 cursos", icon: BookMarked, unlocked: true },
-  { id: "4", title: "Obreiro Aprovado", description: "Complete 3 cursos", icon: Trophy, unlocked: false },
-  { id: "5", title: "Berean", description: "10 horas de estudo semanal", icon: Clock, unlocked: false },
-  { id: "6", title: "Excelência Acadêmica", description: "100% em um exame", icon: Award, unlocked: true },
-];
-
-const weeklyData = [
-  { day: "Seg", hours: 2.5 },
-  { day: "Ter", hours: 1.8 },
-  { day: "Qua", hours: 3.2 },
-  { day: "Qui", hours: 2.0 },
-  { day: "Sex", hours: 1.5 },
-  { day: "Sáb", hours: 4.0 },
-  { day: "Dom", hours: 0.5 },
-];
 
 const ProgressPage = () => {
   const { user } = useAuth();
   const { data: courses, isLoading: loadingCourses } = useCourses();
   const { data: enrollments, isLoading: loadingEnrollments } = useEnrollments();
+  const { weeklyData, totalHoursWeek, isLoading: loadingStudy } = useStudySessions();
 
-  const isLoading = loadingCourses || loadingEnrollments;
+  const isLoading = loadingCourses || loadingEnrollments || loadingStudy;
 
   // Map courses with enrollment data
   const coursesWithProgress = courses?.map(course => {
@@ -48,8 +31,7 @@ const ProgressPage = () => {
   const coursesInProgress = coursesWithProgress.filter((c) => c.progress > 0 && c.progress < 100);
   const completedCourses = coursesWithProgress.filter((c) => c.progress === 100);
 
-  const maxHours = Math.max(...weeklyData.map((d) => d.hours));
-  const totalHoursWeek = weeklyData.reduce((acc, d) => acc + d.hours, 0);
+  const maxHours = Math.max(...weeklyData.map((d) => d.hours), 1);
 
   // Calculate total study hours based on enrollments
   const totalStudyHours = coursesWithProgress.reduce((acc, course) => {
@@ -70,7 +52,7 @@ const ProgressPage = () => {
       title: "Devocional Fiel", 
       description: "7 dias seguidos de estudo", 
       icon: Flame, 
-      unlocked: true 
+      unlocked: totalHoursWeek >= 7 
     },
     { 
       id: "3", 
@@ -130,9 +112,11 @@ const ProgressPage = () => {
           <div className="p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/20">
             <div className="flex items-center justify-between mb-2 sm:mb-4">
               <TrendingUp className="w-5 h-5 sm:w-6 md:w-8 sm:h-6 md:h-8 text-primary" />
-              <span className="text-[10px] sm:text-xs font-medium text-primary bg-primary/10 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full font-sans">
-                +12%
-              </span>
+              {totalHoursWeek > 0 && (
+                <span className="text-[10px] sm:text-xs font-medium text-primary bg-primary/10 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full font-sans">
+                  Ativo
+                </span>
+              )}
             </div>
             <p className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-foreground">{totalHoursWeek.toFixed(1)}h</p>
             <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground font-sans">Esta semana</p>
@@ -162,24 +146,33 @@ const ProgressPage = () => {
           <div className="lg:col-span-2 p-6 rounded-xl bg-card border border-border">
             <h2 className="font-serif font-semibold text-foreground mb-6">Dedicação Semanal</h2>
             <div className="flex items-end justify-between gap-3 h-48">
-              {weeklyData.map((data, index) => (
-                <div key={data.day} className="flex-1 flex flex-col items-center gap-2">
-                  <div
-                    className={cn(
-                      "w-full rounded-t-lg transition-all duration-500 hover:opacity-80",
-                      index === new Date().getDay() - 1 ? "bg-primary" : "bg-primary/30"
-                    )}
-                    style={{
-                      height: `${(data.hours / maxHours) * 100}%`,
-                      minHeight: "8px",
-                      animationDelay: `${index * 100}ms`,
-                    }}
-                  />
-                  <span className="text-xs text-muted-foreground font-sans">{data.day}</span>
-                  <span className="text-xs font-medium text-foreground font-sans">{data.hours}h</span>
-                </div>
-              ))}
+              {weeklyData.map((data, index) => {
+                const today = new Date().getDay();
+                const dayIndex = index === 6 ? 0 : index + 1; // Adjust for Sunday
+                return (
+                  <div key={data.day} className="flex-1 flex flex-col items-center gap-2">
+                    <div
+                      className={cn(
+                        "w-full rounded-t-lg transition-all duration-500 hover:opacity-80",
+                        dayIndex === today ? "bg-primary" : "bg-primary/30"
+                      )}
+                      style={{
+                        height: `${Math.max((data.hours / maxHours) * 100, 2)}%`,
+                        minHeight: "8px",
+                        animationDelay: `${index * 100}ms`,
+                      }}
+                    />
+                    <span className="text-xs text-muted-foreground font-sans">{data.day}</span>
+                    <span className="text-xs font-medium text-foreground font-sans">{data.hours}h</span>
+                  </div>
+                );
+              })}
             </div>
+            {totalHoursWeek === 0 && (
+              <p className="text-center text-sm text-muted-foreground mt-4">
+                Comece a estudar para ver seu progresso aqui!
+              </p>
+            )}
           </div>
 
           {/* Achievements */}

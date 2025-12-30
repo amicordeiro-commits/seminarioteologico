@@ -1,13 +1,31 @@
 import { AppLayout } from "@/components/layout/AppLayout";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { Plus, Clock, BookOpen, Video, FileText, ChevronLeft, ChevronRight } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Plus, Clock, BookOpen, Video, FileText, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { useCalendarEvents, useUpcomingEvents } from "@/hooks/useCalendarEvents";
+import { useCreateCalendarEvent } from "@/hooks/useCreateCalendarEvent";
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameMonth, isSameDay, addMonths, subMonths, getDay } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import { toast } from "sonner";
 
 const typeConfig: Record<string, { icon: any; color: string; label: string }> = {
   class: { icon: Video, color: "bg-accent/10 text-accent border-accent/30", label: "Aula" },
@@ -20,9 +38,18 @@ const typeConfig: Record<string, { icon: any; color: string; label: string }> = 
 const CalendarPage = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [newEvent, setNewEvent] = useState({
+    title: "",
+    description: "",
+    event_type: "event",
+    start_time: "",
+    end_time: "",
+  });
   
   const { data: events = [] } = useCalendarEvents(currentDate);
   const { data: upcomingEvents = [] } = useUpcomingEvents(10);
+  const { createEvent, isCreating } = useCreateCalendarEvent();
 
   const monthStart = startOfMonth(currentDate);
   const monthEnd = endOfMonth(currentDate);
@@ -43,6 +70,44 @@ const CalendarPage = () => {
 
   const weekDays = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
 
+  const handleCreateEvent = async () => {
+    if (!newEvent.title || !newEvent.start_time) {
+      toast.error("Preencha o título e a data/hora de início");
+      return;
+    }
+
+    try {
+      await createEvent({
+        title: newEvent.title,
+        description: newEvent.description || undefined,
+        event_type: newEvent.event_type,
+        start_time: new Date(newEvent.start_time).toISOString(),
+        end_time: newEvent.end_time ? new Date(newEvent.end_time).toISOString() : undefined,
+        is_public: false,
+      });
+      
+      toast.success("Evento criado com sucesso!");
+      setIsDialogOpen(false);
+      setNewEvent({
+        title: "",
+        description: "",
+        event_type: "event",
+        start_time: "",
+        end_time: "",
+      });
+    } catch (error) {
+      toast.error("Erro ao criar evento");
+    }
+  };
+
+  const openCreateDialog = (date?: Date) => {
+    if (date) {
+      const dateStr = format(date, "yyyy-MM-dd'T'HH:mm");
+      setNewEvent(prev => ({ ...prev, start_time: dateStr }));
+    }
+    setIsDialogOpen(true);
+  };
+
   return (
     <AppLayout>
       <div className="space-y-4 sm:space-y-6 md:space-y-8 animate-fade-in">
@@ -52,10 +117,94 @@ const CalendarPage = () => {
             <h1 className="text-xl sm:text-2xl font-serif font-bold text-foreground">Calendário</h1>
             <p className="text-sm text-muted-foreground">Acompanhe suas aulas e prazos</p>
           </div>
-          <Button size="sm" className="self-start sm:self-auto">
-            <Plus className="w-4 h-4 mr-2" />
-            Adicionar Evento
-          </Button>
+          <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+            <DialogTrigger asChild>
+              <Button size="sm" className="self-start sm:self-auto">
+                <Plus className="w-4 h-4 mr-2" />
+                Adicionar Evento
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-md">
+              <DialogHeader>
+                <DialogTitle>Novo Evento</DialogTitle>
+              </DialogHeader>
+              <div className="space-y-4 pt-4">
+                <div className="space-y-2">
+                  <Label htmlFor="title">Título</Label>
+                  <Input
+                    id="title"
+                    placeholder="Nome do evento"
+                    value={newEvent.title}
+                    onChange={(e) => setNewEvent(prev => ({ ...prev, title: e.target.value }))}
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="type">Tipo</Label>
+                  <Select
+                    value={newEvent.event_type}
+                    onValueChange={(value) => setNewEvent(prev => ({ ...prev, event_type: value }))}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Selecione o tipo" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="event">Evento</SelectItem>
+                      <SelectItem value="class">Aula</SelectItem>
+                      <SelectItem value="deadline">Prazo</SelectItem>
+                      <SelectItem value="quiz">Quiz</SelectItem>
+                      <SelectItem value="mentoring">Mentoria</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="start">Data e Hora de Início</Label>
+                  <Input
+                    id="start"
+                    type="datetime-local"
+                    value={newEvent.start_time}
+                    onChange={(e) => setNewEvent(prev => ({ ...prev, start_time: e.target.value }))}
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="end">Data e Hora de Fim (opcional)</Label>
+                  <Input
+                    id="end"
+                    type="datetime-local"
+                    value={newEvent.end_time}
+                    onChange={(e) => setNewEvent(prev => ({ ...prev, end_time: e.target.value }))}
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="description">Descrição (opcional)</Label>
+                  <Textarea
+                    id="description"
+                    placeholder="Descrição do evento"
+                    value={newEvent.description}
+                    onChange={(e) => setNewEvent(prev => ({ ...prev, description: e.target.value }))}
+                  />
+                </div>
+
+                <Button 
+                  className="w-full" 
+                  onClick={handleCreateEvent}
+                  disabled={isCreating}
+                >
+                  {isCreating ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      Criando...
+                    </>
+                  ) : (
+                    "Criar Evento"
+                  )}
+                </Button>
+              </div>
+            </DialogContent>
+          </Dialog>
         </div>
 
         {/* Main Grid */}
@@ -107,6 +256,7 @@ const CalendarPage = () => {
                   <button
                     key={day.toISOString()}
                     onClick={() => setSelectedDate(day)}
+                    onDoubleClick={() => openCreateDialog(day)}
                     className={cn(
                       "aspect-square rounded-lg sm:rounded-xl flex flex-col items-center justify-center relative transition-all text-xs sm:text-sm",
                       isToday && "bg-primary text-primary-foreground",
@@ -136,72 +286,24 @@ const CalendarPage = () => {
               })}
             </div>
 
-            {/* Week Days Header */}
-            <div className="grid grid-cols-7 gap-1 mb-2">
-              {weekDays.map((day) => (
-                <div
-                  key={day}
-                  className="text-center text-sm font-medium text-muted-foreground py-2"
-                >
-                  {day}
-                </div>
-              ))}
-            </div>
-
-            {/* Calendar Grid */}
-            <div className="grid grid-cols-7 gap-1">
-              {/* Empty cells for days before the month starts */}
-              {Array.from({ length: startDayOfWeek }).map((_, index) => (
-                <div key={`empty-${index}`} className="aspect-square" />
-              ))}
-              
-              {days.map((day) => {
-                const dayEvents = getEventsForDay(day);
-                const isToday = isSameDay(day, new Date());
-                const isSelected = selectedDate && isSameDay(day, selectedDate);
-                const hasEvents = dayEvents.length > 0;
-
-                return (
-                  <button
-                    key={day.toISOString()}
-                    onClick={() => setSelectedDate(day)}
-                    className={cn(
-                      "aspect-square rounded-xl flex flex-col items-center justify-center relative transition-all",
-                      isToday && "bg-primary text-primary-foreground",
-                      isSelected && !isToday && "bg-primary/10 border-2 border-primary",
-                      !isToday && !isSelected && "hover:bg-muted",
-                      !isSameMonth(day, currentDate) && "text-muted-foreground/50"
-                    )}
-                  >
-                    <span className={cn("text-sm font-medium", isToday && "font-bold")}>
-                      {format(day, "d")}
-                    </span>
-                    {hasEvents && (
-                      <div className="flex gap-0.5 mt-1">
-                        {dayEvents.slice(0, 3).map((event, i) => (
-                          <div
-                            key={i}
-                            className={cn(
-                              "w-1.5 h-1.5 rounded-full",
-                              typeConfig[event.event_type]?.color?.split(" ")[0] || "bg-primary"
-                            )}
-                          />
-                        ))}
-                      </div>
-                    )}
-                  </button>
-                );
-              })}
-            </div>
-
             {/* Selected Day Events */}
             {selectedDate && (
               <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-border">
-                <h3 className="font-medium text-foreground mb-3 sm:mb-4 text-sm sm:text-base">
-                  Eventos em {format(selectedDate, "d 'de' MMMM", { locale: ptBR })}
-                </h3>
+                <div className="flex items-center justify-between mb-3 sm:mb-4">
+                  <h3 className="font-medium text-foreground text-sm sm:text-base">
+                    Eventos em {format(selectedDate, "d 'de' MMMM", { locale: ptBR })}
+                  </h3>
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    onClick={() => openCreateDialog(selectedDate)}
+                  >
+                    <Plus className="w-4 h-4 mr-1" />
+                    Adicionar
+                  </Button>
+                </div>
                 {selectedDayEvents.length === 0 ? (
-                  <p className="text-muted-foreground text-xs sm:text-sm">Nenhum evento neste dia.</p>
+                  <p className="text-muted-foreground text-xs sm:text-sm">Nenhum evento neste dia. Clique duas vezes para criar.</p>
                 ) : (
                   <div className="space-y-2">
                     {selectedDayEvents.map((event) => {
