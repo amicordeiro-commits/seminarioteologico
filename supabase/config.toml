@@ -3,6 +3,12 @@ project_id = "hjorsjoaykgnsmbxgnyn"
 [functions.og-blog]
 verify_jwt = false
 
+[functions.migrate-blog-images]
+verify_jwt = false
+
+[functions.upload-blog-image]
+verify_jwt = false
+
 [functions.bible-chat]
 verify_jwt = false
 
