@@ -31,6 +31,13 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import {
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
+import {
   PlayCircle,
   Plus,
   Pencil,
@@ -66,6 +73,7 @@ import {
 } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { RichTextPreview } from "@/components/editor/RichTextPreview";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
@@ -106,11 +114,14 @@ const defaultLesson: Partial<Lesson> = {
 export default function AdminLessonsPage() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
+  const isMobile = useIsMobile();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isBatchDialogOpen, setIsBatchDialogOpen] = useState(false);
   const [batchText, setBatchText] = useState("");
   const [editingLesson, setEditingLesson] = useState<Partial<Lesson> | null>(null);
   const [selectedCourseId, setSelectedCourseId] = useState<string | null>(null);
+  const [colorDrawerOpen, setColorDrawerOpen] = useState(false);
+  const [sizeDrawerOpen, setSizeDrawerOpen] = useState(false);
   
   // Refs e estado para o editor
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -934,100 +945,193 @@ export default function AdminLessonsPage() {
                       </Button>
                     </div>
                     
-                    {/* Cores */}
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <Button
-                          type="button"
-                          variant="ghost"
-                          size="sm"
-                          className="h-8 px-2 gap-1"
-                          title="Cor do Texto"
-                          onPointerDown={(e) => {
-                            e.preventDefault();
-                            saveSelection();
-                          }}
+                    {/* Cores - Desktop: Popover, Mobile: Drawer */}
+                    {isMobile ? (
+                      <Drawer open={colorDrawerOpen} onOpenChange={setColorDrawerOpen}>
+                        <DrawerTrigger asChild>
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="sm"
+                            className="h-8 px-2 gap-1"
+                            title="Cor do Texto"
+                            onPointerDown={(e) => {
+                              saveSelection();
+                            }}
+                          >
+                            <Palette className="w-4 h-4" />
+                            <span className="text-xs">Cor</span>
+                          </Button>
+                        </DrawerTrigger>
+                        <DrawerContent>
+                          <DrawerHeader>
+                            <DrawerTitle>Cor do Texto</DrawerTitle>
+                          </DrawerHeader>
+                          <div className="p-4">
+                            <div className="grid grid-cols-6 gap-3">
+                              {[
+                                "#000000", "#374151", "#6B7280", "#9CA3AF", "#D1D5DB", "#FFFFFF",
+                                "#EF4444", "#F97316", "#F59E0B", "#EAB308", "#84CC16", "#22C55E",
+                                "#10B981", "#14B8A6", "#06B6D4", "#0EA5E9", "#3B82F6", "#6366F1",
+                                "#8B5CF6", "#A855F7", "#D946EF", "#EC4899", "#F43F5E", "#78350F",
+                              ].map((color) => (
+                                <button
+                                  key={color}
+                                  type="button"
+                                  className="w-10 h-10 rounded-lg border-2 border-border hover:scale-110 transition-transform active:scale-95"
+                                  style={{ backgroundColor: color }}
+                                  onClick={() => {
+                                    applyFormat(`<span style="color: ${color}">`, "</span>");
+                                    setColorDrawerOpen(false);
+                                  }}
+                                />
+                              ))}
+                            </div>
+                          </div>
+                        </DrawerContent>
+                      </Drawer>
+                    ) : (
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="sm"
+                            className="h-8 px-2 gap-1"
+                            title="Cor do Texto"
+                            onPointerDown={(e) => {
+                              e.preventDefault();
+                              saveSelection();
+                            }}
+                          >
+                            <Palette className="w-4 h-4" />
+                            <span className="text-xs">Cor</span>
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent
+                          className="w-auto p-2"
+                          onOpenAutoFocus={(e) => e.preventDefault()}
+                          onCloseAutoFocus={(e) => e.preventDefault()}
                         >
-                          <Palette className="w-4 h-4" />
-                          <span className="text-xs">Cor</span>
-                        </Button>
-                      </PopoverTrigger>
-                      <PopoverContent
-                        className="w-auto p-2"
-                        onOpenAutoFocus={(e) => e.preventDefault()}
-                        onCloseAutoFocus={(e) => e.preventDefault()}
-                      >
-                        <div className="grid grid-cols-6 gap-1">
-                          {[
-                            "#000000", "#374151", "#6B7280", "#9CA3AF", "#D1D5DB", "#FFFFFF",
-                            "#EF4444", "#F97316", "#F59E0B", "#EAB308", "#84CC16", "#22C55E",
-                            "#10B981", "#14B8A6", "#06B6D4", "#0EA5E9", "#3B82F6", "#6366F1",
-                            "#8B5CF6", "#A855F7", "#D946EF", "#EC4899", "#F43F5E", "#78350F",
-                          ].map((color) => (
-                            <button
-                              key={color}
-                              type="button"
-                              className="w-6 h-6 rounded border border-border hover:scale-110 transition-transform"
-                              style={{ backgroundColor: color }}
-                              onPointerDown={(e) => {
-                                e.preventDefault();
-                                saveSelection();
-                              }}
-                              onClick={() => applyFormat(`<span style=\"color: ${color}\">`, "</span>")}
-                            />
-                          ))}
-                        </div>
-                      </PopoverContent>
-                    </Popover>
+                          <div className="grid grid-cols-6 gap-1">
+                            {[
+                              "#000000", "#374151", "#6B7280", "#9CA3AF", "#D1D5DB", "#FFFFFF",
+                              "#EF4444", "#F97316", "#F59E0B", "#EAB308", "#84CC16", "#22C55E",
+                              "#10B981", "#14B8A6", "#06B6D4", "#0EA5E9", "#3B82F6", "#6366F1",
+                              "#8B5CF6", "#A855F7", "#D946EF", "#EC4899", "#F43F5E", "#78350F",
+                            ].map((color) => (
+                              <button
+                                key={color}
+                                type="button"
+                                className="w-6 h-6 rounded border border-border hover:scale-110 transition-transform"
+                                style={{ backgroundColor: color }}
+                                onPointerDown={(e) => {
+                                  e.preventDefault();
+                                  saveSelection();
+                                }}
+                                onClick={() => applyFormat(`<span style="color: ${color}">`, "</span>")}
+                              />
+                            ))}
+                          </div>
+                        </PopoverContent>
+                      </Popover>
+                    )}
                     
-                    {/* Tamanho da Fonte */}
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <Button
-                          type="button"
-                          variant="ghost"
-                          size="sm"
-                          className="h-8 px-2 gap-1"
-                          title="Tamanho da Fonte"
-                          onPointerDown={(e) => {
-                            e.preventDefault();
-                            saveSelection();
-                          }}
+                    {/* Tamanho da Fonte - Desktop: Popover, Mobile: Drawer */}
+                    {isMobile ? (
+                      <Drawer open={sizeDrawerOpen} onOpenChange={setSizeDrawerOpen}>
+                        <DrawerTrigger asChild>
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="sm"
+                            className="h-8 px-2 gap-1"
+                            title="Tamanho da Fonte"
+                            onPointerDown={(e) => {
+                              saveSelection();
+                            }}
+                          >
+                            <Type className="w-4 h-4" />
+                            <span className="text-xs">Tamanho</span>
+                          </Button>
+                        </DrawerTrigger>
+                        <DrawerContent>
+                          <DrawerHeader>
+                            <DrawerTitle>Tamanho da Fonte</DrawerTitle>
+                          </DrawerHeader>
+                          <div className="p-4 space-y-2">
+                            {[
+                              { label: "Pequeno", size: "12px" },
+                              { label: "Normal", size: "16px" },
+                              { label: "Médio", size: "18px" },
+                              { label: "Grande", size: "24px" },
+                              { label: "Muito Grande", size: "32px" },
+                              { label: "Título", size: "48px" },
+                            ].map((option) => (
+                              <button
+                                key={option.size}
+                                type="button"
+                                className="w-full px-4 py-3 text-left hover:bg-muted rounded-lg text-base active:bg-muted/80"
+                                onClick={() => {
+                                  applyFormat(`<span style="font-size: ${option.size}">`, "</span>");
+                                  setSizeDrawerOpen(false);
+                                }}
+                              >
+                                <span style={{ fontSize: option.size }}>{option.label}</span>
+                              </button>
+                            ))}
+                          </div>
+                        </DrawerContent>
+                      </Drawer>
+                    ) : (
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="sm"
+                            className="h-8 px-2 gap-1"
+                            title="Tamanho da Fonte"
+                            onPointerDown={(e) => {
+                              e.preventDefault();
+                              saveSelection();
+                            }}
+                          >
+                            <Type className="w-4 h-4" />
+                            <span className="text-xs">Tamanho</span>
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent
+                          className="w-auto p-2"
+                          onOpenAutoFocus={(e) => e.preventDefault()}
+                          onCloseAutoFocus={(e) => e.preventDefault()}
                         >
-                          <Type className="w-4 h-4" />
-                          <span className="text-xs">Tamanho</span>
-                        </Button>
-                      </PopoverTrigger>
-                      <PopoverContent
-                        className="w-auto p-2"
-                        onOpenAutoFocus={(e) => e.preventDefault()}
-                        onCloseAutoFocus={(e) => e.preventDefault()}
-                      >
-                        <div className="flex flex-col gap-1">
-                          {[
-                            { label: "Pequeno", size: "12px" },
-                            { label: "Normal", size: "16px" },
-                            { label: "Médio", size: "18px" },
-                            { label: "Grande", size: "24px" },
-                            { label: "Muito Grande", size: "32px" },
-                            { label: "Título", size: "48px" },
-                          ].map((option) => (
-                            <button
-                              key={option.size}
-                              type="button"
-                              className="px-3 py-1.5 text-left hover:bg-muted rounded text-sm"
-                              onPointerDown={(e) => {
-                                e.preventDefault();
-                                saveSelection();
-                              }}
-                              onClick={() => applyFormat(`<span style=\"font-size: ${option.size}\">`, "</span>")}
-                            >
-                              {option.label}
-                            </button>
-                          ))}
-                        </div>
-                      </PopoverContent>
-                    </Popover>
+                          <div className="flex flex-col gap-1">
+                            {[
+                              { label: "Pequeno", size: "12px" },
+                              { label: "Normal", size: "16px" },
+                              { label: "Médio", size: "18px" },
+                              { label: "Grande", size: "24px" },
+                              { label: "Muito Grande", size: "32px" },
+                              { label: "Título", size: "48px" },
+                            ].map((option) => (
+                              <button
+                                key={option.size}
+                                type="button"
+                                className="px-3 py-1.5 text-left hover:bg-muted rounded text-sm"
+                                onPointerDown={(e) => {
+                                  e.preventDefault();
+                                  saveSelection();
+                                }}
+                                onClick={() => applyFormat(`<span style="font-size: ${option.size}">`, "</span>")}
+                              >
+                                {option.label}
+                              </button>
+                            ))}
+                          </div>
+                        </PopoverContent>
+                      </Popover>
+                    )}
                   </div>
                   
                   <div className="flex-1 min-h-0 grid gap-3 sm:gap-4 lg:grid-cols-2">
