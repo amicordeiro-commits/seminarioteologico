@@ -9,6 +9,7 @@ import { useUserRole } from "@/hooks/useUserRole";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 // Lazy load all pages for better performance
+const LandingPage = lazy(() => import("./pages/LandingPage"));
 const Index = lazy(() => import("./pages/Index"));
 const CoursesPage = lazy(() => import("./pages/CoursesPage"));
 const CoursePage = lazy(() => import("./pages/CoursePage"));
@@ -85,13 +86,8 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   }
 
   if (!user) {
-    return (
-      <Navigate
-        to="/auth"
-        replace
-        state={{ portal: "student", from: location.pathname + location.search, reason: "auth_required" }}
-      />
-    );
+    // Redirect to public landing page instead of auth
+    return <Navigate to="/home" replace />;
   }
 
   return <>{children}</>;
@@ -101,20 +97,13 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
 const AdminRoute = ({ children }: { children: React.ReactNode }) => {
   const { user, loading } = useAuth();
   const { isAdmin, isLoading: loadingRole } = useUserRole();
-  const location = useLocation();
 
   if (loading || loadingRole) {
     return <PageLoader />;
   }
 
   if (!user) {
-    return (
-      <Navigate
-        to="/auth"
-        replace
-        state={{ portal: "admin", from: location.pathname + location.search, reason: "auth_required" }}
-      />
-    );
+    return <Navigate to="/home" replace />;
   }
 
   if (!isAdmin) {
@@ -128,6 +117,8 @@ const AppRoutes = () => {
   return (
     <Suspense fallback={<PageLoader />}>
       <Routes>
+        {/* Public Landing Page */}
+        <Route path="/home" element={<LandingPage />} />
         <Route path="/auth" element={<AuthPage />} />
         <Route
           path="/"
