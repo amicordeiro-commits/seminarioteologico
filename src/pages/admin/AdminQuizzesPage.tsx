@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import { ClipboardList, Plus, Pencil, Trash2, Loader2, ListChecks, HelpCircle } from "lucide-react";
+import { ClipboardList, Plus, Pencil, Trash2, Loader2, ListChecks, HelpCircle, Sparkles, BookOpen } from "lucide-react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
@@ -58,12 +58,19 @@ interface Course {
   title: string;
 }
 
+interface Lesson {
+  id: string;
+  title: string;
+  course_id: string;
+}
+
 const defaultQuiz: Partial<Quiz> = {
   title: "",
   description: "",
   passing_score: 70,
   time_limit_minutes: 30,
   is_published: false,
+  lesson_id: null,
 };
 
 const defaultQuestion: Partial<QuizQuestion> = {
@@ -77,6 +84,9 @@ export default function AdminQuizzesPage() {
   const queryClient = useQueryClient();
   const [isQuizDialogOpen, setIsQuizDialogOpen] = useState(false);
   const [isQuestionDialogOpen, setIsQuestionDialogOpen] = useState(false);
+  const [isGenerateDialogOpen, setIsGenerateDialogOpen] = useState(false);
+  const [generateCourseId, setGenerateCourseId] = useState<string>("");
+  const [generateLessonId, setGenerateLessonId] = useState<string>("");
   const [editingQuiz, setEditingQuiz] = useState<Partial<Quiz> | null>(null);
   const [editingQuestion, setEditingQuestion] = useState<Partial<QuizQuestion> | null>(null);
   const [selectedQuizId, setSelectedQuizId] = useState<string | null>(null);
@@ -100,6 +110,22 @@ export default function AdminQuizzesPage() {
     },
   });
 
+  // Fetch lessons for selected course in quiz dialog
+  const { data: courseLessons = [] } = useQuery({
+    queryKey: ["admin-lessons-for-quiz", editingQuiz?.course_id],
+    queryFn: async () => {
+      if (!editingQuiz?.course_id) return [];
+      const { data, error } = await supabase
+        .from("lessons")
+        .select("id, title, course_id")
+        .eq("course_id", editingQuiz.course_id)
+        .order("order_index");
+      if (error) throw error;
+      return data as Lesson[];
+    },
+    enabled: !!editingQuiz?.course_id,
+  });
+
   // Fetch quizzes
   const { data: quizzes = [], isLoading } = useQuery({
     queryKey: ["admin-quizzes"],
@@ -110,6 +136,60 @@ export default function AdminQuizzesPage() {
         .order("created_at", { ascending: false });
       if (error) throw error;
       return data as Quiz[];
+    },
+  });
+
+  // Fetch all lessons for display
+  const { data: allLessons = [] } = useQuery({
+    queryKey: ["admin-all-lessons"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("lessons")
+        .select("id, title, course_id");
+      if (error) throw error;
+      return data as Lesson[];
+    },
+  });
+
+  // Generate quiz with AI mutation
+  const generateQuizMutation = useMutation({
+    mutationFn: async ({ courseId, courseName, lessonId, lessonName }: { 
+      courseId: string; 
+      courseName: string; 
+      lessonId?: string; 
+      lessonName?: string;
+    }) => {
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/generate-quiz`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ 
+            courseId, 
+            courseName, 
+            lessonId, 
+            lessonName,
+            numberOfQuestions: lessonId ? 5 : 10, 
+            passingScore: 70 
+          }),
+        }
+      );
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || "Erro ao gerar quiz");
+      }
+      return response.json();
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["admin-quizzes"] });
+      toast({ 
+        title: "Quiz gerado com sucesso!", 
+        description: `${data.quiz.questionsCount} questões criadas.` 
+      });
+      setIsGenerateDialogOpen(false);
+    },
+    onError: (error: Error) => {
+      toast({ title: "Erro ao gerar quiz", description: error.message, variant: "destructive" });
     },
   });
 
@@ -158,6 +238,7 @@ export default function AdminQuizzesPage() {
             title: quiz.title,
             description: quiz.description,
             course_id: quiz.course_id,
+            lesson_id: quiz.lesson_id,
             passing_score: quiz.passing_score,
             time_limit_minutes: quiz.time_limit_minutes,
             is_published: quiz.is_published,
@@ -169,6 +250,7 @@ export default function AdminQuizzesPage() {
           title: quiz.title!,
           description: quiz.description,
           course_id: quiz.course_id!,
+          lesson_id: quiz.lesson_id,
           passing_score: quiz.passing_score,
           time_limit_minutes: quiz.time_limit_minutes,
           is_published: quiz.is_published,
@@ -323,6 +405,11 @@ export default function AdminQuizzesPage() {
     return courses.find((c) => c.id === courseId)?.title || "Curso não encontrado";
   };
 
+  const getLessonName = (lessonId: string | null) => {
+    if (!lessonId) return null;
+    return allLessons.find((l) => l.id === lessonId)?.title || null;
+  };
+
   const openEditQuestion = async (question: QuizQuestion) => {
     const questionOptions = options.filter((o) => o.question_id === question.id);
     setEditingQuestion(question);
@@ -353,16 +440,26 @@ export default function AdminQuizzesPage() {
               {quizzes.length} quizzes cadastrados
             </p>
           </div>
-          <Button
-            onClick={() => {
-              setEditingQuiz(defaultQuiz);
-              setIsQuizDialogOpen(true);
-            }}
-            className="gap-2"
-          >
-            <Plus className="w-4 h-4" />
-            Novo Quiz
-          </Button>
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
+              onClick={() => setIsGenerateDialogOpen(true)}
+              className="gap-2"
+            >
+              <Sparkles className="w-4 h-4" />
+              Gerar com IA
+            </Button>
+            <Button
+              onClick={() => {
+                setEditingQuiz(defaultQuiz);
+                setIsQuizDialogOpen(true);
+              }}
+              className="gap-2"
+            >
+              <Plus className="w-4 h-4" />
+              Novo Quiz
+            </Button>
+          </div>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-6">
@@ -394,6 +491,9 @@ export default function AdminQuizzesPage() {
                           </div>
                           <p className="text-sm text-muted-foreground">
                             {getCourseName(quiz.course_id)}
+                            {quiz.lesson_id && (
+                              <span className="text-primary"> → {getLessonName(quiz.lesson_id)}</span>
+                            )}
                           </p>
                           <div className="flex items-center gap-4 text-xs text-muted-foreground">
                             <span>Nota mínima: {quiz.passing_score}%</span>
@@ -566,7 +666,7 @@ export default function AdminQuizzesPage() {
                 <Select
                   value={editingQuiz?.course_id || ""}
                   onValueChange={(value) =>
-                    setEditingQuiz({ ...editingQuiz, course_id: value })
+                    setEditingQuiz({ ...editingQuiz, course_id: value, lesson_id: null })
                   }
                 >
                   <SelectTrigger>
@@ -576,6 +676,28 @@ export default function AdminQuizzesPage() {
                     {courses.map((course) => (
                       <SelectItem key={course.id} value={course.id}>
                         {course.title}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-2">
+                <Label>Aula (opcional - deixe vazio para prova do curso)</Label>
+                <Select
+                  value={editingQuiz?.lesson_id || "none"}
+                  onValueChange={(value) =>
+                    setEditingQuiz({ ...editingQuiz, lesson_id: value === "none" ? null : value })
+                  }
+                  disabled={!editingQuiz?.course_id}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Prova do curso inteiro" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="none">Prova do curso inteiro</SelectItem>
+                    {courseLessons.map((lesson) => (
+                      <SelectItem key={lesson.id} value={lesson.id}>
+                        {lesson.title}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -697,6 +819,103 @@ export default function AdminQuizzesPage() {
                 <Button onClick={handleSaveQuestion} disabled={saveQuestionMutation.isPending}>
                   {saveQuestionMutation.isPending && <Loader2 className="w-4 h-4 animate-spin mr-2" />}
                   Salvar
+                </Button>
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
+
+        {/* Generate Quiz Dialog */}
+        <Dialog open={isGenerateDialogOpen} onOpenChange={setIsGenerateDialogOpen}>
+          <DialogContent className="max-w-md">
+            <DialogHeader>
+              <DialogTitle className="flex items-center gap-2">
+                <Sparkles className="w-5 h-5 text-primary" />
+                Gerar Quiz com IA
+              </DialogTitle>
+            </DialogHeader>
+            <div className="space-y-4 py-4">
+              <p className="text-sm text-muted-foreground">
+                A IA irá analisar o conteúdo das aulas e gerar questões automaticamente.
+              </p>
+              <div className="space-y-2">
+                <Label>Curso *</Label>
+                <Select
+                  value={generateCourseId}
+                  onValueChange={(value) => {
+                    setGenerateCourseId(value);
+                    setGenerateLessonId("");
+                  }}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Selecione um curso" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {courses.map((course) => (
+                      <SelectItem key={course.id} value={course.id}>
+                        {course.title}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-2">
+                <Label>Escopo da Prova</Label>
+                <Select
+                  value={generateLessonId || "course"}
+                  onValueChange={(value) => setGenerateLessonId(value === "course" ? "" : value)}
+                  disabled={!generateCourseId}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Selecione o escopo" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="course">
+                      <div className="flex items-center gap-2">
+                        <BookOpen className="w-4 h-4" />
+                        Curso inteiro (10 questões)
+                      </div>
+                    </SelectItem>
+                    {allLessons
+                      .filter((l) => l.course_id === generateCourseId)
+                      .map((lesson) => (
+                        <SelectItem key={lesson.id} value={lesson.id}>
+                          {lesson.title} (5 questões)
+                        </SelectItem>
+                      ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="flex justify-end gap-2 pt-4">
+                <Button variant="outline" onClick={() => setIsGenerateDialogOpen(false)}>
+                  Cancelar
+                </Button>
+                <Button
+                  onClick={() => {
+                    const course = courses.find((c) => c.id === generateCourseId);
+                    const lesson = allLessons.find((l) => l.id === generateLessonId);
+                    if (course) {
+                      generateQuizMutation.mutate({
+                        courseId: generateCourseId,
+                        courseName: course.title,
+                        lessonId: generateLessonId || undefined,
+                        lessonName: lesson?.title,
+                      });
+                    }
+                  }}
+                  disabled={!generateCourseId || generateQuizMutation.isPending}
+                >
+                  {generateQuizMutation.isPending ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                      Gerando...
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles className="w-4 h-4 mr-2" />
+                      Gerar Quiz
+                    </>
+                  )}
                 </Button>
               </div>
             </div>
