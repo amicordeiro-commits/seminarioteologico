@@ -329,25 +329,31 @@ export function LessonViewer({
     });
   }, [title, currentPage]);
 
-  // Cores baseadas no modo
+  // Cores baseadas no modo - MELHORADAS
   const colors = nightMode
     ? {
-        bg: "#1a1612",
-        headerBg: "linear-gradient(135deg, #3d2914 0%, #2d1f0f 100%)",
-        text: "#d4c4b0",
-        textMuted: "#a89880",
-        accent: "#c9a66b",
-        cardBg: "#241e18",
-        border: "rgba(201, 166, 107, 0.15)",
+        bg: "#0f0d0a",
+        headerBg: "linear-gradient(135deg, #7c3aed 0%, #4f46e5 50%, #2563eb 100%)",
+        text: "#f5f5f4",
+        textMuted: "#d6d3d1",
+        accent: "#a78bfa",
+        accentSecondary: "#818cf8",
+        cardBg: "#1c1917",
+        border: "rgba(167, 139, 250, 0.2)",
+        highlight: "#fbbf24",
+        quote: "#22d3ee",
       }
     : {
-        bg: "#faf8f5",
-        headerBg: "linear-gradient(135deg, #8B4513 0%, #A0522D 100%)",
-        text: "#3d2914",
-        textMuted: "#6b5a48",
-        accent: "#8B4513",
-        cardBg: "#f5f0e8",
-        border: "rgba(139, 69, 19, 0.15)",
+        bg: "#fffbf5",
+        headerBg: "linear-gradient(135deg, #7c3aed 0%, #6366f1 50%, #3b82f6 100%)",
+        text: "#1c1917",
+        textMuted: "#44403c",
+        accent: "#7c3aed",
+        accentSecondary: "#6366f1",
+        cardBg: "#fef3c7",
+        border: "rgba(124, 58, 237, 0.15)",
+        highlight: "#f59e0b",
+        quote: "#0891b2",
       };
 
   return (
@@ -476,31 +482,61 @@ export function LessonViewer({
                   className="w-full max-w-3xl mx-auto px-5 sm:px-10 lg:px-14 py-10 sm:py-14"
                   style={{ fontSize: `${fontSize}%` }}
                 >
-                  {/* Cabeçalho na primeira página */}
+                  {/* Cabeçalho na primeira página - MELHORADO */}
                   {currentPage === 1 && (
-                    <div className="mb-12 sm:mb-16 pb-8 sm:pb-10 border-b-2" style={{ borderColor: `${colors.accent}30` }}>
-                      <div className="flex items-center justify-center gap-3 mb-6">
-                        <div className="h-px w-12" style={{ background: `linear-gradient(to right, transparent, ${colors.accent}40)` }} />
-                        <div className="w-2 h-2 rounded-full" style={{ backgroundColor: `${colors.accent}40` }} />
-                        <div className="h-px w-12" style={{ background: `linear-gradient(to left, transparent, ${colors.accent}40)` }} />
-                      </div>
+                    <div className="mb-12 sm:mb-16 pb-8 sm:pb-10 border-b-2 relative overflow-hidden" style={{ borderColor: `${colors.accent}30` }}>
+                      {/* Decoração de fundo */}
+                      <div 
+                        className="absolute inset-0 opacity-5 pointer-events-none"
+                        style={{
+                          background: `radial-gradient(circle at 50% 0%, ${colors.accent} 0%, transparent 70%)`
+                        }}
+                      />
                       
-                      <p className="text-[10px] sm:text-xs uppercase tracking-[0.3em] mb-4 font-semibold text-center" style={{ color: `${colors.accent}90` }}>
-                        {category || "Disciplina"}
-                      </p>
-                      
-                      <h1 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold leading-tight text-center mb-5" style={{ color: colors.text }}>
-                        {title}
-                      </h1>
-                      
-                      <div className="flex items-center justify-center gap-2 text-xs" style={{ color: `${colors.accent}80` }}>
-                        <span className="font-medium">P.O.D Seminário Teológico</span>
-                      </div>
-                      
-                      <div className="flex items-center justify-center gap-2 mt-6">
-                        <div className="h-px w-20" style={{ backgroundColor: `${colors.accent}25` }} />
-                        <div className="text-lg" style={{ color: `${colors.accent}40` }}>✦</div>
-                        <div className="h-px w-20" style={{ backgroundColor: `${colors.accent}25` }} />
+                      <div className="relative z-10">
+                        <div className="flex items-center justify-center gap-3 mb-6">
+                          <div className="h-0.5 w-16 rounded-full" style={{ background: `linear-gradient(to right, transparent, ${colors.accent})` }} />
+                          <div className="w-3 h-3 rounded-full animate-pulse" style={{ backgroundColor: colors.accent, boxShadow: `0 0 20px ${colors.accent}` }} />
+                          <div className="h-0.5 w-16 rounded-full" style={{ background: `linear-gradient(to left, transparent, ${colors.accent})` }} />
+                        </div>
+                        
+                        <p 
+                          className="text-[10px] sm:text-xs uppercase tracking-[0.35em] mb-5 font-bold text-center px-4 py-2 rounded-full w-fit mx-auto"
+                          style={{ 
+                            color: colors.accent, 
+                            backgroundColor: `${colors.accent}15`,
+                            border: `1px solid ${colors.accent}30`
+                          }}
+                        >
+                          {category || "Disciplina"}
+                        </p>
+                        
+                        <h1 
+                          className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold leading-tight text-center mb-6"
+                          style={{ 
+                            color: colors.text,
+                            textShadow: nightMode ? `0 2px 20px ${colors.accent}30` : 'none'
+                          }}
+                        >
+                          {title}
+                        </h1>
+                        
+                        <div 
+                          className="flex items-center justify-center gap-3 text-sm font-medium px-5 py-2.5 rounded-full w-fit mx-auto"
+                          style={{ 
+                            background: `linear-gradient(135deg, ${colors.accent}20, ${colors.accentSecondary}20)`,
+                            color: colors.accent 
+                          }}
+                        >
+                          <span>📖</span>
+                          <span>P.O.D Seminário Teológico</span>
+                        </div>
+                        
+                        <div className="flex items-center justify-center gap-3 mt-8">
+                          <div className="h-px w-24" style={{ background: `linear-gradient(to right, transparent, ${colors.accent}40)` }} />
+                          <div className="text-2xl" style={{ color: colors.highlight }}>✦</div>
+                          <div className="h-px w-24" style={{ background: `linear-gradient(to left, transparent, ${colors.accent}40)` }} />
+                        </div>
                       </div>
                     </div>
                   )}
@@ -525,16 +561,25 @@ export function LessonViewer({
                       const isBulletPoint = /^[-•]\s/.test(detect);
                       const hasBibleRef = detectBibleReference(detect);
 
-                      // Título principal
+                      // Título principal - MELHORADO
                       if (isMainHeading) {
                         return (
-                          <section key={i} className="mt-10 sm:mt-12 first:mt-0">
-                            <div className="relative py-4 sm:py-5">
+                          <section key={i} className="mt-12 sm:mt-14 first:mt-0">
+                            <div className="relative py-5 sm:py-6">
                               <div 
-                                className="absolute left-0 top-0 bottom-0 w-1 rounded-full" 
-                                style={{ background: `linear-gradient(to bottom, ${colors.accent}, ${colors.accent}80)` }} 
+                                className="absolute left-0 top-0 bottom-0 w-1.5 rounded-full" 
+                                style={{ 
+                                  background: `linear-gradient(to bottom, ${colors.accent}, ${colors.accentSecondary}, ${colors.highlight})`,
+                                  boxShadow: `0 0 15px ${colors.accent}40`
+                                }} 
                               />
-                              <h2 className="pl-5 sm:pl-6 text-lg sm:text-xl lg:text-2xl font-serif font-bold leading-snug tracking-wide" style={{ color: colors.text }}>
+                              <h2 
+                                className="pl-6 sm:pl-7 text-xl sm:text-2xl lg:text-3xl font-serif font-bold leading-snug tracking-wide" 
+                                style={{ 
+                                  color: colors.text,
+                                  textShadow: nightMode ? `0 1px 10px ${colors.accent}20` : 'none'
+                                }}
+                              >
                                 {renderInline(display)}
                               </h2>
                             </div>
@@ -542,23 +587,30 @@ export function LessonViewer({
                         );
                       }
 
-                      // Subtópico numerado
+                      // Subtópico numerado - MELHORADO
                       if (isNumberedTopic) {
                         const num = detect.match(/^([IVX\d]+)/)?.[1];
                         const body = display.replace(/^[IVX\d]+[\.\)]\s*/, "");
                         return (
-                          <div key={i} className="mt-6 sm:mt-8 mb-3 sm:mb-4">
+                          <div key={i} className="mt-8 sm:mt-10 mb-4 sm:mb-5">
                             <div 
-                              className="flex items-start gap-3 sm:gap-4 rounded-lg p-4 sm:p-5 border"
-                              style={{ backgroundColor: colors.cardBg, borderColor: colors.border }}
+                              className="flex items-start gap-4 sm:gap-5 rounded-xl p-5 sm:p-6 border-2 shadow-lg transition-all hover:scale-[1.01]"
+                              style={{ 
+                                backgroundColor: colors.cardBg, 
+                                borderColor: colors.accent,
+                                boxShadow: `0 4px 20px ${colors.accent}15`
+                              }}
                             >
                               <div 
-                                className="w-8 h-8 sm:w-10 sm:h-10 rounded-full text-white flex items-center justify-center shrink-0 shadow-md"
-                                style={{ backgroundColor: colors.accent }}
+                                className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl text-white flex items-center justify-center shrink-0 font-bold text-sm sm:text-base font-serif"
+                                style={{ 
+                                  background: `linear-gradient(135deg, ${colors.accent}, ${colors.accentSecondary})`,
+                                  boxShadow: `0 4px 15px ${colors.accent}50`
+                                }}
                               >
-                                <span className="font-bold text-xs sm:text-sm font-serif">{num}</span>
+                                {num}
                               </div>
-                              <p className="text-base sm:text-lg lg:text-xl font-semibold pt-1 sm:pt-1.5 leading-relaxed font-serif" style={{ color: colors.text }}>
+                              <p className="text-lg sm:text-xl lg:text-2xl font-semibold pt-1.5 sm:pt-2 leading-relaxed font-serif" style={{ color: colors.text }}>
                                 {renderInline(body)}
                               </p>
                             </div>
@@ -566,15 +618,29 @@ export function LessonViewer({
                         );
                       }
 
-                      // Subtópico com letra
+                      // Subtópico com letra - MELHORADO
                       if (isLetterTopic) {
                         const letter = detect.charAt(0).toUpperCase();
                         const body = display.replace(/^[a-zA-Z][\.\)]\s*/, "");
                         return (
-                          <div key={i} className="ml-4 sm:ml-8 mb-3">
-                            <div className="flex items-start gap-3 sm:gap-4 py-2 border-l-2 pl-4 sm:pl-5" style={{ borderColor: `${colors.accent}50` }}>
-                              <span className="font-bold text-base sm:text-lg shrink-0 font-serif" style={{ color: colors.accent }}>{letter}.</span>
-                              <p className="text-sm sm:text-base lg:text-lg leading-relaxed" style={{ color: colors.textMuted }}>
+                          <div key={i} className="ml-5 sm:ml-10 mb-4">
+                            <div 
+                              className="flex items-start gap-4 sm:gap-5 py-3 border-l-3 pl-5 sm:pl-6 rounded-r-lg"
+                              style={{ 
+                                borderColor: colors.accentSecondary,
+                                backgroundColor: `${colors.accentSecondary}08`
+                              }}
+                            >
+                              <span 
+                                className="font-bold text-lg sm:text-xl shrink-0 font-serif w-8 h-8 rounded-full flex items-center justify-center"
+                                style={{ 
+                                  color: "white",
+                                  background: `linear-gradient(135deg, ${colors.accentSecondary}, ${colors.accent})`
+                                }}
+                              >
+                                {letter}
+                              </span>
+                              <p className="text-base sm:text-lg lg:text-xl leading-relaxed pt-0.5" style={{ color: colors.text }}>
                                 {renderInline(body)}
                               </p>
                             </div>
@@ -582,14 +648,19 @@ export function LessonViewer({
                         );
                       }
 
-                      // Bullet point
+                      // Bullet point - MELHORADO
                       if (isBulletPoint) {
                         const body = display.replace(/^[-•]\s*/, "");
                         return (
-                          <div key={i} className="ml-4 sm:ml-8 mb-2 sm:mb-3">
-                            <div className="flex items-start gap-3">
-                              <span className="text-lg sm:text-xl mt-0.5 shrink-0" style={{ color: colors.accent }}>•</span>
-                              <p className="text-sm sm:text-base lg:text-lg leading-relaxed" style={{ color: colors.textMuted }}>
+                          <div key={i} className="ml-5 sm:ml-10 mb-3 sm:mb-4">
+                            <div className="flex items-start gap-4">
+                              <span 
+                                className="text-xl sm:text-2xl mt-0.5 shrink-0"
+                                style={{ color: colors.highlight }}
+                              >
+                                ▸
+                              </span>
+                              <p className="text-base sm:text-lg lg:text-xl leading-relaxed" style={{ color: colors.textMuted }}>
                                 {renderInline(body)}
                               </p>
                             </div>
@@ -597,16 +668,25 @@ export function LessonViewer({
                         );
                       }
 
-                      // Citação bíblica
+                      // Citação bíblica - MELHORADO
                       if (hasBibleRef && detect.length < 200 && detect.includes('"')) {
                         return (
-                          <blockquote key={i} className="my-6 sm:my-8 mx-2 sm:mx-4 relative">
-                            <div className="absolute left-0 top-0 text-4xl sm:text-5xl font-serif leading-none select-none" style={{ color: `${colors.accent}30` }}>"</div>
+                          <blockquote key={i} className="my-8 sm:my-10 mx-3 sm:mx-6 relative">
                             <div 
-                              className="pl-6 sm:pl-8 pr-4 py-3 sm:py-4 border-l-4 rounded-r-lg italic"
-                              style={{ borderColor: `${colors.accent}60`, backgroundColor: `${colors.cardBg}80` }}
+                              className="absolute -left-2 -top-2 text-6xl sm:text-7xl font-serif leading-none select-none opacity-30" 
+                              style={{ color: colors.quote }}
                             >
-                              <p className="text-base sm:text-lg lg:text-xl leading-relaxed font-serif" style={{ color: colors.text }}>
+                              "
+                            </div>
+                            <div 
+                              className="pl-8 sm:pl-10 pr-5 py-5 sm:py-6 border-l-4 rounded-xl italic relative overflow-hidden"
+                              style={{ 
+                                borderColor: colors.quote,
+                                backgroundColor: `${colors.quote}10`,
+                                boxShadow: `inset 0 0 30px ${colors.quote}05`
+                              }}
+                            >
+                              <p className="text-lg sm:text-xl lg:text-2xl leading-relaxed font-serif relative z-10" style={{ color: colors.text }}>
                                 {renderInline(display)}
                               </p>
                             </div>
@@ -614,15 +694,19 @@ export function LessonViewer({
                         );
                       }
 
-                      // Parágrafo normal
+                      // Parágrafo normal - MELHORADO
                       const textAlign = align ?? "justify";
-                      const textIndent = textAlign === "justify" ? "1.5em" : undefined;
+                      const textIndent = textAlign === "justify" ? "2em" : undefined;
 
                       return (
                         <p
                           key={i}
-                          className="text-sm sm:text-base lg:text-lg leading-[1.85] sm:leading-[1.95] hyphens-auto"
-                          style={{ textAlign, textIndent, color: colors.textMuted }}
+                          className="text-base sm:text-lg lg:text-xl leading-[2] sm:leading-[2.1] hyphens-auto first-letter:text-2xl first-letter:font-serif first-letter:font-bold"
+                          style={{ 
+                            textAlign, 
+                            textIndent, 
+                            color: colors.textMuted,
+                          }}
                         >
                           {renderInline(display)}
                         </p>
@@ -630,16 +714,25 @@ export function LessonViewer({
                     })}
                   </div>
                   
-                  {/* Rodapé da página */}
-                  <div className="mt-12 sm:mt-16 pt-6 border-t" style={{ borderColor: `${colors.accent}15` }}>
-                    <div className="flex items-center justify-center">
-                      <span className="text-xs font-medium" style={{ color: `${colors.accent}60` }}>
-                        — Página {currentPage} de {totalPages} —
+                  {/* Rodapé da página - MELHORADO */}
+                  <div className="mt-14 sm:mt-18 pt-8 border-t-2" style={{ borderColor: `${colors.accent}20` }}>
+                    <div className="flex items-center justify-center gap-4">
+                      <div className="h-px w-16" style={{ background: `linear-gradient(to right, transparent, ${colors.accent}30)` }} />
+                      <span 
+                        className="text-sm font-medium px-4 py-2 rounded-full"
+                        style={{ 
+                          color: colors.accent,
+                          backgroundColor: `${colors.accent}10`,
+                          border: `1px solid ${colors.accent}20`
+                        }}
+                      >
+                        Página {currentPage} de {totalPages}
                       </span>
+                      <div className="h-px w-16" style={{ background: `linear-gradient(to left, transparent, ${colors.accent}30)` }} />
                     </div>
                   </div>
                   
-                  <div className="h-16" />
+                  <div className="h-20" />
                 </article>
               </ScrollArea>
 
