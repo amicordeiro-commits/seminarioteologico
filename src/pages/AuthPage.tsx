@@ -235,39 +235,38 @@ const AuthPage = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-background via-secondary/20 to-background" />
         <div className="absolute inset-0 pattern-cross opacity-20" />
         
-        {/* Floating Orbs */}
-        <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[100px] animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-accent/15 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/2 left-1/2 w-[300px] h-[300px] bg-primary/5 rounded-full blur-[80px] -translate-x-1/2 -translate-y-1/2" />
+      {/* Floating Orbs - hidden on mobile for performance */}
+        <div className="hidden md:block absolute top-1/4 left-1/4 w-[300px] lg:w-[400px] h-[300px] lg:h-[400px] bg-primary/10 rounded-full blur-[80px] lg:blur-[100px] animate-pulse" />
+        <div className="hidden md:block absolute bottom-1/4 right-1/4 w-[350px] lg:w-[500px] h-[350px] lg:h-[500px] bg-accent/15 rounded-full blur-[100px] lg:blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
         
         {/* Decorative Lines */}
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
         
-        <div className="relative min-h-screen flex flex-col items-center justify-center p-4 md:p-8">
+        <div className="relative min-h-screen flex flex-col items-center justify-center px-4 py-8 md:p-8">
           {/* Logo Header */}
-          <div className="text-center mb-12 animate-fade-in">
-            <div className="relative inline-block mb-6">
-              {/* Glow effect */}
-              <div className="absolute inset-0 w-24 h-24 bg-accent/30 rounded-full blur-xl animate-pulse" />
-              <div className="relative w-24 h-24 rounded-full gradient-sacred shadow-2xl flex items-center justify-center border-2 border-accent/20">
-                <Church className="w-12 h-12 text-primary-foreground drop-shadow-lg" />
+          <div className="text-center mb-6 md:mb-12 animate-fade-in">
+            <div className="relative inline-block mb-4 md:mb-6">
+              {/* Glow effect - smaller on mobile */}
+              <div className="absolute inset-0 w-16 h-16 md:w-24 md:h-24 bg-accent/30 rounded-full blur-xl animate-pulse" />
+              <div className="relative w-16 h-16 md:w-24 md:h-24 rounded-full gradient-sacred shadow-2xl flex items-center justify-center border-2 border-accent/20">
+                <Church className="w-8 h-8 md:w-12 md:h-12 text-primary-foreground drop-shadow-lg" />
               </div>
               {/* Decorative cross */}
-              <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-accent flex items-center justify-center shadow-lg">
-                <Cross className="w-4 h-4 text-accent-foreground" />
+              <div className="absolute -top-1 -right-1 md:-top-2 md:-right-2 w-6 h-6 md:w-8 md:h-8 rounded-full bg-accent flex items-center justify-center shadow-lg">
+                <Cross className="w-3 h-3 md:w-4 md:h-4 text-accent-foreground" />
               </div>
             </div>
-            <h1 className="text-4xl md:text-6xl font-serif font-bold text-foreground mb-4 tracking-tight">
+            <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-2 md:mb-4 tracking-tight">
               Seminário <span className="text-primary">Teológico</span>
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-lg mx-auto leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground max-w-lg mx-auto leading-relaxed px-2">
               Formação ministerial de excelência para o <span className="text-accent font-semibold">Reino de Deus</span>
             </p>
           </div>
 
           {/* Portal Cards */}
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-5xl w-full px-4 animate-slide-up" style={{ animationDelay: '200ms' }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 max-w-5xl w-full animate-slide-up" style={{ animationDelay: '200ms' }}>
             {/* Student Portal */}
             <Card 
               className="group cursor-pointer relative overflow-hidden border-2 border-transparent hover:border-primary/40 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2 bg-card/80 backdrop-blur-sm"
@@ -278,44 +277,44 @@ const AuthPage = () => {
               {/* Top accent line */}
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-primary/80 to-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
               
-              <CardHeader className="pb-4 relative z-10">
-                <div className="flex items-start justify-between mb-4">
+              <CardHeader className="pb-3 md:pb-4 relative z-10">
+                <div className="flex items-start justify-between mb-3 md:mb-4">
                   <div className="relative">
                     <div className="absolute inset-0 bg-primary/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <div className="relative w-20 h-20 rounded-2xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-xl group-hover:shadow-2xl group-hover:scale-110 transition-all duration-300">
-                      <GraduationCap className="w-10 h-10 text-primary-foreground" />
+                    <div className="relative w-14 h-14 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-xl group-hover:shadow-2xl group-hover:scale-110 transition-all duration-300">
+                      <GraduationCap className="w-7 h-7 md:w-10 md:h-10 text-primary-foreground" />
                     </div>
                   </div>
-                  <Sparkles className="w-6 h-6 text-accent opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:rotate-12" />
+                  <Sparkles className="w-5 h-5 md:w-6 md:h-6 text-accent opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:rotate-12" />
                 </div>
-                <CardTitle className="text-2xl md:text-3xl font-serif">
+                <CardTitle className="text-xl md:text-2xl lg:text-3xl font-serif">
                   Portal do Aluno
                 </CardTitle>
-                <CardDescription className="text-base md:text-lg mt-2">
+                <CardDescription className="text-sm md:text-base lg:text-lg mt-1 md:mt-2">
                   Acesse seus cursos, acompanhe seu progresso e participe da comunidade
                 </CardDescription>
               </CardHeader>
-              <CardContent className="relative z-10">
-                <div className="flex flex-wrap gap-2 mb-6">
+              <CardContent className="relative z-10 pt-0">
+                <div className="flex flex-wrap gap-1.5 md:gap-2 mb-4 md:mb-6">
                   {['Cursos Online', 'Certificados', 'Biblioteca', 'Devocional'].map((tag, i) => (
                     <span 
                       key={tag}
-                      className="px-4 py-1.5 bg-secondary/80 rounded-full text-sm font-medium text-secondary-foreground border border-border/50 group-hover:border-primary/30 transition-colors"
+                      className="px-2.5 md:px-4 py-1 md:py-1.5 bg-secondary/80 rounded-full text-xs md:text-sm font-medium text-secondary-foreground border border-border/50 group-hover:border-primary/30 transition-colors"
                       style={{ animationDelay: `${i * 100}ms` }}
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
-                <div className="flex items-center gap-2 text-muted-foreground group-hover:text-foreground transition-colors">
-                  <Users className="w-5 h-5" />
+                <div className="flex items-center gap-2 text-muted-foreground group-hover:text-foreground transition-colors text-sm md:text-base">
+                  <Users className="w-4 h-4 md:w-5 md:h-5" />
                   <span className="font-medium">Milhares de alunos ativos</span>
                 </div>
 
                 <Button
                   type="button"
                   variant="secondary"
-                  className="mt-6 w-full"
+                  className="mt-4 md:mt-6 w-full text-sm md:text-base"
                   onClick={(e) => {
                     e.stopPropagation();
                     setSelectedPortal('student');
@@ -337,44 +336,44 @@ const AuthPage = () => {
               {/* Top accent line */}
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent via-accent/80 to-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
               
-              <CardHeader className="pb-4 relative z-10">
-                <div className="flex items-start justify-between mb-4">
+              <CardHeader className="pb-3 md:pb-4 relative z-10">
+                <div className="flex items-start justify-between mb-3 md:mb-4">
                   <div className="relative">
                     <div className="absolute inset-0 bg-accent/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <div className="relative w-20 h-20 rounded-2xl bg-gradient-to-br from-accent to-accent/80 flex items-center justify-center shadow-xl group-hover:shadow-2xl group-hover:scale-110 transition-all duration-300">
-                      <Shield className="w-10 h-10 text-accent-foreground" />
+                    <div className="relative w-14 h-14 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-accent to-accent/80 flex items-center justify-center shadow-xl group-hover:shadow-2xl group-hover:scale-110 transition-all duration-300">
+                      <Shield className="w-7 h-7 md:w-10 md:h-10 text-accent-foreground" />
                     </div>
                   </div>
-                  <Sparkles className="w-6 h-6 text-primary opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:rotate-12" />
+                  <Sparkles className="w-5 h-5 md:w-6 md:h-6 text-primary opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:rotate-12" />
                 </div>
-                <CardTitle className="text-2xl md:text-3xl font-serif">
+                <CardTitle className="text-xl md:text-2xl lg:text-3xl font-serif">
                   Painel Administrativo
                 </CardTitle>
-                <CardDescription className="text-base md:text-lg mt-2">
+                <CardDescription className="text-sm md:text-base lg:text-lg mt-1 md:mt-2">
                   Gerencie cursos, usuários e todo o conteúdo do seminário
                 </CardDescription>
               </CardHeader>
-              <CardContent className="relative z-10">
-                <div className="flex flex-wrap gap-2 mb-6">
+              <CardContent className="relative z-10 pt-0">
+                <div className="flex flex-wrap gap-1.5 md:gap-2 mb-4 md:mb-6">
                   {['Gestão de Cursos', 'Relatórios', 'Controle Total', 'Análises'].map((tag, i) => (
                     <span 
                       key={tag}
-                      className="px-4 py-1.5 bg-accent/10 rounded-full text-sm font-medium text-foreground border border-accent/20 group-hover:border-accent/40 transition-colors"
+                      className="px-2.5 md:px-4 py-1 md:py-1.5 bg-accent/10 rounded-full text-xs md:text-sm font-medium text-foreground border border-accent/20 group-hover:border-accent/40 transition-colors"
                       style={{ animationDelay: `${i * 100}ms` }}
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
-                <div className="flex items-center gap-2 text-muted-foreground group-hover:text-foreground transition-colors">
-                  <Lock className="w-5 h-5" />
+                <div className="flex items-center gap-2 text-muted-foreground group-hover:text-foreground transition-colors text-sm md:text-base">
+                  <Lock className="w-4 h-4 md:w-5 md:h-5" />
                   <span className="font-medium">Acesso restrito a administradores</span>
                 </div>
 
                 <Button
                   type="button"
                   variant="secondary"
-                  className="mt-6 w-full"
+                  className="mt-4 md:mt-6 w-full text-sm md:text-base"
                   onClick={(e) => {
                     e.stopPropagation();
                     setSelectedPortal('admin');
@@ -388,11 +387,11 @@ const AuthPage = () => {
           </div>
 
           {/* Footer */}
-          <div className="text-center mt-12 animate-fade-in" style={{ animationDelay: '400ms' }}>
-            <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-secondary/50 backdrop-blur-sm border border-border/50">
-              <BookOpen className="w-5 h-5 text-accent" />
-              <span className="italic text-muted-foreground">"Lâmpada para os meus pés é a tua palavra"</span>
-              <span className="text-primary font-medium">- Salmos 119:105</span>
+          <div className="text-center mt-6 md:mt-12 animate-fade-in" style={{ animationDelay: '400ms' }}>
+            <div className="inline-flex flex-col sm:flex-row items-center gap-1 sm:gap-3 px-4 md:px-6 py-2 md:py-3 rounded-2xl sm:rounded-full bg-secondary/50 backdrop-blur-sm border border-border/50">
+              <BookOpen className="w-4 h-4 md:w-5 md:h-5 text-accent hidden sm:block" />
+              <span className="italic text-muted-foreground text-xs md:text-sm">"Lâmpada para os meus pés é a tua palavra"</span>
+              <span className="text-primary font-medium text-xs md:text-sm">- Salmos 119:105</span>
             </div>
           </div>
         </div>
@@ -407,9 +406,9 @@ const AuthPage = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-background via-secondary/20 to-background" />
       <div className="absolute inset-0 pattern-cross opacity-15" />
       
-      {/* Floating Orbs */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[150px] -translate-y-1/2 translate-x-1/2" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2" />
+      {/* Floating Orbs - hidden on mobile for performance */}
+      <div className="hidden md:block absolute top-0 right-0 w-[400px] lg:w-[600px] h-[400px] lg:h-[600px] bg-primary/10 rounded-full blur-[100px] lg:blur-[150px] -translate-y-1/2 translate-x-1/2" />
+      <div className="hidden md:block absolute bottom-0 left-0 w-[350px] lg:w-[500px] h-[350px] lg:h-[500px] bg-accent/10 rounded-full blur-[80px] lg:blur-[120px] translate-y-1/2 -translate-x-1/2" />
       
       <div className="relative min-h-screen flex flex-col items-center justify-center p-4 md:p-8">
         <div className="w-full max-w-md animate-scale-in">
