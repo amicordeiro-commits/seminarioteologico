@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useAuth } from "@/hooks/useAuth";
 import { useUserRole } from "@/hooks/useUserRole";
+import { useProfile } from "@/hooks/useProfile";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -22,6 +23,7 @@ interface HeaderProps {
 export function Header({ isSidebarCollapsed }: HeaderProps) {
   const { user, signOut } = useAuth();
   const { isAdmin } = useUserRole();
+  const { profile } = useProfile();
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -40,8 +42,9 @@ export function Header({ isSidebarCollapsed }: HeaderProps) {
     window.location.href = "/auth";
   };
 
-  const userName = user?.user_metadata?.full_name || user?.email?.split('@')[0] || 'Aluno';
+  const userName = profile?.full_name || user?.user_metadata?.full_name || user?.email?.split('@')[0] || 'Aluno';
   const userInitials = userName.split(' ').map((n: string) => n[0]).join('').toUpperCase().slice(0, 2);
+  const avatarUrl = profile?.avatar_url || `https://api.dicebear.com/7.x/avataaars/svg?seed=${user?.email}`;
 
   return (
     <header className="sticky top-0 z-20 bg-background/80 backdrop-blur-md border-b border-border">
@@ -70,7 +73,7 @@ export function Header({ isSidebarCollapsed }: HeaderProps) {
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="flex items-center gap-2 sm:gap-3 px-1 sm:pl-2 sm:pr-4 h-8 sm:h-10">
                 <Avatar className="w-7 h-7 sm:w-8 sm:h-8">
-                  <AvatarImage src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${user?.email}`} />
+                  <AvatarImage src={avatarUrl} />
                   <AvatarFallback className="text-xs">{userInitials}</AvatarFallback>
                 </Avatar>
                 <div className="hidden md:block text-left">
