@@ -3,6 +3,7 @@ import { CourseCard } from "@/components/courses/CourseCard";
 import { StatsCard } from "@/components/dashboard/StatsCard";
 import { ActivityTimeline } from "@/components/dashboard/ActivityTimeline";
 import { CalendarWidget } from "@/components/dashboard/CalendarWidget";
+import { RecentBlogPosts } from "@/components/dashboard/RecentBlogPosts";
 import { useUpcomingEvents } from "@/hooks/useCalendarEvents";
 import { BookOpen, Clock, Trophy, TrendingUp, ArrowRight, Cross, BookMarked, Loader2, GraduationCap, FileText, Award, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -196,6 +197,9 @@ const Index = () => {
 
           {/* Sidebar */}
           <aside className="space-y-4 sm:space-y-6">
+            {/* Recent Blog Posts */}
+            <RecentBlogPosts limit={3} />
+
             {/* Calendar */}
             <CalendarWidget events={calendarEvents} />
 

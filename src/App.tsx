@@ -217,9 +217,6 @@ const AppRoutes = () => {
           </ProtectedRoute>
         }
       />
-          </ProtectedRoute>
-        }
-      />
 
       {/* Admin Routes */}
       <Route
