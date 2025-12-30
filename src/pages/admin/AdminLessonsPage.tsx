@@ -122,7 +122,7 @@ export default function AdminLessonsPage() {
   const [selectedCourseId, setSelectedCourseId] = useState<string | null>(null);
   const [colorDrawerOpen, setColorDrawerOpen] = useState(false);
   const [sizeDrawerOpen, setSizeDrawerOpen] = useState(false);
-  const [previewDrawerOpen, setPreviewDrawerOpen] = useState(false);
+  const [showInlinePreview, setShowInlinePreview] = useState(true);
   
   // Refs e estado para o editor
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -832,40 +832,25 @@ export default function AdminLessonsPage() {
                       </span>
 
                       {isMobile && (
-                        <Drawer open={previewDrawerOpen} onOpenChange={setPreviewDrawerOpen}>
-                          <DrawerTrigger asChild>
-                            <Button
-                              type="button"
-                              variant="outline"
-                              size="sm"
-                              className="h-8 px-2 gap-1 text-xs"
-                              onPointerDown={() => {
-                                // não deixa a seleção do editor se perder antes de abrir o drawer
-                                forceSaveSelection();
-                              }}
-                            >
+                        <Button
+                          type="button"
+                          variant="outline"
+                          size="sm"
+                          className="h-8 px-2 gap-1 text-xs"
+                          onClick={() => setShowInlinePreview((v) => !v)}
+                        >
+                          {showInlinePreview ? (
+                            <>
+                              <EyeOff className="w-4 h-4" />
+                              Ocultar
+                            </>
+                          ) : (
+                            <>
                               <Eye className="w-4 h-4" />
-                              Preview
-                            </Button>
-                          </DrawerTrigger>
-                          <DrawerContent>
-                            <DrawerHeader>
-                              <DrawerTitle>Pré-visualização</DrawerTitle>
-                            </DrawerHeader>
-                            <div className="px-4 pb-6">
-                              <p className="text-xs text-muted-foreground mb-2">
-                                Aqui as cores e tamanhos aparecem.
-                              </p>
-                              <div className="rounded-lg border bg-muted/30 overflow-hidden">
-                                <ScrollArea className="h-[60vh]">
-                                  <div className="p-3">
-                                    <RichTextPreview content={editingLesson?.content || ""} />
-                                  </div>
-                                </ScrollArea>
-                              </div>
-                            </div>
-                          </DrawerContent>
-                        </Drawer>
+                              Ver
+                            </>
+                          )}
+                        </Button>
                       )}
                     </div>
                   </div>
@@ -1048,7 +1033,7 @@ export default function AdminLessonsPage() {
                                     applyFormat(`<span style="color: ${color}">`, "</span>");
                                     toast({
                                       title: "Cor aplicada",
-                                      description: "Abra o Preview para ver o resultado.",
+                                      description: "Veja na visualização ao vivo abaixo.",
                                     });
                                     setColorDrawerOpen(false);
                                   }}
@@ -1144,7 +1129,7 @@ export default function AdminLessonsPage() {
                                   applyFormat(`<span style="font-size: ${option.size}">`, "</span>");
                                   toast({
                                     title: "Tamanho aplicado",
-                                    description: "Abra o Preview para ver o resultado.",
+                                    description: "Veja na visualização ao vivo abaixo.",
                                   });
                                   setSizeDrawerOpen(false);
                                 }}
@@ -1230,19 +1215,21 @@ Selecione o texto e use a barra de ferramentas para formatar:
                       className="flex-1 min-h-[200px] sm:min-h-0 font-mono text-xs sm:text-sm resize-none"
                     />
 
-                    <div className="hidden lg:flex min-h-0 rounded-lg border bg-muted/30 overflow-hidden flex-col">
-                      <div className="px-3 py-2 border-b bg-background/60">
-                        <p className="text-xs font-medium text-foreground">Pré-visualização</p>
-                        <p className="text-[11px] text-muted-foreground">
-                          Aqui as cores/tamanhos aparecem
-                        </p>
-                      </div>
-                      <ScrollArea className="flex-1">
-                        <div className="p-3">
-                          <RichTextPreview content={editingLesson?.content || ""} />
+                    {( !isMobile || showInlinePreview) && (
+                      <div className={`min-h-0 rounded-lg border bg-muted/30 overflow-hidden flex-col ${isMobile ? "flex h-[38vh]" : "hidden lg:flex"}`}>
+                        <div className="px-3 py-2 border-b bg-background/60">
+                          <p className="text-xs font-medium text-foreground">Visualização ao vivo</p>
+                          <p className="text-[11px] text-muted-foreground">
+                            Cores e tamanhos aparecem aqui
+                          </p>
                         </div>
-                      </ScrollArea>
-                    </div>
+                        <ScrollArea className="flex-1">
+                          <div className="p-3">
+                            <RichTextPreview content={editingLesson?.content || ""} />
+                          </div>
+                        </ScrollArea>
+                      </div>
+                    )}
                   </div>
                 </div>
               </TabsContent>
