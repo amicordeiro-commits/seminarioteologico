@@ -135,9 +135,8 @@ Deno.serve(async (req) => {
   <!-- Canonical URL -->
   <link rel="canonical" href="${escapeHtml(postUrl)}">
   
-  <!-- Redirect to actual page for regular users (delayed to allow crawlers to read) -->
-  <meta http-equiv="refresh" content="0;url=${escapeHtml(postUrl)}">
-  
+  <!-- No meta-refresh redirect: Facebook sometimes follows it and breaks the preview -->
+
   <style>
     body { font-family: system-ui, sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; background: #1a1a2e; color: #fff; }
     h1 { color: #fff; }
@@ -151,8 +150,18 @@ Deno.serve(async (req) => {
     <h1>${escapeHtml(post.title)}</h1>
     ${imageUrl ? `<img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(post.title)}">` : ''}
     <p>${escapeHtml(description)}</p>
-    <p>Redirecionando para <a href="${escapeHtml(postUrl)}">${escapeHtml(postUrl)}</a>...</p>
+    <p>
+      Abrindo o post… se não abrir automaticamente, clique aqui:
+      <a href="${escapeHtml(redirectUrl)}">${escapeHtml(redirectUrl)}</a>
+    </p>
   </article>
+
+  <!-- Redirect for real browsers (Facebook scraper doesn't execute JS) -->
+  <script>
+    setTimeout(function () {
+      window.location.href = "${escapeHtml(redirectUrl)}";
+    }, 150);
+  </script>
 </body>
 </html>`;
 
