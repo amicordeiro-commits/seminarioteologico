@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import { PlayCircle, Plus, Pencil, Trash2, Loader2, Video, Upload, FileText } from "lucide-react";
+import { PlayCircle, Plus, Pencil, Trash2, Loader2, Video, Upload, FileText, FolderOpen } from "lucide-react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
@@ -492,13 +492,50 @@ export default function AdminLessonsPage() {
                 </div>
               </div>
               
-              <div className="space-y-2">
-                <Label>Cole o texto das aulas</Label>
+              <div className="space-y-3">
+                <div className="flex items-center gap-2">
+                  <Label>Carregar arquivo ou colar texto</Label>
+                </div>
+                
+                {/* File Input */}
+                <div className="flex gap-2">
+                  <input
+                    type="file"
+                    accept=".txt,.md,.text"
+                    id="batch-file-input"
+                    className="hidden"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (event) => {
+                          const content = event.target?.result as string;
+                          setBatchText(content);
+                        };
+                        reader.readAsText(file);
+                      }
+                      e.target.value = '';
+                    }}
+                  />
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => document.getElementById('batch-file-input')?.click()}
+                    className="gap-2"
+                  >
+                    <FolderOpen className="w-4 h-4" />
+                    Abrir Arquivo
+                  </Button>
+                  <span className="text-sm text-muted-foreground self-center">
+                    .txt ou .md
+                  </span>
+                </div>
+
                 <Textarea
                   value={batchText}
                   onChange={(e) => setBatchText(e.target.value)}
                   rows={12}
-                  placeholder="Cole aqui o texto de todas as aulas..."
+                  placeholder="Cole aqui o texto de todas as aulas ou clique em 'Abrir Arquivo'..."
                   className="font-mono text-sm"
                 />
               </div>
