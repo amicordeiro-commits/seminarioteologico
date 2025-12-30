@@ -231,153 +231,215 @@ export default function AdminLessonsPage() {
 
   return (
     <AdminLayout>
-      <div className="p-6 lg:p-8 space-y-6">
+      <div className="p-6 lg:p-8 space-y-8">
         {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="space-y-1">
             <h1 className="text-3xl font-serif font-bold text-foreground flex items-center gap-3">
-              <PlayCircle className="w-8 h-8 text-primary" />
+              <div className="p-2.5 rounded-xl bg-primary/10 text-primary">
+                <PlayCircle className="w-7 h-7" />
+              </div>
               Gerenciar Aulas
             </h1>
-            <p className="text-muted-foreground mt-1">
-              Organize as aulas de cada curso
+            <p className="text-muted-foreground">
+              Organize o conteúdo de cada curso
             </p>
           </div>
+          {selectedCourseId && (
+            <div className="flex gap-2">
+              <Button
+                variant="outline"
+                onClick={() => setIsBatchDialogOpen(true)}
+                className="gap-2"
+              >
+                <Upload className="w-4 h-4" />
+                Importar Lote
+              </Button>
+              <Button
+                onClick={() => {
+                  setEditingLesson(defaultLesson);
+                  setIsDialogOpen(true);
+                }}
+                className="gap-2"
+              >
+                <Plus className="w-4 h-4" />
+                Nova Aula
+              </Button>
+            </div>
+          )}
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-6">
+        <div className="grid lg:grid-cols-4 gap-6">
           {/* Courses List */}
-          <div className="space-y-4">
-            <h2 className="font-semibold text-lg">Cursos</h2>
-            {coursesLoading ? (
-              <div className="flex items-center justify-center py-8">
-                <Loader2 className="w-6 h-6 animate-spin text-primary" />
-              </div>
-            ) : (
-              <div className="space-y-2">
-                {courses.map((course) => (
-                  <button
-                    key={course.id}
-                    onClick={() => setSelectedCourseId(course.id)}
-                    className={`w-full p-3 rounded-lg text-left transition-colors ${
-                      selectedCourseId === course.id
-                        ? "bg-primary text-primary-foreground"
-                        : "bg-card hover:bg-muted border"
-                    }`}
-                  >
-                    <span className="font-medium text-sm">{course.title}</span>
-                  </button>
-                ))}
-                {courses.length === 0 && (
-                  <p className="text-center text-muted-foreground py-4">
-                    Nenhum curso cadastrado
-                  </p>
-                )}
-              </div>
-            )}
-          </div>
-
-          {/* Lessons List */}
-          <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center justify-between">
-              <h2 className="font-semibold text-lg">
-                {selectedCourseId ? "Aulas do Curso" : "Selecione um Curso"}
-              </h2>
-              {selectedCourseId && (
-                <div className="flex gap-2">
-                  <Button
-                    variant="outline"
-                    onClick={() => setIsBatchDialogOpen(true)}
-                    className="gap-2"
-                  >
-                    <Upload className="w-4 h-4" />
-                    Enviar Lote
-                  </Button>
-                  <Button
-                    onClick={() => {
-                      setEditingLesson(defaultLesson);
-                      setIsDialogOpen(true);
-                    }}
-                    className="gap-2"
-                  >
-                    <Plus className="w-4 h-4" />
-                    Nova Aula
-                  </Button>
-                </div>
-              )}
-            </div>
-
-            {selectedCourseId ? (
-              lessonsLoading ? (
-                <div className="flex items-center justify-center py-12">
-                  <Loader2 className="w-8 h-8 animate-spin text-primary" />
-                </div>
-              ) : lessons.length > 0 ? (
-                <div className="space-y-3">
-                  {lessons.map((lesson, idx) => (
-                    <Card key={lesson.id}>
-                      <CardContent className="p-4">
-                        <div className="flex items-center gap-4">
-                          <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-medium text-sm">
-                            {idx + 1}
-                          </div>
-                          <div className="flex-1">
-                            <div className="flex items-center gap-2">
-                              <h3 className="font-medium">{lesson.title}</h3>
-                              {lesson.is_free && (
-                                <Badge variant="secondary" className="text-xs">
-                                  Gratuita
-                                </Badge>
-                              )}
-                            </div>
-                            <div className="flex items-center gap-3 text-sm text-muted-foreground mt-1">
-                              {lesson.duration_minutes && (
-                                <span>{lesson.duration_minutes} min</span>
-                              )}
-                              {lesson.video_url && (
-                                <span className="flex items-center gap-1">
-                                  <Video className="w-3 h-3" />
-                                  Vídeo
-                                </span>
-                              )}
-                            </div>
-                          </div>
-                          <div className="flex gap-1">
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => {
-                                setEditingLesson(lesson);
-                                setIsDialogOpen(true);
-                              }}
-                            >
-                              <Pencil className="w-4 h-4" />
-                            </Button>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              className="text-destructive hover:text-destructive"
-                              onClick={() => deleteLessonMutation.mutate(lesson.id)}
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </Button>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
+          <Card className="lg:col-span-1 overflow-hidden">
+            <CardHeader className="pb-3 border-b bg-muted/30">
+              <CardTitle className="text-base font-semibold flex items-center gap-2">
+                <FolderOpen className="w-4 h-4 text-primary" />
+                Cursos
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-3">
+              {coursesLoading ? (
+                <div className="flex items-center justify-center py-8">
+                  <Loader2 className="w-6 h-6 animate-spin text-primary" />
                 </div>
               ) : (
-                <div className="text-center py-12 text-muted-foreground">
-                  <PlayCircle className="w-12 h-12 mx-auto mb-2 opacity-20" />
-                  Nenhuma aula cadastrada para este curso
+                <div className="space-y-1.5">
+                  {courses.map((course) => (
+                    <button
+                      key={course.id}
+                      onClick={() => setSelectedCourseId(course.id)}
+                      className={`w-full p-3 rounded-lg text-left transition-all duration-200 ${
+                        selectedCourseId === course.id
+                          ? "bg-primary text-primary-foreground shadow-md"
+                          : "bg-background hover:bg-muted/80 border border-border/50 hover:border-primary/30"
+                      }`}
+                    >
+                      <span className="font-medium text-sm line-clamp-2">{course.title}</span>
+                    </button>
+                  ))}
+                  {courses.length === 0 && (
+                    <p className="text-center text-muted-foreground py-6 text-sm">
+                      Nenhum curso cadastrado
+                    </p>
+                  )}
                 </div>
-              )
+              )}
+            </CardContent>
+          </Card>
+
+          {/* Lessons List */}
+          <div className="lg:col-span-3 space-y-4">
+            {selectedCourseId ? (
+              <>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <h2 className="font-serif font-semibold text-xl">
+                      Aulas do Curso
+                    </h2>
+                    <Badge variant="outline" className="font-normal">
+                      {lessons.length} {lessons.length === 1 ? 'aula' : 'aulas'}
+                    </Badge>
+                  </div>
+                </div>
+
+                {lessonsLoading ? (
+                  <div className="flex items-center justify-center py-16">
+                    <Loader2 className="w-8 h-8 animate-spin text-primary" />
+                  </div>
+                ) : lessons.length > 0 ? (
+                  <div className="space-y-2.5">
+                    {lessons.map((lesson, idx) => (
+                      <Card 
+                        key={lesson.id} 
+                        className="group hover:shadow-md transition-all duration-200 border-border/60 hover:border-primary/30"
+                      >
+                        <CardContent className="p-0">
+                          <div className="flex items-center">
+                            {/* Lesson number */}
+                            <div className="flex items-center justify-center w-14 h-full min-h-[4.5rem] bg-muted/40 border-r border-border/50">
+                              <span className="text-lg font-serif font-bold text-primary/80">
+                                {String(idx + 1).padStart(2, '0')}
+                              </span>
+                            </div>
+                            
+                            {/* Content */}
+                            <div className="flex-1 p-4 min-w-0">
+                              <div className="flex items-start gap-2 flex-wrap">
+                                <h3 className="font-semibold text-foreground leading-tight">
+                                  {lesson.title}
+                                </h3>
+                                {lesson.is_free && (
+                                  <Badge className="bg-success/10 text-success border-success/20 text-xs">
+                                    Gratuita
+                                  </Badge>
+                                )}
+                              </div>
+                              <div className="flex items-center gap-4 text-sm text-muted-foreground mt-2">
+                                {lesson.duration_minutes && lesson.duration_minutes > 0 && (
+                                  <span className="flex items-center gap-1.5">
+                                    <PlayCircle className="w-3.5 h-3.5" />
+                                    {lesson.duration_minutes} min
+                                  </span>
+                                )}
+                                {lesson.video_url && (
+                                  <span className="flex items-center gap-1.5 text-primary/70">
+                                    <Video className="w-3.5 h-3.5" />
+                                    Vídeo
+                                  </span>
+                                )}
+                                {lesson.content && (
+                                  <span className="flex items-center gap-1.5">
+                                    <FileText className="w-3.5 h-3.5" />
+                                    Texto
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+                            
+                            {/* Actions */}
+                            <div className="flex items-center gap-1 px-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="h-9 w-9 hover:bg-primary/10 hover:text-primary"
+                                onClick={() => {
+                                  setEditingLesson(lesson);
+                                  setIsDialogOpen(true);
+                                }}
+                              >
+                                <Pencil className="w-4 h-4" />
+                              </Button>
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="h-9 w-9 hover:bg-destructive/10 text-muted-foreground hover:text-destructive"
+                                onClick={() => deleteLessonMutation.mutate(lesson.id)}
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </Button>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                ) : (
+                  <Card className="border-dashed">
+                    <CardContent className="flex flex-col items-center justify-center py-16 text-center">
+                      <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mb-4">
+                        <PlayCircle className="w-8 h-8 text-muted-foreground/50" />
+                      </div>
+                      <h3 className="font-semibold text-lg mb-1">Nenhuma aula cadastrada</h3>
+                      <p className="text-muted-foreground text-sm mb-4">
+                        Comece adicionando aulas a este curso
+                      </p>
+                      <Button
+                        onClick={() => {
+                          setEditingLesson(defaultLesson);
+                          setIsDialogOpen(true);
+                        }}
+                        className="gap-2"
+                      >
+                        <Plus className="w-4 h-4" />
+                        Adicionar Primeira Aula
+                      </Button>
+                    </CardContent>
+                  </Card>
+                )}
+              </>
             ) : (
-              <div className="text-center py-12 text-muted-foreground">
-                <Video className="w-12 h-12 mx-auto mb-2 opacity-20" />
-                Selecione um curso para gerenciar as aulas
-              </div>
+              <Card className="border-dashed">
+                <CardContent className="flex flex-col items-center justify-center py-20 text-center">
+                  <div className="w-20 h-20 rounded-full bg-muted flex items-center justify-center mb-4">
+                    <FolderOpen className="w-10 h-10 text-muted-foreground/40" />
+                  </div>
+                  <h3 className="font-serif font-semibold text-xl mb-2">Selecione um Curso</h3>
+                  <p className="text-muted-foreground text-sm max-w-md">
+                    Escolha um curso na lista ao lado para visualizar e gerenciar suas aulas
+                  </p>
+                </CardContent>
+              </Card>
             )}
           </div>
         </div>
