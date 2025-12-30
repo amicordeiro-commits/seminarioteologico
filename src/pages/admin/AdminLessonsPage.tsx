@@ -107,6 +107,8 @@ export default function AdminLessonsPage() {
   // Aplica formatação ao texto selecionado
   const applyFormat = useCallback(
     (before: string, after: string = before) => {
+      // garante que a última seleção do textarea foi capturada (quando houver foco)
+      saveSelection();
       const { start, end } = getSelection();
 
       setEditingLesson((prev) => {
@@ -121,12 +123,13 @@ export default function AdminLessonsPage() {
         return { ...prev, content: newText };
       });
     },
-    [getSelection, restoreSelection],
+    [getSelection, restoreSelection, saveSelection],
   );
 
   // Insere texto na posição do cursor
   const insertText = useCallback(
     (insertedText: string) => {
+      saveSelection();
       const { start, end } = getSelection();
 
       setEditingLesson((prev) => {
@@ -140,7 +143,7 @@ export default function AdminLessonsPage() {
         return { ...prev, content: newText };
       });
     },
-    [getSelection, restoreSelection],
+    [getSelection, restoreSelection, saveSelection],
   );
 
   // Fetch courses
@@ -722,13 +725,20 @@ export default function AdminLessonsPage() {
                           size="sm"
                           className="h-8 px-2 gap-1"
                           title="Cor do Texto"
-                          onMouseDown={(e) => { e.preventDefault(); saveSelection(); }}
+                          onPointerDown={(e) => {
+                            e.preventDefault();
+                            saveSelection();
+                          }}
                         >
                           <Palette className="w-4 h-4" />
                           <span className="text-xs">Cor</span>
                         </Button>
                       </PopoverTrigger>
-                      <PopoverContent className="w-auto p-2">
+                      <PopoverContent
+                        className="w-auto p-2"
+                        onOpenAutoFocus={(e) => e.preventDefault()}
+                        onCloseAutoFocus={(e) => e.preventDefault()}
+                      >
                         <div className="grid grid-cols-6 gap-1">
                           {[
                             "#000000", "#374151", "#6B7280", "#9CA3AF", "#D1D5DB", "#FFFFFF",
@@ -741,10 +751,11 @@ export default function AdminLessonsPage() {
                               type="button"
                               className="w-6 h-6 rounded border border-border hover:scale-110 transition-transform"
                               style={{ backgroundColor: color }}
-                              onMouseDown={(e) => {
+                              onPointerDown={(e) => {
                                 e.preventDefault();
+                                saveSelection();
                               }}
-                              onClick={() => applyFormat(`<span style="color: ${color}">`, "</span>")}
+                              onClick={() => applyFormat(`<span style=\"color: ${color}\">`, "</span>")}
                             />
                           ))}
                         </div>
@@ -760,13 +771,20 @@ export default function AdminLessonsPage() {
                           size="sm"
                           className="h-8 px-2 gap-1"
                           title="Tamanho da Fonte"
-                          onMouseDown={(e) => { e.preventDefault(); saveSelection(); }}
+                          onPointerDown={(e) => {
+                            e.preventDefault();
+                            saveSelection();
+                          }}
                         >
                           <Type className="w-4 h-4" />
                           <span className="text-xs">Tamanho</span>
                         </Button>
                       </PopoverTrigger>
-                      <PopoverContent className="w-auto p-2">
+                      <PopoverContent
+                        className="w-auto p-2"
+                        onOpenAutoFocus={(e) => e.preventDefault()}
+                        onCloseAutoFocus={(e) => e.preventDefault()}
+                      >
                         <div className="flex flex-col gap-1">
                           {[
                             { label: "Pequeno", size: "12px" },
@@ -780,10 +798,11 @@ export default function AdminLessonsPage() {
                               key={option.size}
                               type="button"
                               className="px-3 py-1.5 text-left hover:bg-muted rounded text-sm"
-                              onMouseDown={(e) => {
+                              onPointerDown={(e) => {
                                 e.preventDefault();
+                                saveSelection();
                               }}
-                              onClick={() => applyFormat(`<span style="font-size: ${option.size}">`, "</span>")}
+                              onClick={() => applyFormat(`<span style=\"font-size: ${option.size}\">`, "</span>")}
                             >
                               {option.label}
                             </button>
@@ -801,6 +820,7 @@ export default function AdminLessonsPage() {
                       setEditingLesson({ ...editingLesson, content: e.target.value })
                     }
                     onSelect={saveSelection}
+                    onMouseUp={saveSelection}
                     onKeyUp={saveSelection}
                     onClick={saveSelection}
                     placeholder="Digite ou cole o conteúdo completo da aula aqui...
