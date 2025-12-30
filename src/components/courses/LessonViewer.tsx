@@ -166,6 +166,16 @@ function unwrapTextAlignBlock(text: string): { align: CSSProperties["textAlign"]
   return { align: m[1] as CSSProperties["textAlign"], inner: m[2] };
 }
 
+function stripInlineMarkup(text: string): string {
+  return (text || "")
+    .replace(/<span style="[^"]+">/gi, "")
+    .replace(/<\/span>/gi, "")
+    .replace(/<u>/gi, "")
+    .replace(/<\/u>/gi, "")
+    .replace(/\*\*/g, "")
+    .replace(/\*(?!\*)/g, "");
+}
+
 function renderInline(text: string): ReactNode {
   if (!text) return null;
 
@@ -313,17 +323,22 @@ export function LessonViewer({
                   {/* Texto com formatação melhorada */}
                   <div className="space-y-6">
                     {splitIntoBlocks(pages[currentPage - 1] || "").map((block, i) => {
-                      const t = block.trim();
-                      if (!t) return null;
+                      const raw = block.trim();
+                      if (!raw) return null;
+
+                      const unwrapped = unwrapTextAlignBlock(raw);
+                      const align = unwrapped?.align;
+                      const display = (unwrapped?.inner ?? raw).trim();
+                      const detect = stripInlineMarkup(display).trim();
 
                       // Detecta diferentes tipos de cabeçalhos
                       const isMainHeading =
-                        /^[A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇ][A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇ\s\d\-:,.()]+$/.test(t) &&
-                        t.length < 80 &&
-                        !t.includes(".");
-                      const isNumberedTopic = /^[IVX]+[\.\)]\s/.test(t) || /^\d+[\.\)]\s/.test(t);
-                      const isLetterTopic = /^[a-zA-Z][\.\)]\s/.test(t) && t.length < 200;
-                      const isBulletPoint = /^[-•]\s/.test(t);
+                        /^[A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇ][A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇ\s\d\-:,.()]+$/.test(detect) &&
+                        detect.length < 80 &&
+                        !detect.includes(".");
+                      const isNumberedTopic = /^[IVX]+[\.\)]\s/.test(detect) || /^\d+[\.\)]\s/.test(detect);
+                      const isLetterTopic = /^[a-zA-Z][\.\)]\s/.test(detect) && detect.length < 200;
+                      const isBulletPoint = /^[-•]\s/.test(detect);
 
                       // Título principal do tópico
                       if (isMainHeading) {
@@ -331,7 +346,7 @@ export function LessonViewer({
                           <section key={i} className="mt-12 first:mt-0">
                             <div className="bg-primary/8 dark:bg-primary/15 rounded-xl p-6 border-l-4 border-primary shadow-sm">
                               <h2 className="text-xl sm:text-2xl lg:text-3xl font-serif font-bold text-primary leading-snug">
-                                {t}
+                                {renderInline(display)}
                               </h2>
                             </div>
                           </section>
@@ -340,16 +355,16 @@ export function LessonViewer({
 
                       // Subtópico numerado (I. II. III. ou 1. 2. 3.)
                       if (isNumberedTopic) {
+                        const num = detect.match(/^([IVX\d]+)/)?.[1];
+                        const body = display.replace(/^[IVX\d]+[\.\)]\s*/, "");
                         return (
                           <div key={i} className="mt-8 mb-4">
                             <div className="flex items-start gap-4 bg-muted/60 dark:bg-muted/30 rounded-xl p-5 border border-border/50">
                               <div className="w-10 h-10 rounded-full bg-primary/15 flex items-center justify-center shrink-0">
-                                <span className="text-primary font-bold text-base font-serif">
-                                  {t.match(/^([IVX\d]+)/)?.[1]}
-                                </span>
+                                <span className="text-primary font-bold text-base font-serif">{num}</span>
                               </div>
                               <p className="text-lg sm:text-xl lg:text-2xl font-semibold text-foreground pt-1.5 leading-relaxed whitespace-pre-wrap font-serif">
-                                {t.replace(/^[IVX\d]+[\.\)]\s*/, "")}
+                                {renderInline(body)}
                               </p>
                             </div>
                           </div>
@@ -358,12 +373,14 @@ export function LessonViewer({
 
                       // Subtópico com letra (a. b. c.)
                       if (isLetterTopic) {
+                        const letter = detect.charAt(0);
+                        const body = display.replace(/^[a-zA-Z][\.\)]\s*/, "");
                         return (
                           <div key={i} className="ml-6 mb-3">
                             <div className="flex items-start gap-4 pl-5 border-l-2 border-accent/60 py-1">
-                              <span className="text-primary font-bold text-lg shrink-0 font-serif">{t.charAt(0)}.</span>
+                              <span className="text-primary font-bold text-lg shrink-0 font-serif">{letter}.</span>
                               <p className="text-base sm:text-lg lg:text-xl text-foreground/90 leading-relaxed whitespace-pre-wrap">
-                                {t.replace(/^[a-zA-Z][\.\)]\s*/, "")}
+                                {renderInline(body)}
                               </p>
                             </div>
                           </div>
@@ -372,12 +389,13 @@ export function LessonViewer({
 
                       // Bullet point
                       if (isBulletPoint) {
+                        const body = display.replace(/^[-•]\s*/, "");
                         return (
                           <div key={i} className="ml-6 mb-3">
                             <div className="flex items-start gap-4">
                               <span className="text-primary text-xl mt-0.5 shrink-0">•</span>
                               <p className="text-base sm:text-lg lg:text-xl text-foreground/90 leading-relaxed whitespace-pre-wrap">
-                                {t.replace(/^[-•]\s*/, "")}
+                                {renderInline(body)}
                               </p>
                             </div>
                           </div>
@@ -385,13 +403,16 @@ export function LessonViewer({
                       }
 
                       // Parágrafo normal - texto principal
+                      const textAlign = align ?? "justify";
+                      const textIndent = textAlign === "justify" ? "2em" : undefined;
+
                       return (
                         <p
                           key={i}
                           className="text-base sm:text-lg lg:text-xl text-foreground/85 leading-[1.9] sm:leading-[2] whitespace-pre-wrap first-letter:text-2xl first-letter:font-serif first-letter:font-bold first-letter:text-primary/80"
-                          style={{ textAlign: 'justify', textIndent: '2em' }}
+                          style={{ textAlign, textIndent }}
                         >
-                          {t}
+                          {renderInline(display)}
                         </p>
                       );
                     })}
