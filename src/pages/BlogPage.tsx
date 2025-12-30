@@ -65,9 +65,18 @@ export default function BlogPage() {
             {posts.map((post) => (
               <Card
                 key={post.id}
-                className="hover:shadow-lg transition-shadow cursor-pointer group"
+                className="hover:shadow-lg transition-shadow cursor-pointer group overflow-hidden"
                 onClick={() => setSelectedPost(post)}
               >
+                {post.featured_image && (
+                  <div className="aspect-video w-full overflow-hidden">
+                    <img
+                      src={post.featured_image}
+                      alt={post.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                )}
                 <CardHeader>
                   <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors">
                     {post.title}
@@ -111,6 +120,15 @@ export default function BlogPage() {
           <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
             {selectedPost && (
               <>
+                {selectedPost.featured_image && (
+                  <div className="aspect-video w-full overflow-hidden rounded-lg mb-4">
+                    <img
+                      src={selectedPost.featured_image}
+                      alt={selectedPost.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                )}
                 <DialogHeader>
                   <DialogTitle className="text-2xl">
                     {selectedPost.title}
