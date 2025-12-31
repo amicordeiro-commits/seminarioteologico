@@ -17,16 +17,15 @@ export default function BlogPostPage() {
   const { data: post, isLoading } = useBlogPost(id || "");
   const [copied, setCopied] = useState(false);
 
-  // URLs
+  // URLs - use public URL directly so Facebook shows the correct domain
   const origin = typeof window !== "undefined" ? window.location.origin : "";
   const postUrl = typeof window !== "undefined" ? window.location.href : "";
   const publicUrl = id && origin ? `${origin}/p/blog/${id}` : postUrl;
 
-  // URL for Facebook sharing (uses backend function for proper OG tags)
-  // Add a cache-buster so Facebook re-scrapes after edits.
-  const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || "";
-  const ogShareUrl = id && supabaseUrl && origin
-    ? `${supabaseUrl}/functions/v1/og-blog?id=${id}&origin=${encodeURIComponent(origin)}${post?.updated_at ? `&v=${encodeURIComponent(post.updated_at)}` : ""}`
+  // Share URL - use public URL for better domain display on Facebook
+  // Add cache-buster for Facebook to re-scrape after edits
+  const shareUrl = id && origin
+    ? `${origin}/p/blog/${id}${post?.updated_at ? `?v=${encodeURIComponent(post.updated_at)}` : ""}`
     : publicUrl;
 
   // Update meta tags for social sharing
@@ -84,17 +83,17 @@ export default function BlogPostPage() {
 
   const handleCopyLink = async () => {
     try {
-      await navigator.clipboard.writeText(ogShareUrl);
+      await navigator.clipboard.writeText(shareUrl);
       setCopied(true);
-      toast.success("Link do Facebook copiado!");
+      toast.success("Link copiado!");
       setTimeout(() => setCopied(false), 2000);
     } catch {
       toast.error("Erro ao copiar link");
     }
   };
 
-  // Facebook share URL - use anchor tag to avoid popup blockers
-  const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(ogShareUrl)}`;
+  // Facebook share URL - use public URL so domain shows correctly
+  const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
 
   if (isLoading) {
     return (
@@ -171,7 +170,7 @@ export default function BlogPostPage() {
           <Card className="mb-8">
             <CardContent className="py-4">
               <p className="text-xs text-muted-foreground mb-3">
-                Para a imagem aparecer no Facebook, use estes botões (não copie o link da barra do navegador).
+                Compartilhe este artigo com seus amigos!
               </p>
               <div className="flex items-center justify-between flex-wrap gap-4">
                 <span className="text-sm font-medium flex items-center gap-2">
@@ -201,7 +200,7 @@ export default function BlogPostPage() {
                     ) : (
                       <Copy className="h-4 w-4" />
                     )}
-                    {copied ? "Copiado!" : "Copiar link p/ Facebook"}
+                    {copied ? "Copiado!" : "Copiar link"}
                   </Button>
                 </div>
               </div>

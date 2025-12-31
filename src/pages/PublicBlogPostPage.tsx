@@ -17,16 +17,13 @@ export default function PublicBlogPostPage() {
   const { data: post, isLoading } = useBlogPost(id || "");
   const [copied, setCopied] = useState(false);
 
-  // URLs
+  // URLs - use public URL directly so Facebook shows the correct domain
   const origin = typeof window !== "undefined" ? window.location.origin : "";
   const currentUrl = typeof window !== "undefined" ? window.location.href : "";
   const publicUrl = id && origin ? `${origin}/p/blog/${id}` : currentUrl;
 
-  // URL for Facebook sharing (uses backend function for proper OG tags)
-  const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || "";
-  const ogShareUrl = id && supabaseUrl && origin
-    ? `${supabaseUrl}/functions/v1/og-blog?id=${id}&origin=${encodeURIComponent(origin)}`
-    : publicUrl;
+  // Share URL - use public URL for better domain display on Facebook
+  const shareUrl = publicUrl;
 
   // Update meta tags for social sharing
   useEffect(() => {
@@ -78,7 +75,7 @@ export default function PublicBlogPostPage() {
 
   const handleCopyLink = async () => {
     try {
-      await navigator.clipboard.writeText(ogShareUrl);
+      await navigator.clipboard.writeText(shareUrl);
       setCopied(true);
       toast.success("Link copiado!");
       setTimeout(() => setCopied(false), 2000);
@@ -87,8 +84,8 @@ export default function PublicBlogPostPage() {
     }
   };
 
-  // Facebook share URL - opens in same tab to avoid popup blockers
-  const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(ogShareUrl)}`;
+  // Facebook share URL - use public URL so domain shows correctly
+  const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
 
   if (isLoading) {
     return (
