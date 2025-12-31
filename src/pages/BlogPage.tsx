@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { BookOpen, Calendar, User, ArrowRight, LogIn } from "lucide-react";
+import { BookOpen, Calendar, User, ArrowRight, LogIn, ArrowLeft } from "lucide-react";
 import { useBlogPosts } from "@/hooks/useBlogPosts";
 import { useAuth } from "@/hooks/useAuth";
 import { format } from "date-fns";
@@ -35,6 +35,15 @@ export default function BlogPage() {
 
   const BlogContent = () => (
     <div className="container mx-auto py-6 px-4">
+      <Button
+        variant="ghost"
+        className="mb-4"
+        onClick={() => navigate("/home")}
+      >
+        <ArrowLeft className="h-4 w-4 mr-2" />
+        Voltar para Home
+      </Button>
+
       <div className="mb-8">
         <h1 className="text-3xl font-bold flex items-center gap-3">
           <BookOpen className="h-8 w-8 text-primary" />
