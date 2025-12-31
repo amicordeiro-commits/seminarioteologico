@@ -93,8 +93,8 @@ export default function BlogPostPage() {
     }
   };
 
-  // Facebook share URL
-  const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(ogShareUrl)}`;
+  // Facebook share URL - use public URL directly (simpler, shows correct domain)
+  const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(publicUrl)}`;
 
   if (isLoading) {
     return (
