@@ -22,10 +22,24 @@ type Message = {
   content: string;
 };
 
+interface AIChatWidgetProps {
+  externalOpen?: boolean;
+  onExternalOpenChange?: (open: boolean) => void;
+}
+
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/ai-chat`;
 
-export function AIChatWidget() {
-  const [isOpen, setIsOpen] = useState(false);
+export function AIChatWidget({ externalOpen, onExternalOpenChange }: AIChatWidgetProps) {
+  const [internalOpen, setInternalOpen] = useState(false);
+  const isOpen = externalOpen !== undefined ? externalOpen : internalOpen;
+  
+  const setIsOpen = (open: boolean) => {
+    if (onExternalOpenChange) {
+      onExternalOpenChange(open);
+    } else {
+      setInternalOpen(open);
+    }
+  };
   const [isMinimized, setIsMinimized] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
