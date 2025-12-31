@@ -17,15 +17,14 @@ export default function PublicBlogPostPage() {
   const { data: post, isLoading } = useBlogPost(id || "");
   const [copied, setCopied] = useState(false);
 
-  // URLs
-  const origin = typeof window !== "undefined" ? window.location.origin : "";
-  const currentUrl = typeof window !== "undefined" ? window.location.href : "";
-  const publicUrl = id && origin ? `${origin}/p/blog/${id}` : currentUrl;
+  // Always use the published domain for sharing (not preview domain)
+  const publishedDomain = "https://hjorsjoaykgnsmbxgnyn.lovable.app";
+  const publicUrl = id ? `${publishedDomain}/p/blog/${id}` : "";
 
   // Share URL (uses backend function so Facebook can read OG tags without JS)
   const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || "";
   const ogShareUrl = id && supabaseUrl
-    ? `${supabaseUrl}/functions/v1/og-blog?id=${id}&origin=${encodeURIComponent(origin)}`
+    ? `${supabaseUrl}/functions/v1/og-blog?id=${id}&origin=${encodeURIComponent(publishedDomain)}`
     : publicUrl;
 
   // Update meta tags for social sharing
@@ -74,7 +73,7 @@ export default function PublicBlogPostPage() {
     return () => {
       document.title = "Seminário Teológico";
     };
-  }, [post, currentUrl]);
+  }, [post, publicUrl]);
 
   const handleCopyLink = async () => {
     try {
@@ -88,8 +87,8 @@ export default function PublicBlogPostPage() {
     }
   };
 
-  // Facebook share URL - use public URL directly (simpler, shows correct domain)
-  const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(publicUrl)}`;
+  // Facebook share URL - use og-blog function for proper OG tags
+  const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(ogShareUrl)}`;
 
   if (isLoading) {
     return (
