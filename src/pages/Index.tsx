@@ -131,6 +131,9 @@ const Index = () => {
           </div>
         </section>
 
+        {/* Recent Blog Posts - Right after hero */}
+        <RecentBlogPosts limit={4} />
+
         {/* Stats Grid */}
         <section className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
           <StatsCard
@@ -162,9 +165,6 @@ const Index = () => {
             variant="accent"
           />
         </section>
-
-        {/* Recent Blog Posts - Full Width */}
-        <RecentBlogPosts limit={4} />
 
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
