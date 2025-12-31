@@ -201,15 +201,18 @@ export function AIChatWidget({ externalOpen, onExternalOpenChange }: AIChatWidge
       isMinimized ? "w-64 sm:w-72 h-14" : "w-[calc(100vw-2rem)] sm:w-80 md:w-96 h-[60vh] sm:h-[500px] max-h-[80vh]"
     )}>
       {/* Header */}
-      <div className="flex items-center justify-between p-3 border-b bg-gradient-to-r from-primary/10 to-accent/10 rounded-t-lg">
+      <div className="flex items-center justify-between p-3 border-b bg-gradient-to-r from-primary/10 via-accent/5 to-primary/10 rounded-t-lg">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full gradient-primary flex items-center justify-center">
-            <Bot className="h-4 w-4 text-primary-foreground" />
+          <div className="w-9 h-9 rounded-full gradient-primary flex items-center justify-center shadow-lg">
+            <Bot className="h-5 w-5 text-primary-foreground" />
           </div>
           <div>
-            <h3 className="font-semibold text-sm">Assistente IA</h3>
+            <h3 className="font-semibold text-sm flex items-center gap-1">
+              Teólogo IA
+              <Sparkles className="h-3 w-3 text-accent" />
+            </h3>
             {!isMinimized && (
-              <p className="text-xs text-muted-foreground">Tire suas dúvidas</p>
+              <p className="text-xs text-muted-foreground">Assistente Teológico</p>
             )}
           </div>
         </div>
@@ -239,20 +242,28 @@ export function AIChatWidget({ externalOpen, onExternalOpenChange }: AIChatWidge
           <ScrollArea className="flex-1 h-[calc(100%-120px)] p-4" ref={scrollRef}>
             {messages.length === 0 ? (
               <div className="flex flex-col items-center justify-center h-full text-center p-4">
-                <div className="w-16 h-16 rounded-full gradient-primary flex items-center justify-center mb-4">
+                <div className="w-16 h-16 rounded-full gradient-primary flex items-center justify-center mb-4 shadow-lg">
                   <Bot className="h-8 w-8 text-primary-foreground" />
                 </div>
-                <h4 className="font-semibold mb-2">Olá! Sou o Assistente do Seminário</h4>
-                <p className="text-sm text-muted-foreground">
-                  Posso ajudar com dúvidas sobre teologia, cursos, e uso da plataforma. Como posso ajudar?
+                <h4 className="font-semibold mb-1 flex items-center gap-1">
+                  Teólogo IA
+                  <Sparkles className="h-3.5 w-3.5 text-accent" />
+                </h4>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Seu assistente teológico completo. Pergunte sobre Bíblia, teologia, cursos ou a plataforma!
                 </p>
-                <div className="flex flex-wrap gap-2 mt-4">
-                  {['Quais cursos tem?', 'Como funciona o certificado?', 'O que é teologia sistemática?'].map((q) => (
+                <div className="flex flex-wrap gap-2 justify-center">
+                  {[
+                    'O que é Teologia Sistemática?',
+                    'Explique João 3:16',
+                    'Como tirar meu certificado?',
+                    'Quem foi Lutero?'
+                  ].map((q) => (
                     <Button
                       key={q}
                       variant="outline"
                       size="sm"
-                      className="text-xs"
+                      className="text-xs h-auto py-1.5 px-2.5"
                       onClick={() => {
                         setInput(q);
                         setTimeout(() => handleSend(), 100);
