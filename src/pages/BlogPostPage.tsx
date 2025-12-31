@@ -83,7 +83,8 @@ export default function BlogPostPage() {
 
   const handleCopyLink = async () => {
     try {
-      await navigator.clipboard.writeText(ogShareUrl);
+      // Copy the public URL so clicking always opens the blog post directly
+      await navigator.clipboard.writeText(publicUrl);
       setCopied(true);
       toast.success("Link copiado!");
       setTimeout(() => setCopied(false), 2000);
