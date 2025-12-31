@@ -15,6 +15,27 @@ function escapeHtml(text: string): string {
     .replace(/'/g, "&#039;");
 }
 
+// Check if the request is from a known bot/crawler
+function isCrawler(userAgent: string | null): boolean {
+  if (!userAgent) return false;
+  const crawlerPatterns = [
+    /facebookexternalhit/i,
+    /Facebot/i,
+    /Twitterbot/i,
+    /LinkedInBot/i,
+    /WhatsApp/i,
+    /TelegramBot/i,
+    /Slackbot/i,
+    /Discordbot/i,
+    /Pinterest/i,
+    /Googlebot/i,
+    /bingbot/i,
+    /Baiduspider/i,
+    /YandexBot/i,
+  ];
+  return crawlerPatterns.some(pattern => pattern.test(userAgent));
+}
+
 Deno.serve(async (req) => {
   // Handle CORS preflight
   if (req.method === "OPTIONS") {
@@ -24,9 +45,10 @@ Deno.serve(async (req) => {
   try {
     const url = new URL(req.url);
     const postId = url.searchParams.get("id");
+    const userAgent = req.headers.get("user-agent");
 
     console.log("og-blog called with id:", postId);
-    console.log("User-Agent:", req.headers.get("user-agent"));
+    console.log("User-Agent:", userAgent);
 
     if (!postId) {
       console.log("Missing post ID");
@@ -35,6 +57,33 @@ Deno.serve(async (req) => {
         headers: corsHeaders 
       });
     }
+
+    // Base URL for building public links (prefer explicit origin from client)
+    const originParam = url.searchParams.get("origin");
+    const safeOrigin = originParam && /^https?:\/\/[\w.-]+(?::\d+)?$/i.test(originParam)
+      ? originParam
+      : null;
+
+    // In production, set SITE_URL in backend secrets to your real domain.
+    const siteUrl = safeOrigin || Deno.env.get("SITE_URL") || "https://seminarioteologico.app";
+
+    // Public route (no login wall)
+    const redirectUrl = `${siteUrl}/p/blog/${postId}`;
+
+    // For regular browsers (not crawlers), redirect immediately
+    if (!isCrawler(userAgent)) {
+      console.log("Regular browser detected, redirecting to:", redirectUrl);
+      return new Response(null, {
+        status: 302,
+        headers: {
+          ...corsHeaders,
+          "Location": redirectUrl,
+        },
+      });
+    }
+
+    // For crawlers (Facebook, Twitter, etc.), serve the OG meta tags
+    console.log("Crawler detected, serving OG tags");
 
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const supabaseKey = Deno.env.get("SUPABASE_ANON_KEY")!;
@@ -67,18 +116,7 @@ Deno.serve(async (req) => {
 
     console.log("Post found:", post.title);
 
-    // Base URL for building public links (prefer explicit origin from client)
-    const originParam = url.searchParams.get("origin");
-    const safeOrigin = originParam && /^https?:\/\/[\w.-]+(?::\d+)?$/i.test(originParam)
-      ? originParam
-      : null;
-
-    // In production, set SITE_URL in backend secrets to your real domain.
-    const siteUrl = safeOrigin || Deno.env.get("SITE_URL") || "https://seminarioteologico.app";
-
-    // Public route (no login wall)
-    const canonicalUrl = `${siteUrl}/p/blog/${postId}`;
-    const redirectUrl = canonicalUrl;
+    const canonicalUrl = redirectUrl;
     
     // Get description - clean and limit to 200 chars for OG
     const rawDescription = post.excerpt || post.content || "";
@@ -96,7 +134,7 @@ Deno.serve(async (req) => {
     
     // Default fallback image if none
     if (!imageUrl) {
-      imageUrl = `${siteUrl}/og-default.jpg`;
+      imageUrl = `${siteUrl}/og-image.png`;
     }
 
     console.log("Generating HTML with OG tags...");
@@ -137,46 +175,22 @@ Deno.serve(async (req) => {
   
   <!-- Canonical URL -->
   <link rel="canonical" href="${escapeHtml(canonicalUrl)}">
-  
-  <!-- No meta-refresh redirect: Facebook sometimes follows it and breaks the preview -->
-
-  <style>
-    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; background: #1a1a2e; color: #fff; }
-    h1 { color: #fff; }
-    p { color: #ccc; }
-    a { color: #4dabf7; }
-    img { max-width: 100%; border-radius: 8px; margin: 20px 0; }
-  </style>
 </head>
 <body>
-  <article>
-    <h1>${escapeHtml(post.title)}</h1>
-    ${imageUrl ? `<img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(post.title)}">` : ''}
-    <p>${escapeHtml(description)}</p>
-    <p>
-      Abrindo o post… se não abrir automaticamente, clique aqui:
-      <a href="${escapeHtml(redirectUrl)}">${escapeHtml(redirectUrl)}</a>
-    </p>
-  </article>
-
-  <!-- Redirect for real browsers (Facebook scraper doesn't execute JS) -->
-  <script>
-    setTimeout(function () {
-      window.location.href = "${escapeHtml(redirectUrl)}";
-    }, 150);
-  </script>
+  <h1>${escapeHtml(post.title)}</h1>
+  <p>${escapeHtml(description)}</p>
+  <p><a href="${escapeHtml(canonicalUrl)}">Ver post completo</a></p>
 </body>
 </html>`;
 
-    console.log("Returning HTML response");
+    console.log("Returning HTML response for crawler");
 
     return new Response(html, {
+      status: 200,
       headers: {
         ...corsHeaders,
         "Content-Type": "text/html; charset=utf-8",
         "Cache-Control": "no-cache, no-store, must-revalidate",
-        "Pragma": "no-cache",
-        "Expires": "0",
       },
     });
   } catch (error: unknown) {
