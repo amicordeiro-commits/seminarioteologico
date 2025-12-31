@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ArrowLeft, Calendar, User, Share2, Facebook, Copy, Check, LogIn } from "lucide-react";
+import { ArrowLeft, Calendar, User, Share2, Facebook, Copy, Check, LogIn, MessageCircle } from "lucide-react";
 import { useBlogPost } from "@/hooks/useBlogPosts";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
@@ -89,6 +89,9 @@ export default function PublicBlogPostPage() {
 
   // Facebook share URL - use og-blog function for proper OG tags
   const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(ogShareUrl)}`;
+  
+  // WhatsApp share URL - uses og-blog function for proper preview
+  const whatsappShareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent((post?.title || "Confira este artigo") + " - " + ogShareUrl)}`;
 
   if (isLoading) {
     return (
@@ -193,15 +196,25 @@ export default function PublicBlogPostPage() {
           <Card className="mb-8">
             <CardContent className="py-4">
               <p className="text-xs text-muted-foreground mb-3">
-                Para aparecer com imagem e título no Facebook, cole o link copiado (não o link do facebook.com/sharer).
+                Clique para compartilhar diretamente ou copie o link.
               </p>
               <div className="flex items-center justify-between flex-wrap gap-4">
                 <span className="text-sm font-medium flex items-center gap-2">
                   <Share2 className="h-4 w-4" />
                   Compartilhar:
                 </span>
-                <div className="flex gap-2">
-                  {/* Use anchor tag instead of window.open to avoid popup blockers */}
+                <div className="flex gap-2 flex-wrap">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    asChild
+                    className="gap-2"
+                  >
+                    <a href={whatsappShareUrl} target="_blank" rel="noopener noreferrer">
+                      <MessageCircle className="h-4 w-4 text-green-600" />
+                      WhatsApp
+                    </a>
+                  </Button>
                   <Button
                     variant="outline"
                     size="sm"
@@ -209,7 +222,7 @@ export default function PublicBlogPostPage() {
                     className="gap-2"
                   >
                     <a href={facebookShareUrl} target="_blank" rel="noopener noreferrer">
-                      <Facebook className="h-4 w-4 text-primary" />
+                      <Facebook className="h-4 w-4 text-blue-600" />
                       Facebook
                     </a>
                   </Button>
@@ -224,7 +237,7 @@ export default function PublicBlogPostPage() {
                     ) : (
                       <Copy className="h-4 w-4" />
                     )}
-                    {copied ? "Copiado!" : "Copiar link para compartilhar"}
+                    {copied ? "Copiado!" : "Copiar"}
                   </Button>
                 </div>
               </div>
@@ -244,10 +257,16 @@ export default function PublicBlogPostPage() {
               Gostou? Compartilhe com seus amigos!
             </p>
             <div className="flex justify-center gap-3 flex-wrap">
+              <Button asChild className="gap-2 bg-green-600 hover:bg-green-700">
+                <a href={whatsappShareUrl} target="_blank" rel="noopener noreferrer">
+                  <MessageCircle className="h-4 w-4" />
+                  WhatsApp
+                </a>
+              </Button>
               <Button asChild className="gap-2">
                 <a href={facebookShareUrl} target="_blank" rel="noopener noreferrer">
                   <Facebook className="h-4 w-4" />
-                  Compartilhar no Facebook
+                  Facebook
                 </a>
               </Button>
               <Button variant="outline" onClick={handleCopyLink} className="gap-2">
