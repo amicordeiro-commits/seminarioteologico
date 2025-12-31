@@ -17,15 +17,15 @@ export default function BlogPostPage() {
   const { data: post, isLoading } = useBlogPost(id || "");
   const [copied, setCopied] = useState(false);
 
-  // URLs - use public URL directly so Facebook shows the correct domain
+  // URLs
   const origin = typeof window !== "undefined" ? window.location.origin : "";
   const postUrl = typeof window !== "undefined" ? window.location.href : "";
   const publicUrl = id && origin ? `${origin}/p/blog/${id}` : postUrl;
 
-  // Share URL - use public URL for better domain display on Facebook
-  // Add cache-buster for Facebook to re-scrape after edits
-  const shareUrl = id && origin
-    ? `${origin}/p/blog/${id}${post?.updated_at ? `?v=${encodeURIComponent(post.updated_at)}` : ""}`
+  // Share URL (uses backend function so Facebook can read OG tags without JS)
+  const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || "";
+  const ogShareUrl = id && supabaseUrl
+    ? `${supabaseUrl}/functions/v1/og-blog?id=${id}&origin=${encodeURIComponent(origin)}${post?.updated_at ? `&v=${encodeURIComponent(post.updated_at)}` : ""}`
     : publicUrl;
 
   // Update meta tags for social sharing
@@ -83,7 +83,7 @@ export default function BlogPostPage() {
 
   const handleCopyLink = async () => {
     try {
-      await navigator.clipboard.writeText(shareUrl);
+      await navigator.clipboard.writeText(ogShareUrl);
       setCopied(true);
       toast.success("Link copiado!");
       setTimeout(() => setCopied(false), 2000);
@@ -92,8 +92,8 @@ export default function BlogPostPage() {
     }
   };
 
-  // Facebook share URL - use public URL so domain shows correctly
-  const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
+  // Facebook share URL
+  const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(ogShareUrl)}`;
 
   if (isLoading) {
     return (
