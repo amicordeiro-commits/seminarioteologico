@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -44,6 +44,7 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import heroImage from '@/assets/hero-theology.jpg';
+import { AIChatWidget } from '@/components/chat/AIChatWidget';
 
 const features = [
   {
@@ -116,8 +117,11 @@ const LandingPage = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const [chatOpen, setChatOpen] = useState(false);
   const { data: blogPosts = [], isLoading: blogLoading } = useBlogPosts(true);
   const navigate = useNavigate();
+
+  const openChat = useCallback(() => setChatOpen(true), []);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -296,9 +300,10 @@ const LandingPage = () => {
               size="lg"
               variant="outline"
               className="w-full sm:w-auto text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 border-border/50 hover:bg-card/50"
+              onClick={openChat}
             >
-              <Play className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-              Ver Demonstração
+              <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+              Fale Conosco
             </Button>
           </div>
 
@@ -797,6 +802,7 @@ const LandingPage = () => {
               size="lg"
               variant="outline"
               className="w-full sm:w-auto text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
+              onClick={openChat}
             >
               <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
               Fale Conosco
@@ -859,6 +865,9 @@ const LandingPage = () => {
           </div>
         </div>
       </footer>
+
+      {/* AI Chat Widget */}
+      <AIChatWidget externalOpen={chatOpen} onExternalOpenChange={setChatOpen} />
     </div>
   );
 };
