@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Skeleton } from '@/components/ui/skeleton';
+import { useBlogPosts } from '@/hooks/useBlogPosts';
+import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 import {
   Church,
   GraduationCap,
@@ -112,6 +116,8 @@ const LandingPage = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const { data: blogPosts = [], isLoading: blogLoading } = useBlogPosts(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -159,6 +165,9 @@ const LandingPage = () => {
               <a href="#features" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 Recursos
               </a>
+              <Link to="/blog" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                Blog
+              </Link>
               <a href="#testimonials" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 Depoimentos
               </a>
@@ -601,7 +610,110 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Admin Section */}
+      {/* Blog Section */}
+      <section id="blog" className="py-16 sm:py-20 md:py-28 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-card/20 to-background" />
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-10 sm:mb-16">
+            <Badge variant="outline" className="mb-3 sm:mb-4 px-3 sm:px-4 py-1.5 text-xs sm:text-sm">
+              <BookOpen className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 text-accent" />
+              Blog & Devocionais
+            </Badge>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-foreground mb-3 sm:mb-4">
+              Reflexões para <span className="text-primary">edificação</span>
+            </h2>
+            <p className="text-sm sm:text-base text-muted-foreground max-w-xl mx-auto">
+              Artigos, estudos e devocionais para seu crescimento espiritual
+            </p>
+          </div>
+
+          {blogLoading ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              {[1, 2, 3].map((i) => (
+                <Skeleton key={i} className="h-64 w-full rounded-xl" />
+              ))}
+            </div>
+          ) : blogPosts.length === 0 ? (
+            <Card className="text-center py-12 bg-card/60 backdrop-blur-sm">
+              <CardContent>
+                <BookOpen className="h-16 w-16 mx-auto text-muted-foreground/50 mb-4" />
+                <h3 className="text-xl font-medium mb-2">Em breve</h3>
+                <p className="text-muted-foreground">
+                  Novos artigos e devocionais estão a caminho!
+                </p>
+              </CardContent>
+            </Card>
+          ) : (
+            <>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                {blogPosts.slice(0, 6).map((post) => (
+                  <Card
+                    key={post.id}
+                    className="group cursor-pointer overflow-hidden border-border/50 hover:border-primary/40 transition-all duration-500 hover:shadow-xl hover:-translate-y-1 bg-card/80 backdrop-blur-sm"
+                    onClick={() => navigate(`/blog/${post.id}`)}
+                  >
+                    {post.featured_image && (
+                      <div className="aspect-video w-full overflow-hidden">
+                        <img
+                          src={post.featured_image}
+                          alt={post.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      </div>
+                    )}
+                    <CardHeader className="pb-2">
+                      <CardTitle className="line-clamp-2 text-lg group-hover:text-primary transition-colors">
+                        {post.title}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="pt-0">
+                      {post.excerpt && (
+                        <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
+                          {post.excerpt}
+                        </p>
+                      )}
+                      <div className="flex items-center justify-between text-xs text-muted-foreground">
+                        <span>
+                          {format(
+                            new Date(post.published_at || post.created_at),
+                            "dd MMM yyyy",
+                            { locale: ptBR }
+                          )}
+                        </span>
+                        <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+
+              {blogPosts.length > 6 && (
+                <div className="text-center mt-8 sm:mt-12">
+                  <Button size="lg" variant="outline" asChild>
+                    <Link to="/blog">
+                      Ver todos os artigos
+                      <ArrowRight className="w-4 h-4 ml-2" />
+                    </Link>
+                  </Button>
+                </div>
+              )}
+            </>
+          )}
+
+          {blogPosts.length > 0 && blogPosts.length <= 6 && (
+            <div className="text-center mt-8 sm:mt-12">
+              <Button size="lg" variant="outline" asChild>
+                <Link to="/blog">
+                  Ver todos os artigos
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Link>
+              </Button>
+            </div>
+          )}
+        </div>
+      </section>
+
       <section className="py-16 sm:py-20 md:py-28 relative bg-card/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10 sm:mb-16">
