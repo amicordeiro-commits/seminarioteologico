@@ -77,8 +77,8 @@ export default function PublicBlogPostPage() {
 
   const handleCopyLink = async () => {
     try {
-      // Copy the public URL so clicking always opens the blog post directly
-      await navigator.clipboard.writeText(publicUrl);
+      // Copy the OG-friendly share URL so Facebook/WhatsApp can generate preview cards
+      await navigator.clipboard.writeText(ogShareUrl);
       setCopied(true);
       toast.success("Link copiado!");
       setTimeout(() => setCopied(false), 2000);
@@ -192,6 +192,9 @@ export default function PublicBlogPostPage() {
           {/* Share Buttons */}
           <Card className="mb-8">
             <CardContent className="py-4">
+              <p className="text-xs text-muted-foreground mb-3">
+                Para aparecer com imagem e título no Facebook, cole o link copiado (não o link do facebook.com/sharer).
+              </p>
               <div className="flex items-center justify-between flex-wrap gap-4">
                 <span className="text-sm font-medium flex items-center gap-2">
                   <Share2 className="h-4 w-4" />
@@ -206,7 +209,7 @@ export default function PublicBlogPostPage() {
                     className="gap-2"
                   >
                     <a href={facebookShareUrl} target="_blank" rel="noopener noreferrer">
-                      <Facebook className="h-4 w-4 text-blue-600" />
+                      <Facebook className="h-4 w-4 text-primary" />
                       Facebook
                     </a>
                   </Button>
@@ -217,11 +220,11 @@ export default function PublicBlogPostPage() {
                     className="gap-2"
                   >
                     {copied ? (
-                      <Check className="h-4 w-4 text-green-600" />
+                      <Check className="h-4 w-4 text-primary" />
                     ) : (
                       <Copy className="h-4 w-4" />
                     )}
-                    {copied ? "Copiado!" : "Copiar link"}
+                    {copied ? "Copiado!" : "Copiar link para compartilhar"}
                   </Button>
                 </div>
               </div>
