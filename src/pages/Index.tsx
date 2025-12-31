@@ -163,6 +163,9 @@ const Index = () => {
           />
         </section>
 
+        {/* Recent Blog Posts - Full Width */}
+        <RecentBlogPosts limit={4} />
+
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {/* Courses in Progress */}
@@ -197,9 +200,6 @@ const Index = () => {
 
           {/* Sidebar */}
           <aside className="space-y-4 sm:space-y-6">
-            {/* Recent Blog Posts */}
-            <RecentBlogPosts limit={3} />
-
             {/* Calendar */}
             <CalendarWidget events={calendarEvents} />
 
