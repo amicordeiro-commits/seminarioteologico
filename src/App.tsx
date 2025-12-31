@@ -227,22 +227,9 @@ const AppRoutes = () => {
             </ProtectedRoute>
           }
         />
-        <Route
-          path="/blog"
-          element={
-            <ProtectedRoute>
-              <BlogPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/blog/:id"
-          element={
-            <ProtectedRoute>
-              <BlogPostPage />
-            </ProtectedRoute>
-          }
-        />
+        {/* Public Blog Routes */}
+        <Route path="/blog" element={<BlogPage />} />
+        <Route path="/blog/:id" element={<BlogPostPage />} />
         <Route
           path="/forum"
           element={
