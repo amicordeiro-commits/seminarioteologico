@@ -64,8 +64,9 @@ Deno.serve(async (req) => {
       ? originParam
       : null;
 
-    // In production, set SITE_URL in backend secrets to your real domain.
-    const siteUrl = safeOrigin || Deno.env.get("SITE_URL") || "https://seminarioteologico.app";
+    // Use the origin from the frontend, or fallback to the Lovable domain
+    // This ensures links work even if custom domain DNS is not configured
+    const siteUrl = safeOrigin || Deno.env.get("SITE_URL") || "https://hjorsjoaykgnsmbxgnyn.lovable.app";
 
     // Public route (no login wall)
     const redirectUrl = `${siteUrl}/p/blog/${postId}`;
