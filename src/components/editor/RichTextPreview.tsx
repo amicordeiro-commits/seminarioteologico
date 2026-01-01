@@ -23,28 +23,59 @@ function unwrapTextAlignBlock(text: string): { align: CSSProperties["textAlign"]
 
 function stripInlineMarkup(text: string): string {
   return (text || "")
-    .replace(/<span style="[^"]+">/gi, "")
-    .replace(/<\/span>/gi, "")
-    .replace(/<u>/gi, "")
-    .replace(/<\/u>/gi, "")
+    .replace(/<[^>]*>/g, " ")
     .replace(/\*\*/g, "")
-    .replace(/\*(?!\*)/g, "");
+    .replace(/\*(?!\*)/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+// Remove todas as tags HTML e retorna apenas o texto limpo
+function stripAllHtmlTags(html: string): string {
+  if (!html) return "";
+  let text = html.replace(/<[^>]*>/g, " ");
+  text = text.replace(/&nbsp;/gi, " ");
+  text = text.replace(/&amp;/gi, "&");
+  text = text.replace(/&lt;/gi, "<");
+  text = text.replace(/&gt;/gi, ">");
+  text = text.replace(/&quot;/gi, '"');
+  text = text.replace(/&#39;/gi, "'");
+  text = text.replace(/\s+/g, " ");
+  return text.trim();
 }
 
 function renderInline(text: string): ReactNode {
   if (!text) return null;
 
+  // Se o conteúdo tem muitas tags HTML complexas, limpa tudo
+  const htmlTagCount = (text.match(/<[^>]+>/g) || []).length;
+  if (htmlTagCount > 10) {
+    return stripAllHtmlTags(text);
+  }
+
   const nodes: ReactNode[] = [];
   let remaining = text;
 
   const patterns = [
-    { type: "span" as const, re: /<span style="([^"]+)">([\s\S]*?)<\/span>/ },
+    { type: "div" as const, re: /<div[^>]*>([\s\S]*?)<\/div>/ },
+    { type: "font" as const, re: /<font[^>]*>([\s\S]*?)<\/font>/ },
+    { type: "p" as const, re: /<p[^>]*>([\s\S]*?)<\/p>/ },
+    { type: "br" as const, re: /<br\s*\/?>/ },
+    { type: "span" as const, re: /<span[^>]*>([\s\S]*?)<\/span>/ },
     { type: "u" as const, re: /<u>([\s\S]*?)<\/u>/ },
+    { type: "b" as const, re: /<b>([\s\S]*?)<\/b>/ },
+    { type: "strong" as const, re: /<strong>([\s\S]*?)<\/strong>/ },
+    { type: "i" as const, re: /<i>([\s\S]*?)<\/i>/ },
+    { type: "em" as const, re: /<em>([\s\S]*?)<\/em>/ },
     { type: "bold" as const, re: /\*\*([\s\S]+?)\*\*/ },
     { type: "italic" as const, re: /\*(?!\*)([\s\S]+?)\*(?!\*)/ },
   ];
 
-  while (remaining.length) {
+  let iterations = 0;
+  const maxIterations = 500;
+
+  while (remaining.length && iterations < maxIterations) {
+    iterations++;
     let best:
       | { type: (typeof patterns)[number]["type"]; index: number; match: RegExpMatchArray }
       | null = null;
@@ -56,46 +87,64 @@ function renderInline(text: string): ReactNode {
     }
 
     if (!best) {
-      nodes.push(remaining);
+      nodes.push(stripAllHtmlTags(remaining));
       break;
     }
 
-    if (best.index > 0) nodes.push(remaining.slice(0, best.index));
+    if (best.index > 0) {
+      nodes.push(stripAllHtmlTags(remaining.slice(0, best.index)));
+    }
 
     const full = best.match[0];
+    const inner = best.match[1] ?? "";
 
-    if (best.type === "span") {
-      const style = parseSpanStyle(best.match[1]);
-      const inner = best.match[2] ?? "";
-      nodes.push(
-        <span key={nodes.length} style={style}>
-          {renderInline(inner)}
-        </span>,
-      );
-    } else if (best.type === "u") {
-      const inner = best.match[1] ?? "";
-      nodes.push(
-        <u key={nodes.length} className="underline decoration-primary/50 underline-offset-2">
-          {renderInline(inner)}
-        </u>
-      );
-    } else if (best.type === "bold") {
-      const inner = best.match[1] ?? "";
-      nodes.push(
-        <strong key={nodes.length} className="font-bold text-foreground">
-          {renderInline(inner)}
-        </strong>
-      );
-    } else if (best.type === "italic") {
-      const inner = best.match[1] ?? "";
-      nodes.push(
-        <em key={nodes.length} className="italic">
-          {renderInline(inner)}
-        </em>
-      );
+    switch (best.type) {
+      case "div":
+      case "p":
+        const divContent = renderInline(inner);
+        if (divContent) {
+          nodes.push(<span key={nodes.length}>{divContent} </span>);
+        }
+        break;
+      case "font":
+      case "span":
+        nodes.push(<span key={nodes.length}>{renderInline(inner)}</span>);
+        break;
+      case "br":
+        nodes.push(" ");
+        break;
+      case "u":
+        nodes.push(
+          <u key={nodes.length} className="underline decoration-primary/50 underline-offset-2">
+            {renderInline(inner)}
+          </u>
+        );
+        break;
+      case "b":
+      case "strong":
+      case "bold":
+        nodes.push(
+          <strong key={nodes.length} className="font-bold text-foreground">
+            {renderInline(inner)}
+          </strong>
+        );
+        break;
+      case "i":
+      case "em":
+      case "italic":
+        nodes.push(
+          <em key={nodes.length} className="italic">
+            {renderInline(inner)}
+          </em>
+        );
+        break;
     }
 
     remaining = remaining.slice(best.index + full.length);
+  }
+
+  if (iterations >= maxIterations && remaining.length) {
+    nodes.push(stripAllHtmlTags(remaining));
   }
 
   return nodes.length === 1 ? nodes[0] : <>{nodes}</>;
