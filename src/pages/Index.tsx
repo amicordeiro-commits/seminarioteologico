@@ -5,7 +5,7 @@ import { ActivityTimeline } from "@/components/dashboard/ActivityTimeline";
 import { CalendarWidget } from "@/components/dashboard/CalendarWidget";
 import { RecentBlogPosts } from "@/components/dashboard/RecentBlogPosts";
 import { useUpcomingEvents } from "@/hooks/useCalendarEvents";
-import { BookOpen, Clock, Trophy, TrendingUp, ArrowRight, Cross, BookMarked, Loader2, GraduationCap, FileText, Award, Download } from "lucide-react";
+import { BookOpen, Clock, Trophy, TrendingUp, ArrowRight, Cross, BookMarked, Loader2, GraduationCap, FileText, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import heroBanner from "@/assets/hero-theology.jpg";
@@ -276,7 +276,7 @@ const Index = () => {
                     </span>
                     <Button variant="ghost" size="sm" asChild className="h-8 px-2">
                       <Link to="/certificates">
-                        <Download className="w-4 h-4" />
+                        <Award className="w-4 h-4" />
                       </Link>
                     </Button>
                   </div>

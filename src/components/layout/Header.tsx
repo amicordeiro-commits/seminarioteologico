@@ -12,7 +12,7 @@ import {
 import { useAuth } from "@/hooks/useAuth";
 import { useUserRole } from "@/hooks/useUserRole";
 import { useProfile } from "@/hooks/useProfile";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
@@ -20,12 +20,44 @@ interface HeaderProps {
   isSidebarCollapsed?: boolean;
 }
 
+// Map routes to page titles
+const getPageTitle = (pathname: string): { title: string; subtitle: string } => {
+  const routes: Record<string, { title: string; subtitle: string }> = {
+    '/': { title: 'Portal do Aluno', subtitle: 'Seminário Teológico' },
+    '/courses': { title: 'Cursos', subtitle: 'Explore nossos cursos' },
+    '/bible': { title: 'Bíblia de Estudo', subtitle: 'ESV com comentários' },
+    '/devotional': { title: 'Devocional', subtitle: 'Leitura diária' },
+    '/library': { title: 'Biblioteca', subtitle: 'Materiais de estudo' },
+    '/calendar': { title: 'Calendário', subtitle: 'Eventos e atividades' },
+    '/progress': { title: 'Progresso', subtitle: 'Sua jornada' },
+    '/certificates': { title: 'Certificados', subtitle: 'Suas conquistas' },
+    '/profile': { title: 'Perfil', subtitle: 'Suas informações' },
+    '/settings': { title: 'Configurações', subtitle: 'Preferências' },
+    '/messages': { title: 'Mensagens', subtitle: 'Comunicação' },
+    '/community': { title: 'Comunidade', subtitle: 'Fórum de discussão' },
+    '/forum': { title: 'Fórum', subtitle: 'Discussões teológicas' },
+    '/finance': { title: 'Financeiro', subtitle: 'Pagamentos' },
+    '/transcript': { title: 'Histórico', subtitle: 'Acadêmico' },
+    '/blog': { title: 'Blog', subtitle: 'Artigos e reflexões' },
+  };
+
+  // Check for course detail page
+  if (pathname.startsWith('/course/')) {
+    return { title: 'Detalhes do Curso', subtitle: 'Aulas e conteúdo' };
+  }
+
+  return routes[pathname] || { title: 'Portal do Aluno', subtitle: 'Seminário Teológico' };
+};
+
 export function Header({ isSidebarCollapsed }: HeaderProps) {
   const { user, signOut } = useAuth();
   const { isAdmin } = useUserRole();
   const { profile } = useProfile();
   const navigate = useNavigate();
+  const location = useLocation();
   const { toast } = useToast();
+
+  const { title, subtitle } = getPageTitle(location.pathname);
 
   const handleSignOut = async () => {
     try {
@@ -51,8 +83,8 @@ export function Header({ isSidebarCollapsed }: HeaderProps) {
       <div className="flex items-center justify-between h-14 sm:h-16 px-3 sm:px-6">
         {/* Page Title - Dynamic based on route */}
         <div className="lg:ml-0 ml-12">
-          <h1 className="text-base sm:text-xl font-serif font-semibold text-foreground truncate max-w-[150px] sm:max-w-none">Portal do Aluno</h1>
-          <p className="text-xs sm:text-sm text-muted-foreground font-sans hidden xs:block">Seminário Teológico</p>
+          <h1 className="text-base sm:text-xl font-serif font-semibold text-foreground truncate max-w-[150px] sm:max-w-none">{title}</h1>
+          <p className="text-xs sm:text-sm text-muted-foreground font-sans hidden xs:block">{subtitle}</p>
         </div>
 
         {/* Right Side */}
