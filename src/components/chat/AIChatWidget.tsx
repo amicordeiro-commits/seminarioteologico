@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -29,7 +30,8 @@ interface AIChatWidgetProps {
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/ai-chat`;
 
-export function AIChatWidget({ externalOpen, onExternalOpenChange }: AIChatWidgetProps) {
+const AIChatWidget = React.forwardRef<HTMLDivElement, AIChatWidgetProps>(
+  ({ externalOpen, onExternalOpenChange }, ref) => {
   const [internalOpen, setInternalOpen] = useState(false);
   const isOpen = externalOpen !== undefined ? externalOpen : internalOpen;
   
@@ -356,4 +358,8 @@ export function AIChatWidget({ externalOpen, onExternalOpenChange }: AIChatWidge
       )}
     </Card>
   );
-}
+});
+
+AIChatWidget.displayName = "AIChatWidget";
+
+export { AIChatWidget };
