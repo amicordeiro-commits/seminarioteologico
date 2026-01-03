@@ -1,4 +1,4 @@
-import { Bell, User, LogOut, Settings, Award, Shield } from "lucide-react";
+import { Bell, User, LogOut, Settings, Award, Shield, Check, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -9,12 +9,16 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { useAuth } from "@/hooks/useAuth";
 import { useUserRole } from "@/hooks/useUserRole";
 import { useProfile } from "@/hooks/useProfile";
+import { useNotifications } from "@/hooks/useNotifications";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { formatDistanceToNow } from "date-fns";
+import { ptBR } from "date-fns/locale";
 
 interface HeaderProps {
   isSidebarCollapsed?: boolean;
@@ -53,6 +57,7 @@ export function Header({ isSidebarCollapsed }: HeaderProps) {
   const { user, signOut } = useAuth();
   const { isAdmin } = useUserRole();
   const { profile } = useProfile();
+  const { notifications, unreadCount, markAsRead, markAllAsRead, deleteNotification } = useNotifications();
   const navigate = useNavigate();
   const location = useLocation();
   const { toast } = useToast();
@@ -65,13 +70,18 @@ export function Header({ isSidebarCollapsed }: HeaderProps) {
     } catch (error) {
       console.error("Logout error:", error);
     }
-    // Always show toast and navigate, even if signOut had issues
     toast({
       title: "Até logo!",
       description: "Você saiu da sua conta.",
     });
-    // Force navigation to auth page
     window.location.href = "/auth";
+  };
+
+  const handleNotificationClick = (notification: typeof notifications[0]) => {
+    markAsRead(notification.id);
+    if (notification.link) {
+      navigate(notification.link);
+    }
   };
 
   const userName = profile?.full_name || user?.user_metadata?.full_name || user?.email?.split('@')[0] || 'Aluno';
@@ -93,12 +103,77 @@ export function Header({ isSidebarCollapsed }: HeaderProps) {
           <ThemeToggle />
 
           {/* Notifications */}
-          <Button variant="ghost" size="icon" className="relative h-8 w-8 sm:h-10 sm:w-10">
-            <Bell className="w-4 h-4 sm:w-5 sm:h-5" />
-            <span className="absolute -top-1 -right-1 w-4 h-4 bg-accent text-accent-foreground text-[10px] font-bold rounded-full flex items-center justify-center">
-              3
-            </span>
-          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon" className="relative h-8 w-8 sm:h-10 sm:w-10">
+                <Bell className="w-4 h-4 sm:w-5 sm:h-5" />
+                {unreadCount > 0 && (
+                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-accent text-accent-foreground text-[10px] font-bold rounded-full flex items-center justify-center">
+                    {unreadCount > 9 ? '9+' : unreadCount}
+                  </span>
+                )}
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-80 z-50">
+              <div className="flex items-center justify-between px-3 py-2">
+                <DropdownMenuLabel className="p-0">Notificações</DropdownMenuLabel>
+                {unreadCount > 0 && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-6 text-xs"
+                    onClick={() => markAllAsRead()}
+                  >
+                    <Check className="w-3 h-3 mr-1" />
+                    Marcar todas
+                  </Button>
+                )}
+              </div>
+              <DropdownMenuSeparator />
+              <ScrollArea className="h-[300px]">
+                {notifications.length === 0 ? (
+                  <div className="p-4 text-center text-muted-foreground text-sm">
+                    Nenhuma notificação
+                  </div>
+                ) : (
+                  notifications.map((notification) => (
+                    <div
+                      key={notification.id}
+                      className={`p-3 border-b border-border last:border-0 cursor-pointer hover:bg-muted/50 transition-colors ${
+                        !notification.is_read ? 'bg-muted/30' : ''
+                      }`}
+                      onClick={() => handleNotificationClick(notification)}
+                    >
+                      <div className="flex items-start justify-between gap-2">
+                        <div className="flex-1 min-w-0">
+                          <p className={`text-sm font-medium truncate ${!notification.is_read ? 'text-foreground' : 'text-muted-foreground'}`}>
+                            {notification.title}
+                          </p>
+                          <p className="text-xs text-muted-foreground line-clamp-2 mt-0.5">
+                            {notification.message}
+                          </p>
+                          <p className="text-[10px] text-muted-foreground mt-1">
+                            {formatDistanceToNow(new Date(notification.created_at), { addSuffix: true, locale: ptBR })}
+                          </p>
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-6 w-6 shrink-0"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            deleteNotification(notification.id);
+                          }}
+                        >
+                          <Trash2 className="w-3 h-3 text-muted-foreground" />
+                        </Button>
+                      </div>
+                    </div>
+                  ))
+                )}
+              </ScrollArea>
+            </DropdownMenuContent>
+          </DropdownMenu>
 
           {/* User Menu */}
           <DropdownMenu>
