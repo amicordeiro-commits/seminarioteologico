@@ -118,164 +118,168 @@ interface InterlinearWordProps {
   fontSize: number;
 }
 
-function InterlinearWord({ word, getDefinition, fontSize }: InterlinearWordProps) {
-  const hasStrongs = word.strongsNumbers.length > 0;
-  
-  // Get definitions for all Strong's numbers (includes Portuguese from offline file)
-  const definitions = word.strongsNumbers.map(num => ({
-    number: num,
-    ...getDefinition(num)
-  })).filter(d => d.word || d.definition);
+const InterlinearWord = React.forwardRef<HTMLButtonElement, InterlinearWordProps>(
+  ({ word, getDefinition, fontSize }, ref) => {
+    const hasStrongs = word.strongsNumbers.length > 0;
+    
+    // Get definitions for all Strong's numbers (includes Portuguese from offline file)
+    const definitions = word.strongsNumbers.map(num => ({
+      number: num,
+      ...getDefinition(num)
+    })).filter(d => d.word || d.definition);
 
-  if (!hasStrongs) {
-    return (
-      <span 
-        className={`inline-block px-1 py-0.5 ${word.isItalic ? 'italic text-muted-foreground' : ''}`}
-        style={{ fontSize: `${fontSize - 2}px` }}
-      >
-        {word.text}
-      </span>
-    );
-  }
-
-  // Get Portuguese translation from offline data
-  const firstDef = definitions[0];
-  const portugueseWord = firstDef?.portugueseWord;
-
-  return (
-    <Popover>
-      <PopoverTrigger asChild>
-        <button
-          className={`
-            inline-flex flex-col items-center px-1.5 py-1 rounded
-            hover:bg-primary/10 transition-colors cursor-pointer
-            border border-transparent hover:border-primary/20
-            ${word.isItalic ? 'italic' : ''}
-          `}
+    if (!hasStrongs) {
+      return (
+        <span 
+          className={`inline-block px-1 py-0.5 ${word.isItalic ? 'italic text-muted-foreground' : ''}`}
+          style={{ fontSize: `${fontSize - 2}px` }}
         >
-          {/* Portuguese translation on top (from offline file) */}
-          {portugueseWord && (
-            <span className="text-green-600 dark:text-green-400 text-[10px] font-medium">
-              {portugueseWord}
-            </span>
-          )}
-          
-          {/* Original English word */}
-          <span 
-            className="text-foreground font-medium"
-            style={{ fontSize: `${fontSize - 2}px` }}
+          {word.text}
+        </span>
+      );
+    }
+
+    // Get Portuguese translation from offline data
+    const firstDef = definitions[0];
+    const portugueseWord = firstDef?.portugueseWord;
+
+    return (
+      <Popover>
+        <PopoverTrigger asChild>
+          <button
+            ref={ref}
+            className={`
+              inline-flex flex-col items-center px-1.5 py-1 rounded
+              hover:bg-primary/10 transition-colors cursor-pointer
+              border border-transparent hover:border-primary/20
+              ${word.isItalic ? 'italic' : ''}
+            `}
           >
-            {word.text}
-          </span>
-          
-          {/* Original language word (Hebrew/Greek) */}
-          {definitions[0]?.word && (
-            <span className="text-primary text-xs font-semibold">
-              {definitions[0].word}
-            </span>
-          )}
-          
-          {/* Transliteration */}
-          {definitions[0]?.transliteration && (
-            <span className="text-muted-foreground text-[10px] italic">
-              {definitions[0].transliteration}
-            </span>
-          )}
-          
-          {/* Strong's numbers */}
-          <div className="flex gap-0.5">
-            {word.strongsNumbers.map((num, i) => (
-              <span 
-                key={i}
-                className={`text-[9px] px-1 py-0.5 rounded ${
-                  num.startsWith('H') 
-                    ? 'bg-amber-500/20 text-amber-700 dark:text-amber-400' 
-                    : 'bg-blue-500/20 text-blue-700 dark:text-blue-400'
-                }`}
-              >
-                {num}
+            {/* Portuguese translation on top (from offline file) */}
+            {portugueseWord && (
+              <span className="text-green-600 dark:text-green-400 text-[10px] font-medium">
+                {portugueseWord}
               </span>
-            ))}
-          </div>
-        </button>
-      </PopoverTrigger>
-      <PopoverContent className="w-80" align="center">
-        <ScrollArea className="max-h-[300px]">
-          <div className="space-y-4">
-            {definitions.map((def, idx) => {
-              // Use Portuguese translations from offline file
-              const displayDef = def.portugueseDefinition || def.definition;
-              const displayUsage = def.portugueseUsage || def.usage;
-              const hasPtTranslation = !!def.portugueseDefinition;
-              
-              return (
-                <div key={idx} className="space-y-2">
-                  {definitions.length > 1 && (
-                    <div className="border-b pb-1">
-                      <Badge 
-                        variant="outline" 
-                        className={def.number.startsWith('H') 
-                          ? 'bg-amber-500/10 text-amber-700 dark:text-amber-400' 
-                          : 'bg-blue-500/10 text-blue-700 dark:text-blue-400'}
-                      >
+            )}
+            
+            {/* Original English word */}
+            <span 
+              className="text-foreground font-medium"
+              style={{ fontSize: `${fontSize - 2}px` }}
+            >
+              {word.text}
+            </span>
+            
+            {/* Original language word (Hebrew/Greek) */}
+            {definitions[0]?.word && (
+              <span className="text-primary text-xs font-semibold">
+                {definitions[0].word}
+              </span>
+            )}
+            
+            {/* Transliteration */}
+            {definitions[0]?.transliteration && (
+              <span className="text-muted-foreground text-[10px] italic">
+                {definitions[0].transliteration}
+              </span>
+            )}
+            
+            {/* Strong's numbers */}
+            <div className="flex gap-0.5">
+              {word.strongsNumbers.map((num, i) => (
+                <span 
+                  key={i}
+                  className={`text-[9px] px-1 py-0.5 rounded ${
+                    num.startsWith('H') 
+                      ? 'bg-amber-500/20 text-amber-700 dark:text-amber-400' 
+                      : 'bg-blue-500/20 text-blue-700 dark:text-blue-400'
+                  }`}
+                >
+                  {num}
+                </span>
+              ))}
+            </div>
+          </button>
+        </PopoverTrigger>
+        <PopoverContent className="w-80" align="center">
+          <ScrollArea className="max-h-[300px]">
+            <div className="space-y-4">
+              {definitions.map((def, idx) => {
+                // Use Portuguese translations from offline file
+                const displayDef = def.portugueseDefinition || def.definition;
+                const displayUsage = def.portugueseUsage || def.usage;
+                const hasPtTranslation = !!def.portugueseDefinition;
+                
+                return (
+                  <div key={idx} className="space-y-2">
+                    {definitions.length > 1 && (
+                      <div className="border-b pb-1">
+                        <Badge 
+                          variant="outline" 
+                          className={def.number.startsWith('H') 
+                            ? 'bg-amber-500/10 text-amber-700 dark:text-amber-400' 
+                            : 'bg-blue-500/10 text-blue-700 dark:text-blue-400'}
+                        >
+                          {def.number}
+                        </Badge>
+                      </div>
+                    )}
+                    
+                    {/* Original Word & Transliteration */}
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="text-2xl font-semibold text-primary">{def.word}</span>
+                      <span className="text-muted-foreground italic">{def.transliteration}</span>
+                      <Badge variant="secondary" className="text-xs">
                         {def.number}
                       </Badge>
+                      {hasPtTranslation && (
+                        <Badge variant="outline" className="text-[10px] py-0 bg-green-500/10 text-green-700 dark:text-green-400">
+                          PT
+                        </Badge>
+                      )}
                     </div>
-                  )}
-                  
-                  {/* Original Word & Transliteration */}
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <span className="text-2xl font-semibold text-primary">{def.word}</span>
-                    <span className="text-muted-foreground italic">{def.transliteration}</span>
-                    <Badge variant="secondary" className="text-xs">
-                      {def.number}
-                    </Badge>
-                    {hasPtTranslation && (
-                      <Badge variant="outline" className="text-[10px] py-0 bg-green-500/10 text-green-700 dark:text-green-400">
-                        PT
-                      </Badge>
+                    
+                    {/* Portuguese Word Translation */}
+                    {def.portugueseWord && (
+                      <div className="text-sm bg-green-500/10 p-2 rounded">
+                        <span className="font-medium text-green-700 dark:text-green-400">Tradução:</span>
+                        <span className="ml-2 font-semibold">{def.portugueseWord}</span>
+                      </div>
+                    )}
+                    
+                    {/* Part of Speech */}
+                    {def.partOfSpeech && (
+                      <div className="text-xs text-muted-foreground">
+                        <span className="font-medium">Classe:</span> {def.partOfSpeech}
+                      </div>
+                    )}
+                    
+                    {/* Definition */}
+                    {displayDef && (
+                      <div className="text-sm">
+                        <span className="font-medium text-primary">Definição:</span>
+                        <p className="mt-1 text-foreground">{displayDef}</p>
+                      </div>
+                    )}
+                    
+                    {/* Usage */}
+                    {displayUsage && (
+                      <div className="text-sm bg-muted/50 p-2 rounded">
+                        <span className="font-medium text-primary">Uso:</span>
+                        <p className="mt-1 text-muted-foreground">{displayUsage}</p>
+                      </div>
                     )}
                   </div>
-                  
-                  {/* Portuguese Word Translation */}
-                  {def.portugueseWord && (
-                    <div className="text-sm bg-green-500/10 p-2 rounded">
-                      <span className="font-medium text-green-700 dark:text-green-400">Tradução:</span>
-                      <span className="ml-2 font-semibold">{def.portugueseWord}</span>
-                    </div>
-                  )}
-                  
-                  {/* Part of Speech */}
-                  {def.partOfSpeech && (
-                    <div className="text-xs text-muted-foreground">
-                      <span className="font-medium">Classe:</span> {def.partOfSpeech}
-                    </div>
-                  )}
-                  
-                  {/* Definition */}
-                  {displayDef && (
-                    <div className="text-sm">
-                      <span className="font-medium text-primary">Definição:</span>
-                      <p className="mt-1 text-foreground">{displayDef}</p>
-                    </div>
-                  )}
-                  
-                  {/* Usage */}
-                  {displayUsage && (
-                    <div className="text-sm bg-muted/50 p-2 rounded">
-                      <span className="font-medium text-primary">Uso:</span>
-                      <p className="mt-1 text-muted-foreground">{displayUsage}</p>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </ScrollArea>
-      </PopoverContent>
-    </Popover>
-  );
-}
+                );
+              })}
+            </div>
+          </ScrollArea>
+        </PopoverContent>
+      </Popover>
+    );
+  }
+);
+InterlinearWord.displayName = 'InterlinearWord';
 
 // Component for displaying a full chapter in interlinear mode
 interface InterlinearChapterProps {
