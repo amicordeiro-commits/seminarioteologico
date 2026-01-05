@@ -1,4 +1,4 @@
-import { Bell, User, LogOut, Settings, Award, Shield, Check, Trash2 } from "lucide-react";
+import { Bell, User, LogOut, Settings, Award, Shield, Check, Trash2, CheckCircle, AlertTriangle, XCircle, Info, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -51,6 +51,47 @@ const getPageTitle = (pathname: string): { title: string; subtitle: string } => 
   }
 
   return routes[pathname] || { title: 'Portal do Aluno', subtitle: 'Seminário Teológico' };
+};
+
+// Get notification style based on type
+const getNotificationStyle = (type: string) => {
+  switch (type) {
+    case 'success':
+      return { 
+        icon: CheckCircle, 
+        color: 'text-green-500', 
+        bg: 'bg-green-500/10',
+        border: 'border-l-green-500'
+      };
+    case 'warning':
+      return { 
+        icon: AlertTriangle, 
+        color: 'text-amber-500', 
+        bg: 'bg-amber-500/10',
+        border: 'border-l-amber-500'
+      };
+    case 'error':
+      return { 
+        icon: XCircle, 
+        color: 'text-red-500', 
+        bg: 'bg-red-500/10',
+        border: 'border-l-red-500'
+      };
+    case 'message':
+      return { 
+        icon: MessageSquare, 
+        color: 'text-blue-500', 
+        bg: 'bg-blue-500/10',
+        border: 'border-l-blue-500'
+      };
+    default:
+      return { 
+        icon: Info, 
+        color: 'text-primary', 
+        bg: 'bg-primary/10',
+        border: 'border-l-primary'
+      };
+  }
 };
 
 export function Header({ isSidebarCollapsed }: HeaderProps) {
@@ -108,7 +149,7 @@ export function Header({ isSidebarCollapsed }: HeaderProps) {
               <Button variant="ghost" size="icon" className="relative h-8 w-8 sm:h-10 sm:w-10">
                 <Bell className="w-4 h-4 sm:w-5 sm:h-5" />
                 {unreadCount > 0 && (
-                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-accent text-accent-foreground text-[10px] font-bold rounded-full flex items-center justify-center">
+                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-accent text-accent-foreground text-[10px] font-bold rounded-full flex items-center justify-center animate-pulse">
                     {unreadCount > 9 ? '9+' : unreadCount}
                   </span>
                 )}
@@ -133,43 +174,52 @@ export function Header({ isSidebarCollapsed }: HeaderProps) {
               <ScrollArea className="h-[300px]">
                 {notifications.length === 0 ? (
                   <div className="p-4 text-center text-muted-foreground text-sm">
+                    <Bell className="w-8 h-8 mx-auto mb-2 opacity-50" />
                     Nenhuma notificação
                   </div>
                 ) : (
-                  notifications.map((notification) => (
-                    <div
-                      key={notification.id}
-                      className={`p-3 border-b border-border last:border-0 cursor-pointer hover:bg-muted/50 transition-colors ${
-                        !notification.is_read ? 'bg-muted/30' : ''
-                      }`}
-                      onClick={() => handleNotificationClick(notification)}
-                    >
-                      <div className="flex items-start justify-between gap-2">
-                        <div className="flex-1 min-w-0">
-                          <p className={`text-sm font-medium truncate ${!notification.is_read ? 'text-foreground' : 'text-muted-foreground'}`}>
-                            {notification.title}
-                          </p>
-                          <p className="text-xs text-muted-foreground line-clamp-2 mt-0.5">
-                            {notification.message}
-                          </p>
-                          <p className="text-[10px] text-muted-foreground mt-1">
-                            {formatDistanceToNow(new Date(notification.created_at), { addSuffix: true, locale: ptBR })}
-                          </p>
+                  notifications.map((notification) => {
+                    const style = getNotificationStyle(notification.type);
+                    const IconComponent = style.icon;
+                    
+                    return (
+                      <div
+                        key={notification.id}
+                        className={`p-3 border-b border-border last:border-0 cursor-pointer hover:bg-muted/50 transition-colors border-l-2 ${style.border} ${
+                          !notification.is_read ? style.bg : ''
+                        }`}
+                        onClick={() => handleNotificationClick(notification)}
+                      >
+                        <div className="flex items-start gap-3">
+                          <div className={`w-8 h-8 rounded-full ${style.bg} flex items-center justify-center shrink-0`}>
+                            <IconComponent className={`w-4 h-4 ${style.color}`} />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className={`text-sm font-medium truncate ${!notification.is_read ? 'text-foreground' : 'text-muted-foreground'}`}>
+                              {notification.title}
+                            </p>
+                            <p className="text-xs text-muted-foreground line-clamp-2 mt-0.5">
+                              {notification.message}
+                            </p>
+                            <p className="text-[10px] text-muted-foreground mt-1">
+                              {formatDistanceToNow(new Date(notification.created_at), { addSuffix: true, locale: ptBR })}
+                            </p>
+                          </div>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="h-6 w-6 shrink-0 opacity-0 group-hover:opacity-100 hover:opacity-100"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              deleteNotification(notification.id);
+                            }}
+                          >
+                            <Trash2 className="w-3 h-3 text-muted-foreground" />
+                          </Button>
                         </div>
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          className="h-6 w-6 shrink-0"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            deleteNotification(notification.id);
-                          }}
-                        >
-                          <Trash2 className="w-3 h-3 text-muted-foreground" />
-                        </Button>
                       </div>
-                    </div>
-                  ))
+                    );
+                  })
                 )}
               </ScrollArea>
             </DropdownMenuContent>

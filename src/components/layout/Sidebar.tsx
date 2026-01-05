@@ -20,8 +20,10 @@ import {
   Newspaper,
   DollarSign,
   GraduationCap,
+  Sparkles,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import { getDailyVerse } from "@/hooks/useDevotionalOfDay";
 
 const navItems = [
   { icon: Home, label: "Início", path: "/" },
@@ -46,6 +48,9 @@ export function Sidebar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+
+  // Get daily verse - memoized to only change once per day
+  const dailyVerse = useMemo(() => getDailyVerse(), []);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -97,18 +102,21 @@ export function Sidebar() {
           </Link>
         </div>
 
-        {/* Daily Verse - Hidden on small screens when open for better UX */}
+        {/* Daily Verse - Dynamic */}
         {!isCollapsed && (
-          <div className="hidden sm:block p-4 mx-4 mt-4 rounded-lg bg-sidebar-accent/50 border border-sidebar-border">
+          <Link 
+            to="/devotional" 
+            className="hidden sm:block p-4 mx-4 mt-4 rounded-lg bg-sidebar-accent/50 border border-sidebar-border hover:bg-sidebar-accent/70 transition-colors group"
+          >
             <div className="flex items-center gap-2 mb-2">
-              <BookMarked className="w-4 h-4 text-sidebar-primary" />
+              <Sparkles className="w-4 h-4 text-sidebar-primary group-hover:animate-pulse" />
               <span className="text-xs font-medium text-sidebar-primary">Versículo do Dia</span>
             </div>
             <p className="text-xs text-sidebar-foreground/80 italic leading-relaxed line-clamp-2">
-              "Lâmpada para os meus pés é a tua palavra..."
+              "{dailyVerse.text}"
             </p>
-            <p className="text-xs text-sidebar-foreground/60 mt-1 font-medium">Salmos 119:105</p>
-          </div>
+            <p className="text-xs text-sidebar-foreground/60 mt-1 font-medium">{dailyVerse.ref}</p>
+          </Link>
         )}
 
         {/* Search */}

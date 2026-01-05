@@ -117,6 +117,51 @@ export default defineConfig(({ mode }) => ({
               },
             },
           },
+          // Cache for blog images from Supabase Storage
+          {
+            urlPattern: /\/storage\/v1\/object\/public\/blog-images\/.*/i,
+            handler: "CacheFirst",
+            options: {
+              cacheName: "blog-images-cache",
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 60 * 60 * 24 * 7, // 7 days
+              },
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
+          },
+          // Cache for avatars from Supabase Storage
+          {
+            urlPattern: /\/storage\/v1\/object\/public\/avatars\/.*/i,
+            handler: "CacheFirst",
+            options: {
+              cacheName: "avatars-cache",
+              expiration: {
+                maxEntries: 100,
+                maxAgeSeconds: 60 * 60 * 24 * 7, // 7 days
+              },
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
+          },
+          // Cache for library materials from Supabase Storage
+          {
+            urlPattern: /\/storage\/v1\/object\/public\/library\/.*/i,
+            handler: "CacheFirst",
+            options: {
+              cacheName: "library-cache",
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 60 * 60 * 24 * 7, // 7 days
+              },
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
+          },
         ],
       },
     }),
