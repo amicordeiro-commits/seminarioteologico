@@ -27,12 +27,14 @@ import {
   EyeOff,
   Save,
   Loader2,
+  BellRing,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { useUserSettings } from "@/hooks/useUserSettings";
 import { useTheme } from "@/hooks/useTheme";
+import { requestPushPermission } from "@/hooks/useNotifications";
 
 export default function SettingsPage() {
   const { settings, isLoading, updateSettings, isUpdating } = useUserSettings();
@@ -99,6 +101,16 @@ export default function SettingsPage() {
   };
 
   const handleNotificationChange = async (key: keyof typeof notifications, value: boolean) => {
+    // If enabling push notifications, request permission first
+    if (key === 'push' && value) {
+      const granted = await requestPushPermission();
+      if (!granted) {
+        toast.error("Permissão de notificações negada. Habilite nas configurações do navegador.");
+        return;
+      }
+      toast.success("Notificações do navegador habilitadas!");
+    }
+
     setNotifications(prev => ({ ...prev, [key]: value }));
     
     const fieldMap: Record<string, string> = {
