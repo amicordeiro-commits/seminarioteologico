@@ -19,10 +19,10 @@ verify_jwt = false
 verify_jwt = false
 
 [functions.translate-strongs-batch]
-verify_jwt = true
+verify_jwt = false
 
 [functions.import-strongs-dictionary]
-verify_jwt = true
+verify_jwt = false
 
 [functions.generate-branded-pdf]
 verify_jwt = false
