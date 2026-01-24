@@ -21,7 +21,7 @@ import { InterlinearChapter } from '@/components/bible/InterlinearView';
 import { 
   ChevronLeft, ChevronRight, Search, Book, Loader2, BookOpen, ChevronDown, 
   MessageSquare, Heart, Bookmark, PenLine, Copy, List, Settings2, 
-  Type, Tag, X, Check, Languages, BookText
+  Type, Tag, X, Check, Languages, BookText, Download
 } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -418,6 +418,26 @@ export function BibleReader() {
                       <Label className="text-xs sm:text-sm">Modo Interlinear</Label>
                     </div>
                     <Switch checked={interlinearMode} onCheckedChange={setInterlinearMode} />
+                  </div>
+                  <div className="pt-3 border-t">
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="w-full gap-2 text-xs"
+                      onClick={() => {
+                        const link = document.createElement('a');
+                        link.href = '/bible/strongs-portuguese-full.json';
+                        link.download = 'strongs-portuguese-completo.json';
+                        link.click();
+                        toast.success('Download iniciado: Léxico Strong\'s Completo (14.540 entradas)');
+                      }}
+                    >
+                      <Download className="h-4 w-4" />
+                      Baixar Léxico Strong's Completo
+                    </Button>
+                    <p className="text-[10px] text-muted-foreground mt-1 text-center">
+                      14.540 entradas em Português (JSON)
+                    </p>
                   </div>
                 </div>
               </PopoverContent>
