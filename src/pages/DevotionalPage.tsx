@@ -29,6 +29,8 @@ import { toast } from "sonner";
 
 export default function DevotionalPage() {
   const { user } = useAuth();
+  const [selectedDevotionalIndex, setSelectedDevotionalIndex] = useState(0);
+  
   const { 
     todayDevotional, 
     recentDevotionals, 
@@ -36,6 +38,9 @@ export default function DevotionalPage() {
     isLoading, 
     saveNotes 
   } = useDevotionals();
+
+  // Active devotional = selected from recent list or today's
+  const activeDevotional = recentDevotionals[selectedDevotionalIndex] || todayDevotional;
   
   const { 
     isLiked, 
@@ -44,7 +49,7 @@ export default function DevotionalPage() {
     toggleBookmark,
     isTogglingLike,
     isTogglingBookmark 
-  } = useDevotionalInteraction(todayDevotional?.id);
+  } = useDevotionalInteraction(activeDevotional?.id);
   
   const { 
     currentStreak, 
@@ -63,10 +68,10 @@ export default function DevotionalPage() {
 
   // Record reading when devotional is viewed
   useEffect(() => {
-    if (todayDevotional && user) {
+    if (activeDevotional && user && selectedDevotionalIndex === 0) {
       recordReading().catch(console.error);
     }
-  }, [todayDevotional?.id, user?.id]);
+  }, [activeDevotional?.id, user?.id]);
 
   const getTimeOfDay = () => {
     const hour = new Date().getHours();
