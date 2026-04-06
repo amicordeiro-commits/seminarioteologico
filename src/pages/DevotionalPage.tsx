@@ -148,7 +148,7 @@ export default function DevotionalPage() {
     );
   }
 
-  if (!todayDevotional) {
+  if (!activeDevotional) {
     return (
       <AppLayout>
         <div className="p-6 lg:p-8 space-y-8 animate-fade-in">
@@ -166,7 +166,9 @@ export default function DevotionalPage() {
     );
   }
 
-  const formattedDate = format(new Date(todayDevotional.publish_date), "d 'de' MMMM, yyyy", { locale: ptBR });
+  const formattedDate = format(new Date(activeDevotional.publish_date), "d 'de' MMMM, yyyy", { locale: ptBR });
+  const canGoPrev = selectedDevotionalIndex < recentDevotionals.length - 1;
+  const canGoNext = selectedDevotionalIndex > 0;
 
   return (
     <AppLayout>
@@ -183,16 +185,33 @@ export default function DevotionalPage() {
             </h1>
           </div>
           <div className="flex items-center gap-2 flex-wrap">
-            <Button variant="outline" size="icon" className="h-8 w-8 sm:h-10 sm:w-10">
+            <Button
+              variant="outline"
+              size="icon"
+              className="h-8 w-8 sm:h-10 sm:w-10"
+              onClick={() => handleNavigate(1)}
+              disabled={!canGoPrev}
+            >
               <ChevronLeft className="w-4 h-4" />
             </Button>
             <div className="flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-card rounded-lg border border-border">
               <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary" />
               <span className="text-xs sm:text-sm font-medium">{formattedDate}</span>
             </div>
-            <Button variant="outline" size="icon" className="h-8 w-8 sm:h-10 sm:w-10">
+            <Button
+              variant="outline"
+              size="icon"
+              className="h-8 w-8 sm:h-10 sm:w-10"
+              onClick={() => handleNavigate(-1)}
+              disabled={!canGoNext}
+            >
               <ChevronRight className="w-4 h-4" />
             </Button>
+            {selectedDevotionalIndex > 0 && (
+              <Button variant="ghost" size="sm" className="text-xs" onClick={() => setSelectedDevotionalIndex(0)}>
+                Voltar ao de hoje
+              </Button>
+            )}
           </div>
         </div>
 
@@ -205,11 +224,16 @@ export default function DevotionalPage() {
               <div className="p-4 sm:p-6 lg:p-8">
                 <div className="flex items-start justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
                   <div className="min-w-0 flex-1">
-                    <Badge className="mb-2 sm:mb-3 bg-primary/10 text-primary text-xs">
-                      Devocional
-                    </Badge>
+                    <div className="flex items-center gap-2 mb-2 sm:mb-3">
+                      <Badge className="bg-primary/10 text-primary text-xs">
+                        Devocional
+                      </Badge>
+                      {selectedDevotionalIndex === 0 && (
+                        <Badge variant="outline" className="text-xs">Hoje</Badge>
+                      )}
+                    </div>
                     <h2 className="text-xl sm:text-2xl lg:text-3xl font-serif font-bold text-foreground leading-tight">
-                      {todayDevotional.title}
+                      {activeDevotional.title}
                     </h2>
                     <div className="flex items-center gap-3 sm:gap-4 mt-2 sm:mt-3 text-xs sm:text-sm text-muted-foreground">
                       <span className="flex items-center gap-1">
@@ -227,10 +251,10 @@ export default function DevotionalPage() {
                 <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-primary/10 mb-4 sm:mb-6">
                   <BookOpen className="w-6 h-6 sm:w-8 sm:h-8 text-primary mb-3 sm:mb-4" />
                   <blockquote className="text-base sm:text-lg lg:text-xl font-serif italic text-foreground leading-relaxed">
-                    "{todayDevotional.verse_text}"
+                    "{activeDevotional.verse_text}"
                   </blockquote>
                   <p className="text-primary font-semibold mt-3 sm:mt-4 text-sm sm:text-base">
-                    — {todayDevotional.verse_reference}
+                    — {activeDevotional.verse_reference}
                   </p>
                 </div>
 
@@ -240,18 +264,18 @@ export default function DevotionalPage() {
                     Reflexão
                   </h3>
                   <div className="text-sm sm:text-base text-muted-foreground leading-relaxed whitespace-pre-line">
-                    {todayDevotional.reflection}
+                    {activeDevotional.reflection}
                   </div>
                 </div>
 
                 {/* Prayer */}
-                {todayDevotional.prayer && (
+                {activeDevotional.prayer && (
                   <div className="mt-6 sm:mt-8 p-4 sm:p-6 bg-accent/5 rounded-lg sm:rounded-xl border border-accent/20">
                     <h3 className="text-base sm:text-lg font-serif font-semibold text-foreground mb-2 sm:mb-3 flex items-center gap-2">
                       🙏 Oração
                     </h3>
                     <p className="text-sm sm:text-base text-muted-foreground italic leading-relaxed">
-                      {todayDevotional.prayer}
+                      {activeDevotional.prayer}
                     </p>
                   </div>
                 )}
@@ -286,7 +310,12 @@ export default function DevotionalPage() {
                     )}
                     {isBookmarked ? "Salvo" : "Salvar"}
                   </Button>
-                  <Button variant="outline" size="sm" className="gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9"
+                    onClick={handleShareDevotional}
+                  >
                     <Share className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     <span className="hidden xs:inline">Compartilhar</span>
                   </Button>
@@ -301,7 +330,7 @@ export default function DevotionalPage() {
                 Minhas Anotações
               </h3>
               <Textarea
-                placeholder="Escreva suas reflexões pessoais sobre o devocional de hoje..."
+                placeholder="Escreva suas reflexões pessoais sobre este devocional..."
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
                 className="min-h-[100px] sm:min-h-[120px] resize-none text-sm sm:text-base"
@@ -342,13 +371,22 @@ export default function DevotionalPage() {
                 Devocionais Anteriores
               </h3>
               <div className="space-y-2 sm:space-y-3">
-                {recentDevotionals.slice(0, 4).map((dev) => (
+                {recentDevotionals.slice(0, 7).map((dev, index) => (
                   <button
                     key={dev.id}
-                    className="w-full text-left p-2.5 sm:p-3 rounded-lg hover:bg-accent transition-colors"
+                    onClick={() => setSelectedDevotionalIndex(index)}
+                    className={cn(
+                      "w-full text-left p-2.5 sm:p-3 rounded-lg transition-colors",
+                      selectedDevotionalIndex === index
+                        ? "bg-primary/10 border border-primary/20"
+                        : "hover:bg-accent"
+                    )}
                   >
                     <div className="flex items-start gap-2.5 sm:gap-3">
-                      <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                      <div className={cn(
+                        "w-8 h-8 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center shrink-0",
+                        selectedDevotionalIndex === index ? "bg-primary/20" : "bg-primary/10"
+                      )}>
                         <span className="text-[10px] sm:text-xs font-medium text-primary">
                           {format(new Date(dev.publish_date), "dd", { locale: ptBR })}
                         </span>
@@ -365,9 +403,6 @@ export default function DevotionalPage() {
                   </button>
                 ))}
               </div>
-              <Button variant="ghost" className="w-full mt-2 sm:mt-3 text-xs sm:text-sm h-8 sm:h-9">
-                Ver Todos
-              </Button>
             </div>
           </div>
         </div>
