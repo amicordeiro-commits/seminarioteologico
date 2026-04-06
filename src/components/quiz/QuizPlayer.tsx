@@ -11,7 +11,8 @@ import {
   Award,
   RotateCcw,
   RefreshCw,
-  AlertTriangle
+  AlertTriangle,
+  BookOpen
 } from "lucide-react";
 import { useQuiz, useQuizQuestions, useSubmitQuiz } from "@/hooks/useQuizzes";
 import { useQuizRecovery } from "@/hooks/useQuizRecovery";
@@ -166,81 +167,130 @@ export function QuizPlayer({ quizId, onComplete, onClose, isRecoveryMode = false
     const recoveryCheck = canTakeRecovery();
     
     return (
-      <div className="bg-card rounded-2xl border border-border p-8 max-w-2xl mx-auto text-center space-y-6">
-        <div
-          className={cn(
-            "w-24 h-24 rounded-full mx-auto flex items-center justify-center",
-            results.passed
-              ? "bg-green-500/10 text-green-500"
-              : "bg-destructive/10 text-destructive"
-          )}
-        >
-          {results.passed ? (
-            <Award className="w-12 h-12" />
-          ) : (
-            <XCircle className="w-12 h-12" />
-          )}
-        </div>
-
-        <div>
-          <h2 className="text-2xl font-serif font-bold text-foreground">
-            {results.passed ? "Parabéns!" : "Não foi dessa vez"}
-          </h2>
-          <p className="text-muted-foreground mt-2">
-            {results.passed
-              ? isRecoveryMode 
-                ? "Você passou na recuperação!"
-                : "Você completou o quiz com sucesso!"
-              : "Continue estudando e tente novamente."}
-          </p>
-          {isRecoveryMode && (
-            <Badge variant="secondary" className="mt-2">
-              <RefreshCw className="w-3 h-3 mr-1" />
-              Prova de Recuperação
-            </Badge>
-          )}
-        </div>
-
-        <div className="bg-background rounded-xl p-6 border border-border">
-          <p className="text-sm text-muted-foreground">Sua pontuação</p>
-          <p
+      <div className="max-w-3xl mx-auto space-y-6">
+        <div className="bg-card rounded-2xl border border-border p-8 text-center space-y-6">
+          <div
             className={cn(
-              "text-5xl font-bold",
-              results.passed ? "text-green-500" : "text-destructive"
+              "w-24 h-24 rounded-full mx-auto flex items-center justify-center",
+              results.passed
+                ? "bg-green-500/10 text-green-500"
+                : "bg-destructive/10 text-destructive"
             )}
           >
-            {results.score}%
-          </p>
-          <p className="text-sm text-muted-foreground mt-2">
-            Mínimo necessário: {passingScore}%
-          </p>
+            {results.passed ? (
+              <Award className="w-12 h-12" />
+            ) : (
+              <XCircle className="w-12 h-12" />
+            )}
+          </div>
+
+          <div>
+            <h2 className="text-2xl font-serif font-bold text-foreground">
+              {results.passed ? "Parabéns!" : "Não foi dessa vez"}
+            </h2>
+            <p className="text-muted-foreground mt-2">
+              {results.passed
+                ? isRecoveryMode 
+                  ? "Você passou na recuperação!"
+                  : "Você completou o quiz com sucesso!"
+                : "Revise as questões abaixo e tente novamente."}
+            </p>
+            {isRecoveryMode && (
+              <Badge variant="secondary" className="mt-2">
+                <RefreshCw className="w-3 h-3 mr-1" />
+                Prova de Recuperação
+              </Badge>
+            )}
+          </div>
+
+          <div className="bg-background rounded-xl p-6 border border-border">
+            <p className="text-sm text-muted-foreground">Sua pontuação</p>
+            <p
+              className={cn(
+                "text-5xl font-bold",
+                results.passed ? "text-green-500" : "text-destructive"
+              )}
+            >
+              {results.score}%
+            </p>
+            <p className="text-sm text-muted-foreground mt-2">
+              Mínimo necessário: {passingScore}%
+            </p>
+          </div>
+
+          <div className="flex gap-3 justify-center flex-wrap">
+            {!results.passed && recoverySettings?.allow_recovery && recoveryCheck.allowed && (
+              <Button 
+                onClick={handleStartRecovery} 
+                variant="outline" 
+                className="gap-2"
+                disabled={startingRecovery}
+              >
+                <RefreshCw className={cn("w-4 h-4", startingRecovery && "animate-spin")} />
+                Fazer Recuperação
+              </Button>
+            )}
+            {!results.passed && !recoveryCheck.allowed && recoverySettings?.allow_recovery && (
+              <div className="flex items-center gap-2 text-sm text-muted-foreground bg-muted px-3 py-2 rounded-lg">
+                <AlertTriangle className="w-4 h-4" />
+                {recoveryCheck.reason}
+              </div>
+            )}
+            {!results.passed && !isRecoveryMode && (
+              <Button onClick={handleRetry} variant="outline" className="gap-2">
+                <RotateCcw className="w-4 h-4" />
+                Tentar Novamente
+              </Button>
+            )}
+            <Button onClick={onClose}>Voltar ao Curso</Button>
+          </div>
         </div>
 
-        <div className="flex gap-3 justify-center flex-wrap">
-          {!results.passed && recoverySettings?.allow_recovery && recoveryCheck.allowed && (
-            <Button 
-              onClick={handleStartRecovery} 
-              variant="outline" 
-              className="gap-2"
-              disabled={startingRecovery}
-            >
-              <RefreshCw className={cn("w-4 h-4", startingRecovery && "animate-spin")} />
-              Fazer Recuperação
-            </Button>
-          )}
-          {!results.passed && !recoveryCheck.allowed && recoverySettings?.allow_recovery && (
-            <div className="flex items-center gap-2 text-sm text-muted-foreground bg-muted px-3 py-2 rounded-lg">
-              <AlertTriangle className="w-4 h-4" />
-              {recoveryCheck.reason}
-            </div>
-          )}
-          {!results.passed && !isRecoveryMode && (
-            <Button onClick={handleRetry} variant="outline" className="gap-2">
-              <RotateCcw className="w-4 h-4" />
-              Tentar Novamente
-            </Button>
-          )}
-          <Button onClick={onClose}>Voltar ao Curso</Button>
+        {/* Question Review */}
+        <div className="bg-card rounded-2xl border border-border overflow-hidden">
+          <div className="p-4 border-b border-border bg-muted/30">
+            <h3 className="font-serif font-semibold text-foreground flex items-center gap-2">
+              <BookOpen className="w-5 h-5 text-primary" />
+              Revisão das Questões
+            </h3>
+          </div>
+          <div className="divide-y divide-border">
+            {questions.map((question, qIndex) => {
+              const selectedOption = question.options.find(o => o.id === answers[question.id]);
+              const correctOption = question.options.find(o => o.is_correct);
+              const isCorrect = selectedOption?.is_correct;
+
+              return (
+                <div key={question.id} className="p-4 sm:p-6">
+                  <div className="flex items-start gap-3 mb-3">
+                    <span className={cn(
+                      "w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0",
+                      isCorrect ? "bg-green-500/10 text-green-600" : "bg-destructive/10 text-destructive"
+                    )}>
+                      {isCorrect ? "✓" : "✗"}
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <p className="font-medium text-foreground text-sm sm:text-base">
+                        {qIndex + 1}. {question.question_text}
+                      </p>
+                      <div className="mt-2 space-y-1.5">
+                        {selectedOption && !isCorrect && (
+                          <p className="text-sm text-destructive flex items-center gap-1.5">
+                            <XCircle className="w-3.5 h-3.5 shrink-0" />
+                            Sua resposta: {selectedOption.option_text}
+                          </p>
+                        )}
+                        <p className="text-sm text-green-600 flex items-center gap-1.5">
+                          <CheckCircle className="w-3.5 h-3.5 shrink-0" />
+                          Resposta correta: {correctOption?.option_text}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     );

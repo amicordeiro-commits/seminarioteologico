@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Link } from "react-router-dom";
 import { forwardRef } from "react";
+import { cn } from "@/lib/utils";
 
 export interface Course {
   id: string;
@@ -119,6 +120,20 @@ export const CourseCard = forwardRef<HTMLAnchorElement, CourseCardProps>(({ cour
         <Badge className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-card/90 text-card-foreground font-sans text-[10px] sm:text-xs">
           {course.category}
         </Badge>
+        {course.level && (
+          <Badge 
+            variant="outline" 
+            className={cn(
+              "absolute top-2 right-2 sm:top-3 sm:right-3 font-sans text-[10px] sm:text-xs",
+              course.level === "Iniciante" && "bg-green-500/90 text-white border-green-500",
+              course.level === "Intermediário" && "bg-amber-500/90 text-white border-amber-500",
+              course.level === "Avançado" && "bg-red-500/90 text-white border-red-500",
+              !["Iniciante", "Intermediário", "Avançado"].includes(course.level) && "bg-card/90 text-card-foreground"
+            )}
+          >
+            {course.level}
+          </Badge>
+        )}
         {course.progress > 0 && (
           <div className="absolute bottom-0 left-0 right-0 h-1 bg-muted">
             <div
