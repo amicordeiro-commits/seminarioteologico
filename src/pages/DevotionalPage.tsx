@@ -83,16 +83,38 @@ export default function DevotionalPage() {
   const { icon: TimeIcon, greeting } = getTimeOfDay();
 
   const handleSaveNotes = async () => {
-    if (!todayDevotional) return;
+    if (!activeDevotional) return;
     
     setIsSaving(true);
     try {
-      await saveNotes(todayDevotional.id, notes);
+      await saveNotes(activeDevotional.id, notes);
       toast.success("Anotações salvas com sucesso!");
     } catch (error) {
       toast.error("Erro ao salvar anotações");
     } finally {
       setIsSaving(false);
+    }
+  };
+
+  const handleNavigate = (direction: number) => {
+    const newIndex = selectedDevotionalIndex + direction;
+    if (newIndex >= 0 && newIndex < recentDevotionals.length) {
+      setSelectedDevotionalIndex(newIndex);
+    }
+  };
+
+  const handleShareDevotional = async () => {
+    if (!activeDevotional) return;
+    const text = `📖 ${activeDevotional.title}\n\n"${activeDevotional.verse_text}"\n— ${activeDevotional.verse_reference}\n\n${activeDevotional.reflection.slice(0, 200)}...`;
+    
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: activeDevotional.title, text });
+        toast.success("Compartilhado!");
+      } catch {}
+    } else {
+      await navigator.clipboard.writeText(text);
+      toast.success("Texto copiado para a área de transferência!");
     }
   };
 
