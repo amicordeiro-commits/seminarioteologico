@@ -11,7 +11,8 @@ import {
   Award,
   RotateCcw,
   RefreshCw,
-  AlertTriangle
+  AlertTriangle,
+  BookOpen
 } from "lucide-react";
 import { useQuiz, useQuizQuestions, useSubmitQuiz } from "@/hooks/useQuizzes";
 import { useQuizRecovery } from "@/hooks/useQuizRecovery";
