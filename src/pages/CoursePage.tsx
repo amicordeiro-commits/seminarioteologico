@@ -1185,6 +1185,7 @@ const CoursePage = () => {
         content={viewerText}
         loading={viewerLoading}
         category={course?.category}
+        videoUrl={viewerVideoUrl}
       />
 
       {/* Course Completion Celebration */}
