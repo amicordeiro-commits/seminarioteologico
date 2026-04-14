@@ -203,6 +203,7 @@ const CoursePage = () => {
     setViewerBlobUrl(null);
     setViewerText(null);
     setViewerTitle("");
+    setViewerVideoUrl(null);
     setViewerLoading(false);
   };
 
