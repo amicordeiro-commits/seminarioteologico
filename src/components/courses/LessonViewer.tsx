@@ -334,6 +334,7 @@ export function LessonViewer({
   content,
   loading = false,
   category,
+  videoUrl,
 }: LessonViewerProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const [settings, setSettings] = useState<ViewerSettings>(() => loadSettings());
