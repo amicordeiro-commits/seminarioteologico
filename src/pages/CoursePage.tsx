@@ -582,6 +582,47 @@ const CoursePage = () => {
   const totalLessons = course.lessons?.length || course.total_lessons || 1;
   const progressPercentage = enrollment ? (completedLessonsCount / totalLessons) * 100 : 0;
 
+  // Find next incomplete lesson
+  const nextIncompleteLesson = course.lessons?.find(
+    (lesson) => !lessonProgress?.some((p) => p.lesson_id === lesson.id && p.completed)
+  );
+
+  // Handle "Continuar Curso" click
+  const handleContinueCourse = () => {
+    if (nextIncompleteLesson) {
+      handleOpenLesson(nextIncompleteLesson);
+    } else if (course.lessons?.length) {
+      handleOpenLesson(course.lessons[0]);
+    }
+  };
+
+  // Handle share
+  const handleShare = async () => {
+    const shareData = {
+      title: course.title,
+      text: `Confira o curso "${course.title}" no Seminário Teológico!`,
+      url: window.location.href,
+    };
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+        await navigator.clipboard.writeText(window.location.href);
+        toast({ title: "Link copiado!", description: "O link do curso foi copiado para a área de transferência." });
+      }
+    } catch {}
+  };
+
+  // Detect course completion for celebration
+  const prevProgressRef = useRef(0);
+  useEffect(() => {
+    if (progressPercentage === 100 && prevProgressRef.current < 100 && prevProgressRef.current > 0) {
+      setShowCelebration(true);
+      setTimeout(() => setShowCelebration(false), 5000);
+    }
+    prevProgressRef.current = progressPercentage;
+  }, [progressPercentage]);
+
   return (
     <AppLayout>
       <div className="space-y-8">
@@ -962,9 +1003,9 @@ const CoursePage = () => {
                     </p>
                   </div>
 
-                  <Button variant="hero" size="lg" className="w-full mb-3">
+                  <Button variant="hero" size="lg" className="w-full mb-3" onClick={handleContinueCourse}>
                     <Play className="w-5 h-5 mr-2" />
-                    Continuar Curso
+                    {nextIncompleteLesson ? 'Continuar Curso' : 'Revisar Curso'}
                   </Button>
                 </>
               ) : (
@@ -1000,7 +1041,7 @@ const CoursePage = () => {
                     <Download className="w-4 h-4 mr-1" />
                     Materiais
                   </Button>
-                  <Button variant="outline" size="sm" className="flex-1">
+                  <Button variant="outline" size="sm" className="flex-1" onClick={handleShare}>
                     <Share2 className="w-4 h-4 mr-1" />
                     Compartilhar
                   </Button>
@@ -1138,6 +1179,32 @@ const CoursePage = () => {
         loading={viewerLoading}
         category={course?.category}
       />
+
+      {/* Course Completion Celebration */}
+      {showCelebration && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-foreground/60 backdrop-blur-sm animate-in fade-in duration-500">
+          <div className="bg-card rounded-3xl p-8 sm:p-12 text-center max-w-md mx-4 shadow-2xl animate-in zoom-in-95 duration-500">
+            <div className="text-6xl mb-4">🎓</div>
+            <h2 className="text-2xl sm:text-3xl font-serif font-bold text-foreground mb-3">
+              Parabéns!
+            </h2>
+            <p className="text-muted-foreground mb-2">
+              Você concluiu todas as aulas de
+            </p>
+            <p className="font-serif font-semibold text-primary text-lg mb-6">
+              {course?.title}
+            </p>
+            <div className="flex flex-col gap-2">
+              <Button variant="hero" onClick={() => { setShowCelebration(false); }} className="w-full">
+                🏆 Ver meu Certificado
+              </Button>
+              <Button variant="outline" onClick={() => setShowCelebration(false)} className="w-full">
+                Fechar
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </AppLayout>
   );
 };
