@@ -544,6 +544,20 @@ export function LessonViewer({
             </div>
           ) : content ? (
             <div className="flex-1 flex flex-col">
+              {/* Video Player */}
+              {videoUrl && (
+                <div className="w-full max-w-3xl mx-auto px-5 sm:px-10 lg:px-14 pt-6">
+                  <div className="aspect-video rounded-xl overflow-hidden bg-black shadow-lg border" style={{ borderColor: colors.border }}>
+                    <iframe
+                      src={videoUrl.replace("watch?v=", "embed/").replace("youtu.be/", "youtube.com/embed/")}
+                      className="w-full h-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      title={title}
+                    />
+                  </div>
+                </div>
+              )}
               <ScrollArea className="flex-1" style={{ backgroundColor: colors.bg }}>
                 <article 
                   className="w-full max-w-3xl mx-auto px-5 sm:px-10 lg:px-14 py-10 sm:py-14"
