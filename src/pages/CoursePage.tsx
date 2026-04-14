@@ -133,6 +133,19 @@ const CoursePage = () => {
   const enrollMutation = useEnrollInCourse();
   const markCompleteMutation = useMarkLessonComplete();
 
+  // Detect course completion for celebration (must be before early returns)
+  const completedCount = lessonProgress?.filter(p => p.completed).length || 0;
+  const totalCount = course?.lessons?.length || course?.total_lessons || 1;
+  const currentProgress = enrollment ? (completedCount / totalCount) * 100 : 0;
+  const prevProgressRef = useRef(0);
+  useEffect(() => {
+    if (currentProgress === 100 && prevProgressRef.current < 100 && prevProgressRef.current > 0) {
+      setShowCelebration(true);
+      setTimeout(() => setShowCelebration(false), 8000);
+    }
+    prevProgressRef.current = currentProgress;
+  }, [currentProgress]);
+
   // Fetch course materials
   const { data: courseMaterials = [], isLoading: loadingMaterials } = useQuery({
     queryKey: ["course-materials", id],
