@@ -16,6 +16,7 @@ interface LessonViewerProps {
   content: string | null;
   loading?: boolean;
   category?: string;
+  videoUrl?: string | null;
 }
 
 // Normaliza quebras de linha e reconstrói parágrafos
