@@ -112,6 +112,7 @@ const CoursePage = () => {
   const [activeQuizId, setActiveQuizId] = useState<string | null>(null);
   const [showMaterials, setShowMaterials] = useState(false);
   const [generatingPdf, setGeneratingPdf] = useState<string | null>(null);
+  const [showCelebration, setShowCelebration] = useState(false);
 
   // In-app material viewer (avoids browser extensions blocking direct PDF navigation)
   const [viewerOpen, setViewerOpen] = useState(false);
