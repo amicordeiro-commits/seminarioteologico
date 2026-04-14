@@ -121,6 +121,7 @@ const CoursePage = () => {
   const [viewerText, setViewerText] = useState<string | null>(null);
   const [viewerKind, setViewerKind] = useState<"pdf" | "text">("pdf");
   const [viewerLoading, setViewerLoading] = useState(false);
+  const [viewerVideoUrl, setViewerVideoUrl] = useState<string | null>(null);
 
   // Cache em memória para reabrir aulas instantaneamente na mesma sessão
   const lessonContentCacheRef = useRef<Record<string, string>>({});
