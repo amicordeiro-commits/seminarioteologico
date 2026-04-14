@@ -613,15 +613,6 @@ const CoursePage = () => {
     } catch {}
   };
 
-  // Detect course completion for celebration
-  const prevProgressRef = useRef(0);
-  useEffect(() => {
-    if (progressPercentage === 100 && prevProgressRef.current < 100 && prevProgressRef.current > 0) {
-      setShowCelebration(true);
-      setTimeout(() => setShowCelebration(false), 5000);
-    }
-    prevProgressRef.current = progressPercentage;
-  }, [progressPercentage]);
 
   return (
     <AppLayout>
