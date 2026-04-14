@@ -273,6 +273,7 @@ const CoursePage = () => {
   const handleOpenLesson = async (lesson: any) => {
     setViewerTitle(lesson.title);
     setViewerKind("text");
+    setViewerVideoUrl(lesson.video_url || null);
     setViewerOpen(true);
 
     // cache (mesma sessão)
