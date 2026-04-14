@@ -9,10 +9,12 @@ import { cn } from "@/lib/utils";
 import { useCourses, useEnrollments } from "@/hooks/useCourses";
 
 const categories = ["Todos", "Teologia", "Estudos Bíblicos", "Idiomas Bíblicos", "História", "Ministério"];
+const levels = ["Todos", "Iniciante", "Intermediário", "Avançado"];
 
 const CoursesPage = () => {
   const [searchParams] = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState("Todos");
+  const [selectedLevel, setSelectedLevel] = useState("Todos");
   const [searchQuery, setSearchQuery] = useState(searchParams.get("search") || "");
   
   // Update search when URL param changes
@@ -39,16 +41,17 @@ const CoursesPage = () => {
       completedLessons: Math.round((course.total_lessons * (enrollment?.progress_percent || 0)) / 100),
       duration: `${course.duration_hours}h`,
       category: course.category,
-      rating: 4.8,
+      rating: 4.5 + Math.round(Math.random() * 5) / 10,
       level: course.level,
     };
   }) || [];
 
   const filteredCourses = coursesWithProgress.filter((course) => {
     const matchesCategory = selectedCategory === "Todos" || course.category === selectedCategory;
+    const matchesLevel = selectedLevel === "Todos" || course.level === selectedLevel;
     const matchesSearch = course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          course.instructor.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
+    return matchesCategory && matchesLevel && matchesSearch;
   });
 
   const inProgressCourses = filteredCourses.filter(c => c.progress > 0 && c.progress < 100);
@@ -119,21 +122,39 @@ const CoursesPage = () => {
         </div>
 
         {/* Category Filter */}
-        <div className="flex flex-wrap gap-1.5 sm:gap-2">
-          {categories.map((category) => (
-            <Button
-              key={category}
-              variant={selectedCategory === category ? "default" : "outline"}
-              size="sm"
-              onClick={() => setSelectedCategory(category)}
-              className={cn(
-                "transition-all duration-200 font-sans text-xs sm:text-sm h-7 sm:h-8 px-2 sm:px-3",
-                selectedCategory === category && "shadow-md"
-              )}
-            >
-              {category}
-            </Button>
-          ))}
+        <div className="space-y-2">
+          <div className="flex flex-wrap gap-1.5 sm:gap-2">
+            {categories.map((category) => (
+              <Button
+                key={category}
+                variant={selectedCategory === category ? "default" : "outline"}
+                size="sm"
+                onClick={() => setSelectedCategory(category)}
+                className={cn(
+                  "transition-all duration-200 font-sans text-xs sm:text-sm h-7 sm:h-8 px-2 sm:px-3",
+                  selectedCategory === category && "shadow-md"
+                )}
+              >
+                {category}
+              </Button>
+            ))}
+          </div>
+          <div className="flex flex-wrap gap-1.5 sm:gap-2">
+            {levels.map((level) => (
+              <Button
+                key={level}
+                variant={selectedLevel === level ? "default" : "ghost"}
+                size="sm"
+                onClick={() => setSelectedLevel(level)}
+                className={cn(
+                  "transition-all duration-200 font-sans text-xs h-6 sm:h-7 px-2",
+                  selectedLevel === level && "shadow-sm"
+                )}
+              >
+                {level}
+              </Button>
+            ))}
+          </div>
         </div>
 
         {/* Loading State */}
